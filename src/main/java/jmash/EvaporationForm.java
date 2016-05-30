@@ -132,7 +132,7 @@ public class EvaporationForm extends javax.swing.JInternalFrame {
         });
         jPanel1.add(fldLitriIni);
 
-        jLabel6.setText("Densit‡");
+        jLabel6.setText("Densit√†");
         jPanel1.add(jLabel6);
 
         fldOG.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -168,7 +168,7 @@ public class EvaporationForm extends javax.swing.JInternalFrame {
         });
         jPanel2.add(fldLitriFin);
 
-        jLabel16.setText("Densit‡");
+        jLabel16.setText("Densit√†");
         jPanel2.add(jLabel16);
 
         fldFG.addChangeListener(new javax.swing.event.ChangeListener() {

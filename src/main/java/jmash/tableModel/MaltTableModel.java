@@ -37,7 +37,7 @@ public class MaltTableModel extends GenericTableModel<Malt> {
      */
     private static final long serialVersionUID = -1437528549102631806L;
     Ricetta ricetta;
-    private static String[] maltColumnNames=new String[]{"", "Malti e zuccheri", "Q.t‡†", "U.mis.", "%", "Pot. SG", "Forma", "Colore EBC", "Colore SRM"};
+    private static String[] maltColumnNames=new String[]{"", "Malti e zuccheri", "Q.t√†", "U.mis.", "%", "Pot. SG", "Forma", "Colore EBC", "Colore SRM"};
     public MaltTableModel(Ricetta ricetta) {
 	this.ricetta = ricetta;
 	ret.setIcon(Main.maltIcon);

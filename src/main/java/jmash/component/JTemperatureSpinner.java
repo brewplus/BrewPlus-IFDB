@@ -31,7 +31,7 @@ public class JTemperatureSpinner extends JMultiUnitSpinner{
     
     /** Creates a new instance of JVolumeSpinner */
     public JTemperatureSpinner() {
-        super(new String[] { "°C", "°F" });
+        super(new String[] { "Â°C", "Â°F" });
 	setModel(40,0,100,1,"0.00",null);
     }
     private static final int C = 0;

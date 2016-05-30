@@ -259,7 +259,7 @@ public class PanelFermentationLog extends javax.swing.JPanel {
 	
 //	final ValueAxis domainAxis = plot.getDomainAxis();
 
-        NumberAxis axis = new NumberAxis("°C");
+        NumberAxis axis = new NumberAxis("Â°C");
 //	axis.setLowerMargin(0.0);
 //	axis.setUpperMargin(30.0);
   //      axis.setAutoRangeIncludesZero(false);

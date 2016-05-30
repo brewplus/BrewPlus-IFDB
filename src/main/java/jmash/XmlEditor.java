@@ -213,7 +213,7 @@ public class XmlEditor extends javax.swing.JInternalFrame {
     @Override
     public void doDefaultCloseAction(){
 	if(this.dirty){
-	    if(!Ask.doAsk(this,"Il file è stato modificato, chiudere senza salvare le modifiche?")){
+	    if(!Ask.doAsk(this,"Il file Ã¨ stato modificato, chiudere senza salvare le modifiche?")){
 		return;
 	    }
 	}

@@ -132,7 +132,7 @@ public class CorrezioneDensimetro extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("Lettura Densit‡");
+        setTitle("Lettura Densit√†");
 
         jPanel6.setLayout(new java.awt.GridBagLayout());
 
@@ -148,7 +148,7 @@ public class CorrezioneDensimetro extends javax.swing.JInternalFrame {
         jPanel2.add(jLabel1, gridBagConstraints);
 
         jLabel3.setFont(jLabel3.getFont());
-        jLabel3.setText("Densit‡ letta");
+        jLabel3.setText("Densit√† letta");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -157,7 +157,7 @@ public class CorrezioneDensimetro extends javax.swing.JInternalFrame {
         jPanel2.add(jLabel3, gridBagConstraints);
 
         jLabel4.setFont(jLabel4.getFont());
-        jLabel4.setText("Densit‡ corretta");
+        jLabel4.setText("Densit√† corretta");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -330,7 +330,7 @@ public class CorrezioneDensimetro extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         jPanel7.add(jPanel8, gridBagConstraints);
 
-        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Stima Densit‡ Finale"));
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Stima Densit√† Finale"));
         jPanel9.setLayout(new java.awt.GridBagLayout());
 
         jLabel9.setText("Iniziale");
@@ -632,7 +632,7 @@ public class CorrezioneDensimetro extends javax.swing.JInternalFrame {
     private JFreeChart createChart(final XYDataset dataset) {
 	final JFreeChart chart1 = ChartFactory.createXYLineChart(
 		"",
-		"Temperatura", "Densit‡†",
+		"Temperatura", "Densit√†",
 		null,
 		PlotOrientation.VERTICAL,
 		true,  // legend
@@ -665,7 +665,7 @@ public class CorrezioneDensimetro extends javax.swing.JInternalFrame {
 		double d0=ds.getXValue(s,i);
 		double y0=ds.getYValue(s,i);
 		String str="";
-		str="Letti a "+d0+"∞C sarebbero "+NumberFormatter.format03( y0/1000+1);
+		str="Letti a "+d0+"¬∞C sarebbero "+NumberFormatter.format03( y0/1000+1);
 		return str;
 	    }
 	});

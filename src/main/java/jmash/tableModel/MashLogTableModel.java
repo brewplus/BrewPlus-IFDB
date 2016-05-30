@@ -31,7 +31,7 @@ import jmash.*;
 public class MashLogTableModel extends GenericTableModel<TLog>{
     
     public MashLogTableModel() {
-        this.columnNames=new String[]  {    "Minuto", "°C", "pH" };
+        this.columnNames=new String[]  {    "Minuto", "Â°C", "pH" };
     }
     
     

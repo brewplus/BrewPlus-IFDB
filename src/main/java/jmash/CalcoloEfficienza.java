@@ -79,7 +79,7 @@ public class CalcoloEfficienza extends ModalInternalFrame {
         jLabel2.setFont(jLabel2.getFont());
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setLabelFor(jGravitySpinner1);
-        jLabel2.setText("Densit‡");
+        jLabel2.setText("Densit√†");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;

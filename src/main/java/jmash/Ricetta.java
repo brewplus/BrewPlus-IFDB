@@ -188,10 +188,10 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	JScrollPane scrollPanel = new JScrollPane();
 	//scrollPanel.setViewportView(waterPanel);
     scrollPanel.getViewport().setPreferredSize(new Dimension(0,0));
-	//this.jTabbedPane1.add(waterNeeded.getComponent(0), "Quantit‡† Acqua");
-    this.jTabbedPane1.add(waterNeeded.getComponent(0), "Quantit‡† Acqua");
+	//this.jTabbedPane1.add(waterNeeded.getComponent(0), "Quantit√† Acqua");
+    this.jTabbedPane1.add(waterNeeded.getComponent(0), "Quantit√† Acqua");
     
-	this.jTabbedPane1.add("Qualit‡† Acqua", waterPanel);
+	this.jTabbedPane1.add("Qualit√† Acqua", waterPanel);
    
         
 	this.maltSorter.setTableHeader(this.tblMalts.getTableHeader());

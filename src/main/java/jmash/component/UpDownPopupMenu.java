@@ -18,7 +18,7 @@ import javax.swing.JPopupMenu;
 public class UpDownPopupMenu extends JPopupMenu {
     
     javax.swing.JMenuItem mnuItemUp=new javax.swing.JMenuItem("Su");
-    javax.swing.JMenuItem mnuItemDown=new javax.swing.JMenuItem("Giù");
+    javax.swing.JMenuItem mnuItemDown=new javax.swing.JMenuItem("GiÃ¹");
     
     public enum Action {UP, DOWN};
     

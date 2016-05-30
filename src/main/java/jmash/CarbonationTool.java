@@ -219,7 +219,7 @@ public class CarbonationTool extends javax.swing.JInternalFrame {
         });
         jPanel2.add(fldT);
 
-        jLabel2.setText("Qtà");
+        jLabel2.setText("QtÃ ");
         jPanel2.add(jLabel2);
 
         fldL.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -253,7 +253,7 @@ public class CarbonationTool extends javax.swing.JInternalFrame {
         });
         jPanel2.add(jButton1);
 
-        jLabel6.setText("Fermentabilità DME");
+        jLabel6.setText("FermentabilitÃ  DME");
         jPanel2.add(jLabel6);
 
         ferment.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -624,7 +624,7 @@ public class CarbonationTool extends javax.swing.JInternalFrame {
         jPanel11.add(spnLK2, gridBagConstraints);
 
         jLabel26.setFont(jLabel26.getFont());
-        jLabel26.setText("Fermentabilità %");
+        jLabel26.setText("FermentabilitÃ  %");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -646,7 +646,7 @@ public class CarbonationTool extends javax.swing.JInternalFrame {
         jPanel11.add(ferment1, gridBagConstraints);
 
         jLabel27.setFont(jLabel27.getFont());
-        jLabel27.setText("Volume di mosto da aggiungere tenendo conto del volume aggiunto e della fermentabilità");
+        jLabel27.setText("Volume di mosto da aggiungere tenendo conto del volume aggiunto e della fermentabilitÃ ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -778,7 +778,7 @@ public class CarbonationTool extends javax.swing.JInternalFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
 	
-	String M="K dipende dal tipo di zucchero:\nglucosio=4.02\nsaccarosio=3.82\nmiele = 40 % piu' del glucosio\nDME dipende dalla fermentabilità  dello stesso";
+	String M="K dipende dal tipo di zucchero:\nglucosio=4.02\nsaccarosio=3.82\nmiele = 40 % piu' del glucosio\nDME dipende dalla fermentabilitÃ  dello stesso";
 	
 	new ShowFormula(M,formulaPrimingBottiglia).startModal(this);
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -1221,7 +1221,7 @@ public class CarbonationTool extends javax.swing.JInternalFrame {
 		    double d0=ds.getXValue(serie,i);
 		    double y0=ds.getYValue(serie,i);
 		    String str="";
-		    str="Carbonazione residua a "+d0+" °C, "+NumberFormatter.format01(y0)+" volumi.";
+		    str="Carbonazione residua a "+d0+" Â°C, "+NumberFormatter.format01(y0)+" volumi.";
 		    return str;
 		}
 		if(serie == 1){
@@ -1235,7 +1235,7 @@ public class CarbonationTool extends javax.swing.JInternalFrame {
 		    double d0=ds.getXValue(serie,i);
 		    double y0=ds.getYValue(serie,i);
 		    String str="";
-		    str="Carbonazione mancante a "+d0+" °C, "+NumberFormatter.format01(y0)+" volumi.";
+		    str="Carbonazione mancante a "+d0+" Â°C, "+NumberFormatter.format01(y0)+" volumi.";
 		    return str;
 		}
 		//double d0=ds.getXValue(serie,i);
@@ -1446,7 +1446,7 @@ public class CarbonationTool extends javax.swing.JInternalFrame {
 		    double d0=ds.getXValue(serie,i);
 		    double y0=ds.getYValue(serie,i);
 		    String str="";
-		    str="Carbonazione residua a "+d0+" °C, "+NumberFormatter.format01(y0)+" volumi.";
+		    str="Carbonazione residua a "+d0+" Â°C, "+NumberFormatter.format01(y0)+" volumi.";
 		    return str;
 		}
 		if(serie == 1){
@@ -1460,7 +1460,7 @@ public class CarbonationTool extends javax.swing.JInternalFrame {
 		    double d0=ds.getXValue(serie,i);
 		    double y0=ds.getYValue(serie,i);
 		    String str="";
-		    str="Carbonazione mancante a "+d0+" °C, "+NumberFormatter.format01(y0)+" volumi.";
+		    str="Carbonazione mancante a "+d0+" Â°C, "+NumberFormatter.format01(y0)+" volumi.";
 		    return str;
 		}
 		//double d0=ds.getXValue(serie,i);

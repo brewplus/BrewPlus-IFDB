@@ -890,17 +890,17 @@ public class PanelMashStep extends javax.swing.JPanel {
         str+="Mash Steps:\n";
         for (MashStep y :this.mashStepTableModel.getRows()) {
         	str+=" "+y.getNome()+" ";
-        	str+=+y.getEndTemp() + " �C ";
+        	str+=+y.getEndTemp() + " °C ";
         	str+=y.getLength()+" minuti\n";
         }
 //        for (MashStep y :this.mashDecoctionStepTableModel.getRows()) {
 //            str+="Decozione al minuto "+y.getStart()+": ";
 //            double F=100.0 * (y.getEndTemp() - y.getStartTemp()) / (100 - y.getStartTemp() - 10);
-//            str+="\n\tprelevo il "+(int)F+"% dell'impasto e lo porto da "+y.getStartTemp()+" a "+y.getDecoctionRestT1()+" �C;";
-//            str+="\n\tdopo "+y.getDecoctionRestL1()+" minuti porto la decozione a "+y.getDecoctionRestT2()+" �C per "+y.getDecoctionRestL2()+" minuti;";
-//            str+="\n\tnel frattempo, mantengo il resto del mash a "+y.getStartTemp()+"�C;";
+//            str+="\n\tprelevo il "+(int)F+"% dell'impasto e lo porto da "+y.getStartTemp()+" a "+y.getDecoctionRestT1()+" °C;";
+//            str+="\n\tdopo "+y.getDecoctionRestL1()+" minuti porto la decozione a "+y.getDecoctionRestT2()+" °C per "+y.getDecoctionRestL2()+" minuti;";
+//            str+="\n\tnel frattempo, mantengo il resto del mash a "+y.getStartTemp()+"°C;";
 //            str+="\n\triunisco, mescolo per "+y.getDecoctionRampDown()+" minuti;";
-//            str+="\n\tin modo da portare l'intero mash da "+y.getStartTemp()+" a "+y.getEndTemp()+" �C.\n";
+//            str+="\n\tin modo da portare l'intero mash da "+y.getStartTemp()+" a "+y.getEndTemp()+" °C.\n";
 //        }
         return str;
     }
@@ -910,18 +910,18 @@ public class PanelMashStep extends javax.swing.JPanel {
         String str="";
         for (MashStep y :this.mashStepTableModel.getRows()) {
             str+="Aumento di temperatura al minuto "+y.getStart()+": ";
-            str+="\n\triscaldo da "+y.getStartTemp()+" a "+y.getEndTemp()+" �C in "+y.getRamp()+" minuti;";
+            str+="\n\triscaldo da "+y.getStartTemp()+" a "+y.getEndTemp()+" °C in "+y.getRamp()+" minuti;";
             if(this.mashDecoctionStepTableModel.getRows().size()>0){str+="\n";break;}
-            str+="\n\tmantengo la temperatura di "+y.getEndTemp()+" �C per "+y.getLength()+" minuti;\n";
+            str+="\n\tmantengo la temperatura di "+y.getEndTemp()+" °C per "+y.getLength()+" minuti;\n";
         }
         for (MashStep y :this.mashDecoctionStepTableModel.getRows()) {
             str+="Decozione al minuto "+y.getStart()+": ";
             double F=100.0 * (y.getEndTemp() - y.getStartTemp()) / (100 - y.getStartTemp() - 10);
-            str+="\n\tprelevo il "+(int)F+"% dell'impasto e lo porto da "+y.getStartTemp()+" a "+y.getDecoctionRestT1()+" �C;";
-            str+="\n\tdopo "+y.getDecoctionRestL1()+" minuti porto la decozione a "+y.getDecoctionRestT2()+" �C per "+y.getDecoctionRestL2()+" minuti;";
-            str+="\n\tnel frattempo, mantengo il resto del mash a "+y.getStartTemp()+"�C;";
+            str+="\n\tprelevo il "+(int)F+"% dell'impasto e lo porto da "+y.getStartTemp()+" a "+y.getDecoctionRestT1()+" °C;";
+            str+="\n\tdopo "+y.getDecoctionRestL1()+" minuti porto la decozione a "+y.getDecoctionRestT2()+" °C per "+y.getDecoctionRestL2()+" minuti;";
+            str+="\n\tnel frattempo, mantengo il resto del mash a "+y.getStartTemp()+"°C;";
             str+="\n\triunisco, mescolo per "+y.getDecoctionRampDown()+" minuti;";
-            str+="\n\tin modo da portare l'intero mash da "+y.getStartTemp()+" a "+y.getEndTemp()+" �C.\n";
+            str+="\n\tin modo da portare l'intero mash da "+y.getStartTemp()+" a "+y.getEndTemp()+" °C.\n";
         }
         
         Msg.showMsg(str,parentFrame);

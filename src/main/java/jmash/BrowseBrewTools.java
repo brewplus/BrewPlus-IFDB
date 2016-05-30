@@ -114,7 +114,7 @@ public class BrowseBrewTools extends javax.swing.JInternalFrame {
         styleNodes.add(new StyleTreeNode(6, "16A Witbier"));
         styleNodes.add(new StyleTreeNode(4, "16B Belgian Pale Ale"));
         styleNodes.add(new StyleTreeNode(66, "16C Saison"));
-        styleNodes.add(new StyleTreeNode(58, "16D Bi�re de Garde"));
+        styleNodes.add(new StyleTreeNode(58, "16D Biére de Garde"));
         styleNodes.add(new StyleTreeNode(70, "16E Belgian Specialty Ale"));
         styleNodes.add(new StyleTreeNode(49, "17A Berliner Weisse"));
         styleNodes.add(new StyleTreeNode(40, "17B Flanders Red Ale"));

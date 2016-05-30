@@ -250,16 +250,16 @@ public class UploadRicetta2 extends javax.swing.JInternalFrame {
             return;
         }
         if((this.txtUser.getText()==null) || (this.txtUser.getText().length()==0)){
-            Msg.showMsg("Il nome utente è obbligatorio!",this);
+            Msg.showMsg("Il nome utente Ã¨ obbligatorio!",this);
             return;
         }
         if((this.txtPwd.getPassword()==null) || (this.txtPwd.getPassword().length==0)){
-            Msg.showMsg("La password è obbligatoria!",this);
+            Msg.showMsg("La password Ã¨ obbligatoria!",this);
             return;
         }
         this.nomeRicetta=this.txtNome.getText();
         if((this.nomeRicetta==null) || (this.nomeRicetta.length()==0)){
-            Msg.showMsg("Il nome della ricetta è obbligatorio!",this);
+            Msg.showMsg("Il nome della ricetta Ã¨ obbligatorio!",this);
             return;
         }
         StyleTreeNode node=null;

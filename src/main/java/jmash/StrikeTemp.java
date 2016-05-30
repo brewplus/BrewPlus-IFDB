@@ -266,7 +266,7 @@ public class StrikeTemp extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
         jPanel1.add(jComboBox2, gridBagConstraints);
 
-        jLabel10.setText("Modalit‡");
+        jLabel10.setText("Modalit√†");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 8;

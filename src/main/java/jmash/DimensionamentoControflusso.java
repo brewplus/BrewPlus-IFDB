@@ -53,8 +53,8 @@ public class DimensionamentoControflusso extends javax.swing.JInternalFrame {
         this.fRete.setModelFormat(3, 0.1,100,0.5,"0.0","DimensionamentoControflusso.fRete");
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         calc();
-        jLabel22.setText("Densit‡");
-        jLabel18.setText("Densit‡");
+        jLabel22.setText("Densit√†");
+        jLabel18.setText("Densit√†");
     }
  
     
@@ -100,17 +100,17 @@ public class DimensionamentoControflusso extends javax.swing.JInternalFrame {
        double L = Q / (K * Math.PI * this.diTubo.getDoubleValue() * AT);
        String str=
               "Energia scambiata [W]       = "+Q;
-       str+="\nT acqua uscita [∞C]         = "+T;
+       str+="\nT acqua uscita [¬∞C]         = "+T;
        str+="\nAT medio                    = "+AT;
-       str+="\nVelocit‡† mosto [Kg/s]       = "+Gm;
-       str+="\nVelocit‡† acqua [Kg/s]       = "+Ga;
+       str+="\nVelocit√† mosto [Kg/s]       = "+Gm;
+       str+="\nVelocit√† acqua [Kg/s]       = "+Ga;
        str+="\nNum. di Prandl mosto        = "+Prm;
        str+="\nNum. di Prandl acqua        = "+Pra;
-       str+="\nVelocit‡† mosto parete [m/s] = "+Wm;
+       str+="\nVelocit√† mosto parete [m/s] = "+Wm;
        str+="\nNum. Reynolds mosto         = "+Rem;
        str+="\nNum. Nussel mosto           = "+Num;
        str+="\ncoeff. scambio mosto/tubo   = "+h1;
-       str+="\nVelocit‡† acqua parete [m/s] = "+Wa;
+       str+="\nVelocit√† acqua parete [m/s] = "+Wa;
        str+="\nDiam.equiv. corona est. [m] = "+Deq;
        str+="\nNum. Reynolds acqua         = "+Rea;
        str+="\nNum. Nussel acqua           = "+Nua;

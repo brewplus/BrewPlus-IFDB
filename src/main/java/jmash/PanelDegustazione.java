@@ -49,7 +49,7 @@ import org.jfree.ui.TextAnchor;
 public class PanelDegustazione extends javax.swing.JPanel {
     JPanel pnl[]=new JPanel[8];
     JRadioButton btns[][]=new JRadioButton[8][5];
-    String titles[]=new String[]{"schiuma","aspetto","intensit‡ olfattiva","finezza olfattiva","frizzantezza","corpo","amaro","persistenza",};
+    String titles[]=new String[]{"schiuma","aspetto","intensit√† olfattiva","finezza olfattiva","frizzantezza","corpo","amaro","persistenza",};
     /** Creates new form PanelDegustazione */
     public PanelDegustazione() {
         initComponents();
@@ -151,7 +151,7 @@ public class PanelDegustazione extends javax.swing.JPanel {
     class MyPolarPlot extends PolarPlot{
         List angleTicks = new java.util.ArrayList();
         public MyPolarPlot(){
-            //la schiuma, l'aspetto, l'intensit‡† olfattiva, la finezza olfattiva, la frizzantezza, il corpo, l'amaro e la persistenza retrolfattiva.
+            //la schiuma, l'aspetto, l'intensit√† olfattiva, la finezza olfattiva, la frizzantezza, il corpo, l'amaro e la persistenza retrolfattiva.
             for(int i=0;i<8;i++){
             this.angleTicks.add(new NumberTick(new Double(45*i), titles[i],
                     TextAnchor.CENTER, TextAnchor.CENTER, 0.0));}

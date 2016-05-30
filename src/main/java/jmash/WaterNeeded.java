@@ -1195,7 +1195,7 @@ public class WaterNeeded extends javax.swing.JInternalFrame {
         jPanel12.setPreferredSize(new java.awt.Dimension(250, 128));
         jPanel12.setLayout(new java.awt.GridBagLayout());
 
-        jLabel63.setText("Densit‡ pre-boll.");
+        jLabel63.setText("Densit√† pre-boll.");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;

@@ -190,7 +190,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
         btnNewButton = new JButton("?");
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		Utils.showMsg("Selezionare l'opzione se il potenziale degli ingredienti è espresso in libbre/Gallone e non in grammi/Litro.\nNota: il software Hobbybrew considera il potenziale ingredienti espresso come libbre/Gallone.",parent);
+        		Utils.showMsg("Selezionare l'opzione se il potenziale degli ingredienti Ã¨ espresso in libbre/Gallone e non in grammi/Litro.\nNota: il software Hobbybrew considera il potenziale ingredienti espresso come libbre/Gallone.",parent);
         	}
         });
         GridBagConstraints gbc_btnNewButton = new GridBagConstraints();

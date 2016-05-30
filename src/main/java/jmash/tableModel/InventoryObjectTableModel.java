@@ -30,7 +30,7 @@ import jmash.interfaces.InventoryObject;
 public class InventoryObjectTableModel extends GenericTableModel<InventoryObject>{
     
     public InventoryObjectTableModel() {
-	this.columnNames = new String[]{"", "Nome", "Q.t‡†"};
+	this.columnNames = new String[]{"", "Nome", "Q.t√†"};
     }
     
     @Override

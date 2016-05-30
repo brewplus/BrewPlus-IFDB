@@ -91,7 +91,7 @@ public class YeastPitching extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         getContentPane().add(spinA, gridBagConstraints);
 
-        jLabel2.setText("Densit‡ mosto (SG)");
+        jLabel2.setText("Densit√† mosto (SG)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -110,7 +110,7 @@ public class YeastPitching extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         getContentPane().add(spinB, gridBagConstraints);
 
-        jLabel3.setText("Densit‡ mosto (plato)");
+        jLabel3.setText("Densit√† mosto (plato)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -129,7 +129,7 @@ public class YeastPitching extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         getContentPane().add(spinC, gridBagConstraints);
 
-        jLabel4.setText("Quantit‡ mosto (litri)");
+        jLabel4.setText("Quantit√† mosto (litri)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
@@ -148,7 +148,7 @@ public class YeastPitching extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         getContentPane().add(spinD, gridBagConstraints);
 
-        jLabel5.setText("Pitch rate (milioni di cellule/millilitro/∞P)");
+        jLabel5.setText("Pitch rate (milioni di cellule/millilitro/ÔøΩP)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;

@@ -38,7 +38,7 @@ public class HopTableModel extends GenericTableModel<Hop> {
      */
     private static final long serialVersionUID = -54392409816219092L;
     Ricetta ricetta;
-    private static String[] hopColumnNames= new String[]{"", "Nome", "Q.t‡†", "U.mis.", "Forma", "Alfa A.", "Bollitura", "Uso", "Tinseth", "Rager", "Daniels", ""};
+    private static String[] hopColumnNames= new String[]{"", "Nome", "Q.t√†", "U.mis.", "Forma", "Alfa A.", "Bollitura", "Uso", "Tinseth", "Rager", "Daniels", ""};
     public HopTableModel(Ricetta ric) {
 	this.ricetta = ric;
 	ret.setIcon(Main.clockIcon);
@@ -64,7 +64,7 @@ public class HopTableModel extends GenericTableModel<Hop> {
 		    return h.getNome();
 		case 2:
                     if (h.getForma() != null && h.getForma().compareToIgnoreCase("spice") == 0) {
-                        //Dario: alcune spezie hanno la necessit‡ di essere dosate con precisione al decimo di grammo
+                        //Dario: alcune spezie hanno la necessit√† di essere dosate con precisione al decimo di grammo
                         hmFormatterUM.remove("grammi");
                         hmFormatterUM.put("grammi",new NumberFormatter("0.0"));
                     } else {

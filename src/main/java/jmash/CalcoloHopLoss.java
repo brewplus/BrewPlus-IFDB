@@ -65,7 +65,7 @@ public class CalcoloHopLoss extends ModalInternalFrame {
         this.fldMesi.setEditor(new JSpinner.NumberEditor(this.fldMesi, "0.00"));
         this.pnl.add(createDemoPanel(), BorderLayout.CENTER);   
         setBorder(Utils.getDefaultBorder());
-        this.jLabel4.setText("Modalità conservazione");
+        this.jLabel4.setText("ModalitÃ  conservazione");
         calc();
     }
 
@@ -170,7 +170,7 @@ public class CalcoloHopLoss extends ModalInternalFrame {
         });
 
         jLabel2.setFont(jLabel2.getFont());
-        jLabel2.setText("Temperatura stoccaggio °C");
+        jLabel2.setText("Temperatura stoccaggio Â°C");
 
         fldT.setFont(fldT.getFont());
         fldT.addChangeListener(new javax.swing.event.ChangeListener() {
