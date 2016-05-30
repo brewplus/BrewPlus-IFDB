@@ -280,7 +280,7 @@ public class Gui extends javax.swing.JFrame {
         
         
         BufferedImage bf=null;
-        bf=ImageIO.read(getClass().getResourceAsStream("images/bkgrnd.jpg"));
+        bf=ImageIO.read(getClass().getResourceAsStream("/jmash/images/bkgrnd.jpg"));
         desktop = new JDesktopBackground(bf);
         
         desktop.setDoubleBuffered(true);
@@ -408,7 +408,7 @@ public class Gui extends javax.swing.JFrame {
         toolbar.add(btnMashDesign);
 
         btnSaveAll4.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/hydrometer.png"))); // NOI18N
-        btnSaveAll4.setToolTipText("Lettura Densità");
+        btnSaveAll4.setToolTipText("Lettura Densitï¿½");
         btnSaveAll4.setMaximumSize(new java.awt.Dimension(37, 35));
         btnSaveAll4.setMinimumSize(new java.awt.Dimension(37, 35));
         btnSaveAll4.setPreferredSize(new java.awt.Dimension(37, 35));
@@ -1194,7 +1194,7 @@ public class Gui extends javax.swing.JFrame {
 	try {
 	    Utils.copyFile("runner.jar","_runner.jar");
 	} catch (IOException ex) {
-	    Utils.showException(ex,"Impossibile eseguire l'update: non è stato possibile creare il file _runner.jar");
+	    Utils.showException(ex,"Impossibile eseguire l'update: non ï¿½ stato possibile creare il file _runner.jar");
 	    return;
 	}
 	try {
@@ -1333,7 +1333,7 @@ public class Gui extends javax.swing.JFrame {
             if (evt.getChild() != null) {
                 JMenuItem item = new JMenuItem();
                 JInternalFrame child = (JInternalFrame)evt.getChild();
-                if (child.getTitle().length() > 0) { //inserito questo controllo perchè viene generato l'evento a caso quando aggiungo una ricetta
+                if (child.getTitle().length() > 0) { //inserito questo controllo perchï¿½ viene generato l'evento a caso quando aggiungo una ricetta
                     item.setText(child.getTitle());
                     item.setActionCommand(child.getTitle());
                     item.addActionListener(new java.awt.event.ActionListener() {

@@ -66,7 +66,7 @@ import org.jdom.output.XMLOutputter;
 
 public class Main {
     
-    public static String versioneHobbyBrew = "1.5.0";
+    public static String versioneHobbyBrew = "1.99.0";
     public  static int webVersion;
     public static String userDir;
     public static String waterDir;

@@ -44,10 +44,10 @@ import javax.swing.filechooser.*;
  *   ImageFilter.java
  *   ImagePreview.java
  *   Utils.java
- *   images/jpgIcon.gif (required by ImageFileView.java)
- *   images/gifIcon.gif (required by ImageFileView.java)
- *   images/tiffIcon.gif (required by ImageFileView.java)
- *   images/pngIcon.png (required by ImageFileView.java)
+ *   /jmash/images/jpgIcon.gif (required by ImageFileView.java)
+ *   /jmash/images/gifIcon.gif (required by ImageFileView.java)
+ *   /jmash/images/tiffIcon.gif (required by ImageFileView.java)
+ *   /jmash/images/pngIcon.png (required by ImageFileView.java)
  */
 public class FileChooserDemo2 extends JPanel
                               implements ActionListener {

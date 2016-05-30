@@ -114,7 +114,7 @@ public class BrowseBrewTools extends javax.swing.JInternalFrame {
         styleNodes.add(new StyleTreeNode(6, "16A Witbier"));
         styleNodes.add(new StyleTreeNode(4, "16B Belgian Pale Ale"));
         styleNodes.add(new StyleTreeNode(66, "16C Saison"));
-        styleNodes.add(new StyleTreeNode(58, "16D Biére de Garde"));
+        styleNodes.add(new StyleTreeNode(58, "16D Biï¿½re de Garde"));
         styleNodes.add(new StyleTreeNode(70, "16E Belgian Specialty Ale"));
         styleNodes.add(new StyleTreeNode(49, "17A Berliner Weisse"));
         styleNodes.add(new StyleTreeNode(40, "17B Flanders Red Ale"));
@@ -468,7 +468,7 @@ public class BrowseBrewTools extends javax.swing.JInternalFrame {
             BrewStyle bs = Main.getBrewStyleByDes(bsdes);
             //rd.setStyle(bs);
         }
-        int N = str.indexOf("src=\"/images/ingrdnts.gif\"");
+        int N = str.indexOf("src=\"/jmash/images/ingrdnts.gif\"");
         int i = str.substring(0, N).lastIndexOf("<table");
         int e = str.indexOf("</table>", i);
         str = str.substring(i, e + "</table>".length());
@@ -510,7 +510,7 @@ public class BrowseBrewTools extends javax.swing.JInternalFrame {
         for (int j = 0; j < s.length; j++) {
             String S = s[j];
 //	    System.out.println(S);
-            if (S.indexOf("table") < 0 && S.indexOf("src=\"/images/ingrdnts.gif\"") < 0) {
+            if (S.indexOf("table") < 0 && S.indexOf("src=\"/jmash/images/ingrdnts.gif\"") < 0) {
                 if (S.indexOf("grains#") >= 0) {
                     String nome = S.substring(1, S.indexOf("grains#")).trim();
                     MaltType T = Main.getMaltTypeByDes(nome);

@@ -57,7 +57,7 @@ public class frmCredits extends javax.swing.JInternalFrame {
 		
 		JLabel lblBasedOnHobbybrew = new JLabel();
 		lblBasedOnHobbybrew.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lblBasedOnHobbybrew.setText("Based on Hobbybrew 2.0.3");
+		lblBasedOnHobbybrew.setText("Based on Hobbybrew 2.0.3 and BrewPlus 1.5.0");
 		lblBasedOnHobbybrew.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBasedOnHobbybrew.setBackground(Color.WHITE);
 		lblBasedOnHobbybrew.setBounds(10, 80, 399, 14);
