@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmash.Config remoteRoot="http://brewplus.t15.org/brewplus" RemoteServer="BrewPlus.blogspot.it/" RSSFeed="http://birrabirra.altervista.org/forum/feed.php" boilTime="60" volumeFin="18" volumeBoil="22" efficienza="70" metriSLM="180" amaroDHEA="45" nickIHB="" passwordIHB="" proxyPort="" proxyHost="" lostToTrub="0.5" lostToSparge="0.1" litriPerKg="5.0" evaporazionePerOra="4.0" ebcNewMethod="true" potLibGal="0" BUGUratiostring="TIN" />
+
