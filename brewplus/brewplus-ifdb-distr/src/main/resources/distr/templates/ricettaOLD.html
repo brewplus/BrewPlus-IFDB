@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>ricetta.getNome</title>
+<link rel="stylesheet" href="styles/screen.css" type="text/css" media="screen"/>
+<link rel="stylesheet" href="styles/print.css" type="text/css" media="print"/> 
+<meta name="Keywords" content="ricetta della birra ricetta.getNome" />
+<meta name="Description" content="La ricetta della birra ricetta.getNome generata da BrewPlus" />
+<meta name="author" content="" />
+<meta name="category" content=" " />
+<meta name="copyright" content="Copyright © 2012 BrewPlus" />
+<meta name="language" content="IT" />
+<meta http-equiv="imagetoolbar" content="false" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta name="robots" content="index,follow" />
+<meta http-equiv="reply-to" content=" " />
+<meta name="Creation_date" content="30 11 2012" />
+<style>
+body, td {
+	font-family:Verdana, Geneva, sans-serif;
+	font-size: 8pt;
+}
+.footercontent{
+	font-size:7pt;	
+}
+</style>
+
+</head>
+
+<body>
+<div id="header">
+	<div class="header_content">
+    <img src="logo.png" alt="logo BrewPlus" />
+    </div>
+</div>
+<div id="dati">
+	<div class="dati_content">
+	<h3>ricetta.getNome</h3>
+    <table cellspacing="0">
+        <!--<tr class="riga">
+            <td colspan="2">
+            <span class="label">Nome: </span><span class="nome_birra">ricetta.getNome</span>
+            </td>
+        </tr>-->
+        <tr class="riga_alternata">
+        	<td >
+            <span class="label">Dimensione cotta: </span>ricetta.getVolPerStampa
+            </td>
+        	<td>
+            <span class="label">Mosto in bollitura: </span>ricetta.getVolumeBoll
+            </td>
+        </tr>
+        <tr class="riga">
+        	<td >
+            <span class="label">Grani totali (gr.): </span>ricetta.getGrammiTotali
+            </td>
+        	<td>&nbsp;
+            
+            </td>
+        </tr>
+        <tr class="riga_alternata">
+        	<td >
+            <span class="label">OG prevista: </span>ricetta.getSGPerStampa
+            </td>
+        	<td>
+            <span class="label">Plato: </span>ricetta.getPPerStampa
+            </td>
+        </tr> 
+        <tr class="riga">
+        	<td >
+            <span class="label">EBC previsto: </span>ricetta.getEbc
+            </td>
+        	<td>&nbsp;
+            
+            </td>
+        </tr>      
+        <tr class="riga_alternata">
+        	<td >
+            <span class="label">IBU prevista: </span>ricetta.getIBUTinseth
+            </td>
+        	<td>&nbsp;
+            
+            </td>
+        </tr>       
+        <tr class="riga">
+        	<td >
+            <span class="label">Efficienza: </span>ricetta.getEfficienza %
+            </td>
+        	<td>&nbsp;
+            
+            </td>
+        </tr>      
+        <tr class="riga_alternata">
+        	<td >
+            <span class="label">Bollitura: </span>ricetta.getBollitura minuti
+            </td>
+        	<td>&nbsp;
+            
+            </td>
+        </tr>   
+    </table>
+    </div>
+</div>
+
+<div id="malti">
+	<div class="malti_content">
+    <h3>Malti e Zuccheri</h3>
+    <table border="1" cellspacing="0">
+        <tr bgcolor="#9ED7F1" class="intestazione">
+            <th>
+            Nome prodotto
+            </th>
+            <th>
+            Quantit&agrave; (g.)
+          </th>
+            <th>
+            Potenziale
+          </th>
+            <th>
+            EBC
+            </th>            
+        </tr>
+	{begin-malts}
+      <tr class="riga_alternata">
+        	<td >
+            malt.getNome
+            </td>
+        	<td>
+            malt.getGrammi g.
+            </td>
+            <td >
+            malt.getPotentialSG
+            </td>
+        	<td>
+            malt.getEbc
+            </td>
+        </tr>
+	{end-malts}
+
+    </table>
+    </div>
+</div>
+
+
+<div id="luppoli">
+	<div class="luppoli_content">
+    <h3>Luppoli</h3>
+    <table border="1" cellspacing="0">
+        <tr bgcolor="#9ED7F1" class="intestazione">
+            <th>
+            Nome
+            </th>
+            <th>
+            Qt. (g.)
+          </th>
+            <th>
+            Forma
+          </th>
+            <th>
+            A.A.
+          </th>
+            <th>
+            IBU
+          </th>
+            <th>
+            Boil
+          </th>
+            <th>
+            Uso
+            </th>                        
+        </tr>
+{begin-hops}
+      <tr class="riga_alternata">
+        	<td >
+            hop.getNome
+            </td>
+        	<td>
+            hop.getGrammi gr.
+            </td>
+            <td >
+            hop.getForma
+            </td>
+        	<td>
+            hop.getAlfaAcidi %
+            </td>
+            <td >
+            hop.getIBUTinseth
+            </td>
+        	<td>
+            hop.getBoilTime min.
+            </td>
+            <td>
+            hop.getUso
+            </td>            
+        </tr>
+{end-hops}
+    </table>
+    </div>
+</div>
+<div id="lieviti">
+	<div class="lieviti_content">
+    <h3>Lieviti</h3>
+    <table border="1" cellspacing="0">
+        <tr bgcolor="#9ED7F1" class="intestazione">
+            <th>
+            Nome prodotto
+            </th>
+            <th>
+            Codice
+          </th>
+            <th>
+            Note
+            </th>       
+        </tr>
+{begin-yeasts}
+      <tr class="riga_alternata">
+        	<td >
+            yeast.getNome
+            </td>
+        	<td>
+            yeast.getCodice
+            </td>
+            <td >
+            yeast.getNote
+            </td>
+        </tr>
+{end-yeasts}
+
+    </table>
+    </div>
+</div>
+
+<div id="note">
+	<div class="note_content">
+    <h3>Profilo di Mash e Note aggiuntive</h3>
+    <table border="1" cellspacing="0">
+        <tr bgcolor="#9ED7F1" class="intestazione">
+            <th>
+            Descrizione
+            </th>
+            <th>
+            Temperatura
+          </th>
+            <th>
+            Minuti
+            </th>       
+        </tr>
+{begin-mashsteps}
+      <tr class="riga_alternata">
+        	<td >
+            MashStep.getNome
+            </td>
+        	<td>
+            MashStep.getEndTemp
+            </td>
+            <td >
+            MashStep.getLength
+            </td>
+        </tr>
+{end-mashsteps}
+
+    </table>
+    <br />
+    
+    
+    <img src="mash.jpg" alt=""  /><br />ricetta.getNote<br /><br/>
+	</div>
+</div>
+
+<div id="footer">
+	<div class="footercontent">
+    Ricetta preparata con <strong>BrewPlus</strong> (<a href="http://BrewPlus.blogspot.it" target="_blank">http://BrewPlus.blogspot.it</a>) - 
+      <span class="no_display"><a title="stampa la ricetta" href="javascript:print();">Stampa</a></span></div>
+</div>
+</body>
+</html>
