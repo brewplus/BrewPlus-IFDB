@@ -74,7 +74,7 @@ public class frmCredits extends javax.swing.JInternalFrame {
 		txtApp.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtApp.setContentType("text/html");
 		txtApp.setBounds(10, 6, 399, 24);
-		txtApp.setText("<html><center><a href='http://brewplus.blogspot.it'>"+Main.Nome+" "+Main.versioneHobbyBrew+"</a></center></html>");
+		txtApp.setText("<html><center><a href='http://www.ilforumdellabirra.net/'>"+Main.Nome+" "+Main.versioneHobbyBrew+"</a></center></html>");
 		contentPanel.add(txtApp);
 		
 		txtCredits.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -94,7 +94,7 @@ public class frmCredits extends javax.swing.JInternalFrame {
 					try
 	                {
 			             if(e.getEventType() == HyperlinkEvent.EventType.ACTIVATED)
-			            	 Desktop.getDesktop().browse( new URI("http://www.birrabirra.altervista.org"));
+			            	 Desktop.getDesktop().browse( new URI("http://www.ilforumdellabirra.net/"));
 	                }
 					catch(Exception ex)
 	                {}
@@ -113,7 +113,7 @@ public class frmCredits extends javax.swing.JInternalFrame {
 					try
 	                {
 			             if(e.getEventType() == HyperlinkEvent.EventType.ACTIVATED)
-			            	 Desktop.getDesktop().browse( new URI("http://brewplus.blogspot.it"));
+			            	 Desktop.getDesktop().browse( new URI("http://www.ilforumdellabirra.net/"));
 	                }
 					catch(Exception ex)
 	                {}

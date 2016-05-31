@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recipe volume="23" volume_boll="29" efficienza="75" bollitura="90" nome="mia Maerzen #2" note="">
+  <style nome="Oktoberfest/Maerzen" categoria="EUROPEAN AMBER LAGER" sottocategoria="B" lettera="" numero="3" ogMin="1.05" ogMax="1.056" fgMin="1.012" fgMax="1.016" ibuMin="20.0" ibuMax="28.0" tipo="null" />
+  <jmash.Hop grammi="50.0" aa="3.4" nome="Hersbrucker" bollitura="90" forma="Fiore" uso="Kettle" origine="" />
+  <jmash.Malt grammi="250.0" nome="Maris Otter" forma="Grani" ebc="4" sg="1.034" yield="0.8" />
+  <jmash.Malt grammi="1500.0" nome="Fiocchi di grano" forma="Fiocchi" ebc="7" sg="1.038" yield="0.8" />
+  <jmash.Malt grammi="2500.0" nome="Vienna" forma="Grani" ebc="7" sg="1.037" yield="0.8" />
+  <jmash.Malt grammi="1000.0" nome="Munich" forma="Grani" ebc="20" sg="1.037" yield="0.8" />
+  <jmash.MashStep startTemp="52" endTemp="52" length="15" nome="Protein rest" />
+  <jmash.MashStep startTemp="52" endTemp="62" length="10" nome="Ramp" />
+  <jmash.MashStep startTemp="62" endTemp="68" length="60" nome="Sacc.rest" />
+  <jmash.MashStep startTemp="68" endTemp="78" length="10" nome="Ramp" />
+  <jmash.MashStep startTemp="78" endTemp="78" length="10" nome="Mash out" />
+</recipe>
+
