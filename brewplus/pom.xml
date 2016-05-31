@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
@@ -22,6 +23,12 @@
 
 	<dependencyManagement>
 		<dependencies>
+			<!-- BREWPLUS DEPENDECIES -->
+			<dependency>
+				<groupId>net.ilforumdellabirra</groupId>
+				<artifactId>brewplus-ifdb</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>org.swinglabs</groupId>
 				<artifactId>swing-layout</artifactId>
@@ -57,7 +64,7 @@
 				<artifactId>apt.hoteqn</artifactId>
 				<version>1.0</version>
 				<scope>system</scope>
-				<systemPath>${project.basedir}/lib/HotEqn.jar</systemPath>
+				<systemPath>${project.basedir}/no-maven-libs/HotEqn.jar</systemPath>
 			</dependency>
 			<dependency>
 				<groupId>com.google.zxing</groupId>
@@ -95,5 +102,6 @@
 
 	<modules>
 		<module>brewplus-ifdb</module>
+		<module>brewplus-ifdb-distr</module>
 	</modules>
 </project>

@@ -41,7 +41,7 @@
 				<executions>
 					<execution>
 						<id>copy-dependencies</id>
-						<phase>package</phase>
+						<phase>prepare-package</phase>
 						<goals>
 							<goal>copy-dependencies</goal>
 						</goals>
@@ -87,7 +87,7 @@
 			<groupId>hoteqn</groupId>
 			<artifactId>apt.hoteqn</artifactId>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/../lib/HotEqn.jar</systemPath>
+			<systemPath>${project.basedir}/../no-maven-libs/HotEqn.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.google.zxing</groupId>
