@@ -31,7 +31,7 @@ import jmash.*;
 public class FermentationLogTableModel extends GenericTableModel<SGLog>{
     
     public FermentationLogTableModel() {
-        this.columnNames=new String[]  {    "Data", "SG","�P","°C", "pH" };
+    	this.columnNames=new String[]  {    "Data", "SG","°P","°C", "pH" };
     }
     
     

@@ -148,7 +148,7 @@ public class YeastPitching extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         getContentPane().add(spinD, gridBagConstraints);
 
-        jLabel5.setText("Pitch rate (milioni di cellule/millilitro/�P)");
+        jLabel5.setText("Pitch rate (milioni di cellule/millilitro/°P)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;

@@ -187,15 +187,15 @@ public class frmFeed2 extends JInternalFrame {
 	}
 	private String parseWrongChars(String content)
 	{
-		content=content.replace("é", "�");
-		content=content.replace("•","-");
-		content=content.replace("ù","�");
-		content=content.replace("è","�");
-		content=content.replace("—","�");
-		content=content.replace("ò","�");
-		content=content.replace("�","�");
-		content=content.replace("°","�");
-		content=content.replace("�","�");
+		content=content.replace("Ã©", "è");
+		content=content.replace("â€¢","-");
+		content=content.replace("Ã¹","ù");
+		content=content.replace("Ã¨","è");
+		content=content.replace("â€”","—");
+		content=content.replace("Ã²","ò");
+		content=content.replace("Ã","à");
+		content=content.replace("Â°","°");
+		content=content.replace("¬","ì");
 
 		return content;
 	}
