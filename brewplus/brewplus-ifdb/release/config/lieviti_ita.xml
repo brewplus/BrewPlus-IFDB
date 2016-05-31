@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<yeasts>
+  <jmash.YeastType nome="American Microbrewery Ale #1" codice="CL-10" produttore="BrewTek" descrizione="Use for a clean malt flavor." />
+  <jmash.YeastType nome="British Microbrewery Ale" codice="CL-110" produttore="BrewTek" descrizione="Use for low to medium gravity British ales." />
+  <jmash.YeastType nome="British Pale Ale #1" codice="CL-120" produttore="BrewTek" descrizione="Best suited for classic British Pale Ales or Bitters." />
+  <jmash.YeastType nome="British Pale Ale #2" codice="CL-130" produttore="BrewTek" descrizione="Recommended for strong or spiced ales." />
+  <jmash.YeastType nome="British Real Ale" codice="CL-150" produttore="BrewTek" descrizione="Use for a real pub bitter profile." />
+  <jmash.YeastType nome="British Draft Ale" codice="CL-160" produttore="BrewTek" descrizione="Highly recommended for Porters and Bitters." />
+  <jmash.YeastType nome="Classic British Ale" codice="CL-170" produttore="BrewTek" descrizione="Recommended for draft Bitter or Porter." />
+  <jmash.YeastType nome="American Microbrewery Ale #2" codice="CL-20" produttore="BrewTek" descrizione="" />
+  <jmash.YeastType nome="Scottish Ale" codice="CL-200" produttore="BrewTek" descrizione="Recommend for classic Scottish Heavy or Strong Ale." />
+  <jmash.YeastType nome="Scottish Bitter" codice="CL-210" produttore="BrewTek" descrizione="Bitters." />
+  <jmash.YeastType nome="Irish Dry Stout" codice="CL-240" produttore="BrewTek" descrizione="Blends exceptionally well with roasted malts." />
+  <jmash.YeastType nome="Canadian Ale" codice="CL-260" produttore="BrewTek" descrizione="Porters, light Canadian Ales, British Bitters - Pale Ales" />
+  <jmash.YeastType nome="Australian Ale" codice="CL-270" produttore="BrewTek" descrizione="Extremely forgiving, can ferment well at high temps." />
+  <jmash.YeastType nome="Belgian Ale #1" codice="CL-300" produttore="BrewTek" descrizione="Recommended for general purpose Belgian Ales." />
+  <jmash.YeastType nome="Belgian Ale #2" codice="CL-320" produttore="BrewTek" descrizione="Particularly good for Doubles and Triples." />
+  <jmash.YeastType nome="Belgian Ale #3" codice="CL-340" produttore="BrewTek" descrizione="Recommended for classic Trappist Belgian Ales." />
+  <jmash.YeastType nome="Saison" codice="CL-380" produttore="BrewTek" descrizione="Recommended for French, Belgian and Grand Cru Ale." />
+  <jmash.YeastType nome="Old German Ale" codice="CL-400" produttore="BrewTek" descrizione="German Ale and Wheat Beer." />
+  <jmash.YeastType nome="Kolsch" codice="CL-450" produttore="BrewTek" descrizione="Mineral and malt character come through well." />
+  <jmash.YeastType nome="California Pub Brewery Ale" codice="CL-50" produttore="BrewTek" descrizione="For classic US Microbrewery flavor." />
+  <jmash.YeastType nome="Original Pilsner" codice="CL-600" produttore="BrewTek" descrizione="Recommended for classic Czechoslovakian Pilsners." />
+  <jmash.YeastType nome="American Megabrewery" codice="CL-620" produttore="BrewTek" descrizione="Use for you lightest, cleanest lagers." />
+  <jmash.YeastType nome="American Microbrewery Lager" codice="CL-630" produttore="BrewTek" descrizione="Quite versatile, use in any lager for a big clean finish." />
+  <jmash.YeastType nome="Old Bavarian Lager" codice="CL-650" produttore="BrewTek" descrizione="Great for classic German Lager, Bock, Dunkel, Helles." />
+  <jmash.YeastType nome="North German Lager" codice="CL-660" produttore="BrewTek" descrizione="Forgiving, use for general purpose lagers." />
+  <jmash.YeastType nome="East European Lager" codice="CL-680" produttore="BrewTek" descrizione="Recommended for Marzens, Oktoberfests and Dunkels." />
+  <jmash.YeastType nome="California Gold" codice="CL-690" produttore="BrewTek" descrizione="Classic for California Common Beer." />
+  <jmash.YeastType nome="Belgian Wheat" codice="CL-900" produttore="BrewTek" descrizione="Belgian Wit and Wheat beers." />
+  <jmash.YeastType nome="German Wheat" codice="CL-920" produttore="BrewTek" descrizione="Use for Weizen and Weizenbocks." />
+  <jmash.YeastType nome="German Weiss" codice="CL-930" produttore="BrewTek" descrizione="Use in Weizen and Weizenbocks." />
+  <jmash.YeastType nome="American White Ale" codice="CL-980" produttore="BrewTek" descrizione="Use for any classic unfiltered wheat beer." />
+  <jmash.YeastType nome="London" codice="" produttore="Danstar" descrizione="" />
+  <jmash.YeastType nome="Manchester" codice="" produttore="Danstar" descrizione="Sensory contribution in the tradition of English style ale" />
+  <jmash.YeastType nome="Nottingham" codice="" produttore="Danstar" descrizione="Neutral for Ale yeast, allowing for malty profile." />
+  <jmash.YeastType nome="Windsor" codice="" produttore="Danstar" descrizione="Ales are described as full-bodied, fruity English Ales." />
+  <jmash.YeastType nome="SafAle German Ale" codice="K-97" produttore="DCL yeast" descrizione="German Ales, Weizen and Wheat Beers - Top Crop" />
+  <jmash.YeastType nome="SafAle English Ale" codice="S-04" produttore="DCL yeast" descrizione="English Ales, Cask Conditioned Ales" />
+  <jmash.YeastType nome="SafLager German Lager" codice="S-189" produttore="DCL yeast" descrizione="German Lagers and Pilsen styles ers - Top Crop" />
+  <jmash.YeastType nome="SafLager W. Euro Lager" codice="S-23" produttore="DCL yeast" descrizione="West European Lagers and Pilsners s - Top Crop" />
+  <jmash.YeastType nome="SafBrew Specialty Ale" codice="S-33" produttore="DCL yeast" descrizione="Mixed Style Ale/Lagers: Cream Ales, Kolsch, etc" />
+  <jmash.YeastType nome="SafBrew Specialty Ale" codice="T-58" produttore="DCL yeast" descrizione="Specialty Beers zen and Wheat Beers - Top Crop" />
+  <jmash.YeastType nome="London" codice="" produttore="Lallemand" descrizione="" />
+  <jmash.YeastType nome="Manchester" codice="" produttore="Lallemand" descrizione="Sensory contribution in the tradition of English style ale" />
+  <jmash.YeastType nome="Nottingham" codice="" produttore="Lallemand" descrizione="Neutral for Ale yeast, allowing for malty profile." />
+  <jmash.YeastType nome="Windsor" codice="" produttore="Lallemand" descrizione="Ales are described as full-bodied, fruity English Ales." />
+  <jmash.YeastType nome="Active Brewing yeast  Dry)" codice="" produttore="Munton-Fison  le yeast" descrizione="Fair to good reputation" />
+  <jmash.YeastType nome="American Lager" codice="" produttore="True Brew" descrizione="" />
+  <jmash.YeastType nome="California Ale yeast" codice="WLP001" produttore="White Labs" descrizione="Use for almost any ale." />
+  <jmash.YeastType nome="English Ale yeast" codice="WLP002" produttore="White Labs" descrizione="Best for English style ales, Milds, Bitters, Porters, Stout" />
+  <jmash.YeastType nome="German Ale III t III" codice="WLP003" produttore="White Labs" descrizione="Does not ferment well below 62 F" />
+  <jmash.YeastType nome="Irish Stout yeast" codice="WLP004" produttore="White Labs" descrizione="Great for Irish Ales, Stouts, Porters, Browns, Reds." />
+  <jmash.YeastType nome="British Ale yeast" codice="WLP005" produttore="White Labs" descrizione="Excellent for all English Style Ales." />
+  <jmash.YeastType nome="Bedford British Ale" codice="WLP006" produttore="White Labs" descrizione="Good choice for most English style ales." />
+  <jmash.YeastType nome="Dry English Ale" codice="WLP007" produttore="White Labs" descrizione="Well suited for high gravity beers." />
+  <jmash.YeastType nome="East Coast/Alt Ale yeast" codice="WLP008" produttore="White Labs" descrizione="Great for golden, blonde, honey and German Alt styles." />
+  <jmash.YeastType nome="Australian Ale" codice="WLP009" produttore="White Labs" descrizione="Can ferment clean and successfully at higher temps." />
+  <jmash.YeastType nome="European Ale" codice="WLP011" produttore="White Labs" descrizione="Good for Alt, Kolsch, malty English ales and fruit beers." />
+  <jmash.YeastType nome="London Ale" codice="WLP013" produttore="White Labs" descrizione="Well suited for British Ales." />
+  <jmash.YeastType nome="Burton Ale yeast" codice="WLP023" produttore="White Labs" descrizione="From the famous town of Burton, upon Trent." />
+  <jmash.YeastType nome="Southwold Ale yeast" codice="WLP025" produttore="White Labs" descrizione="Great for British bitters and pale ales." />
+  <jmash.YeastType nome="Premium Bitter Ale" codice="WLP026" produttore="White Labs" descrizione="From Straffordshire, England. Well suited - high gravity." />
+  <jmash.YeastType nome="Edinburgh Ale yeast" codice="WLP028" produttore="White Labs" descrizione="Use to reproduce Scottish style ales." />
+  <jmash.YeastType nome="German Ale/Kolsch yeast" codice="WLP029" produttore="White Labs" descrizione="Slight sulfur produced during fermentation." />
+  <jmash.YeastType nome="Klassic Ale" codice="WLP033" produttore="White Labs" descrizione="Leaves ale with slightly sweet malt charater." />
+  <jmash.YeastType nome="Dusseldorf Alt" codice="WLP036" produttore="White Labs" descrizione="Does not accentuate hop flavor as well as WLP029." />
+  <jmash.YeastType nome="California Ale V" codice="WLP051" produttore="White Labs" descrizione="Will produce fuller bodied beer than with WLP001." />
+  <jmash.YeastType nome="Super High Gravity Ale" codice="WLP099" produttore="White Labs" descrizione="Can ferment up to 25 percent alcohol. From England." />
+  <jmash.YeastType nome="Hefeweizen Ale east" codice="WLP300" produttore="White Labs" descrizione="Traditional German Wheat Beers." />
+  <jmash.YeastType nome="American Hefeweizen Ale yeast" codice="WLP320" produttore="White Labs" descrizione="Used for Oregon Style American Hefeweizen." />
+  <jmash.YeastType nome="Hefeweizen IV Ale yeast" codice="WLP380" produttore="White Labs" descrizione="Sulfur production higher than WLP300" />
+  <jmash.YeastType nome="Belgian Wit Ale yeast" codice="WLP400" produttore="White Labs" descrizione="For belgian Wit (white) beer." />
+  <jmash.YeastType nome="Belgian Wit II Ale" codice="WLP410" produttore="White Labs" descrizione="Use to produce Belgian Wit, Spiced Ales, Specialty." />
+  <jmash.YeastType nome="Trappist Ale yeast" codice="WLP500" produttore="White Labs" descrizione="Excellent for high gravity beers, dubbels, trippels." />
+  <jmash.YeastType nome="Abbey Ale" codice="WLP530" produttore="White Labs" descrizione="Used to produce Trappist style beers." />
+  <jmash.YeastType nome="Belgian Ale" codice="WLP550" produttore="White Labs" descrizione="Saisaons, Belgian Ales, Belgian Reds, Browns, Whites" />
+  <jmash.YeastType nome="Belgian Saison I" codice="WLP565" produttore="White Labs" descrizione="Dry with alternative yeast 75% into ferment, high grav." />
+  <jmash.YeastType nome="Belgian Golden Ale" codice="WLP570" produttore="White Labs" descrizione="From East Flanders, a very versatile Belgian yeast." />
+  <jmash.YeastType nome="Champagne" codice="WLP715" produttore="White Labs" descrizione="Classic yeast used to produce champagne." />
+  <jmash.YeastType nome="Sweet Mead - Wine" codice="WLP720" produttore="White Labs" descrizione="Slightly less attentuative than WLP715." />
+  <jmash.YeastType nome="Chardonnay White Wine" codice="WLP730" produttore="White Labs" descrizione="A good choice for white and blush wines." />
+  <jmash.YeastType nome="Merlot Red Wine" codice="WLP740" produttore="White Labs" descrizione="Cabernet, Shiraz, Pinot Noir, Sauvignon Blanc, Semillo" />
+  <jmash.YeastType nome="Cabernet Red Wine" codice="WLP760" produttore="White Labs" descrizione="Also suited for Merlot, Chardonnay, Chenin Blanc." />
+  <jmash.YeastType nome="English Cider" codice="WLP775" produttore="White Labs" descrizione="Classic cider yeast." />
+  <jmash.YeastType nome="Pilsner Lager yeast" codice="WLP800" produttore="White Labs" descrizione="Best suited for European Pilsner production." />
+  <jmash.YeastType nome="Czech Budejovice Lager" codice="WLP802" produttore="White Labs" descrizione="From the Southern Czech Republic." />
+  <jmash.YeastType nome="San Fransisco Lager yeast" codice="WLP810" produttore="White Labs" descrizione="Used for Classic California Common Beers." />
+  <jmash.YeastType nome="Octoberfest - Marzen" codice="WLP820" produttore="White Labs" descrizione="Does not finish as dry as WLP830." />
+  <jmash.YeastType nome="German Lager yeast" codice="WLP830" produttore="White Labs" descrizione="Great for German Lagers, Pilsner, Oktoberfest, Marzen" />
+  <jmash.YeastType nome="Southern German Lager" codice="WLP838" produttore="White Labs" descrizione="Produces slight sulfur, diacetyl." />
+  <jmash.YeastType nome="American Lager" codice="WLP840" produttore="White Labs" descrizione="Use for classic American lagers." />
+  <jmash.YeastType nome="Zurich Lager" codice="WLP885" produttore="White Labs" descrizione="Swiss style lager yeast provided by Marc Sedam." />
+  <jmash.YeastType nome="Old Bavarian Lager" codice="WLP920" produttore="White Labs" descrizione="Use in Octoberfest, Bock and Dark Lagers." />
+  <jmash.YeastType nome="Mexican Lager" codice="WLP940" produttore="White Labs" descrizione="Good for Mexican style light and dark lagers." />
+  <jmash.YeastType nome="German Ale yeast" codice="1007" produttore="Wyeast" descrizione="Good balance sweet/tart." />
+  <jmash.YeastType nome="American Wheat" codice="1010" produttore="Wyeast" descrizione="Use for American Hefeweisen style." />
+  <jmash.YeastType nome="Belgian Ale yeast" codice="1024" produttore="Wyeast" descrizione="Intended for abbey beers." />
+  <jmash.YeastType nome="London Ale yeast" codice="1028" produttore="Wyeast" descrizione="Produces very complex ales." />
+  <jmash.YeastType nome="Amercan Ale/Chico" codice="1056" produttore="Wyeast" descrizione="Great all round yeast." />
+  <jmash.YeastType nome="Irish Ale yeast" codice="1084" produttore="Wyeast" descrizione="Best in stouts and Scotch ales." />
+  <jmash.YeastType nome="Wyeast Ale Blend" codice="1087" produttore="Wyeast" descrizione="Balanced Finish for British and American style ales." />
+  <jmash.YeastType nome="British Ale yeast" codice="1098" produttore="Wyeast" descrizione="Ale yeast from Whitbread. Pale ale, bitters, porters." />
+  <jmash.YeastType nome="Whitbread Ale yeast" codice="1099" produttore="Wyeast" descrizione="Clears well with filtration. Not as tart and dry as #1098." />
+  <jmash.YeastType nome="Ringwood Ale yeast" codice="1187" produttore="Wyeast" descrizione="Thorough diacetyl rest recommended after ferment." />
+  <jmash.YeastType nome="Belgian Ale" codice="1214" produttore="Wyeast" descrizione="Suitable for high gravity ales" />
+  <jmash.YeastType nome="American Ale II" codice="1272" produttore="Wyeast" descrizione="" />
+  <jmash.YeastType nome="Thames Valley Ale" codice="1275" produttore="Wyeast" descrizione="Low esters, well balanced, British Bitters" />
+  <jmash.YeastType nome="London Ale III" codice="1318" produttore="Wyeast" descrizione="True top cropping strain" />
+  <jmash.YeastType nome="Northwest Ale yeast" codice="1332" produttore="Wyeast" descrizione="One of the classic strains from the Northwest." />
+  <jmash.YeastType nome="British Ale II" codice="1335" produttore="Wyeast" descrizione="Typical British Ale profile" />
+  <jmash.YeastType nome="European Ale yeast" codice="1338" produttore="Wyeast" descrizione="yeast from Wissenschaftliche." />
+  <jmash.YeastType nome="Belgian Strong Ale" codice="1388" produttore="Wyeast" descrizione="moderate to high alcohol tolerance" />
+  <jmash.YeastType nome="Scotish Ale" codice="1728" produttore="Wyeast" descrizione="ideal for Scottish and high gravity ales" />
+  <jmash.YeastType nome="Swedish Porter" codice="1742" produttore="Wyeast" descrizione="Stark beer Nordic style of unknown origin" />
+  <jmash.YeastType nome="Belgian Abbey II" codice="1762" produttore="Wyeast" descrizione="High gravity yeast" />
+  <jmash.YeastType nome="London Extra Special Bitter" codice="1968" produttore="Wyeast" descrizione="Needs aeration and agitation, cask fermenting strain" />
+  <jmash.YeastType nome="Pilsen Lager" codice="2007" produttore="Wyeast" descrizione="Classic American pilsner strain,sturdy, easy to use" />
+  <jmash.YeastType nome="American Lager" codice="2035" produttore="Wyeast" descrizione="Not a pilsner strain" />
+  <jmash.YeastType nome="Danish Lager" codice="2042" produttore="Wyeast" descrizione="Light profile accentuates hops characteristics" />
+  <jmash.YeastType nome="California Lager" codice="2112" produttore="Wyeast" descrizione="Ideal for West Coast beers (Steam Beer Style)" />
+  <jmash.YeastType nome="Bohemian Lager" codice="2124" produttore="Wyeast" descrizione="Pilsner yeast from Czech Republic" />
+  <jmash.YeastType nome="Wyeast Lager Blend" codice="2178" produttore="Wyeast" descrizione="For production of classic pilsners to full bodied bocks." />
+  <jmash.YeastType nome="Bavarian Lager" codice="2206" produttore="Wyeast" descrizione="Used by many German breweries" />
+  <jmash.YeastType nome="Danish Lager II" codice="2247" produttore="Wyeast" descrizione="Often used in aggressively hopped pilsners" />
+  <jmash.YeastType nome="North American Lager" codice="2272" produttore="Wyeast" descrizione="Traditional North American lagers and  light Pilsners" />
+  <jmash.YeastType nome="Czech Pils" codice="2278" produttore="Wyeast" descrizione="Classic pilsner strain for pilsners and bocks" />
+  <jmash.YeastType nome="Munich Lager" codice="2308" produttore="Wyeast" descrizione="Demanding strain capable of excellent lagers" />
+  <jmash.YeastType nome="Kolsch" codice="2565" produttore="Wyeast" descrizione="Hybrid ale/lager character, ferments well at mod temps" />
+  <jmash.YeastType nome="Bavarian Wheat" codice="3056" produttore="Wyeast" descrizione="Blend of ale yeasts" />
+  <jmash.YeastType nome="Weihenstephan Weizen" codice="3068" produttore="Wyeast" descrizione="Unique for spicy weizen character" />
+  <jmash.YeastType nome="Brettanomyces Bruxellensis" codice="3112" produttore="Wyeast" descrizione="Gueuze, lambics, sour browns and other Belgian Ales." />
+  <jmash.YeastType nome="B yeast (Bret Bruxellensis) llensis)" codice="3278" produttore="Wyeast" descrizione="For gueze, fruit beers, faro, sour mash, lactic ferment" />
+  <jmash.YeastType nome="German Wheat" codice="3333" produttore="Wyeast" descrizione="Subtle flavor profile for wheat yeast" />
+  <jmash.YeastType nome="Forbidden Fruit yeast" codice="3463" produttore="Wyeast" descrizione="Classic Belgian yeast for wits to classic grand cru." />
+  <jmash.YeastType nome="Belgian Ardennes" codice="3522" produttore="Wyeast" descrizione="One of the many terrific classic Belgian Ale yeasts." />
+  <jmash.YeastType nome="Brettanomyces Lambicus" codice="3526" produttore="Wyeast" descrizione="Best when used with other yeasts." />
+  <jmash.YeastType nome="Bavarian Wheat" codice="3638" produttore="Wyeast" descrizione="Top cropping hefeweisen yeast. Complex flavor/aroma" />
+  <jmash.YeastType nome="Cider" codice="3766" produttore="Wyeast" descrizione="Allows fruit character to dominate the profile." />
+  <jmash.YeastType nome="Portwine" codice="3767" produttore="Wyeast" descrizione="Alcohol tolerant to 15% ABV." />
+  <jmash.YeastType nome="Trappist High Gravity" codice="3787" produttore="Wyeast" descrizione="Robust, alc tolerant to 12%,  for Biere de Garde" />
+  <jmash.YeastType nome="Belgian Wheat" codice="3942" produttore="Wyeast" descrizione="From small Belgian brewery" />
+  <jmash.YeastType nome="Belgian White Beer" codice="3944" produttore="Wyeast" descrizione="" />
+  <jmash.YeastType nome="Lactobacillus Delbrueckii" codice="4335" produttore="Wyeast" descrizione="Used in conjuntion with S. Cerevisiae and Wild yeasts." />
+  <jmash.YeastType nome="Pediococcus Cerevisiae" codice="4733" produttore="Wyeast" descrizione="Lactic acid bacteria used in Belgian Ale production." />
+  <jmash.YeastType nome="Brettanomyces bruxellensis -" codice=" 3320" produttore="YCKC" descrizione="Belgium Lambic-Style Beers" />
+  <jmash.YeastType nome="Klieckera apiculata - Belgium" codice=" 3320" produttore="YCKC" descrizione="Belgium Lambic-Style Beers" />
+  <jmash.YeastType nome="Zum Uerige" codice="" produttore="YCKC" descrizione="" />
+  <jmash.YeastType nome="Lactobacillus d.- Belgium" codice="1206" produttore="YCKC" descrizione="Belgium Lambic-Style Beers" />
+  <jmash.YeastType nome="American Ale - California, US" codice="A01" produttore="YCKC" descrizione="Barleywine, Brown Ale, IPA, Pale Ales" />
+  <jmash.YeastType nome="Young's Strain - London" codice="A03" produttore="YCKC" descrizione="" />
+  <jmash.YeastType nome="German Ale - Cologne, Germany" codice="A04" produttore="YCKC" descrizione="Kolsch, Cream Ales" />
+  <jmash.YeastType nome="Stout Ale - Ireland" codice="A06" produttore="YCKC" descrizione="Brown Ale, Porter, Stout, Imp Stout" />
+  <jmash.YeastType nome="Barleywine Ale - Dorchester" codice="A08" produttore="YCKC" descrizione="Barleywines, Old Ales" />
+  <jmash.YeastType nome="Irish Ale - Dublin, Ireland" codice="A13" produttore="YCKC" descrizione="Dry Stout and Imperial Stouts" />
+  <jmash.YeastType nome="English Ale - Ireland" codice="A15" produttore="YCKC" descrizione="Brown Ales, Milds, IPA, Pale Ales" />
+  <jmash.YeastType nome="Trappe Ale - Belgian Monaster" codice="A16" produttore="YCKC" descrizione="Chimay Clones" />
+  <jmash.YeastType nome="Pale Ale - London, England" codice="A17" produttore="YCKC" descrizione="Brown Ale, Eng Bitters, Milds, IPA and Pale Ales" />
+  <jmash.YeastType nome="Fuller's" codice="A20" produttore="YCKC" descrizione="" />
+  <jmash.YeastType nome="Trappist - Belgium" codice="A25" produttore="YCKC" descrizione="Belgium Dubels" />
+  <jmash.YeastType nome="Scotch Ale - Edinburgh  Scotl" codice="A34" produttore="YCKC" descrizione="Hi Attenuation - 55-60 F; Scotch Ale, Bitters, Strong Ales" />
+  <jmash.YeastType nome="Belgian Wit - Central Belgium" codice="A35" produttore="YCKC" descrizione="Low/med attenuation" />
+  <jmash.YeastType nome="Belgian Ale - Houffalize  Bel" codice="A36" produttore="YCKC" descrizione="Hi Attenuation" />
+  <jmash.YeastType nome="Altbier - Bavaria" codice="A37" produttore="YCKC" descrizione="Med Attenuation" />
+  <jmash.YeastType nome="Duvel Strain - Belgium" codice="A38" produttore="YCKC" descrizione="Belgium Specialty Ales" />
+  <jmash.YeastType nome="Wit - Belgium" codice="A41" produttore="YCKC" descrizione="Wit, Belgium Strong Ales" />
+  <jmash.YeastType nome="Samuel Smith's Strain" codice="A42" produttore="YCKC" descrizione="" />
+  <jmash.YeastType nome="Alt #2 - Germany" codice="A49" produttore="YCKC" descrizione="" />
+  <jmash.YeastType nome="Bavarian Weizen - Bavaria" codice="A50" produttore="YCKC" descrizione="Classic Weizen and Weizenbock" />
+  <jmash.YeastType nome="Special English - Norwich  En" codice="A51" produttore="YCKC" descrizione="Pale Ales, Bitter" />
+  <jmash.YeastType nome="Bass Ale Strain" codice="A53" produttore="YCKC" descrizione="" />
+  <jmash.YeastType nome="Marston's" codice="A59" produttore="YCKC" descrizione="" />
+  <jmash.YeastType nome="Faversham - England m of Engl" codice="A64" produttore="YCKC" descrizione="Pale Ale" />
+  <jmash.YeastType nome="DeKoninck Strain" codice="A72" produttore="YCKC" descrizione="" />
+  <jmash.YeastType nome="Affligem - Belgium" codice="A73" produttore="YCKC" descrizione="Trippels" />
+  <jmash.YeastType nome="Saison Silly Strain" codice="A75" produttore="YCKC" descrizione="" />
+  <jmash.YeastType nome="Saison DuPont Strain" codice="A76" produttore="YCKC" descrizione="" />
+  <jmash.YeastType nome="DeDolle Strain" codice="A78" produttore="YCKC" descrizione="" />
+  <jmash.YeastType nome="Scotch Ale - Scotland" codice="A93" produttore="YCKC" descrizione="" />
+  <jmash.YeastType nome="Courage - England" codice="A97" produttore="YCKC" descrizione="" />
+  <jmash.YeastType nome="Bavarian Lager - Bavaria" codice="L02" produttore="YCKC" descrizione="German Style Lagers, Bocks" />
+  <jmash.YeastType nome="German Lager - Bavaria" codice="L09" produttore="YCKC" descrizione="High Attenuation" />
+  <jmash.YeastType nome="Pilzen Lager - Pilzen" codice="L17" produttore="YCKC" descrizione="Range 48-50 F" />
+  <jmash.YeastType nome="Pediococcus cerevisiae   Belg" codice="M3200" produttore="YCKC" descrizione="Belgium Lambic-Style Beers" />
+  <jmash.YeastType nome="Brettanomyces lambicus - Belg" codice="M3320" produttore="YCKC" descrizione="Belgium Lambic-Style Beers" />
+  <jmash.YeastType nome="MRS Broth" codice="MRS" produttore="YCKC" descrizione="Feeds Lambic Cultures" />
+  <jmash.YeastType nome="Champagne - Montreal, Canada" codice="W06" produttore="YCKC" descrizione="High Attenuation; Wine, Meads, Barleywines" />
+  <jmash.YeastType nome="Aromatic Mead - France" codice="W22" produttore="YCKC" descrizione="Mead, White Wines" />
+  <jmash.YeastType nome="Brettanomyces - Cantillion" codice="3200" produttore="yeast Lab" descrizione="" />
+  <jmash.YeastType nome="Pediococcus- Cantillion on" codice="3220" produttore="yeast Lab" descrizione="" />
+  <jmash.YeastType nome="Austrailian Ale - Cooper" codice="AO1" produttore="yeast Lab" descrizione="Brown Ales and Porters" />
+  <jmash.YeastType nome="American Ale - Sierra Navada" codice="AO2" produttore="yeast Lab" descrizione="All purpose ale strain" />
+  <jmash.YeastType nome="London Ale - Whiteshield" codice="AO3" produttore="yeast Lab" descrizione="Classic Pale Ale strain" />
+  <jmash.YeastType nome="British Ale - Whitbread" codice="AO4" produttore="yeast Lab" descrizione="Pale and Brown Ales" />
+  <jmash.YeastType nome="Irish Ale - Guinness" codice="AO5" produttore="yeast Lab" descrizione="Stouts and Porters" />
+  <jmash.YeastType nome="Dusseldorf - W164  stephan164" codice="AO6" produttore="yeast Lab" descrizione="German Altbiers" />
+  <jmash.YeastType nome="Canadian Ale - Molson" codice="AO7" produttore="yeast Lab" descrizione="Light and Cream Ales" />
+  <jmash.YeastType nome="Trappist Ale - Brigand" codice="AO8" produttore="yeast Lab" descrizione="Trappist Ales - Alcohol Tolerant" />
+  <jmash.YeastType nome="English Ale - Ringwood" codice="AO9" produttore="yeast Lab" descrizione="" />
+  <jmash.YeastType nome="Pilsner Lager - W34/70" codice="L31" produttore="yeast Lab" descrizione="Light Pilsners, lagers" />
+  <jmash.YeastType nome="Bavarian Lager - W206" codice="L32" produttore="yeast Lab" descrizione="Bocks, Marzens, Viennas" />
+  <jmash.YeastType nome="Munich Lager - W308" codice="L33" produttore="yeast Lab" descrizione="Bocks, Lagers" />
+  <jmash.YeastType nome="St. Louis Lager - Anheuser Bu" codice="L34" produttore="yeast Lab" descrizione="American Style Lagers" />
+  <jmash.YeastType nome="California Lager - Anchor Ste" codice="L35" produttore="yeast Lab" descrizione="Steam Beers" />
+  <jmash.YeastType nome="Dry Mead - Pasteur Champagne" codice="M61" produttore="yeast Lab" descrizione="" />
+  <jmash.YeastType nome="Sweet Mead - Steinberger" codice="M62" produttore="yeast Lab" descrizione="" />
+  <jmash.YeastType nome="Belgian Wheat - Bruge" codice="W52" produttore="yeast Lab" descrizione="" />
+  <jmash.YeastType nome="SAFBREW WB-06" codice=" WB-06" produttore="DCL yeast" />
+</yeasts>
+

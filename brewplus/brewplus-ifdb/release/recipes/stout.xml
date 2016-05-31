@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recipe volume="22.5" volume_boll="28.0" unita_misura_mostrata="litri" efficienza="88" bollitura="60" nome="" note="">
+  <jmash.BrewStyle nome="Dry Stout" categoria="STOUT" numero="13" sottoCategoria="A" ogMin="1.036" ogMax="1.05" fgMin="1.007" fgMax="1.011" ibuMin="30.0" ibuMax="45.0" colorMin="25.0" colorMax="40.0" abvMin="4.0" abvMax="5.0" />
+  <jmash.Hop Grammi="25.0" UnitaMisura="grammi" BoilTime="60" AlfaAcidi="5.0" Nome="Goldings, East Kent" Forma="Fiore" Origine="UK" Uso="Kettle" HSI="35.0" />
+  <jmash.Hop Grammi="25.0" UnitaMisura="grammi" BoilTime="40" AlfaAcidi="5.0" Nome="Goldings, East Kent" Forma="Fiore" Origine="UK" Uso="Kettle" HSI="35.0" />
+  <jmash.Malt Grammi="3200.0" UnitaMisura="grammi" Nome="Pale Malt, Maris Otter" Forma="Grani" Ebc="5.927986892075365" PotentialSG="1.038" srm="3.0114173411742855" />
+  <jmash.Malt Grammi="250.0" UnitaMisura="grammi" Nome="Roasted Barley" Forma="Grani" Ebc="1203.6521608274854" PotentialSG="1.025" srm="611.4552977003626" />
+  <jmash.Malt Grammi="400.0" UnitaMisura="grammi" Nome="Wheat, Flaked" Forma="Grani" Ebc="3.1615930091068614" PotentialSG="1.035" srm="1.6060892486262857" />
+  <jmash.Malt Grammi="150.0" UnitaMisura="grammi" Nome="Chocolate Malt" Forma="Grani" Ebc="889.1980338113045" PotentialSG="1.034" srm="451.7126011761427" />
+  <jmash.Yeast nome="SafAle English Ale" codice="S-04" produttore="DCL yeast" descrizione="English Ales, Cask Conditioned Ales" note="2 pkg" />
+  <jmash.MashStep type="Infusione" start="0" startTemp="20" endTemp="30" length="43" nome="Generato da decozione" ramp="2" decoctionRamp1="0" decoctionRamp2="0" decoctionRestL1="0" decoctionRestL2="0" decoctionRestT1="0" decoctionRestT2="0" decoctionRampDown="0" />
+  <jmash.MashStep type="Infusione" start="45" startTemp="30" endTemp="55" length="48" nome="Generato da decozione" ramp="2" decoctionRamp1="0" decoctionRamp2="0" decoctionRestL1="0" decoctionRestL2="0" decoctionRestT1="0" decoctionRestT2="0" decoctionRampDown="0" />
+  <jmash.MashStep type="Infusione" start="95" startTemp="55" endTemp="65" length="43" nome="Generato da decozione" ramp="2" decoctionRamp1="0" decoctionRamp2="0" decoctionRestL1="0" decoctionRestL2="0" decoctionRestT1="0" decoctionRestT2="0" decoctionRampDown="0" />
+  <jmash.MashStep type="Infusione" start="140" startTemp="65" endTemp="78" length="10" nome="Generato da decozione" ramp="2" decoctionRamp1="0" decoctionRamp2="0" decoctionRestL1="0" decoctionRestL2="0" decoctionRestT1="0" decoctionRestT2="0" decoctionRampDown="0" />
+  <jmash.MashStep type="Decozione" start="5" startTemp="30" endTemp="55" length="15" nome="Step non definito" ramp="5" decoctionRamp1="5" decoctionRamp2="5" decoctionRestL1="15" decoctionRestL2="15" decoctionRestT1="72" decoctionRestT2="100" decoctionRampDown="2" />
+  <jmash.MashStep type="Decozione" start="50" startTemp="55" endTemp="65" length="15" nome="Step non definito" ramp="5" decoctionRamp1="5" decoctionRamp2="5" decoctionRestL1="15" decoctionRestL2="20" decoctionRestT1="72" decoctionRestT2="100" decoctionRampDown="2" />
+  <jmash.MashStep type="Decozione" start="100" startTemp="65" endTemp="78" length="15" nome="" ramp="5" decoctionRamp1="5" decoctionRamp2="5" decoctionRestL1="15" decoctionRestL2="15" decoctionRestT1="72" decoctionRestT2="100" decoctionRampDown="2" />
+  <jmash.WaterProfile nome="Burton3.xml" calcio="34.0" magnesio="15.0" solfato="10.0" cloruro="2.0" sodio="1.0" carbonato="162.0" />
+  <jmash.WaterProfile nome="porter" calcio="200.0" magnesio="10.0" solfato="100.0" cloruro="300.0" sodio="0.0" carbonato="100.0" />
+  <jmash.WaterProfile nome="porter" type="2" calcio="34.0" magnesio="15.0" solfato="10.0" cloruro="2.0" sodio="1.0" carbonato="162.0" gypsum="239.0" sale="102.0" epsom="495.0" calciumChloride="2189.0" chalk="0.0" soda="0.0" />
+</recipe>
+

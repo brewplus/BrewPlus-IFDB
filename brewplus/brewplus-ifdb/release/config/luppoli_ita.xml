@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hops>
+  <jmash.HopType Nome="Admiral" AA="14.75" Origine="UK" HSI="15.0" use="Boil" utilizzo="Bittering" beta="5.6" />
+  <jmash.HopType Nome="Ahtanum" AA="6.0" Origine="US" HSI="30.0" use="Boil" utilizzo="Aroma" beta="5.25" />
+  <jmash.HopType Nome="Amarillo Gold" AA="8.5" Origine="US" Des="Floreale ed agrumato, ideale per American Ales e IPA." HSI="25.0" use="Boil" utilizzo="Aroma" beta="6.0" />
+  <jmash.HopType Nome="Aquila" AA="6.5" Origine="US" HSI="35.0" use="Boil" utilizzo="Aroma" beta="3.0" />
+  <jmash.HopType Nome="Banner" AA="10.0" Origine="US" HSI="35.0" use="Boil" utilizzo="Bittering" beta="4.0" />
+  <jmash.HopType Nome="Bramling Cross" AA="6.0" Origine="UK" Des="provenienza Inghilterra. Fu sviluppato come sostituto per il Golding. E' da considerarsi un luppolo da aroma." HSI="35.0" use="Boil" utilizzo="Aroma" beta="3.0" />
+  <jmash.HopType Nome="Brewer's Gold" AA="8.0" Origine="UK" HSI="50.0" use="Boil" utilizzo="Bittering" beta="3.7" />
+  <jmash.HopType Nome="Buccia di Arancia" AA="0.0" Des="Spezia" HSI="1.0" use="Boil" utilizzo="Aroma" />
+  <jmash.HopType Nome="Bullion" AA="8.0" Origine="UK" Des="E' uno dei principali luppoli da amaro inglesi 8-11%AA. L'aroma e' piuttosto scarso, il raccolto e' abbondante e la pianta molto resistente alle malattie." HSI="50.0" use="Boil" utilizzo="Bittering" beta="4.5" />
+  <jmash.HopType Nome="Cannella" AA="0.0" Des="Spezia" HSI="1.0" use="Boil" utilizzo="Aroma" />
+  <jmash.HopType Nome="Cardamomo" AA="0.0" Des="Spezia" HSI="1.0" use="Boil" utilizzo="Aroma" />
+  <jmash.HopType Nome="Cascade" AA="5.5" Origine="US" Des="Con forte gusto ed un aroma tutto suo, talvolta descritto come speziato o di limone o floreale. Per aroma ma, dato l'elevato alfa acido, anche per amaro." HSI="50.0" use="Boil" utilizzo="Both" beta="6.0" />
+  <jmash.HopType Nome="Celelia" AA="4.0" Origine="Slovenia" Des="Molto simile allo Styrian Golding, adatto ad una grande varietà di ales. Amaro, aroma e dry-hopping." HSI="35.0" use="Boil" utilizzo="Aroma" beta="3.0" />
+  <jmash.HopType Nome="Centennial" AA="10.0" Origine="US" Des="imile al Cascade dal punto di vista aromatico, ma con piu' AA Floreale ed agrumato, adatto per ogni Ale Americana , dalle Pale Ale alle IPA" HSI="40.0" use="Boil" utilizzo="Bittering" beta="4.0" />
+  <jmash.HopType Nome="Challenger" AA="7.5" Origine="UK" Des="Buon aroma speziato e fruttato 6-8%AA." HSI="25.0" use="Boil" utilizzo="Aroma" beta="4.0" />
+  <jmash.HopType Nome="Challenger" AA="5.0" Origine="UK" Des="Sviluppato originariamente da un Northern Brewer per sostituire il Goldings. Ora usato in molte bitter inglesi per l’aroma speziato e fruttato. Per aroma e amaro." use="Boil" utilizzo="Bittering" />
+  <jmash.HopType Nome="Chinook" AA="13.0" Origine="US" Des="Utilizzato principalmente da amaro, adatto per IPA, American Barley Whines. " HSI="20.0" use="Boil" utilizzo="Bittering" beta="3.6" />
+  <jmash.HopType Nome="Chiodi di Garofano" AA="0.0" Des="Spezia" HSI="1.0" use="Boil" utilizzo="Aroma" />
+  <jmash.HopType Nome="Citra" AA="12.0" Origine="US" Des="Mango" HSI="0.0" utilizzo="Dual" />
+  <jmash.HopType Nome="Cluster" AA="7.0" Origine="Australia" Des="Luppolo dallo scarso aroma , e' USto per il potere amaricante molto pulito 5-8%AA.E' il luppolo tipico di molte birre australiane." HSI="10.0" use="Boil" utilizzo="Bittering" beta="4.8" />
+  <jmash.HopType Nome="Columbia" AA="5.5" Origine="UK" HSI="35.0" use="Boil" utilizzo="Bittering" beta="3.0" />
+  <jmash.HopType Nome="Columbus (Tomahawk)" AA="14.0" Origine="US" Des="Agrumato, ad alto AA ma dall'ottimo profilo aromatico. Eccellente per Dry Hopping" HSI="40.0" use="Boil" utilizzo="Bittering" beta="5.0" />
+  <jmash.HopType Nome="Comet" AA="9.5" Origine="US" HSI="50.0" use="Boil" utilizzo="Bittering" beta="4.0" />
+  <jmash.HopType Nome="Coriandolo" AA="0.0" Des="Spezia" HSI="1.0" use="Boil" utilizzo="Aroma" />
+  <jmash.HopType Nome="Crystal" AA="3.5" Origine="US" Des="e' un luppolo da aroma che ricorda l'HALLERTAUER , leggermentespeziato.2-5%AA.Il raccolto e' abbondante e matura verso la fine della stagione." HSI="50.0" use="Boil" utilizzo="Aroma" beta="5.2" />
+  <jmash.HopType Nome="Eroica" AA="13.0" Origine="US" Des="luppolo con un forte potere amaricante molto pulito 12-14%AA. " HSI="35.0" use="Boil" utilizzo="Bittering" beta="4.8" />
+  <jmash.HopType Nome="First Gold" AA="7.5" Origine="UK" HSI="12.0" use="Boil" utilizzo="Both" beta="3.5" />
+  <jmash.HopType Nome="Fuggles" AA="4.5" Origine="UK" Des="provenienza Inghilterra. Tradizionale luppolo da aroma e dry-hopping per &quot;ales&quot; in stile inglese. Morbido, piacevole, erbaceo e floreale." HSI="35.0" use="Boil" utilizzo="Aroma" beta="2.0" />
+  <jmash.HopType Nome="Galena" AA="13.0" Origine="US" Des="e' USto principalmente per amaricare 12-14%AA .Il raccolto e' abbondante e matura a meta' stagione. " HSI="15.0" use="Boil" utilizzo="Bittering" beta="7.5" />
+  <jmash.HopType Nome="Glacier" AA="5.6" Origine="US" HSI="28.5" use="Boil" utilizzo="Aroma" beta="7.6" />
+  <jmash.HopType Nome="Goldings, B.C." AA="5.0" Origine="Canada" HSI="40.0" use="Boil" utilizzo="Aroma" beta="3.2" />
+  <jmash.HopType Nome="Goldings, East Kent" AA="5.0" Origine="UK" Des="nobile , e' uno dei migliori per l'aroma molto fine , floreale e speziato.E' USto in molte birre di stile inglese sia per amaro ,che per aroma.5-7%AA.Il raccolto e' discreto." HSI="35.0" use="Boil" utilizzo="Aroma" beta="3.5" />
+  <jmash.HopType Nome="Green Bullet" AA="13.5" Origine="New Zealand" HSI="20.0" use="Boil" utilizzo="Bittering" beta="7.0" />
+  <jmash.HopType Nome="Hallertauer Hersbrucker" AA="4.0" Origine="Germany" Des="nobile , eccellente aroma di spezie e terra , 3-5%AA.Il raccolto e' scarso e matura abbastanaza presto." HSI="25.0" use="Boil" utilizzo="Aroma" beta="6.0" />
+  <jmash.HopType Nome="Hallertauer Magum" AA="16.0" Origine="Germany" Des="Ottimo come luppolo da amaro per molte birre tedesche." HSI="50.0" use="Boil" utilizzo="Bittering" />
+  <jmash.HopType Nome="Hallertauer Mittelfrueh" AA="4.0" Origine="Germany" Des="nobile , eccellente aroma speziato ed erboso, 3-5%AA.Il raccolto e' scarso e matura abbastanza presto." HSI="45.0" use="Boil" utilizzo="Aroma" beta="4.6" />
+  <jmash.HopType Nome="Hallertauer New Zealand" AA="8.5" Origine="New Zealand" HSI="45.0" use="Boil" utilizzo="Both" beta="3.0" />
+  <jmash.HopType Nome="Hallertauer Perle" AA="8.0" Origine="Germany" Des="nasce in Germania come sostituto dell' Hallertauer Mittelfreut. E' usato per l'aromatizzazione delle Lager tedesche e americane, può essere usato anche per l'amaro. Aroma molto piacevole, leggermente speziato." HSI="15.0" use="Boil" utilizzo="Bittering" beta="4.75" />
+  <jmash.HopType Nome="Hallertauer Saphir" AA="4.0" Origine="Germany" Des="nasce in Germania ed è un ottimo sostituto del Saaz. E' adatto all'aromatizzazione delle Lager Pilsner europee. Ha un aroma delicato, floreale e leggermente agrumato" HSI="50.0" use="Boil" utilizzo="Aroma" beta="4.0" />
+  <jmash.HopType Nome="Hallertauer Tradition" AA="6.0" Origine="Germany" Des="E' un classico per l'aromatizzazione di Lager tedesche. Aroma molto buono, piacevole, floreale, delicato." HSI="50.0" use="Boil" utilizzo="Aroma" beta="4.0" />
+  <jmash.HopType Nome="Herald" AA="12.0" Origine="UK" HSI="25.0" use="Boil" utilizzo="Bittering" beta="5.2" />
+  <jmash.HopType Nome="Horizon" AA="12.0" Origine="US" HSI="30.0" use="Boil" utilizzo="Bittering" beta="7.5" />
+  <jmash.HopType Nome="Liberty" AA="4.3" Origine="US" Des="ha un aroma molto delicato simile all'HALLERTAUER , 3-5%AA. Il raccolto e' discreto e matura a meta' stagione.La pianta e' molto robusta e restistente." HSI="50.0" use="Boil" utilizzo="Aroma" beta="3.5" />
+  <jmash.HopType Nome="Lublin" AA="5.0" Origine="Poland" Des="luppolo da aroma molto simile al SAAZ , 2-4%AA." HSI="40.0" use="Boil" utilizzo="Bittering" beta="3.0" />
+  <jmash.HopType Nome="Magnum" AA="14.0" Origine="Germany" HSI="15.0" use="Boil" utilizzo="Bittering" beta="6.5" />
+  <jmash.HopType Nome="Mt. Hood" AA="6.0" Origine="US" Des="luppolo da aroma molto simile all'HALLERTAUER, 4-7%AA.Il raccolto  e' discreto e matura a meta' stagione.La pianta e' molto robusta e restistente." HSI="40.0" use="Boil" utilizzo="Aroma" beta="6.3" />
+  <jmash.HopType Nome="Nelson Sauvin" AA="12.0" Origine="New Zealand" Des="Ottimo sia da aroma che da amaro, Ottenuto modificando alcune piante di &quot;Smoothcone&quot; (derivazione neozelandese del Fuggle) Il nome ha due rimandi, uno geografico e uno vitivinicolo: Nelson, dal nome della zona centrale della Nuova Zelanda, dalla quale questa varietà di luppolo proviene; Sauvin in onore delle sue caratteristiche aromatiche e degustative, che richiamano le note fresche e fruttate dell’uva spina, descrittore, questo, usato spesso anche per le uve Sauvignon (il celebre vitigno della zona di Bordeaux). E’ un luppolo &quot;vinoso&quot;, o meglio, un luppolo che conferisce alla birra le note fresche e fruttate di un buon vino bianco, unite ad altre ricchissime note balsamiche, che richiamano alla mente i Tropici con la ricchezza e la tipicità dei loro frutti." HSI="15.0" use="Boil" utilizzo="Both" />
+  <jmash.HopType Nome="Northdown" AA="8.5" Origine="UK" Des="Altro luppolo da amaro e aroma sviluppato dal Northern Brewer. Utilizzato nella Guinness. Buon aroma, che si fonde bene con altri tipi di luppolo inglese." HSI="15.0" use="Boil" utilizzo="Both" beta="5.5" />
+  <jmash.HopType Nome="Northern Brewer" AA="8.5" Origine="UK" Des="originario della Gran Bretagna ma largamente coltivato in Germania. Ideale per amaricatura di Lager in stile tedesco. Amaro pulito e secco, aroma fine e fragrante." HSI="35.0" use="Boil" utilizzo="Both" beta="4.0" />
+  <jmash.HopType Nome="Nugget" AA="13.0" Origine="US" Des="l'aroma e' molto forte e speziato , quindi e' principalmente USto per amaricare 12-14%AA. Il raccolto e' molto abbondante e matura a meta' stagione.La pianta e' molto robusta e molto resistente alle malattie." HSI="15.0" use="Boil" utilizzo="Bittering" beta="5.0" />
+  <jmash.HopType Nome="Orion" AA="7.25" Origine="Germany" HSI="17.0" use="Boil" utilizzo="Both" beta="3.7" />
+  <jmash.HopType Nome="Pacific Gem" AA="15.0" Origine="New Zealand" HSI="10.0" use="Boil" utilizzo="Bittering" beta="8.2" />
+  <jmash.HopType Nome="Phoenix" AA="8.0" Origine="UK" HSI="10.0" use="Boil" utilizzo="Bittering" beta="4.6" />
+  <jmash.HopType Nome="Pilgrim" AA="10.0" Origine="UK" Des="Luppolo da amaro ottimo sostituto del Target. Buon aroma, che si fonde bene con altri tipi di luppolo inglese." HSI="18.0" use="Boil" utilizzo="Bittering" beta="4.7" />
+  <jmash.HopType Nome="Pioneer" AA="9.0" Origine="UK" HSI="17.0" use="Boil" utilizzo="Both" beta="3.75" />
+  <jmash.HopType Nome="Pride of Ringwood" AA="9.0" Origine="Australia" Des="luppolo dall'aroma di agrumi e dall'amaro molto pulito 9-11%AA." HSI="45.0" use="Boil" utilizzo="Bittering" beta="5.75" />
+  <jmash.HopType Nome="Progress" AA="6.25" Origine="UK" HSI="15.0" use="Boil" utilizzo="Aroma" beta="2.1" />
+  <jmash.HopType Nome="Saaz" AA="4.0" Origine="Czech Republic" Des="nobile dall'aroma floreale molto delicato , 2-5%AA.Il raccolto e' molto scarso e matura all'inizio della stagione.La pianta e' molto difficile da coltivare." HSI="42.0" use="Boil" utilizzo="Aroma" beta="3.5" />
+  <jmash.HopType Nome="Santiam" AA="6.0" Origine="US" Des="luppolo da aroma simile al TETTNANGER 5-7%AA.Il raccolto e' moderato." HSI="35.0" use="Boil" utilizzo="Aroma" beta="7.0" />
+  <jmash.HopType Nome="Select Spalt" AA="4.75" Origine="Germany" Des="proveniente dall'omonima regione della Bavaria. Utilizzato nelle Dusseldorf Altbiers. Aroma delicato, floreale e leggermente speziato" HSI="17.0" use="Boil" utilizzo="Aroma" beta="3.5" />
+  <jmash.HopType Nome="Simcoe" AA="12.0" Origine="US" Des="Recente varieta', agrumato e resinoso (pino). Luppolo da Amaro ma dall'ottimo profilo Aromatico" HSI="17.0" use="Boil" utilizzo="Bittering" />
+  <jmash.HopType Nome="Southern Cross" AA="13.0" Origine="New Zealand" HSI="15.0" use="Boil" utilizzo="Both" beta="6.2" />
+  <jmash.HopType Nome="Spalter" AA="4.5" Origine="Germany" Des="aroma piacevolmente speziato 3-6%AA." HSI="50.0" use="Boil" utilizzo="Aroma" beta="4.0" />
+  <jmash.HopType Nome="Sterling" AA="7.5" Origine="US" HSI="15.0" use="Boil" utilizzo="Both" beta="5.0" />
+  <jmash.HopType Nome="Sticklebract" AA="13.5" Origine="New Zealand" HSI="17.0" use="Boil" utilizzo="Both" beta="8.0" />
+  <jmash.HopType Nome="Strisslespalt" AA="4.0" Origine="France" HSI="35.0" use="Boil" utilizzo="Aroma" beta="3.8" />
+  <jmash.HopType Nome="Styrian Goldings" AA="5.4" Origine="Slovenia" Des="Fuggles coltivato in Slovenia. Simile al Fuggles è adatto ad una grande varietà di ales. Amaro, aroma e dry-hopping" HSI="30.0" use="Boil" utilizzo="Aroma" beta="2.9" />
+  <jmash.HopType Nome="Sun" AA="14.0" Origine="US" HSI="25.0" use="Boil" utilizzo="Bittering" beta="5.5" />
+  <jmash.HopType Nome="Super Alpha" AA="13.0" Origine="New Zealand" HSI="15.0" use="Boil" utilizzo="Bittering" beta="8.0" />
+  <jmash.HopType Nome="Target" AA="11.0" Origine="UK" Des="Il luppolo più coltivato nel regno unito (40 % dell’intera produzione). Da utilizzare essenzialmente per amaro visto il suo alto contenuto di A.A. e per le sue scarse qualità aromatiche." HSI="50.0" use="Boil" utilizzo="Bittering" beta="5.0" />
+  <jmash.HopType Nome="Tettnang" AA="4.5" Origine="Germany" Des="aroma speziato molto delicato 3-6%AA.Il raccolto e' scarso e matura all'inizio della stagione." HSI="40.0" use="Boil" utilizzo="Aroma" beta="3.5" />
+  <jmash.HopType Nome="Tradition" AA="6.0" Origine="Germany" HSI="10.0" use="Boil" utilizzo="Bittering" beta="4.5" />
+  <jmash.HopType Nome="Ultra" AA="3.0" Origine="US" HSI="27.5" use="Boil" utilizzo="Aroma" beta="3.75" />
+  <jmash.HopType Nome="Vanguard" AA="5.5" Origine="US" HSI="18.0" use="Boil" utilizzo="Aroma" beta="6.0" />
+  <jmash.HopType Nome="Warrior" AA="15.0" Origine="US" HSI="20.0" use="Boil" utilizzo="Both" beta="6.0" />
+  <jmash.HopType Nome="Whitbread Golding Variety (WGV)" AA="6.0" Origine="UK" HSI="35.0" use="Boil" utilizzo="Aroma" beta="2.5" />
+  <jmash.HopType Nome="Williamette" AA="5.5" Origine="US" Des="Qualità di luppolo da aroma con un soffice, delicato sapore. Può essere usato per ales e lagers. " HSI="40.0" use="Boil" utilizzo="Aroma" beta="3.5" />
+  <jmash.HopType Nome="Zeus" AA="14.0" Origine="US" HSI="45.0" use="Boil" utilizzo="Bittering" beta="5.0" />
+</hops>
+

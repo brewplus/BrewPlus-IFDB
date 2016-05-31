@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recipe volume="15.0" volume_boll="12.0" volume_dil="30.0" unita_misura_mostrata="litri" efficienza="75" bollitura="60" bollitura_conc="false" nome="New Zealand Real Ipa" note="" fotografia="" codicestile="14A">
+  <jmash.Hop Grammi="0.0" UnitaMisura="grammi" BoilTime="60" AlfaAcidi="5.4" Nome="Pacifica" Forma="Pellet" Origine="New Zealand" Uso="Kettle" HSI="10.0" />
+  <jmash.Hop Grammi="22.0" UnitaMisura="grammi" BoilTime="60" AlfaAcidi="14.6" Nome="Pacific Jade" Forma="Plug" Origine="New Zealand" Uso="Kettle" HSI="10.0" />
+  <jmash.Hop Grammi="10.0" UnitaMisura="grammi" BoilTime="60" AlfaAcidi="7.0" Nome="Wakatu" Forma="Pellet" Origine="New Zealand" Uso="Kettle" HSI="15.0" />
+  <jmash.Hop Grammi="6.0" UnitaMisura="grammi" BoilTime="20" AlfaAcidi="5.4" Nome="Pacifica" Forma="Pellet" Origine="New Zealand" Uso="Kettle" HSI="10.0" />
+  <jmash.Hop Grammi="0.0" UnitaMisura="grammi" BoilTime="20" AlfaAcidi="14.6" Nome="Pacific Jade" Forma="Plug" Origine="New Zealand" Uso="Kettle" HSI="10.0" />
+  <jmash.Hop Grammi="10.0" UnitaMisura="grammi" BoilTime="20" AlfaAcidi="7.0" Nome="Wakatu" Forma="Pellet" Origine="New Zealand" Uso="Kettle" HSI="15.0" />
+  <jmash.Hop Grammi="16.0" UnitaMisura="grammi" BoilTime="5" AlfaAcidi="5.4" Nome="Pacifica" Forma="Pellet" Origine="New Zealand" Uso="Kettle" HSI="10.0" />
+  <jmash.Hop Grammi="15.0" UnitaMisura="grammi" BoilTime="5" AlfaAcidi="14.6" Nome="Pacific Jade" Forma="Plug" Origine="New Zealand" Uso="Kettle" HSI="10.0" />
+  <jmash.Hop Grammi="0.0" UnitaMisura="grammi" BoilTime="5" AlfaAcidi="7.0" Nome="Wakatu" Forma="Pellet" Origine="New Zealand" Uso="Kettle" HSI="15.0" />
+  <jmash.Hop Grammi="15.0" UnitaMisura="grammi" BoilTime="0" AlfaAcidi="5.4" Nome="Pacifica" Forma="Pellet" Origine="New Zealand" Uso="Kettle" HSI="10.0" />
+  <jmash.Hop Grammi="10.0" UnitaMisura="grammi" BoilTime="0" AlfaAcidi="14.6" Nome="Pacific Jade" Forma="Plug" Origine="New Zealand" Uso="Kettle" HSI="10.0" />
+  <jmash.Hop Grammi="7.0" UnitaMisura="grammi" BoilTime="0" AlfaAcidi="7.0" Nome="Wakatu" Forma="Pellet" Origine="New Zealand" Uso="Kettle" HSI="15.0" />
+  <jmash.Hop Grammi="20.0" UnitaMisura="grammi" BoilTime="0" AlfaAcidi="5.4" Nome="Pacifica" Forma="Pellet" Origine="New Zealand" Uso="Dry" HSI="10.0" />
+  <jmash.Hop Grammi="10.0" UnitaMisura="grammi" BoilTime="0" AlfaAcidi="14.6" Nome="Pacific Jade" Forma="Plug" Origine="New Zealand" Uso="Dry" HSI="10.0" />
+  <jmash.Hop Grammi="30.0" UnitaMisura="grammi" BoilTime="0" AlfaAcidi="7.0" Nome="Wakatu" Forma="Pellet" Origine="New Zealand" Uso="Dry" HSI="15.0" />
+  <jmash.Malt Grammi="1100.0" UnitaMisura="grammi" Nome="Pale" Forma="Grani" Ebc="0.0" PotentialSG="1.03" srm="0.0" />
+  <jmash.Malt Grammi="100.0" UnitaMisura="grammi" Nome="Avena Maltata" Forma="Grani" Ebc="1.9850233081520716" PotentialSG="1.02" srm="1.0083918405412524" />
+  <jmash.Malt Grammi="1500.0" UnitaMisura="grammi" Nome="Maris Otter" Forma="Estratto Liquido" Ebc="5.935967564695541" PotentialSG="1.03" srm="3.015471522865335" />
+  <jmash.Malt Grammi="600.0" UnitaMisura="grammi" Nome="Crystal 70L" Forma="Grani" Ebc="137.62590817148003" PotentialSG="1.02" srm="69.91396135111187" />
+  <jmash.Malt Grammi="100.0" UnitaMisura="grammi" Nome="Fiocchi di Miglio" Forma="Fiocchi" Ebc="1.9744950144807827" PotentialSG="1.02" srm="1.0030434673562376" />
+  <jmash.Yeast nome="DENNY'S FAV. 50" codice="1450" produttore="Wyeast" descrizione="moderate to high alcohol tolerance" note="" />
+  <jmash.WaterProfile calcio="0.0" magnesio="0.0" solfato="0.0" cloruro="0.0" sodio="0.0" carbonato="0.0" />
+  <jmash.WaterProfile calcio="0.0" magnesio="0.0" solfato="0.0" cloruro="0.0" sodio="0.0" carbonato="0.0" />
+  <jmash.WaterProfile type="2" calcio="0.0" magnesio="0.0" solfato="0.0" cloruro="0.0" sodio="0.0" carbonato="0.0" gypsum="0.0" sale="0.0" epsom="0.0" calciumChloride="3785.4118034613734" chalk="0.0" soda="0.0" />
+  <water spnBatchSize="15.0" spnBoiltime="60.0" spnEvaporation="4.0" spnKg="1.9" spnNeiGrani="1.9189999999999998" spnLitriKg="3.0" spnLosses="2.0" spnTrub="0.7" spnSparge="18.544" spnMash="5.699999999999999" spnShrink="4.0" spnPreBoil="0.0" spnPostBoil="0.0" spnAssorbimento="1.01" />
+</recipe>
+
