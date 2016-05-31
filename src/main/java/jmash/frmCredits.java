@@ -66,8 +66,11 @@ public class frmCredits extends javax.swing.JInternalFrame {
 		txtthanks.setFont(new Font("Tahoma", Font.PLAIN, 6));
 		txtthanks.setEditable(false);
 		txtthanks.setContentType("text/html");
-		txtthanks.setText("<html><span style='font-family:Tahoma; font-size: 9pt'><strong>Thanks to</strong><br>Jigen Daisuke (<a href=\"http://www.birrandosiimpara.it/birrabirra/index.php\">Birra Birra</a>)</span></html>");
-		txtthanks.setBounds(10, 106, 299, 41);
+		txtthanks.setText("<html><span style='font-family:Tahoma; font-size: 9pt'><strong>Thanks to</strong>"
+		        + "<br>Jigen Daisuke (<a href=\"http://www.ilforumdellabirra.net\">Il Forum Della Birra</a>)"
+		        + "<br>Rekhyt (Il Re della Cantina) & Alessandro Peruzzi"
+		        + "</span></html>");
+		txtthanks.setBounds(10, 106, 699, 41);
 		contentPanel.add(txtthanks);
 		
 		txtApp.setEditable(false);

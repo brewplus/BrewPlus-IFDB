@@ -61,7 +61,7 @@ public class frmFeed2 extends JInternalFrame {
 	
 	//cablato indirizzo RSS
 	//private String rssUrl=Main.config.getRSSFeed();
-	private String rssUrl="http://www.birrandosiimpara.it/birrabirra/feed.php";
+	private String rssUrl="http://www.ilforumdellabirra.net/feed.php";
 	
 	
 	private SyndFeed feed;
@@ -126,7 +126,7 @@ public class frmFeed2 extends JInternalFrame {
 		
 		JLabel lblNewLabel = new JLabel("");
 		panel_2.add(lblNewLabel);
-		lblNewLabel.setIcon(new ImageIcon(frmFeed2.class.getResource("/jmash/images/birrabirralog.png")));
+		lblNewLabel.setIcon(new ImageIcon(frmFeed2.class.getResource("/jmash/images/logo-min.png")));
 		
 		
 		lblLink.setVisible(false);
@@ -187,15 +187,15 @@ public class frmFeed2 extends JInternalFrame {
 	}
 	private String parseWrongChars(String content)
 	{
-		content=content.replace("Ã©", "è");
+		content=content.replace("Ã©", "ï¿½");
 		content=content.replace("â€¢","-");
-		content=content.replace("Ã¹","ù");
-		content=content.replace("Ã¨","è");
-		content=content.replace("â€”","—");
-		content=content.replace("Ã²","ò");
-		content=content.replace("Ã","à");
-		content=content.replace("Â°","°");
-		content=content.replace("¬","ì");
+		content=content.replace("Ã¹","ï¿½");
+		content=content.replace("Ã¨","ï¿½");
+		content=content.replace("â€”","ï¿½");
+		content=content.replace("Ã²","ï¿½");
+		content=content.replace("ï¿½","ï¿½");
+		content=content.replace("Â°","ï¿½");
+		content=content.replace("ï¿½","ï¿½");
 
 		return content;
 	}

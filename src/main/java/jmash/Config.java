@@ -226,7 +226,7 @@ public class Config {
 
 	public String getRSSFeed()
 	{
-		return RSSFeed==null?"http://birrabirra.altervista.org/forum/feed.php":RSSFeed;
+		return RSSFeed==null?"http://www.ilforumdellabirra.net/feed.php":RSSFeed;
 	}
 	public void setRSSFeed(String RSSFeed)
 	{
