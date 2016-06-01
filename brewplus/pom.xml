@@ -94,6 +94,17 @@
 					<artifactId>maven-dependency-plugin</artifactId>
 					<version>2.10</version>
 				</plugin>
+			<plugin>
+				<groupId>external.atlassian.jgitflow</groupId>
+				<artifactId>jgitflow-maven-plugin</artifactId>
+				<version>1.0-m5.1</version>
+				<configuration>
+					<!-- Vedasi documentazione su http://jgitflow.bitbucket.org/plugin-info.html -->
+					<noDeploy>false</noDeploy>
+					<allowSnapshots>true</allowSnapshots>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+				</configuration>
+			</plugin>
 			</plugins>
 
 		</pluginManagement>
