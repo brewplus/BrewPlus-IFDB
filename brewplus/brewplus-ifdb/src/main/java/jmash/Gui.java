@@ -1275,10 +1275,7 @@ public class Gui extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuMaltiXMLActionPerformed
     
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-		if(this.desktop.getSelectedFrame() instanceof XmlEditor ){
-		    XmlEditor ed=(XmlEditor)this.desktop.getSelectedFrame();
-		    ed.saveFile();
-		}
+
 		if(this.desktop.getSelectedFrame() instanceof Ricetta ){
 		    Ricetta ed=(Ricetta)this.desktop.getSelectedFrame();
 		    ed.saveRicetta();
