@@ -88,7 +88,7 @@ public class UploadRicetta2 extends javax.swing.JInternalFrame {
     
     private void reloadTree(){
         Document doc=Utils.readFileAsXml("http://"+Main.config.getRemoteServer()+"/ricette_stile_xml.asp");
-        DefaultMutableTreeNode top = new DefaultMutableTreeNode("Ricette su Birra Birra");
+        DefaultMutableTreeNode top = new DefaultMutableTreeNode("Ricette su Il Forum della Birra");
         if(doc==null) {
             this.treeModel = new DefaultTreeModel(top);
             this.jTree2 =  new JTree(this.treeModel);

@@ -163,7 +163,7 @@ public class frmFeed2 extends JInternalFrame {
 		scrollPane2.setViewportView(txtContent);
 		
 		InitForm();
-		setTitle("Birra Birra Feed");
+		setTitle("Il Forum della Birra Feed");
 		
 		getRSSHeaders();
 

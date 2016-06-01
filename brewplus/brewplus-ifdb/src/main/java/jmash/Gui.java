@@ -555,7 +555,7 @@ public class Gui extends javax.swing.JFrame {
         });
         
         button.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/forum1.png")));
-        button.setToolTipText("Birra Birra feed");
+        button.setToolTipText("Il Forum della Birra Feed");
         button.setPreferredSize(new Dimension(37, 35));
         button.setMinimumSize(new Dimension(37, 35));
         button.setMaximumSize(new Dimension(37, 35));
@@ -805,7 +805,7 @@ public class Gui extends javax.swing.JFrame {
                 });
                 mnRisorse.add(mntmSchedaLuppoli);
                 
-                JMenuItem mntmForumBirraBirra = new JMenuItem("Birra Birra feed");
+                JMenuItem mntmForumBirraBirra = new JMenuItem("Il Forum della Birra Feed");
                 mntmForumBirraBirra.addActionListener(new ActionListener() {
                 	public void actionPerformed(ActionEvent e) {
                 		gotoForum();
