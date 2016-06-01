@@ -16,6 +16,12 @@
 			<groupId>net.ilforumdellabirra</groupId>
 			<artifactId>brewplus-ifdb</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>hoteqn</groupId>
+			<artifactId>apt.hoteqn</artifactId>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/../no-maven-libs/HotEqn.jar</systemPath>
+		</dependency>
 	</dependencies>
 
 	<build>
