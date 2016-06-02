@@ -462,9 +462,9 @@ public class CorrezioneDensimetro extends javax.swing.JInternalFrame {
     
     XYPointerAnnotation pointer=null;
     XYSeriesCollection dataset = new XYSeriesCollection();
-    XYSeries series1 = new XYSeries("");
-    XYSeries series2 = new XYSeries("");
-    XYSeries series3 = new XYSeries("");
+    XYSeries series1 = new XYSeries("series1");
+    XYSeries series2 = new XYSeries("series2");
+    XYSeries series3 = new XYSeries("series3");
     
     private void calc(){
 	double t=Utils.C2F(fldT.getTemperature());
