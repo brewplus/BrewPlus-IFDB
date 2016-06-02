@@ -80,7 +80,7 @@ public class Main {
     public static String waterXML="config/water.xml";
     public static String yeastXML="config/lieviti_ita.xml";
     public static String stiliXML="config/stili.xml";
-    public static String bjcpStylesXML="config/styleguide_ita.xml";
+    public static String bjcpStylesXML="config/styleguide-2015.xml";
     public static String coloriXML="config/colors.xml";
     public static String configXML="config/config.xml";
     public static String inventarioXML="config/inventario.xml";
@@ -659,56 +659,71 @@ public class Main {
     }
     
     public static  List<BrewStyle> bjcpStyles=new ArrayList<BrewStyle>();
+    
     private static List<BrewStyle> getBJCPStyles(Element el){
-	if(el.getName().compareTo("subcategory")==0){
-	    BrewStyle S=new BrewStyle();
-	    S.setNome(el.getChild("name").getValue().replaceAll("\n",""));
-	    try
-	    {
-	    	S.setWater(el.getChild("water").getValue().replaceAll("\n",""));
-	    	S.setMalt(el.getChild("malts").getValue().replaceAll("\n",""));
-	    	S.setHops(el.getChild("hops").getValue().replaceAll("\n",""));
-	    	S.setSpices(el.getChild("spices").getValue().replaceAll("\n",""));
-	    	S.setYeast(el.getChild("yeasts").getValue().replaceAll("\n",""));
-	    	S.setAroma(el.getChild("aroma").getValue().replaceAll("\n",""));
-	    	S.setComments(el.getChild("comments").getValue().replaceAll("\n",""));
-	    	S.setIngredients(el.getChild("ingredients").getValue().replaceAll("\n",""));
-	    	S.setMouthfeel(el.getChild("mouthfeel").getValue().replaceAll("\n",""));
-	    	S.setAppearance(el.getChild("appearance").getValue().replaceAll("\n",""));
-	    	S.setFlavor(el.getChild("flavor").getValue().replaceAll("\n",""));
-	    	S.setImpression(el.getChild("impression").getValue().replaceAll("\n",""));
-	    	S.setExamples(el.getChild("examples").getValue().replaceAll("\n",""));
-	    }
-	    catch (Exception ex)
-	    {
-	    	
-	    }
-	    S.setNumero(el.getAttribute("id").getValue());
-	    S.setCategoria(el.getParentElement().getChild("name").getValue().replaceAll("\n",""));
-	    S.setcodiceCategoria(el.getParentElement().getAttributeValue("id"));
-	    
-	    S.setIbuMin(toDouble(getChild(el, new String[]{"stats","ibu","low"})));
-	    S.setIbuMax(toDouble(getChild(el, new String[]{"stats","ibu","high"})));
-	    
-	    S.setFgMin(toDouble(getChild(el, new String[]{"stats","fg","low"})));
-	    S.setFgMax(toDouble(getChild(el, new String[]{"stats","fg","high"})));
-	    
-	    S.setOgMin(toDouble(getChild(el, new String[]{"stats","og","low"})));
-	    S.setOgMax(toDouble(getChild(el, new String[]{"stats","og","high"})));
-	    
-	    S.setColorMin(toDouble(getChild(el, new String[]{"stats","srm","low"})));
-	    S.setColorMax(toDouble(getChild(el, new String[]{"stats","srm","high"})));
-	    
-	    bjcpStyles.add(S);
-	}
-	
-	List<Element> children=el.getChildren();
-	for(Element E: children){
-	    getBJCPStyles(E);
-	}
-	return bjcpStyles;
+    	if(el.getName().compareTo("subcategory")==0){
+    	    BrewStyle S=new BrewStyle();
+    	    S.setNome(el.getChild("name").getValue().replaceAll("\n",""));
+    	    try
+    	    {
+    	        S.setImpression(readBjcpElement(el,"impression"));
+    	    	S.setWater(readBjcpElement(el,"water"));
+    	    	S.setMalt(readBjcpElement(el,"malts"));
+    	    	S.setHops(readBjcpElement(el,"hops"));
+    	    	S.setSpices(readBjcpElement(el,"spices"));
+    	    	S.setYeast(readBjcpElement(el,"yeasts"));
+    	    	S.setAroma(readBjcpElement(el,"aroma"));
+    	    	S.setComments(readBjcpElement(el,"comments"));
+    	    	S.setIngredients(readBjcpElement(el,"ingredients"));
+    	    	S.setMouthfeel(readBjcpElement(el,"mouthfeel"));
+    	    	S.setAppearance(readBjcpElement(el,"appearance"));
+    	    	S.setFlavor(readBjcpElement(el,"flavor"));
+    	    	S.setImpression(readBjcpElement(el,"impression"));
+    	    	S.setExamples(readBjcpElement(el,"examples"));
+    	    }
+    	    catch (Exception ex)
+    	    {
+    	        System.out.println(ex);
+    	    }
+    	    S.setNumero(el.getAttribute("id").getValue());
+    	    S.setCategoria(el.getParentElement().getChild("name").getValue().replaceAll("\n",""));
+    	    S.setcodiceCategoria(el.getParentElement().getAttributeValue("id"));
+    	    
+    	    S.setIbuMin(toDouble(getChild(el, new String[]{"stats","ibu","low"})));
+    	    S.setIbuMax(toDouble(getChild(el, new String[]{"stats","ibu","high"})));
+    	    
+    	    S.setFgMin(toDouble(getChild(el, new String[]{"stats","fg","low"})));
+    	    S.setFgMax(toDouble(getChild(el, new String[]{"stats","fg","high"})));
+    	    
+    	    S.setOgMin(toDouble(getChild(el, new String[]{"stats","og","low"})));
+    	    S.setOgMax(toDouble(getChild(el, new String[]{"stats","og","high"})));
+    	    
+    	    S.setColorMin(toDouble(getChild(el, new String[]{"stats","srm","low"})));
+    	    S.setColorMax(toDouble(getChild(el, new String[]{"stats","srm","high"})));
+    	    
+    	    bjcpStyles.add(S);
+    	}
+    	
+    	List<Element> children=el.getChildren();
+    	for(Element E: children){
+    	    getBJCPStyles(E);
+    	}
+    	return bjcpStyles;
     }
+    
+    private static String readBjcpElement(Element el, String elName){
+        
+        String eleStrVal = "";
+        
+        if(el.getChild(elName)!=null){
+            eleStrVal = el.getChild(elName).getValue().replaceAll("\n","");
+        }
+        
+        return eleStrVal;
+    }
+    
     private static HashMap<String,Object> cache=new HashMap<String,Object>();
+    
     
     public static void removeFromCache(String k)
     {

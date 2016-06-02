@@ -441,4 +441,6 @@ public class BrewStyle implements XmlAble {
     public String[] getXmlFields() {
         return campiXml;
     }
+    
+
 }
