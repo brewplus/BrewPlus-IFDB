@@ -1144,10 +1144,10 @@ public class CarbonationTool extends javax.swing.JInternalFrame {
     
     XYPointerAnnotation pointer=null;
     XYSeriesCollection dataset = new XYSeriesCollection();
-    XYSeries series1 = new XYSeries("");
-    XYSeries series2 = new XYSeries("");
-    XYSeries series3 = new XYSeries("");
-    XYSeries series4 = new XYSeries("");
+    XYSeries series1 = new XYSeries("series1");
+    XYSeries series2 = new XYSeries("series2");
+    XYSeries series3 = new XYSeries("series3");
+    XYSeries series4 = new XYSeries("series4");
     public  JPanel createDemoPanel() {
 	JFreeChart lChart = createChart( );
 	this.dataset.addSeries(this.series1);
@@ -1254,10 +1254,10 @@ public class CarbonationTool extends javax.swing.JInternalFrame {
     ///////////////////////////////////////////////////////
     
     XYSeriesCollection datasetF = new XYSeriesCollection();
-    XYSeries series1F = new XYSeries("");
-    XYSeries series2F = new XYSeries("");
-    XYSeries series3F = new XYSeries("");
-    XYSeries series4F = new XYSeries("");
+    XYSeries series1F = new XYSeries("series1F");
+    XYSeries series2F = new XYSeries("series2F");
+    XYSeries series3F = new XYSeries("series3F");
+    XYSeries series4F = new XYSeries("series4F");
     public  JPanel createForceGraph() {
 	JFreeChart lChart = createChartF( );
 	
@@ -1367,10 +1367,10 @@ public class CarbonationTool extends javax.swing.JInternalFrame {
     
     XYPointerAnnotation pointerK=null;
     XYSeriesCollection datasetK = new XYSeriesCollection();
-    XYSeries series1K = new XYSeries("");
-    XYSeries series2K = new XYSeries("");
-    XYSeries series3K = new XYSeries("");
-    XYSeries series4K = new XYSeries("");
+    XYSeries series1K = new XYSeries("series1K");
+    XYSeries series2K = new XYSeries("series2K");
+    XYSeries series3K = new XYSeries("series3K");
+    XYSeries series4K = new XYSeries("series4K");
     public  JPanel createDemoPanelK() {
 	JFreeChart lChartK = createChartK( );
 	this.datasetK.addSeries(this.series1K);
