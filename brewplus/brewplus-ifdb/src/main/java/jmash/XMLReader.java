@@ -46,23 +46,18 @@ public class XMLReader {
 	    String fileOri=new String(file);
 	    InputSource is = null;
 	    if(!file.startsWith("http://")) {
-	    String origFile = file;
-		file=new File(file).toURI().toString();
-		
-		if (!new File(file).exists())
-		{
-			String f = "../brewplus-ifdb-distr/src/main/resources/distr";
-			if (!origFile.startsWith("/"))
-			{
-				f += "/";
-			}
-			f += origFile;
-			f = new File(f).toURI().toString();
-			f = f.substring(6);
-			String cf = new File(f).getCanonicalPath();
-			file = new File(cf).toURI().toString();
+//	    file=new File(file).toURI().toString();
+
+		String currentDir = System.getProperty("user.dir");
+
+		file = currentDir + "/" + file;
+
+		if (!new File(file).exists()) {
+			// solo per esecuzioni per eclipse
+			String currentParentDir = new File(currentDir).getParent();
+			file = currentParentDir + "/brewplus-ifdb-distr/src/main/resources/distr/" + fileOri;
 		}
-		
+	
 		is=new InputSource(file);
 		is.setEncoding("UTF-8");
 	    } else{
