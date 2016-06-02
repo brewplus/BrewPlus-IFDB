@@ -1,3 +1,3 @@
 java -jar "BrewPlus-IFDB.jar"
 
-pause
+rem pause
