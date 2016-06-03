@@ -1,23 +1,15 @@
 package jmash;
 
-import java.awt.EventQueue;
-import java.awt.ScrollPane;
-
-import javax.swing.JInternalFrame;
-import javax.swing.JEditorPane;
-import javax.swing.ScrollPaneConstants;
-
 import java.awt.BorderLayout;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.swing.JEditorPane;
 import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
-
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 public class frmBrowser extends  javax.swing.JInternalFrame{
 

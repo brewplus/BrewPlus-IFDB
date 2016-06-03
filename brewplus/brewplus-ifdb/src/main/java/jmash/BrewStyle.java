@@ -31,6 +31,7 @@ public class BrewStyle implements XmlAble {
     /** Creates a new instance of BrewStyle */
     public BrewStyle() {
     }
+
     private String nome;
     private String categoria;
     private String codicecategoria;
@@ -69,63 +70,85 @@ public class BrewStyle implements XmlAble {
     private String ingredients;
     private String examples;
     
-    
+    private String catNotes;
+
+    public String getCatNotes() {
+        return catNotes;
+    }
+
+    public void setCatNotes(String catNotes) {
+        this.catNotes = catNotes;
+    }
+
     public String getAroma() {
         return this.aroma;
     }
+
     public void setAroma(String valore) {
         this.aroma = valore;
     }
+
     public String getAppearance() {
         return this.appearance;
     }
+
     public void setAppearance(String valore) {
         this.appearance = valore;
     }
+
     public void setFlavor(String valore) {
         this.flavor = valore;
     }
+
     public String getFlavor() {
         return this.flavor;
     }
+
     public void setMouthfeel(String valore) {
         this.mouthfeel = valore;
     }
+
     public String getMouthfeel() {
         return this.mouthfeel;
     }
+
     public void setImpression(String valore) {
         this.impression = valore;
     }
+
     public String getImpression() {
         return this.impression;
     }
+
     public void setComments(String valore) {
         this.comments = valore;
     }
+
     public String getComments() {
         return this.comments;
     }
+
     public void setIngredients(String valore) {
         this.ingredients = valore;
     }
+
     public String getIngredients() {
         return this.ingredients;
     }
+
     public void setExamples(String valore) {
         this.examples = valore;
     }
-    public String getExamples(){
-    	return this.examples;
+
+    public String getExamples() {
+        return this.examples;
     }
-    
-    
-    
+
     @Override
-    public String toString(){
-         return this.numero+" "+this.nome;
+    public String toString() {
+        return this.numero + " " + this.nome;
     }
-    
+
     public String getNome() {
         return this.nome;
     }
@@ -141,6 +164,7 @@ public class BrewStyle implements XmlAble {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
+
     public String getcodiceCategoria() {
         return this.codicecategoria;
     }
@@ -308,103 +332,84 @@ public class BrewStyle implements XmlAble {
     public void setEsempi(String esempi) {
         this.esempi = esempi;
     }
-    
-    public String getWater()
-    { return this.water;}
-    public void setWater(String value)
-    {this.water=value;}
-    
-    public String getYeast()
-    {return this.yeast;}
-    public void setYeast(String value)
-    {this.yeast=value;}
-    
-    public String getMalt()
-    {return this.malt;}
-    public void setMalt(String value)
-    {this.malt=value;}
-    
-    public String getHops()
-    {return this.hops;}
-    public void setHops(String value)
-    {this.hops=value;}
-    
-    public String getSpices()
-    {return this.spices;}
-    public void setSpices(String value)
-    {this.spices=value;}
-    
-    public static final String campiXml[] = new String[]{
-        "nome",
-        "categoria",
-        "numero",
-        "sottoCategoria",
-        "lettera",
-        "guida",
-        "tipo",
-        "ogMin",
-        "ogMax",
-        "fgMin",
-        "fgMax",
-        "ibuMin",
-        "ibuMax",
-        "colorMin",
-        "colorMax",
-        "carbMin",
-        "carbMax",
-        "abvMin",
-        "abvMax",
-        "note",
-        "descrizione",
-        "ingredienti",
-        "esempi",
-        "water",
-        "yeast",
-        "malt",
-        "hops",
-        "spices"
-    ,
 
-                 
-        }   ; 
-            
-        
-         
-    
+    public String getWater() {
+        return this.water;
+    }
 
-    public static  BrewStyle fromXml( 
-         Element elem
-    
+    public void setWater(String value) {
+        this.water = value;
+    }
 
-       ) {
-        BrewStyle type = 
-    
+    public String getYeast() {
+        return this.yeast;
+    }
 
-       
-           new BrewStyle();
+    public void setYeast(String value) {
+        this.yeast = value;
+    }
+
+    public String getMalt() {
+        return this.malt;
+    }
+
+    public void setMalt(String value) {
+        this.malt = value;
+    }
+
+    public String getHops() {
+        return this.hops;
+    }
+
+    public void setHops(String value) {
+        this.hops = value;
+    }
+
+    public String getSpices() {
+        return this.spices;
+    }
+
+    public void setSpices(String value) {
+        this.spices = value;
+    }
+
+    public static final String campiXml[] = new String[] { "nome", "categoria", "numero", "sottoCategoria", "lettera",
+            "guida", "tipo", "ogMin", "ogMax", "fgMin", "fgMax", "ibuMin", "ibuMax", "colorMin", "colorMax", "carbMin",
+            "carbMax", "abvMin", "abvMax", "note", "descrizione", "ingredienti", "esempi", "water", "yeast", "malt",
+            "hops", "spices",
+
+    };
+
+    public static BrewStyle fromXml(Element elem
+
+    ) {
+        BrewStyle type =
+
+                new BrewStyle();
         try {
-            type=(BrewStyle)Utils.fromXml(type,campiXml,elem);
+            type = (BrewStyle) Utils.fromXml(type, campiXml, elem);
         } catch (Exception ex) {
             Utils.showException(ex);
         }
         return type;
     }
-    
+
     public String getNumero() {
         return this.numero;
     }
-    
+
     public void setNumero(String numero) {
         this.numero = numero;
     }
-//    @Override
-//    public String toString(){
-//        return  (this.numero!=null ? this.numero : "") + (this.sottoCategoria != null ? "-" + this.sottoCategoria + " " : "") + this.nome +
-//                " IBU: [" + this.ibuMin + ";" + this.ibuMax + "]" +
-//                " OG: [" + this.ogMin + ";" + this.ogMax + "]" +
-//                " FG: [" + this.fgMin + ";" + this.fgMax + "]" +
-//                "";
-//    }
+    // @Override
+    // public String toString(){
+    // return (this.numero!=null ? this.numero : "") + (this.sottoCategoria !=
+    // null ? "-" + this.sottoCategoria + " " : "") + this.nome +
+    // " IBU: [" + this.ibuMin + ";" + this.ibuMax + "]" +
+    // " OG: [" + this.ogMin + ";" + this.ogMax + "]" +
+    // " FG: [" + this.fgMin + ";" + this.fgMax + "]" +
+    // "";
+    // }
 
     @Override
     public Element toXml() {
@@ -417,19 +422,20 @@ public class BrewStyle implements XmlAble {
     }
 
     public String getDesCategoria() {
-        return (this.numero != null ? (this.numero + " - ") : "") + (this.categoria != null ? this.categoria + " - " : "") + this.nome;
+        return (this.numero != null ? (this.numero + " - ") : "")
+                + (this.categoria != null ? this.categoria + " - " : "") + this.nome;
     }
 
     public String getDesIBU() {
-        return " IBU: " + this.ibuMin + "- " + this.ibuMax + "";
+        return " IBU:\t" + this.ibuMin + "- " + this.ibuMax + "";
     }
 
     public String getDesOG() {
-        return " OG: " + this.ogMin + " - " + this.ogMax + "";
+        return " OG:\t" + this.ogMin + " - " + this.ogMax + "";
     }
 
     public String getDesFG() {
-        return " FG: " + this.fgMin + " - " + this.fgMax + "";
+        return " FG:\t" + this.fgMin + " - " + this.fgMax + "";
     }
 
     @Override
@@ -441,6 +447,5 @@ public class BrewStyle implements XmlAble {
     public String[] getXmlFields() {
         return campiXml;
     }
-    
 
 }

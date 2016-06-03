@@ -29,7 +29,7 @@ import jmash.Utils;
 public class JGravitySpinner  extends JMultiUnitSpinner{
     
     public JGravitySpinner() {
-    super(new String[] { "SG", "°P" , "°Bè" });
+    super(new String[] { "SG", "°P" , "°B" });
 	setModel(1.040,0.8,1.3,0.001,"0.000",null);
     }
     
