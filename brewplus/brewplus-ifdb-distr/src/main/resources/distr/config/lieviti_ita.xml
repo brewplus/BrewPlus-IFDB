@@ -35,12 +35,12 @@
   <jmash.YeastType nome="Manchester" codice="" produttore="Danstar" descrizione="Sensory contribution in the tradition of English style ale" />
   <jmash.YeastType nome="Nottingham" codice="" produttore="Danstar" descrizione="Neutral for Ale yeast, allowing for malty profile." />
   <jmash.YeastType nome="Windsor" codice="" produttore="Danstar" descrizione="Ales are described as full-bodied, fruity English Ales." />
-  <jmash.YeastType nome="SafAle German Ale" codice="K-97" produttore="DCL yeast" descrizione="German Ales, Weizen and Wheat Beers - Top Crop" />
-  <jmash.YeastType nome="SafAle English Ale" codice="S-04" produttore="DCL yeast" descrizione="English Ales, Cask Conditioned Ales" />
-  <jmash.YeastType nome="SafLager German Lager" codice="S-189" produttore="DCL yeast" descrizione="German Lagers and Pilsen styles ers - Top Crop" />
-  <jmash.YeastType nome="SafLager W. Euro Lager" codice="S-23" produttore="DCL yeast" descrizione="West European Lagers and Pilsners s - Top Crop" />
-  <jmash.YeastType nome="SafBrew Specialty Ale" codice="S-33" produttore="DCL yeast" descrizione="Mixed Style Ale/Lagers: Cream Ales, Kolsch, etc" />
-  <jmash.YeastType nome="SafBrew Specialty Ale" codice="T-58" produttore="DCL yeast" descrizione="Specialty Beers zen and Wheat Beers - Top Crop" />
+  <jmash.YeastType nome="SafAle German Ale" codice="K-97" produttore="Fermentis" descrizione="German Ales, Weizen and Wheat Beers - Top Crop" />
+  <jmash.YeastType nome="SafAle English Ale" codice="S-04" produttore="Fermentis" descrizione="English Ales, Cask Conditioned Ales" />
+  <jmash.YeastType nome="SafLager German Lager" codice="S-189" produttore="Fermentis" descrizione="German Lagers and Pilsen styles ers - Top Crop" />
+  <jmash.YeastType nome="SafLager W. Euro Lager" codice="S-23" produttore="Fermentis" descrizione="West European Lagers and Pilsners s - Top Crop" />
+  <jmash.YeastType nome="SafBrew Specialty Ale" codice="S-33" produttore="Fermentis" descrizione="Mixed Style Ale/Lagers: Cream Ales, Kolsch, etc" />
+  <jmash.YeastType nome="SafBrew Specialty Ale" codice="T-58" produttore="Fermentis" descrizione="Specialty Beers zen and Wheat Beers - Top Crop" />
   <jmash.YeastType nome="London" codice="" produttore="Lallemand" descrizione="" />
   <jmash.YeastType nome="Manchester" codice="" produttore="Lallemand" descrizione="Sensory contribution in the tradition of English style ale" />
   <jmash.YeastType nome="Nottingham" codice="" produttore="Lallemand" descrizione="Neutral for Ale yeast, allowing for malty profile." />
@@ -205,6 +205,6 @@
   <jmash.YeastType nome="Dry Mead - Pasteur Champagne" codice="M61" produttore="yeast Lab" descrizione="" />
   <jmash.YeastType nome="Sweet Mead - Steinberger" codice="M62" produttore="yeast Lab" descrizione="" />
   <jmash.YeastType nome="Belgian Wheat - Bruge" codice="W52" produttore="yeast Lab" descrizione="" />
-  <jmash.YeastType nome="SAFBREW WB-06" codice=" WB-06" produttore="DCL yeast" />
+  <jmash.YeastType nome="SAFBREW WB-06" codice=" WB-06" produttore="Fermentis" />
 </yeasts>
 
