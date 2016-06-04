@@ -22,6 +22,9 @@ import java.net.URI;
 
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
+
+import org.apache.log4j.Logger;
+
 import java.awt.Component;
 
 public class frmCredits extends javax.swing.JInternalFrame {
@@ -30,6 +33,7 @@ public class frmCredits extends javax.swing.JInternalFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = -9088568590286636987L;
+	private static Logger LOGGER = Logger.getLogger(frmCredits.class);
 	private final JPanel contentPanel = new JPanel();
 	private final JEditorPane txtthanks = new JEditorPane();
 	private final JEditorPane txtApp = new JEditorPane(); 
@@ -107,7 +111,7 @@ public class frmCredits extends javax.swing.JInternalFrame {
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error(e.getMessage(), e);
 		}
 		try {
 			txtApp.addHyperlinkListener(new HyperlinkListener() {
@@ -125,7 +129,7 @@ public class frmCredits extends javax.swing.JInternalFrame {
 			});
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error(e.getMessage(), e);
 		}
 		try {
 			//
@@ -145,7 +149,7 @@ public class frmCredits extends javax.swing.JInternalFrame {
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error(e.getMessage(), e);
 		}
 		
 		

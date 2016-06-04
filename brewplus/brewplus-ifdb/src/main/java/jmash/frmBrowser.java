@@ -11,6 +11,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 
+import org.apache.log4j.Logger;
+
 public class frmBrowser extends  javax.swing.JInternalFrame{
 
 	
@@ -19,6 +21,7 @@ public class frmBrowser extends  javax.swing.JInternalFrame{
 	 * 
 	 */
 	private static final long serialVersionUID = 7736428331553379909L;
+	private static Logger LOGGER = Logger.getLogger(frmBrowser.class);
 	private  JScrollPane scrollPane = new JScrollPane();
 	private final JEditorPane editorPane=new JEditorPane();
 
@@ -40,7 +43,7 @@ public class frmBrowser extends  javax.swing.JInternalFrame{
 				editorPane.read(in, null);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOGGER.error(e.getMessage(), e);
 			}
 		}
 		else
@@ -66,7 +69,7 @@ public class frmBrowser extends  javax.swing.JInternalFrame{
 				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOGGER.error(e.getMessage(), e);
 			}
 		}
 		getContentPane().add(editorPane, BorderLayout.CENTER);

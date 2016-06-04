@@ -65,6 +65,8 @@ import jmash.tableModel.MaltTableModel;
 import jmash.tableModel.NumberFormatter;
 import jmash.tableModel.SummaryTableModel;
 import jmash.tableModel.YeastTableModel;
+
+import org.apache.log4j.Logger;
 import org.jdom.Document;
 import org.jdom.Parent;
 import org.jdom.output.Format;
@@ -87,6 +89,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
      *
      */
     private static final long serialVersionUID = -3021970158888588464L;
+    private static Logger LOGGER = Logger.getLogger(Ricetta.class);
     /** Creates new form Ricetta */
     private Boolean isCotta=false;
     protected Component entered = null;
@@ -2153,7 +2156,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 				try {
 				    java.lang.Thread.sleep(200);
 				} catch (InterruptedException ex) {
-				    ex.printStackTrace();
+					LOGGER.error(ex.getMessage(), ex);
 				}
 				if(Ricetta.this.counter==0){
 				    Ricetta.this.glassPanel.setColor(
@@ -2166,7 +2169,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 				try {
 				    java.lang.Thread.sleep(200);
 				} catch (InterruptedException ex) {
-				    ex.printStackTrace();
+					LOGGER.error(ex.getMessage(), ex);
 				}
 			    }
 			}
@@ -2915,9 +2918,9 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		    rob.deleteAndType(57);
 		    
 		} catch (AWTException ex) {
-		    ex.printStackTrace();
+			LOGGER.error(ex.getMessage(), ex);
 		} catch (InterruptedException ex) {
-		    ex.printStackTrace();
+			LOGGER.error(ex.getMessage(), ex);
 		}
 	    }};
 	    T.start();

@@ -16,6 +16,9 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.Iterator;
+
+import org.apache.log4j.Logger;
+
 import jmash.Utils;
 
 /**
@@ -23,6 +26,7 @@ import jmash.Utils;
  * @author AChiari
  */
 public class ReadLog {
+	private static Logger LOGGER = Logger.getLogger(ReadLog.class);
     
     /** Creates a new instance of ReadLog */
     public ReadLog() {
@@ -59,7 +63,7 @@ public class ReadLog {
                  System.out.println((i++)+") "+k+", "+hm.get(k)+"");
             }
         } catch (Exception ex) {
-            ex.printStackTrace();
+        	LOGGER.error(ex.getMessage(), ex);
         }
     }
     public static String download(String address ) throws Exception{

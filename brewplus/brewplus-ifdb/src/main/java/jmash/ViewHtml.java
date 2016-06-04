@@ -8,11 +8,15 @@ package jmash;
 
 import javax.swing.JEditorPane;
 
+import org.apache.log4j.Logger;
+
 /**
  *
  * @author  AChiari
  */
 public class ViewHtml extends javax.swing.JInternalFrame {
+	
+	private static Logger LOGGER = Logger.getLogger(ViewHtml.class);
     
     /** Creates new form ViewHtml */
     public ViewHtml(String str) {
@@ -29,7 +33,7 @@ public class ViewHtml extends javax.swing.JInternalFrame {
             disp.setEditable(false);
             jScrollPane1.setViewportView(disp);
         } catch (Exception e) {
-            e.printStackTrace();
+        	LOGGER.error(e.getMessage(), e);
         }
     }
     

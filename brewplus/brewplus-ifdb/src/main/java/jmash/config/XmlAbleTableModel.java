@@ -22,7 +22,11 @@ package jmash.config;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
+import org.apache.log4j.Logger;
+
 import jmash.tableModel.GenericTableModel;
+import jmash.Main;
 import jmash.Utils;
 import jmash.interfaces.XmlAble;
 
@@ -31,6 +35,9 @@ import jmash.interfaces.XmlAble;
  * @author AChiari
  */
 public class XmlAbleTableModel extends GenericTableModel<XmlAble>{
+	
+	private static Logger LOGGER = Logger.getLogger(XmlAbleTableModel.class);
+	
     private XmlAble xmlAble;
     public XmlAbleTableModel(XmlAble xmlAble) {
         this.xmlAble= xmlAble;
@@ -44,15 +51,15 @@ public class XmlAbleTableModel extends GenericTableModel<XmlAble>{
             Method m=h.getClass().getMethod("get"+Utils.capitalize(xmlAble.getXmlFields()[col]));
             return m.invoke(h);
         } catch (IllegalArgumentException ex) {
-            ex.printStackTrace();
+            LOGGER.error(ex.getMessage(), ex);
         } catch (SecurityException ex) {
-            ex.printStackTrace();
+            LOGGER.error(ex.getMessage(), ex);
         } catch (NoSuchMethodException ex) {
-            ex.printStackTrace();
+            LOGGER.error(ex.getMessage(), ex);
         } catch (IllegalAccessException ex) {
-            ex.printStackTrace();
+            LOGGER.error(ex.getMessage(), ex);
         } catch (InvocationTargetException ex) {
-            ex.printStackTrace();
+            LOGGER.error(ex.getMessage(), ex);
         }
         
         return null;
@@ -84,15 +91,15 @@ public class XmlAbleTableModel extends GenericTableModel<XmlAble>{
                 m.invoke(h, (Float)value);
             }
         } catch (SecurityException ex) {
-            ex.printStackTrace();
+            LOGGER.error(ex.getMessage(), ex);
         } catch (IllegalArgumentException ex) {
-            ex.printStackTrace();
+            LOGGER.error(ex.getMessage(), ex);
         } catch (InvocationTargetException ex) {
-            ex.printStackTrace();
+            LOGGER.error(ex.getMessage(), ex);
         } catch (IllegalAccessException ex) {
-            ex.printStackTrace();
+            LOGGER.error(ex.getMessage(), ex);
         } catch (NoSuchMethodException ex) {
-            ex.printStackTrace();
+            LOGGER.error(ex.getMessage(), ex);
         }
         
         fireTableDataChanged();

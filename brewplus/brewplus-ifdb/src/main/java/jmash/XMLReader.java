@@ -26,6 +26,8 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.Iterator;
 import javax.swing.JInternalFrame;
+
+import org.apache.log4j.Logger;
 import org.jdom.Attribute;
 import org.jdom.Document;
 import org.jdom.Element;
@@ -38,6 +40,8 @@ import org.xml.sax.InputSource;
  * @author Alessandro
  */
 public class XMLReader {
+	
+	private static Logger LOGGER = Logger.getLogger(XMLReader.class);
     
     /** Creates a new instance of ReadXML */
     public static Document readXML(String file) throws JDOMException, IOException {
@@ -48,15 +52,12 @@ public class XMLReader {
 	    if(!file.startsWith("http://")) {
 	    file=new File(file).toURI().toString();
 
-//		String currentDir = System.getProperty("user.dir");
-
-//		file = currentDir + "/" + file;
-
-//		if (!new File(file).exists()) {
-//			// solo per esecuzioni per eclipse
-//			String currentParentDir = new File(currentDir).getParent();
-//			file = currentParentDir + "/brewplus-ifdb-distr/src/main/resources/distr/" + fileOri;
-//		}
+		if (!new File(fileOri).exists()) {
+			// solo per esecuzioni per eclipse
+			String currentDir = System.getProperty("user.dir");
+			String currentParentDir = new File(currentDir).getParent();
+			file = currentParentDir + "/brewplus-ifdb-distr/src/main/resources/distr/" + fileOri;
+		}
 	
 		is=new InputSource(file);
 		is.setEncoding("UTF-8");

@@ -23,6 +23,9 @@ import javax.swing.ToolTipManager;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableCellRenderer;
+
+import org.apache.log4j.Logger;
+
 import jmash.tableModel.HopTableModel;
 import jmash.tableModel.MaltTableModel;
 import jmash.tableModel.NumberFormatter;
@@ -34,6 +37,8 @@ import jmash.tableModel.YeastTableModel;
  * @author  Alessandro
  */
 public class Gyle extends javax.swing.JPanel {
+	
+	private static Logger LOGGER = Logger.getLogger(Gyle.class);
     
     /** Creates new form Gyle */
     public Gyle(Ricetta ricetta) {
@@ -1346,7 +1351,7 @@ public class Gyle extends javax.swing.JPanel {
 			    try {
 				java.lang.Thread.sleep(100);
 			    } catch (InterruptedException ex) {
-				ex.printStackTrace();
+			    	LOGGER.error(ex.getMessage(), ex);
 			    }
 			    if(Gyle.this.counter==0){
 				Gyle.this.glassPanel.setColor(
@@ -1359,7 +1364,7 @@ public class Gyle extends javax.swing.JPanel {
 			    try {
 				java.lang.Thread.sleep(100);
 			    } catch (InterruptedException ex) {
-				ex.printStackTrace();
+			    	LOGGER.error(ex.getMessage(), ex);
 			    }
 			}
 		    }

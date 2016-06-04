@@ -27,6 +27,8 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
+
+import org.apache.log4j.Logger;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
@@ -38,6 +40,9 @@ import org.jdom.output.XMLOutputter;
  * @author  Alessandro
  */
 public class UploadRicetta extends javax.swing.JInternalFrame {
+	
+	private static Logger LOGGER = Logger.getLogger(UploadRicetta.class);
+	
     /**
 	 * 
 	 */
@@ -79,7 +84,7 @@ public class UploadRicetta extends javax.swing.JInternalFrame {
             
             outputter.output(doc,System.out );
         } catch (IOException ex) {
-            ex.printStackTrace();
+        	LOGGER.error(ex.getMessage(), ex);
         }
         DefaultMutableTreeNode top = new DefaultMutableTreeNode("Ricette su hobbybirra.com");
         

@@ -33,6 +33,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
+import org.apache.log4j.Logger;
 import org.jdom.DataConversionException;
 import org.jdom.Document;
 import org.jdom.Element;
@@ -46,6 +47,7 @@ public class BrowseHobbyBirra2 extends javax.swing.JInternalFrame {
      *
      */
     private static final long serialVersionUID = 6795432869963837389L;
+    private static Logger LOGGER = Logger.getLogger(BrowseHobbyBirra2.class);
     private List<StyleTreeNode> styleNodes = new ArrayList<StyleTreeNode>();
     GridLayout gl = new GridLayout();
     public Document ricettaSelezionata = null;
@@ -83,7 +85,7 @@ public class BrowseHobbyBirra2 extends javax.swing.JInternalFrame {
 		try {
 		    count += el2.getAttribute("count").getIntValue();
 		} catch ( DataConversionException ex) {
-		    ex.printStackTrace();
+			LOGGER.error(ex.getMessage(), ex);
 		}
 		SubStyleTreeNode subNode = new SubStyleTreeNode(el2.getAttribute("nome").getValue() + " (" + el2.getAttribute("count").getValue() + ")",
 			el2.getAttribute("id_stile").getValue(), styleNode);

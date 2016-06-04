@@ -20,6 +20,8 @@
 package jmash;
 
 import jmash.interfaces.XmlAble;
+
+import org.apache.log4j.Logger;
 import org.jdom.Element;
 
 /**
@@ -27,6 +29,8 @@ import org.jdom.Element;
  * @author Alessandro
  */
 public class HopType implements XmlAble, Comparable<HopType> {
+	
+	private static Logger LOGGER = Logger.getLogger(HopType.class);
 
     /** Creates a new instance of HopType */
     public HopType() {
@@ -127,7 +131,7 @@ public class HopType implements XmlAble, Comparable<HopType> {
         try {
             return Utils.toXml(this, getCampiXml());
         } catch (Exception ex) {
-            ex.printStackTrace();
+        	LOGGER.error(ex.getMessage(), ex);
         }
         return null;
     }

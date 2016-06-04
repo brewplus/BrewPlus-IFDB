@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.border.TitledBorder;
 import jmash.tableModel.NumberFormatter;
+
+import org.apache.log4j.Logger;
 import org.jdom.Document;
 import org.jdom.Element;
 
@@ -39,6 +41,7 @@ public class WaterAdjust extends javax.swing.JInternalFrame {
      *
      */
     private static final long serialVersionUID = -2743109443467717746L;
+    private static Logger LOGGER = Logger.getLogger(WaterAdjust.class);
     
     /** This method is called from within the constructor to
      * initialize the form.
@@ -1098,7 +1101,7 @@ public class WaterAdjust extends javax.swing.JInternalFrame {
 		    try {
 			sleep(500);
 		    } catch (InterruptedException ex) {
-			ex.printStackTrace();
+		    	LOGGER.error(ex.getMessage(), ex);
 		    }
 		}
 	    }

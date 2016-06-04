@@ -36,8 +36,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
@@ -77,9 +75,12 @@ import javax.swing.JLabel;
 import java.awt.Rectangle;
 import javax.swing.border.EmptyBorder;
 
+import org.apache.log4j.Logger;
+
 public class Gui extends javax.swing.JFrame {
 	
     private static final long serialVersionUID = 348370096080739755L;
+    private static Logger LOGGER = Logger.getLogger(Gui.class);
     JPopupMenu recipesPopup = new JPopupMenu();
 
     private Map<JMenuItem, JInternalFrame> Finestre = new HashMap<JMenuItem, JInternalFrame>();
@@ -127,9 +128,9 @@ public class Gui extends javax.swing.JFrame {
 			}
 		    }
 		} catch (IOException ex) {
-		    ex.printStackTrace();
+			LOGGER.error(ex.getMessage(), ex);
 		} catch (UnsupportedFlavorException ex) {
-		    ex.printStackTrace();
+			LOGGER.error(ex.getMessage(), ex);
 		} catch (Exception ex) {
 		    Utils.showException(ex);
 		}
@@ -953,7 +954,7 @@ public class Gui extends javax.swing.JFrame {
         try {
             cotta.setMaximum(true);
         } catch (PropertyVetoException ex) {
-            Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.error(ex.getMessage(), ex);
         }
     }//GEN-LAST:event_btnNew1ActionPerformed
     
@@ -972,9 +973,9 @@ public class Gui extends javax.swing.JFrame {
 	try {
 	    addFrame(new XmlAbleEditor(tableModel, WaterProfile.class, Main.waterXML, Main.class.getMethod("readWater")));
 	} catch (SecurityException ex) {
-	    ex.printStackTrace();
+	    LOGGER.error(ex.getMessage(), ex);
 	} catch (NoSuchMethodException ex) {
-	    ex.printStackTrace();
+	    LOGGER.error(ex.getMessage(), ex);
 	}
     }//GEN-LAST:event_mnuAcquaXMLActionPerformed
     private void mostraSchedaluppoli()
@@ -1078,7 +1079,7 @@ public class Gui extends javax.swing.JFrame {
 		    h1.setBoilTime(new Double(s[j].substring(69).replace("min.","").trim()).intValue());
 		} catch (NumberFormatException ex) {
 		    h1.setBoilTime(0);
-		    ex.printStackTrace();
+		    LOGGER.error(ex.getMessage(), ex);
 		}
 	    }
 	    hs.add(h1);
@@ -1121,9 +1122,9 @@ public class Gui extends javax.swing.JFrame {
 	try {
 	    addFrame(new XmlAbleEditor(tableModel, YeastType.class, Main.yeastXML, Main.class.getMethod("readLieviti")));
 	} catch (SecurityException ex) {
-	    ex.printStackTrace();
+	    LOGGER.error(ex.getMessage(), ex);
 	} catch (NoSuchMethodException ex) {
-	    ex.printStackTrace();
+	    LOGGER.error(ex.getMessage(), ex);
 	}
     }//GEN-LAST:event_mnuLievitiXMLActionPerformed
     
@@ -1268,9 +1269,9 @@ public class Gui extends javax.swing.JFrame {
 	try {
 	    addFrame(new XmlAbleEditor(tableModel, MaltType.class, Main.maltiXML, Main.class.getMethod("readMalti")));
 	} catch (SecurityException ex) {
-	    ex.printStackTrace();
+	    LOGGER.error(ex.getMessage(), ex);
 	} catch (NoSuchMethodException ex) {
-	    ex.printStackTrace();
+	    LOGGER.error(ex.getMessage(), ex);
 	}
     }//GEN-LAST:event_mnuMaltiXMLActionPerformed
     
@@ -1296,9 +1297,9 @@ public class Gui extends javax.swing.JFrame {
 	try {
 	    addFrame(new XmlAbleEditor(tableModel, HopType.class,Main.luppoliXML, Main.class.getMethod("readLuppoli")));
 	} catch (SecurityException ex) {
-	    ex.printStackTrace();
+	    LOGGER.error(ex.getMessage(), ex);
 	} catch (NoSuchMethodException ex) {
-	    ex.printStackTrace();
+	    LOGGER.error(ex.getMessage(), ex);
 	}
     }//GEN-LAST:event_mnuLuppoliXMLActionPerformed
     
@@ -1349,7 +1350,7 @@ public class Gui extends javax.swing.JFrame {
                                     }
                                     mdi.Finestre.get(item).setSelected(true);
                                 } catch (PropertyVetoException ex) {
-                                    Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
+                                    LOGGER.error(ex.getMessage(), ex);
                                 }
                             }
                         }
@@ -1440,7 +1441,7 @@ public class Gui extends javax.swing.JFrame {
                 frames[i].setClosed(true);
             }
         } catch (PropertyVetoException ex) {
-            Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
+        	LOGGER.error(ex.getMessage(), ex);
         }
         
     }//GEN-LAST:event_ChiudiTutteMenuItemActionPerformed
@@ -1471,7 +1472,9 @@ public class Gui extends javax.swing.JFrame {
 	    try {
 		r.setSelected(true);
                 r.setMaximum(true);
-	    } catch (java.beans.PropertyVetoException e) {e.printStackTrace();}
+	    } catch (java.beans.PropertyVetoException e) {
+	    	LOGGER.error(e.getMessage(), e);
+	    }
 	}
     }
     public void addFrame(JInternalFrame r){
@@ -1486,7 +1489,9 @@ public class Gui extends javax.swing.JFrame {
 	    r.setVisible(true);
 	    try {
                 r.setSelected(true);
-	    } catch (java.beans.PropertyVetoException e) {e.printStackTrace();}
+	    } catch (java.beans.PropertyVetoException e) {
+	    	LOGGER.error(e.getMessage(), e);
+	    }
 	}
     }
     
@@ -1505,7 +1510,9 @@ public class Gui extends javax.swing.JFrame {
 	    try {
                 r.setSelected(true);
                 r.setMaximum(maximum);
-	    } catch (java.beans.PropertyVetoException e) {e.printStackTrace();}
+	    } catch (java.beans.PropertyVetoException e) {
+	    	LOGGER.error(e.getMessage(), e);
+	    	}
 	}
     }
 //    private void chiudiRicetta(){
@@ -1520,7 +1527,7 @@ public class Gui extends javax.swing.JFrame {
 //                    r=ricette.get(ricette.size()-1);
 //                    try {
 //                        r.setSelected(true);
-//                    } catch (java.beans.PropertyVetoException e) {e.printStackTrace();}
+//                    } catch (java.beans.PropertyVetoException e) {LOGGER.error(e.getMessage(), e);}
 //                }
 //            }
 //        }

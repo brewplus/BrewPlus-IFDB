@@ -20,6 +20,7 @@
 
 package jmash;
 
+import org.apache.log4j.Logger;
 import org.jdom.Element;
 
 /**
@@ -28,6 +29,8 @@ import org.jdom.Element;
  */
 public class Yeast {
     
+	private static Logger LOGGER = Logger.getLogger(Yeast.class);
+	
     /** Creates a new instance of Yeast */
     public Yeast() {
     }
@@ -69,7 +72,7 @@ public class Yeast {
         try {
             return Utils.toXml(this, getCampiXml());
         } catch (Exception ex) {
-            ex.printStackTrace();
+        	LOGGER.error(ex.getMessage(), ex);
         }
         return null;
     }

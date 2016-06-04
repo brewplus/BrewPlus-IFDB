@@ -55,6 +55,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 
+import org.apache.log4j.Logger;
 import org.jdom.DataConversionException;
 import org.jdom.Document;
 import org.jdom.Element;
@@ -79,6 +80,7 @@ public class BrowseHobbyBirra extends javax.swing.JInternalFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 909356925171057928L;
+	private static Logger LOGGER = Logger.getLogger(BrowseHobbyBirra.class);
 
 	/** Creates new form BrowseHobbyBirra */
     
@@ -105,7 +107,7 @@ public class BrowseHobbyBirra extends javax.swing.JInternalFrame {
             
         } catch (IOException ex) {
             
-            ex.printStackTrace();
+        	LOGGER.error(ex.getMessage(), ex);
             
         }
         
@@ -129,7 +131,7 @@ public class BrowseHobbyBirra extends javax.swing.JInternalFrame {
                 try {
                     count+=el2.getAttribute("count").getIntValue();
                 } catch (DataConversionException ex) {
-                    ex.printStackTrace();
+                	LOGGER.error(ex.getMessage(), ex);
                 }
                 StyleTreeNode node2 = new StyleTreeNode(
                         el2.getAttribute("nome").getValue()+" ("+el2.getAttribute("count").getValue()+")",
@@ -154,7 +156,7 @@ public class BrowseHobbyBirra extends javax.swing.JInternalFrame {
                 try {
                     count+=el2.getAttribute("count").getIntValue();
                 } catch (DataConversionException ex) {
-                    ex.printStackTrace();
+                	LOGGER.error(ex.getMessage(), ex);
                 }                
                 StyleTreeNode node2 = new StyleTreeNode(
                         el2.getAttribute("nome").getValue()+" ("+el2.getAttribute("count").getValue()+")",

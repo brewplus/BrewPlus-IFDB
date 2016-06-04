@@ -22,6 +22,8 @@ package jmash;
 
 import java.util.Date;
 import jmash.interfaces.XmlAble;
+
+import org.apache.log4j.Logger;
 import org.jdom.Element;
 
 /**
@@ -29,6 +31,8 @@ import org.jdom.Element;
  * @author Alessandro
  */
 public class SGLog  implements XmlAble {
+	
+	private static Logger LOGGER = Logger.getLogger(SGLog.class);
     
     public SGLog() {
         setData(new Date());
@@ -65,7 +69,7 @@ public class SGLog  implements XmlAble {
 	try {
 	    return Utils.toXml(this, getXmlFields());
 	} catch (Exception ex) {
-	    ex.printStackTrace();
+		LOGGER.error(ex.getMessage(), ex);
 	}
 	return null;
     }

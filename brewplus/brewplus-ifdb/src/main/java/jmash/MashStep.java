@@ -20,6 +20,7 @@
 
 package jmash;
 
+import org.apache.log4j.Logger;
 import org.jdom.Element;
 
 /**
@@ -27,6 +28,8 @@ import org.jdom.Element;
  * @author Alessandro
  */
 public class MashStep implements Comparable<Object> {
+	
+	private static Logger LOGGER = Logger.getLogger(MashStep.class);
     
     /** Creates a new instance of MashStep */
     public MashStep() {
@@ -122,7 +125,7 @@ public class MashStep implements Comparable<Object> {
 	try {
 	    return Utils.toXml(this, getCampiXml());
 	} catch (Exception ex) {
-	    ex.printStackTrace();
+		LOGGER.error(ex.getMessage(), ex);
 	}
 	return null;
     }

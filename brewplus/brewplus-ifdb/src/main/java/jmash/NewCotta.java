@@ -20,6 +20,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
+
+import org.apache.log4j.Logger;
 import org.jdom.Document;
 import org.jdom.Element;
 import javax.swing.ImageIcon;
@@ -38,6 +40,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class NewCotta extends javax.swing.JInternalFrame {
+	
+	private static Logger LOGGER = Logger.getLogger(NewCotta.class);
 
     String fotografia="";
     protected Component entered = null;
@@ -462,7 +466,7 @@ public class NewCotta extends javax.swing.JInternalFrame {
 		    try {
 			fldDate.setDate(new SimpleDateFormat("dd/MM/yyyy").parse(root.getAttribute("date").getValue()));
 		    } catch (ParseException ex) {
-			ex.printStackTrace();
+		    	LOGGER.error(ex.getMessage(), ex);
 		    }
 		}
 		fldNoteA.setText(root.getAttribute("noteA").getValue());

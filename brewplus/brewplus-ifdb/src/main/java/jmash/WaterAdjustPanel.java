@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JInternalFrame;
 import javax.swing.border.TitledBorder;
+
+import org.apache.log4j.Logger;
 import org.jdom.Document;
 import org.jdom.Element;
 
@@ -19,6 +21,7 @@ import org.jdom.Element;
  * @author  Alessandro
  */
 public class WaterAdjustPanel extends javax.swing.JPanel {
+	private static Logger LOGGER = Logger.getLogger(WaterAdjustPanel.class);
     private JInternalFrame parent;
     Picker waterPicker;
     /** Creates new form WaterAdjustPanel */
@@ -101,7 +104,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		    try {
 			sleep(500);
 		    } catch (InterruptedException ex) {
-			ex.printStackTrace();
+		    	LOGGER.error(ex.getMessage(), ex);
 		    }
 		}
 	    }

@@ -23,11 +23,15 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+
+import org.apache.log4j.Logger;
 /**
  *
  * @author  Alessandro
  */
 public class BrowseBeerContestDB extends javax.swing.JInternalFrame {
+	
+	private static Logger LOGGER = Logger.getLogger(BrowseBeerContestDB.class);
     
     private List<StyleTreeNode> styleNodes=new ArrayList<StyleTreeNode>();
     private String html="";
@@ -378,7 +382,7 @@ public class BrowseBeerContestDB extends javax.swing.JInternalFrame {
 	try {
 	    html = Utils.download("http://beer.tzo.com/beer/asp/report_recipe.asp?RegNum="+n+"&DB=beer&VersionNum=20020916").toLowerCase();
 	} catch (Exception ex) {
-	    ex.printStackTrace();
+		LOGGER.error(ex.getMessage(), ex);
 	}
 //	System.out.println(html);
 	List<Malt> malts=new ArrayList<Malt>();

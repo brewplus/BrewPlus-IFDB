@@ -147,6 +147,9 @@
  */
 
 package jmash;
+
+import org.apache.log4j.Logger;
+
 public class Base64
 {
     
@@ -193,6 +196,8 @@ public class Base64
     
     
 /* ********  P R I V A T E   F I E L D S  ******** */  
+     
+    private static Logger LOGGER = Logger.getLogger(Base64.class);
     
     
     /** Maximum line length (76) of Base64 output. */
@@ -1282,7 +1287,7 @@ public class Base64
 
                 }   // end try
                 catch( java.io.IOException e ) {
-                    e.printStackTrace();
+                	LOGGER.error(e.getMessage(), e);
                     // Just return originally-decoded bytes
                 }   // end catch
                 finally {

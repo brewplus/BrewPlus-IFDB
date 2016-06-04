@@ -32,7 +32,6 @@ import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.image.BufferedImage;
 import java.beans.PropertyVetoException;
-import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -41,26 +40,20 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.StringReader;
-import java.io.StringWriter;
-import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.URLEncoder;
 import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.zip.Deflater;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -74,6 +67,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.apache.log4j.Logger;
 import org.jdom.Attribute;
 import org.jdom.Document;
 import org.jdom.Element;
@@ -87,13 +81,14 @@ import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
-import sun.misc.IOUtils;
-
 /**
  *
  * @author Alessandro, Ixtlanas
  */
 public class Utils {
+	
+	private static Logger LOGGER = Logger.getLogger(Utils.class);
+
 
     /** Creates a new instance of Utils */
     public Utils() {
@@ -335,9 +330,8 @@ public class Utils {
                             }
                         }
                     } catch (Exception e) {
-                        System.out.println("" + m);
-                        showException(e,
-                                "Errore nel caricamento del file XML, attributo:" + att + ", " + att.getValue());
+                    	LOGGER.error("" + m);
+                        showException(e, "Errore nel caricamento del file XML, attributo:" + att + ", " + att.getValue());
                         throw e;
                     }
                 }
@@ -381,7 +375,7 @@ public class Utils {
     }
 
     public static void showException(Exception ex, String str) {
-        ex.printStackTrace();
+        LOGGER.error(ex.getMessage(), ex);
         sendException(ex);
         Msg msg = new Msg(str + "\n" + ex.toString());
         JInternalFrame i = new JInternalFrame();
@@ -399,7 +393,7 @@ public class Utils {
     }
 
     public static void showException(Exception ex, String str, JInternalFrame i) {
-        ex.printStackTrace();
+    	LOGGER.error(ex.getMessage(), ex);
         sendException(ex);
         Msg msg = new Msg(str + "\n" + ex.toString());
         center(msg, i);
@@ -443,13 +437,13 @@ public class Utils {
             }
             rd.close();
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            LOGGER.error(ex.getMessage(), ex);
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            LOGGER.error(ex.getMessage(), ex);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(ex.getMessage(), ex);
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error(ex.getMessage(), ex);
         }
         */
     }
@@ -460,15 +454,15 @@ public class Utils {
         try {
             doc = XMLReader.readXML(file);
         } catch (JDOMException e) {
-            System.out.println("JDOMException: " + file);
+        	LOGGER.error("JDOMException: " + file);
             Utils.showException(e, "Il file " + file + " non corrisponde al formato XML.");
             return null;
         } catch (IOException e) {
-            System.out.println("IOException: " + file);
+        	LOGGER.error("IOException: " + file);
             Utils.showException(e, "Il file " + file + " non esiste o non e' leggibile.");
             return null;
         } catch (Exception e) {
-            System.out.println("Generic Exception: " + file);
+        	LOGGER.error("Generic Exception: " + file);
             Utils.showException(e, "Il file " + file + " non esiste o non e' leggibile.");
             return null;
         }
@@ -486,7 +480,7 @@ public class Utils {
             Writer writer = new OutputStreamWriter(out, "UTF-8");
             outputter.output(doc, writer);
             writer.close();
-            System.out.println(xml);
+            LOGGER.debug(xml);
         } catch (IOException e) {
             Msg ask = new Msg("Errore: salvataggio non riuscito\n" + e);
             ask.startModal(parent);
@@ -614,7 +608,7 @@ public class Utils {
         try {
             pick.setClosed(true);
         } catch (PropertyVetoException ex) {
-            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        	LOGGER.error(ex.getMessage(), ex);
         }
         return ret;
     }
@@ -812,13 +806,13 @@ public class Utils {
             doc = db.parse(is);
 
         } catch (ParserConfigurationException e) {
-            System.out.println("XML parse error: " + e.getMessage());
+            LOGGER.error("XML parse error: " + e.getMessage(), e);
             return null;
         } catch (SAXException e) {
-            System.out.println("Wrong XML file structure: " + e.getMessage());
+        	LOGGER.error("Wrong XML file structure: " + e.getMessage(), e);
             return null;
         } catch (IOException e) {
-            System.out.println("I/O exeption: " + e.getMessage());
+        	LOGGER.error("I/O exeption: " + e.getMessage(), e);
             return null;
         }
 

@@ -23,11 +23,16 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
+
+import org.apache.log4j.Logger;
 import org.jdom.Element;
 import jmash.interfaces.XmlAble;
 
 
 public class WaterProfile implements XmlAble, Comparable<WaterProfile>{
+	
+	private static Logger LOGGER = Logger.getLogger(WaterProfile.class);
+	
     private String nome;
     private Integer type;
     private Double calcio;
@@ -283,7 +288,7 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile>{
 //			norda.target(vienna,  L, "vienna");
 //			norda.target(pilsen,  L, "pilsen");
         } catch (Exception ex) {
-            ex.printStackTrace();
+        	LOGGER.error(ex.getMessage(), ex);
         }
     }
     public static Random getR() {

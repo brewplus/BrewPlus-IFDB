@@ -33,8 +33,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
+import org.apache.log4j.Logger;
+
 
 public class BrowseTastyBrew extends javax.swing.JInternalFrame {
+	private static Logger LOGGER = Logger.getLogger(BrowseTastyBrew.class);
     private List<StyleTreeNode> styleNodes=new ArrayList<StyleTreeNode>();
     private String html="";
     GridLayout gl=new GridLayout();
@@ -321,7 +324,7 @@ public void run(){
 	try {
 	    str = Utils.download("http://tastybrew.com/newrcp/detail/"+n).toLowerCase();
 	} catch (Exception ex) {
-	    ex.printStackTrace();
+		LOGGER.error(ex.getMessage(), ex);
 	}
 	
 	

@@ -36,11 +36,15 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import org.apache.log4j.Logger;
+
 /**
  *
  * @author  Alessandro
  */
 public class BrowseBrewTools extends javax.swing.JInternalFrame {
+	
+	private static Logger LOGGER = Logger.getLogger(BrowseBrewTools.class);
 
     private List<StyleTreeNode> styleNodes = new ArrayList<StyleTreeNode>();
     private JLabel lblTitle = new JLabel("Ricette su BeerTools");
@@ -54,7 +58,7 @@ public class BrowseBrewTools extends javax.swing.JInternalFrame {
         try {
             icon = new JLabel("", new ImageIcon(new URL("http://www.beertools.com/images/new_design/logo.gif")), 0);
         } catch (MalformedURLException ex) {
-            ex.printStackTrace();
+        	LOGGER.error(ex.getMessage(), ex);
         }
         pnl.setBackground(Color.white);
         styleNodes.add(new StyleTreeNode(37, "1A Lite American Lager"));
@@ -446,7 +450,7 @@ public class BrowseBrewTools extends javax.swing.JInternalFrame {
         try {
             str = Utils.download("http://www.beertools.com/html/recipe.php?view=" + n + "&fvu=liters&u=metric&fv=23").toLowerCase();
         } catch (Exception ex) {
-            ex.printStackTrace();
+        	LOGGER.error(ex.getMessage(), ex);
         }
         {
             // find efficiency

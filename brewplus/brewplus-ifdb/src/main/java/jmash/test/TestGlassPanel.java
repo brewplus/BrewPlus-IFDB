@@ -7,6 +7,9 @@
 package jmash.test;
 
 import javax.swing.JFrame;
+
+import org.apache.log4j.Logger;
+
 import jmash.Gui;
 import jmash.Main;
 import jmash.Ricetta;
@@ -17,6 +20,7 @@ import jmash.component.GlassPanel;
  * @author  Alessandro
  */
 public class TestGlassPanel extends JFrame {
+	private static Logger LOGGER = Logger.getLogger(TestGlassPanel.class);
     private GlassPanel glassPanel;
     /** Creates new form TestGlassPanel */
     public TestGlassPanel() {
@@ -31,7 +35,7 @@ public class TestGlassPanel extends JFrame {
 	    getContentPane().add(glassPanel, java.awt.BorderLayout.CENTER);
 	    glassPanel.setColor(10.0);
 	} catch (Exception ex) {
-	    ex.printStackTrace();
+		LOGGER.error(ex.getMessage(), ex);
 	}
     }
     

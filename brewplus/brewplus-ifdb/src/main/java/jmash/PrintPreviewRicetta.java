@@ -27,6 +27,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.apache.log4j.Logger;
+
 /**
  *
  * @author  Alessandro
@@ -37,6 +39,7 @@ public class PrintPreviewRicetta extends javax.swing.JInternalFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 758003729945417614L;
+	private static Logger LOGGER = Logger.getLogger(PrintPreviewRicetta.class);
 	/** Creates new form PrintPreviewRicetta */
     public PrintPreviewRicetta() {
         initComponents();
@@ -68,14 +71,14 @@ public class PrintPreviewRicetta extends javax.swing.JInternalFrame {
               }
             }
             catch (FileNotFoundException ex) {
-              ex.printStackTrace();
+            	LOGGER.error(ex.getMessage(), ex);
             }
             catch (IOException ex){
-              ex.printStackTrace();
+            	LOGGER.error(ex.getMessage(), ex);
             }            
             this.jEditorPane1.setText(contents.toString() );
         } catch (Exception ex) {
-            ex.printStackTrace();
+        	LOGGER.error(ex.getMessage(), ex);
         }  
     }
     

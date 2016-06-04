@@ -103,7 +103,7 @@ public class SVGTest {
 			System.out.println(f.toURL().toString());
 			svgCanvas.setURI(f.toURL().toString());
 		    } catch (IOException ex) {
-			ex.printStackTrace();
+			LOGGER.error(ex.getMessage(), ex);
 		    }
 		    
 		}

@@ -8,11 +8,17 @@ import javax.swing.JDialog;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import org.apache.log4j.Logger;
+
 import javax.swing.JTable;
 
 import jmash.tableModel.PickerTableModel;
 
 public class frmPickerHops extends JInternalFrame {
+	
+	private static Logger LOGGER = Logger.getLogger(frmPickerHops.class);
+	
 	private JTable table;
 	private PickerTableModel pickerTableModel;
 	TableSorter sorter;
@@ -26,7 +32,7 @@ public class frmPickerHops extends JInternalFrame {
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.error(e.getMessage(), e);
 		}
 	}
 

@@ -21,6 +21,8 @@
 package jmash;
 
 import jmash.interfaces.XmlAble;
+
+import org.apache.log4j.Logger;
 import org.jdom.Element;
 
 /**
@@ -28,6 +30,8 @@ import org.jdom.Element;
  * @author Alessandro
  */
 public class YeastType  implements XmlAble{
+	
+	private static Logger LOGGER = Logger.getLogger(YeastType.class);
     
     /** Creates a new instance of YeastType */
     public YeastType() {
@@ -158,7 +162,7 @@ public class YeastType  implements XmlAble{
         try {
             return Utils.toXml(this, campiXml);
         } catch (Exception ex) {
-            ex.printStackTrace();
+        	LOGGER.error(ex.getMessage(), ex);
         }
         return null;
     }

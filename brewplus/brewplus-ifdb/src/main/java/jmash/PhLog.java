@@ -10,6 +10,8 @@
 package jmash;
 
 import jmash.interfaces.XmlAble;
+
+import org.apache.log4j.Logger;
 import org.jdom.Element;
 
 /**
@@ -17,6 +19,8 @@ import org.jdom.Element;
  * @author Alessandro
  */
 public class PhLog  implements XmlAble {
+	
+	private static Logger LOGGER = Logger.getLogger(PhLog.class);
     
     public PhLog() {
 	setMinuto(0);
@@ -54,7 +58,7 @@ public class PhLog  implements XmlAble {
 	try {
 	    return Utils.toXml(this, getXmlFields());
 	} catch (Exception ex) {
-	    ex.printStackTrace();
+		LOGGER.error(ex.getMessage(), ex);
 	}
 	return null;
     }
