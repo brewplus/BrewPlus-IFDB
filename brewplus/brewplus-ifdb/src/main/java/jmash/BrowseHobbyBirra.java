@@ -247,7 +247,7 @@ public class BrowseHobbyBirra extends javax.swing.JInternalFrame {
                 if((event.getClickCount() == 2) && (BrowseHobbyBirra.this.jTree1.getSelectionPath()!=null)){
                     if(BrowseHobbyBirra.this.jTree1.getSelectionPath().getLastPathComponent() instanceof RecipeTreeNode){
                         RecipeTreeNode node=(RecipeTreeNode)BrowseHobbyBirra.this.jTree1.getSelectionPath().getLastPathComponent();
-                        System.out.println("ricetta selezionata ID ="+node.getId());
+                        LOGGER.info("ricetta selezionata ID ="+node.getId());
                         Document doc=Utils.readFileAsXml("http://"+Main.config.getRemoteServer()+"/view_ricetta_xml.asp?id_ricetta_HB="+node.getId());
                         if(doc==null) {
 							return;
@@ -263,7 +263,7 @@ public class BrowseHobbyBirra extends javax.swing.JInternalFrame {
                 if((event.getClickCount() == 2) && (BrowseHobbyBirra.this.jTree1.getSelectionPath()!=null)){
                     if(BrowseHobbyBirra.this.jTree1.getSelectionPath().getLastPathComponent() instanceof RecipeTreeNode){
                         RecipeTreeNode node=(RecipeTreeNode)BrowseHobbyBirra.this.jTree1.getSelectionPath().getLastPathComponent();
-                        System.out.println("ricetta selezionata ID ="+node.getId());
+                        LOGGER.info("ricetta selezionata ID ="+node.getId());
                         Document doc=Utils.readFileAsXml("http://"+Main.config.getRemoteServer()+"/view_ricetta_xml.asp?id_ricetta_HB="+node.getId());
                         if(doc==null) {
 							return;

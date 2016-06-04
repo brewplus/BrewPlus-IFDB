@@ -43,6 +43,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 import javax.swing.Box;
 import javax.swing.event.ListSelectionListener;
+
+import org.apache.log4j.Logger;
+
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.JEditorPane;
 import javax.swing.UIManager;
@@ -58,6 +61,7 @@ public class frmFeed2 extends JInternalFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = -9088582043485316104L;
+	private static Logger LOGGER = Logger.getLogger(frmFeed2.class);
 	
 	//cablato indirizzo RSS
 	//private String rssUrl=Main.config.getRSSFeed();
@@ -182,7 +186,7 @@ public class frmFeed2 extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			System.out.println(ex.getMessage());
+			LOGGER.error(ex.getMessage(), ex);
 		}
 	}
 	private String parseWrongChars(String content)

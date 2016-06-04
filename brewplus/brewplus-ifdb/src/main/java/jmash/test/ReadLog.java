@@ -53,14 +53,14 @@ public class ReadLog {
                     if(C.length>3) hm.put(C[2]+"#", C[3]);
                 }
             }
-            System.out.println(n+" ip unici.");
+            LOGGER.info(n+" ip unici.");
             Iterator it=hm.keySet().iterator();
             int i=1;
             while(it.hasNext()){
             
                  Object k=it.next();
                  if(((String)k).indexOf("#")<0)
-                 System.out.println((i++)+") "+k+", "+hm.get(k)+"");
+                 LOGGER.info((i++)+") "+k+", "+hm.get(k)+"");
             }
         } catch (Exception ex) {
         	LOGGER.error(ex.getMessage(), ex);

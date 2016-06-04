@@ -392,7 +392,7 @@ public class BrowseHobbyBirra2 extends javax.swing.JInternalFrame {
 		    }
 		    XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
 		    String xml = outputter.outputString(doc);
-		    System.out.println(xml);
+		    LOGGER.info(xml);
 		    if (mode == -1) {
 			Main.gui.nuovaRicetta(new Ricetta(doc, getId()));
 		    } else {

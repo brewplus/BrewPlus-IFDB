@@ -25,11 +25,14 @@ import java.util.Iterator;
 import java.util.List;
 import jmash.tableModel.HopTableModel;
 import jmash.tableModel.MaltTableModel;
+
+import org.apache.log4j.Logger;
 import org.jdom.Attribute;
 import org.jdom.Document;
 import org.jdom.Element;
 
 public class RecipeData {
+	private static Logger LOGGER = Logger.getLogger(RecipeData.class);
     private String nome, note, unitaMisura,fotografia;
     private Double volumeBoll, volumeFin, volumeDiluito;
     private Integer efficienza, bollitura;
@@ -385,7 +388,7 @@ public class RecipeData {
 	getYeasts().add(Ys);
 	
 	if(!mashComplexMode){
-	    System.out.println("multistep="+Utils.arr2Byte(b,Y+695));
+	    LOGGER.info("multistep="+Utils.arr2Byte(b,Y+695));
 	    boolean multistep=(Utils.arr2Byte(b,Y+695)==3);
 	    int i=704;
 	    int minute=0, T=(int)Utils.F2C((int)b[M+259]);
@@ -416,12 +419,12 @@ public class RecipeData {
 	    }
 	}
 	if(mashComplexMode){
-	    System.out.println(nS+" step:");
+	    LOGGER.info(nS+" step:");
 	    int SD=292;
 	    for(int i=0;i<nS;i++){
 		int P=M+267+i*SD;
 		int type=Utils.arr2Byte(b,P+255);
-		System.out.println("\t"+Utils.arr2String(b,P)+
+		LOGGER.info("\t"+Utils.arr2String(b,P)+
 			" infusionQ="+Utils.arr2float(b,P+280)+
 			" startT="+Utils.arr2Byte(b,P+256)+
 			" stopT="+Utils.arr2Byte(b,P+260)+

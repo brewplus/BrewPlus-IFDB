@@ -34,8 +34,13 @@ package jmash.imagecomponents;
 import java.io.File;
 import javax.swing.ImageIcon;
 
+import org.apache.log4j.Logger;
+
+import jmash.BrowseHobbyBirra2;
+
 /* Utils.java is used by FileChooserDemo2.java. */
 public class Utils {
+	private static Logger LOGGER = Logger.getLogger(Utils.class);
     public final static String jpeg = "jpeg";
     public final static String jpg = "jpg";
     public final static String gif = "gif";
@@ -59,7 +64,7 @@ public class Utils {
 
     /** Returns an ImageIcon, or null if the path was invalid. */
     protected static ImageIcon createImageIcon(String path) {
-        System.out.println("PATH = " + path);
+        LOGGER.debug("PATH = " + path);
         java.net.URL imgURL = Utils.class.getResource(path);
         if (imgURL != null) {
             return new ImageIcon(imgURL);
