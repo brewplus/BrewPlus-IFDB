@@ -9,7 +9,7 @@
   <jmash.MashStep startTemp="52" endTemp="52" length="15" nome="Protein rest" />
   <jmash.MashStep startTemp="52" endTemp="62" length="10" nome="Ramp" />
   <jmash.MashStep startTemp="62" endTemp="68" length="60" nome="Sacc.rest" />
-  <jmash.MashStep startTemp="68" endTemp="78" length="10" nome="Ramp" />
+  <jmash.MashStep startTemp="68" endTemp="78" length="10" nome="Ramp2" />
   <jmash.MashStep startTemp="78" endTemp="78" length="10" nome="Mash out" />
 </recipe>
 
