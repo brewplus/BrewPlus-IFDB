@@ -19,6 +19,7 @@
  */
 
 package jmash;
+
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -37,48 +38,48 @@ import org.jfree.util.Rotation;
 
 /**
  *
- * @author  ixtlanas
+ * @author ixtlanas
  */
 public class frmIngPie extends javax.swing.JInternalFrame {
-    
-    private static final long serialVersionUID = 1852074935415528044L;
-    
-    public frmIngPie(String titolo) {
-	initComponents();
-	setBorder(Utils.getDefaultBorder());
-	PieDataset ds =createDataset();
-	JFreeChart ch=createChart(ds,titolo);
-	ChartPanel chpanel=new ChartPanel(ch);
-	chpanel.setPreferredSize(new java.awt.Dimension(400, 250));
-	JPanel panelC = new JPanel();
-	panelC.add(chpanel);
-	getContentPane().add(panelC, BorderLayout.CENTER);
-	
-    }
-    private void initComponents() {
-        setClosable(true);
-        setIconifiable(true);
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-513)/2, (screenSize.height-368)/2, 400, 300);
-    }
-    
-    private  PieDataset createDataset()
-    {
-        DefaultPieDataset result = new DefaultPieDataset();
-        result.setValue("Linux", new Integer(29));
-        result.setValue("Mac", new Integer(20));
-        result.setValue("Windows", new Integer(51));
-        return result;
-        
-    }
-    private JFreeChart createChart(PieDataset dataset, String title)
-    {
-    	JFreeChart chart= ChartFactory.createPieChart(title, dataset,false,true,false);
-    	PiePlot plot = (PiePlot) chart.getPlot();
-    	plot.setNoDataMessage("No data available");
-        plot.setDirection(Rotation.CLOCKWISE);
-        plot.setForegroundAlpha(0.5f);
-    	return chart;		
-    }
+
+	private static final long serialVersionUID = 1852074935415528044L;
+
+	public frmIngPie(String titolo) {
+		initComponents();
+		setBorder(Utils.getDefaultBorder());
+		PieDataset ds = createDataset();
+		JFreeChart ch = createChart(ds, titolo);
+		ChartPanel chpanel = new ChartPanel(ch);
+		chpanel.setPreferredSize(new java.awt.Dimension(400, 250));
+		JPanel panelC = new JPanel();
+		panelC.add(chpanel);
+		getContentPane().add(panelC, BorderLayout.CENTER);
+
+	}
+
+	private void initComponents() {
+		setClosable(true);
+		setIconifiable(true);
+		java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		setBounds((screenSize.width - 513) / 2, (screenSize.height - 368) / 2, 400, 300);
+	}
+
+	private PieDataset createDataset() {
+		DefaultPieDataset result = new DefaultPieDataset();
+		result.setValue("Linux", new Integer(29));
+		result.setValue("Mac", new Integer(20));
+		result.setValue("Windows", new Integer(51));
+		return result;
+
+	}
+
+	private JFreeChart createChart(PieDataset dataset, String title) {
+		JFreeChart chart = ChartFactory.createPieChart(title, dataset, false, true, false);
+		PiePlot plot = (PiePlot) chart.getPlot();
+		plot.setNoDataMessage("No data available");
+		plot.setDirection(Rotation.CLOCKWISE);
+		plot.setForegroundAlpha(0.5f);
+		return chart;
+	}
 
 }

@@ -25,21 +25,21 @@ package jmash;
  */
 public class NullableElement extends org.jdom.Element {
 
-    /**
-     * 
-     */
-    private static final long serialVersionUID = -6684894306024308916L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6684894306024308916L;
 
-    /** Creates a new instance of NullableElement */
-    public NullableElement(String name) {
-        super(name);
-    }
+	/** Creates a new instance of NullableElement */
+	public NullableElement(String name) {
+		super(name);
+	}
 
-    @Override
-    public org.jdom.Element setAttribute(String a, String b) {
-        if (b == null) {
-            b = "";
-        }
-        return super.setAttribute(a, b);
-    }
+	@Override
+	public org.jdom.Element setAttribute(String a, String b) {
+		if (b == null) {
+			b = "";
+		}
+		return super.setAttribute(a, b);
+	}
 }

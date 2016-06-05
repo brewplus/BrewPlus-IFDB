@@ -20,29 +20,28 @@ import javax.swing.JLabel;
  * @author Alessandro
  */
 public class JGradientLabel extends JLabel {
-    
-    /** Creates a new instance of JGradientLabel */
-    public JGradientLabel() {
-    }
-    protected void paintComponent( Graphics g ) {
-//	if ( !isOpaque( ) ) {
-//	    super.paintComponent( g );
-//	    return;
-//	}
-	Graphics2D g2d = (Graphics2D)g;
-	int w = getWidth( );
-	int h = getHeight( );
-	
-// Paint a gradient from top to bottom
-	GradientPaint gp = new GradientPaint(
-		0, 0, Color.RED,
-		w, 0, Color.WHITE );
-	
-	g2d.setPaint( gp );
-	g2d.fillRect( 0, 0, w, h );
-	
-	//setOpaque( false );
-	//super.paintComponent( g );
-	//setOpaque( true );
-    }
+
+	/** Creates a new instance of JGradientLabel */
+	public JGradientLabel() {
+	}
+
+	protected void paintComponent(Graphics g) {
+		// if ( !isOpaque( ) ) {
+		// super.paintComponent( g );
+		// return;
+		// }
+		Graphics2D g2d = (Graphics2D) g;
+		int w = getWidth();
+		int h = getHeight();
+
+		// Paint a gradient from top to bottom
+		GradientPaint gp = new GradientPaint(0, 0, Color.RED, w, 0, Color.WHITE);
+
+		g2d.setPaint(gp);
+		g2d.fillRect(0, 0, w, h);
+
+		// setOpaque( false );
+		// super.paintComponent( g );
+		// setOpaque( true );
+	}
 }

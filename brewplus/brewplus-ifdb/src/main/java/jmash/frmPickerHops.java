@@ -16,9 +16,9 @@ import javax.swing.JTable;
 import jmash.tableModel.PickerTableModel;
 
 public class frmPickerHops extends JInternalFrame {
-	
+
 	private static Logger LOGGER = Logger.getLogger(frmPickerHops.class);
-	
+
 	private JTable table;
 	private PickerTableModel pickerTableModel;
 	TableSorter sorter;
@@ -40,7 +40,7 @@ public class frmPickerHops extends JInternalFrame {
 	 * Create the dialog.
 	 */
 	public frmPickerHops() {
-		//setModal(true);
+		// setModal(true);
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		{

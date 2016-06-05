@@ -18,64 +18,71 @@ import org.jdom.Element;
  *
  * @author Alessandro
  */
-public class PhLog  implements XmlAble {
-	
+public class PhLog implements XmlAble {
+
 	private static Logger LOGGER = Logger.getLogger(PhLog.class);
-    
-    public PhLog() {
-	setMinuto(0);
-	setPH(0);
-    }
-    private Integer minuto;
-    private Integer pH;
-    
-    public Integer getMinuto() {
-	return minuto;
-    }
-    
-    public void setMinuto(Integer minuto) {
-	this.minuto = minuto;
-    }
-    
-    private static String campiXml[]={"pH","minuto",};
-    @Override
-    public String[] getXmlFields(){return getCampiXml();}
-    @Override
-    public String getTag(){
-	return "pHLog";
-    }
-    public static PhLog fromXml(Element el){
-	PhLog type=new PhLog();
-	try {
-	    type=(PhLog) Utils.fromXml(type,new PhLog().getXmlFields(), el);
-	} catch(Exception ex){
-	    Utils.showException(ex);
+
+	public PhLog() {
+		setMinuto(0);
+		setPH(0);
 	}
-	return type;
-    }
-    @Override
-    public Element toXml(){
-	try {
-	    return Utils.toXml(this, getXmlFields());
-	} catch (Exception ex) {
-		LOGGER.error(ex.getMessage(), ex);
+
+	private Integer minuto;
+	private Integer pH;
+
+	public Integer getMinuto() {
+		return minuto;
 	}
-	return null;
-    }
-    
-    public Integer getPH() {
-	return pH;
-    }
-    
-    public void setPH(Integer pH) {
-	this.pH = pH;
-    }
-    
-    public static String[] getCampiXml() {
-	return campiXml;
-    }
-    
-    public static void setCampiXml(String[] aCampiXml) {
-	campiXml = aCampiXml;
-    }
+
+	public void setMinuto(Integer minuto) {
+		this.minuto = minuto;
+	}
+
+	private static String campiXml[] = { "pH", "minuto", };
+
+	@Override
+	public String[] getXmlFields() {
+		return getCampiXml();
+	}
+
+	@Override
+	public String getTag() {
+		return "pHLog";
+	}
+
+	public static PhLog fromXml(Element el) {
+		PhLog type = new PhLog();
+		try {
+			type = (PhLog) Utils.fromXml(type, new PhLog().getXmlFields(), el);
+		} catch (Exception ex) {
+			Utils.showException(ex);
+		}
+		return type;
+	}
+
+	@Override
+	public Element toXml() {
+		try {
+			return Utils.toXml(this, getXmlFields());
+		} catch (Exception ex) {
+			LOGGER.error(ex.getMessage(), ex);
+		}
+		return null;
+	}
+
+	public Integer getPH() {
+		return pH;
+	}
+
+	public void setPH(Integer pH) {
+		this.pH = pH;
+	}
+
+	public static String[] getCampiXml() {
+		return campiXml;
+	}
+
+	public static void setCampiXml(String[] aCampiXml) {
+		campiXml = aCampiXml;
+	}
 }

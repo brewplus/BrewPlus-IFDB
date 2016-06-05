@@ -25,63 +25,65 @@ package jmash;
  * @author Alessandro
  */
 public class Srm2Rgb {
-    private static String campiXml[]={"Srm","R","G","B"};
-    /** Creates a new instance of Srm2Rgb */
-    public Srm2Rgb() {
-    }
-    private Double srm,ebc;
-    private Integer r,g,b;
+	private static String campiXml[] = { "Srm", "R", "G", "B" };
 
-    @Override
-	public String toString(){
-        return getEbc()+" ("+getSrm()+") ["+getR()+","+getG()+","+getB()+"]";
-    }
+	/** Creates a new instance of Srm2Rgb */
+	public Srm2Rgb() {
+	}
 
-    public static String[] getCampiXml() {
-        return campiXml;
-    }
+	private Double srm, ebc;
+	private Integer r, g, b;
 
-    public static void setCampiXml(String[] aCampiXml) {
-        campiXml = aCampiXml;
-    }
+	@Override
+	public String toString() {
+		return getEbc() + " (" + getSrm() + ") [" + getR() + "," + getG() + "," + getB() + "]";
+	}
 
+	public static String[] getCampiXml() {
+		return campiXml;
+	}
 
-    public void setSrm(Double srm) {
-        this.srm = srm;
-    }
+	public static void setCampiXml(String[] aCampiXml) {
+		campiXml = aCampiXml;
+	}
 
-    public void setR(Integer r) {
-        this.r = r;
-    }
+	public void setSrm(Double srm) {
+		this.srm = srm;
+	}
 
-    public void setG(Integer g) {
-        this.g = g;
-    }
+	public void setR(Integer r) {
+		this.r = r;
+	}
 
-    public void setB(Integer b) {
-        this.b = b;
-    }
+	public void setG(Integer g) {
+		this.g = g;
+	}
 
-    public Double getSrm() {
-        return this.srm;
-    }
-    public Integer getR() {
-        return this.r;
-    }
+	public void setB(Integer b) {
+		this.b = b;
+	}
 
-    public Integer getG() {
-        return this.g;
-    }
+	public Double getSrm() {
+		return this.srm;
+	}
 
-    public Integer getB() {
-        return this.b;
-    }
+	public Integer getR() {
+		return this.r;
+	}
 
-    public Double getEbc() {
-        return this.ebc;
-    }
+	public Integer getG() {
+		return this.g;
+	}
 
-    public void setEbc(Double ebc) {
-        this.ebc = ebc;
-    }
+	public Integer getB() {
+		return this.b;
+	}
+
+	public Double getEbc() {
+		return this.ebc;
+	}
+
+	public void setEbc(Double ebc) {
+		this.ebc = ebc;
+	}
 }

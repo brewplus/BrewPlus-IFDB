@@ -29,157 +29,159 @@ import org.jdom.Element;
  * @author Alessandro
  */
 public class HopType implements XmlAble, Comparable<HopType> {
-	
+
 	private static Logger LOGGER = Logger.getLogger(HopType.class);
 
-    /** Creates a new instance of HopType */
-    public HopType() {
-    }
+	/** Creates a new instance of HopType */
+	public HopType() {
+	}
 
-    public HopType(String nome, String provenienza, double alfaAcidi, String caratteristiche) {
-        setNome(nome);
-        setProvenienza(provenienza);
-        setAlfaAcidi(alfaAcidi);
-        setCaratteristiche(caratteristiche);
-    }
-    private String nome;
-    private String provenienza;
-    private Double alfaAcidi;
-    private Double HSI;
-    private String caratteristiche;
-    private String use;
-    private Double beta;
-    private String utilizzo;
+	public HopType(String nome, String provenienza, double alfaAcidi, String caratteristiche) {
+		setNome(nome);
+		setProvenienza(provenienza);
+		setAlfaAcidi(alfaAcidi);
+		setCaratteristiche(caratteristiche);
+	}
 
-    public Double getHSI() {
-        return this.HSI;
-    }
+	private String nome;
+	private String provenienza;
+	private Double alfaAcidi;
+	private Double HSI;
+	private String caratteristiche;
+	private String use;
+	private Double beta;
+	private String utilizzo;
 
-    public void setHSI(Double HSI) {
-        this.HSI = HSI;
-    }
+	public Double getHSI() {
+		return this.HSI;
+	}
 
-    public String getNome() {
-        return this.nome;
-    }
+	public void setHSI(Double HSI) {
+		this.HSI = HSI;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public String getNome() {
+		return this.nome;
+	}
 
-    public String getProvenienza() {
-        return this.provenienza;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public void setProvenienza(String provenienza) {
-        this.provenienza = provenienza;
-    }
+	public String getProvenienza() {
+		return this.provenienza;
+	}
 
-    public String getOrigine() {
-        return this.getProvenienza();
-    }
+	public void setProvenienza(String provenienza) {
+		this.provenienza = provenienza;
+	}
 
-    public void setOrigine(String provenienza) {
-        this.setProvenienza(provenienza);
-    }
+	public String getOrigine() {
+		return this.getProvenienza();
+	}
 
-    public Double getAlfaAcidi() {
-        return this.alfaAcidi;
-    }
+	public void setOrigine(String provenienza) {
+		this.setProvenienza(provenienza);
+	}
 
-    public void setAlfaAcidi(Double alfaAcidi) {
-        this.alfaAcidi = alfaAcidi;
-    }
+	public Double getAlfaAcidi() {
+		return this.alfaAcidi;
+	}
 
-    public Double getAA() {
-        return this.getAlfaAcidi();
-    }
+	public void setAlfaAcidi(Double alfaAcidi) {
+		this.alfaAcidi = alfaAcidi;
+	}
 
-    public void setAA(Double alfaAcidi) {
-        this.setAlfaAcidi(alfaAcidi);
-    }
+	public Double getAA() {
+		return this.getAlfaAcidi();
+	}
 
-    public String getCaratteristiche() {
-        return this.caratteristiche;
-    }
+	public void setAA(Double alfaAcidi) {
+		this.setAlfaAcidi(alfaAcidi);
+	}
 
-    public void setCaratteristiche(String caratteristiche) {
-        this.caratteristiche = caratteristiche;
-    }
+	public String getCaratteristiche() {
+		return this.caratteristiche;
+	}
 
-    public String getDes() {
-        return this.getCaratteristiche();
-    }
+	public void setCaratteristiche(String caratteristiche) {
+		this.caratteristiche = caratteristiche;
+	}
 
-    public void setDes(String caratteristiche) {
-        this.setCaratteristiche(caratteristiche);
-    }
-    private static String campiXml[] = {"Nome", "AA", "Origine", "Des", "HSI", "use", "utilizzo", "beta"};
+	public String getDes() {
+		return this.getCaratteristiche();
+	}
 
-    public static HopType fromXml(Element malt) {
-        HopType type = new HopType();
-        try {
-            type = (HopType) Utils.fromXml(type, getCampiXml(), malt);
-        } catch (Exception ex) {
-            Utils.showException(ex);
-        }
-        return type;
-    }
+	public void setDes(String caratteristiche) {
+		this.setCaratteristiche(caratteristiche);
+	}
 
-    @Override
-    public Element toXml() {
-        try {
-            return Utils.toXml(this, getCampiXml());
-        } catch (Exception ex) {
-        	LOGGER.error(ex.getMessage(), ex);
-        }
-        return null;
-    }
+	private static String campiXml[] = { "Nome", "AA", "Origine", "Des", "HSI", "use", "utilizzo", "beta" };
 
-    @Override
-    public String getTag() {
-        return "hops";
-    }
+	public static HopType fromXml(Element malt) {
+		HopType type = new HopType();
+		try {
+			type = (HopType) Utils.fromXml(type, getCampiXml(), malt);
+		} catch (Exception ex) {
+			Utils.showException(ex);
+		}
+		return type;
+	}
 
-    public String getUse() {
-        return use;
-    }
+	@Override
+	public Element toXml() {
+		try {
+			return Utils.toXml(this, getCampiXml());
+		} catch (Exception ex) {
+			LOGGER.error(ex.getMessage(), ex);
+		}
+		return null;
+	}
 
-    public void setUse(String use) {
-        this.use = use;
-    }
+	@Override
+	public String getTag() {
+		return "hops";
+	}
 
-    public String getUtilizzo() {
-        return utilizzo;
-    }
+	public String getUse() {
+		return use;
+	}
 
-    public void setUtilizzo(String utilizzo) {
-        this.utilizzo = utilizzo;
-    }
+	public void setUse(String use) {
+		this.use = use;
+	}
 
-    public static String[] getCampiXml() {
-        return campiXml;
-    }
+	public String getUtilizzo() {
+		return utilizzo;
+	}
 
-    @Override
-    public String[] getXmlFields() {
-        return campiXml;
-    }
+	public void setUtilizzo(String utilizzo) {
+		this.utilizzo = utilizzo;
+	}
 
-    public static void setCampiXml(String[] aCampiXml) {
-        campiXml = aCampiXml;
-    }
+	public static String[] getCampiXml() {
+		return campiXml;
+	}
 
-    public Double getBeta() {
-        return beta;
-    }
+	@Override
+	public String[] getXmlFields() {
+		return campiXml;
+	}
 
-    public void setBeta(Double beta) {
-        this.beta = beta;
-    }
+	public static void setCampiXml(String[] aCampiXml) {
+		campiXml = aCampiXml;
+	}
 
-    @Override
-    public int compareTo(HopType o) {
-        return nome.compareToIgnoreCase(o.getNome());
-    }
+	public Double getBeta() {
+		return beta;
+	}
+
+	public void setBeta(Double beta) {
+		this.beta = beta;
+	}
+
+	@Override
+	public int compareTo(HopType o) {
+		return nome.compareToIgnoreCase(o.getNome());
+	}
 }

@@ -17,7 +17,7 @@ import org.jdom.Element;
  * @author Alessandro
  */
 public abstract class Log<T> {
-    
-    public Log() {
-    }
+
+	public Log() {
+	}
 }

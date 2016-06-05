@@ -19,26 +19,31 @@ import javax.swing.table.TableCellRenderer;
  *
  * @author Alessandro
  */
-public class JTableGravityEditor extends AbstractCellEditor implements TableCellEditor, TableCellRenderer{
-    private JGravitySpinner spinner=new JGravitySpinner();
-    /** Creates a new instance of JTableGravityEditor */
-    public JTableGravityEditor() {
-    }
-    @Override
-    public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-	//spinner.setValue(value);
-	this.getSpinner().setGravity((Double)value);
-	return this.getSpinner();
-    }    
-    @Override
-    public Object getCellEditorValue() {
-	return this.getSpinner().getGravity();
-    }    
-    @Override
-    public Component getTableCellRendererComponent(JTable tblDataTable, Object value, boolean isSelected, boolean hasFocus, int markedRow, int col){
-	getSpinner().setGravity((Double)value);
-	return getSpinner();
-    }
+public class JTableGravityEditor extends AbstractCellEditor implements TableCellEditor, TableCellRenderer {
+	private JGravitySpinner spinner = new JGravitySpinner();
+
+	/** Creates a new instance of JTableGravityEditor */
+	public JTableGravityEditor() {
+	}
+
+	@Override
+	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+		// spinner.setValue(value);
+		this.getSpinner().setGravity((Double) value);
+		return this.getSpinner();
+	}
+
+	@Override
+	public Object getCellEditorValue() {
+		return this.getSpinner().getGravity();
+	}
+
+	@Override
+	public Component getTableCellRendererComponent(JTable tblDataTable, Object value, boolean isSelected,
+			boolean hasFocus, int markedRow, int col) {
+		getSpinner().setGravity((Double) value);
+		return getSpinner();
+	}
 
 	public JGravitySpinner getSpinner() {
 		return spinner;

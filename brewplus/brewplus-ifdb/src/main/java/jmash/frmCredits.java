@@ -36,12 +36,10 @@ public class frmCredits extends javax.swing.JInternalFrame {
 	private static Logger LOGGER = Logger.getLogger(frmCredits.class);
 	private final JPanel contentPanel = new JPanel();
 	private final JEditorPane txtthanks = new JEditorPane();
-	private final JEditorPane txtApp = new JEditorPane(); 
+	private final JEditorPane txtApp = new JEditorPane();
 	private final JEditorPane txtCredits = new JEditorPane();
 
-
-	public frmCredits() 
-	{
+	public frmCredits() {
 		this.setTitle("Info");
 		setResizable(false);
 		setBounds(100, 100, 427, 315);
@@ -50,15 +48,13 @@ public class frmCredits extends javax.swing.JInternalFrame {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		
-		
-		
+
 		JLabel lblNewLabel_1 = new JLabel("<html>Ixtlanas<br>(project creator - programmer)</html>");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		lblNewLabel_1.setIcon(new ImageIcon(frmCredits.class.getResource("/jmash/images/ixtlanas.jpg")));
 		lblNewLabel_1.setBounds(10, 21, 259, 52);
 		contentPanel.add(lblNewLabel_1);
-		
+
 		JLabel lblBasedOnHobbybrew = new JLabel();
 		lblBasedOnHobbybrew.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lblBasedOnHobbybrew.setText("Based on Hobbybrew 2.0.3 and BrewPlus 1.5.0");
@@ -71,44 +67,42 @@ public class frmCredits extends javax.swing.JInternalFrame {
 		txtthanks.setEditable(false);
 		txtthanks.setContentType("text/html");
 		txtthanks.setText("<html><span style='font-family:Tahoma; font-size: 9pt'><strong>Thanks to</strong>"
-		        + "<br>Jigen Daisuke (<a href=\"http://www.ilforumdellabirra.net\">Il Forum Della Birra</a>)"
-		        + "<br>Rekhyt (Il Re della Cantina) & Alessandro Peruzzi"
-		        + "</span></html>");
+				+ "<br>Jigen Daisuke (<a href=\"http://www.ilforumdellabirra.net\">Il Forum Della Birra</a>)"
+				+ "<br>Rekhyt (Il Re della Cantina) & Alessandro Peruzzi" + "</span></html>");
 		txtthanks.setBounds(10, 106, 699, 41);
 		contentPanel.add(txtthanks);
-		
+
 		txtApp.setEditable(false);
 		txtApp.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtApp.setContentType("text/html");
 		txtApp.setBounds(10, 6, 399, 24);
-		txtApp.setText("<html><center><a href='http://www.ilforumdellabirra.net/'>"+Main.Nome+" "+Main.versioneHobbyBrew+"</a></center></html>");
+		txtApp.setText("<html><center><a href='http://www.ilforumdellabirra.net/'>" + Main.Nome + " "
+				+ Main.versioneHobbyBrew + "</a></center></html>");
 		contentPanel.add(txtApp);
-		
+
 		txtCredits.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		txtCredits.setEditable(false);
 		txtCredits.setContentType("text/html");
-		txtCredits.setText("<html><span style='font-family:Tahoma; font-size: 9pt'><strong>Credits</strong><br>Inline help: Jigen Daisuke<br>\r\nSuggested ingredients: ab62, conco, John Priming, source, velleitario</span>\r\n</html>");
+		txtCredits.setText(
+				"<html><span style='font-family:Tahoma; font-size: 9pt'><strong>Credits</strong><br>Inline help: Jigen Daisuke<br>\r\nSuggested ingredients: ab62, conco, John Priming, source, velleitario</span>\r\n</html>");
 		txtCredits.setBounds(10, 145, 399, 84);
 		contentPanel.add(txtCredits);
-		
-		
-		//catch hyperlink
+
+		// catch hyperlink
 		try {
 			//
 			txtthanks.addHyperlinkListener(new HyperlinkListener() {
 				@Override
 				public void hyperlinkUpdate(HyperlinkEvent e) {
-					try
-	                {
-			             if(e.getEventType() == HyperlinkEvent.EventType.ACTIVATED)
-			            	 Desktop.getDesktop().browse( new URI("http://www.ilforumdellabirra.net/"));
-	                }
-					catch(Exception ex)
-	                {}
-					
+					try {
+						if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED)
+							Desktop.getDesktop().browse(new URI("http://www.ilforumdellabirra.net/"));
+					} catch (Exception ex) {
+					}
+
 				}
 			});
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			LOGGER.error(e.getMessage(), e);
@@ -117,14 +111,12 @@ public class frmCredits extends javax.swing.JInternalFrame {
 			txtApp.addHyperlinkListener(new HyperlinkListener() {
 				@Override
 				public void hyperlinkUpdate(HyperlinkEvent e) {
-					try
-	                {
-			             if(e.getEventType() == HyperlinkEvent.EventType.ACTIVATED)
-			            	 Desktop.getDesktop().browse( new URI("http://www.ilforumdellabirra.net/"));
-	                }
-					catch(Exception ex)
-	                {}
-					
+					try {
+						if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED)
+							Desktop.getDesktop().browse(new URI("http://www.ilforumdellabirra.net/"));
+					} catch (Exception ex) {
+					}
+
 				}
 			});
 		} catch (Exception e) {
@@ -136,23 +128,20 @@ public class frmCredits extends javax.swing.JInternalFrame {
 			txtCredits.addHyperlinkListener(new HyperlinkListener() {
 				@Override
 				public void hyperlinkUpdate(HyperlinkEvent e) {
-					try
-	                {
-			             if(e.getEventType() == HyperlinkEvent.EventType.ACTIVATED)
-			            	 Desktop.getDesktop().browse( new URI("http://www.areabirra.it"));
-	                }
-					catch(Exception ex)
-	                {}
-					
+					try {
+						if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED)
+							Desktop.getDesktop().browse(new URI("http://www.areabirra.it"));
+					} catch (Exception ex) {
+					}
+
 				}
 			});
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			LOGGER.error(e.getMessage(), e);
 		}
-		
-		
+
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));

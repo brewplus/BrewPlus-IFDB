@@ -23,6 +23,7 @@ package jmash;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import org.jdom.Document;
 import org.jdom.Element;
 
@@ -30,97 +31,97 @@ import org.jdom.Element;
  *
  * @author Alessandro
  */
-public class AcquistoIngredienti /*extends CalendarEntry*/ {
-    
-    /** Creates a new instance of AcquistoIngredienti */
-    public AcquistoIngredienti() {
-    }
-    
-    private List<Hop> luppoli=new ArrayList<Hop>();
-    private List<Malt> malti=new ArrayList<Malt>();
-    private List<Yeast> lieviti=new ArrayList<Yeast>();
-    private Date data;
-    private String des;
-    private static String campiXml[]={
-	"data",
-	"des",
-    };
-    @Override
-    public String toString(){
-	return "Acquisto "+des+" del "+data;
-    }
-    
-    public List<Hop> getLuppoli() {
-	return luppoli;
-    }
-    
-    public void setLuppoli(List<Hop> luppoli) {
-	this.luppoli = luppoli;
-    }
-    
-    public List<Malt> getMalti() {
-	return malti;
-    }
-    
-    public void setMalti(List<Malt> malti) {
-	this.malti = malti;
-    }
-    
-    public List<Yeast> getLieviti() {
-	return lieviti;
-    }
-    
-    public void setLieviti(List<Yeast> lieviti) {
-	this.lieviti = lieviti;
-    }
-    public static String[] getCampiXml() {
-	return campiXml;
-    }
-    
-    public Document toXml(){
-	Document doc=new Document();
-	try{
-	    Element root=Utils.toXml(this, getCampiXml());
-	    for(Hop h: this.luppoli){
-		root.addContent(h.toXml());
-	    }
-	    for(Malt m: this.malti){
-		root.addContent(m.toXml());
-	    }
-	    for(Yeast y: this.lieviti){
-		root.addContent(y.toXml());
-	    }
-	    doc.setRootElement(root);
-	} catch(Exception ex){
-	    Utils.showException(ex);
-	    return null;
+public class AcquistoIngredienti /* extends CalendarEntry */ {
+
+	/** Creates a new instance of AcquistoIngredienti */
+	public AcquistoIngredienti() {
 	}
-	return doc;
-    }
-    public static AcquistoIngredienti fromXml(Element elem){
-        AcquistoIngredienti y=new AcquistoIngredienti();
-        try{
-            y=(AcquistoIngredienti)Utils.fromXml(y,getCampiXml(), elem);
-        } catch(Exception ex){
-            Utils.showException(ex);
-            return null;
-        }
-        return y;
-    }
-    
-    public Date getData() {
-	return data;
-    }
-    
-    public void setData(Date data) {
-	this.data = data;
-    }
-    
-    public String getDes() {
-	return des;
-    }
-    
-    public void setDes(String des) {
-	this.des = des;
-    }
+
+	private List<Hop> luppoli = new ArrayList<Hop>();
+	private List<Malt> malti = new ArrayList<Malt>();
+	private List<Yeast> lieviti = new ArrayList<Yeast>();
+	private Date data;
+	private String des;
+	private static String campiXml[] = { "data", "des", };
+
+	@Override
+	public String toString() {
+		return "Acquisto " + des + " del " + data;
+	}
+
+	public List<Hop> getLuppoli() {
+		return luppoli;
+	}
+
+	public void setLuppoli(List<Hop> luppoli) {
+		this.luppoli = luppoli;
+	}
+
+	public List<Malt> getMalti() {
+		return malti;
+	}
+
+	public void setMalti(List<Malt> malti) {
+		this.malti = malti;
+	}
+
+	public List<Yeast> getLieviti() {
+		return lieviti;
+	}
+
+	public void setLieviti(List<Yeast> lieviti) {
+		this.lieviti = lieviti;
+	}
+
+	public static String[] getCampiXml() {
+		return campiXml;
+	}
+
+	public Document toXml() {
+		Document doc = new Document();
+		try {
+			Element root = Utils.toXml(this, getCampiXml());
+			for (Hop h : this.luppoli) {
+				root.addContent(h.toXml());
+			}
+			for (Malt m : this.malti) {
+				root.addContent(m.toXml());
+			}
+			for (Yeast y : this.lieviti) {
+				root.addContent(y.toXml());
+			}
+			doc.setRootElement(root);
+		} catch (Exception ex) {
+			Utils.showException(ex);
+			return null;
+		}
+		return doc;
+	}
+
+	public static AcquistoIngredienti fromXml(Element elem) {
+		AcquistoIngredienti y = new AcquistoIngredienti();
+		try {
+			y = (AcquistoIngredienti) Utils.fromXml(y, getCampiXml(), elem);
+		} catch (Exception ex) {
+			Utils.showException(ex);
+			return null;
+		}
+		return y;
+	}
+
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
+	}
+
+	public String getDes() {
+		return des;
+	}
+
+	public void setDes(String des) {
+		this.des = des;
+	}
 }

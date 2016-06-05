@@ -35,11 +35,9 @@ public class frmIngredienti extends javax.swing.JInternalFrame {
 	private static final long serialVersionUID = -9088568590286636987L;
 	private final JPanel contentPanel = new JPanel();
 
-
-	public frmIngredienti(String stylename, String water, String malts, String hops, String spices, String yeasts) 
-	{
+	public frmIngredienti(String stylename, String water, String malts, String hops, String spices, String yeasts) {
 		setClosable(true);
-		this.setTitle("Ingredienti consigliati: "+stylename);
+		this.setTitle("Ingredienti consigliati: " + stylename);
 		setResizable(true);
 		setMaximizable(true);
 		setBounds(100, 100, 546, 406);
@@ -48,18 +46,18 @@ public class frmIngredienti extends javax.swing.JInternalFrame {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.X_AXIS));
-		
+
 		JTextPane textPane = new JTextPane();
 		textPane.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		textPane.setEditable(false);
 		contentPanel.add(textPane);
-		String text="Acqua:\n"+water+"\n\n";
-		text=text + "Malti:\n"+malts+"\n\n";
-		text=text + "Luppoli:\n"+hops+"\n\n";
-		text=text + "Spezie:\n"+spices+"\n\n";
-		text=text + "Lieviti:\n"+yeasts+"\n";
+		String text = "Acqua:\n" + water + "\n\n";
+		text = text + "Malti:\n" + malts + "\n\n";
+		text = text + "Luppoli:\n" + hops + "\n\n";
+		text = text + "Spezie:\n" + spices + "\n\n";
+		text = text + "Lieviti:\n" + yeasts + "\n";
 		textPane.setText(text);
-		
+
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));

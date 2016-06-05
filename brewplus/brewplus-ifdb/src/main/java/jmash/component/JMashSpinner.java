@@ -31,99 +31,128 @@ import jmash.Main;
  *
  * @author Alessandro
  */
-public class JMashSpinner extends JSpinner{
-    
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1411790229110221532L;
-    
-    /** Creates a new instance of JMashSpinner */
-    public JMashSpinner() {
-	addChangeListener(new ChangeListener(){
-            @Override
-	    public void stateChanged(ChangeEvent ev){
-		Main.putIntoCache(nome+"_V",getDoubleValue());
-	    }
-	});
-    }
-    private SpinnerNumberModel model = new SpinnerNumberModel(23.0, 0.0, 10000.0, 0.25);
-    private String nome;
-    public void setModel(double def, double min, double max, double step){
-	if(Double.isNaN(min))min=0;
-	if(Double.isNaN(max))max=0;
-	if(Double.isNaN(def))def=0;
-	if(def<min)def=min;
-	if(def>max)def=max;
-	if(max<min)max=min;
-	this.model=new SpinnerNumberModel(def, min, max, step);
-	setModel(this.model);
-    }
-    public void setModel(double def, double min, double max, double step, String format, String name){
-	if(name!=null)def=Main.getFromCache(name+"_V",def);
-	if(Double.isNaN(min))min=0;
-	if(Double.isNaN(max))max=0;
-	if(Double.isNaN(def))def=0;	
-	if(def<min)def=min;
-	if(def>max)def=max;
-	if(max<min)max=min;
-	setModel(def,min,max,step);
-	setFormat(format);
-	nome=name;
-    }
-    public void setModelFormat(double def, double min, double max, double step, String format, String name){
-	if(name!=null)def=Main.getFromCache(name+"_V",def);
-	if(Double.isNaN(min))min=0;
-	if(Double.isNaN(max))max=0;
-	if(Double.isNaN(def))def=0;	
-	if(def<min)def=min;
-	if(def>max)def=max;
-	if(max<min)max=min;
-	setModel(def,min,max,step);
-	setFormat(format);
-	nome=name;
-    }
-    public void setFormat(String format){
-	setEditor(new JSpinner.NumberEditor(this, format));
-    }
-    public double getDoubleValue(){
-	return this.model.getNumber().doubleValue();
-    }
-    public int getIntegerValue(){
-	return this.model.getNumber().intValue();
-    }
-    public void setDoubleValue(double val){
-	this.model.setValue(val);
-	Main.putIntoCache(nome+"_V",val);
-    }
-    public void setIntegerValue(int val){
-	this.model.setValue(val);
-	Main.putIntoCache(nome+"_V",val);
-    }
-    
-    @Override
-    protected void fireStateChanged() {
-	if(!blockStateChangedEvents)
-	    super.fireStateChanged();
-    }
-    
-    private boolean blockStateChangedEvents=false;
-    
-    public boolean getBlockStateChangedEvents() {
-	return blockStateChangedEvents;
-    }
-    
-    public void setBlockStateChangedEvents(boolean blockStateChangedEvents) {
-	this.blockStateChangedEvents = blockStateChangedEvents;
-    }
+public class JMashSpinner extends JSpinner {
 
-    @Override
-    public void setEnabled(boolean enable) {
-        super.setEnabled(enable);
-        if (!enable) {
-            super.setFont(super.getFont().deriveFont(Font.BOLD));
-        } else {
-            super.setFont(super.getFont().deriveFont(Font.PLAIN));
-        }
-    }
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 1411790229110221532L;
+
+	/** Creates a new instance of JMashSpinner */
+	public JMashSpinner() {
+		addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent ev) {
+				Main.putIntoCache(nome + "_V", getDoubleValue());
+			}
+		});
+	}
+
+	private SpinnerNumberModel model = new SpinnerNumberModel(23.0, 0.0, 10000.0, 0.25);
+	private String nome;
+
+	public void setModel(double def, double min, double max, double step) {
+		if (Double.isNaN(min))
+			min = 0;
+		if (Double.isNaN(max))
+			max = 0;
+		if (Double.isNaN(def))
+			def = 0;
+		if (def < min)
+			def = min;
+		if (def > max)
+			def = max;
+		if (max < min)
+			max = min;
+		this.model = new SpinnerNumberModel(def, min, max, step);
+		setModel(this.model);
+	}
+
+	public void setModel(double def, double min, double max, double step, String format, String name) {
+		if (name != null)
+			def = Main.getFromCache(name + "_V", def);
+		if (Double.isNaN(min))
+			min = 0;
+		if (Double.isNaN(max))
+			max = 0;
+		if (Double.isNaN(def))
+			def = 0;
+		if (def < min)
+			def = min;
+		if (def > max)
+			def = max;
+		if (max < min)
+			max = min;
+		setModel(def, min, max, step);
+		setFormat(format);
+		nome = name;
+	}
+
+	public void setModelFormat(double def, double min, double max, double step, String format, String name) {
+		if (name != null)
+			def = Main.getFromCache(name + "_V", def);
+		if (Double.isNaN(min))
+			min = 0;
+		if (Double.isNaN(max))
+			max = 0;
+		if (Double.isNaN(def))
+			def = 0;
+		if (def < min)
+			def = min;
+		if (def > max)
+			def = max;
+		if (max < min)
+			max = min;
+		setModel(def, min, max, step);
+		setFormat(format);
+		nome = name;
+	}
+
+	public void setFormat(String format) {
+		setEditor(new JSpinner.NumberEditor(this, format));
+	}
+
+	public double getDoubleValue() {
+		return this.model.getNumber().doubleValue();
+	}
+
+	public int getIntegerValue() {
+		return this.model.getNumber().intValue();
+	}
+
+	public void setDoubleValue(double val) {
+		this.model.setValue(val);
+		Main.putIntoCache(nome + "_V", val);
+	}
+
+	public void setIntegerValue(int val) {
+		this.model.setValue(val);
+		Main.putIntoCache(nome + "_V", val);
+	}
+
+	@Override
+	protected void fireStateChanged() {
+		if (!blockStateChangedEvents)
+			super.fireStateChanged();
+	}
+
+	private boolean blockStateChangedEvents = false;
+
+	public boolean getBlockStateChangedEvents() {
+		return blockStateChangedEvents;
+	}
+
+	public void setBlockStateChangedEvents(boolean blockStateChangedEvents) {
+		this.blockStateChangedEvents = blockStateChangedEvents;
+	}
+
+	@Override
+	public void setEnabled(boolean enable) {
+		super.setEnabled(enable);
+		if (!enable) {
+			super.setFont(super.getFont().deriveFont(Font.BOLD));
+		} else {
+			super.setFont(super.getFont().deriveFont(Font.PLAIN));
+		}
+	}
 }

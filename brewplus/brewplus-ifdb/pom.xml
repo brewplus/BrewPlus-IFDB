@@ -58,7 +58,6 @@
 			<plugin>
 				<groupId>org.jvnet.jaxb2.maven2</groupId>
 				<artifactId>maven-jaxb2-plugin</artifactId>
-				<version>0.7.5</version>
 				<executions>
 					<execution>
 						<id>BJCP schema</id>

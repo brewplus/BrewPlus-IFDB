@@ -18,44 +18,44 @@
  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-
 package jmash;
-
 
 /**
  *
  * @author Alessandro
  */
 public class XmlTags {
-    
-    public XmlTags() {
-    }
-    
-    public static final String RECIPE="recipe";
-    public static final String BJCPCOD="codicestile";
-    public static final String MASH_DESIGN="mash";
-    public static final String VOLUME="volume";
-    public static final String VOLUME_BOLL="volume_boll";
-    public static final String VOLUME_DIL="volume_dil";
-    public static final String EFFICIENZA="efficienza";
-    public static final String VOLUME_UM="unita_misura_mostrata";
-    public static final String BOLLITURA="bollitura";
-    public static final String BOLLITURA_CONC="bollitura_conc";
-    public static final String NOME="nome";
-    public static final String NOTE="note";
-    //foto
-    public static final String FOTOGRAFIA="fotografia";
-    
-    public static final String MALT="malt";
-    
-    public static final String HOP_FORMS[]={"Fiore","Plug","Pellet","Semi","Pezzi","Estratto", "Altro","Spice","Fruit","Coffee","Other","Fining","Herb"};
-    public static final String HOP_USAGE[]={"Kettle","First wort","Mash","Dry","DHEA"};
-    public static final String MALT_FORMS[]={"Grani","Estratto secco","Estratto liquido","Cristalli","Fiocchi","Chicchi", "Altro"};
-    
-    public static final String MASH_STEP_TYPE[]={"Infusione","Decozione","Aggiunta"};
-    
-    public static final String UNITA_PESO[]={"grammi","kg","ounces","pounds"};
-    
-    public static final String UNITA_VOLUME[]={"litri","gal"};
-    
+
+	public XmlTags() {
+	}
+
+	public static final String RECIPE = "recipe";
+	public static final String BJCPCOD = "codicestile";
+	public static final String MASH_DESIGN = "mash";
+	public static final String VOLUME = "volume";
+	public static final String VOLUME_BOLL = "volume_boll";
+	public static final String VOLUME_DIL = "volume_dil";
+	public static final String EFFICIENZA = "efficienza";
+	public static final String VOLUME_UM = "unita_misura_mostrata";
+	public static final String BOLLITURA = "bollitura";
+	public static final String BOLLITURA_CONC = "bollitura_conc";
+	public static final String NOME = "nome";
+	public static final String NOTE = "note";
+	// foto
+	public static final String FOTOGRAFIA = "fotografia";
+
+	public static final String MALT = "malt";
+
+	public static final String HOP_FORMS[] = { "Fiore", "Plug", "Pellet", "Semi", "Pezzi", "Estratto", "Altro", "Spice",
+			"Fruit", "Coffee", "Other", "Fining", "Herb" };
+	public static final String HOP_USAGE[] = { "Kettle", "First wort", "Mash", "Dry", "DHEA" };
+	public static final String MALT_FORMS[] = { "Grani", "Estratto secco", "Estratto liquido", "Cristalli", "Fiocchi",
+			"Chicchi", "Altro" };
+
+	public static final String MASH_STEP_TYPE[] = { "Infusione", "Decozione", "Aggiunta" };
+
+	public static final String UNITA_PESO[] = { "grammi", "kg", "ounces", "pounds" };
+
+	public static final String UNITA_VOLUME[] = { "litri", "gal" };
+
 }

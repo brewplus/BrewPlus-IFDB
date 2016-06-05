@@ -13,17 +13,15 @@ import javax.swing.event.HyperlinkListener;
 
 import org.apache.log4j.Logger;
 
-public class frmBrowser extends  javax.swing.JInternalFrame{
-
-	
+public class frmBrowser extends javax.swing.JInternalFrame {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 7736428331553379909L;
 	private static Logger LOGGER = Logger.getLogger(frmBrowser.class);
-	private  JScrollPane scrollPane = new JScrollPane();
-	private final JEditorPane editorPane=new JEditorPane();
+	private JScrollPane scrollPane = new JScrollPane();
+	private final JEditorPane editorPane = new JEditorPane();
 
 	/**
 	 * Create the frame.
@@ -32,12 +30,11 @@ public class frmBrowser extends  javax.swing.JInternalFrame{
 		this.setTitle(title);
 		setBounds(100, 100, 450, 300);
 		InitForm();
-		if(isLocal)
-		{
-			//file locale
+		if (isLocal) {
+			// file locale
 			InputStream in;
 			try {
-				//limitazione: non vengono visualizzate le immagini
+				// limitazione: non vengono visualizzate le immagini
 				editorPane.setContentType("text/html");
 				in = new FileInputStream(url);
 				editorPane.read(in, null);
@@ -45,62 +42,65 @@ public class frmBrowser extends  javax.swing.JInternalFrame{
 				// TODO Auto-generated catch block
 				LOGGER.error(e.getMessage(), e);
 			}
-		}
-		else
-		{
-			//da web
+		} else {
+			// da web
 			try {
 				//
 				editorPane.setPage(url);
 				editorPane.setEditable(false);
 				editorPane.addHyperlinkListener(new HyperlinkListener() {
-					
+
 					@Override
 					public void hyperlinkUpdate(HyperlinkEvent e) {
-						try
-		                {
-				             if(e.getEventType() == HyperlinkEvent.EventType.ACTIVATED)
-				             editorPane.setPage(e.getURL());
-		                }catch(Exception ex)
-		                {}
-						
+						try {
+							if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED)
+								editorPane.setPage(e.getURL());
+						} catch (Exception ex) {
+						}
+
 					}
 				});
-				
+
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				LOGGER.error(e.getMessage(), e);
 			}
 		}
 		getContentPane().add(editorPane, BorderLayout.CENTER);
-		scrollPane = new JScrollPane(editorPane,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scrollPane = new JScrollPane(editorPane, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 	}
 
-	private void InitForm()
-	{
+	private void InitForm() {
 		setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
-        setAutoscrolls(true);
-        setMinimumSize(new java.awt.Dimension(1024, 600));
-        setPreferredSize(new java.awt.Dimension(1024, 600));
-        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-            }
-        });
+		setIconifiable(true);
+		setMaximizable(true);
+		setResizable(true);
+		setAutoscrolls(true);
+		setMinimumSize(new java.awt.Dimension(1024, 600));
+		setPreferredSize(new java.awt.Dimension(1024, 600));
+		addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+			public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+			}
+
+			public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+			}
+
+			public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+			}
+
+			public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+			}
+
+			public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+			}
+
+			public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+			}
+
+			public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+			}
+		});
 	}
 }

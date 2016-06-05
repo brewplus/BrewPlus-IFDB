@@ -30,97 +30,103 @@ import org.jdom.Element;
  *
  * @author Alessandro
  */
-public class SGLog  implements XmlAble {
-	
+public class SGLog implements XmlAble {
+
 	private static Logger LOGGER = Logger.getLogger(SGLog.class);
-    
-    public SGLog() {
-        setData(new Date());
-	setSG(1.040);
-        setPH(7.0);
-        setT(20.0);
-    }
-    private Double SG;
-    private Double plato;
-    private Double pH;
-    private Date data;
-    private Double T;
-    
 
-    
-    private static String campiXml[]={"SG","data","pH", "T", "plato"};
-    @Override
-    public String[] getXmlFields(){return getCampiXml();}
-    @Override
-    public String getTag(){
-	return "SGLog";
-    }
-    public static SGLog fromXml(Element el){
-	SGLog type=new SGLog();
-	try {
-	    type=(SGLog) Utils.fromXml(type,new SGLog().getXmlFields(), el);
-	} catch(Exception ex){
-	    Utils.showException(ex);
+	public SGLog() {
+		setData(new Date());
+		setSG(1.040);
+		setPH(7.0);
+		setT(20.0);
 	}
-	return type;
-    }
-    @Override
-    public Element toXml(){
-	try {
-	    return Utils.toXml(this, getXmlFields());
-	} catch (Exception ex) {
-		LOGGER.error(ex.getMessage(), ex);
+
+	private Double SG;
+	private Double plato;
+	private Double pH;
+	private Date data;
+	private Double T;
+
+	private static String campiXml[] = { "SG", "data", "pH", "T", "plato" };
+
+	@Override
+	public String[] getXmlFields() {
+		return getCampiXml();
 	}
-	return null;
-    }
-    
-    public Double getSG() {
-	return SG;
-    }
-    
-    public void setSG(Double SG) {
-	this.SG = Math.round(1000.0*SG)/1000.0;;
-	this.plato=Math.round(100.0*Utils.SG2Plato(this.SG))/100.0;
-    }
 
-    public Double getPlato() {
-	return plato;
-    }
-    
-    public void setPlato(Double plato) {
-	this.plato = plato;
-	this.SG=Math.round(1000.0*Utils.Plato2SG(plato))/1000.0;
-    }
-    
-    public static String[] getCampiXml() {
-	return campiXml;
-    }
-    
-    public static void setCampiXml(String[] aCampiXml) {
-	campiXml = aCampiXml;
-    }
+	@Override
+	public String getTag() {
+		return "SGLog";
+	}
 
-    public Double getPH() {
-        return pH;
-    }
+	public static SGLog fromXml(Element el) {
+		SGLog type = new SGLog();
+		try {
+			type = (SGLog) Utils.fromXml(type, new SGLog().getXmlFields(), el);
+		} catch (Exception ex) {
+			Utils.showException(ex);
+		}
+		return type;
+	}
 
-    public void setPH(Double pH) {
-        this.pH = pH;
-    }
+	@Override
+	public Element toXml() {
+		try {
+			return Utils.toXml(this, getXmlFields());
+		} catch (Exception ex) {
+			LOGGER.error(ex.getMessage(), ex);
+		}
+		return null;
+	}
 
-    public Date getData() {
-        return data;
-    }
+	public Double getSG() {
+		return SG;
+	}
 
-    public void setData(Date data) {
-        this.data = data;
-    }
+	public void setSG(Double SG) {
+		this.SG = Math.round(1000.0 * SG) / 1000.0;
+		;
+		this.plato = Math.round(100.0 * Utils.SG2Plato(this.SG)) / 100.0;
+	}
 
-    public Double getT() {
-        return T;
-    }
+	public Double getPlato() {
+		return plato;
+	}
 
-    public void setT(Double T) {
-        this.T = T;
-    }
+	public void setPlato(Double plato) {
+		this.plato = plato;
+		this.SG = Math.round(1000.0 * Utils.Plato2SG(plato)) / 1000.0;
+	}
+
+	public static String[] getCampiXml() {
+		return campiXml;
+	}
+
+	public static void setCampiXml(String[] aCampiXml) {
+		campiXml = aCampiXml;
+	}
+
+	public Double getPH() {
+		return pH;
+	}
+
+	public void setPH(Double pH) {
+		this.pH = pH;
+	}
+
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
+	}
+
+	public Double getT() {
+		return T;
+	}
+
+	public void setT(Double T) {
+		this.T = T;
+	}
 }

@@ -18,18 +18,21 @@ import javax.swing.table.TableCellRenderer;
  *
  * @author Alessandro
  */
-public class JTableGravityRenderer implements TableCellRenderer{
-    
-    JTableGravityEditor ed;
-    public JTableGravityRenderer(JTableGravityEditor ed){
-	this.ed=ed;
-    }
-    JTextField box=new JTextField();
-    JGravitySpinner spin=new JGravitySpinner();
-    @Override
-    public Component getTableCellRendererComponent(JTable tblDataTable, Object value, boolean isSelected, boolean hasFocus, int markedRow, int col){
+public class JTableGravityRenderer implements TableCellRenderer {
 
+	JTableGravityEditor ed;
 
-	return box;
-    }    
+	public JTableGravityRenderer(JTableGravityEditor ed) {
+		this.ed = ed;
+	}
+
+	JTextField box = new JTextField();
+	JGravitySpinner spin = new JGravitySpinner();
+
+	@Override
+	public Component getTableCellRendererComponent(JTable tblDataTable, Object value, boolean isSelected,
+			boolean hasFocus, int markedRow, int col) {
+
+		return box;
+	}
 }

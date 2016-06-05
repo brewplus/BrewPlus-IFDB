@@ -31,60 +31,67 @@ import org.jdom.Element;
  * @author Alessandro
  */
 public class TLog implements XmlAble {
-	
+
 	private static Logger LOGGER = Logger.getLogger(TLog.class);
-    
-    public TLog() {
-	setMinuto(0);
-        setTemperatura(0);
-        setPH(7.0);
-    }
-    private Integer minuto;
-    private Integer temperatura;
-    private Double pH;
-    private Date data;
-    
-    public Integer getMinuto() {
-	return minuto;
-    }
-    
-    public void setMinuto(Integer minuto) {
-	this.minuto = minuto;
-    }
-    
-    public Integer getTemperatura() {
-	return temperatura;
-    }
-    
-    public void setTemperatura(Integer temperatura) {
-	this.temperatura = temperatura;
-    }
-    private static String campiXml[]={"temperatura","minuto","data","pH"};
-    @Override
-    public String[] getXmlFields(){return getCampiXml();}
-    @Override
-    public String getTag(){
-        return "tLog";
-    }
-    public static TLog fromXml(Element malt){
-        TLog type=new TLog();
-        try {
-            type=(TLog) Utils.fromXml(type,new TLog().getXmlFields(), malt);
-        }         
-        catch(Exception ex){
-            Utils.showException(ex);
-        }
-        return type;
-    }
-    @Override
-    public Element toXml(){
-        try {
-            return Utils.toXml(this, getXmlFields());
-        } catch (Exception ex) {
-        	LOGGER.error(ex.getMessage(), ex);
-        }
-        return null;
-    }  
+
+	public TLog() {
+		setMinuto(0);
+		setTemperatura(0);
+		setPH(7.0);
+	}
+
+	private Integer minuto;
+	private Integer temperatura;
+	private Double pH;
+	private Date data;
+
+	public Integer getMinuto() {
+		return minuto;
+	}
+
+	public void setMinuto(Integer minuto) {
+		this.minuto = minuto;
+	}
+
+	public Integer getTemperatura() {
+		return temperatura;
+	}
+
+	public void setTemperatura(Integer temperatura) {
+		this.temperatura = temperatura;
+	}
+
+	private static String campiXml[] = { "temperatura", "minuto", "data", "pH" };
+
+	@Override
+	public String[] getXmlFields() {
+		return getCampiXml();
+	}
+
+	@Override
+	public String getTag() {
+		return "tLog";
+	}
+
+	public static TLog fromXml(Element malt) {
+		TLog type = new TLog();
+		try {
+			type = (TLog) Utils.fromXml(type, new TLog().getXmlFields(), malt);
+		} catch (Exception ex) {
+			Utils.showException(ex);
+		}
+		return type;
+	}
+
+	@Override
+	public Element toXml() {
+		try {
+			return Utils.toXml(this, getXmlFields());
+		} catch (Exception ex) {
+			LOGGER.error(ex.getMessage(), ex);
+		}
+		return null;
+	}
 
 	public Date getData() {
 		return data;
@@ -94,19 +101,19 @@ public class TLog implements XmlAble {
 		this.data = data;
 	}
 
-    public Double getPH() {
-        return pH;
-    }
+	public Double getPH() {
+		return pH;
+	}
 
-    public void setPH(Double pH) {
-        this.pH = pH;
-    }
+	public void setPH(Double pH) {
+		this.pH = pH;
+	}
 
-    public static String[] getCampiXml() {
-        return campiXml;
-    }
+	public static String[] getCampiXml() {
+		return campiXml;
+	}
 
-    public static void setCampiXml(String[] aCampiXml) {
-        campiXml = aCampiXml;
-    }
+	public static void setCampiXml(String[] aCampiXml) {
+		campiXml = aCampiXml;
+	}
 }

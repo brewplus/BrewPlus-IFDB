@@ -48,6 +48,8 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
 
 import org.apache.log4j.Logger;
 import org.jdom.Attribute;
@@ -57,6 +59,7 @@ import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
 import jmash.component.MultiLineCellRenderer;
+import jmash.schema.bjcp.Styleguide;
 
 public class Main {
 
@@ -196,6 +199,8 @@ public class Main {
 			readLieviti();
 			readWater();
 			readColors();
+
+			Styleguide bjcp = Utils.readBjcpXml(bjcpStylesXML);
 			Document doc = Utils.readFileAsXml(bjcpStylesXML);
 			Element root = doc.getRootElement();
 			Gui.brewStylePickerTableModel.setRows(getBJCPStyles(root));
@@ -606,6 +611,7 @@ public class Main {
 		}
 	}
 
+	@SuppressWarnings("resource")
 	public static void copyFile(String source, String dest) throws IOException {
 		FileChannel in = null, out = null;
 		try {
@@ -621,6 +627,7 @@ public class Main {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	public void update() throws FileNotFoundException, IOException {
 		boolean ret = false;
 		System.setProperty("http.proxyHost", Main.config.getProxyHost());
@@ -659,8 +666,9 @@ public class Main {
 			in.close();
 		}
 
-//		if (versione != webVersion) {
-		// TODO: temporanemento commentato il controllo nuova versione per update
+		// if (versione != webVersion) {
+		// TODO: temporanemento commentato il controllo nuova versione per
+		// update
 		if (false) {
 			gui.btnUpdate.setVisible(true);
 			gui.btnUpdate.setToolTipText("Trovata una nuova versione");

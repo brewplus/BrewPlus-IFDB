@@ -25,8 +25,11 @@ package jmash.interfaces;
  * @author Alessandro
  */
 public interface InventoryObject {
-    public String getNome();
-    public Boolean isSelected();
-    public void setSelected(Boolean val);
-    public Double getGrammi();
+	public String getNome();
+
+	public Boolean isSelected();
+
+	public void setSelected(Boolean val);
+
+	public Double getGrammi();
 }

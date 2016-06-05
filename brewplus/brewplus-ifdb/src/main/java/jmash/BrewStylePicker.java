@@ -25,13 +25,13 @@ package jmash;
  */
 public class BrewStylePicker extends Picker {
 
-    /**
-     * 
-     */
-    private static final long serialVersionUID = -27954641447881568L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -27954641447881568L;
 
-    /** Creates a new instance of BrewStylePicker */
-    public BrewStylePicker() {
-        super(Gui.brewStylePickerTableModel);
-    }
+	/** Creates a new instance of BrewStylePicker */
+	public BrewStylePicker() {
+		super(Gui.brewStylePickerTableModel);
+	}
 }

@@ -25,89 +25,101 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class GenericTableModel<T> extends javax.swing.table.DefaultTableModel{
-    
-    /**
-     *
-     */
-    private static final long serialVersionUID = 6071210525849454744L;
-    protected String columnNames[];
-    protected List<T> dataValues=new LinkedList<T>();
-    protected static HashMap<String,Format> hmFormatterUM=new HashMap<String,Format>();
-    {
-	hmFormatterUM.put("grammi",new NumberFormatter("0"));
-	hmFormatterUM.put("kg",new NumberFormatter("0.000"));
-	hmFormatterUM.put("ounces",new NumberFormatter("0.00"));
-	hmFormatterUM.put("pounds",new NumberFormatter("0.00"));
-    }
+public abstract class GenericTableModel<T> extends javax.swing.table.DefaultTableModel {
 
-    
-    protected static NumberFormat NF= NumberFormat.getInstance();
-    public T getRow(int i){
-        if(i>=0) {
-            return this.dataValues.get(i);
-        }
-        return null;
-    }
-    public T getLastRow(){
-        if(dataValues.size()==0)return null;
-        return this.dataValues.get(dataValues.size()-1);
-    }    
-    public int addRow(T m){
-        this.dataValues.add(m);
-        fireTableDataChanged();
-	return this.dataValues.indexOf(m);
-    }
-    public void setRows(List<T> L){
-        this.dataValues=L;
-        fireTableDataChanged();
-    }
-    public void remRow(int i){
-        if(i>=0){
-            this.dataValues.remove(i);
-            fireTableDataChanged();
-        }
-    }
-    public void remAllRows(){
-        if(dataValues.size()>0){
-            this.dataValues.clear();
-            fireTableDataChanged();
-        }
-    }
-    public List<T> getRows(){
-        return this.dataValues;
-    }
-    public void clear(){
-        this.dataValues.clear();
-        fireTableDataChanged();
-    }
-    @Override
-    public String getColumnName(int col) {
-        return this.columnNames[col].toString();
-    }
-    @Override
-    public int getRowCount() {
-        return this.dataValues==null?0:this.dataValues.size();
-    }
-    @Override
-    public int getColumnCount() {
-        return this.columnNames==null?0:this.columnNames.length;
-    }
-    
-    @Override
-    public Class<? extends Object> getColumnClass(int col) {
-        if (getRowCount() == 0) {
-            return Object.class;
-        } else {
-            Object cellValue = getValueAt(0, col);
-            if(cellValue!=null) {
-                return cellValue.getClass();
-            } else {
-                return Object.class;
-            }
-        }
-    }
-    public int getColumnWidth(int col){
-        return 320;
-    }
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 6071210525849454744L;
+	protected String columnNames[];
+	protected List<T> dataValues = new LinkedList<T>();
+	protected static HashMap<String, Format> hmFormatterUM = new HashMap<String, Format>();
+	{
+		hmFormatterUM.put("grammi", new NumberFormatter("0"));
+		hmFormatterUM.put("kg", new NumberFormatter("0.000"));
+		hmFormatterUM.put("ounces", new NumberFormatter("0.00"));
+		hmFormatterUM.put("pounds", new NumberFormatter("0.00"));
+	}
+
+	protected static NumberFormat NF = NumberFormat.getInstance();
+
+	public T getRow(int i) {
+		if (i >= 0) {
+			return this.dataValues.get(i);
+		}
+		return null;
+	}
+
+	public T getLastRow() {
+		if (dataValues.size() == 0)
+			return null;
+		return this.dataValues.get(dataValues.size() - 1);
+	}
+
+	public int addRow(T m) {
+		this.dataValues.add(m);
+		fireTableDataChanged();
+		return this.dataValues.indexOf(m);
+	}
+
+	public void setRows(List<T> L) {
+		this.dataValues = L;
+		fireTableDataChanged();
+	}
+
+	public void remRow(int i) {
+		if (i >= 0) {
+			this.dataValues.remove(i);
+			fireTableDataChanged();
+		}
+	}
+
+	public void remAllRows() {
+		if (dataValues.size() > 0) {
+			this.dataValues.clear();
+			fireTableDataChanged();
+		}
+	}
+
+	public List<T> getRows() {
+		return this.dataValues;
+	}
+
+	public void clear() {
+		this.dataValues.clear();
+		fireTableDataChanged();
+	}
+
+	@Override
+	public String getColumnName(int col) {
+		return this.columnNames[col].toString();
+	}
+
+	@Override
+	public int getRowCount() {
+		return this.dataValues == null ? 0 : this.dataValues.size();
+	}
+
+	@Override
+	public int getColumnCount() {
+		return this.columnNames == null ? 0 : this.columnNames.length;
+	}
+
+	@Override
+	public Class<? extends Object> getColumnClass(int col) {
+		if (getRowCount() == 0) {
+			return Object.class;
+		} else {
+			Object cellValue = getValueAt(0, col);
+			if (cellValue != null) {
+				return cellValue.getClass();
+			} else {
+				return Object.class;
+			}
+		}
+	}
+
+	public int getColumnWidth(int col) {
+		return 320;
+	}
 }

@@ -27,33 +27,35 @@ import java.util.List;
  *
  * @author Alessandro
  */
-public class RicettaNoGui /*extends CalendarEntry*/ {
+public class RicettaNoGui /* extends CalendarEntry */ {
 
-    /** Creates a new instance of RicettaNoGui */
-    public RicettaNoGui() {
-    }
-    List<Hop> luppoli = new ArrayList<Hop>();
-    List<Malt> malti = new ArrayList<Malt>();
+	/** Creates a new instance of RicettaNoGui */
+	public RicettaNoGui() {
+	}
 
-    @Override
-    public String toString() {
-        String str = "Ricetta\nLuppoli:\n";
-        for (Hop L : this.luppoli) {
-            str += "\t" + L + "\n";
-        }
-        str += "Malti:\n";
-        for (Malt M : this.malti) {
-            str += "\t" + M;
-        }
-        return str;
-    }
-    private java.util.Date data = new Date();
+	List<Hop> luppoli = new ArrayList<Hop>();
+	List<Malt> malti = new ArrayList<Malt>();
 
-    public java.util.Date getData() {
-        return this.data;
-    }
+	@Override
+	public String toString() {
+		String str = "Ricetta\nLuppoli:\n";
+		for (Hop L : this.luppoli) {
+			str += "\t" + L + "\n";
+		}
+		str += "Malti:\n";
+		for (Malt M : this.malti) {
+			str += "\t" + M;
+		}
+		return str;
+	}
 
-    public void setData(java.util.Date data) {
-        this.data = data;
-    }
+	private java.util.Date data = new Date();
+
+	public java.util.Date getData() {
+		return this.data;
+	}
+
+	public void setData(java.util.Date data) {
+		this.data = data;
+	}
 }

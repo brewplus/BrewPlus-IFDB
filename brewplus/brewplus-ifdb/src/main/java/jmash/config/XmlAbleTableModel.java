@@ -34,74 +34,77 @@ import jmash.interfaces.XmlAble;
  *
  * @author AChiari
  */
-public class XmlAbleTableModel extends GenericTableModel<XmlAble>{
-	
+public class XmlAbleTableModel extends GenericTableModel<XmlAble> {
+
 	private static Logger LOGGER = Logger.getLogger(XmlAbleTableModel.class);
-	
-    private XmlAble xmlAble;
-    public XmlAbleTableModel(XmlAble xmlAble) {
-        this.xmlAble= xmlAble;
-        this.columnNames = xmlAble.getXmlFields();
-    }
-    @Override
-    public Object getValueAt(int row, int col) {
-        XmlAble h=this.dataValues.get(row);
-        try {
-            
-            Method m=h.getClass().getMethod("get"+Utils.capitalize(xmlAble.getXmlFields()[col]));
-            return m.invoke(h);
-        } catch (IllegalArgumentException ex) {
-            LOGGER.error(ex.getMessage(), ex);
-        } catch (SecurityException ex) {
-            LOGGER.error(ex.getMessage(), ex);
-        } catch (NoSuchMethodException ex) {
-            LOGGER.error(ex.getMessage(), ex);
-        } catch (IllegalAccessException ex) {
-            LOGGER.error(ex.getMessage(), ex);
-        } catch (InvocationTargetException ex) {
-            LOGGER.error(ex.getMessage(), ex);
-        }
-        
-        return null;
-    }
-    @Override
-    public void setValueAt(Object value,int row, int col) {
-        XmlAble h=this.dataValues.get(row);
-        Class<? extends Object> cl=h.getClass();
-        try {
-            Method g=cl.getMethod("get"+Utils.capitalize(xmlAble.getXmlFields()[col]));
-            Method m=cl.getMethod("set"+Utils.capitalize(xmlAble.getXmlFields()[col]),g.getReturnType());
-            Class<? extends Object> ret=g.getReturnType();
-            if(ret.equals(String.class)){
-                m.invoke(h, (String)value);
-            }
-            if(ret.equals(java.util.Date.class)){
-                m.invoke(h, (java.util.Date)value);
-            }
-            if(ret.equals(Integer.class) ){
-                m.invoke(h, (Integer)value);
-            }
-            if(ret.equals(Double.class) ){
-                m.invoke(h, (Double)value);
-            }
-            if(ret.equals(Long.class) ){
-                m.invoke(h, (Long)value);
-            }
-            if(ret.equals(Float.class) ){
-                m.invoke(h, (Float)value);
-            }
-        } catch (SecurityException ex) {
-            LOGGER.error(ex.getMessage(), ex);
-        } catch (IllegalArgumentException ex) {
-            LOGGER.error(ex.getMessage(), ex);
-        } catch (InvocationTargetException ex) {
-            LOGGER.error(ex.getMessage(), ex);
-        } catch (IllegalAccessException ex) {
-            LOGGER.error(ex.getMessage(), ex);
-        } catch (NoSuchMethodException ex) {
-            LOGGER.error(ex.getMessage(), ex);
-        }
-        
-        fireTableDataChanged();
-    }
+
+	private XmlAble xmlAble;
+
+	public XmlAbleTableModel(XmlAble xmlAble) {
+		this.xmlAble = xmlAble;
+		this.columnNames = xmlAble.getXmlFields();
+	}
+
+	@Override
+	public Object getValueAt(int row, int col) {
+		XmlAble h = this.dataValues.get(row);
+		try {
+
+			Method m = h.getClass().getMethod("get" + Utils.capitalize(xmlAble.getXmlFields()[col]));
+			return m.invoke(h);
+		} catch (IllegalArgumentException ex) {
+			LOGGER.error(ex.getMessage(), ex);
+		} catch (SecurityException ex) {
+			LOGGER.error(ex.getMessage(), ex);
+		} catch (NoSuchMethodException ex) {
+			LOGGER.error(ex.getMessage(), ex);
+		} catch (IllegalAccessException ex) {
+			LOGGER.error(ex.getMessage(), ex);
+		} catch (InvocationTargetException ex) {
+			LOGGER.error(ex.getMessage(), ex);
+		}
+
+		return null;
+	}
+
+	@Override
+	public void setValueAt(Object value, int row, int col) {
+		XmlAble h = this.dataValues.get(row);
+		Class<? extends Object> cl = h.getClass();
+		try {
+			Method g = cl.getMethod("get" + Utils.capitalize(xmlAble.getXmlFields()[col]));
+			Method m = cl.getMethod("set" + Utils.capitalize(xmlAble.getXmlFields()[col]), g.getReturnType());
+			Class<? extends Object> ret = g.getReturnType();
+			if (ret.equals(String.class)) {
+				m.invoke(h, (String) value);
+			}
+			if (ret.equals(java.util.Date.class)) {
+				m.invoke(h, (java.util.Date) value);
+			}
+			if (ret.equals(Integer.class)) {
+				m.invoke(h, (Integer) value);
+			}
+			if (ret.equals(Double.class)) {
+				m.invoke(h, (Double) value);
+			}
+			if (ret.equals(Long.class)) {
+				m.invoke(h, (Long) value);
+			}
+			if (ret.equals(Float.class)) {
+				m.invoke(h, (Float) value);
+			}
+		} catch (SecurityException ex) {
+			LOGGER.error(ex.getMessage(), ex);
+		} catch (IllegalArgumentException ex) {
+			LOGGER.error(ex.getMessage(), ex);
+		} catch (InvocationTargetException ex) {
+			LOGGER.error(ex.getMessage(), ex);
+		} catch (IllegalAccessException ex) {
+			LOGGER.error(ex.getMessage(), ex);
+		} catch (NoSuchMethodException ex) {
+			LOGGER.error(ex.getMessage(), ex);
+		}
+
+		fireTableDataChanged();
+	}
 }

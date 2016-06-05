@@ -28,56 +28,67 @@ import jmash.*;
  *
  * @author Alessandro
  */
-public class YeastPickerTableModel extends PickerTableModel{
-    
-    /**
+public class YeastPickerTableModel extends PickerTableModel {
+
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -4140162277202108851L;
 
 	/** Creates a new instance of YeastPickerTableModel */
-    public YeastPickerTableModel() {
-    }
-    LinkedList<YeastType> dataValues=new LinkedList<YeastType>();
-    String columnNames[] = { "Produttore", "Codice", "Nome", "Forma" };
+	public YeastPickerTableModel() {
+	}
 
-    public void addRow(YeastType h){
-        this.dataValues.add(h);
-        fireTableDataChanged();
-    }
-    @Override
-	public void emptyRows(){
-        this.dataValues.clear();
-        fireTableDataChanged();
-    }
-    @Override
-	public List<YeastType> getRows(){
-        return this.dataValues;
-    }
-    @Override
+	LinkedList<YeastType> dataValues = new LinkedList<YeastType>();
+	String columnNames[] = { "Produttore", "Codice", "Nome", "Forma" };
+
+	public void addRow(YeastType h) {
+		this.dataValues.add(h);
+		fireTableDataChanged();
+	}
+
+	@Override
+	public void emptyRows() {
+		this.dataValues.clear();
+		fireTableDataChanged();
+	}
+
+	@Override
+	public List<YeastType> getRows() {
+		return this.dataValues;
+	}
+
+	@Override
 	public String getColumnName(int col) {
-        return this.columnNames[col].toString();
-    }
-    @Override
-	public int getRowCount() { return this.dataValues==null?0:this.dataValues.size(); }
-    @Override
-	public int getColumnCount() { return 3; }
-    @Override
+		return this.columnNames[col].toString();
+	}
+
+	@Override
+	public int getRowCount() {
+		return this.dataValues == null ? 0 : this.dataValues.size();
+	}
+
+	@Override
+	public int getColumnCount() {
+		return 3;
+	}
+
+	@Override
 	public Object getValueAt(int row, int col) {
-        YeastType h=this.dataValues.get(row);
-        if(h!=null){
-            switch(col){
-                case 1:
-                    return  h.getCodice();
-                case 2:
-                    return  h.getNome();
-                case 3:
-                    return  h.getForma();
-                case 0:
-                default:
-                    return h.getProduttore();
-            }
-        }
-        return null;
-    }
+		YeastType h = this.dataValues.get(row);
+		if (h != null) {
+			switch (col) {
+			case 1:
+				return h.getCodice();
+			case 2:
+				return h.getNome();
+			case 3:
+				return h.getForma();
+			case 0:
+			default:
+				return h.getProduttore();
+			}
+		}
+		return null;
+	}
 }

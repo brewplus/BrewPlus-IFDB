@@ -22,9 +22,10 @@ package jmash.interfaces;
 
 import org.jdom.Element;
 
-
 public interface XmlAble {
-    public Element toXml();
-    public String getTag();
-    public String[] getXmlFields();
+	public Element toXml();
+
+	public String getTag();
+
+	public String[] getXmlFields();
 }

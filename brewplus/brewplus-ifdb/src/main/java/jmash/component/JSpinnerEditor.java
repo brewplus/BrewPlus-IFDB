@@ -27,41 +27,43 @@ import javax.swing.AbstractCellEditor;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
+
 public class JSpinnerEditor extends AbstractCellEditor implements TableCellEditor {
-    /**
-     *
-     */
-    private static final long serialVersionUID = 8292241453794062331L;
-    final JComboBox spinner = new JComboBox();
-    
-    // Initializes the spinner.
-    public JSpinnerEditor(String[] items) {
-	for(int i=0;i<items.length;i++) {
-	    this.spinner.addItem(items[i]);
-	    //spinner.setModel(new SpinnerListModel(java.util.Arrays.asList(items)));
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 8292241453794062331L;
+	final JComboBox spinner = new JComboBox();
+
+	// Initializes the spinner.
+	public JSpinnerEditor(String[] items) {
+		for (int i = 0; i < items.length; i++) {
+			this.spinner.addItem(items[i]);
+			// spinner.setModel(new
+			// SpinnerListModel(java.util.Arrays.asList(items)));
+		}
 	}
-    }
-    
-    // Prepares the spinner component and returns it.
-    @Override
-    public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-	//spinner.setValue(value);
-	this.spinner.setSelectedItem(value);
-	return this.spinner;
-    }
-    
-    // Enables the editor only for double-clicks.
-    @Override
-    public boolean isCellEditable(EventObject evt) {
-	if (evt instanceof MouseEvent) {
-	    return ((MouseEvent)evt).getClickCount() >= 2;
+
+	// Prepares the spinner component and returns it.
+	@Override
+	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+		// spinner.setValue(value);
+		this.spinner.setSelectedItem(value);
+		return this.spinner;
 	}
-	return true;
-    }
-    
-    // Returns the spinners current value.
-    @Override
-    public Object getCellEditorValue() {
-	return this.spinner.getSelectedItem();
-    }
+
+	// Enables the editor only for double-clicks.
+	@Override
+	public boolean isCellEditable(EventObject evt) {
+		if (evt instanceof MouseEvent) {
+			return ((MouseEvent) evt).getClickCount() >= 2;
+		}
+		return true;
+	}
+
+	// Returns the spinners current value.
+	@Override
+	public Object getCellEditorValue() {
+		return this.spinner.getSelectedItem();
+	}
 }

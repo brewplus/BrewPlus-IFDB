@@ -27,7 +27,7 @@
  * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */ 
+ */
 
 package jmash.imagecomponents;
 
@@ -41,36 +41,36 @@ import jmash.BrowseHobbyBirra2;
 /* Utils.java is used by FileChooserDemo2.java. */
 public class Utils {
 	private static Logger LOGGER = Logger.getLogger(Utils.class);
-    public final static String jpeg = "jpeg";
-    public final static String jpg = "jpg";
-    public final static String gif = "gif";
-    public final static String tiff = "tiff";
-    public final static String tif = "tif";
-    public final static String png = "png";
+	public final static String jpeg = "jpeg";
+	public final static String jpg = "jpg";
+	public final static String gif = "gif";
+	public final static String tiff = "tiff";
+	public final static String tif = "tif";
+	public final static String png = "png";
 
-    /*
-     * Get the extension of a file.
-     */
-    public static String getExtension(File f) {
-        String ext = null;
-        String s = f.getName();
-        int i = s.lastIndexOf('.');
+	/*
+	 * Get the extension of a file.
+	 */
+	public static String getExtension(File f) {
+		String ext = null;
+		String s = f.getName();
+		int i = s.lastIndexOf('.');
 
-        if (i > 0 &&  i < s.length() - 1) {
-            ext = s.substring(i+1).toLowerCase();
-        }
-        return ext;
-    }
+		if (i > 0 && i < s.length() - 1) {
+			ext = s.substring(i + 1).toLowerCase();
+		}
+		return ext;
+	}
 
-    /** Returns an ImageIcon, or null if the path was invalid. */
-    protected static ImageIcon createImageIcon(String path) {
-        LOGGER.debug("PATH = " + path);
-        java.net.URL imgURL = Utils.class.getResource(path);
-        if (imgURL != null) {
-            return new ImageIcon(imgURL);
-        } else {
-            System.err.println("Couldn't find file: " + path);
-            return null;
-        }
-    }
+	/** Returns an ImageIcon, or null if the path was invalid. */
+	protected static ImageIcon createImageIcon(String path) {
+		LOGGER.debug("PATH = " + path);
+		java.net.URL imgURL = Utils.class.getResource(path);
+		if (imgURL != null) {
+			return new ImageIcon(imgURL);
+		} else {
+			System.err.println("Couldn't find file: " + path);
+			return null;
+		}
+	}
 }

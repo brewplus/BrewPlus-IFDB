@@ -26,7 +26,7 @@ public class frmQRCode extends JDialog {
 	private static final long serialVersionUID = 4325011818507308835L;
 
 	private final JPanel contentPanel = new JPanel();
-	
+
 	JLabel lblQRCode = new JLabel("");
 	JSlider slider = new JSlider();
 	String xmlText;
@@ -40,7 +40,7 @@ public class frmQRCode extends JDialog {
 		setTitle("Scansiona");
 		setModal(true);
 		setModalityType(ModalityType.APPLICATION_MODAL);
-		xmlText=xml;
+		xmlText = xml;
 		setBounds(100, 100, 298, 311);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(Color.WHITE);
@@ -51,7 +51,7 @@ public class frmQRCode extends JDialog {
 			JPanel panel = new JPanel();
 			contentPanel.add(panel);
 			{
-				
+
 				panel.add(lblQRCode);
 			}
 		}
@@ -72,21 +72,22 @@ public class frmQRCode extends JDialog {
 				buttonPane.add(slider);
 				slider.addChangeListener(new ChangeListener() {
 					public void stateChanged(ChangeEvent e) {
-						JSlider source = (JSlider)e.getSource();
-					    if (!source.getValueIsAdjusting()) {creaQR(slider.getValue());}
+						JSlider source = (JSlider) e.getSource();
+						if (!source.getValueIsAdjusting()) {
+							creaQR(slider.getValue());
+						}
 					}
 				});
 			}
 		}
 		creaQR(slider.getValue());
 	}
-	
-	private void creaQR(int pixel)
-	{
+
+	private void creaQR(int pixel) {
 		try {
-			byte[] comp=Utils.compress(xmlText);
+			byte[] comp = Utils.compress(xmlText);
 			String s = new sun.misc.BASE64Encoder().encode(comp);
-			lblQRCode.setIcon(new ImageIcon(Utils.getQRCodeFromBase64(s,pixel)));
+			lblQRCode.setIcon(new ImageIcon(Utils.getQRCodeFromBase64(s, pixel)));
 		} catch (IOException e2) {
 
 		}

@@ -14,13 +14,14 @@ package jmash.test;
  * @author Alessandro
  */
 public class Test {
-    
-    /** Creates a new instance of Test */
-    public Test() {
-    }
-    public static void main(String[] args) {
-	        final PolarChartDemo demo = new PolarChartDemo("Polar Chart Demo");
-        demo.pack();
-        demo.setVisible(true);
-    }
+
+	/** Creates a new instance of Test */
+	public Test() {
+	}
+
+	public static void main(String[] args) {
+		final PolarChartDemo demo = new PolarChartDemo("Polar Chart Demo");
+		demo.pack();
+		demo.setVisible(true);
+	}
 }

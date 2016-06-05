@@ -18,7 +18,6 @@
  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-
 package jmash.tableModel;
 
 import java.text.ParseException;
@@ -30,94 +29,94 @@ import jmash.*;
  *
  * @author Alessandro
  */
-public class MaltBuyTableModel  extends GenericTableModel<Malt>{
-    
-    public MaltBuyTableModel() {
-	this.ret.setIcon(Main.maltIcon);
-	this.columnNames = new String[]{"", "Malti e zuccheri", "Q.tà", "U.mis.", "Pot. SG","Forma", "Colore", "Origine", "Data rif." };
-    }
-    private JLabel ret=new JLabel("");
-    
-    @Override
-    public Object getValueAt(int row, int col) {
-	Malt m=this.dataValues.get(row);
-	
-	this.ret.setIcon(Main.maltIcon);
-	if(m.getForma().compareToIgnoreCase("estratto liquido")==0) {
-	    this.ret.setIcon(Main.extractIcon);
+public class MaltBuyTableModel extends GenericTableModel<Malt> {
+
+	public MaltBuyTableModel() {
+		this.ret.setIcon(Main.maltIcon);
+		this.columnNames = new String[] { "", "Malti e zuccheri", "Q.tà", "U.mis.", "Pot. SG", "Forma", "Colore",
+				"Origine", "Data rif." };
 	}
-	if(m!=null){
-	    switch(col){
-		case 1:
-		    return m.getNome();
-		case 2:
-		    return (hmFormatterUM.get(m.getUnitaMisura())).format(m.getConvertedGrammi());
-		case 3:
-		    return  m.getUnitaMisura();
-		case 4:
-		    return NumberFormatter.format03(m.getPotentialSG());
-		case 5:
-		    return  m.getForma();
-		case 6:
-		    return NumberFormatter.format01(m.getEbc());
-		case 7:
-		    return  m.getOrigine();
-		case 8:
-		    return  m.getDataAcquisto();
-		    
-		default:
-		    return this.ret;
-	    }
-	}
-	return null;
-    }
-    
-    @Override
-    public void setValueAt(Object value, int row, int col) {
-	Malt m=this.dataValues.get(row);
-	try {
-	    if((m!=null) && (value!=null)){
-		switch(col){
-		    case 2:
-			m.setGrammi(
-				Utils.convertWeight(NF.parse((String)value).doubleValue(), m.getUnitaMisura(), "grammi"));
-			break;
-		    case 3:
-			m.setUnitaMisura(((String)value));
-			fireTableRowsUpdated(row,row);
-			break;
-		    case 4:
-			m.setPotentialSG(NF.parse((String)value).doubleValue());
-			break;
-		    case 5:
-			m.setForma((String)value);
-			break;
-		    case 6:
-			m.setEbc(NF.parse((String)value).doubleValue());
-			break;
-		    case 7:
-			m.setOrigine((String)value);
-			break;
-		    case 8:
-			m.setDataAcquisto((Date)value);
-			break;
-		    case 1:
-			m.setNome(((String)value));
-		    default:
-			break;
+
+	private JLabel ret = new JLabel("");
+
+	@Override
+	public Object getValueAt(int row, int col) {
+		Malt m = this.dataValues.get(row);
+
+		this.ret.setIcon(Main.maltIcon);
+		if (m.getForma().compareToIgnoreCase("estratto liquido") == 0) {
+			this.ret.setIcon(Main.extractIcon);
 		}
-	    }
-	} catch (ParseException ex) {
-	    Utils.showException(ex);
+		if (m != null) {
+			switch (col) {
+			case 1:
+				return m.getNome();
+			case 2:
+				return (hmFormatterUM.get(m.getUnitaMisura())).format(m.getConvertedGrammi());
+			case 3:
+				return m.getUnitaMisura();
+			case 4:
+				return NumberFormatter.format03(m.getPotentialSG());
+			case 5:
+				return m.getForma();
+			case 6:
+				return NumberFormatter.format01(m.getEbc());
+			case 7:
+				return m.getOrigine();
+			case 8:
+				return m.getDataAcquisto();
+
+			default:
+				return this.ret;
+			}
+		}
+		return null;
 	}
-	fireTableCellUpdated(row, col);
-    }
-    
-    
-    @Override
-    public boolean isCellEditable(int row, int col){
-	return true;
-    }
-    
-    
+
+	@Override
+	public void setValueAt(Object value, int row, int col) {
+		Malt m = this.dataValues.get(row);
+		try {
+			if ((m != null) && (value != null)) {
+				switch (col) {
+				case 2:
+					m.setGrammi(
+							Utils.convertWeight(NF.parse((String) value).doubleValue(), m.getUnitaMisura(), "grammi"));
+					break;
+				case 3:
+					m.setUnitaMisura(((String) value));
+					fireTableRowsUpdated(row, row);
+					break;
+				case 4:
+					m.setPotentialSG(NF.parse((String) value).doubleValue());
+					break;
+				case 5:
+					m.setForma((String) value);
+					break;
+				case 6:
+					m.setEbc(NF.parse((String) value).doubleValue());
+					break;
+				case 7:
+					m.setOrigine((String) value);
+					break;
+				case 8:
+					m.setDataAcquisto((Date) value);
+					break;
+				case 1:
+					m.setNome(((String) value));
+				default:
+					break;
+				}
+			}
+		} catch (ParseException ex) {
+			Utils.showException(ex);
+		}
+		fireTableCellUpdated(row, col);
+	}
+
+	@Override
+	public boolean isCellEditable(int row, int col) {
+		return true;
+	}
+
 }

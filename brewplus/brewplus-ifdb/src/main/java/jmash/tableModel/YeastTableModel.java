@@ -27,56 +27,55 @@ import jmash.*;
  *
  * @author Alessandro
  */
-public class YeastTableModel  extends GenericTableModel<Yeast>{
-    
-    
-    /**
-     *
-     */
-    private static final long serialVersionUID = -401917354676314454L;
-    Ricetta ricetta;
-    private static String[] cN=new String[]{"Codice","Produttore","Nome","Note", "Attenuazione"};
-    public YeastTableModel(Ricetta ricetta) {
-	this.ricetta=ricetta;
-	this.columnNames = cN;
-    }
-    
-    String fieldNames[] = {"Codice","Produttore","Nome","Note", "AttenuazioneMed"};
-    
-    
-    @Override
-    public Object getValueAt(int row, int col) {
-	Yeast h=this.dataValues.get(row);
-	try{
-	    Method m=h.getClass().getMethod("get"+Utils.capitalize(this.fieldNames[col]));
-	    return m.invoke(h);
-	} catch(Exception e){
-	    Utils.showException(e,"Il file "+Main.stiliXML+" non corrisponde al formato.",ricetta);
+public class YeastTableModel extends GenericTableModel<Yeast> {
+
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = -401917354676314454L;
+	Ricetta ricetta;
+	private static String[] cN = new String[] { "Codice", "Produttore", "Nome", "Note", "Attenuazione" };
+
+	public YeastTableModel(Ricetta ricetta) {
+		this.ricetta = ricetta;
+		this.columnNames = cN;
 	}
-	return null;
-    }
-    @Override
-    public void setValueAt(Object value, int row, int col) {
-	if(this.dataValues.get(row)!=null){
-	    
-	    Yeast h=(this.dataValues.get(row));
-	    Class<? extends Object> cl=h.getClass();
-	    try{
-		Method g=cl.getMethod("get"+Utils.capitalize(this.fieldNames[col]));
-		Method m=cl.getMethod("set"+Utils.capitalize(this.fieldNames[col]),g.getReturnType());
-		Class<? extends Object> ret=g.getReturnType();
-		m.invoke(h, ret.cast(value));
-	    } catch(Exception e){
-		Utils.showException(e,ricetta);
-	    }
-	    fireTableCellUpdated(row, col);
+
+	String fieldNames[] = { "Codice", "Produttore", "Nome", "Note", "AttenuazioneMed" };
+
+	@Override
+	public Object getValueAt(int row, int col) {
+		Yeast h = this.dataValues.get(row);
+		try {
+			Method m = h.getClass().getMethod("get" + Utils.capitalize(this.fieldNames[col]));
+			return m.invoke(h);
+		} catch (Exception e) {
+			Utils.showException(e, "Il file " + Main.stiliXML + " non corrisponde al formato.", ricetta);
+		}
+		return null;
 	}
-    }
-    
-    
-    @Override
-    public boolean isCellEditable(int row, int col){
-	return true;
-    }
-    
+
+	@Override
+	public void setValueAt(Object value, int row, int col) {
+		if (this.dataValues.get(row) != null) {
+
+			Yeast h = (this.dataValues.get(row));
+			Class<? extends Object> cl = h.getClass();
+			try {
+				Method g = cl.getMethod("get" + Utils.capitalize(this.fieldNames[col]));
+				Method m = cl.getMethod("set" + Utils.capitalize(this.fieldNames[col]), g.getReturnType());
+				Class<? extends Object> ret = g.getReturnType();
+				m.invoke(h, ret.cast(value));
+			} catch (Exception e) {
+				Utils.showException(e, ricetta);
+			}
+			fireTableCellUpdated(row, col);
+		}
+	}
+
+	@Override
+	public boolean isCellEditable(int row, int col) {
+		return true;
+	}
+
 }

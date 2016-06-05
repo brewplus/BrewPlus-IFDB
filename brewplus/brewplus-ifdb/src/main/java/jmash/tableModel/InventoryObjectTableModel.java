@@ -18,7 +18,6 @@
  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-
 package jmash.tableModel;
 
 import jmash.interfaces.InventoryObject;
@@ -27,61 +26,63 @@ import jmash.interfaces.InventoryObject;
  *
  * @author Alessandro
  */
-public class InventoryObjectTableModel extends GenericTableModel<InventoryObject>{
-    
-    public InventoryObjectTableModel() {
-	this.columnNames = new String[]{"", "Nome", "Q.tà"};
-    }
-    
-    @Override
-    public Object getValueAt(int row, int col) {
-	InventoryObject h=this.dataValues.get(row);
-	if(h!=null){
-	    switch(col){
+public class InventoryObjectTableModel extends GenericTableModel<InventoryObject> {
+
+	public InventoryObjectTableModel() {
+		this.columnNames = new String[] { "", "Nome", "Q.tà" };
+	}
+
+	@Override
+	public Object getValueAt(int row, int col) {
+		InventoryObject h = this.dataValues.get(row);
+		if (h != null) {
+			switch (col) {
+			case 0:
+				return h.isSelected();
+			case 1:
+				return h.getNome();
+			case 2:
+				return h.getGrammi();
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public Class<? extends Object> getColumnClass(int col) {
+		switch (col) {
 		case 0:
-		    return  h.isSelected();
+			return Boolean.class;
 		case 1:
-		    return h.getNome();
+			return String.class;
 		case 2:
-		    return  h.getGrammi();
-	    }
+			return Double.class;
+		}
+		return Object.class;
 	}
-	return null;
-    }
-    @Override
-    public Class<? extends Object> getColumnClass(int col) {
-	switch(col){
-	    case 0:
-		return  Boolean.class;
-	    case 1:
-		return String.class;
-	    case 2:
-		return  Double.class;
+
+	@Override
+	public boolean isCellEditable(int row, int col) {
+		return col == 0;
 	}
-	return Object.class;
-    }
-    @Override
-    public boolean isCellEditable(int row, int col){
-	return col==0;
-    }
-    
-    @Override
-    public void setValueAt(Object value, int row, int col) {
-	if(this.dataValues.get(row)!=null){
-	    InventoryObject h=(this.dataValues.get(row));
-	    boolean flag=false;
-	    switch(col){
-		case 0:
-		    h.setSelected((Boolean)value); break;
-		default:
-		    break;
-	    }
-	    fireTableCellUpdated(row, col);
-	    if(flag) {
-		fireTableDataChanged();
-	    }
+
+	@Override
+	public void setValueAt(Object value, int row, int col) {
+		if (this.dataValues.get(row) != null) {
+			InventoryObject h = (this.dataValues.get(row));
+			boolean flag = false;
+			switch (col) {
+			case 0:
+				h.setSelected((Boolean) value);
+				break;
+			default:
+				break;
+			}
+			fireTableCellUpdated(row, col);
+			if (flag) {
+				fireTableDataChanged();
+			}
+		}
 	}
-    }
-    
-    
+
 }

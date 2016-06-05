@@ -18,28 +18,31 @@ import org.jfree.ui.ApplicationFrame;
  *
  * @author Alessandro
  */
-public class TestHotEQ  extends ApplicationFrame{
-    
-    /** Creates a new instance of TestHotEQ */
-    public TestHotEQ(String s) {
-	super(s);
-    }
-    private static cHotEqn viewer=new cHotEqn();
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-	TestHotEQ demo=new TestHotEQ("Test");
-	
-	JPanel pnl=new JPanel();
-	pnl.setLayout(new BorderLayout());
-	pnl.add(viewer, BorderLayout.CENTER);
-	demo.setContentPane(pnl);
-	demo.pack();
-	
-	String eq="3.5*x+\\frac{5}{x+y}+4";
-	viewer.setEquation(eq);
-	demo.setVisible(true);
-    }
-    
+public class TestHotEQ extends ApplicationFrame {
+
+	/** Creates a new instance of TestHotEQ */
+	public TestHotEQ(String s) {
+		super(s);
+	}
+
+	private static cHotEqn viewer = new cHotEqn();
+
+	/**
+	 * @param args
+	 *            the command line arguments
+	 */
+	public static void main(String[] args) {
+		TestHotEQ demo = new TestHotEQ("Test");
+
+		JPanel pnl = new JPanel();
+		pnl.setLayout(new BorderLayout());
+		pnl.add(viewer, BorderLayout.CENTER);
+		demo.setContentPane(pnl);
+		demo.pack();
+
+		String eq = "3.5*x+\\frac{5}{x+y}+4";
+		viewer.setEquation(eq);
+		demo.setVisible(true);
+	}
+
 }

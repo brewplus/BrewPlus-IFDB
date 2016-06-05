@@ -30,22 +30,18 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 
 public class JTableButtonRenderer implements TableCellRenderer {
-  private TableCellRenderer __defaultRenderer;
+	private TableCellRenderer __defaultRenderer;
 
-  public JTableButtonRenderer(TableCellRenderer renderer) {
-    this.__defaultRenderer = renderer;
-  }
-
-    @Override
-  public Component getTableCellRendererComponent(JTable table, Object value,
-						 boolean isSelected,
-						 boolean hasFocus,
-						 int row, int column)
-  {
-    if(value instanceof Component) {
-		return (Component)value;
+	public JTableButtonRenderer(TableCellRenderer renderer) {
+		this.__defaultRenderer = renderer;
 	}
-    return this.__defaultRenderer.getTableCellRendererComponent(
-	   table, value, isSelected, hasFocus, row, column);
-  }
+
+	@Override
+	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
+			int row, int column) {
+		if (value instanceof Component) {
+			return (Component) value;
+		}
+		return this.__defaultRenderer.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+	}
 }

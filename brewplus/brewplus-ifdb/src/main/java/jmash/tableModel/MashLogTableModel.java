@@ -18,7 +18,6 @@
  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-
 package jmash.tableModel;
 
 import java.lang.reflect.Method;
@@ -28,63 +27,66 @@ import jmash.*;
  *
  * @author Alessandro
  */
-public class MashLogTableModel extends GenericTableModel<TLog>{
-    
-    public MashLogTableModel() {
-        this.columnNames=new String[]  {    "Minuto", "°C", "pH" };
-    }
-    
-    
-    Ricetta ricetta;
-    PanelMashLog panel;
-    public MashLogTableModel(Ricetta ricetta) {
-        this();
-        this.ricetta=ricetta;
-    }
-    public MashLogTableModel(PanelMashLog panel) {
-        this();
-        this.panel=panel;
-    }
-    
-    String fieldNames[] = {   "Minuto", "Temperatura", "PH"};
-    
-    public void removeAll(){
-        this.dataValues.clear();
-        fireTableDataChanged();
-    }
-    
-    @Override
-    public Object getValueAt(int row, int col) {
-        TLog h=this.dataValues.get(row);
-        try{
-            Method m=h.getClass().getMethod("get"+Utils.capitalize(this.fieldNames[col]));
-            return m.invoke(h);
-        } catch(Exception e){
-            Utils.showException(e);
-        }
-        return null;
-    }
-    @Override
-    public void setValueAt(Object value, int row, int col) {
-        if(this.dataValues.get(row)!=null){
-            
-            TLog h=(this.dataValues.get(row));
-            Class<? extends Object> cl=h.getClass();
-            try{
-                Method g=cl.getMethod("get"+Utils.capitalize(this.fieldNames[col]));
-                Method m=cl.getMethod("set"+Utils.capitalize(this.fieldNames[col]),g.getReturnType());
-                Class<? extends Object> ret=g.getReturnType();
-                m.invoke(h, ret.cast(value));
-            } catch(Exception e){
-                Utils.showException(e);
-            }
-            fireTableCellUpdated(row, col);
-            this.panel.logModificato();
-        }
-    }    
-    @Override
-    public boolean isCellEditable(int row, int col){
-        //if(row>0)return col==0||col>1;
-        return true;
-    }    
+public class MashLogTableModel extends GenericTableModel<TLog> {
+
+	public MashLogTableModel() {
+		this.columnNames = new String[] { "Minuto", "°C", "pH" };
+	}
+
+	Ricetta ricetta;
+	PanelMashLog panel;
+
+	public MashLogTableModel(Ricetta ricetta) {
+		this();
+		this.ricetta = ricetta;
+	}
+
+	public MashLogTableModel(PanelMashLog panel) {
+		this();
+		this.panel = panel;
+	}
+
+	String fieldNames[] = { "Minuto", "Temperatura", "PH" };
+
+	public void removeAll() {
+		this.dataValues.clear();
+		fireTableDataChanged();
+	}
+
+	@Override
+	public Object getValueAt(int row, int col) {
+		TLog h = this.dataValues.get(row);
+		try {
+			Method m = h.getClass().getMethod("get" + Utils.capitalize(this.fieldNames[col]));
+			return m.invoke(h);
+		} catch (Exception e) {
+			Utils.showException(e);
+		}
+		return null;
+	}
+
+	@Override
+	public void setValueAt(Object value, int row, int col) {
+		if (this.dataValues.get(row) != null) {
+
+			TLog h = (this.dataValues.get(row));
+			Class<? extends Object> cl = h.getClass();
+			try {
+				Method g = cl.getMethod("get" + Utils.capitalize(this.fieldNames[col]));
+				Method m = cl.getMethod("set" + Utils.capitalize(this.fieldNames[col]), g.getReturnType());
+				Class<? extends Object> ret = g.getReturnType();
+				m.invoke(h, ret.cast(value));
+			} catch (Exception e) {
+				Utils.showException(e);
+			}
+			fireTableCellUpdated(row, col);
+			this.panel.logModificato();
+		}
+	}
+
+	@Override
+	public boolean isCellEditable(int row, int col) {
+		// if(row>0)return col==0||col>1;
+		return true;
+	}
 }

@@ -16,52 +16,60 @@ import java.text.Format;
  *
  * @author Alessandro
  */
-public class NumberFormatter extends DecimalFormat{
-    
-    public NumberFormatter(String s){
-	super(s);
-    }
-    
-    public String nullFormat(Object obj){
-	if(obj==null)return "";
-	return format(obj);
-    }
+public class NumberFormatter extends DecimalFormat {
 
-    private static Format DF00 = new DecimalFormat("0");
-    private static Format DF01 = new DecimalFormat("0.0");
-    private static Format DF02 = new DecimalFormat("0.00");    
-    private static Format DF03 = new DecimalFormat("0.000");
-    
-    public static String format00(Object obj){
-	if(obj==null)return "";
-	try{
-	    return DF00.format(obj);
-	}catch(Exception ex){
-	    return "";
+	public NumberFormatter(String s) {
+		super(s);
 	}
-    }
-    public static String format01(Object obj){
-	if(obj==null)return "";
-	try{
-	    return DF01.format(obj);
-	}catch(Exception ex){
-	    return "";
+
+	public String nullFormat(Object obj) {
+		if (obj == null)
+			return "";
+		return format(obj);
 	}
-    }    
-    public static String format02(Object obj){
-	if(obj==null)return "";
-	try{
-	    return DF02.format(obj);
-	}catch(Exception ex){
-	    return "";
+
+	private static Format DF00 = new DecimalFormat("0");
+	private static Format DF01 = new DecimalFormat("0.0");
+	private static Format DF02 = new DecimalFormat("0.00");
+	private static Format DF03 = new DecimalFormat("0.000");
+
+	public static String format00(Object obj) {
+		if (obj == null)
+			return "";
+		try {
+			return DF00.format(obj);
+		} catch (Exception ex) {
+			return "";
+		}
 	}
-    }    
-    public static String format03(Object obj){
-	if(obj==null)return "";
-	try{
-	    return DF03.format(obj);
-	}catch(Exception ex){
-	    return "";
+
+	public static String format01(Object obj) {
+		if (obj == null)
+			return "";
+		try {
+			return DF01.format(obj);
+		} catch (Exception ex) {
+			return "";
+		}
 	}
-    }
+
+	public static String format02(Object obj) {
+		if (obj == null)
+			return "";
+		try {
+			return DF02.format(obj);
+		} catch (Exception ex) {
+			return "";
+		}
+	}
+
+	public static String format03(Object obj) {
+		if (obj == null)
+			return "";
+		try {
+			return DF03.format(obj);
+		} catch (Exception ex) {
+			return "";
+		}
+	}
 }

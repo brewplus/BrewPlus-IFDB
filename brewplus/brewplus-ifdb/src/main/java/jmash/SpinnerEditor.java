@@ -33,41 +33,42 @@ import javax.swing.table.TableCellEditor;
  * @author Alessandro
  */
 
-public class SpinnerEditor extends AbstractCellEditor
-        implements TableCellEditor {
-    /**
+public class SpinnerEditor extends AbstractCellEditor implements TableCellEditor {
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5561494234490223938L;
 	final JSpinner spinner = new JSpinner();
 
-    // Initializes the spinner.
-    public SpinnerEditor(/*String[] items*/) {
-        /*spinner.setModel(new SpinnerListModel(java.util.Arrays.asList(items)));*/
-    }
+	// Initializes the spinner.
+	public SpinnerEditor(/* String[] items */) {
+		/*
+		 * spinner.setModel(new
+		 * SpinnerListModel(java.util.Arrays.asList(items)));
+		 */
+	}
 
-    // Prepares the spinner component and returns it.
-    @Override
-    public Component getTableCellEditorComponent(JTable table, Object value,
-            boolean isSelected, int row, int column) {
-        this.spinner.setValue(value);
+	// Prepares the spinner component and returns it.
+	@Override
+	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+		this.spinner.setValue(value);
 
-        return this.spinner;
+		return this.spinner;
 
-    }
+	}
 
-    // Enables the editor only for double-clicks.
-    @Override
+	// Enables the editor only for double-clicks.
+	@Override
 	public boolean isCellEditable(EventObject evt) {
-        if (evt instanceof MouseEvent) {
-            return ((MouseEvent)evt).getClickCount() >= 1;
-        }
-        return true;
-    }
+		if (evt instanceof MouseEvent) {
+			return ((MouseEvent) evt).getClickCount() >= 1;
+		}
+		return true;
+	}
 
-    // Returns the spinners current value.
-    @Override
-    public Object getCellEditorValue() {
-        return this.spinner.getValue();
-    }
+	// Returns the spinners current value.
+	@Override
+	public Object getCellEditorValue() {
+		return this.spinner.getValue();
+	}
 }

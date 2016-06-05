@@ -27,19 +27,20 @@ import jmash.Utils;
  */
 public class Unicode extends JFrame {
 
-  /** "main program" method - construct and show */
-  public static void main(String[] av) {
-      new BrowseBrewMonkey();
-	RecipeData R=new RecipeData();
-	R.setNome(getAll());
-	R.setNote(getAll());	
-	Utils.saveXmlAsFile(R.toXml(),new File("C:/test.xml"),new JInternalFrame());
-	R.read(Utils.readFileAsXml("C:/test.xml"));
-  }
-    private static String getAll(){
-	String s="";
-	for(int i=100;i<3000;i++)
-	s+=(char) i;
-	return s;
-    }
+	/** "main program" method - construct and show */
+	public static void main(String[] av) {
+		new BrowseBrewMonkey();
+		RecipeData R = new RecipeData();
+		R.setNome(getAll());
+		R.setNote(getAll());
+		Utils.saveXmlAsFile(R.toXml(), new File("C:/test.xml"), new JInternalFrame());
+		R.read(Utils.readFileAsXml("C:/test.xml"));
+	}
+
+	private static String getAll() {
+		String s = "";
+		for (int i = 100; i < 3000; i++)
+			s += (char) i;
+		return s;
+	}
 }

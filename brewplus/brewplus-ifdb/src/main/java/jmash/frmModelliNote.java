@@ -50,11 +50,10 @@ public class frmModelliNote extends javax.swing.JInternalFrame {
 	 * 
 	 */
 	private final JPanel contentPanel = new JPanel();
-	private JEditorPane txtNoteA; 
-	private JEditorPane txtNoteB; 
+	private JEditorPane txtNoteA;
+	private JEditorPane txtNoteB;
 
-	public frmModelliNote() 
-	{
+	public frmModelliNote() {
 		this.setTitle("Gestione modelli delle note");
 		setResizable(false);
 		setBounds(100, 100, 515, 386);
@@ -63,27 +62,27 @@ public class frmModelliNote extends javax.swing.JInternalFrame {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		
+
 		JLabel lblOgInPentola = new JLabel("Testo predefinito Note cotta:");
 		lblOgInPentola.setBounds(10, 11, 497, 14);
 		contentPanel.add(lblOgInPentola);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 28, 487, 126);
 		contentPanel.add(scrollPane);
-		
-		txtNoteA= new JEditorPane();
+
+		txtNoteA = new JEditorPane();
 		txtNoteA.setToolTipText("Il testo qui digitato verr\u00E0 automaticamente applicato ad ogni nuova cotta");
 		scrollPane.setViewportView(txtNoteA);
-		
+
 		JLabel lblTestoPredefinitoNote = new JLabel("Testo predefinito Note fermentazione:");
 		lblTestoPredefinitoNote.setBounds(10, 175, 497, 14);
 		contentPanel.add(lblTestoPredefinitoNote);
-		
+
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(10, 190, 487, 126);
 		contentPanel.add(scrollPane_1);
-		
+
 		txtNoteB = new JEditorPane();
 		txtNoteB.setToolTipText("Il testo qui digitato verr\u00E0 automaticamente applicato ad ogni nuova cotta");
 		scrollPane_1.setViewportView(txtNoteB);
@@ -99,7 +98,7 @@ public class frmModelliNote extends javax.swing.JInternalFrame {
 						dispose();
 					}
 				});
-				
+
 				JButton cmdSave = new JButton("Salva");
 				cmdSave.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -112,60 +111,55 @@ public class frmModelliNote extends javax.swing.JInternalFrame {
 				getRootPane().setDefaultButton(okButton);
 			}
 		}
-		
+
 		LoadNote();
-		
-	}
-	
-	private void SaveNote()
-	{
-		try
-		{
-			BufferedWriter writer = new BufferedWriter( new FileWriter( "config/NoteA.note"));
-			writer.write(txtNoteA.getText().trim());
-			writer.close();
-		}
-		catch(Exception ex){}
-		try
-		{
-			BufferedWriter writer = new BufferedWriter( new FileWriter( "config/NoteB.note"));
-			writer.write(txtNoteB.getText().trim());
-			writer.close();
-		}
-		catch(Exception ex){}
-	}
-	
-	private void LoadNote()
-	{
-		try {
-			BufferedReader br = new BufferedReader(new FileReader("config/NoteA.note"));
-            StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
-            while (line != null) {
-                sb.append(line);
-                sb.append("\n");
-                line = br.readLine();
-            	}
-           txtNoteA.setText(sb.toString());
-           br.close();
-            }
-            catch(Exception ex){}
-		
-		try {
-			BufferedReader br = new BufferedReader(new FileReader("config/NoteB.note"));
-            StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
-            while (line != null) {
-                sb.append(line);
-                sb.append("\n");
-                line = br.readLine();
-            	}
-           txtNoteB.setText(sb.toString());
-           br.close();
-            }
-            catch(Exception ex){}
-            
 
 	}
-	
+
+	private void SaveNote() {
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter("config/NoteA.note"));
+			writer.write(txtNoteA.getText().trim());
+			writer.close();
+		} catch (Exception ex) {
+		}
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter("config/NoteB.note"));
+			writer.write(txtNoteB.getText().trim());
+			writer.close();
+		} catch (Exception ex) {
+		}
+	}
+
+	private void LoadNote() {
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("config/NoteA.note"));
+			StringBuilder sb = new StringBuilder();
+			String line = br.readLine();
+			while (line != null) {
+				sb.append(line);
+				sb.append("\n");
+				line = br.readLine();
+			}
+			txtNoteA.setText(sb.toString());
+			br.close();
+		} catch (Exception ex) {
+		}
+
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("config/NoteB.note"));
+			StringBuilder sb = new StringBuilder();
+			String line = br.readLine();
+			while (line != null) {
+				sb.append(line);
+				sb.append("\n");
+				line = br.readLine();
+			}
+			txtNoteB.setText(sb.toString());
+			br.close();
+		} catch (Exception ex) {
+		}
+
+	}
+
 }

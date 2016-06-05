@@ -47,7 +47,6 @@ package jmash.test;
  *
  */
 
-
 import java.awt.Dimension;
 
 import org.jfree.chart.ChartFactory;
@@ -63,89 +62,90 @@ import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 
 /**
- * <code>PolarChartDemo</code> demonstrates the capabilities of the {@link PolarPlot}.
+ * <code>PolarChartDemo</code> demonstrates the capabilities of the
+ * {@link PolarPlot}.
  * 
- * @author  Daniel Bridenbecker, Solution Engineering, Inc.
+ * @author Daniel Bridenbecker, Solution Engineering, Inc.
  */
 public class PolarChartDemo extends ApplicationFrame {
-    
-    /**
-     * Creates a new instance of the demo.
-     * 
-     * @param title  the frame title.
-     */
-    public PolarChartDemo(final String title) {
-        super(title);
-        final XYDataset dataset = createDataset();
-        final JFreeChart chart = createChart(dataset);
-        final ChartPanel chartPanel = new PolarChartPanel(chart);
-        chartPanel.setPreferredSize(new Dimension(500, 270));
-        chartPanel.setEnforceFileExtensions(false);
-        setContentPane(chartPanel);
-    }
-    
-    /**
-     * Creates a sample dataset.
-     * 
-     * @return A sample dataset.
-     */
-    private XYDataset createDataset() {    
-        final XYSeriesCollection data = new XYSeriesCollection();
-        final XYSeries series1 = createRandomData("Series 1", 5.0, 360.0/8);
-        final XYSeries series2 = createRandomData("Series 2", 5.0, 360.0/8);
-        final XYSeries series3 = createRandomData("Series 3", 5.0, 360.0/8);
-        data.addSeries(series1);
-        data.addSeries(series2);
-        data.addSeries(series3);
 
-	
-        return data;
-    }
-    
-    /**
-     * Creates a sample chart.
-     * 
-     * @param dataset  the dataset.
-     * 
-     * @return A sample chart.
-     */
-    private JFreeChart createChart(final XYDataset dataset) {
-        final JFreeChart chart = ChartFactory.createPolarChart(
-            "Polar Chart Demo", dataset, true, true, false
-        ); 
-        final PolarPlot plot = (PolarPlot) chart.getPlot();
+	/**
+	 * Creates a new instance of the demo.
+	 * 
+	 * @param title
+	 *            the frame title.
+	 */
+	public PolarChartDemo(final String title) {
+		super(title);
+		final XYDataset dataset = createDataset();
+		final JFreeChart chart = createChart(dataset);
+		final ChartPanel chartPanel = new PolarChartPanel(chart);
+		chartPanel.setPreferredSize(new Dimension(500, 270));
+		chartPanel.setEnforceFileExtensions(false);
+		setContentPane(chartPanel);
+	}
 
-        final DefaultPolarItemRenderer renderer = (DefaultPolarItemRenderer) plot.getRenderer();
-plot.setBackgroundAlpha(0.3f);
-        renderer.setSeriesFilled(0, true);
-	renderer.setSeriesFilled(2, true);
-	renderer.setSeriesFilled(1, true);
-        return chart;
-    }
-    
-    /**
-     * Creates a series containing random data.
-     * 
-     * @param name  the series name.
-     * @param baseRadius  the base radius.
-     * @param thetaInc  the angle increment.
-     * 
-     * @return The series.
-     */
-    private static XYSeries createRandomData(final String name, 
-                                             final double baseRadius, 
-                                             final double thetaInc) {
-        final XYSeries series = new XYSeries(name);
-        for (double theta = 0.0; theta < 360.0; theta += thetaInc) {
-            final double radius = 1+baseRadius * (Math.random());
-            series.add(theta, radius);
-        }
-        return series;
-    }
-    
-    public static void main(String[] args) {
-	 PolarChartDemo demo = new PolarChartDemo("Polar Chart Demo");
-        demo.pack();
-        demo.setVisible(true);
-    }
+	/**
+	 * Creates a sample dataset.
+	 * 
+	 * @return A sample dataset.
+	 */
+	private XYDataset createDataset() {
+		final XYSeriesCollection data = new XYSeriesCollection();
+		final XYSeries series1 = createRandomData("Series 1", 5.0, 360.0 / 8);
+		final XYSeries series2 = createRandomData("Series 2", 5.0, 360.0 / 8);
+		final XYSeries series3 = createRandomData("Series 3", 5.0, 360.0 / 8);
+		data.addSeries(series1);
+		data.addSeries(series2);
+		data.addSeries(series3);
+
+		return data;
+	}
+
+	/**
+	 * Creates a sample chart.
+	 * 
+	 * @param dataset
+	 *            the dataset.
+	 * 
+	 * @return A sample chart.
+	 */
+	private JFreeChart createChart(final XYDataset dataset) {
+		final JFreeChart chart = ChartFactory.createPolarChart("Polar Chart Demo", dataset, true, true, false);
+		final PolarPlot plot = (PolarPlot) chart.getPlot();
+
+		final DefaultPolarItemRenderer renderer = (DefaultPolarItemRenderer) plot.getRenderer();
+		plot.setBackgroundAlpha(0.3f);
+		renderer.setSeriesFilled(0, true);
+		renderer.setSeriesFilled(2, true);
+		renderer.setSeriesFilled(1, true);
+		return chart;
+	}
+
+	/**
+	 * Creates a series containing random data.
+	 * 
+	 * @param name
+	 *            the series name.
+	 * @param baseRadius
+	 *            the base radius.
+	 * @param thetaInc
+	 *            the angle increment.
+	 * 
+	 * @return The series.
+	 */
+	private static XYSeries createRandomData(final String name, final double baseRadius, final double thetaInc) {
+		final XYSeries series = new XYSeries(name);
+		for (double theta = 0.0; theta < 360.0; theta += thetaInc) {
+			final double radius = 1 + baseRadius * (Math.random());
+			series.add(theta, radius);
+		}
+		return series;
+	}
+
+	public static void main(String[] args) {
+		PolarChartDemo demo = new PolarChartDemo("Polar Chart Demo");
+		demo.pack();
+		demo.setVisible(true);
+	}
 }

@@ -40,98 +40,102 @@ import org.xml.sax.InputSource;
  * @author Alessandro
  */
 public class XMLReader {
-	
-	private static Logger LOGGER = Logger.getLogger(XMLReader.class);
-    
-    /** Creates a new instance of ReadXML */
-    public static Document readXML(String file) throws JDOMException, IOException {
-	try{
-	    SAXBuilder builder = new SAXBuilder();
-	    String fileOri=new String(file);
-	    InputSource is = null;
-	    if(!file.startsWith("http://")) {
-	    file=new File(file).toURI().toString();
 
-//		if (!new File(fileOri).exists()) {
-//			// solo per esecuzioni per eclipse
-//			String currentDir = System.getProperty("user.dir");
-//			String currentParentDir = new File(currentDir).getParent();
-//			file = currentParentDir + "/brewplus-ifdb-distr/src/main/resources/distr/" + fileOri;
-//		}
-	
-		is=new InputSource(file);
-		is.setEncoding("UTF-8");
-	    } else{
-		is=new InputSource(file);
-		is.setEncoding("UTF-8");
-	    }
-	    try{
-		Document doc = builder.build(is);
-		return doc;
-	    } catch(JDOMException spe ){
-		is = new InputSource(new FileReader(new File(fileOri)));
-		is.setEncoding("ISO-8859-1");
-		Document doc = builder.build(is);
-		return doc;
-	    }
-	} catch(Exception ex){
-	    Utils.showMsg(
-		    "Buongiorno gentile utente!\n\nIl file che ha tentato di aprire (o uno dei file interni di BrewPlus) non corrisponde a quanto il programma e' in grado di interpretare.  Sarebbe particolarmente utile poter ricevere il file che avete appena tentato di aprire:\n\n"+file+"\n\nSaremmo molto lieti di riceverlo al seguente indirizzo email:\n\n brewplus@brewplus.t15.org\n\n in modo da correggere questo e futuri errori.\n\nGrazie per la pazienza e per la collaborazione!",
-		    new JInternalFrame()
-		    );
-	    Utils.showException(ex);
+	private static Logger LOGGER = Logger.getLogger(XMLReader.class);
+
+	/** Creates a new instance of ReadXML */
+	public static Document readXML(String file) throws JDOMException, IOException {
+		try {
+			SAXBuilder builder = new SAXBuilder();
+			String fileOri = new String(file);
+			InputSource is = null;
+			if (!file.startsWith("http://")) {
+				file = new File(file).toURI().toString();
+
+				// if (!new File(fileOri).exists()) {
+				// // solo per esecuzioni per eclipse
+				// String currentDir = System.getProperty("user.dir");
+				// String currentParentDir = new File(currentDir).getParent();
+				// file = currentParentDir +
+				// "/brewplus-ifdb-distr/src/main/resources/distr/" + fileOri;
+				// }
+
+				is = new InputSource(file);
+				is.setEncoding("UTF-8");
+			} else {
+				is = new InputSource(file);
+				is.setEncoding("UTF-8");
+			}
+			try {
+				Document doc = builder.build(is);
+				return doc;
+			} catch (JDOMException spe) {
+				is = new InputSource(new FileReader(new File(fileOri)));
+				is.setEncoding("ISO-8859-1");
+				Document doc = builder.build(is);
+				return doc;
+			}
+		} catch (Exception ex) {
+			Utils.showMsg(
+					"Buongiorno gentile utente!\n\nIl file che ha tentato di aprire (o uno dei file interni di BrewPlus) non corrisponde a quanto il programma e' in grado di interpretare.  Sarebbe particolarmente utile poter ricevere il file che avete appena tentato di aprire:\n\n"
+							+ file
+							+ "\n\nSaremmo molto lieti di riceverlo al seguente indirizzo email:\n\n brewplus@brewplus.t15.org\n\n in modo da correggere questo e futuri errori.\n\nGrazie per la pazienza e per la collaborazione!",
+					new JInternalFrame());
+			Utils.showException(ex);
+		}
+		return null;
 	}
-	return null;
-    }
-    public static Document XMLfromString(String str) throws JDOMException, IOException {
-	SAXBuilder builder = new SAXBuilder();
-	InputSource is =new InputSource(new StringReader(str));
-	is.setEncoding("UTF-8");
-	try{
-	    Document doc = builder.build(is);
-	    return doc;
-	}catch(JDOMException spe ){
-	    is = new InputSource(new StringReader(str));
-	    is.setEncoding("ISO-8859-1");
-	    Document doc = builder.build(is);
-	    return doc;
+
+	public static Document XMLfromString(String str) throws JDOMException, IOException {
+		SAXBuilder builder = new SAXBuilder();
+		InputSource is = new InputSource(new StringReader(str));
+		is.setEncoding("UTF-8");
+		try {
+			Document doc = builder.build(is);
+			return doc;
+		} catch (JDOMException spe) {
+			is = new InputSource(new StringReader(str));
+			is.setEncoding("ISO-8859-1");
+			Document doc = builder.build(is);
+			return doc;
+		}
 	}
-    }
-    public static void listChildren(Object o, int depth) {
-	
-	printSpaces(depth);
-	
-	if (o instanceof Element) {
-	    Element element = (Element) o;
-	    System.out.println("Element: " + element.getName());
-	    @SuppressWarnings("unchecked")
-	    Iterator iterator = element.getContent().iterator();
-	    while (iterator.hasNext()) {
-		Object child = iterator.next();
-		listChildren(child, depth+1);
-	    }
-	    @SuppressWarnings("unchecked")
-	    Iterator iterator2 = element.getAttributes().iterator();
-	    while (iterator2.hasNext()) {
-		Attribute att = (Attribute)iterator2.next();
+
+	public static void listChildren(Object o, int depth) {
+
 		printSpaces(depth);
-		System.out.println("\tatt: " + att.getQualifiedName()+"="+att.getValue());
-	    }
-	} else if (o instanceof Document) {
-	    System.out.println("Document");
-	    Document doc = (Document) o;
-	    @SuppressWarnings("unchecked")
-	    Iterator iterator = doc.getContent().iterator();
-	    while (iterator.hasNext()) {
-		Object child = iterator.next();
-		listChildren(child, depth+1);
-	    }
+
+		if (o instanceof Element) {
+			Element element = (Element) o;
+			System.out.println("Element: " + element.getName());
+			@SuppressWarnings("unchecked")
+			Iterator iterator = element.getContent().iterator();
+			while (iterator.hasNext()) {
+				Object child = iterator.next();
+				listChildren(child, depth + 1);
+			}
+			@SuppressWarnings("unchecked")
+			Iterator iterator2 = element.getAttributes().iterator();
+			while (iterator2.hasNext()) {
+				Attribute att = (Attribute) iterator2.next();
+				printSpaces(depth);
+				System.out.println("\tatt: " + att.getQualifiedName() + "=" + att.getValue());
+			}
+		} else if (o instanceof Document) {
+			System.out.println("Document");
+			Document doc = (Document) o;
+			@SuppressWarnings("unchecked")
+			Iterator iterator = doc.getContent().iterator();
+			while (iterator.hasNext()) {
+				Object child = iterator.next();
+				listChildren(child, depth + 1);
+			}
+		}
 	}
-    }
-    
-    private static void printSpaces(int n) {
-	for (int i = 0; i < n; i++) {
-	    System.out.print(' ');
+
+	private static void printSpaces(int n) {
+		for (int i = 0; i < n; i++) {
+			System.out.print(' ');
+		}
 	}
-    }
 }
