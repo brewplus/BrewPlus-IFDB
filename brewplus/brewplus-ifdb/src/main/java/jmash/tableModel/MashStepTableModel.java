@@ -21,9 +21,16 @@
 package jmash.tableModel;
 
 import java.lang.reflect.Method;
-import jmash.*;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
+
+import jmash.MashStep;
+import jmash.PanelMashStep;
+import jmash.Ricetta;
+import jmash.Utils;
 
 /**
  *
@@ -132,7 +139,7 @@ public class MashStepTableModel extends GenericTableModel<MashStep> {
 	}
 
 	public XYSeriesCollection getDataSet(XYSeriesCollection ds) {
-		XYSeries series1 = new XYSeries("");
+		XYSeries series1 = new XYSeries("", false, true );
 		int T = 0;
 		if (dataValues == null)
 			return ds;
@@ -141,12 +148,23 @@ public class MashStepTableModel extends GenericTableModel<MashStep> {
 		}
 		int start = 0;
 		MashStep prec = null;
+		Map<String, Integer> map = new HashMap<>();
 		for (MashStep h : this.dataValues) {
 			h.setStart(start);
 			if (prec != null) {
 				h.setStartTemp(prec.getEndTemp());
 			}
-			series1 = new XYSeries(h.getNome());
+			if (!map.containsKey(h.getNome()))
+			{
+				series1 = new XYSeries(h.getNome());
+				map.put(h.getNome(), 0);
+			}
+			else
+			{
+				int count = map.get(h.getNome()) + 1;
+				series1 = new XYSeries(h.getNome() +  "_" + count);
+				map.put(h.getNome(), count);
+			}
 			series1.add(start, h.getStartTemp());
 			series1.add(start + h.getRamp(), h.getEndTemp());
 			series1.add(start + h.getLength() + h.getRamp(), h.getEndTemp());
@@ -158,4 +176,18 @@ public class MashStepTableModel extends GenericTableModel<MashStep> {
 		// ds.addSeries(series1);
 		return ds;
 	}
+	
+	private String findName(XYSeriesCollection ds, String name)
+	{
+		String baseName = name;
+		int i = 0;
+		while (true)
+		{
+			if (ds.getSeries(name) != null)
+			{
+				
+			}
+		}
+	}
+	
 }

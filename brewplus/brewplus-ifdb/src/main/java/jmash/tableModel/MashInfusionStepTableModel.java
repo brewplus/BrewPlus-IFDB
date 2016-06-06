@@ -21,6 +21,9 @@
 package jmash.tableModel;
 
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
+
 import jmash.*;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
@@ -141,9 +144,20 @@ public class MashInfusionStepTableModel extends GenericTableModel<MashStep> {
 		}
 		int start = 0;
 		MashStep prec = null;
+		Map<String, Integer> map = new HashMap<>();
 		for (MashStep h : this.dataValues) {
 
-			series1 = new XYSeries("");
+			if (!map.containsKey(h.getNome()))
+			{
+				series1 = new XYSeries(h.getNome());
+				map.put(h.getNome(), 0);
+			}
+			else
+			{
+				int count = map.get(h.getNome()) + 1;
+				series1 = new XYSeries(h.getNome() +  "_" + count);
+				map.put(h.getNome(), count);
+			}
 			series1.add(h.getStart(), h.getInfusionTemp());
 			series1.add(h.getStart() + h.getRamp(), h.getInfusionTemp());
 
