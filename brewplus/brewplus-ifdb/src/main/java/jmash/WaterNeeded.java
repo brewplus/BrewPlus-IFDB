@@ -880,7 +880,7 @@ public class WaterNeeded extends javax.swing.JInternalFrame {
 		jPanel5.add(jPanel8, gridBagConstraints);
 
 		jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Risultati"));
-		jPanel9.setPreferredSize(new java.awt.Dimension(250, 128));
+		jPanel9.setPreferredSize(new java.awt.Dimension(265, 128));
 		jPanel9.setLayout(new java.awt.GridBagLayout());
 
 		jLabel41.setText("Usata nel mash");
@@ -1213,7 +1213,7 @@ public class WaterNeeded extends javax.swing.JInternalFrame {
 		jPanel6.add(jPanel11, gridBagConstraints);
 
 		jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder("Risultati"));
-		jPanel12.setPreferredSize(new java.awt.Dimension(250, 128));
+		jPanel12.setPreferredSize(new java.awt.Dimension(265, 128));
 		jPanel12.setLayout(new java.awt.GridBagLayout());
 
 		jLabel63.setText("Densità pre-boll.");
