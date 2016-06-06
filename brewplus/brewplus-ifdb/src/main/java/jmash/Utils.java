@@ -904,6 +904,12 @@ public class Utils {
 		try {
 			jaxbContext = JAXBContext.newInstance(Styleguide.class);
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+//			if (!new File(bjcpStylesXML).exists()) {
+//				// solo per esecuzioni per eclipse
+//				String currentDir = System.getProperty("user.dir");
+//				String currentParentDir = new File(currentDir).getParent();
+//				bjcpStylesXML = currentParentDir + "/brewplus-ifdb-distr/src/main/resources/distr/" + bjcpStylesXML;
+//			}
 			bjcp = (Styleguide) jaxbUnmarshaller.unmarshal(new File(bjcpStylesXML));
 			LOGGER.info("Loaded BJCP revision: "
 					+ bjcp.getClazz().get(0).getIntroduction().get(0).getRevision().getValue());
