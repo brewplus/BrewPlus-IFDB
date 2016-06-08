@@ -428,15 +428,15 @@ public class BrewStyle implements XmlAble {
 	}
 
 	public String getDesIBU() {
-		return " IBU:\t" + this.ibuMin + "- " + this.ibuMax + "";
+		return this.ibuMin + "- " + this.ibuMax + "";
 	}
 
 	public String getDesOG() {
-		return " OG:\t" + this.ogMin + " - " + this.ogMax + "";
+		return this.ogMin + " - " + this.ogMax + "";
 	}
 
 	public String getDesFG() {
-		return " FG:\t" + this.fgMin + " - " + this.fgMax + "";
+		return this.fgMin + " - " + this.fgMax + "";
 	}
 
 	@Override

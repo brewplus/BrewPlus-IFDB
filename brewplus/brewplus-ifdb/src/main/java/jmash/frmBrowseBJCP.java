@@ -23,12 +23,15 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeSelectionModel;
 
+import org.apache.log4j.Logger;
+
 public class frmBrowseBJCP extends JInternalFrame {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -7022521704441783121L;
+	private static Logger LOGGER = Logger.getLogger(frmBrowseBJCP.class);
 	JInternalFrame parent;
 	JTextPane textPane = new JTextPane();
 	private JTree tree_1;
@@ -118,23 +121,41 @@ public class frmBrowseBJCP extends JInternalFrame {
 	}
 
 	private void displayStile(BrewStyle bs) {
+	    
+
+        textPane.setContentType("text/html");
+        textPane.setEditable(false);
+	    
+	    LOGGER.debug("Dispalying stile: " + bs.getDesCategoria());
+	    
 		StringBuilder sb = new StringBuilder();
-		sb.append(bs.getDesCategoria() + "\n\n");
-		sb.append("Aroma:\n" + bs.getAroma() + "\n\n");
-		sb.append("Appearance:\n" + bs.getAppearance() + "\n\n");
-		sb.append("Flavor:\n" + bs.getFlavor() + "\n\n");
-		sb.append("Mouthfeel:\n" + bs.getMouthfeel() + "\n\n");
-		sb.append("Impression:\n" + bs.getImpression() + "\n\n");
-		sb.append("Comments:\n" + bs.getComments() + "\n\n");
-		sb.append("Ingredients:\n" + bs.getIngredients() + "\n\n");
-		sb.append("Examples:\n" + bs.getExamples() + "\n\n");
-		sb.append(bs.getDesIBU().replace(".", ",") + "\n");
-		sb.append(bs.getDesOG().replace(".", ",") + "\n");
-		sb.append(bs.getDesFG().replace(".", ",") + "\n\n");
+		sb.append("<html><head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}th, td {padding: 5px;}</style></head><body>");
+		sb.append("<h1>"+bs.getDesCategoria() + "</h1><br><br>");
+		sb.append("<b>Aroma:</b><br>" + bs.getAroma() + "<br><br>");
+		sb.append("<b>Appearance:</b><br>" + bs.getAppearance() + "<br><br>");
+		sb.append("<b>Flavor:</b><br>" + bs.getFlavor() + "<br><br>");
+		sb.append("<b>Mouthfeel:</b><br>" + bs.getMouthfeel() + "<br><br>");
+		sb.append("<b>Impression:</b><br>" + bs.getImpression() + "<br><br>");
+		sb.append("<b>Comments:</b><br>" + bs.getComments() + "<br><br>");
+		sb.append("<b>Ingredients:</b><br>" + bs.getIngredients() + "<br><br>");
+		sb.append("<b>Examples:</b><br>" + bs.getExamples() + "<br><br>");
+	    sb.append("<b>Category Notes:</b><br>" + bs.getCatNotes() + "<br><br>");
+		
+		sb.append("<table style=\"width:200\">");
+		sb.append("<tr>");
+		sb.append("<td><b>IBU</b></td><td>"+bs.getDesIBU().replace(".", ",")+"</td>");
+		sb.append("</tr><tr>");
+		sb.append("<td><b>OG</b></td><td>"+bs.getDesOG().replace(".", ",")+"</td>");
+		sb.append("</tr><tr>");
+		sb.append("<td><b>FG</b></td><td>"+bs.getDesFG().replace(".", ",")+"</td>");
+		sb.append("</tr></table>");
 
-		sb.append("Category Notes:\n" + bs.getCatNotes() + "\n\n");
 
-		textPane.setText(sb.toString());
+		
+		sb.append("</body></html>");
+
+        textPane.setText(sb.toString());
+
 	}
 
 	private void InitForm() {
