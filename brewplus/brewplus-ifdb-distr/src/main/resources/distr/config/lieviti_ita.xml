@@ -24,104 +24,150 @@
   <jmash.YeastType nome="SafLager S-23" codice="S-23" produttore="Fermentis" descrizione="Questo lievito è utilizzato dalle birrerie commerciali dell’Europa orientale e produce lager con delle leggere note fruttate."/>
   <jmash.YeastType nome="SafLager S-189" codice="S-189" produttore="Fermentis" descrizione="Originario dalla birreria Hurlimann in Svizzera, questo ceppo molto popolare viene utilizzato da un grande numero di birrerie."/>
   <jmash.YeastType nome="SafLager W-34/70" codice="W-34/70" produttore="Fermentis" descrizione="Questo famoso ceppo di lievito dalla Weihenstephan in Germania permette di produrre birre beverine con un ottimo bilanciamento tra floreale e fruttato."/>
-  <jmash.YeastType nome="London" codice="" produttore="Lallemand" descrizione=""/>
-  <jmash.YeastType nome="Manchester" codice="" produttore="Lallemand" descrizione="Sensory contribution in the tradition of English style ale"/>
-  <jmash.YeastType nome="Nottingham" codice="" produttore="Lallemand" descrizione="Neutral for Ale yeast, allowing for malty profile."/>
-  <jmash.YeastType nome="Windsor" codice="" produttore="Lallemand" descrizione="Ales are described as full-bodied, fruity English Ales."/>
-  <jmash.YeastType nome="California Ale yeast" codice="WLP001" produttore="White Labs" descrizione="Use for almost any ale."/>
-  <jmash.YeastType nome="English Ale yeast" codice="WLP002" produttore="White Labs" descrizione="Best for English style ales, Milds, Bitters, Porters, Stout"/>
-  <jmash.YeastType nome="German Ale III t III" codice="WLP003" produttore="White Labs" descrizione="Does not ferment well below 62 F"/>
-  <jmash.YeastType nome="Irish Stout yeast" codice="WLP004" produttore="White Labs" descrizione="Great for Irish Ales, Stouts, Porters, Browns, Reds."/>
-  <jmash.YeastType nome="British Ale yeast" codice="WLP005" produttore="White Labs" descrizione="Excellent for all English Style Ales."/>
-  <jmash.YeastType nome="Bedford British Ale" codice="WLP006" produttore="White Labs" descrizione="Good choice for most English style ales."/>
-  <jmash.YeastType nome="Dry English Ale" codice="WLP007" produttore="White Labs" descrizione="Well suited for high gravity beers."/>
-  <jmash.YeastType nome="East Coast/Alt Ale yeast" codice="WLP008" produttore="White Labs" descrizione="Great for golden, blonde, honey and German Alt styles."/>
-  <jmash.YeastType nome="Australian Ale" codice="WLP009" produttore="White Labs" descrizione="Can ferment clean and successfully at higher temps."/>
-  <jmash.YeastType nome="European Ale" codice="WLP011" produttore="White Labs" descrizione="Good for Alt, Kolsch, malty English ales and fruit beers."/>
-  <jmash.YeastType nome="London Ale" codice="WLP013" produttore="White Labs" descrizione="Well suited for British Ales."/>
-  <jmash.YeastType nome="Burton Ale yeast" codice="WLP023" produttore="White Labs" descrizione="From the famous town of Burton, upon Trent."/>
-  <jmash.YeastType nome="Southwold Ale yeast" codice="WLP025" produttore="White Labs" descrizione="Great for British bitters and pale ales."/>
-  <jmash.YeastType nome="Premium Bitter Ale" codice="WLP026" produttore="White Labs" descrizione="From Straffordshire, England. Well suited - high gravity."/>
-  <jmash.YeastType nome="Edinburgh Ale yeast" codice="WLP028" produttore="White Labs" descrizione="Use to reproduce Scottish style ales."/>
-  <jmash.YeastType nome="German Ale/Kolsch yeast" codice="WLP029" produttore="White Labs" descrizione="Slight sulfur produced during fermentation."/>
-  <jmash.YeastType nome="Klassic Ale" codice="WLP033" produttore="White Labs" descrizione="Leaves ale with slightly sweet malt charater."/>
-  <jmash.YeastType nome="Dusseldorf Alt" codice="WLP036" produttore="White Labs" descrizione="Does not accentuate hop flavor as well as WLP029."/>
-  <jmash.YeastType nome="California Ale V" codice="WLP051" produttore="White Labs" descrizione="Will produce fuller bodied beer than with WLP001."/>
-  <jmash.YeastType nome="Super High Gravity Ale" codice="WLP099" produttore="White Labs" descrizione="Can ferment up to 25 percent alcohol. From England."/>
-  <jmash.YeastType nome="Hefeweizen Ale east" codice="WLP300" produttore="White Labs" descrizione="Traditional German Wheat Beers."/>
-  <jmash.YeastType nome="American Hefeweizen Ale yeast" codice="WLP320" produttore="White Labs" descrizione="Used for Oregon Style American Hefeweizen."/>
-  <jmash.YeastType nome="Hefeweizen IV Ale yeast" codice="WLP380" produttore="White Labs" descrizione="Sulfur production higher than WLP300"/>
-  <jmash.YeastType nome="Belgian Wit Ale yeast" codice="WLP400" produttore="White Labs" descrizione="For belgian Wit (white) beer."/>
-  <jmash.YeastType nome="Belgian Wit II Ale" codice="WLP410" produttore="White Labs" descrizione="Use to produce Belgian Wit, Spiced Ales, Specialty."/>
-  <jmash.YeastType nome="Trappist Ale yeast" codice="WLP500" produttore="White Labs" descrizione="Excellent for high gravity beers, dubbels, trippels."/>
-  <jmash.YeastType nome="Abbey Ale" codice="WLP530" produttore="White Labs" descrizione="Used to produce Trappist style beers."/>
-  <jmash.YeastType nome="Belgian Ale" codice="WLP550" produttore="White Labs" descrizione="Saisaons, Belgian Ales, Belgian Reds, Browns, Whites"/>
-  <jmash.YeastType nome="Belgian Saison I" codice="WLP565" produttore="White Labs" descrizione="Dry with alternative yeast 75% into ferment, high grav."/>
-  <jmash.YeastType nome="Belgian Golden Ale" codice="WLP570" produttore="White Labs" descrizione="From East Flanders, a very versatile Belgian yeast."/>
-  <jmash.YeastType nome="Champagne" codice="WLP715" produttore="White Labs" descrizione="Classic yeast used to produce champagne."/>
-  <jmash.YeastType nome="Sweet Mead - Wine" codice="WLP720" produttore="White Labs" descrizione="Slightly less attentuative than WLP715."/>
-  <jmash.YeastType nome="Chardonnay White Wine" codice="WLP730" produttore="White Labs" descrizione="A good choice for white and blush wines."/>
-  <jmash.YeastType nome="Merlot Red Wine" codice="WLP740" produttore="White Labs" descrizione="Cabernet, Shiraz, Pinot Noir, Sauvignon Blanc, Semillo"/>
-  <jmash.YeastType nome="Cabernet Red Wine" codice="WLP760" produttore="White Labs" descrizione="Also suited for Merlot, Chardonnay, Chenin Blanc."/>
-  <jmash.YeastType nome="English Cider" codice="WLP775" produttore="White Labs" descrizione="Classic cider yeast."/>
-  <jmash.YeastType nome="Pilsner Lager yeast" codice="WLP800" produttore="White Labs" descrizione="Best suited for European Pilsner production."/>
-  <jmash.YeastType nome="Czech Budejovice Lager" codice="WLP802" produttore="White Labs" descrizione="From the Southern Czech Republic."/>
-  <jmash.YeastType nome="San Fransisco Lager yeast" codice="WLP810" produttore="White Labs" descrizione="Used for Classic California Common Beers."/>
-  <jmash.YeastType nome="Octoberfest - Marzen" codice="WLP820" produttore="White Labs" descrizione="Does not finish as dry as WLP830."/>
-  <jmash.YeastType nome="German Lager yeast" codice="WLP830" produttore="White Labs" descrizione="Great for German Lagers, Pilsner, Oktoberfest, Marzen"/>
-  <jmash.YeastType nome="Southern German Lager" codice="WLP838" produttore="White Labs" descrizione="Produces slight sulfur, diacetyl."/>
-  <jmash.YeastType nome="American Lager" codice="WLP840" produttore="White Labs" descrizione="Use for classic American lagers."/>
-  <jmash.YeastType nome="Zurich Lager" codice="WLP885" produttore="White Labs" descrizione="Swiss style lager yeast provided by Marc Sedam."/>
-  <jmash.YeastType nome="Old Bavarian Lager" codice="WLP920" produttore="White Labs" descrizione="Use in Octoberfest, Bock and Dark Lagers."/>
-  <jmash.YeastType nome="Mexican Lager" codice="WLP940" produttore="White Labs" descrizione="Good for Mexican style light and dark lagers."/>
-  <jmash.YeastType nome="German Ale yeast" codice="1007" produttore="Wyeast" descrizione="Good balance sweet/tart."/>
-  <jmash.YeastType nome="American Wheat" codice="1010" produttore="Wyeast" descrizione="Use for American Hefeweisen style."/>
-  <jmash.YeastType nome="Belgian Ale yeast" codice="1024" produttore="Wyeast" descrizione="Intended for abbey beers."/>
-  <jmash.YeastType nome="London Ale yeast" codice="1028" produttore="Wyeast" descrizione="Produces very complex ales."/>
-  <jmash.YeastType nome="Amercan Ale/Chico" codice="1056" produttore="Wyeast" descrizione="Great all round yeast."/>
-  <jmash.YeastType nome="Irish Ale yeast" codice="1084" produttore="Wyeast" descrizione="Best in stouts and Scotch ales."/>
-  <jmash.YeastType nome="Wyeast Ale Blend" codice="1087" produttore="Wyeast" descrizione="Balanced Finish for British and American style ales."/>
-  <jmash.YeastType nome="British Ale yeast" codice="1098" produttore="Wyeast" descrizione="Ale yeast from Whitbread. Pale ale, bitters, porters."/>
-  <jmash.YeastType nome="Whitbread Ale yeast" codice="1099" produttore="Wyeast" descrizione="Clears well with filtration. Not as tart and dry as #1098."/>
-  <jmash.YeastType nome="Ringwood Ale yeast" codice="1187" produttore="Wyeast" descrizione="Thorough diacetyl rest recommended after ferment."/>
-  <jmash.YeastType nome="Belgian Ale" codice="1214" produttore="Wyeast" descrizione="Suitable for high gravity ales"/>
-  <jmash.YeastType nome="American Ale II" codice="1272" produttore="Wyeast" descrizione=""/>
-  <jmash.YeastType nome="Thames Valley Ale" codice="1275" produttore="Wyeast" descrizione="Low esters, well balanced, British Bitters"/>
-  <jmash.YeastType nome="London Ale III" codice="1318" produttore="Wyeast" descrizione="True top cropping strain"/>
-  <jmash.YeastType nome="Northwest Ale yeast" codice="1332" produttore="Wyeast" descrizione="One of the classic strains from the Northwest."/>
-  <jmash.YeastType nome="British Ale II" codice="1335" produttore="Wyeast" descrizione="Typical British Ale profile"/>
-  <jmash.YeastType nome="European Ale yeast" codice="1338" produttore="Wyeast" descrizione="yeast from Wissenschaftliche."/>
-  <jmash.YeastType nome="Belgian Strong Ale" codice="1388" produttore="Wyeast" descrizione="moderate to high alcohol tolerance"/>
-  <jmash.YeastType nome="Scotish Ale" codice="1728" produttore="Wyeast" descrizione="ideal for Scottish and high gravity ales"/>
-  <jmash.YeastType nome="Swedish Porter" codice="1742" produttore="Wyeast" descrizione="Stark beer Nordic style of unknown origin"/>
-  <jmash.YeastType nome="Belgian Abbey II" codice="1762" produttore="Wyeast" descrizione="High gravity yeast"/>
-  <jmash.YeastType nome="London Extra Special Bitter" codice="1968" produttore="Wyeast" descrizione="Needs aeration and agitation, cask fermenting strain"/>
-  <jmash.YeastType nome="Pilsen Lager" codice="2007" produttore="Wyeast" descrizione="Classic American pilsner strain,sturdy, easy to use"/>
-  <jmash.YeastType nome="American Lager" codice="2035" produttore="Wyeast" descrizione="Not a pilsner strain"/>
-  <jmash.YeastType nome="Danish Lager" codice="2042" produttore="Wyeast" descrizione="Light profile accentuates hops characteristics"/>
-  <jmash.YeastType nome="California Lager" codice="2112" produttore="Wyeast" descrizione="Ideal for West Coast beers (Steam Beer Style)"/>
-  <jmash.YeastType nome="Bohemian Lager" codice="2124" produttore="Wyeast" descrizione="Pilsner yeast from Czech Republic"/>
-  <jmash.YeastType nome="Wyeast Lager Blend" codice="2178" produttore="Wyeast" descrizione="For production of classic pilsners to full bodied bocks."/>
-  <jmash.YeastType nome="Bavarian Lager" codice="2206" produttore="Wyeast" descrizione="Used by many German breweries"/>
-  <jmash.YeastType nome="Danish Lager II" codice="2247" produttore="Wyeast" descrizione="Often used in aggressively hopped pilsners"/>
-  <jmash.YeastType nome="North American Lager" codice="2272" produttore="Wyeast" descrizione="Traditional North American lagers and  light Pilsners"/>
-  <jmash.YeastType nome="Czech Pils" codice="2278" produttore="Wyeast" descrizione="Classic pilsner strain for pilsners and bocks"/>
-  <jmash.YeastType nome="Munich Lager" codice="2308" produttore="Wyeast" descrizione="Demanding strain capable of excellent lagers"/>
-  <jmash.YeastType nome="Kolsch" codice="2565" produttore="Wyeast" descrizione="Hybrid ale/lager character, ferments well at mod temps"/>
-  <jmash.YeastType nome="Bavarian Wheat" codice="3056" produttore="Wyeast" descrizione="Blend of ale yeasts"/>
-  <jmash.YeastType nome="Weihenstephan Weizen" codice="3068" produttore="Wyeast" descrizione="Unique for spicy weizen character"/>
-  <jmash.YeastType nome="Brettanomyces Bruxellensis" codice="3112" produttore="Wyeast" descrizione="Gueuze, lambics, sour browns and other Belgian Ales."/>
-  <jmash.YeastType nome="B yeast (Bret Bruxellensis) llensis)" codice="3278" produttore="Wyeast" descrizione="For gueze, fruit beers, faro, sour mash, lactic ferment"/>
-  <jmash.YeastType nome="German Wheat" codice="3333" produttore="Wyeast" descrizione="Subtle flavor profile for wheat yeast"/>
-  <jmash.YeastType nome="Forbidden Fruit yeast" codice="3463" produttore="Wyeast" descrizione="Classic Belgian yeast for wits to classic grand cru."/>
-  <jmash.YeastType nome="Belgian Ardennes" codice="3522" produttore="Wyeast" descrizione="One of the many terrific classic Belgian Ale yeasts."/>
-  <jmash.YeastType nome="Brettanomyces Lambicus" codice="3526" produttore="Wyeast" descrizione="Best when used with other yeasts."/>
-  <jmash.YeastType nome="Bavarian Wheat" codice="3638" produttore="Wyeast" descrizione="Top cropping hefeweisen yeast. Complex flavor/aroma"/>
-  <jmash.YeastType nome="Cider" codice="3766" produttore="Wyeast" descrizione="Allows fruit character to dominate the profile."/>
-  <jmash.YeastType nome="Portwine" codice="3767" produttore="Wyeast" descrizione="Alcohol tolerant to 15% ABV."/>
-  <jmash.YeastType nome="Trappist High Gravity" codice="3787" produttore="Wyeast" descrizione="Robust, alc tolerant to 12%,  for Biere de Garde"/>
-  <jmash.YeastType nome="Belgian Wheat" codice="3942" produttore="Wyeast" descrizione="From small Belgian brewery"/>
-  <jmash.YeastType nome="Belgian White Beer" codice="3944" produttore="Wyeast" descrizione=""/>
-  <jmash.YeastType nome="Lactobacillus Delbrueckii" codice="4335" produttore="Wyeast" descrizione="Used in conjuntion with S. Cerevisiae and Wild yeasts."/>
-  <jmash.YeastType nome="Pediococcus Cerevisiae" codice="4733" produttore="Wyeast" descrizione="Lactic acid bacteria used in Belgian Ale production."/>
+  <jmash.YeastType nome="Danstar Nottingham British Ale" codice="" produttore="Lallemand" descrizione="Il lievito Nottingham British Ale e' un singolo ceppo selezionato da colture multiple."/>
+  <jmash.YeastType nome="Danstar Munich German Wheat" codice="DAN002" produttore="Lallemand" descrizione="Aroma di esteri con tipiche note di banana, adatto alla produzione di birre Weizen e Hefeweizen. "/>
+  <jmash.YeastType nome="Danstar Windsor British Ale" codice="DAN003" produttore="Lallemand" descrizione="Permette di produrre birre con aroma di esteri a naso e palato e con un leggero retrogusto di lievito"/>
+  <jmash.YeastType nome="Danstar Belle Saison" codice="DAN005" produttore="Lallemand" descrizione="Dona alla birra un aroma fruttato e speziato, dovuto alla produzione di esteri e fenoli. Si attiva velocemente ed e' caratterizzato da una fermentazione vigorosa."/>
+  <jmash.YeastType nome="Danstar American West Coast Ale" codice="DAN006" produttore="Lallemand" descrizione="Caratterizzato da una fermentazione rapida e vigorosa, e' un classico lievito per Ales americane, che garantisce performance di alta qualita'."/>
+  <jmash.YeastType nome="Danstar CBC" codice="DAN007" produttore="Lallemand" descrizione="Questo ceppo garantisce la rifermentazione di birre fino a 12-14% ABV grazie alla sua elevata resistenza all'alcol; non produce aromi particolari, quindi conserva il carattere originale della birra."/>
+  <jmash.YeastType nome="Danstar Abbaye" codice="DAN008" produttore="Lallemand" descrizione="Abbaye e' un lievito ale di origine belga selezionato per la sua capacita' di produrre ottime birre in stile belga, comprese le birre ad alta gradazione, come Dubbel, Trippel e Quadrupel."/>
+  <jmash.YeastType nome="California Ale" codice="WLP001" produttore="White Labs" descrizione="Questo lievito e' famoso per il suo gusto pulito, il suo bilanciamento e la possibilita' di essere utilizzato per qualsiasi tipo di ale. Accentua i profumi del luppolo ed e' estremamente versatile. "/>
+  <jmash.YeastType nome="English Ale" codice="WLP002" produttore="White Labs" descrizione="Questo lievito si adatta bene per le classiche Ale inglesi tipo le milds, le bitter, le porter e le stout in stile inglese. Lascia una birra estremamente limpida."/>
+  <jmash.YeastType nome="German Ale III t III" codice="WLP003" produttore="White Labs" descrizione=""/>
+  <jmash.YeastType nome="Irish Ale" codice="WLP004" produttore="White Labs" descrizione="Questo lievito proviene da una delle piu' antiche birrerie nel mondo che producono stout. Produce un leggero sentore di diacetile, bilanciato da un leggero fruttato e un gusto leggermente asciutto."/>
+  <jmash.YeastType nome="British Ale" codice="WLP005" produttore="White Labs" descrizione="Questo lievito e' leggermente piu' attenuante rispetto al WLP002. Come la maggior parte dei ceppi inglesi, produce birre dal gusto particolarmente maltato. "/>
+  <jmash.YeastType nome="Bedford British Ale" codice="WLP006" produttore="White Labs" descrizione="Dà un prodotto dal gusto asciutto e floccula molto bene. Produce un caratteristico profilo estereo. La scelta giusta per la maggior parte delle ale inglesi comprese bitter, pale ale, porter e brown ale. "/>
+  <jmash.YeastType nome="Dry English Ale" codice="WLP007" produttore="White Labs" descrizione="E' simile al WLP002 per quanto riguarda il profilo aromatico ma ha un'attenuazione maggiore del 10%. Questo permette di eliminare la dolcezza residua e rende il lievito adatto per ale ad alta OG. "/>
+  <jmash.YeastType nome="East Coast Ale" codice="WLP008" produttore="White Labs" descrizione="Ha un carattere neutro simile al WLP001 ma un'attenuazione minore e minor capacita' di esaltare l'amaro del luppolo. Ha una flocculazione maggiore e una leggera acidita'."/>
+  <jmash.YeastType nome="Australian Ale" codice="WLP009" produttore="White Labs" descrizione="Produce una birra chiara e maltata. Piacevole carattere estereo che puo' essere definito come crosta di pane"/>
+  <jmash.YeastType nome="European Ale" codice="WLP011" produttore="White Labs" descrizione="La bassa produzione di esteri consente di ottenere una birra dal profilo pulito, grazie anche alla ridotta o nulla produzione di solfuri."/>
+  <jmash.YeastType nome="London Ale" codice="WLP013" produttore="White Labs" descrizione="Conferisce un complesso carattere legnoso alla birra. L'amaro del luppolo si distingue bene, e questo ceppo e' indicato per le classiche British pale ale, bitters e stouts."/>
+  <jmash.YeastType nome="Essex Ale" codice="WLP022" produttore="White Labs" descrizione="Produce un carattere leggermente fruttato e un sentore di crosta di pane. Buon lievito ad alta fermentazione che si presta bene per essere raccolto in superficie."/>
+  <jmash.YeastType nome="Burton Ale" codice="WLP023" produttore="White Labs" descrizione="Proviene dalla famosa citta' brassicola Burton upon Trent, in Inghilterra. Questo lievito conferisce un delizioso e leggero sentore di frutta come mela, pera e miele di trifoglio."/>
+  <jmash.YeastType nome="Southwold Ale yeast" codice="WLP025" produttore="White Labs" descrizione=""/>
+  <jmash.YeastType nome="Premium Bitter Ale" codice="WLP026" produttore="White Labs" descrizione=""/>
+  <jmash.YeastType nome="Edinburgh Ale" codice="WLP028" produttore="White Labs" descrizione="Questo lievito riesce a riprodurre i complessi aromi delle ale in stile scozzese senza alterare il carattere del luppolo, cosi' come il WLP002."/>
+  <jmash.YeastType nome="German Ale/Kolsch" codice="WLP029" produttore="White Labs" descrizione="Indicato anche per birre bionde leggere e al miele. Accentua gli aromi del luppolo in maniera simile al WLP001. Il leggero sentore sulfureo prodotto durante la fermentazione scompare poi durante il periodo di maturazione"/>
+  <jmash.YeastType nome="Klassic Ale" codice="WLP033" produttore="White Labs" descrizione=""/>
+  <jmash.YeastType nome="Dusseldorf Alt" codice="WLP036" produttore="White Labs" descrizione="Tradizionale lievito Alt proveniente da Dusseldorf in Germania. Produce birre in stile Alt con gusto pulito e leggermente dolce. Non accentua il carattere del luppolo come invece fa il WLP029."/>
+  <jmash.YeastType nome="Yorkshire Square Ale" codice="WLP037" produttore="White Labs" descrizione="Lievito ad alta fermentazione, indicato per birre corpose ma equilibrate. Dona alla birra aromi di tostato con esteri di malto abbastanza pronunciati."/>
+  <jmash.YeastType nome="Pacific Ale" codice="WLP041" produttore="White Labs" descrizione="Un lievito classico proveniente dal nord-ovest del Pacifico che produce birre pulite lasciando un carattere maltato. Piu' fruttato rispetto al WLP002."/>
+  <jmash.YeastType nome="Scotch Whisky Yeast" codice="WLP045" produttore="White Labs" descrizione="lievito produce una serie complessa di esteri, e caratteristici aromi leggermente piccanti. Consigliato per Whisky scozzesi o in stile americano (Whiskey) e per birre con un alto OG."/>
+  <jmash.YeastType nome="California Ale V" codice="WLP051" produttore="White Labs" descrizione="Dal nord della California, questo ceppo risulta piu' fruttato rispetto al WLP001 e leggermente piu' flocculante. L'attenuazione e' inferiore, il che si traduce in birre piu' corpose rispetto a quelle prodotte con il WLP001."/>
+  <jmash.YeastType nome="American Ale Yeast Blend" codice="WLP060" produttore="White Labs" descrizione="Questa miscela celebra le caratteristiche del California, pulito, neutro e versatile, associata ad altri due lieviti con le stesse caratteristiche, che conferiscono pero' maggiore complessita' alla birra"/>
+  <jmash.YeastType nome="American Whisky Yeast" codice="WLP065" produttore="White Labs" descrizione="Questo lievito produce bassi profili di esteri. Data l'alta tolleranza a temperatura e alcol, e' adatto per il whisky in stile americano di orzo o mais."/>
+  <jmash.YeastType nome="Bourbon Yeast" codice="WLP070" produttore="White Labs" descrizione="Da una tradizionale distilleria nel cuore della Bourbon Country, questo ceppo produce un carattere maltato e caramello con un profilo di esteri equilibrato."/>
+  <jmash.YeastType nome="Cream Ale" codice="WLP080" produttore="White Labs" descrizione="Questo lievito e' composto da un blend di lieviti lager ed ale, che donano alla birra caratteristiche peculiari: i primi creano durante la fermentazione dei leggeri aromi sulfurei, mentre i secondi conferiscono alla birra piacevoli aromi di esteri. "/>
+  <jmash.YeastType nome="San Diego Super" codice="WLP090" produttore="White Labs" descrizione="Produce un basso tenore di esteri che si traduce in un sapore neutro ed equilibrato con buon profilo aromatico. Molto tollerante all'alcool e molto versatile per un'ampia varieta' di stili."/>
+  <jmash.YeastType nome="Super High Gravity Ale" codice="WLP099" produttore="White Labs" descrizione="Lievito inglese che riesce a fermentare fino ad un 25% di contenuto alcolico. Ottimo per tutte le birre con un alto OG. Ideale per le Barley Wine."/>
+  <jmash.YeastType nome="Hefeweizen Ale" codice="WLP300" produttore="White Labs" descrizione="Conferisce i classici sentori di banana e chiodo di garofano tradizionalmente associati alle birre di frumento tedesche, lasciando la caratteristica torbidezza di questo stile di birra."/>
+  <jmash.YeastType nome="American Hefeweizen Ale" codice="WLP320" produttore="White Labs" descrizione="A differenza del WLP300, produce molto meno sentore di banana e chiodo di garofano ed una leggera nota sulfurea. Per il resto e' un lievito pulito a bassa flocculazione."/>
+  <jmash.YeastType nome="Bavarian Weizen Ale" codice="WLP351" produttore="White Labs" descrizione="Questo ceppo produce birre di frumento nel classico stile tedesco con carattere fenolico moderatamente elevato e speziato riconducibile ai chiodi di garofano"/>
+  <jmash.YeastType nome="Hefeweizen IV Ale" codice="WLP380" produttore="White Labs" descrizione="Evidente carattere fenolico e di chiodo di garofano, mentre e' minimo quello di banana. Note rinfrescanti di albicocca e agrumi."/>
+  <jmash.YeastType nome="Belgian Wit Ale" codice="WLP400" produttore="White Labs" descrizione="Leggermente fenolico e acidulo, questo e' il lievito originale utilizzato per produrre le birre in stile Wit in Belgio."/>
+  <jmash.YeastType nome="Belgian Wit II Ale" codice="WLP410" produttore="White Labs" descrizione="Meno fenolico del WLP400, e piu' speziato. Lascia una dolcezza lievemente maggiore, ed ha una piu' alta flocculazione rispetto al WLP400."/>
+  <jmash.YeastType nome="Monastery Ale" codice="WLP500" produttore="White Labs" descrizione="Da una delle sei birrerie trappiste rimanenti al mondo, questo lievito produce un carattere fruttato con un distintivo sentore caratteristico di uva passita. "/>
+  <jmash.YeastType nome="Bastogne Belgian Ale" codice="WLP510" produttore="White Labs" descrizione="Un lievito adatto a birre con alta OG, in stile trappista. Produce birre secche con un leggero sentore acidulo nel finale"/>
+  <jmash.YeastType nome="Abbey Ale" codice="WLP530" produttore="White Labs" descrizione="Utilizzato per produrre birre trappiste, e' simile al WLP500 Trappist Ale, ma meno fruttato e con una maggiore tolleranza all'alcol. "/>
+  <jmash.YeastType nome="Belgian Strong Ale" codice="WLP545" produttore="White Labs" descrizione="Questo classico ceppo di lievito per la birra produce moderati livelli di esteri, ed e' caratterizzato da aromi fenolici e speziati."/>
+  <jmash.YeastType nome="Belgian Ale" codice="WLP550" produttore="White Labs" descrizione="Aromi fenolici e speziati predominano nel profilo con un sentore di fruttato inferiore al WLP500."/>
+  <jmash.YeastType nome="Belgian Saison I" codice="WLP565" produttore="White Labs" descrizione="Un classico ceppo Saison dalla Vallonia che produce note speziate, pepate e terrose. Leggermente dolce."/>
+  <jmash.YeastType nome="Saison II Ale" codice="WLP566" produttore="White Labs" descrizione="Piu' fruttato del WLP565, questo lievito produce birre con esteri moderatamente fenolici. Leggero sentore di chiodi di garofano come caratteristica finale della birra. "/>
+  <jmash.YeastType nome="Belgian Style Saison Blend" codice="WLP568" produttore="White Labs" descrizione="Un blend per birre in stile Belga e Saison. Questo lievito armonizza aromi fruttati e floreali. Buona tolleranza all'alcol."/>
+  <jmash.YeastType nome="Belgian Golden Ale" codice="WLP570" produttore="White Labs" descrizione="Un lievito versatile per produrre sia Light Belgian Ales che Belgian Ales ad alta gradazione (12% ABV). Una combinazione di fruttato e fenolico che dominano sul profilo aromatico."/>
+  <jmash.YeastType nome="Belgian Style Ale Blend" codice="WLP575" produttore="White Labs" descrizione="Una miscela di due lieviti Trappisti ed uno tipico per le Belgian Ale. Questo permette di ottenere un lievito adatto sia per le birre di tipo trappista sia per tutte quelle birre che rientrano nella tipologia delle birre belghe."/>
+  <jmash.YeastType nome="Berliner Weiss Blend" codice="WLP630" produttore="White Labs" descrizione="Mix di lieviti perfetto per produrre ottime Berliner Weiss. Questo blend contiene lievito tradizionale German Weizen e Lactobacillus."/>
+  <jmash.YeastType nome="Saccharomyces Bruxellensis Trois" codice="WLP644" produttore="White Labs" descrizione="Questo ceppo belga produce una birra leggermente acidula con caratteristiche delicate di mango e ananas. Puo' essere utilizzato anche per la rifermentazione in bottiglia."/>
+  <jmash.YeastType nome="Brettanomyces Claussenii" codice="WLP645" produttore="White Labs" descrizione="Gli aromi tipici del Brettanomyces prodotti sono piu' delicati rispetto al WLP650 e al WLP653. Contribuisce piu' all'aroma fruttato e simile all'ananas che al gusto. Il B. claussenii e' strettamente correlato al B. anomalus."/>
+  <jmash.YeastType nome="Brettanomyces Bruxellensis" codice="WLP650" produttore="White Labs" descrizione="Classico ceppo utilizzato nelle fermentazioni secondarie per le birre in stile belga e Lambic. Una birreria trappista utilizza questo ceppo in fermentazione secondaria ed in bottiglia per produrre il gusto caratteristico."/>
+  <jmash.YeastType nome="Brettanomyces Lambicus" codice="WLP653" produttore="White Labs" descrizione="Come lo stesso nome suggerisce, questo ceppo e' spesso ritrovabile nelle birre in stile Lambic, che sono birre a fermentazione spontanea. "/>
+  <jmash.YeastType nome="Belgian Sour Mix" codice="WLP655" produttore="White Labs" descrizione="Un'unica miscela perfetta per birre in stile belga. Include Brettanomyces, Saccharomyces, ed i ceppi batterici Lactobacillus e Pediococcus."/>
+  <jmash.YeastType nome="Pedicoccus damnosus" codice="WLP661" produttore="White Labs" descrizione="I Pediococcus damnosus sono batteri cocciformi conosciuti per la loro capacita' di produrre acido lattico. Per questa caratteristica possono essere utilizzati nella preparazione di birre acide, nelle quali producono alti livelli di diacetile."/>
+  <jmash.YeastType nome="Flemish Ale Blend" codice="WLP665" produttore="White Labs" descrizione="Una combinazione brevettata di lieviti Saccharomyces, Brettanomyces, Lactobacillus e Pediococcus, che rispetto al WLP655 Belgian Sour Mix crea caratteristiche piu' complesse, di frutti rossi."/>
+  <jmash.YeastType nome="American Farmhouse Blend" codice="WLP670" produttore="White Labs" descrizione="Ceppo di lievito ispirato ai microbirrifici americani che producono birre ale in stile belga. Questo mix (lieviti cosiddetti di fattoria e Brettanomyces) genera un complesso profilo aromatico accompagnato da un moderato livello di acidita'."/>
+  <jmash.YeastType nome="Lactobacillus Brevis" codice="WLP672" produttore="White Labs" descrizione="Coltura di Lactobacillus brevis da impiegare nella produzione di birre acide. Produce meno acido lattico del Lactobacillus delbrueckii, donando alla birra una piacevole acidita' non eccessiva."/>
+  <jmash.YeastType nome="Lactobacillus Delbrueckii" codice="WLP677" produttore="White Labs" descrizione="Questi fermenti lattici producono moderati livelli di acidita' e i tipici aromi acidi delle Lambic, delle Berliner Weiss, delle Sour Brown Ale e delle Gueze."/>
+  <jmash.YeastType nome="Lievito Liquido Sake" codice="WLP705" produttore="White Labs" descrizione="Per la produzione del sake si consiglia di utilizzare questo lievito in combinazione con il Koji (per produrre zuccheri fermentabili)."/>
+  <jmash.YeastType nome="Lievito Liquido Sake #9" codice="WLP709" produttore="White Labs" descrizione="Questo ceppo e' usato tradizionalmente nella produzione dei Sake Ginjo, perche' durante la fermentazione sviluppa notevoli componenti aromatiche. "/>
+  <jmash.YeastType nome="Champagne" codice="WLP715" produttore="White Labs" descrizione="Classico ceppo utilizzato nella produzione di Champagne, sidro, idromele secco, vini secchi, o per attenuare completamente barley wines e/o strong ales. Riesce a tollerare concentrazioni alcoliche fino al 17%. Neutro."/>
+  <jmash.YeastType nome="Avize Wine Yeast New" codice="WLP718" produttore="White Labs" descrizione="Isolato dallo Champagne ed utilizzato per dare complessita' ai vini bianchi. Contribuisce all'eleganza del prodotto, specialmente in vini Chardonnays fermentati in botte."/>
+  <jmash.YeastType nome="Sweet Mead/Wine" codice="WLP720" produttore="White Labs" descrizione="Un lievito da vino con attenuazione minore rispetto al WLP715, e che quindi lascia una leggera dolcezza finale. Leggermente fruttato, riesce a tollerare concentrazioni di alcol fino al 15%."/>
+  <jmash.YeastType nome="Chardonnay White Wine" codice="WLP730" produttore="White Labs" descrizione=""/>
+  <jmash.YeastType nome="Merlot Red Wine" codice="WLP740" produttore="White Labs" descrizione=""/>
+  <jmash.YeastType nome="Cabernet Red Wine" codice="WLP760" produttore="White Labs" descrizione=""/>
+  <jmash.YeastType nome="English Cider" codice="WLP775" produttore="White Labs" descrizione="Fermentazione secca ma che riesce a trattenere tutti gli aromi dalle mele."/>
+  <jmash.YeastType nome="Pilsner Lager" codice="WLP800" produttore="White Labs" descrizione="Classico ceppo tipo Pilsner dal principale produttore di pilsner nella Repubblica Ceca. Secco ma con un finale maltato, questo lievito si adatta bene per la produzione di birre pilsner di tipo europeo."/>
+  <jmash.YeastType nome="Czech Budejovice Lager" codice="WLP802" produttore="White Labs" descrizione="Lievito pilsner dalla Repubblica Ceca. Produce lager secche con una bassa produzione di diacetile. "/>
+  <jmash.YeastType nome="San Fransisco Lager" codice="WLP810" produttore="White Labs" descrizione="Questo lievito e' utilizzato per produrre birre in stile californiano. Un ceppo lager unico che ha la capacita' di fermentare fino a 18°C, pur mantenendo le caratteristiche lager. Puo' fermentare anche fino a 10°C per la produzione di marzen e pilsner."/>
+  <jmash.YeastType nome="Belgian Lager" codice="WLP815" produttore="White Labs" descrizione="Questo lievito produce birre pulite e ha una bassa produzione di zolfo. Ottimo per birre in stile europeo quali: Pilsner, Lager e Lager scure."/>
+  <jmash.YeastType nome="Octoberfest-Marzen Lager" codice="WLP820" produttore="White Labs" descrizione="Questo lievito produce birre estremamente maltate in puro stile bock."/>
+  <jmash.YeastType nome="German Lager" codice="WLP830" produttore="White Labs" descrizione="Questo e' uno dei lieviti piu' utilizzati al mondo per la produzione di lager. Estremamente maltato e pulito, ideale per tutte le lager tedesche, pilsner, oktoberfest e marzen."/>
+  <jmash.YeastType nome="German Bock Lager" codice="WLP833" produttore="White Labs" descrizione="L'eccellente profilo maltato lo rende adatto per la produzione di Bocks, Dopplebocks, e Oktoberfest. Lievito lager estremamente versatile."/>
+  <jmash.YeastType nome="German Lager X" codice="WLP835" produttore="White Labs" descrizione="Questo ceppo sviluppa un ottimo aroma di malto, con bassa produzione di zolfo ed esteri. E' la scelta ideale per stili tradizionali come Helles, Oktoberfest, Bock e Dunkel."/>
+  <jmash.YeastType nome="Southern German Lager" codice="WLP838" produttore="White Labs" descrizione="Lievito caratterizzato da un finale maltato ed un aroma ben bilanciato. Fermenta molto bene producendo bassi livelli di diacetile e pochi solfuri."/>
+  <jmash.YeastType nome="American Lager" codice="WLP840" produttore="White Labs" descrizione="Secco e pulito, con un leggero sentore fruttato di mela. La produzione di solfuri e diacetile e' minima."/>
+  <jmash.YeastType nome="Zurich Lager" codice="WLP885" produttore="White Labs" descrizione="Ceppo per lager in stile svizzero. Se usato con accortezza puo' produrre birre lager con contenuto alcolico fino all'11% ABV. "/>
+  <jmash.YeastType nome="Old Bavarian Lager" codice="WLP920" produttore="White Labs" descrizione=""/>
+  <jmash.YeastType nome="Mexican Lager" codice="WLP940" produttore="White Labs" descrizione="Da Messico City, questo lievito produce lager pulite con un finale secco. Ideale per lager in stile messicano, cosi' come per lager scure."/>
+  <jmash.YeastType nome="German Ale" codice="1007" produttore="Wyeast" descrizione="Vero lievito ad alta fermentazione, bassa formazione di esteri, l’ampio range di temperatura permette di produrre diversi stili."/>
+  <jmash.YeastType nome="American Wheat" codice="1010" produttore="Wyeast" descrizione="Un lievito a fermentazione alta e potente che produce birre secche, leggermente acidulo e fresche."/>
+  <jmash.YeastType nome="British Cask Ale PC" codice="1026" produttore="Wyeast" descrizione="Un ottimo lievito per ogni British Ale maturata in fusto. Produce un piacevole profilo maltato con finale fresco e leggermente acidulo."/>
+  <jmash.YeastType nome="London Ale" codice="1028" produttore="Wyeast" descrizione="Ricco, gusto vigoroso e pulito, con una leggera produzione di diacetile. "/>
+  <jmash.YeastType nome="Amercan Ale" codice="1056" produttore="Wyeast" descrizione="Aroma molto pulito. Poco fruttato e con una delicata produzione di esteri."/>
+  <jmash.YeastType nome="Irish Ale " codice="1084" produttore="Wyeast" descrizione="Pulito, liscio, morbido, dalla corposità piena. Con un modesto residuo di diacetile e fruttato; ideale per le Stout."/>
+  <jmash.YeastType nome="British Ale" codice="1098" produttore="Wyeast" descrizione="Dal ceppo Whitbread. Conferisce un gusto secco e pulito, leggermente aspro, fruttato ed ottimamente bilanciato."/>
+  <jmash.YeastType nome="Whitbread Ale" codice="1099" produttore="Wyeast" descrizione="Un lievito dal profilo di fermentazione leggermente fruttato e leggermente maltato. E' meno aspro e secco del Wyeast 1098 British Ale."/>
+  <jmash.YeastType nome="Ringwood Ale" codice="1187" produttore="Wyeast" descrizione="Un ceppo di lievito top con incredibili caratteristiche organolettiche. Presenta esteri fruttati con un profilo pieno, la flocculazione è alta, e la birra risulterà limpida senza filtrazione. "/>
+  <jmash.YeastType nome="Belgian Ale" codice="1214" produttore="Wyeast" descrizione="Lievito ad alta fermentazione stile Abbazia, ideale per le birre ad alta gradazione. Ricco di esteri e con una grande complessità aromatica."/>
+  <jmash.YeastType nome="West Coast IPA" codice="1217" produttore="Wyeast" descrizione="Questo ceppo è ideale per la produzione di birre artigianali in stile West-Coast, specialmente pale, IPA, rosse e specialità."/>
+  <jmash.YeastType nome="American Ale II" codice="1272" produttore="Wyeast" descrizione="Lievito dal profilo leggero e pulito, con una punta di nocciola ed un piccolo sentore amaro finale."/>
+  <jmash.YeastType nome="Thames Valley Ale" codice="1275" produttore="Wyeast" descrizione="Questa varietà produce classiche bitter inglesi con un ricco e complesso profilo aromatico. Il lievito ha un carattere di malto leggero, è poco fruttato, esteri bassi ed è pulito e ben equilibrato."/>
+  <jmash.YeastType nome="London Ale III" codice="1318" produttore="Wyeast" descrizione="Dalla tradizione birraria londinese un vero lievito ad alta fermentazione, lavora in superficie; fruttato, molto delicato, ben bilanciato e con un retrogusto leggermente dolce."/>
+  <jmash.YeastType nome="Northwest Ale" codice="1332" produttore="Wyeast" descrizione="Uno dei classici ceppi dalle birrerie del Northwest U.S. Produce una birra piena e leggermente fruttata con una buona complessità."/>
+  <jmash.YeastType nome="British Ale II" codice="1335" produttore="Wyeast" descrizione="Lievito con classico profilo da Ale inglese con buona flocculazione e sapore pieno. Finale fresco, pulito e abbastanza asciutto."/>
+  <jmash.YeastType nome="Belgian Strong Ale" codice="1388" produttore="Wyeast" descrizione="Forte gusto di lievito con una tolleranza all'alcol medio-alta. Gusto e profumo fruttato, secco, con finale aspro."/>
+  <jmash.YeastType nome="Denny's Fav.50" codice="1450" produttore="Wyeast" descrizione="Questo formidabile lievito può essere utilizzato per quasi tutti i tipi di birra. E' unico in quanto produce un corpo che aiuta ad accentuare il malto, il caramello o il carattere fruttato della birra senza essere dolce o sotto-attenuante."/>
+  <jmash.YeastType nome="West Yorkshire Ale" codice="1469" produttore="Wyeast" descrizione="Questo ceppo produce Ale con un carattere maltato pieno ma con finale secco ottenendo birre ben bilanciate. Esteri fruttati e un moderato aroma di noce."/>
+  <jmash.YeastType nome="Scotish Ale" codice="1728" produttore="Wyeast" descrizione="Ideale per le Ale di stile scozzese e per tutte le Ale ad alta gradazione. "/>
+  <jmash.YeastType nome="Belgian Abbey II" codice="1762" produttore="Wyeast" descrizione="Lievito per birre ad alta gradazione. Leggermente fruttato con un retrogusto secco."/>
+  <jmash.YeastType nome="English Special Bitter PC" codice="1768" produttore="Wyeast" descrizione="Un grande lievito per Ales con malto predominante. Produce leggeri aromi di frutta e di etanolo insieme a morbidi aromi di noce. Esibisce un delicato profilo di malto con un finale neutro."/>
+  <jmash.YeastType nome="Thames Valley II" codice="1882" produttore="Wyeast" descrizione="Produce birre fresche e secche con un ricco profilo maltato e moderati esteri fruttati."/>
+  <jmash.YeastType nome="London ESB" codice="1968" produttore="Wyeast" descrizione="Lievito estremamente flocculante che produce birre distintamente maltate. I livelli di attenuazione sono tipicamente più bassi della maggior parte degli altri lieviti che si traduce in un finale leggermente più dolce."/>
+  <jmash.YeastType nome="Budvar" codice="2000" produttore="Wyeast" descrizione="Il ceppo Budvar ha un bel profumo maltato con sfumature fruttate ed un ricco profilo maltato al palato. Finale secco ben bilanciato e frizzante con sentori di luppolo."/>
+  <jmash.YeastType nome="Pilsner Urquell H-Strain" codice="2001" produttore="Wyeast" descrizione="Profilo delicato aroma fruttato/floreale. Molto secco e pulito al palato con corpo pieno e un piacevole e delicato aroma maltato. Retrogusto molto pulito e neutro."/>
+  <jmash.YeastType nome="Pilsen Lager" codice="2007" produttore="Wyeast" descrizione="Classica varità Pilsner americana, armoniosa dal gusto maltato. Si ottiene una birra secca a carbonazione fine."/>
+  <jmash.YeastType nome="American Lager" codice="2035" produttore="Wyeast" descrizione="Un ceppo complesso e aromatico che può essere utilizzato per una varietà di birre lager. Questo ceppo è una scelta eccellente per le birre tipo Classic American Pilsner."/>
+  <jmash.YeastType nome="Danish Lager" codice="2042" produttore="Wyeast" descrizione="Questo lievito è un ottima scelta per le Lager stile Dortmund. Profilo secco e frizzante, leggero con spiccati aromi di luppolo."/>
+  <jmash.YeastType nome="California Lager" codice="2112" produttore="Wyeast" descrizione="Mantiene le caratteristiche delle Lager fino alla temperatura di 18°C e produce delle birre dal gusto maltato e molto limpide."/>
+  <jmash.YeastType nome="Bohemian Lager" codice="2124" produttore="Wyeast" descrizione="Un lievito Pilsner dalla Weihenstephan. Gusto pulito e maltato."/>
+  <jmash.YeastType nome="Bavarian Lager" codice="2206" produttore="Wyeast" descrizione="Usato da molte birrerie tedesche per produrre birre maltate e corpose. Ideali per Bock e Doppel-Bock."/>
+  <jmash.YeastType nome="Czech Pils" codice="2278" produttore="Wyeast" descrizione="Classico ceppo dalla patria delle Pils, indicato per una birra secca con retrogusto maltato."/>
+  <jmash.YeastType nome="Munich Lager" codice="2308" produttore="Wyeast" descrizione="Ceppo unico capace di produrre delle ottime Lager. Molto liscio ed amabile, dal corpo pieno."/>
+  <jmash.YeastType nome="Munich Lager II PC" codice="2352" produttore="Wyeast" descrizione="Da una famosa birrerria di Monaco questo ceppo è a basso contenuto di diacetile e a bassa produzione di sulfuri . Una scelta eccellente per le Lager."/>
+  <jmash.YeastType nome="Kolsch" codice="2565" produttore="Wyeast" descrizione="Un ibrido delle caratteristiche Ale e Lager. Questa varietà sviluppa un eccellente sapore maltato e tenuemente fruttato con una finitura fresca."/>
+  <jmash.YeastType nome="Octoberfest Lager Blend" codice="2633" produttore="Wyeast" descrizione="Questa miscela di ceppi lager è progettato per produrre una birra ricca, maltata e corposa in perfetto stile Octoberfest. "/>
+  <jmash.YeastType nome="Bavarian Wheat" codice="3056" produttore="Wyeast" descrizione="Miscela di lieviti ad alta fermentazione e lieviti da Weizen con produzione moderata di esteri e sostanze fenoliche."/>
+  <jmash.YeastType nome="Weihenstephan Weizen" codice="3068" produttore="Wyeast" descrizione="Unico lievito ad alta fermentazione che produce il carattere speziato tipico della Weizen con sfumature al chiodo di garofano, vaniglia e banana."/>
+  <jmash.YeastType nome="Belgian lambic" codice="3278" produttore="Wyeast" descrizione="Selezione dei più rappresentativi ceppi Saccharomyces cerevisiae, dai ceppi Brettanomyces agli acido lattici, ai lieviti sherry e di belgian White."/>
+  <jmash.YeastType nome="German Wheat" codice="3333" produttore="Wyeast" descrizione="Profilo di gusti molto delicato per birre con malto di grano. Aspro, frizzante e fruttato con sentori di ciliegia."/>
+  <jmash.YeastType nome="Forbidden Fruit" codice="3463" produttore="Wyeast" descrizione="Da un’antica birreria belga per la produzione di Blanche e classiche Grand Cru. Profilo fenolico con fruttato leggero. Profilo di esteri ben bilanciato."/>
+  <jmash.YeastType nome="Belgian Ardennes" codice="3522" produttore="Wyeast" descrizione="Uno dei grandi lieviti per produrre le classiche Ale belghe. Le sostanze fenoliche aumentano incrementando la temperatura di fermentazione, fruttato delicato e complesso carattere speziato."/>
+  <jmash.YeastType nome="Bavarian Wheat" codice="3638" produttore="Wyeast" descrizione="Lievito weizen con aromi fruttati e fenolici complessi e bilanciati di banana e menta, lichi e mela/prugna."/>
+  <jmash.YeastType nome="French Saison" codice="3711" produttore="Wyeast" descrizione="Un ceppo molto versatile che produce Saison o Farmhouse e altre birre di stile belga altamente aromatiche; pepato, piccante e agrumata."/>
+  <jmash.YeastType nome="Belgian Saison" codice="3724" produttore="Wyeast" descrizione="Classico lievito da Saison dall’aroma complesso e speziato. Molto acido e secco sul palato con un leggero fruttato. Finisce fresco e leggermente acidico."/>
+  <jmash.YeastType nome="Flanders Golden Ale PC" codice="3739" produttore="Wyeast" descrizione="Questo ceppo ben bilanciato proveniente dal nord del Belgio produce moderati livelli di esteri fruttati e fenoli speziati mentre finisce secco con un accenno di malto."/>
+  <jmash.YeastType nome="Roeselare Ale Blend" codice="3763" produttore="Wyeast" descrizione="Il nostro blend di ceppi lambic produce Birra con complessi, profili erbacei e un acidità distintiva della torta alle ciliege."/>
+  <jmash.YeastType nome="Trappist High Gravity" codice="3787" produttore="Wyeast" descrizione="Carattere fenolico e tolleranza all'alcol fino a 12%. Ideale per la Biere de Garde. Profilo di gusto ricco di esteri e maltato."/>
+  <jmash.YeastType nome="Belgian Dark Ale PC" codice="3822" produttore="Wyeast" descrizione="Questo unico lievito Belgian Ale produce acidi elevati con esteri bilanciati. La produzione di fenoli fornisce un ottimo risalto al profilo maltato, specialmente il forte aroma di malti e zuccheri scuri."/>
+  <jmash.YeastType nome="Belgian Wheat" codice="3942" produttore="Wyeast" descrizione="Lievito ricco di esteri, poco fenolico da una piccola birreria belga. Aromi di mela, menta e prugna con un finale secco ma fruttato."/>
+  <jmash.YeastType nome="Belgian Witbier" codice="3944" produttore="Wyeast" descrizione="Dal carattere aspro e leggermente fenolico, capace di produrre le tipiche Biere Blanche e le Gran Cru."/>
+  <jmash.YeastType nome="Sakè #9" codice="4134" produttore="Wyeast" descrizione="Corpo pieno e completo, setoso e morbido al palato con la produzione di esteri bassa."/>
+  <jmash.YeastType nome="Sweet Mead" codice="4184" produttore="Wyeast" descrizione="Lievito specifico per la produzione di Idromele dolce. Lascia il 2-3 % di zuccheri residui. Profilo aromatico ricco e fruttato."/>
+  <jmash.YeastType nome="Dry Mead" codice="4632" produttore="Wyeast" descrizione="Produce poca schiuma e pochi composti solforati."/>
+  <jmash.YeastType nome="Cider" codice="4766" produttore="Wyeast" descrizione="Lievito fresco e secco da Sidro con grande finale fruttato. Crea un buon bilanciamento per tutti i tipi di mele, pere e altri tipi di frutta."/>
+  <jmash.YeastType nome="Brettanomyces Bruxellensis" codice="5112" produttore="Wyeast" descrizione="Questo ceppo di lievito selvaggio è stato isolato da una birreria nella regione Brussels in Belgio. Produce la classica coperta sudata di cavallo caratteristica di birre indigene come Gueuze, Lambic e può creare una pellicola in bottiglie e botti."/>
+  <jmash.YeastType nome="Lactobacillus" codice="5335" produttore="Wyeast" descrizione="Questo ceppo di lievito selvaggio è stato isolato da una birreria nella regione Brussels in Belgio. Produce la classica coperta sudata di cavallo caratteristica di birre indigene come Gueuze, Lambic e può creare una pellicola in bottiglie e botti."/>
+  <jmash.YeastType nome="Brettanomyces Lambicus" codice="5526" produttore="Wyeast" descrizione="Si tratta di un ceppo di lievito selvatico isolato da birre belghe Lambic. Produce un sapore/acidità simile alla torta alla ciliegia. Si può formare una pellicola in bottiglie o botti."/>
+  <jmash.YeastType nome="Pediococcus" codice="5733" produttore="Wyeast" descrizione="Batteri lattici utilizzati nella produzione di birre in stile belga dove l'acidità supplementare è auspicabile. Si trova spesso in Gueuze e altre birre in stile belga. La produzione di acido aumenterà con il tempo di conservazione."/>
+  <jmash.YeastType nome="Old Ale Blend PC" codice="9097" produttore="Wyeast" descrizione=""/>
 </yeasts>

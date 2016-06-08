@@ -37,35 +37,36 @@ import sun.swing.plaf.synth.DefaultSynthStyle;
  * @author Azatoth
  */
 public class AzatothLookAndFeel extends NimbusLookAndFeel {
-	private Font defaultFont;
+    private Font defaultFont;
 
-	@Override
-	public UIDefaults getDefaults() {
-		// get the normal defaults
-		UIDefaults theDefaults = super.getDefaults();
-		// defaultFont = FontManager.getFontConfigFUIR("SansSerif", Font.PLAIN,
-		// 11);
-		// theDefaults.put("defaultFont", new FontUIResource(defaultFont));
-		theDefaults.put("defaultFont", new Font("Tahoma", 0, 11));
-		return theDefaults;
-	}
+    @Override
+    public UIDefaults getDefaults() {
+        // get the normal defaults
+        UIDefaults theDefaults = super.getDefaults();
+        // defaultFont = FontManager.getFontConfigFUIR("SansSerif", Font.PLAIN,
+        // 11);
+        // theDefaults.put("defaultFont", new FontUIResource(defaultFont));
+        theDefaults.put("defaultFont", new Font("Tahoma", 0, 11));
+        return theDefaults;
+    }
 
-	@Override
-	public void initialize() {
-		// do the normal work
-		super.initialize();
+    @Override
+    public void initialize() {
+        // do the normal work
+        super.initialize();
 
-		// reset the synth style factory to get your font into the style also
-		final SynthStyleFactory oldFactory = getStyleFactory();
-		setStyleFactory(new SynthStyleFactory() {
-			@Override
-			public SynthStyle getStyle(JComponent c, Region r) {
-				SynthStyle s = oldFactory.getStyle(c, r);
-				if (s instanceof DefaultSynthStyle) {
-					((DefaultSynthStyle) s).setFont(defaultFont);
-				}
-				return s;
-			}
-		});
-	}
+        // reset the synth style factory to get your font into the style also
+        final SynthStyleFactory oldFactory = getStyleFactory();
+        setStyleFactory(new SynthStyleFactory() {
+            @SuppressWarnings("restriction")
+            @Override
+            public SynthStyle getStyle(JComponent c, Region r) {
+                SynthStyle s = oldFactory.getStyle(c, r);
+                if (s instanceof DefaultSynthStyle) {
+                    ((DefaultSynthStyle) s).setFont(defaultFont);
+                }
+                return s;
+            }
+        });
+    }
 }

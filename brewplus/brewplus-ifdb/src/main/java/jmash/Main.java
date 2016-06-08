@@ -666,9 +666,6 @@ public class Main {
 			in.close();
 		}
 
-		// if (versione != webVersion) {
-		// TODO: temporanemento commentato il controllo nuova versione per
-		// update
 		if (false) {
 			gui.btnUpdate.setVisible(true);
 			gui.btnUpdate.setToolTipText("Trovata una nuova versione");

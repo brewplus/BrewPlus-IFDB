@@ -128,33 +128,9 @@ public class frmBrowseBJCP extends JInternalFrame {
 	    
 	    LOGGER.debug("Dispalying stile: " + bs.getDesCategoria());
 	    
-		StringBuilder sb = new StringBuilder();
-		sb.append("<html><head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}th, td {padding: 5px;}</style></head><body>");
-		sb.append("<h1>"+bs.getDesCategoria() + "</h1><br><br>");
-		sb.append("<b>Aroma:</b><br>" + bs.getAroma() + "<br><br>");
-		sb.append("<b>Appearance:</b><br>" + bs.getAppearance() + "<br><br>");
-		sb.append("<b>Flavor:</b><br>" + bs.getFlavor() + "<br><br>");
-		sb.append("<b>Mouthfeel:</b><br>" + bs.getMouthfeel() + "<br><br>");
-		sb.append("<b>Impression:</b><br>" + bs.getImpression() + "<br><br>");
-		sb.append("<b>Comments:</b><br>" + bs.getComments() + "<br><br>");
-		sb.append("<b>Ingredients:</b><br>" + bs.getIngredients() + "<br><br>");
-		sb.append("<b>Examples:</b><br>" + bs.getExamples() + "<br><br>");
-	    sb.append("<b>Category Notes:</b><br>" + bs.getCatNotes() + "<br><br>");
-		
-		sb.append("<table style=\"width:200\">");
-		sb.append("<tr>");
-		sb.append("<td><b>IBU</b></td><td>"+bs.getDesIBU().replace(".", ",")+"</td>");
-		sb.append("</tr><tr>");
-		sb.append("<td><b>OG</b></td><td>"+bs.getDesOG().replace(".", ",")+"</td>");
-		sb.append("</tr><tr>");
-		sb.append("<td><b>FG</b></td><td>"+bs.getDesFG().replace(".", ",")+"</td>");
-		sb.append("</tr></table>");
+	    String html = Utils.getBJCPHtml(bs);
 
-
-		
-		sb.append("</body></html>");
-
-        textPane.setText(sb.toString());
+        textPane.setText(html);
 
 	}
 

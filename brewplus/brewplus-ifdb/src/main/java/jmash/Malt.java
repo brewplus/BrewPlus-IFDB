@@ -29,199 +29,204 @@ import org.jdom.Element;
  */
 public class Malt implements InventoryObject {
 
-	/** Creates a new instance of Malt */
-	Ricetta ricetta;
+    /** Creates a new instance of Malt */
+    Ricetta ricetta;
 
-	public Malt() {
-		setGrammi(000.0);
-		setEbc(10.0);
-		setPotentialSG(1.034);
-		setNome("Innominato");
-		setForma("Grani");
-		setUnitaMisura("grammi");
-	}
+    public Malt() {
+        setGrammi(000.0);
+        setEbc(10.0);
+        setPotentialSG(1.034);
+        setNome("Innominato");
+        setForma("Grani");
+        setUnitaMisura("grammi");
+    }
 
-	public Malt(Ricetta ricetta) {
-		this();
-		this.ricetta = ricetta;
-	}
+    public Malt(Ricetta ricetta) {
+        this();
+        this.ricetta = ricetta;
+    }
 
-	public void setRicetta(Ricetta ricetta) {
-		this.ricetta = ricetta;
-	}
+    public void setRicetta(Ricetta ricetta) {
+        this.ricetta = ricetta;
+    }
 
-	public Malt(Ricetta ricetta, MaltType type) {
-		this(ricetta);
-		this.ricetta = ricetta;
-		setOrigine(type.getOrigine());
-		setPotentialSG(type.getSg());
-		setNome(type.getNome());
-		setEbc(type.getEbc());
-		setForma(type.getForma());
-		setYield(type.getYield());
-	}
+    public Malt(Ricetta ricetta, MaltType type) {
+        this(ricetta);
+        this.ricetta = ricetta;
+        setOrigine(type.getOrigine());
+        setPotentialSG(type.getSg());
+        setNome(type.getNome());
+        setEbc(type.getEbc());
+        setForma(type.getForma());
+        setYield(type.getYield());
+    }
 
-	public Malt(MaltType type) {
-		this();
-		setOrigine(type.getOrigine());
-		setPotentialSG(type.getSg());
-		setNome(type.getNome());
-		setEbc(type.getEbc());
-		setForma(type.getForma());
-		setYield(type.getYield());
-	}
+    public Malt(MaltType type) {
+        this();
+        setOrigine(type.getOrigine());
+        setPotentialSG(type.getSg());
+        setNome(type.getNome());
+        setEbc(type.getEbc());
+        setForma(type.getForma());
+        setYield(type.getYield());
+    }
 
-	private Double grammi;
-	private Double potentialSG;
-	private Double ebc;
-	private String nome;
-	private String origine;
-	private String forma;
-	private Double yield;
-	private String unitaMisura;
+    private Double grammi;
+    private Double potentialSG;
+    private Integer percentuale;
+    private Double ebc;
+    private String nome;
+    private String origine;
+    private String forma;
+    private Double yield;
+    private String unitaMisura;
 
-	public String getUnitaMisura() {
-		return this.unitaMisura;
-	}
+    public Integer getPercentuale() {
+        return percentuale;
+    }
 
-	public void setUnitaMisura(String unitaMisura) {
-		this.unitaMisura = unitaMisura;
-	}
+    public void setPercentuale(Integer percentuale) {
+        this.percentuale = percentuale;
+    }
 
-	public double getConvertedGrammi() {
-		return Utils.convertWeight(this.grammi, "grammi", this.unitaMisura);
-	}
+    public String getUnitaMisura() {
+        return this.unitaMisura;
+    }
 
-	@Override
-	public Double getGrammi() {
-		return this.grammi;
-	}
+    public void setUnitaMisura(String unitaMisura) {
+        this.unitaMisura = unitaMisura;
+    }
 
-	public void setGrammi(Double grammi) {
-		this.grammi = grammi;
-		// this.iGrammi=Double.valueOf(grammi);
-	}
+    public double getConvertedGrammi() {
+        return Utils.convertWeight(this.grammi, "grammi", this.unitaMisura);
+    }
 
-	public Double getPotentialSG() {
-		return this.potentialSG;
-	}
+    @Override
+    public Double getGrammi() {
+        return this.grammi;
+    }
 
-	public void setSrm(Double d) {
-		setEbc(Utils.srmToEbc(d));
-	}
+    public void setGrammi(Double grammi) {
+        this.grammi = grammi;
+    }
 
-	public Double getSrm() {
-		return (Utils.ebcToSrm(getEbc()));
-	}
+    public Double getPotentialSG() {
+        return this.potentialSG;
+    }
 
-	public void setPotentialSG(Double potentialSG) {
-		this.potentialSG = potentialSG;
-		// if(potentialSG!=null)
-		// this.dSG=Double.valueOf(potentialSG);
-	}
+    public void setSrm(Double d) {
+        setEbc(Utils.srmToEbc(d));
+    }
 
-	public Double getEbc() {
-		return this.ebc;
-	}
+    public Double getSrm() {
+        return (Utils.ebcToSrm(getEbc()));
+    }
 
-	public void setEbc(Double ebc) {
-		this.ebc = ebc;
-		// this.dC=Double.valueOf(ebc);
-	}
+    public void setPotentialSG(Double potentialSG) {
+        this.potentialSG = potentialSG;
+    }
 
-	@Override
-	public String getNome() {
-		return this.nome;
-	}
+    public Double getEbc() {
+        return this.ebc;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public void setEbc(Double ebc) {
+        this.ebc = ebc;
+    }
 
-	public String getOrigine() {
-		return this.origine;
-	}
+    @Override
+    public String getNome() {
+        return this.nome;
+    }
 
-	public void setOrigine(String origine) {
-		this.origine = origine;
-	}
-	/*
-	 * public Double getIGrammi(){ return this.iGrammi; } public Double
-	 * getDSG(){ return this.dSG; } public Double getCol(){ return this.dC; }
-	 */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public String getForma() {
-		return this.forma;
-	}
+    public String getOrigine() {
+        return this.origine;
+    }
 
-	public void setForma(String forma) {
-		this.forma = forma;
-	}
+    public void setOrigine(String origine) {
+        this.origine = origine;
+    }
+    /*
+     * public Double getIGrammi(){ return this.iGrammi; } public Double
+     * getDSG(){ return this.dSG; } public Double getCol(){ return this.dC; }
+     */
 
-	public static Malt fromXml(Element elem, Ricetta ricetta) {
-		Malt malt = new Malt(ricetta);
-		try {
-			malt = (Malt) Utils.fromXml(malt, campiXml, elem);
-		} catch (Exception ex) {
-			Utils.showException(ex);
-		}
-		return malt;
-	}
+    public String getForma() {
+        return this.forma;
+    }
 
-	public static Malt fromXml(Element elem) {
-		return fromXml(elem, null);
-	}
+    public void setForma(String forma) {
+        this.forma = forma;
+    }
 
-	public static String campiXml[] = new String[] { "Grammi", "UnitaMisura", "Nome", "Forma", "Ebc", "PotentialSG",
-			"srm", "Origine", "DataAcquisto" };
+    public static Malt fromXml(Element elem, Ricetta ricetta) {
+        Malt malt = new Malt(ricetta);
+        try {
+            malt = (Malt) Utils.fromXml(malt, campiXml, elem);
+        } catch (Exception ex) {
+            Utils.showException(ex);
+        }
+        return malt;
+    }
 
-	public Element toXml() {
-		Element malt = new Element("malt");
-		try {
-			return Utils.toXml(this, campiXml);
-		} catch (Exception ex) {
-			Utils.showException(ex);
-		}
-		return malt;
-	}
+    public static Malt fromXml(Element elem) {
+        return fromXml(elem, null);
+    }
 
-	public Double getYield() {
-		return this.yield;
-	}
+    public static String campiXml[] = new String[] { "Grammi", "UnitaMisura", "Nome", "Forma", "Ebc", "PotentialSG",
+            "srm", "Origine", "DataAcquisto" };
 
-	public void setYield(Double yield) {
-		this.yield = yield;
-	}
+    public Element toXml() {
+        Element malt = new Element("malt");
+        try {
+            return Utils.toXml(this, campiXml);
+        } catch (Exception ex) {
+            Utils.showException(ex);
+        }
+        return malt;
+    }
 
-	private Date dataAcquisto;
+    public Double getYield() {
+        return this.yield;
+    }
 
-	public Date getDataAcquisto() {
-		return dataAcquisto;
-	}
+    public void setYield(Double yield) {
+        this.yield = yield;
+    }
 
-	public void setDataAcquisto(Date dataAcquisto) {
-		this.dataAcquisto = dataAcquisto;
-	}
+    private Date dataAcquisto;
 
-	private Boolean selected;
+    public Date getDataAcquisto() {
+        return dataAcquisto;
+    }
 
-	@Override
-	public Boolean isSelected() {
-		return selected;
-	}
+    public void setDataAcquisto(Date dataAcquisto) {
+        this.dataAcquisto = dataAcquisto;
+    }
 
-	@Override
-	public void setSelected(Boolean selected) {
-		this.selected = selected;
-	}
+    private Boolean selected;
 
-	public boolean isMashed() {
-		return (getForma() != null)
-				&& ((getForma().compareToIgnoreCase("grani") == 0) || (getForma().compareToIgnoreCase("fiocchi") == 0)
-						|| (getForma().compareToIgnoreCase("chicchi") == 0));
-	}
+    @Override
+    public Boolean isSelected() {
+        return selected;
+    }
 
-	public double getMcu(double volume) {
-		return this.getSrm() * Utils.gramsToPound(this.getGrammi()) / Utils.litToGal(volume);
-	}
+    @Override
+    public void setSelected(Boolean selected) {
+        this.selected = selected;
+    }
+
+    public boolean isMashed() {
+        return (getForma() != null)
+                && ((getForma().compareToIgnoreCase("grani") == 0) || (getForma().compareToIgnoreCase("fiocchi") == 0)
+                        || (getForma().compareToIgnoreCase("chicchi") == 0));
+    }
+
+    public double getMcu(double volume) {
+        return this.getSrm() * Utils.gramsToPound(this.getGrammi()) / Utils.litToGal(volume);
+    }
 }
