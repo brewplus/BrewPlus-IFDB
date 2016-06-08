@@ -29,7 +29,7 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
      */
     private static final long serialVersionUID = -5667189467722852137L;
     private Ricetta ricetta;
-    private static final String[] cN = new String[] { "OG", "Plato", "OG pre-Boll", "�P pre-Boll", "Tinseth", "Rager",
+    private static final String[] cN = new String[] { "OG", "Plato", "OG pre-Boll", "°P pre-Boll", "Tinseth", "Rager",
             "Daniels", "BU/GU", "Tot. Grani", "Tot. Luppoli", };
 
     public SummaryTableModel(Ricetta ricetta) {
@@ -53,7 +53,7 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
         this.SG = SG;
         this.setPLATO(Utils.SG2Plato(SG));
         sSG = NumberFormatter.format03(SG);
-        sP = NumberFormatter.format02(this.getPLATO()) + " �P";
+        sP = NumberFormatter.format02(this.getPLATO()) + " °P";
     }
 
     private double IBU = 0;
@@ -198,7 +198,7 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
         this.SGPB = SGPB;
         this.setPLATOPB(Utils.SG2Plato(SGPB));
         sSGPB = NumberFormatter.format03(this.getSGPB());
-        sPPB = NumberFormatter.format02(this.getPLATOPB()) + " �P";
+        sPPB = NumberFormatter.format02(this.getPLATOPB()) + " °P";
     }
 
     public double getPLATOPB() {
