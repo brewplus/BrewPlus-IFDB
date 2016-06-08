@@ -51,14 +51,15 @@ public class XMLReader {
 			InputSource is = null;
 			if (!file.startsWith("http://")) {
 				file = new File(file).toURI().toString();
-
-				// if (!new File(fileOri).exists()) {
-				// // solo per esecuzioni per eclipse
-				// String currentDir = System.getProperty("user.dir");
-				// String currentParentDir = new File(currentDir).getParent();
-				// file = currentParentDir +
-				// "/brewplus-ifdb-distr/src/main/resources/distr/" + fileOri;
-				// }
+        
+        if ("1".equals(System.getProperty("ide"))) {
+          if (!new File(fileOri).exists()) {
+          // solo per esecuzioni per eclipse/netbeans
+            String currentDir = System.getProperty("user.dir");
+            String currentParentDir = new File(currentDir).getParent();
+            file = currentParentDir + "/brewplus-ifdb-distr/src/main/resources/distr/" + fileOri;
+          } 
+      }
 
 				is = new InputSource(file);
 				is.setEncoding("UTF-8");
