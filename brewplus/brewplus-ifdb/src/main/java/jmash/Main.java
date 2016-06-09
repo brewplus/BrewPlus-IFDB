@@ -76,7 +76,7 @@ public class Main {
 	public static String Nome = "BrewPlus";
 	public static String luppoliXML = "config/luppoli_ita.xml";
 	public static String maltiXML = "config/malti_ita.xml";
-  public static String maltCategoriesXML = "config/categorie_malti.xml";
+	public static String maltCategoriesXML = "config/categorie_malti.xml";
 	public static String waterXML = "config/water.xml";
 	public static String yeastXML = "config/lieviti_ita.xml";
 	public static String stiliXML = "config/stili.xml";
