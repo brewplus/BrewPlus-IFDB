@@ -19,7 +19,6 @@
 
 package jmash;
 
-import java.awt.Desktop;
 import java.awt.Frame;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
@@ -27,8 +26,6 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.beans.PropertyVetoException;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -49,21 +46,17 @@ import jmash.config.XmlAbleTableModel;
 import jmash.tableModel.BrewStylePickerTableModel;
 import jmash.tableModel.GenericTableModel;
 import jmash.tableModel.HopPickerTableModel;
+import jmash.tableModel.MaltCategoryPickerTableModel;
 import jmash.tableModel.MaltPickerTableModel;
 import jmash.tableModel.WaterPickerTableModel;
 import jmash.tableModel.YeastPickerTableModel;
 import jmash.test.BeerXMLReader;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.SystemColor;
-import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
-import javax.swing.JMenuBar;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
@@ -72,7 +65,6 @@ import javax.swing.JMenu;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JLabel;
-import java.awt.Rectangle;
 import javax.swing.border.EmptyBorder;
 
 import org.apache.log4j.Logger;
@@ -211,6 +203,7 @@ public class Gui extends javax.swing.JFrame {
 	}
 
 	public static HopPickerTableModel hopPickerTableModel = new HopPickerTableModel();
+  public static MaltCategoryPickerTableModel maltCategoryPickerTableModel = new MaltCategoryPickerTableModel();
 	public static MaltPickerTableModel maltPickerTableModel = new MaltPickerTableModel();
 	public static WaterPickerTableModel waterPickerTableModel = new WaterPickerTableModel();
 	public static YeastPickerTableModel yeastPickerTableModel = new YeastPickerTableModel();
@@ -265,6 +258,7 @@ public class Gui extends javax.swing.JFrame {
 		mnuEsci = new javax.swing.JMenuItem();
 		jMenu2 = new javax.swing.JMenu();
 		mnuLuppoliXML = new javax.swing.JMenuItem();
+		mnuCategorieMaltiXML = new javax.swing.JMenuItem();
 		mnuMaltiXML = new javax.swing.JMenuItem();
 		mnuLievitiXML = new javax.swing.JMenuItem();
 		mnuAcquaXML = new javax.swing.JMenuItem();
@@ -781,6 +775,14 @@ public class Gui extends javax.swing.JFrame {
 		});
 		jMenu2.add(mnuLuppoliXML);
 
+		mnuCategorieMaltiXML.setText("Categorie malti");
+		mnuCategorieMaltiXML.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				mnuCategorieMaltiXMLActionPerformed(evt);
+			}
+		});
+		jMenu2.add(mnuCategorieMaltiXML);
+		
 		mnuMaltiXML.setText("Malti, estratti, zuccheri");
 		mnuMaltiXML.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1300,6 +1302,19 @@ public class Gui extends javax.swing.JFrame {
 			nuovaRicetta(new Ricetta(file));
 		}
 	}// GEN-LAST:event_btnOpenActionPerformed
+  
+  private void mnuCategorieMaltiXMLActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_mnuMaltiXMLActionPerformed
+		GenericTableModel tableModel = new XmlAbleTableModel(new MaltCategory());
+		tableModel.setRows(Gui.maltCategoryPickerTableModel.getRows());
+		try {
+			addFrame(
+					new XmlAbleEditor(tableModel, MaltCategory.class, Main.maltCategoriesXML, Main.class.getMethod("readCategorieMalti")));
+		} catch (SecurityException ex) {
+			LOGGER.error(ex.getMessage(), ex);
+		} catch (NoSuchMethodException ex) {
+			LOGGER.error(ex.getMessage(), ex);
+		}
+	}// GEN-LAST:event_mnuMaltiXMLActionPerformed
 
 	private void mnuMaltiXMLActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_mnuMaltiXMLActionPerformed
 		GenericTableModel tableModel = new XmlAbleTableModel(new MaltType());
@@ -1615,6 +1630,7 @@ public class Gui extends javax.swing.JFrame {
 	private javax.swing.JMenuItem mnuFromPromash;
 	private javax.swing.JMenuItem mnuLievitiXML;
 	private javax.swing.JMenuItem mnuLuppoliXML;
+	private javax.swing.JMenuItem mnuCategorieMaltiXML;
 	private javax.swing.JMenuItem mnuMaltiXML;
 	private javax.swing.JMenuItem mnuNuova;
 	private javax.swing.JMenuItem mnuStiliXML;

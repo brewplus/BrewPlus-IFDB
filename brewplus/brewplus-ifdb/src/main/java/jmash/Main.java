@@ -76,6 +76,7 @@ public class Main {
 	public static String Nome = "BrewPlus";
 	public static String luppoliXML = "config/luppoli_ita.xml";
 	public static String maltiXML = "config/malti_ita.xml";
+  public static String maltCategoriesXML = "config/categorie_malti.xml";
 	public static String waterXML = "config/water.xml";
 	public static String yeastXML = "config/lieviti_ita.xml";
 	public static String stiliXML = "config/stili.xml";
@@ -195,6 +196,7 @@ public class Main {
 		try {
 			readConfig();
 			readLuppoli();
+      readCategorieMalti();
 			readMalti();
 			readLieviti();
 			readWater();
@@ -323,6 +325,28 @@ public class Main {
 				return m;
 		}
 		return null;
+	}
+  
+  public static void readCategorieMalti() throws Exception {
+		Gui.maltCategoryPickerTableModel.emptyRows();
+		Document doc = Utils.readFileAsXml(Main.maltCategoriesXML);
+		if (doc == null) {
+			return;
+		}
+		Element root = doc.getRootElement();
+		if (root.getName().compareToIgnoreCase("maltsCategories") == 0) {
+			LOGGER.info("malts categories detected");
+			@SuppressWarnings("unchecked")
+			Iterator iterator = root.getChildren().iterator();
+			while (iterator.hasNext()) {
+				Element maltCategory = (Element) iterator.next();
+				MaltCategory category = MaltCategory.fromXml(maltCategory);
+				if (category != null) {
+					Gui.maltCategoryPickerTableModel.addRow(category);
+				}
+			}
+		}
+		Collections.sort(Gui.maltCategoryPickerTableModel.getRows());
 	}
 
 	public static void readMalti() throws Exception {
