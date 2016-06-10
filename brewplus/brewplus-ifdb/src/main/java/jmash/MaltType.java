@@ -121,9 +121,9 @@ public class MaltType implements XmlAble, Comparable<MaltType> {
 		this.forma = forma;
 	}
 
-	private static String campiXml[] = { "Nome", "Forma", "Sg", "Ebc", "Srm", "Origine", "Yield", "Caratteristiche",
+	private static String campiXml[] = { "Nome", "Forma", "Categoria", "Sg", "Ebc", "Srm", "Origine", "Yield", "Caratteristiche",
 			"ADD_AFTER_BOIL", "needMash", "notes", "COARSE_FINE_DIFF", "MOISTURE", "DIASTATIC_POWER", "PROTEIN",
-			"MAX_IN_BATCH", "RECOMMEND_MASH", "EXTRACT_SUBSTITUTE", "Categoria"};
+			"MAX_IN_BATCH", "RECOMMEND_MASH", "EXTRACT_SUBSTITUTE"};
 
 	public static MaltType fromXml(Element malt) {
 		MaltType type = new MaltType();
