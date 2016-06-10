@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>net.ilforumdellabirra</groupId>
+	<artifactId>brewplus</artifactId>
+	<version>2.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>BrewPlus</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>mvnrepository.com</id>
+			<url>http://mvnrepository.com/</url>
+		</repository>
+	</repositories>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- BREWPLUS DEPENDECIES -->
+			<dependency>
+				<groupId>net.ilforumdellabirra</groupId>
+				<artifactId>brewplus-ifdb</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<!-- EXTERNAL DEPENDECIES -->
+			<dependency>
+				<groupId>org.swinglabs</groupId>
+				<artifactId>swing-layout</artifactId>
+				<version>1.0.3</version>
+			</dependency>
+			<dependency>
+				<groupId>rome</groupId>
+				<artifactId>rome</artifactId>
+				<version>1.0</version>
+			</dependency>
+			<dependency>
+				<groupId>jfree</groupId>
+				<artifactId>jcommon</artifactId>
+				<version>1.0.12</version>
+			</dependency>
+			<dependency>
+				<groupId>com.toedter</groupId>
+				<artifactId>jcalendar</artifactId>
+				<version>1.4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jfree</groupId>
+				<artifactId>jfreechart</artifactId>
+				<version>1.0.19</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.zxing</groupId>
+				<artifactId>core</artifactId>
+				<version>3.2.1</version>
+			</dependency>
+			<dependency>
+				<groupId>hoteqn</groupId>
+				<artifactId>apt.hoteqn</artifactId>
+				<version>1.0</version>
+				<scope>system</scope>
+				<systemPath>${project.basedir}/no-maven-libs/HotEqn.jar</systemPath>
+			</dependency>
+			<dependency>
+				<groupId>com.google.zxing</groupId>
+				<artifactId>javase</artifactId>
+				<version>3.2.1</version>
+			</dependency>
+		</dependencies>
+
+
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.3</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>3.0.0</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>2.10</version>
+				</plugin>
+				<plugin>
+					<groupId>external.atlassian.jgitflow</groupId>
+					<artifactId>jgitflow-maven-plugin</artifactId>
+					<version>1.0-m5.1</version>
+					<configuration>
+						<!-- Vedasi documentazione su http://jgitflow.bitbucket.org/plugin-info.html -->
+						<noDeploy>false</noDeploy>
+						<allowSnapshots>true</allowSnapshots>
+						<autoVersionSubmodules>true</autoVersionSubmodules>
+					</configuration>
+				</plugin>
+			</plugins>
+
+		</pluginManagement>
+
+	</build>
+
+	<modules>
+		<module>brewplus-ifdb</module>
+		<module>brewplus-ifdb-distr</module>
+	</modules>
+</project>

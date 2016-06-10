@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<maltsCategories>
+	<jmash.MaltCategory codice="M1" nome="Base - 2-Row" ph="5.70" />
+	<jmash.MaltCategory codice="M2" nome="Base - 6-Row" ph="5.79" />
+	<jmash.MaltCategory codice="M3" nome="Base - Maris Otter" ph="5.77" />
+	<jmash.MaltCategory codice="M4" nome="Base - Munich" ph="5.43" />
+	<jmash.MaltCategory codice="M5" nome="Base - Pilsner" ph="5.75" />
+	<jmash.MaltCategory codice="M6" nome="Base - Wheat" ph="6.04" />
+	<jmash.MaltCategory codice="M7" nome="Base - Vienna" ph="5.56" />
+	<jmash.MaltCategory codice="M8" nome="Base - Other" ph="5.70" />
+	<jmash.MaltCategory codice="M9" nome="Crystal Malt" ph="0" />
+	<jmash.MaltCategory codice="M10" nome="Roasted/Toasted Malt" ph="4.71" />
+</maltsCategories>

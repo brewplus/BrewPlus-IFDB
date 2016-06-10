@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<waters>
+  <jmash.WaterProfile nome="Antwerp" calcio="90.0" magnesio="11.0" solfato="84.0" cloruro="57.0" sodio="37.0" carbonato="76.0" />
+  <jmash.WaterProfile nome="Beerse" calcio="41.0" magnesio="8.0" solfato="62.0" cloruro="26.0" sodio="16.0" carbonato="91.0" />
+  <jmash.WaterProfile nome="Bitter" calcio="200.0" magnesio="10.0" solfato="400.0" cloruro="30.0" sodio="10.0" carbonato="0.0" />
+  <jmash.WaterProfile nome="Brugge" calcio="132.0" magnesio="13.0" solfato="99.0" cloruro="38.0" sodio="20.0" carbonato="326.0" />
+  <jmash.WaterProfile nome="BrusselsRegion" calcio="100.0" magnesio="11.0" solfato="70.0" cloruro="41.0" sodio="18.0" carbonato="250.0" />
+  <jmash.WaterProfile nome="Burton" calcio="268.0" magnesio="62.0" solfato="638.0" cloruro="36.0" sodio="54.0" carbonato="0.0" />
+  <jmash.WaterProfile nome="Burton1" calcio="268.0" magnesio="62.0" solfato="638.0" cloruro="36.0" sodio="54.0" carbonato="275.0" />
+  <jmash.WaterProfile nome="Burton2" calcio="270.0" magnesio="60.0" solfato="640.0" cloruro="40.0" sodio="30.0" carbonato="197.0" />
+  <jmash.WaterProfile nome="Burton3" calcio="295.0" magnesio="45.0" solfato="725.0" cloruro="25.0" sodio="55.0" carbonato="300.0" />
+  <jmash.WaterProfile nome="Dortmund1" calcio="225.0" magnesio="40.0" solfato="120.0" cloruro="60.0" sodio="60.0" carbonato="221.0" />
+  <jmash.WaterProfile nome="Dortmund2" calcio="250.0" magnesio="25.0" solfato="280.0" cloruro="100.0" sodio="70.0" carbonato="550.0" />
+  <jmash.WaterProfile nome="Dublin" calcio="118.0" magnesio="4.0" solfato="54.0" cloruro="19.0" sodio="12.0" carbonato="0.0" />
+  <jmash.WaterProfile nome="Dublin1" calcio="119.0" magnesio="4.0" solfato="53.0" cloruro="19.0" sodio="12.0" carbonato="156.0" />
+  <jmash.WaterProfile nome="Dublin2" calcio="118.0" magnesio="4.0" solfato="54.0" cloruro="19.0" sodio="12.0" carbonato="319.0" />
+  <jmash.WaterProfile nome="Edinburgh1" calcio="140.0" magnesio="60.0" solfato="96.0" cloruro="34.0" sodio="80.0" carbonato="140.0" />
+  <jmash.WaterProfile nome="Edinburgh2" calcio="120.0" magnesio="25.0" solfato="140.0" cloruro="20.0" sodio="55.0" carbonato="225.0" />
+  <jmash.WaterProfile nome="Eeklo" calcio="138.0" magnesio="28.0" solfato="8.0" cloruro="65.0" sodio="115.0" carbonato="255.0" />
+  <jmash.WaterProfile nome="Gent" calcio="114.0" magnesio="17.0" solfato="84.0" cloruro="38.0" sodio="18.0" carbonato="301.0" />
+  <jmash.WaterProfile nome="Guizza" calcio="9.0" magnesio="4.0" solfato="3.0" cloruro="1.0" sodio="2.0" carbonato="44.0" />
+  <jmash.WaterProfile nome="Guizza75guizzadura25" calcio="19.0" magnesio="10.0" solfato="3.0" cloruro="1.0" sodio="3.0" carbonato="109.0" />
+  <jmash.WaterProfile nome="Guizza_dura" calcio="50.0" magnesio="28.0" solfato="3.0" cloruro="2.0" sodio="6.0" carbonato="307.0" />
+  <jmash.WaterProfile nome="Koln" calcio="104.0" magnesio="15.0" solfato="86.0" cloruro="109.0" sodio="52.0" carbonato="152.0" />
+  <jmash.WaterProfile nome="London" calcio="52.0" magnesio="16.0" solfato="77.0" cloruro="60.0" sodio="99.0" carbonato="0.0" />
+  <jmash.WaterProfile nome="LondonCity" calcio="90.0" magnesio="6.0" solfato="24.0" cloruro="10.0" sodio="22.0" carbonato="82.0" />
+  <jmash.WaterProfile nome="LondonWell" calcio="52.0" magnesio="32.0" solfato="32.0" cloruro="34.0" sodio="86.0" carbonato="104.0" />
+  <jmash.WaterProfile nome="Luik" calcio="98.0" magnesio="14.0" solfato="14.0" cloruro="142.0" sodio="110.0" carbonato="134.0" />
+  <jmash.WaterProfile nome="Mechelen" calcio="116.0" magnesio="14.0" solfato="62.0" cloruro="36.0" sodio="16.0" carbonato="330.0" />
+  <jmash.WaterProfile nome="Munich" calcio="75.0" magnesio="18.0" solfato="10.0" cloruro="2.0" sodio="2.0" carbonato="148.0" />
+  <jmash.WaterProfile nome="Norda" calcio="10.0" magnesio="2.0" solfato="5.0" cloruro="1.0" sodio="2.0" carbonato="40.0" />
+  <jmash.WaterProfile nome="Pilsen1" calcio="7.0" magnesio="2.0" solfato="5.0" cloruro="5.0" sodio="2.0" carbonato="14.0" />
+  <jmash.WaterProfile nome="Pilsen2" calcio="10.0" magnesio="3.0" solfato="4.0" cloruro="4.0" sodio="3.0" carbonato="3.0" />
+  <jmash.WaterProfile nome="Pioda" calcio="34.0" magnesio="15.0" solfato="10.0" cloruro="2.0" sodio="1.0" carbonato="162.0" />
+  <jmash.WaterProfile nome="Poperinge" calcio="8.0" magnesio="2.0" solfato="124.0" cloruro="206.0" sodio="380.0" carbonato="528.0" />
+  <jmash.WaterProfile nome="Porter" calcio="100.0" magnesio="10.0" solfato="100.0" cloruro="300.0" sodio="10.0" carbonato="0.0" />
+  <jmash.WaterProfile nome="Vienna" calcio="200.0" magnesio="60.0" solfato="125.0" cloruro="12.0" sodio="8.0" carbonato="118.0" />
+  <jmash.WaterProfile nome="WillebroekRumst" calcio="68.0" magnesio="8.0" solfato="70.0" cloruro="60.0" sodio="33.0" carbonato="143.0" />
+</waters>
+
