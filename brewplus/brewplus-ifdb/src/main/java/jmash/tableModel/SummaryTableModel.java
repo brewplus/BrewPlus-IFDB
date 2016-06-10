@@ -129,6 +129,10 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
                 iburatio = this.getIBUDaniels();
             if (tiporatio == BitterBUGU.RAG)
                 iburatio = this.getIBU2();
+            if (Double.isNaN(iburatio / ((getSG() - 1) * 1000)))
+            {
+              return NumberFormatter.format02(0.0);
+            }
             return NumberFormatter.format02(iburatio / ((getSG() - 1) * 1000));
         case 8:
             return sTotG;
