@@ -61,6 +61,7 @@ public class MaltType implements XmlAble, Comparable<MaltType> {
 	private String MAX_IN_BATCH;
 	private String RECOMMEND_MASH;
 	private String EXTRACT_SUBSTITUTE;
+  private String categoria;
 
 	public Double getEbc() {
 		return ebc == null ? 0 : ebc;
@@ -122,7 +123,7 @@ public class MaltType implements XmlAble, Comparable<MaltType> {
 
 	private static String campiXml[] = { "Nome", "Forma", "Sg", "Ebc", "Srm", "Origine", "Yield", "Caratteristiche",
 			"ADD_AFTER_BOIL", "needMash", "notes", "COARSE_FINE_DIFF", "MOISTURE", "DIASTATIC_POWER", "PROTEIN",
-			"MAX_IN_BATCH", "RECOMMEND_MASH", "EXTRACT_SUBSTITUTE", };
+			"MAX_IN_BATCH", "RECOMMEND_MASH", "EXTRACT_SUBSTITUTE", "Categoria"};
 
 	public static MaltType fromXml(Element malt) {
 		MaltType type = new MaltType();
@@ -242,6 +243,18 @@ public class MaltType implements XmlAble, Comparable<MaltType> {
 	public void setEXTRACT_SUBSTITUTE(String EXTRACT_SUBSTITUTE) {
 		this.EXTRACT_SUBSTITUTE = EXTRACT_SUBSTITUTE;
 	}
+
+  public String getCategoria()
+  {
+    return categoria;
+  }
+
+  public void setCategoria(String categoria)
+  {
+    this.categoria = categoria;
+  }
+  
+  
 
 	public static String[] getCampiXml() {
 		return campiXml;

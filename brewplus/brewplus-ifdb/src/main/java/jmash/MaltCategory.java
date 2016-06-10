@@ -15,11 +15,11 @@ public class MaltCategory implements XmlAble, Comparable<MaltCategory>
 
   private String codice;
   private String nome;
-  private Double ph;
+  private Double pH;
 
   private static String campiXml[] =
   {
-    "codice", "nome", "ph"
+    "Codice", "Nome", "pH"
   };
   
   /**
@@ -29,11 +29,11 @@ public class MaltCategory implements XmlAble, Comparable<MaltCategory>
   {
   }
 
-  public MaltCategory(String codice, String nome, Double ph)
+  public MaltCategory(String codice, String nome, Double pH)
   {
     setCodice(codice);
     setNome(nome);
-    setPh(ph);
+    setPH(pH);
   }
 
   public String getCodice()
@@ -46,8 +46,6 @@ public class MaltCategory implements XmlAble, Comparable<MaltCategory>
     this.codice = codice;
   }
   
-  
-
   public String getNome()
   {
     return nome;
@@ -58,14 +56,14 @@ public class MaltCategory implements XmlAble, Comparable<MaltCategory>
     this.nome = nome;
   }
 
-  public Double getPh()
+  public Double getPH()
   {
-    return ph;
+    return pH;
   }
 
-  public void setPh(Double ph)
+  public void setPH(Double pH)
   {
-    this.ph = ph;
+    this.pH = pH;
   }
 
   public static String[] getCampiXml()

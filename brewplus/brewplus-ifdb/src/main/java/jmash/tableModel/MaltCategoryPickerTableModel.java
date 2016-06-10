@@ -40,7 +40,7 @@ public class MaltCategoryPickerTableModel extends PickerTableModel
 
   String columnNames[] =
   {
-    "Codice", "Nome", "ph"
+    "Codice", "Nome", "pH"
   };
 
   public void addRow(MaltCategory maltCategory)
@@ -93,7 +93,7 @@ public class MaltCategoryPickerTableModel extends PickerTableModel
         case 2:
           return maltCategory.getNome();
         case 3:
-          return maltCategory.getPh();
+          return maltCategory.getPH();
         case 0:
         default:
           return maltCategory.getCodice();
