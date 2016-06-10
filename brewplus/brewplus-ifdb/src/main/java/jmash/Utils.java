@@ -467,7 +467,15 @@ public class Utils {
     }
 
     public static void saveXmlAsFile(Document doc, File file, JInternalFrame parent) {
-
+       
+        if ("1".equals(System.getProperty("ide"))) {
+          if (!file.exists()) {
+              // solo per esecuzioni per eclipse/netbeans
+              String currentDir = System.getProperty("user.dir");
+              String currentParentDir = new File(currentDir).getParent();
+              file  = new File(currentParentDir + "/brewplus-ifdb-distr/src/main/resources/distr/" + file.toString());
+          }
+        }
         XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
 
         String xml = outputter.outputString(doc);
