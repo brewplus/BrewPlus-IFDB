@@ -1,4 +1,4 @@
-/* ---------------- Script © 2006-2007 EC Software ----------------
+/* ---------------- Script 2006-2007 EC Software ----------------
 This script was created by Help & Manual. It is designed for use 
 in combination with the output of Help & Manual and must not
 be used outside this context.     http://www.helpandmanual.com

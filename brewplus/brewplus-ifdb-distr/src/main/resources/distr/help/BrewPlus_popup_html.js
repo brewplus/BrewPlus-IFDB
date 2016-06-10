@@ -1,4 +1,4 @@
-/* --- Script © 2005-2007 EC Software --- */
+/* --- Script 2005-2007 EC Software --- */
 var ua = navigator.userAgent;
 var dom = (document.getElementById) ? true : false;
 var ie4 = (document.all && !dom) ? true : false;
