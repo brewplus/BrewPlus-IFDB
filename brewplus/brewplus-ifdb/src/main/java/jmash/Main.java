@@ -48,8 +48,6 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Unmarshaller;
 
 import org.apache.log4j.Logger;
 import org.jdom.Attribute;
@@ -60,6 +58,7 @@ import org.jdom.output.XMLOutputter;
 
 import jmash.component.MultiLineCellRenderer;
 import jmash.schema.bjcp.Styleguide;
+import jmash.utils.BundleMessage;
 
 public class Main {
 
@@ -138,7 +137,9 @@ public class Main {
 	public static enum BitterBUGU { // metodo di calcolo BU/GU
 		TIN, RAG, DAN
 	}
-
+        
+        public static BundleMessage bundle = new BundleMessage(java.util.PropertyResourceBundle.getBundle("jmash/lang"));
+         
 	public static MaltType getMaltTypeByWords(String des) {
 		des = des.toLowerCase();
 		MaltType res = null;
@@ -196,7 +197,7 @@ public class Main {
 		try {
 			readConfig();
 			readLuppoli();
-      readCategorieMalti();
+                        readCategorieMalti();
 			readMalti();
 			readLieviti();
 			readWater();
