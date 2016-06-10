@@ -45,6 +45,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
@@ -62,10 +63,11 @@ import jmash.utils.BundleMessage;
 
 public class Main {
 
-	private static Logger LOGGER = Logger.getLogger(Main.class);
-
+	private static final Logger logger = Logger.getLogger(Main.class);
+        public static BundleMessage bundle = new BundleMessage(java.util.PropertyResourceBundle.getBundle("jmash/lang"));
+        
 	public static String versioneHobbyBrew = "2.0.0";
-	public static int webVersion;
+	public static Integer webVersion;
 	public static String userDir;
 	public static String waterDir;
 	public static String recipeDir;
@@ -87,58 +89,37 @@ public class Main {
 	public static Gui gui;
 	public static javax.swing.JDesktopPane desktopPane;
 	public static MultiLineCellRenderer multiLineCellRenderer = new MultiLineCellRenderer();
-	public static Image chartImage = java.awt.Toolkit.getDefaultToolkit()
-			.createImage(Main.class.getResource("/jmash/images/kettle.jpg"));
-	public static Image hopImage = java.awt.Toolkit.getDefaultToolkit()
-			.createImage(Main.class.getResource("/jmash/images/hops.gif"));
+	public static Image chartImage = java.awt.Toolkit.getDefaultToolkit().createImage(Main.class.getResource("/jmash/images/kettle.jpg"));
+	public static Image hopImage = java.awt.Toolkit.getDefaultToolkit().createImage(Main.class.getResource("/jmash/images/hops.gif"));
 
-	public static ImageIcon hopIcon = new ImageIcon(
-			java.awt.Toolkit.getDefaultToolkit().createImage(Main.class.getResource("/jmash/images/hops.jpg")));
-	public static ImageIcon spiceIcon = new ImageIcon(
-			java.awt.Toolkit.getDefaultToolkit().createImage(Main.class.getResource("/jmash/images/icon_spices.png")));
-	public static ImageIcon clockIcon = new ImageIcon(
-			java.awt.Toolkit.getDefaultToolkit().createImage(Main.class.getResource("/jmash/images/clock.png")));
-	public static ImageIcon maltIcon = new ImageIcon(
-			java.awt.Toolkit.getDefaultToolkit().createImage(Main.class.getResource("/jmash/images/ingredients.jpg")));
-	public static ImageIcon extractIcon = new ImageIcon(
-			java.awt.Toolkit.getDefaultToolkit().createImage(Main.class.getResource("/jmash/images/extract.png")));
-	public static ImageIcon glassColorIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit()
-			.createImage(Ricetta.class.getResource("/jmash/images/glass_color.png")));
+	public static ImageIcon hopIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Main.class.getResource("/jmash/images/hops.jpg")));
+	public static ImageIcon spiceIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Main.class.getResource("/jmash/images/icon_spices.png")));
+	public static ImageIcon clockIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Main.class.getResource("/jmash/images/clock.png")));
+	public static ImageIcon maltIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Main.class.getResource("/jmash/images/ingredients.jpg")));
+	public static ImageIcon extractIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Main.class.getResource("/jmash/images/extract.png")));
+	public static ImageIcon glassColorIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/glass_color.png")));
 
-	public static ImageIcon addIcon = new ImageIcon(
-			java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/edit_add.png")));
-	public static ImageIcon remIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit()
-			.createImage(Ricetta.class.getResource("/jmash/images/edit_remove.png")));
-	public static ImageIcon PieIcon = new ImageIcon(
-			java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/pieicon.png")));
+	public static ImageIcon addIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/edit_add.png")));
+	public static ImageIcon remIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/edit_remove.png")));
+	public static ImageIcon PieIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/pieicon.png")));
 
-	public static ImageIcon mainIcon = new ImageIcon(
-			java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/boccale.gif")));
+	public static ImageIcon mainIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/boccale.gif")));
 
-	public static ImageIcon boilOffIcon = new ImageIcon(
-			java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/steam.png")));
-	public static ImageIcon diluiteIcon = new ImageIcon(
-			java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/extract.png")));
-	public static ImageIcon uploadIcon = new ImageIcon(
-			java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/upload.png")));
-	public static ImageIcon strikeIcon = new ImageIcon(
-			java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/temp.png")));
-	public static ImageIcon printIcon = new ImageIcon(
-			java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/fileprint.png")));
-	public static ImageIcon checkInventoryIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit()
-			.createImage(Ricetta.class.getResource("/jmash/images/chkinventario.png")));
-	public static ImageIcon editIcon = new ImageIcon(
-			java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/edit.png")));
-	public static ImageIcon xmlIcon = new ImageIcon(
-			java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/xml.png")));
-	public static ImageIcon androidIcon = new ImageIcon(
-			java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/android.png")));
+	public static ImageIcon boilOffIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/steam.png")));
+	public static ImageIcon diluiteIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/extract.png")));
+	public static ImageIcon uploadIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/upload.png")));
+	public static ImageIcon strikeIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/temp.png")));
+	public static ImageIcon printIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/fileprint.png")));
+	public static ImageIcon checkInventoryIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/chkinventario.png")));
+	public static ImageIcon editIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/edit.png")));
+	public static ImageIcon xmlIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/xml.png")));
+	public static ImageIcon androidIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/android.png")));
 
 	public static enum BitterBUGU { // metodo di calcolo BU/GU
 		TIN, RAG, DAN
 	}
         
-        public static BundleMessage bundle = new BundleMessage(java.util.PropertyResourceBundle.getBundle("jmash/lang"));
+        
          
 	public static MaltType getMaltTypeByWords(String des) {
 		des = des.toLowerCase();
@@ -150,30 +131,30 @@ public class Main {
 			String str = m.getNome().toLowerCase();
 			String S[] = str.split(rxp);
 			double t = -1;
-			int matches = 0;
-			for (int i = 0; i < S.length; i++) {
-				for (int j = 0; j < R.length; j++) {
-					if (S[i].equals(R[j])) {
-						t++;
-						matches++;
-					}
-				}
-			}
-			if (des.indexOf("lme") >= 0 && m.getNome().toLowerCase().indexOf("lme") < 0)
+                    //int matches = 0;
+                    for (String S1 : S) {
+                        for (String R1 : R) {
+                            if (S1.equals(R1)) {
+                                t++;
+                                //matches++;
+                            }
+                        }
+                    }
+			if (des.contains("lme") && !m.getNome().toLowerCase().contains("lme"))
 				t = -1;
-			if (des.indexOf("lme") < 0 && m.getNome().toLowerCase().indexOf("lme") >= 0)
+			if (!des.contains("lme") && m.getNome().toLowerCase().contains("lme"))
 				t = -1;
-			if (des.indexOf("dme") >= 0 && m.getNome().toLowerCase().indexOf("dme") < 0)
+			if (des.contains("dme") && !m.getNome().toLowerCase().contains("dme"))
 				t = -1;
-			if (des.indexOf("dme") < 0 && m.getNome().toLowerCase().indexOf("dme") >= 0)
+			if (!des.contains("dme") && m.getNome().toLowerCase().contains("dme"))
 				t = -1;
-			if (des.indexOf("dry") >= 0 && m.getNome().toLowerCase().indexOf("dry") < 0)
+			if (des.contains("dry") && !m.getNome().toLowerCase().contains("dry"))
 				t = -1;
-			if (des.indexOf("dry") < 0 && m.getNome().toLowerCase().indexOf("dry") >= 0)
+			if (!des.contains("dry") && m.getNome().toLowerCase().contains("dry"))
 				t = -1;
-			if (des.indexOf("extract") >= 0 && m.getNome().toLowerCase().indexOf("extract") < 0)
+			if (des.contains("extract") && !m.getNome().toLowerCase().contains("extract"))
 				t = -1;
-			if (des.indexOf("extract") < 0 && m.getNome().toLowerCase().indexOf("extract") >= 0)
+			if (!des.contains("extract") && m.getNome().toLowerCase().contains("extract"))
 				t = -1;
 			if (t > best) {
 				best = t;
@@ -187,10 +168,10 @@ public class Main {
 		return versioneHobbyBrew;
 	}
 
-	private static void check(String str) {
+	/*private static void check(String str) {
 		MaltType m = getMaltTypeByWords(str);
-		LOGGER.debug(str + " -> " + (m == null ? "NON TROVATO" : m.getNome()));
-	}
+		logger.debug(str + " -> " + (m == null ? "NON TROVATO" : m.getNome()));
+	}*/
 
 	/** Creates a new instance of Main */
 	public Main() {
@@ -207,15 +188,15 @@ public class Main {
 			Document doc = Utils.readFileAsXml(bjcpStylesXML);
 			Element root = doc.getRootElement();
 			Gui.brewStylePickerTableModel.setRows(getBJCPStyles(root));
-			LOGGER.info("BJCP styles detected");
+			logger.info("BJCP styles detected");
 
 		} catch (Exception ex) {
-			LOGGER.error("Errore critico:" + ex.getMessage(), ex);
+			logger.error("Errore critico:" + ex.getMessage(), ex);
 		}
 		try {
 			loadCache();
 		} catch (Exception e) {
-			LOGGER.error(e.getMessage(), e);
+			logger.error(e.getMessage(), e);
 		}
 		gui = new Gui();
 		desktopPane = Gui.desktopPane;
@@ -235,11 +216,11 @@ public class Main {
 
 		try {
 			update();
-			LOGGER.info("Update check");
+			logger.info("Update check");
 		} catch (FileNotFoundException ex) {
-			LOGGER.error(ex.getMessage(), ex);
+			logger.error(ex.getMessage(), ex);
 		} catch (IOException ex) {
-			LOGGER.error(ex.getMessage(), ex);
+			logger.error(ex.getMessage(), ex);
 		}
 	}
 
@@ -253,7 +234,7 @@ public class Main {
 			UIManager.setLookAndFeel(myLAF);
 
 		} catch (Exception e) {
-			LOGGER.error(e.getMessage(), e);
+			logger.error(e.getMessage(), e);
 			return;
 		}
 		userDir = System.getProperty("user.dir");
@@ -285,7 +266,7 @@ public class Main {
 		Element root = doc.getRootElement();
 
 		if (root.getName().compareToIgnoreCase("hops") == 0) {
-			LOGGER.info("hops detected");
+			logger.info("hops detected");
 			@SuppressWarnings("unchecked")
 			Iterator iterator = root.getChildren().iterator();
 			while (iterator.hasNext()) {
@@ -336,7 +317,7 @@ public class Main {
 		}
 		Element root = doc.getRootElement();
 		if (root.getName().compareToIgnoreCase("maltsCategories") == 0) {
-			LOGGER.info("malts categories detected");
+			logger.info("malts categories detected");
 			@SuppressWarnings("unchecked")
 			Iterator iterator = root.getChildren().iterator();
 			while (iterator.hasNext()) {
@@ -358,7 +339,7 @@ public class Main {
 		}
 		Element root = doc.getRootElement();
 		if (root.getName().compareToIgnoreCase("malts") == 0) {
-			LOGGER.info("malts detected");
+			logger.info("malts detected");
 			@SuppressWarnings("unchecked")
 			Iterator iterator = root.getChildren().iterator();
 			while (iterator.hasNext()) {
@@ -380,7 +361,7 @@ public class Main {
 		}
 		Element root = doc.getRootElement();
 		if (root.getName().compareToIgnoreCase("yeasts") == 0) {
-			LOGGER.info("yeasts detected");
+			logger.info("yeasts detected");
 			@SuppressWarnings("unchecked")
 			Iterator iterator = root.getChildren().iterator();
 			while (iterator.hasNext()) {
@@ -406,7 +387,7 @@ public class Main {
 		}
 		Element root = doc.getRootElement();
 		if (root.getName().compareToIgnoreCase("waters") == 0) {
-			LOGGER.info("waters detected");
+			logger.info("waters detected");
 			@SuppressWarnings("unchecked")
 			Iterator iterator = root.getChildren().iterator();
 			while (iterator.hasNext()) {
@@ -435,7 +416,7 @@ public class Main {
 		}
 		Element root = doc.getRootElement();
 		config = Config.fromXml(root);
-		LOGGER.info("config detected");
+		logger.info("config detected");
 	}
 
 	public static void readStili() throws Exception {
@@ -446,7 +427,7 @@ public class Main {
 		}
 		Element root = doc.getRootElement();
 		if (root.getName().compareToIgnoreCase("styles") == 0) {
-			LOGGER.info("styles detected");
+			logger.info("styles detected");
 			@SuppressWarnings("unchecked")
 			Iterator iterator = root.getChildren().iterator();
 			while (iterator.hasNext()) {
@@ -465,7 +446,7 @@ public class Main {
 		}
 		Element root = doc.getRootElement();
 		if (root.getName().compareToIgnoreCase("lovibondToRGB") == 0) {
-			LOGGER.info("colors detected");
+			logger.info("colors detected");
 			@SuppressWarnings("unchecked")
 			Iterator iterator = root.getChildren().iterator();
 			Srm2Rgb dao = new Srm2Rgb();
@@ -479,13 +460,13 @@ public class Main {
 						treeColor.add(type.getEbc(), new Color(type.getR(), type.getG(), type.getB()));
 					}
 				} catch (Exception ex) {
-					LOGGER.error(ex.getMessage(), ex);
+					logger.error(ex.getMessage(), ex);
 				}
 			}
 		}
 	}
 
-	public static HashMap<Double, Color> hmRGB = new HashMap<Double, Color>();
+	public static Map<Double, Color> hmRGB = new HashMap<>();
 
 	public static class BinaryTreeNode {
 		public Double data;
@@ -587,7 +568,7 @@ public class Main {
 			in.close();
 			webVersion = Integer.parseInt(content);
 		} catch (Exception ex) {
-
+                    
 		}
 	}
 
@@ -707,7 +688,7 @@ public class Main {
 							gui.btnUpdate.setBorder(B);
 							sleep(300);
 						} catch (InterruptedException ex) {
-							LOGGER.error(ex.getMessage(), ex);
+							logger.error(ex.getMessage(), ex);
 						}
 					}
 				}
@@ -796,7 +777,7 @@ public class Main {
 		return eleStrVal;
 	}
 
-	private static HashMap<String, Object> cache = new HashMap<String, Object>();
+	private static Map<String, Object> cache = new HashMap<>();
 
 	public static void removeFromCache(String k) {
 		// utilizzato per eliminare elenco ricette aperte
@@ -848,7 +829,7 @@ public class Main {
 		}
 		doc.setRootElement(root);
 		XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
-		String xml = outputter.outputString(doc);
+		//String xml = outputter.outputString(doc);
 		try {
 			FileWriter writer = new FileWriter("cache.xml");
 			outputter.output(doc, writer);
@@ -875,19 +856,19 @@ public class Main {
 				Object o = k.newInstance(new Object[] { value });
 				putIntoCache(name, o);
 			} catch (IllegalArgumentException ex) {
-				LOGGER.error(ex.getMessage(), ex);
+				logger.error(ex.getMessage(), ex);
 			} catch (SecurityException ex) {
-				LOGGER.error(ex.getMessage(), ex);
+				logger.error(ex.getMessage(), ex);
 			} catch (NoSuchMethodException ex) {
-				LOGGER.error(ex.getMessage(), ex);
+				logger.error(ex.getMessage(), ex);
 			} catch (IllegalAccessException ex) {
-				LOGGER.error(ex.getMessage(), ex);
+				logger.error(ex.getMessage(), ex);
 			} catch (InvocationTargetException ex) {
-				LOGGER.error(ex.getMessage(), ex);
+				logger.error(ex.getMessage(), ex);
 			} catch (ClassNotFoundException ex) {
-				LOGGER.error(ex.getMessage(), ex);
+				logger.error(ex.getMessage(), ex);
 			} catch (InstantiationException ex) {
-				LOGGER.error(ex.getMessage(), ex);
+				logger.error(ex.getMessage(), ex);
 			}
 		}
 	}

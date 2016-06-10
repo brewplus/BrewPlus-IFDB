@@ -19,11 +19,9 @@
 package jmash;
 
 import java.io.File;
-import java.util.Locale;
 import javax.swing.ButtonGroup;
 import org.jdom.Document;
 import org.jdom.Element;
-import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Font;
@@ -49,6 +47,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 	/** Creates new form ConfigurationTool */
 	public ConfigurationTool() {
 		initComponents();
+                i18nInitComponents();
 		parent = this;
 		setBorder(Utils.getDefaultBorder());
 		fldEff.setModel(75.0, 1, 100, 1, "0", "CT.eff");
@@ -405,7 +404,10 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
-
+        
+        private void i18nInitComponents() {
+            jLabel11.setText(Main.bundle.getString("label.lostTrub"));
+        }
 	private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
 		Config config = new Config();
 
