@@ -45,6 +45,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
@@ -65,7 +66,7 @@ public class Main {
 	private static Logger LOGGER = Logger.getLogger(Main.class);
 
 	public static String versioneHobbyBrew = "2.0.0";
-	public static int webVersion;
+	public static Integer webVersion;
 	public static String userDir;
 	public static String waterDir;
 	public static String recipeDir;
@@ -150,30 +151,30 @@ public class Main {
 			String str = m.getNome().toLowerCase();
 			String S[] = str.split(rxp);
 			double t = -1;
-			int matches = 0;
-			for (int i = 0; i < S.length; i++) {
-				for (int j = 0; j < R.length; j++) {
-					if (S[i].equals(R[j])) {
-						t++;
-						matches++;
-					}
-				}
-			}
-			if (des.indexOf("lme") >= 0 && m.getNome().toLowerCase().indexOf("lme") < 0)
+                    //int matches = 0;
+                    for (String S1 : S) {
+                        for (String R1 : R) {
+                            if (S1.equals(R1)) {
+                                t++;
+                                //matches++;
+                            }
+                        }
+                    }
+			if (des.contains("lme") && !m.getNome().toLowerCase().contains("lme"))
 				t = -1;
-			if (des.indexOf("lme") < 0 && m.getNome().toLowerCase().indexOf("lme") >= 0)
+			if (!des.contains("lme") && m.getNome().toLowerCase().contains("lme"))
 				t = -1;
-			if (des.indexOf("dme") >= 0 && m.getNome().toLowerCase().indexOf("dme") < 0)
+			if (des.contains("dme") && !m.getNome().toLowerCase().contains("dme"))
 				t = -1;
-			if (des.indexOf("dme") < 0 && m.getNome().toLowerCase().indexOf("dme") >= 0)
+			if (!des.contains("dme") && m.getNome().toLowerCase().contains("dme"))
 				t = -1;
-			if (des.indexOf("dry") >= 0 && m.getNome().toLowerCase().indexOf("dry") < 0)
+			if (des.contains("dry") && !m.getNome().toLowerCase().contains("dry"))
 				t = -1;
-			if (des.indexOf("dry") < 0 && m.getNome().toLowerCase().indexOf("dry") >= 0)
+			if (!des.contains("dry") && m.getNome().toLowerCase().contains("dry"))
 				t = -1;
-			if (des.indexOf("extract") >= 0 && m.getNome().toLowerCase().indexOf("extract") < 0)
+			if (des.contains("extract") && !m.getNome().toLowerCase().contains("extract"))
 				t = -1;
-			if (des.indexOf("extract") < 0 && m.getNome().toLowerCase().indexOf("extract") >= 0)
+			if (!des.contains("extract") && m.getNome().toLowerCase().contains("extract"))
 				t = -1;
 			if (t > best) {
 				best = t;
@@ -187,10 +188,10 @@ public class Main {
 		return versioneHobbyBrew;
 	}
 
-	private static void check(String str) {
+	/*private static void check(String str) {
 		MaltType m = getMaltTypeByWords(str);
 		LOGGER.debug(str + " -> " + (m == null ? "NON TROVATO" : m.getNome()));
-	}
+	}*/
 
 	/** Creates a new instance of Main */
 	public Main() {
@@ -485,7 +486,7 @@ public class Main {
 		}
 	}
 
-	public static HashMap<Double, Color> hmRGB = new HashMap<Double, Color>();
+	public static Map<Double, Color> hmRGB = new HashMap<>();
 
 	public static class BinaryTreeNode {
 		public Double data;
