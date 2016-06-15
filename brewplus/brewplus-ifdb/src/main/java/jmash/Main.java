@@ -45,6 +45,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.swing.ImageIcon;
@@ -56,6 +57,7 @@ import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
+import org.jfree.util.Log;
 
 import jmash.component.MultiLineCellRenderer;
 import jmash.schema.bjcp.Styleguide;
@@ -65,6 +67,8 @@ public class Main {
 
 	private static final Logger logger = Logger.getLogger(Main.class);
         public static BundleMessage bundle = new BundleMessage(java.util.PropertyResourceBundle.getBundle("jmash/lang"));
+        
+    public static Locale locale;
         
 	public static String versioneHobbyBrew = "2.0.0";
 	public static Integer webVersion;
@@ -408,7 +412,7 @@ public class Main {
 
 	public static Config config;
 
-	public static void readConfig() throws Exception {
+	public static void readConfig()  {
 
 		Document doc = Utils.readFileAsXml(Main.configXML);
 		if (doc == null) {
@@ -417,6 +421,10 @@ public class Main {
 		Element root = doc.getRootElement();
 		config = Config.fromXml(root);
 		logger.info("config detected");
+		
+		locale = new Locale.Builder().setLanguage(Main.config.getLocale().toLowerCase()).build();
+		logger.info("Setting localization: "+Main.locale.getLanguage());
+		
 	}
 
 	public static void readStili() throws Exception {
@@ -641,7 +649,7 @@ public class Main {
 
 		String remoteRoot = Main.config.getRemoteRoot();
 		if (remoteRoot == null)
-			remoteRoot = "http://brewplus.t15.org/brewplus";
+			remoteRoot = "http://www.ilforumdellabirra.net/";
 
 		if (!remoteRoot.startsWith("http://"))
 			remoteRoot = "http://" + remoteRoot;

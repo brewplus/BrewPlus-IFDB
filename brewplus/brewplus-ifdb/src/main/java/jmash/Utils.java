@@ -53,6 +53,7 @@ import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.zip.Deflater;
 import java.util.zip.ZipEntry;
@@ -935,14 +936,14 @@ public class Utils {
 
     public static String getBJCPHtml(BrewStyle bs) {
         
-        //TO-DO add translation for English
+        ResourceBundle bundle = ResourceBundle.getBundle("jmash/lang", Main.locale);
 
         StringBuilder sb = new StringBuilder();
         sb.append(
                 "<html><head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}th, td {padding: 5px;}</style></head><body>");
         sb.append("<h1>" + bs.getDesCategoria() + "</h1><br><br>");
         sb.append("<b>Aroma:</b><br>" + bs.getAroma() + "<br><br>");
-        sb.append("<b>Aspetto:</b><br>" + bs.getAppearance() + "<br><br>");
+        sb.append("<b>"+ bundle.getString("BJCP.Appearance") +":</b><br>" + bs.getAppearance() + "<br><br>");
         sb.append("<b>Gusto:</b><br>" + bs.getFlavor() + "<br><br>");
         sb.append("<b>Palato:</b><br>" + bs.getMouthfeel() + "<br><br>");
         sb.append("<b>Impressioni:</b><br>" + bs.getImpression() + "<br><br>");

@@ -34,6 +34,7 @@ public class Config {
     public Config() {
     }
 
+    private String locale;
     private String remoteServer;
     private String remoteRoot;
     private String nickIHB;
@@ -74,7 +75,7 @@ public class Config {
         return this.remoteServer;
     }
 
-    private static String campiXml[] = new String[] { "remoteRoot", "RemoteServer", "RSSFeed", "boilTime", "volumeFin",
+    private static String campiXml[] = new String[] {"locale", "remoteRoot", "RemoteServer", "RSSFeed", "boilTime", "volumeFin",
             "volumeBoil", "efficienza", "metriSLM", "amaroDHEA", "nickIHB", "passwordIHB", "proxyPort", "proxyHost",
             "lostToTrub", "lostToSparge", "litriPerKg", "evaporazionePerOra", "ebcNewMethod", "potLibGal",
             "BUGUratiostring", "tempSparge", "tolleranzaAccensione", "tolleranzaSpegnimento", "tempIngressoGrani",
@@ -313,7 +314,7 @@ public class Config {
     }
 
     public String getRemoteRoot() {
-        return remoteRoot == null ? "http://brewplus.t15.org/brewplus" : remoteRoot;
+        return remoteRoot == null ? "http://www.ilforumdellabirra.net/" : remoteRoot;
     }
 
     public void setRemoteRoot(String remoteRoot) {
@@ -321,7 +322,7 @@ public class Config {
     }
 
     public String getRSSFeed() {
-        return RSSFeed == null ? "http://birrabirra.altervista.org/forum/feed.php" : RSSFeed;
+        return RSSFeed == null ? "http://www.ilforumdellabirra.net/feed.php" : RSSFeed;
     }
 
     public void setRSSFeed(String RSSFeed) {
@@ -369,5 +370,13 @@ public class Config {
             this.BUGUratiostring = "RAG";
         if (valore == BitterBUGU.TIN)
             this.BUGUratiostring = "TIN";
+    }
+
+    public String getLocale() {
+        return locale;
+    }
+
+    public void setLocale(String locale) {
+        this.locale = locale;
     }
 }
