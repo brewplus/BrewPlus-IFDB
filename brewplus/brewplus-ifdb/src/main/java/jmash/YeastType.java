@@ -49,8 +49,8 @@ public class YeastType implements XmlAble {
 	private String temperaturaMin;
 	private String temperaturaMax;
 
-	private static String campiXml[] = { "nome", "codice", "produttore", "forma", "categoria", "descrizione",
-			"attenuazioneMed", "attenuazioneMin", "attenuazioneMax", "temperaturaMin", "temperaturaMax", };
+	private static String campiXml[] = { "nome", "codice", "produttore", "forma", "categoria", 
+			"attenuazioneMed", "attenuazioneMin", "attenuazioneMax", "temperaturaMin", "temperaturaMax", "descrizione",};
 
 	public String getNome() {
 		return this.nome;
