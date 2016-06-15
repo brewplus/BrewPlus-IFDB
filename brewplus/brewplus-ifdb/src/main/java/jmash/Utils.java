@@ -934,20 +934,22 @@ public class Utils {
     }
 
     public static String getBJCPHtml(BrewStyle bs) {
+        
+        //TO-DO add translation for English
 
         StringBuilder sb = new StringBuilder();
         sb.append(
                 "<html><head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}th, td {padding: 5px;}</style></head><body>");
         sb.append("<h1>" + bs.getDesCategoria() + "</h1><br><br>");
         sb.append("<b>Aroma:</b><br>" + bs.getAroma() + "<br><br>");
-        sb.append("<b>Appearance:</b><br>" + bs.getAppearance() + "<br><br>");
-        sb.append("<b>Flavor:</b><br>" + bs.getFlavor() + "<br><br>");
-        sb.append("<b>Mouthfeel:</b><br>" + bs.getMouthfeel() + "<br><br>");
-        sb.append("<b>Impression:</b><br>" + bs.getImpression() + "<br><br>");
-        sb.append("<b>Comments:</b><br>" + bs.getComments() + "<br><br>");
-        sb.append("<b>Ingredients:</b><br>" + bs.getIngredients() + "<br><br>");
-        sb.append("<b>Examples:</b><br>" + bs.getExamples() + "<br><br>");
-        sb.append("<b>Category Notes:</b><br>" + bs.getCatNotes() + "<br><br>");
+        sb.append("<b>Aspetto:</b><br>" + bs.getAppearance() + "<br><br>");
+        sb.append("<b>Gusto:</b><br>" + bs.getFlavor() + "<br><br>");
+        sb.append("<b>Palato:</b><br>" + bs.getMouthfeel() + "<br><br>");
+        sb.append("<b>Impressioni:</b><br>" + bs.getImpression() + "<br><br>");
+        sb.append("<b>Commenti:</b><br>" + bs.getComments() + "<br><br>");
+        sb.append("<b>Ingredienti:</b><br>" + bs.getIngredients() + "<br><br>");
+        sb.append("<b>Esempi:</b><br>" + bs.getExamples() + "<br><br>");
+        sb.append("<b>Note della Categoria:</b><br>" + bs.getCatNotes() + "<br><br>");
 
         sb.append("<table style=\"width:200\">");
         sb.append("<tr>");
