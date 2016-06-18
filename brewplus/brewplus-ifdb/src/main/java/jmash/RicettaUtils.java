@@ -108,8 +108,8 @@ public class RicettaUtils {
 
 	public static double calculateMashWaterProfile(Ricetta recipe, String element) {
 		WaterAdjustPanel waterAdjustPanel = recipe.waterPanel;
-		double calcio = waterAdjustPanel.getCalcio() / 1000;
-		double magnesio = waterAdjustPanel.getMagnesio() / 1000;
+		double calcio = waterAdjustPanel.getCalcio();
+		double magnesio = waterAdjustPanel.getMagnesio();
 		double adjustCarbonatoDiCalcio = waterAdjustPanel.getAdjustCarbonatoDiCalcio();
 		WaterProfile waterProfile = waterAdjustPanel.getTreatment();
 		double gypsum = waterProfile.getGypsum() / 1000;
