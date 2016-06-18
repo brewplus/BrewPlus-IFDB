@@ -102,7 +102,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
     private boolean dirty = false;
     public static final int dimx = 81;
     public static final int dimy = 120;
-    private WaterAdjustPanel waterPanel = null;
+    public WaterAdjustPanel waterPanel = null;
     private Gyle gyle = null;
     private static javax.swing.ImageIcon hopsIcon = new javax.swing.ImageIcon(
             Ricetta.class.getResource("/jmash/images/hops.gif"));
@@ -2133,6 +2133,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
             this.colorThread.start();
         }
         this.tblSummary.updateUI();
+        RicettaUtils.calculatePH(this);
         this.dirty = true;
     }
 

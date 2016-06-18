@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JInternalFrame;
 import javax.swing.border.TitledBorder;
+import jmash.component.JMashSpinner;
 
 import org.apache.log4j.Logger;
 import org.jdom.Document;
@@ -1449,4 +1450,46 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		txt += "\nRA = " + RA;
 		Utils.showException(null, txt, parent);
 	}
+
+  public double getCalcio()
+  {
+    return spinCalcio.getDoubleValue();
+  }
+  
+  public double getMagnesio()
+  {
+    return spinMagnesio.getDoubleValue();
+  }
+  
+  public double getSolfato()
+  {
+    return spinSolfato.getDoubleValue();
+  }
+  
+  public double getCloruro()
+  {
+    return spinCloruro.getDoubleValue();
+  }
+  
+  public double getSodio()
+  {
+    return spinSodio.getDoubleValue();
+  }
+  
+  public double getCarb()
+  {
+    return spinCarb.getDoubleValue();
+  }
+  
+  
+  public double getAdjustCarbonatoDiCalcio()
+  {
+    return spnChalk.getDoubleValue();
+  }
+  
+  public double getAdjustBicarbonatoDiSodio()
+  {
+    return spnSoda.getDoubleValue();
+  }
+  
 }

@@ -1660,4 +1660,13 @@ public class WaterNeeded extends javax.swing.JInternalFrame {
     public double getTotWater() {
         return spnResult.getVolume();
     }
+    
+    public double getMashVolume() {
+    	return spnMash.getVolume();
+    }
+    
+    public double getSpargeVolume() {
+    	return spnSparge.getVolume();
+    }
+    
 }
