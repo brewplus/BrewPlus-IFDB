@@ -108,13 +108,13 @@ public class RicettaUtils {
 
 	public static double calculateMashWaterProfile(Ricetta recipe, String element) {
 		WaterAdjustPanel waterAdjustPanel = recipe.waterPanel;
-		double calcio = waterAdjustPanel.getCalcio();
-		double magnesio = waterAdjustPanel.getMagnesio();
+		double calcio = waterAdjustPanel.getCalcio() / 1000;
+		double magnesio = waterAdjustPanel.getMagnesio() / 1000;
 		double adjustCarbonatoDiCalcio = waterAdjustPanel.getAdjustCarbonatoDiCalcio();
 		WaterProfile waterProfile = waterAdjustPanel.getTreatment();
-		double gypsum = waterProfile.getGypsum();
-		double calciumChloride = waterProfile.getCalciumChloride();
-		double epsom = waterProfile.getEpsom();
+		double gypsum = waterProfile.getGypsum() / 1000;
+		double calciumChloride = waterProfile.getCalciumChloride() / 1000;
+		double epsom = waterProfile.getEpsom() / 1000;
 		double mashVolumeGalloni = getMashVolumeGalloni(recipe);
 
 		if ("Calcium".equals(element)) {
@@ -136,6 +136,10 @@ public class RicettaUtils {
 			double mashWaterProfileCalcium = calculateMashWaterProfile(recipe, "Calcium");
 			double mashWaterProfileMagnesium = calculateMashWaterProfile(recipe, "Magnesium");
 
+			LOGGER.debug("mashWaterProfileCalcium="+mashWaterProfileCalcium);
+			LOGGER.debug("mashWaterProfileMagnesium="+mashWaterProfileMagnesium);
+			
+			
 			residualAlcalinity = effectiveAlcalinity
 					- ((mashWaterProfileCalcium / 1.4) + (mashWaterProfileMagnesium / 1.7));
 		} catch (Exception e) {
