@@ -3,8 +3,12 @@ package jmash;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 public class RicettaUtils {
 
+	private static Logger LOGGER = Logger.getLogger(RicettaUtils.class);
+	
 	public static final double percDistilledROMash = 0.0;
 	public static final double percDistilledROSparge = 0.0;
 	public static final double percLacticAcidContent = 88 / 100;
@@ -34,20 +38,20 @@ public class RicettaUtils {
 				Double phPesata = pHFromChart * (recipeMalt.getGrammi() / 1000);
 				mediaPesataPH += phPesata;
 
-				System.out.println(recipeMalt.getNome() + " -> " + maltCategory + " -> SRM[" + recipeMalt.getSrm()
+				LOGGER.debug(recipeMalt.getNome() + " -> " + maltCategory + " -> SRM[" + recipeMalt.getSrm()
 						+ "] °L[" + lovibond + "] pH[" + pHFromChart + "] g[" + recipeMalt.getGrammi() + "] phPesata["
 						+ phPesata + "]");
 			}
 		}
 
 		mediaPesataPH = mediaPesataPH / totalGrainWeightKg;
-		System.out.println("pHSuMediaPesata = " + mediaPesataPH + " totGrammi[" + recipe.maltTableModel.getTotGrammi() + "]");
+		LOGGER.debug("pHSuMediaPesata = " + mediaPesataPH + " totGrammi[" + recipe.maltTableModel.getTotGrammi() + "]");
 
 		double residualAlcalinity = calculateResidualAlcalinity(recipe);
 		double mashVolumeGalloni = getMashVolumeGalloni(recipe);
 
 		pH = mediaPesataPH + (0.1085 * mashVolumeGalloni / totalGrainWeightLbs + 0.013) * residualAlcalinity / 50;
-		System.out.println(" ------> final pH[" + pH + "]");
+		LOGGER.debug(" ------> final pH[" + pH + "]");
 
 		return pH;
 	}
@@ -77,7 +81,7 @@ public class RicettaUtils {
 			double adjustBicarbonatoDiSodio = waterAdjustPanel.getAdjustBicarbonatoDiSodio();
 			double adjustCarbonatoDiCalcio = waterAdjustPanel.getAdjustCarbonatoDiCalcio();
 
-			System.out.println("mashVolume[" + mashVolume + "] spargeVolume[" + spargeVolume + "]");
+			LOGGER.debug("mashVolume[" + mashVolume + "] spargeVolume[" + spargeVolume + "]");
 
 			List<Malt> recipeMalts = recipe.maltTableModel.getRows();
 
@@ -98,7 +102,7 @@ public class RicettaUtils {
 		} catch (Exception e) {
 			effectiveAlcalinity = Double.NaN;
 		}
-		System.out.println("effectiveAlcalinity[" + effectiveAlcalinity + "]");
+		LOGGER.debug("effectiveAlcalinity[" + effectiveAlcalinity + "]");
 		return effectiveAlcalinity;
 	}
 
@@ -138,7 +142,7 @@ public class RicettaUtils {
 			residualAlcalinity = Double.NaN;
 		}
 		
-		System.out.println("residualAlcalinity[" + residualAlcalinity + "]");
+		LOGGER.debug("residualAlcalinity[" + residualAlcalinity + "]");
 		return residualAlcalinity;
 	}
 

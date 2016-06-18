@@ -30,7 +30,7 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
     private static final long serialVersionUID = -5667189467722852137L;
     private Ricetta ricetta;
     private static final String[] cN = new String[] { "OG", "Plato", "OG pre-Boll", "°P pre-Boll", "Tinseth", "Rager",
-            "Daniels", "BU/GU", "Tot. Grani", "Tot. Luppoli", };
+            "Daniels", "BU/GU", "Tot. Grani", "Tot. Luppoli", "Mash pH"};
 
     public SummaryTableModel(Ricetta ricetta) {
         this.setRicetta(ricetta);
@@ -62,6 +62,7 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
     private double IBUDaniels = 0;
     private double IBURager = 0;
     private String sIBU, sIBU2, sIBUD;
+    private double mashPH = Double.NaN;
 
     public void setIBU(double IBU) {
         this.IBU = IBU;
@@ -85,6 +86,14 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
     public void setIBURager(double IBURager) {
         this.IBURager = IBURager;
     }
+    
+    public void setMashPH(double mashPH) {
+		this.mashPH = mashPH;
+	}
+    
+    public double getMashPH() {
+		return mashPH;
+	}
 
     private int totG = 0;
 
@@ -138,6 +147,8 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
             return sTotG;
         case 9:
             return sTotL;
+        case 10:
+            return mashPH;
 
         default:
             return "";

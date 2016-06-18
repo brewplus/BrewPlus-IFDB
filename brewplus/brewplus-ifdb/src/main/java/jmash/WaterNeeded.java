@@ -19,6 +19,11 @@
  */
 package jmash;
 
+import java.awt.event.ActionEvent;
+
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import org.apache.log4j.Logger;
 import org.jdom.Element;
 
@@ -1615,6 +1620,8 @@ public class WaterNeeded extends javax.swing.JInternalFrame {
         spnSparge.setVolume(res - spnKg.getDoubleValue() * spnLitriKg.getDoubleValue());
         res += spnPreBoil.getVolume() + spnPostBoil.getVolume();
         spnResult.setVolume(res);
+        
+        fireStateChanged(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, ""));
     }
 
     public void calc2() {
@@ -1669,4 +1676,25 @@ public class WaterNeeded extends javax.swing.JInternalFrame {
     	return spnSparge.getVolume();
     }
     
+    public void addChangeListener(ChangeListener listener) {
+		listenerList.add(ChangeListener.class, listener);
+	}
+	
+	public void removeChangeListener(ChangeListener listener) {
+	    listenerList.remove(ChangeListener.class, listener);
+	}
+	
+	protected void fireStateChanged(ActionEvent actionEvent) {
+	    ChangeListener[] listeners = listenerList.getListeners(ChangeListener.class);
+	    if (listeners != null && listeners.length > 0) {
+	        ChangeEvent evt = new ChangeEvent(actionEvent);
+	        for (ChangeListener listener : listeners) {
+	            listener.stateChanged(evt);
+	        }
+	    }
+	}
+	
+	public void actionPerformed(ActionEvent evt) {
+	    fireStateChanged(evt);
+	}
 }

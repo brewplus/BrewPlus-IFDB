@@ -6,12 +6,15 @@
 
 package jmash;
 
+import java.awt.event.ActionEvent;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.JInternalFrame;
 import javax.swing.border.TitledBorder;
-import jmash.component.JMashSpinner;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import org.apache.log4j.Logger;
 import org.jdom.Document;
@@ -1371,6 +1374,8 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		spinCloruro2.setIntegerValue((int) res.getCloruroTotale());
 		spinSodio2.setIntegerValue((int) res.getSodioTotale());
 		spinCarb2.setIntegerValue((int) res.getCarbonatoTotale());
+		
+		fireStateChanged(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, ""));
 	}
 
 	private void recalcTreatment() {
@@ -1451,45 +1456,58 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		Utils.showException(null, txt, parent);
 	}
 
-  public double getCalcio()
-  {
-    return spinCalcio.getDoubleValue();
-  }
-  
-  public double getMagnesio()
-  {
-    return spinMagnesio.getDoubleValue();
-  }
-  
-  public double getSolfato()
-  {
-    return spinSolfato.getDoubleValue();
-  }
-  
-  public double getCloruro()
-  {
-    return spinCloruro.getDoubleValue();
-  }
-  
-  public double getSodio()
-  {
-    return spinSodio.getDoubleValue();
-  }
-  
-  public double getCarb()
-  {
-    return spinCarb.getDoubleValue();
-  }
-  
-  
-  public double getAdjustCarbonatoDiCalcio()
-  {
-    return spnChalk.getDoubleValue();
-  }
-  
-  public double getAdjustBicarbonatoDiSodio()
-  {
-    return spnSoda.getDoubleValue();
-  }
-  
+	public double getCalcio() {
+		return spinCalcio.getDoubleValue();
+	}
+
+	public double getMagnesio() {
+		return spinMagnesio.getDoubleValue();
+	}
+
+	public double getSolfato() {
+		return spinSolfato.getDoubleValue();
+	}
+
+	public double getCloruro() {
+		return spinCloruro.getDoubleValue();
+	}
+
+	public double getSodio() {
+		return spinSodio.getDoubleValue();
+	}
+
+	public double getCarb() {
+		return spinCarb.getDoubleValue();
+	}
+
+	public double getAdjustCarbonatoDiCalcio() {
+		return spnChalk.getDoubleValue();
+	}
+
+	public double getAdjustBicarbonatoDiSodio() {
+		return spnSoda.getDoubleValue();
+	}
+
+	public void addChangeListener(ChangeListener listener) {
+		listenerList.add(ChangeListener.class, listener);
+	}
+	
+	public void removeChangeListener(ChangeListener listener) {
+	    listenerList.remove(ChangeListener.class, listener);
+	}
+	
+	protected void fireStateChanged(ActionEvent actionEvent) {
+	    ChangeListener[] listeners = listenerList.getListeners(ChangeListener.class);
+	    if (listeners != null && listeners.length > 0) {
+	        ChangeEvent evt = new ChangeEvent(actionEvent);
+	        for (ChangeListener listener : listeners) {
+	            listener.stateChanged(evt);
+	        }
+	    }
+	}
+	
+	public void actionPerformed(ActionEvent evt) {
+	    fireStateChanged(evt);
+	}
+
 }
