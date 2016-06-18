@@ -275,7 +275,7 @@ public class BeerXMLReader {
 			} else if (E.getName().equalsIgnoreCase("NOTES")) {
 				H.setNote(E.getValue());
 			} else if (E.getName().equalsIgnoreCase("ATTENUATION")) {
-				H.setAttenuazioneMed((int) Utils.parseDouble(E.getValue()));
+				H.setAttenuazioneMed( E.getValue());
 			} else if (E.getName().equalsIgnoreCase("PRODUCT_ID")) {
 				H.setCodice(E.getValue());
 			}

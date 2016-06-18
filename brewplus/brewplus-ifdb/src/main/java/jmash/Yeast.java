@@ -47,12 +47,12 @@ public class Yeast {
 	private String categoria;
 	private String descrizione;
 	private String note;
-	private Integer attenuazioneMed;
-	private Integer attenuazioneMin;
-	private Integer attenuazioneMax;
-	private Integer temperaturaMin;
-	private Integer temperaturaCons;
-	private Integer temperaturaMax;
+	private String attenuazioneMed;
+	private String attenuazioneMin;
+	private String attenuazioneMax;
+	private String temperaturaMin;
+	private String temperaturaCons;
+	private String temperaturaMax;
 
 	private static String campiXml[] = { "nome", "codice", "produttore", "forma", "categoria", "descrizione",
 			"attenuazioneMin", "attenuazioneMax", "attenuazioneMed", "temperaturaCons", "temperaturaMin",
@@ -137,35 +137,35 @@ public class Yeast {
 		this.descrizione = descrizione;
 	}
 
-	public Integer getAttenuazioneMin() {
+	public String getAttenuazioneMin() {
 		return this.attenuazioneMin;
 	}
 
-	public void setAttenuazioneMin(Integer attenuazioneMin) {
+	public void setAttenuazioneMin(String attenuazioneMin) {
 		this.attenuazioneMin = attenuazioneMin;
 	}
 
-	public Integer getAttenuazioneMax() {
+	public String getAttenuazioneMax() {
 		return this.attenuazioneMax;
 	}
 
-	public void setAttenuazioneMax(Integer attenuazioneMax) {
+	public void setAttenuazioneMax(String attenuazioneMax) {
 		this.attenuazioneMax = attenuazioneMax;
 	}
 
-	public Integer getTemperaturaMin() {
+	public String getTemperaturaMin() {
 		return this.temperaturaMin;
 	}
 
-	public void setTemperaturaMin(Integer temperaturaMin) {
+	public void setTemperaturaMin(String temperaturaMin) {
 		this.temperaturaMin = temperaturaMin;
 	}
 
-	public Integer getTemperaturaMax() {
+	public String getTemperaturaMax() {
 		return this.temperaturaMax;
 	}
 
-	public void setTemperaturaMax(Integer temperaturaMax) {
+	public void setTemperaturaMax(String temperaturaMax) {
 		this.temperaturaMax = temperaturaMax;
 	}
 
@@ -210,19 +210,19 @@ public class Yeast {
 		setNote("");
 	}
 
-	public Integer getTemperaturaCons() {
+	public String getTemperaturaCons() {
 		return this.temperaturaCons;
 	}
 
-	public void setTemperaturaCons(Integer temperaturaCons) {
+	public void setTemperaturaCons(String temperaturaCons) {
 		this.temperaturaCons = temperaturaCons;
 	}
 
-	public Integer getAttenuazioneMed() {
+	public String getAttenuazioneMed() {
 		return this.attenuazioneMed;
 	}
 
-	public void setAttenuazioneMed(Integer attenuazioneMed) {
+	public void setAttenuazioneMed(String attenuazioneMed) {
 		this.attenuazioneMed = attenuazioneMed;
 	}
 

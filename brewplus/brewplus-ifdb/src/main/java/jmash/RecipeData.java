@@ -412,9 +412,13 @@ public class RecipeData {
         Ys.setNome(Utils.arr2String(b, Y));
         Ys.setProduttore(Utils.arr2String(b, Y + 55));
         Ys.setCodice(Utils.arr2String(b, Y + 110));
-        Ys.setAttenuazioneMin((int) Utils.arr2Double(b, Y + 455));
-        Ys.setAttenuazioneMax((int) Utils.arr2Double(b, Y + 459));
-        Ys.setAttenuazioneMed((Ys.getAttenuazioneMin() + Ys.getAttenuazioneMax()) / 2);
+        Double attMinDub = Utils.arr2Double(b, Y + 455);
+        Double attMaxDub = Utils.arr2Double(b, Y + 459);
+        Double attMedDub = (attMinDub + attMaxDub) / 2.0;
+        
+        Ys.setAttenuazioneMin(attMinDub.toString());
+        Ys.setAttenuazioneMax(attMaxDub.toString());
+        Ys.setAttenuazioneMed(attMedDub.toString());
         getYeasts().add(Ys);
 
         if (!mashComplexMode) {

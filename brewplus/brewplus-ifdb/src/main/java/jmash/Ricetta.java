@@ -2529,7 +2529,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
         Integer FGPrevista = OGPrevista;
         if (yeastTableModel.getRows().size() > 0) {
             Integer attenuazioneMed = (yeastTableModel.getRows().get(0).getAttenuazioneMed() == null ? 75
-                    : yeastTableModel.getRows().get(0).getAttenuazioneMed());
+                    : new Integer(yeastTableModel.getRows().get(0).getAttenuazioneMed()));
             FGPrevista = (OGPrevista - ((OGPrevista * attenuazioneMed) / 100));
         }
         return FGPrevista;
