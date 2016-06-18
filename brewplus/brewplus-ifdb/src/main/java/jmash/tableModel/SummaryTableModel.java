@@ -62,7 +62,7 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
     private double IBUDaniels = 0;
     private double IBURager = 0;
     private String sIBU, sIBU2, sIBUD;
-    private double mashPH = Double.NaN;
+    private String mashPH = "NaN";
 
     public void setIBU(double IBU) {
         this.IBU = IBU;
@@ -88,11 +88,11 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
     }
     
     public void setMashPH(double mashPH) {
-		this.mashPH = mashPH;
+		this.mashPH = Double.isNaN(mashPH) ?  "NaN" : NumberFormatter.format02(mashPH);
 	}
     
     public double getMashPH() {
-		return mashPH;
+		return "NaN".equals(mashPH) ? Double.NaN : Double.parseDouble(mashPH);
 	}
 
     private int totG = 0;
