@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <maltsCategories>
+	<jmash.MaltCategory codice="Acid Malt" nome="Acid Malt" pH="0" />
 	<jmash.MaltCategory codice="Base - 2-Row" nome="Base - 2-Row" pH="5.70" />
 	<jmash.MaltCategory codice="Base - 6-Row" nome="Base - 6-Row" pH="5.79" />
 	<jmash.MaltCategory codice="Base - Maris Otter" nome="Base - Maris Otter" pH="5.77" />
