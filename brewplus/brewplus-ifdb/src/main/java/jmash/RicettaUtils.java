@@ -8,14 +8,14 @@ import org.apache.log4j.Logger;
 public class RicettaUtils {
 
 	private static Logger LOGGER = Logger.getLogger(RicettaUtils.class);
-	
+
 	public static final double percDistilledROMash = 0.0;
 	public static final double percDistilledROSparge = 0.0;
-	public static final double percLacticAcidContent = 88 / 100;
-	public static final double mlAcidLactic = 0;
-	public static final double percAcidulatedMaltContent = 2 / 100;
+	public static final double percLacticAcidContent = 88.0 / 100.0;
+	public static final double mlAcidLactic = 0.0;
+	public static final double percAcidulatedMaltContent = 2.0 / 100.0;
 
-	public static final double adjustIdrossidoDiCalcio = 0;
+	public static final double adjustIdrossidoDiCalcio = 0.0;
 
 	public static Double calculatePH(Ricetta recipe) {
 		Double pH = Double.NaN;
@@ -29,23 +29,31 @@ public class RicettaUtils {
 		double totalGrainWeightLbs = getTotalGrainWeighLbs(recipe);
 
 		for (Malt recipeMalt : recipeMalts) {
-			if (!recipeMalt.getNome().toUpperCase().startsWith("ACID")) {
-				MaltCategory maltCategory = findMaltCategory(recipeMalt);
+
+			MaltCategory maltCategory = findMaltCategory(recipeMalt);
+
+			if (!maltCategory.isAcidMalt()) {
 				Double lovibond = (recipeMalt.getSrm() + 0.6) / 1.3546;
-				Double pHFromChart = maltCategory == null ? 5.22 - (0.00504 * lovibond / 1000) : maltCategory.getPH();
+				Double pHFromChart = maltCategory == null || maltCategory.isCrystal()
+						? 5.22 - (0.00504 * lovibond / 1000) : maltCategory.getPH();
 				maltsPHfromChart.add(pHFromChart);
 
 				Double phPesata = pHFromChart * (recipeMalt.getGrammi() / 1000);
 				mediaPesataPH += phPesata;
 
-				LOGGER.debug(recipeMalt.getNome() + " -> " + maltCategory + " -> SRM[" + recipeMalt.getSrm()
-						+ "] °L[" + lovibond + "] pH[" + pHFromChart + "] g[" + recipeMalt.getGrammi() + "] phPesata["
-						+ phPesata + "]");
+				LOGGER.debug(recipeMalt.getNome() + " -> " + maltCategory + " -> SRM[" + recipeMalt.getSrm() + "] °L["
+						+ lovibond + "] pH[" + pHFromChart + "] g[" + recipeMalt.getGrammi() + "] phPesata[" + phPesata
+						+ "]");
+			} else {
+				// SE MALTO ACIDO LO TOLGO DAL CALCOLO DEI KG TOTALI
+				totalGrainWeightKg -= (recipeMalt.getGrammi() / 1000);
 			}
+
 		}
 
 		mediaPesataPH = mediaPesataPH / totalGrainWeightKg;
-		LOGGER.debug("pHSuMediaPesata = " + mediaPesataPH + " totGrammi[" + recipe.maltTableModel.getTotGrammi() + "]");
+		LOGGER.debug("pHSuMediaPesata = " + mediaPesataPH + " tot[" + totalGrainWeightKg + "]Kg tot["
+				+ totalGrainWeightLbs + "]lbs");
 
 		double residualAlcalinity = calculateResidualAlcalinity(recipe);
 		double mashVolumeGalloni = getMashVolumeGalloni(recipe);
@@ -57,7 +65,19 @@ public class RicettaUtils {
 	}
 
 	public static double getTotalGrainWeightKg(Ricetta recipe) {
-		return recipe.maltTableModel.getTotGrammi() / 1000;
+
+		double totalGrainWeightGr = recipe.maltTableModel.getTotGrammi();
+
+		for (Malt recipeMalt : recipe.maltTableModel.getRows()) {
+
+			MaltCategory maltCategory = findMaltCategory(recipeMalt);
+
+			if (maltCategory.isAcidMalt()) {
+				totalGrainWeightGr -= recipeMalt.getGrammi();
+			}
+		}
+
+		return totalGrainWeightGr / 1000.0;
 	}
 
 	public static double getTotalGrainWeighLbs(Ricetta recipe) {
@@ -76,12 +96,13 @@ public class RicettaUtils {
 			double spargeVolume = waterNeeded.getSpargeVolume();
 
 			WaterAdjustPanel waterAdjustPanel = recipe.waterPanel;
-			double carb = waterAdjustPanel.getCarb();
+			double waterCarbStart = waterAdjustPanel.getCarb();
 
 			double adjustBicarbonatoDiSodio = waterAdjustPanel.getAdjustBicarbonatoDiSodio();
 			double adjustCarbonatoDiCalcio = waterAdjustPanel.getAdjustCarbonatoDiCalcio();
 
-			LOGGER.debug("mashVolume[" + mashVolume + "] spargeVolume[" + spargeVolume + "]");
+			LOGGER.debug("mashVolume[" + mashVolume + "]L mashVolume[" + mashVolumeGalloni + "]gl spargeVolume["
+					+ spargeVolume + "]");
 
 			List<Malt> recipeMalts = recipe.maltTableModel.getRows();
 
@@ -89,16 +110,18 @@ public class RicettaUtils {
 			double acidMaltOz = 0.0;
 
 			for (Malt recipeMalt : recipeMalts) {
-				if (recipeMalt.getNome().toUpperCase().startsWith("ACID")) {
-					acidMaltGramms *= recipeMalt.getGrammi();
+				MaltCategory recipeMalCategory = findMaltCategory(recipeMalt);
+				if (recipeMalCategory.isAcidMalt()) {
+					acidMaltGramms += recipeMalt.getGrammi();
 				}
 			}
 			acidMaltOz = acidMaltGramms / 28.34952;
 
-			effectiveAlcalinity = ((1 - percDistilledROMash) * carb * (50 / 61)) + ((adjustCarbonatoDiCalcio * 130)
-					+ (((adjustBicarbonatoDiSodio * 157) - (176.1 * mlAcidLactic * percLacticAcidContent * 2)
-							- (4160.4 * acidMaltOz * percAcidulatedMaltContent * 2.5) + (adjustIdrossidoDiCalcio * 357))
-							/ mashVolumeGalloni));
+			effectiveAlcalinity = ((1.0 - percDistilledROMash) * waterCarbStart * (50.0 / 61.0))
+					+ ((adjustCarbonatoDiCalcio * 130.0) + (((adjustBicarbonatoDiSodio * 157.0)
+							- (176.1 * mlAcidLactic * percLacticAcidContent * 2.0)
+							- (4160.4 * acidMaltOz * percAcidulatedMaltContent * 2.5)
+							+ (adjustIdrossidoDiCalcio * 357.0)) / mashVolumeGalloni));
 		} catch (Exception e) {
 			effectiveAlcalinity = Double.NaN;
 		}
@@ -112,16 +135,16 @@ public class RicettaUtils {
 		double magnesio = waterAdjustPanel.getMagnesio();
 		double adjustCarbonatoDiCalcio = waterAdjustPanel.getAdjustCarbonatoDiCalcio();
 		WaterProfile waterProfile = waterAdjustPanel.getTreatment();
-		double gypsum = waterProfile.getGypsum() / 1000;
-		double calciumChloride = waterProfile.getCalciumChloride() / 1000;
-		double epsom = waterProfile.getEpsom() / 1000;
+		double gypsum = waterProfile.getGypsum() / 1000.0;
+		double calciumChloride = waterProfile.getCalciumChloride() / 1000.0;
+		double epsom = waterProfile.getEpsom() / 1000.0;
 		double mashVolumeGalloni = getMashVolumeGalloni(recipe);
 
 		if ("Calcium".equals(element)) {
-			return (1 - percDistilledROMash) * calcio + (adjustCarbonatoDiCalcio * 105.89 + gypsum * 60
-					+ calciumChloride * 72 + adjustIdrossidoDiCalcio * 144) / mashVolumeGalloni;
+			return (1.0 - percDistilledROMash) * calcio + (adjustCarbonatoDiCalcio * 105.89 + gypsum * 60.0
+					+ calciumChloride * 72.0 + adjustIdrossidoDiCalcio * 144.0) / mashVolumeGalloni;
 		} else if ("Magnesium".equals(element)) {
-			return (1 - percDistilledROMash) * magnesio + calciumChloride * epsom * 24.6 / mashVolumeGalloni;
+			return (1.0 - percDistilledROMash) * magnesio + calciumChloride * epsom * 24.6 / mashVolumeGalloni;
 		}
 
 		return 0.0;
@@ -136,16 +159,15 @@ public class RicettaUtils {
 			double mashWaterProfileCalcium = calculateMashWaterProfile(recipe, "Calcium");
 			double mashWaterProfileMagnesium = calculateMashWaterProfile(recipe, "Magnesium");
 
-			LOGGER.debug("mashWaterProfileCalcium="+mashWaterProfileCalcium);
-			LOGGER.debug("mashWaterProfileMagnesium="+mashWaterProfileMagnesium);
-			
-			
+			LOGGER.debug("mashWaterProfileCalcium=" + mashWaterProfileCalcium);
+			LOGGER.debug("mashWaterProfileMagnesium=" + mashWaterProfileMagnesium);
+
 			residualAlcalinity = effectiveAlcalinity
 					- ((mashWaterProfileCalcium / 1.4) + (mashWaterProfileMagnesium / 1.7));
 		} catch (Exception e) {
 			residualAlcalinity = Double.NaN;
 		}
-		
+
 		LOGGER.debug("residualAlcalinity[" + residualAlcalinity + "]");
 		return residualAlcalinity;
 	}
@@ -180,10 +202,10 @@ public class RicettaUtils {
 		if (maltType != null) {
 			List<MaltCategory> maltCategories = Gui.maltCategoryPickerTableModel.getRows();
 
-			String maltTypeName = maltType.getCategoria();
+			String maltTypeCategoryCode = maltType.getCategoria();
 
 			for (MaltCategory tmpMaltCategory : maltCategories) {
-				if (maltTypeName.equals(tmpMaltCategory.getNome())) {
+				if (maltTypeCategoryCode.equals(tmpMaltCategory.getCodice())) {
 					maltCategory = tmpMaltCategory;
 					break;
 				}
