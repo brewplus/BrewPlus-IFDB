@@ -3331,20 +3331,41 @@
     <category id="25">
       <revision number="1">2015</revision>
       <name>Strong Belgian Ale</name>
-      <notes>This category contains the pale, well-attenuated, balanced to bitter beers, often more driven by yeast character than malt flavors, with generally higher alcohol (although a range exists within styles).</notes>
+      <notes>Questa categoria include birre chiare, ben attenuate, da equilibrate ad amare, spesso caratterizzate più da
+aromi derivati dal lievito che dal malto, con generalmente alcol più elevato (anche se esistono variabilità
+all’interno dello stesso stile).</notes>
       <subcategory id="25A">
         <name>Belgian Blond Ale</name>
-        <impression>A moderate-strength golden ale that has a subtle fruity-spicy Belgian yeast complexity, slightly malty-sweet flavor, and dry finish.</impression>
-        <aroma>Light earthy or spicy hop nose, along with a lightly grainy-sweet malt character. Shows a subtle yeast character that may include spicy phenolics, perfumy or honey-like alcohol, or yeasty, fruity esters (commonly orange-like or lemony). Light sweetness that may have a slightly sugar-like character. Subtle yet complex.</aroma>
-        <appearance>Light to deep gold color. Generally very clear. Large, dense, and creamy white to off-white head. Good head retention with Belgian lace.</appearance>
-        <flavor>Smooth, light to moderate grainy-sweet malt flavor initially, but finishes medium-dry to dry with some smooth alcohol becoming evident in the aftertaste. Medium hop and alcohol bitterness to balance. Light hop flavor, can be spicy or earthy. Very soft yeast character (esters and alcohols, which are sometimes perfumy or orange/lemon-like). Light spicy phenolics optional. Some lightly caramelized sugar or honey-like sweetness on palate.</flavor>
-        <mouthfeel>Medium-high to high carbonation, can give mouth-filling bubbly sensation. Medium body. Light to moderate alcohol warmth, but smooth. Can be somewhat creamy.</mouthfeel>
-        <comments>Often has an almost lager-like character, which gives it a cleaner profile in comparison to many other Belgian styles. Belgians use the term <em>Blond</em>, while the French spell it <em>Blonde</em>. Most commercial examples are in the 6.5 - 7% ABV range. Many Trappist or artisanal Belgian beers are called <em>Blond</em> but those are not representative of this style.</comments>
-        <history>Relatively recent development to further appeal to European Pils drinkers, becoming more popular as it is heavily marketed and widely distributed.</history>
-        <ingredients>Belgian Pils malt, aromatic malts, sugar, Belgian yeast strains that produce complex alcohol, phenolics and perfumy esters, Saazer-type, Styrian Goldings, or East Kent Goldings hops. Spices are not traditionally used, although the ingredients and fermentation by-products may give an impression of spicing (often reminiscent of oranges or lemons). If spices are present, should be a background character only.</ingredients>
-        <comparison>Similar strength as a Dubbel, similar character as a Belgian Strong Golden Ale or Tripel, although a bit sweeter and not as bitter.</comparison>
+        <impression>ale chiara-dorata di media forza che possiede una fine complessità fruttata-speziata
+impartita dal lievito belga, con gusto di malto leggermente dolce e finale secco.</impression>
+        <aroma>al naso luppoli speziati e leggermente terrosi, insieme a un lieve maltato dolce da cereale. Presente
+un sottile aroma di lievito dal carattere speziato, alcol fragrante o mielato, esteri fruttati o di lievito
+(normalmente di arancia o limone). Una leggera dolcezza che può avere carattere lievemente zuccheroso.
+Fine ma complesso.</aroma>
+        <appearance>colore da chiaro a dorato intenso, generalmente molto limpida. Schiuma generosa, densa e
+cremosa di colore tra il bianco e l’avorio, buona ritenzione e presenza di merletti nel bicchiere.</appearance>
+        <flavor>inizialmente un gusto delicato e dolce di cereale, da leggero a moderato, ma con finale da mediosecco
+a secco con leggera alcolicità morbida che diventa evidente nel retrogusto. Amaro medio per
+bilanciare. Lieve gusto di luppolo speziato o terroso. Carattere del lievito molto morbido (esteri e alcoli che
+sono talvolta profumati fragranti o simili ad arancia/limone). Opzionale la presenza di tenui fenoli speziati. Al
+palato è percepibile zucchero leggermente caramelizzato o dolcezza di miele.</flavor>
+        <mouthfeel>carbonazione da medio-alta ad elevata, che può dare una sensazione di bocca piena di bollicine.
+Corpo medio. Calore alcolico da leggero a moderato, ma delicato. Può essere cremosa.</mouthfeel>
+        <comments>spesso ha un carattere quasi da lager che le conferisce un profilo più pulito rispetto a molti altri
+stili belgi. I belgi usano il termine Blond, mentre i francesi scrivono Blonde. Gran parte degli esempi in
+commercio sono sui 6.5-7%ABV. Molte birre Trappiste o artigianali belghe sono chiamate Blond, ma non
+sono rappresentative di questo stile.</comments>
+        <history>create per attirare i bevitori di Pils, ha uno sviluppo relativamente recente e sta diventando sempre
+più popolare perché è fortemente pubblicizzata e ampiamente distribuita.</history>
+        <ingredients>malto Pils belga, malti aromatici, zucchero, ceppi di lievito belga che producono complessi esteri
+alcolici, profumati e fenolici. Luppoli tipo Saaz, Styrian Goldings o East Kent Goldings. Tradizionalmente non
+vengono utilizzate spezie, anche se gli ingredienti e i prodotti secondari della fermentazione possono dare
+l’impressione della speziatura (che spesso ricorda le arance o i limoni). Se utilizzate, le spezie devono solo
+avere una presenza di sottofondo.</ingredients>
+        <comparison>forza simile alle Dubbel e carattere simile alle Strong Golden Ale belghe o alle Tripel,
+anche se un po’ più dolce e meno amara.</comparison>
         <examples>Affligem Blond, Grimbergen Blond, La Trappe Blond, Leffe Blond, Val-Dieu Blond</examples>
-        <tags>high-strength, pale-color, top-fermented, western-europe, traditional-style, balanced</tags>
+        <tags>forte, chiara, alta fermentazione, europa occidentale, stile tradizionale, equilibrata.</tags>
         <stats>
           <og flexible="false">
             <low>1.062</low>
@@ -3370,18 +3391,79 @@
       </subcategory>
       <subcategory id="25B">
         <name>Saison</name>
-        <impression>Most commonly, a pale, refreshing, highly-attenuated, moderately-bitter, moderate-strength Belgian ale with a very dry finish. Typically highly carbonated, and using non-barley cereal grains and optional spices for complexity, as complements the expressive yeast character that is fruity, spicy, and not overly phenolic. Less common variations include both lower-alcohol and higher-alcohol products, as well as darker versions with additional malt character.</impression>
-        <aroma>Quite aromatic, with fruity, spicy, and hoppy characteristics evident. The esters can be fairly high (moderate to high), and are often reminiscent of citrus fruits such as oranges or lemons. The hops are low to moderate and are often spicy, floral, earthy, or fruity. Stronger versions can have a soft, spicy alcohol note (low intensity). Spicy notes are typically peppery rather than clove-like, and can be up to moderately-strong (typically yeast-derived). Subtle, complementary herb or spice additions are allowable, but should not dominate. The malt character is typically slightly grainy in character and low in intensity. Darker and stronger versions will have more noticeable malt, with darker versions taking characteristics associated with grains of that color (toasty, biscuity, caramelly, chocolate, etc.). In versions where sourness is present instead of bitterness, some of the sour character can be detected (low to moderate).</aroma>
-        <appearance>Pale versions are often a distinctive pale orange but may be pale golden to amber in color (gold to amber-gold is most common). Darker versions may run from copper to dark brown. Long-lasting, dense, rocky white to ivory head resulting in characteristic Belgian lace on the glass as it fades. Clarity is poor to good, though haze is not unexpected in this type of unfiltered beer. Effervescent.</appearance>
-        <flavor>Medium-low to medium-high fruity and spicy flavors, supported by a low to medium soft malt character, often with some grainy flavors. Bitterness is typically moderate to high, although sourness can be present in place of bitterness (both should not be strong flavors at the same time). Attenuation is extremely high, which gives a characteristic dry finish essential to the style; a Saison should never finish sweet. The fruity character is frequently citrusy (orange or lemon), and the spices are typically peppery. Allow for a range of balance in the fruity-spicy characteristics; this is often driven by the yeast selection. Hop flavor is low to moderate, and generally spicy or earthy in character. The balance is towards the fruity, spicy, hoppy character, with any bitterness or sourness not overwhelming these flavors. Darker versions will have more malt character, with a range of flavors derived from darker malts (toasty, bready, biscuity, chocolate, etc.) that support the fruity-spicy character of the beer (roasted flavors are not typical). Stronger versions will have more malt flavor in general, as well as a light alcohol impression. Herbs and spices are completely optional, but if present should be used in moderation and not detract from the yeast character. The finish is very dry and the aftertaste is typically bitter and spicy. The hop bitterness can be restrained, although it can seem accentuated due to the high attenuation levels.</flavor>
-        <mouthfeel>Light to medium body. Alcohol sensation varies with strength, from none in table version to light in standard versions, to moderate in super versions. However, any warming character should be fairly low. Very high carbonation with an effervescent quality. There is enough prickly acidity on the tongue to balance the very dry finish. In versions with sourness, a low to moderate tart character can add a refreshing bite, but not be puckering (optional).</mouthfeel>
-        <comments>Variations exist in strength and color, but they all have similar characteristics and balance, in particularly the refreshing, highly-attenuated, dry character with high carbonation. There is no correlation between strength and color. The balance can change somewhat with strength and color variations, but the family resemblance to the original artisanal ale should be evident. Pale versions are likely to be more bitter and have more hop character, while darker versions tend to have more malt character and sweetness, yielding a more balanced presentations. Stronger versions often will have more malt flavor, richness, and body simply due to their higher gravity. Although they tend to be very well-attenuated, they may not be perceived to be as dry as standard-strength saisons due to their strength. The Saison yeast character is a must, although maltier and richer versions will tend to mask this character more. Often called <em>Farmhouse ales</em> in the US, but this term is not common in Europe where they are simply part of a larger grouping of <em>artisanal ales</em>.</comments>
-        <history>A provision ale originally brewed in Wallonia, the French-speaking part of Belgium, for consumption during the active farming season. Originally a lower-alcohol product so as to not debilitate field workers, but tavern-strength products also existed. Higher-strength and different-colored products appeared after WWII. The best known modern saison, Saison Dupont, was first produced in the 1920s. Originally a rustic, artisanal ale made with local farm-produced ingredients, it is now brewed mostly in larger breweries yet retains the image of its humble origins.</history>
-        <ingredients>Not typically spiced, with the yeast, hops and grain providing the character; but spices are allowed if they provide a complementary character. Continental base malts are typical, but the grist frequently contains other grains such as wheat, oats, rye, or spelt. Adjuncts such as sugar and honey can also serve to add complexity and dry out the beer. Darker versions will typically use richer, darker malts, but not typically roasted types. Saazer-type, Styrian or East Kent Golding hops are commonly used. A wide range of herbs or spices can add complexity and uniqueness, but should always meld well with the yeast and hop character. Brettanomyces is not typical for this style; Saisons with Brett should be entered in the <em>American Wild Ale</em> category.</ingredients>
-        <comparison>At standard strengths and pale color (the most common variety), like a more highly-attenuated, hoppy, and bitter Belgian blond ale with a stronger yeast character. At super strength and pale color, similar to a Belgian tripel, but often with more of a grainy, rustic quality and sometimes with a spicier yeast character.</comparison>
-        <entryinstructions>The entrant <strong>must</strong> specify the <em>strength</em> (table, standard, super) and the <em>color</em> (pale, dark).</entryinstructions>
+        <impression>comunemente una ale belga chiara, rinfrescante, molto attenuata, moderatamente
+amara e di alcolicità media, con un finale estremamente secco. Tipicamente è molto carbonata. Possono
+essere utilizzati cereali diversi dall’orzo e spezie (opzionali) per aggiungere complessità e per fare da
+complemento al carattere del lievito, che è fruttato, speziato e non apertamente fenolico. Le variazioni meno
+comuni includono prodotti a bassa e alta gradazione e versioni più scure con caratteristiche aggiuntive
+impartite dal malto.</impression>
+        <aroma>alquanto aromatica con evidenti caratteristiche fruttate, speziate e luppolate. Gli esteri possono
+essere abbastanza elevati (da moderati ad alti) e spesso ricordano gli agrumi, arancia o limone. Il luppolo è
+da basso a moderato ed è spesso speziato, floreale, terroso o fruttato. Le versioni più alcoliche hanno note
+morbide di alcol speziato (a bassa intensità). Le note speziate sono tipicamente di pepe, più che da chiodi di
+garofano, e possono essere moderatamente forti (tipicamente derivano dal lievito). Sono permesse piccole
+aggiunte complementari di erbe o spezie, ma non devono dominare. Il maltato è tipicamente da cereale
+morbido e basso di intensità. Le versioni più scure e più alcoliche hanno un maltato più percepibile e le
+versioni più scure assumono le caratteristiche associate ai cereali di quel colore (tostato, biscottato,
+caramellato, cioccolato, ecc.). Nelle versioni dove l’aspro si sostituisce all’amaro, questo è percepibile, ma
+varia da basso a moderato.</aroma>
+        <appearance>le versioni chiare hanno un distinto color arancio chiaro, ma possono anche essere da dorato chiaro
+ad ambrato (il colore più commune varia da dorato a dorato-ambrato). Le versioni più scure sono dal ramato
+al marrone scuro. Schiuma massiccia, persistente, densa, imponente, di colore dal bianco all’avorio, che
+lascia i caratteristici merletti sul bicchiere. La limpidezza varia da bassa a buona, anche se la torbidezza è
+tipica di questa birra non filtrata. Effervescente.</appearance>
+        <flavor>gusti fruttati e speziati da medio-bassi a medio-alti, sostenuti da un morbido maltato, da basso a
+medio, spesso con gusto di cereale. L’amaro è tipicamente da moderato ad elevato, anche se può essere
+presente l’aspro al posto dell’amaro (entrambi non devono essere elevati allo stesso tempo). L’attenuazione
+estremamente elevata conferisce il caratteristico finale secco di questo stile: una Saison non deve mai finire
+dolce. Il fruttato è frequentemente agrumato (arancia o limone) e le spezie tendono al pepato. Si può
+permettere una certa gamma di equilibrio tra il fruttato e lo speziato, di solito influenzato dalla scelta del
+lievito. Il gusto del luppolo è da basso a moderato e in genere di carattere speziato o terroso. L’equilibrio è
+verso il fruttato, lo speziato e il luppolato, senza però che l’amaro o l’aspro coprano gli altri gusti. Le versioni
+più scure hanno maggior carattere di malto e presentano una gamma di gusti derivanti dai malti scuri
+(tostato, pane, biscottato, cioccolato, ecc.) che fanno da supporto al carattere fruttato-speziato della birra (il
+gusto di torrefatto non è tipico). Le versioni più alcoliche avranno in generale maggiori gusti di malto insieme
+a una leggera impronta alcolica. Il finale è molto secco e il retrogusto è tipicamente amaro e speziato.
+L’amaro da luppolo è comunque ridotto, anche se può sembrare accentuato a causa degli alti livelli di
+attenuazione.</flavor>
+        <mouthfeel>corpo da leggero a medio. La sensazione di alcol varia con la forza alcolica presente: da nullo
+nelle versioni da bere a tavola accompagnando il cibo, a leggera nelle versioni standard, a moderata nelle
+versioni super. In ogni caso, il senso di calore deve essere alquanto basso. Carbonazione elevata e alquanto
+effervescente. C’è una sufficiente acidità, pungente sulla lingua, utile a bilanciare il finale molto secco. Nelle
+versioni acidule è presente una (opzionale) rinfrescante asprezza, da bassa a moderata, che è rinfrescante
+ma che però non deve fare arricciare le labbra (opzionale).</mouthfeel>
+        <comments>esistono varianti sia nel colore che nell’alcolicità ma tutte hanno caratteristiche ed equilibrio
+simili, in particolare il carattere rinfrescante, molto attenuato e secco con elevata carbonazione. Non c’è
+correlazione tra l’alcol e il colore. L’equilibrio può tuttavia cambiare leggermente con le variazioni in forza
+alcolica e colore, ma deve sempre essere evidente la somiglianza con il prodotto artigianale originale. Le
+versioni più chiare sono probabilmente più amare e con più carattere di luppolo, mentre le più scure tendono ad avere maggior carattere dolce del malto, garantendo un maggior equilibrio. Le versioni più alcoliche
+hanno spesso intensi gusti di malto, maggior ricchezza e corpo dovuti semplicemente alla loro maggiore
+gravità. Anche se tendono ad essere molto ben attenuate, non possono essere percepite secche quanto le
+Saison di media alcolicità. Il carattere del lievito per Saison è un “must”, anche se le versioni più ricche di
+malto tendono a mascherare le prerogative di questo lievito. In America si chiamano spesso Farmhouse Ale,
+ma questo termine non è comune in Europa dove esse fanno semplicemente parte di un gruppo più ampio
+chiamato ale artigianali.</comments>
+        <history>ale da provvista prodotta originariamente in Vallonia, la parte francese del Belgio, e bevuta durante
+l’intensa stagione agricola estiva. In origine era un prodotto poco alcolico per non indebolire i lavoratori dei
+campi, ma esistevano anche prodotti più alcolici da bere in nelle taverne. I prodotti più alcolici e di diverso
+colore apparvero dopo la seconda guerra mondiale. La Saison moderna più nota, la Saison Dupont, fu
+prodotta per la prima volta negli anni ’20. In origine una rustica ale artigianale realizzata con ingredienti
+locali, è ora prodotta soprattutto dai birrifici più grandi, ma mantiene ancora l’immagine delle sue umili origini.</history>
+        <ingredients>tipicamente non contiene spezie e il suo carattere è impartito dal lievito, dal luppolo e dai cereali;
+le spezie sono ammesse solo se danno note complementari. Sono tipici i malti base europei ma nella lista ci
+sono di frequente altri cereali come frumento, avena, segale o farro. Si possono aggiungere zuccheri e miele
+per aggiungere complessità e dare un finale più secco. Le versioni più scure contengono malti più complessi
+e più scuri ma normalmente nessun malto torrefatto. I tipici luppoli sono Saaz, Styrian o East Kent Golding.
+Si possono impiegare varie erbe o spezie per aggiungere complessità e unicità al prodotto ma devono
+sempre fondersi bene con le caratteristiche del lievito e del luppolo. I brettanomiceti non sono tipici di questo
+stile. La Saison con Brett dovrebbero essere iscritte nella categoria American Wild Ale</ingredients>
+        <comparison>Se di forza standard e chiara (la varietà più comune) è come una Belgian blond ale
+maggiormente attenuata, luppolata e amara, con un carattere di lievito più marcato. Se di forza elevata e
+chiara, simile a una tripel belga, ma spesso con maggior carattere di cereale, rustica e talvolta con un lievito
+speziato.</comparison>
+        <entryinstructions>si deve specificare la forza (da tavola, standard, super) e il colore (chiara, scura)</entryinstructions>
         <examples>Ellezelloise Saison, Fantôme Saison, Lefebvre Saison 1900, Saison Dupont Vieille Provision, Saison de Pipaix, Saison Regal, Saison Voisin, Boulevard Tank 7 Farmhouse Ale</examples>
-        <tags>standard-strength, pale-color, top-fermented, western-europe, traditional-style, bitter</tags>
+        <tags>forza standard, chiara, alta fermentazione, europa occidentale, stile tradizionale, amara.</tags>
         <stats>
           <og flexible="false">
             <low>1.048</low>
@@ -3407,17 +3489,40 @@
       </subcategory>
       <subcategory id="25C">
         <name>Belgian Golden Strong Ale</name>
-        <impression>A pale, complex, effervescent, strong Belgian-style ale that is highly attenuated and features fruity and hoppy notes in preference to phenolics.</impression>
-        <aroma>Complex with significant fruity esters, moderate spiciness and low to moderate alcohol and hop aromas. Esters are reminiscent of lighter fruits such as pears, oranges or apples. Moderate to moderately low spicy, peppery phenols. A low to moderate yet distinctive perfumy, floral hop character is often present. Alcohols are soft, spicy, perfumy and low-to-moderate in intensity. No hot alcohol or solventy aromas. The malt character is light and slightly grainy-sweet to nearly neutral.</aroma>
-        <appearance>Yellow to medium gold in color. Good clarity. Effervescent. Massive, long-lasting, rocky, often beady, white head resulting in characteristic Belgian lace on the glass as it fades.</appearance>
-        <flavor>Marriage of fruity, spicy and alcohol flavors supported by a soft malt character. Esters are reminiscent of pears, oranges or apples. Low to moderately low phenols are peppery in character. A low to moderate spicy hop character is often present. Alcohols are soft and spicy, and are low-to-moderate in intensity. Bitterness is typically medium to high from a combination of hop bitterness and yeast-produced phenolics. Substantial carbonation and bitterness leads to a dry finish with a low to moderately bitter aftertaste.</flavor>
-        <mouthfeel>Very highly carbonated; effervescent. Light to medium body, although lighter than the substantial gravity would suggest. Smooth but noticeable alcohol warmth. No hot alcohol or solventy character.</mouthfeel>
-        <comments>References to the devil are included in the names of many commercial examples of this style, referring to their potent alcoholic strength and as a tribute to the original example (Duvel). The best examples are complex and delicate. High carbonation helps to bring out the many flavors and to increase the perception of a dry finish. Traditionally bottle-conditioned (or <em>refermented in the bottle</em>).</comments>
-        <history>Originally developed by the Moortgat brewery after WWI as a response to the growing popularity of Pilsner beers.</history>
-        <ingredients>Pilsner malt with substantial sugary adjuncts. Saazer-type hops or Styrian Goldings are commonly used. Belgian yeast strains are used - those that produce fruity esters, spicy phenolics and higher alcohols - often aided by slightly warmer fermentation temperatures. Fairly soft water. Spicing is not traditional; if present, should be a background character only.</ingredients>
-        <comparison>Strongly resembles a Tripel, but may be even paler, lighter-bodied and even crisper and drier; the drier finish and lighter body also serves to make the assertive hopping and yeast character more prominent. Tends to use yeast that favor ester development (particularly pome fruit) over spiciness in the balance.</comparison>
+        <impression>una ale alcolica chiara, complessa ed effervescente, molto attenuata e che evidenzia
+più note fruttate e luppolate che fenoli.</impression>
+        <aroma>complesso con esteri fruttati evidenti, speziato moderato e aroma alcolico e di luppolo da bassi a
+moderati. Gli esteri ricordano la frutta chiara come pere, arance o mele. Fenoli pepati e speziati da moderati
+a moderatamente bassi. È spesso presente aroma floreale di luppolo, da basso a moderato, ma
+distintamente aromatico. Gli alcoli sono morbidi, speziati e profumati con intensità da bassa a moderata.
+Nessun aroma caldo di alcol o solvente. Il carattere del maltato è leggero e varia dal dolce-cereale a quasi
+neutro.</aroma>
+        <appearance>colore da giallo a dorato medio, con buona limpidezza. Effervescente. Schiuma bianca enorme,
+solida, durevole, imponente, spesso imperlata, che lascia sul bicchiere i merletti di Bruxelles.</appearance>
+        <flavor>unione di gusti alcolici, fruttati e speziati, sostenuti da un morbido maltato. Gli esteri ricordano le pere,
+le arance o le mele. I fenoli sono di carattere pepato e variano da bassi a moderatamente bassi. Spesso è
+presente un luppolato speziato medio-basso. Gli alcoli sono morbidi e speziati, con una intensità da bassa a
+moderata. L’amaro è tipicamente da medio ad alto e proviene dalla combinazione di luppolo e fenoli prodotti
+dal lievito. La carbonazione decisa e l’amaro conducono a un finale secco con retrogusto amaro da basso a
+moderato.</flavor>
+        <mouthfeel>birra effervescente, altamente carbonata. Corpo da leggero a medio, anche se più leggero di
+quanto potrebbe suggerire la elevata gravità. Calore alcolico delicato ma percepibile. Nessun carattere
+pungente di alcol o solvente.</mouthfeel>
+        <comments>molti nomi commerciali contengono riferimenti al diavolo per la loro forte alcolicità e come tributo
+all’esempio originale (la Duvel). I migliori esempi sono complessi e delicati. L’elevata carbonazione contribuisce a evidenziare i tanti gusti presenti e ad aumentare la percezione di finale secco.
+Tradizionalmente è rifermentata in bottiglia.</comments>
+        <history>in origine fu sviluppata alla birreria Moortgat dopo la prima guerra mondiale come risposta alla
+crescente popolarità delle birre Pilsner.</history>
+        <ingredients>malto Pilsner con sostanziose aggiunte di zuccheri. Luppoli tipo Saaz o Styrian Goldings. Lieviti
+belgi che producono esteri fruttati, fenoli speziati e alcoli superiori, spesso favoriti da temperature di
+fermentazione leggermente più alte dal normale. Acqua alquanto dolce. La speziatura non è tradizionale ma,
+se è presente, deve avere solo una nota di sottofondo.</ingredients>
+        <comparison>ricorda fortemente una Tripel ma può essere anche più chiara, con corpo più leggero e
+anche più fresca e più secca. Il finale maggiormente secco e il corpo più leggero servono anche a rendere il
+luppolo più definito ed evidenziare il carattere del lievito. Si tende ad usare lievito che favorisca lo sviluppo di
+esteri (particolarmente di mela), piuttosto che lo speziato.</comparison>
         <examples>Brigand, Delirium Tremens, Dulle Teve, Duvel, Judas, Lucifer, Piraat, Russian River Damnation</examples>
-        <tags>very-high-strength, pale-color, top-fermented, western-europe, traditional-style, bitter</tags>
+        <tags>molto forte, chiara, alta fermentazione, europa occidentale, stile tradizionale, amara.</tags>
         <stats>
           <og flexible="false">
             <low>1.070</low>
@@ -3445,20 +3550,44 @@
     <category id="26">
       <revision number="1">2015</revision>
       <name>Trappist Ale</name>
-      <notes><strong>Trappist</strong> is a protected legal appellation, and cannot be used commercially except by genuine Trappist monasteries that brew their own beer. However, we can use it to describe the type or styles of beer produced by those breweries and those who make beers of a similar style. Trappist type beers are all characterized by very high attenuation, high carbonation through bottle conditioning, and interesting (and often aggressive) yeast character.</notes>
+      <notes>Il termine Trappista è una denominazione legalmente protetta e può essere utilizzato a livello commerciale
+solo dai veri monasteri trappisti che producono la propria birra. Tuttavia, noi lo possiamo usare per
+descrivere il tipo o gli stili di birra prodotti da quei monasteri e per quei birrifici che producono birra di stile
+simile. Le birre trappiste sono caratterizzate da una attenuazione molto elevata, alta carbonazione da
+rifermentazione in bottiglia e un interessante, spesso aggressivo, carattere del lievito.</notes>
       <subcategory id="26A">
         <name>Trappist Single</name>
-        <impression>A pale, bitter, highly attenuated and well carbonated Trappist ale, showing a fruity-spicy Trappist yeast character, a spicy-floral hop profile, and a soft, supportive grainy-sweet malt palate.</impression>
-        <aroma>Medium-low to medium-high Trappist yeast character, showing a fruity-spicy character along with medium-low to medium spicy or floral hops, occasionally enhanced by light herbal/citrusy spice additions. Low to medium-low grainy-sweet malt backdrop, which may have a light honey or sugar quality. Fruit expression can vary widely (citrus, pome fruit, stone fruit). Light spicy, yeast-driven phenolics found in the best examples. Bubblegum inappropriate.</aroma>
-        <appearance>Pale yellow to medium gold color. Generally good clarity, with a moderate-sized, persistent, billowy white head with characteristic lacing.</appearance>
-        <flavor>Fruity, hoppy, bitter, and dry. Initial malty-sweet impression, with a grainy-sweet soft malt palate, and a dry, hoppy finish. The malt may have a light honeyed biscuit or cracker impression. Moderate spicy or floral hop flavor. Esters can be citrus (orange, lemon, grapefruit), pome fruit (apple, pear), or stone fruit (apricot, peach). Light to moderate spicy, peppery, or clove phenolics. Bitterness rises towards the crisp, dry finish, with an aftertaste of light malt, moderate hops and yeast character.</flavor>
-        <mouthfeel>Medium-light to medium body. Smooth. Medium-high to high carbonation, can be somewhat prickly. Should not have noticeable alcohol warmth.</mouthfeel>
-        <comments>Often not labeled or available outside the monastery, or infrequently brewed. Might also be called monk’s beer or Brother’s beer. Highly attenuated, generally 85% or higher.</comments>
-        <history>While Trappist breweries have a tradition of brewing a lower-strength beer as a monk’s daily ration, the bitter, pale beer this style describes is a relatively modern invention reflecting current tastes. Westvleteren first brewed theirs in 1999, but replaced older lower-gravity products.</history>
-        <ingredients>Pilsner malt, Belgian Trappist yeast, Saazer-type hops.</ingredients>
-        <comparison>Like a top-fermented Belgian/Trappist interpretation of a German Pils - pale, hoppy, and well-attenuated, but showing prototypical Belgian yeast character. Has less sweetness, higher attenuation, less character malt, and is more hop-centered than a Belgian Pale Ale. More like a much smaller, more highly hopped tripel than a smaller Belgian Blond Ale.</comparison>
+        <impression>ale trappista chiara, amara, molto attenuata e ben carbonata che evidenzia le
+caratteristiche fruttato-speziate del lievito trappista, insieme a un profilo del luppolo speziato-floreale e un
+maltato dolce e morbido come supporto.</impression>
+        <aroma>caratteristiche aromatiche fruttate-speziate del lievito trappista da medio-basse a medio-alte, insieme
+a luppolatura speziata o floreale da medio-bassa a media, occasionalmente arricchita da minime aggiunte di
+spezie erbacee-agrumate. Come sfondo, aroma di malto dolce da basso a medio-basso che può avere lievi
+note di miele o zucchero. Il fruttato varia ampiamente (agrume, mela, frutta con nocciolo). Nei migliori
+esempi si colgono fenoli leggermente speziati prodotti dal lievito. L’aroma di chewing-gum è inappropriato.</aroma>
+        <appearance>colore da giallo chiaro a dorato medio. Limpidezza generalmente buona, con schiuma bianca di
+dimensioni medie, crescente e persistente che lascia sul bicchiere i caratteristici merletti.</appearance>
+        <flavor>fruttato, luppolato, amaro e secco. Impressioni iniziali di malto dolce, con una morbida dolcezza di
+cereale al palato e finale secco e luppolato. Il malto può dare una leggera impronta di miele, biscotto o
+cracker. Gusto moderato di luppoli speziati o floreali. Gli esteri possono essere agrumati (arancia, limone,
+pompelmo), di pomacea (mela o pera) o di frutta con nocciolo (albicocca, pesca). Fenoli speziati, pepati o
+chiodo di garofano da leggeri a moderati. L’amaro compare nel finale, secco e fresco, che lascia un
+retrogusto di malto leggero, di luppolo moderato e di caratteristiche del lievito.</flavor>
+        <mouthfeel>corpo da medio-leggero a medio. Delicata. Carbonazione da medio-alta ad elevata che talvolta
+pizzica. Non deve avere un calore alcolico percepibile.</mouthfeel>
+        <comments>non è prodotta di frequente e spesso è senza etichetta e non si trova fuori dal monastero. Può
+anche chiamarsi “birra del monaco” o “birra del confratello”. Estremamente attenuata, di solito all’85% o più.</comments>
+        <history>i birrifici trappisti hanno la tradizione di produrre una birra leggera ad uso dei monaci come bevanda
+quotidiana ma questo stile descrive una birra chiara e amara che rappresenta una invenzione relativamente
+moderna, che riflette i gusti correnti. Il monastero di Westvleteren l’ha prodotta per primo nel 1999
+sostituendo però i prodotti più vecchi a bassa alcolicità.</history>
+        <ingredients>malto Pilsner, lievito trappista belga, luppoli tipo Saaz. Tra i birrifici trappisti, solo Chimay usa le
+spezie: piccole quantità di coriandolo e curacao nella Dorèe.</ingredients>
+        <comparison>è come una interpretazione belga/trappista ad alta fermentazione di una Pils tedesca:,
+chiara, luppolata e ben attenuata ma che evidenzia le caratteristiche tipiche del lievito belga. È meno dolce, ha una maggior attenuazione, meno carattere del malto e maggiormente focalizzata sul luppolo delle Belgian
+Pale Ale. È più una versione ridotta, ma più luppolata, della Tripel ma più leggera delle Belgian Blond Ale.</comparison>
         <examples>Achel 5° Blond, St. Bernardus Extra 4, Westmalle Extra, Westvleteren Blond</examples>
-        <tags>standard-strength, pale-color, top-fermenting, western-europe, craft-style, bitter, hoppy</tags>
+        <tags>forza standard, chiara, alta fermentazione, europa occidentale, stile artigianale, luppolata.</tags>
         <stats>
           <og flexible="false">
             <low>1.044</low>
@@ -3484,17 +3613,39 @@
       </subcategory>
       <subcategory id="26B">
         <name>Belgian Dubbel</name>
-        <impression>A deep reddish-copper, moderately strong, malty, complex Trappist ale with rich malty flavors, dark or dried fruit esters, and light alcohol blended together in a malty presentation that still finishes fairly dry.</impression>
-        <aroma>Complex, rich-sweet malty aroma, possibly with hints of chocolate, caramel and/or toast (but never roasted or burnt aromas). Moderate fruity esters (usually including raisins and plums, sometimes also dried cherries). Esters sometimes include banana or apple. Spicy phenols and higher alcohols are common (may include light clove and spice, peppery, rose-like and/or perfumy notes). Spicy qualities can be moderate to very low. Alcohol, if present, is soft and never hot or solventy. Low to no spicy, herbal, or floral hop aroma, typically absent. The malt is most prominent in the balance with esters and a touch of alcohol in support, blending together for a harmonious presentation.</aroma>
-        <appearance>Dark amber to copper in color, with an attractive reddish depth of color. Generally clear. Large, dense, and long-lasting creamy off-white head.</appearance>
-        <flavor>Similar qualities as aroma. Rich, complex medium to medium-full rich-sweet malt flavor on the palate yet finishes moderately dry. Complex malt, ester, alcohol and phenol interplay (raisiny flavors are common; dried fruit flavors are welcome; clove or pepper spiciness is optional). Balance is always toward the malt. Medium-low bitterness that doesn’t persist into the aftertaste. Low spicy, floral, or herbal hop flavor is optional and not usually present.</flavor>
-        <mouthfeel>Medium-full body. Medium-high carbonation, which can influence the perception of body. Low alcohol warmth. Smooth, never hot or solventy.</mouthfeel>
-        <comments>Most commercial examples are in the 6.5 - 7% ABV range. Traditionally bottle-conditioned (or <em>refermented in the bottle</em>).</comments>
-        <history>Originated at monasteries in the Middle Ages, and was revived in the mid-1800s after the Napoleonic era.</history>
-        <ingredients>Belgian yeast strains prone to production of higher alcohols, esters, and phenolics are commonly used. Impression of complex grain bill, although traditional versions are typically Belgian Pils malt with caramelized sugar syrup or other unrefined sugars providing much of the character. Saazer-type, English-type or Styrian Goldings hops commonly used. No spices are traditionally used, although restrained use is allowable (background strength only).</ingredients>
-        <comparison>Should not be as malty as a bock and should not have crystal malt-type sweetness. Similar in strength and balance as a Belgian Blond, but with a richer malt and ester profile. Less strong and intense as a Belgian Dark Strong Ale.</comparison>
+        <impression>una ale trappista complessa, di intenso colore ramato-rossiccio, moderatamente
+alcolica, con ricchi gusti di malto, esteri di frutta scura o secca e alcol amalgamati assieme al corpo maltato
+che però ha un finale abbastanza secco.</impression>
+        <aroma>ricco aroma di malto dolce e complesso, con possibili sentori di cioccolato, caramello e/o tostato (ma
+mai di torrefatto o di bruciato). Esteri fruttati moderati (di solito uvetta e susine, talvolta ciliegie disidratate) e
+talvolta banana o mela. Sono comuni gli aromi di fenoli speziati e di alcoli superiori (leggero chiodo di
+garofano e spezie, pepato, rosa e/o note profumate). Lo speziato in generale varia da moderato a molto
+basso. L’aroma di alcol, se presente, è morbido e mai bruciante o di solvente. Speziato da basso a nullo,
+erbaceo o aroma floreale di luppolo tipicamente assenti. Il malto è prominente nell’equilibrio, insieme agli
+esteri e ad una nota di alcol come supporto. Il tutto è amalgamato insieme per offrire una presentazione
+armoniosa.</aroma>
+        <appearance>colore da ambrato scuro a ramato, con una attraente profondità rossastra. In genere limpida con
+una schiuma generosa, densa e persistente di color crema.</appearance>
+        <flavor>caratteristiche simili all’aroma. Gusto medio-pieno di malto ricco, complesso, dolce che tuttavia
+finisce moderatamente secco. La complessità del malto, gli esteri, i fenoli e l’alcol interagiscono (comune il
+gusto di uvetta, apprezzati i gusti di frutta secca, opzionale lo speziato da chiodo di garofano o pepato),
+l’equilibrio è sempre verso il malto. Amaro medio-basso che non persiste nel retrogusto. È opzionale, e di
+solito non presente, un leggero gusto di luppolo speziato, floreale o erbaceo.</flavor>
+        <mouthfeel>corpo medio-pieno. La carbonazione medio-alta può falsare la percezione del corpo. Calore
+alcolico leggero, delicato, mai bruciante o solvente.</mouthfeel>
+        <comments>gran parte degli esempi commerciali hanno una alcolicità tra 6.5-7%. Tradizionalmente è
+rifermentata in bottiglia.</comments>
+        <history>ebbe origine nei monasteri medioevali e fu riconsiderata a metà 1800 dopo il periodo napoleonico.</history>
+        <ingredients>sono comunemente usati ceppi di lievito belga che tendono a produrre alcoli superiori, esteri e
+fenoli. L’impressione è quella di una lista di cereali complessa ma le versioni tradizionali hanno tipicamente
+malto belga Pils, sciroppo di zucchero caramellato o altri zuccheri non raffinati che impartiscono carattere
+alla birra. Di solito si impiegano luppoli tipo Saaz, di tipo inglese o Styrian Goldings. Tradizionalmente non si
+usano spezie, anche se è permessa una quantità limitata che dia solo una nota di sottofondo.</ingredients>
+        <comparison>non deve essere maltosa come una Bock e non deve avere la dolcezza data dal malto
+Crystal. Alcolicità ed equilibrio simili alla Belgian Blond ma con profilo di malto ed esteri più ricco. Meno forte
+e meno intensa della Belgian Dark Strong Ale.</comparison>
         <examples>Affligem Dubbel, Chimay Première, Corsendonk Pater, Grimbergen Double, La Trappe Dubbel, St. Bernardus Pater 6, Trappistes Rochefort 6, Westmalle Dubbel</examples>
-        <tags>high-strength, amber-color, top-fermented, western-europe, traditional-style, malty</tags>
+        <tags>forte, ambrata, alta fermentazione, europa occidentale, stile tradizionale, maltosa.</tags>
         <stats>
           <og flexible="false">
             <low>1.062</low>
@@ -3520,17 +3671,44 @@
       </subcategory>
       <subcategory id="26C">
         <name>Belgian Tripel</name>
-        <impression>A pale, somewhat spicy, dry, strong Trappist ale with a pleasant rounded malt flavor and firm bitterness. Quite aromatic, with spicy, fruity, and light alcohol notes combining with the supportive clean malt character to produce a surprisingly drinkable beverage considering the high alcohol level.</impression>
-        <aroma>Complex bouquet with moderate to significant spiciness, moderate fruity esters and low alcohol and hop aromas. Generous spicy, peppery, sometimes clove-like phenols. Esters are often reminiscent of citrus fruits such as oranges, but may sometimes have a slight banana character. A low yet distinctive spicy, floral, sometimes perfumy hop character is usually found. Alcohols are soft, spicy and low in intensity. The malt character is light, with a soft, slightly grainy-sweet or slightly honey-like impression. The best examples have a seamless, harmonious interplay between the yeast character, hops, malt, and alcohol.</aroma>
-        <appearance>Deep yellow to deep gold in color. Good clarity. Effervescent. Long-lasting, creamy, rocky, white head resulting in characteristic <em>Belgian lace</em> on the glass as it fades.</appearance>
-        <flavor>Marriage of spicy, fruity and alcohol flavors supported by a soft, rounded grainy-sweet malt impression, occasionally with a very light honey note. Low to moderate phenols are peppery in character. Esters are reminiscent of citrus fruit such as orange or sometimes lemon, and are low to moderate. A low to moderate spicy hop character is usually found. Alcohols are soft, spicy, and low in intensity. Bitterness is typically medium to high from a combination of hop bitterness and yeast-produced phenolics. Substantial carbonation and bitterness lends a dry finish with a moderately bitter aftertaste with substantial spicy-fruity yeast character. The grainy-sweet malt flavor does not imply any residual sweetness.</flavor>
-        <mouthfeel>Medium-light to medium body, although lighter than the substantial gravity would suggest. Highly carbonated. The alcohol content is deceptive, and has little to no obvious warming sensation. Always effervescent.</mouthfeel>
-        <comments>High in alcohol but does not taste strongly of alcohol. The best examples are sneaky, not obvious. High carbonation and attenuation helps to bring out the many flavors and to increase the perception of a dry finish. Most Trappist versions have at least 30 IBUs and are very dry. Traditionally bottle-conditioned (or <em>refermented in the bottle</em>).</comments>
-        <history>Originally popularized by the Trappist monastery at Westmalle.</history>
-        <ingredients>Pilsner malt, typically with pale sugar adjuncts. Saazer-type hops or Styrian Goldings are commonly used. Belgian yeast strains are used - those that produce fruity esters, spicy phenolics and higher alcohols - often aided by slightly warmer fermentation temperatures. Spice additions are generally not traditional, and if used, should be a background character only. Fairly soft water.</ingredients>
-        <comparison>May resemble a Belgian Golden Strong Ale but slightly darker and somewhat fuller-bodied, with more emphasis on phenolics and less on esters. Usually has a more rounded malt flavor but should never be sweet.</comparison>
+        <impression>una forte ale trappista chiara, un po’ speziata e secca, con un piacevole gusto rotondo
+di malto e un amaro deciso. Molto aromatica con note speziate, fruttate e leggermente alcoliche che si
+combinano con il carattere pulito del malto per produrre infine una bevanda sorprendentemente beverina,
+considerati gli elevati livelli alcolici.</impression>
+        <aroma>bouquet complesso, con speziato da moderato a significativo, moderati esteri fruttati e leggeri aromi
+di alcol e luppolo. Generosi fenoli speziati e pepati e talvolta di chiodo di garofano. Gli esteri ricordano
+spesso gli agrumi, tipo l’arancia, ma possono avere un leggero tono di banana. Di solito è rilevabile un lieve
+ma distinto carattere luppolato: basso ma distinto speziato, floreale, talvolta aromatico. Gli alcoli sono
+morbidi, speziati e di bassa intensità. Il maltato è delicato con morbide suggestioni di cereale lieve e dolce o
+di tenue aroma di miele. I migliori esempi mostrano una relazione armoniosa e uniforme tra le caratteristiche
+del lievito, dei luppoli, del malto e dell’alcol.</aroma>
+        <appearance>colore da giallo intenso a dorato intenso, con buona limpidezza. Effervescente. Schiuma bianca,
+persistente, cremosa e solida con i caratteristici merletti/archetti sul bicchiere.</appearance>
+        <flavor>matrimonio di gusti speziati, fruttati e alcolici, sostenuti da un maltato morbido e rotondo di cereale
+dolce, unito a occasionali note leggerissime di miele. Fenoli pepati da bassi a moderati. Gli esteri ricordano
+gli agrumi quali l’arancia o talvolta il limone e sono da bassi a moderati. Di solito è presente uno speziato di
+luppolo, da basso a moderato. Gli alcoli sono morbidi, speziati e di bassa intensità. L’amaro è tipicamente da
+medio ad alto e deriva dalla combinazione dell’amaro del luppolo con i fenoli prodotti dal lievito. La decisa
+carbonazione e l’amaro rendono il finale secco, con un retrogusto moderatamente amaro insieme alle
+caratteristiche speziate e fruttate del lievito. Il gusto di malto, dolce e di cereale, non comporta nessuna
+dolcezza residua.</flavor>
+        <mouthfeel>corpo da medio-leggero a medio, anche se è più leggero di quanto suggerirebbe la sostanziosa
+gravità. Carbonazione elevata e sempre effervescente. Il contenuto di alcol è ingannevole perché non si nota
+alcuna prevedibile sensazione di calore.</mouthfeel>
+        <comments>birra con tanto alcol ma che non ha il gusto forte dell’alcol. I migliori esempi sono elusivi, non
+banali. La carbonazione e l’attenuazione elevate contribuiscono a esprimere i molteplici gusti e ad
+aumentare la percezione di un finale secco. La maggior parte delle versioni trappiste hanno almeno 30 IBU e
+sono molto secche. Tradizionalmente sono rifermentate in bottiglia.</comments>
+        <history>in origine fu resa popolare dal monastero trappista di Westmalle.</history>
+        <ingredients>malto Pilsner con tipiche aggiunte di zuccheri chiari. Luppoli tipo Saaz o Styrian Goldings. Ceppi
+di lievito belga che producono esteri fruttati, fenoli speziati e alcoli superiori, spesso agevolati da una
+temperatura di fermentazione leggermente superiore al normale. Non sono tradizionali le aggiunte di spezie
+ma se si vogliono utilizzare devono evidenziasi solo sullo sfondo. Acqua alquanto dolce.</ingredients>
+        <comparison>può sembrare una Belgian Golden Strong Ale, ma è leggermente più scura e ha un corpo
+un po’ più pieno, con maggior accento sui fenoli e meno sugli esteri. Di solito ha un gusto di malto più
+rotondo ma non dovrebbe mai essere dolce.</comparison>
         <examples>Affligem Tripel, Chimay Cinq Cents, La Rulles Tripel, La Trappe Tripel, St. Bernardus Tripel, Unibroue La Fin Du Monde, Val-Dieu Triple, Watou Tripel, Westmalle Tripel</examples>
-        <tags>high-strength, pale-color, top-fermented, western-europe, traditional-style, bitter</tags>
+        <tags>forte, chiara, alta fermentazione, europa occidentale, stile tradizionale, amara.</tags>
         <stats>
           <og flexible="false">
             <low>1.075</low>
@@ -3556,17 +3734,43 @@
       </subcategory>
       <subcategory id="26D">
         <name>Belgian Dark Strong Ale</name>
-        <impression>A dark, complex, very strong Belgian ale with a delicious blend of malt richness, dark fruit flavors, and spicy elements. Complex, rich, smooth and dangerous.</impression>
-        <aroma>Complex, with a rich-sweet malty presence, significant esters and alcohol, and an optional light to moderate spiciness. The malt is rich and strong, and can have a deep bready-toasty quality often with a deep caramel complexity. The fruity esters are strong to moderately low, and can contain raisin, plum, dried cherry, fig or prune notes. Spicy phenols may be present, but usually have a peppery quality not clove-like; light vanilla is possible. Alcohols are soft, spicy, perfumy and/or rose-like, and are low to moderate in intensity. Hops are not usually present (but a very low spicy, floral, or herbal hop aroma is acceptable). No dark/roast malt aroma. No hot alcohols or solventy aromas.</aroma>
-        <appearance>Deep amber to deep coppery-brown in color (<em>dark</em> in this context implies <em>more deeply colored than golden</em>). Huge, dense, moussy, persistent cream- to light tan-colored head. Can be clear to somewhat hazy.</appearance>
-        <flavor>Similar to aroma (same malt, ester, phenol, alcohol, and hop comments apply to flavor as well). Moderately malty-rich on the palate, which can have a sweet impression if bitterness is low. Usually moderately dry to dry finish, although may be up to moderately sweet. Medium-low to moderate bitterness; alcohol provides some of the balance to the malt. Generally malty-rich balance, but can be fairly even with bitterness. The complex and varied flavors should blend smoothly and harmoniously. The finish should not be heavy or syrupy.</flavor>
-        <mouthfeel>High carbonation but not sharp. Smooth but noticeable alcohol warmth. Body can range from medium-light to medium-full and creamy. Most are medium-bodied.</mouthfeel>
-        <comments>Authentic Trappist versions tend to be drier (Belgians would say <em>more digestible</em>) than Abbey versions, which can be rather sweet and full-bodied. Traditionally bottle-conditioned (or <em>refermented in the bottle</em>). Sometimes known as a Trappist Quadruple, most are simply known by their strength or color designation.</comments>
-        <history>Most versions are unique in character reflecting characteristics of individual breweries, produced in limited quantities and often highly sought-after.</history>
-        <ingredients>Belgian yeast strains prone to production of higher alcohols, esters, and sometimes phenolics are commonly used. Impression of a complex grain bill, although many traditional versions are quite simple, with caramelized sugar syrup or unrefined sugars and yeast providing much of the complexity. Saazer-type, English-type or Styrian Goldings hops commonly used. Spices generally not used; if used, keep subtle and in the background.</ingredients>
-        <comparison>Like a larger dubbel, with a fuller body and increased malt richness. Not as bitter or hoppy as a tripel, but of similar strength.</comparison>
+        <impression>una ale belga molto alcolica, scura e complessa che presenta una deliziosa miscela di
+maltosità, di gusti di frutta scura insieme a elementi speziati. Complessa, ricca, morbida e pericolosa.</impression>
+        <aroma>aroma complesso con ricca presenza di malto dolce, significativi esteri e alcol e uno speziato,
+opzionale, da leggero a moderato. Il malto è ricco e robusto e può avere un intenso sapore di pane-tostato
+unito a una intensa complessità di caramello. Gli esteri fruttati variano da moderatamente bassi a elevati e
+offrono note di uvetta, susina, ciliegia disidratata, fico o prugna. Possono essere presenti fenoli speziati, di
+solito pepati e non di chiodo di garofano; possibile riscontrare anche un lieve aroma di vaniglia. Gli alcoli
+sono morbidi, speziati, aromatici e/o di rosa, con una intensità da bassa a moderata. Di solito non sono
+presenti aromi di luppolo, anche se è accettabile un leggero aroma speziato, floreale o erbaceo. Nessun
+aroma di malto scuro o torrefatto e neppure aromi di alcoli superiori o di solvente.</aroma>
+        <appearance>colore da ambrato intenso a bruno-ramato intenso (il termine “dark” in questo contesto significa “più
+intensamente colorata della della Golden”). Schiuma di colore leggermente brunito, enorme, densa, pannosa
+e persistente. Può essere da limpida a leggermente torbida.</appearance>
+        <flavor>simile all’aroma (i commenti fatti sopra riguardo a malto, esteri, fenoli, alcol e luppolo sono validi
+anche per il gusto). Al palato è moderatamente ricca di malto e può dare un’impressione di dolce se l’amaro
+è basso. Il finale è di solito da moderatamente secco a secco, anche se può arrivare a un dolce moderato.
+Amaro da medio-basso a moderato. L’alcol fornisce parte dell’equilibrio al malto. In generale, l’equilibrio
+tende al maltato ricco ma questo può essere anche alla pari con l’amaro. I gusti vari e complessi dovrebbero
+amalgamarsi in maniera delicata e armoniosa. Il finale non deve essere pesante o sciropposo.</flavor>
+        <mouthfeel>carbonazione elevata ma non pungente. Morbida con un percepibile calore alcolico. Il corpo,
+cremoso, varia da medio-leggero a medio-pieno, tuttavia la maggior parte ha corpo medio.</mouthfeel>
+        <comments>le autentiche versioni trappiste tendono ad essere più secche (i belgi direbbero “più digeribili”)
+rispetto alle versioni Abbey che sono alquanto dolci e di corpo pieno. Tradizionalmente è rifermentata in
+bottiglia. Talvolta è nota come Trappist Quadruple, ma la maggior parte è semplicemente denominata con
+termini collegati al grado alcolico o al colore.</comments>
+        <history>gran parte delle versioni sono uniche nel proprio genere e riflettono le caratteristiche dei singoli
+birrifici. Sono prodotte in quantità limitate e spesso molto ricercate.</history>
+        <ingredients>comunemente si usano ceppi di lievito belga che producono alcoli superiori, esteri e talvolta
+fenoli. L’impressione è quella di una lista di cereali complessa, ma le versioni tradizionali hanno tipicamente
+malto belga Pils, sciroppo di zucchero caramellato o altri zuccheri non raffinati che impartiscono molta della
+complessità di questa birra. Di solito si utilizzano luppoli tipo Saaz, di tipo inglese o Styrian Goldings.
+Generalmente non si usano spezie; se impiegate, devono essere in quantità limitata per dare solo una nota
+di sottofondo.</ingredients>
+        <comparison>come una Dubbel più importante, con corpo più pieno e maggiore ricchezza di malto.
+Meno amara o luppolata rispetto alla Tripel ma con simile alcolicità.</comparison>
         <examples>Achel Extra Brune, Boulevard The Sixth Glass, Chimay Grande Réserve, Gouden Carolus Grand Cru of the Emperor, Rochefort 8 &amp; 10, St. Bernardus Abt 12, Westvleteren 12</examples>
-        <tags>very-high-strength, amber-color, top-fermented, western-europe, traditional-style, malty</tags>
+        <tags>molto forte, ambrata, alta fermentazione, europa occidentale, stile tradizionale, maltosa.</tags>
         <stats>
           <og flexible="false">
             <low>1.075</low>
@@ -3594,21 +3798,58 @@
     <category id="27">
       <revision number="1">2015</revision>
       <name>Historical Beer</name>
-      <notes>The Historical Beer category contains styles that either have all but died out in modern times, or that were much more popular in past times and are known only through recreations. This category can also be used for traditional or indigenous beers of cultural importance within certain countries. Placing a beer in the historical category does not imply that it is not currently being produced, just that it is a very minor style or perhaps is in the process of rediscovery by craft brewers.</notes>
-      <notes><strong>Entry Instructions:</strong> The entrant must either specify a style with a BJCP-supplied description from the list below, or specify a different historical beer style that is not described elsewhere in these guidelines. In the case of a style that has changed substantially over the years (such as Porter or Stout), the entrant may specify an existing BJCP style as well as an era (e.g., 1820 English Porter). When the entrant specifies any style not on the BJCP-supplied list, the entrant must provide a description of the style for the judges in sufficient detail to allow the beer to be judged. If a beer is entered with just a style name and no description, it is very unlikely that judges will understand how to judge it. Currently defined examples: <em>Gose, Piwo Grodziskie, Lichtenhainer, Roggenbier, Sahti, Kentucky Common, Pre-Prohibition Lager, Pre-Prohibition Porter, London Brown</em>.</notes>
+      <notes>La categoria Historical Beer include stili che si sono estinti nei tempi moderni o che in passato erano molto
+popolari e ora sono noti solo attraverso la loro riproduzione. Questa categoria può anche essere usata per
+birre tradizionali o autoctone che hanno importanza culturale per certe nazioni. Collocare una birra nella
+categoria storica non significa che non è in produzione, ma che è uno stile minore o forse sta per essere
+riscoperta dai produttori artigianali.
+Istruzioni per il concorrente: il concorrente deve specificare uno stile tra quelli presenti nel BJCP dalla lista
+seguente o specificare un diverso stile storico che non è descritto altrove nelle presenti linee guida. Nel caso
+di uno stile modificatosi sostanzialmente nel corso degli anni (come Porter o Stout), il concorrente può
+specificare lo stile BJCP esistente oltre a un periodo storico (es: 1820 English Porter). Quando il concorrente
+specifica uno stile non presente nelle linee guida BJCP, deve fornire ai giudici una descrizione dello stile
+sufficientemente dettagliata per permetterne il giudizio. Se una birra è messa in concorso solo col nome
+dello stile e senza descrizione, è assolutamente poco probabile che i giudici sappiano come giudicarla. Gli
+esempi già definiti finora sono: Gose, Piwo Grodziskie, Lichtenhainer, Roggenbier, Sahti, Kentucky
+Common, Pre-Prohibition Lager, Pre-Prohibition Porter, London Brown Ale.</notes>
       <subcategory id="27-gose">
         <name>Historical Beer: Gose</name>
-        <impression>A highly-carbonated, tart and fruity wheat ale with a restrained coriander and salt character and low bitterness. Very refreshing, with bright flavors and high attenuation.</impression>
-        <aroma>Light to moderately fruity aroma of pome fruit. Light sourness, slightly sharp. Noticeable coriander, which can have an aromatic lemony quality, and an intensity up to moderate. Light bready, doughy, yeasty character like uncooked sourdough bread. The acidity and coriander can give a bright, lively impression. The salt may be perceived as a very light, clean sea breeze character or just a general freshness, if noticeable at all.</aroma>
-        <appearance>Unfiltered, with a moderate to full haze. Moderate to tall sized white head with tight bubbles and good retention. Effervescent. Medium yellow color.</appearance>
-        <flavor>Moderate to restrained but noticeable sourness, like a squeeze of lemon in iced tea. Moderate bready/doughy malt flavor. Light to moderate fruity character of pome fruit, stone fruit, or lemons. Light to moderate salt character, up to the threshold of taste; the salt should be noticeable (particularly in the initial taste) but not taste overtly salty. Low bitterness, no hop flavor. Dry, fully-attenuated finish, with acidity not hops balancing the malt. Acidity can be more noticeable in the finish, and enhance the refreshing quality of the beer. The acidity should be balanced, not forward (although historical versions could be very sour).</flavor>
-        <mouthfeel>High to very high carbonation, effervescent. Medium-light to medium-full body. Salt may give a slightly tingly, mouthwatering quality, if perceived at all. The yeast and wheat can give it a little body, but it shouldn’t have a heavy feel.</mouthfeel>
-        <comments>Served in traditional cylindrical glasses. Historical versions may have been more sour than modern examples due to spontaneous fermentation, and may be blended with syrups as is done with Berliner Weisse, or <em>Kümmel</em>, a liqueur flavored with caraway, cumin, and fennel. Modern examples are inoculated with lactobacillus, and are more balanced and generally don’t need sweetening. Pronounced <em>GOH-zeh</em>.</comments>
-        <history>Minor style associated with Leipzig but originating in the Middle Ages in the town of Goslar on the Gose River. Documented to have been in Leipzig by 1740. Leipzig was said to have 80 Gose houses in 1900. Production declined significantly after WWII, and ceased entirely in 1966. Modern production was revived in the 1980s, but the beer is not widely available.</history>
-        <ingredients>Pilsner and wheat malt, restrained use of salt and coriander seed, lactobacillus. The coriander should have a fresh, citrusy (lemon or bitter orange), bright note, and not be vegetal, celery-like, or ham-like. The salt should have a sea salt or fresh salt character, not a metallic, iodine note.</ingredients>
-        <comparison>Perceived acidity is not as intense as Berliner Weisse or Gueuze. Restrained use of salt, coriander, and lactobacillus - should not taste overtly salty. Coriander aroma can be similar to a witbier. Haziness similar to a Weissbier.</comparison>
+        <impression>ale di frumento molto carbonata, aspra e fruttata con lievi caratteristiche del coriandolo
+e del sale e un amaro molto contenuto. Molto rinfrescante, con gusti vivaci ed elevata attenuazione.</impression>
+        <aroma>mela da leggera a moderata, con debole acidità e lieve asprezza. Si nota il coriandolo, che ha una
+qualità aromatica di limone ed è presente con una intensità moderata. Aroma leggero di pane, impasto o
+lievito, simile all’impasto acido per pane. L’acidità e il coriandolo impartiscono una impronta brillante e
+vivace. Il sale può essere appena percettibile come una nitida brezza di mare o semplicemente una generale
+freschezza, sempre che sia percepibile.</aroma>
+        <appearance>non filtrata, con torbidezza da moderata a totale. Schiuma bianca da moderata a elevata, con
+numerose bollicine e una buona ritenzione. Effervescente, colore giallo medio.</appearance>
+        <flavor>acidità da ridotta a moderata, ma percepibile come una spruzzata di limone sul te freddo. Gusto di
+malto di pane/impasto moderato. Fruttato di mela, frutta col nocciolo o limone da leggero a moderato.
+Salinità da leggera a moderata, che arriva fino alla soglia di percezione. Il sale deve essere percepibile
+(particolarmente nell’assaggio iniziale), ma la birra non deve essere manifestamente salata. Amaro ridotto,
+senza gusto di luppolo. Finale secco pienamente attenuato con l’acidità, non il luppolo, che bilancia il malto. L’acidità può essere più percepibile nel finale, migliorando quindi la qualità rinfrescante della birra. L’acidità
+deve essere bilanciata, non prominente (anche se versioni storiche possono essere molto acide).</flavor>
+        <mouthfeel>carbonazione da alta a elevata, effervescente. Corpo da medio-leggero a medio-pieno. Il sale, se è
+percepito, può dare una leggera e pizzicante acquolina in bocca. Il lievito e il frumento possono aggiungere
+un po’ di corpo, ma la birra non deve mai essere pesante.</mouthfeel>
+        <comments>servita nei tradizionali bicchieri cilindrici. Le versioni storiche possono essere state più acide di
+quelle moderne, perché erano fermentate spontaneamente e si aggiungevano sciroppi come si fa per la
+Berliner Weisse, o il Kümmel, un liquore aromatizzato con cumino, carvi e finocchio. Gli esempi moderni
+sono inoculati con lattobacilli, sono più bilanciati e in genere non richiedono edulcoranti. Si pronuncia Gòse
+(con l’accento sulla prima sillaba).</comments>
+        <history>stile minore, associato alla città di Lipsia ma che ha avuto origine nel medioevo nella cittadina di
+Goslar sul fiume Gose. È documentato che a Lipsia esisteva nel 1740 e si narra che la città avesse 80
+produttori di Gose nel 1900. La produzione calò in modo significativo dopo la seconda guerra mondiale e
+cessò del tutto nel 1966. La produzione moderna fu ripresa negli anni 1980. Non è facilmente reperibile.</history>
+        <ingredients>malti Pilsner e di frumento, uso contenuto di sale, semi di coriandolo e lattobacillo. Il coriandolo
+deve avere una nota fresca, brillante di limone o arancia amara, non di vegetale, sedano o prosciutto. Il sale
+deve avere le caratteristiche del sale marino fresco, senza note metalliche o iodate.</ingredients>
+        <comparison>l’acidità percepita non è intensa come quella della Berliner Weisse o la Gueuze. Impiego
+contenuto di sale, coriandolo e lattobacilli: non deve risultare apertamente salata. L’aroma di coriandolo può
+essere simile a quello della Witbier e la torbidezza simile a quella della Weissbier.</comparison>
         <examples>Anderson Valley Gose, Bayerisch Bahnhof Leipziger Gose, Döllnitzer Ritterguts Gose</examples>
-        <tags>standard-strength, pale-color, top-fermented, central-europe, historical-style, wheat-beer-family, sour, spice</tags>
+        <tags>forza standard, chiara, alta fermentazione, europa centrale, stile storico, famiglia birre di frumento,
+acida, speziata.</tags>
         <stats>
           <og flexible="false">
             <low>1.036</low>
@@ -3634,17 +3875,57 @@
       </subcategory>
       <subcategory id="27-ky">
         <name>Historical Beer: Kentucky Common</name>
-        <impression>A darker-colored, light-flavored, malt-accented beer with a dry finish and interesting character malt flavors. Refreshing due to its high carbonation and mild flavors, and highly sessionable due to being served very fresh and with restrained alcohol levels.</impression>
-        <aroma>Low to medium grainy, corn-like or sweet maltiness with a low toast, biscuity-grainy, bready, or caramel malt accent. Medium to moderately-low hop aroma, usually floral or spicy in character. Clean fermentation character, with possible faint berry ester. Low levels of DMS are acceptable. No sourness. Malt-forward in the balance.</aroma>
-        <appearance>Amber-orange to light brown in color. Typically clear, but may have some light haze due to limited conditioning. Foam stand may not be long lasting, and is usually white to beige in color.</appearance>
-        <flavor>Moderate grainy-sweet maltiness with low to medium-low caramel, toffee, bready, and/or biscuity notes. Generally light palate flavors typical of adjunct beers; a low grainy, corn-like sweetness is common. Medium to low floral or spicy hop flavor. Medium to low hop bitterness, which should neither be coarse nor have a harsh aftertaste. May exhibit light fruitiness. Balance in the finish is towards the malt. May have a lightly flinty or minerally-sulfate flavor in the finish. The finish is fairly dry, including the contributions of roasted grains and minerals. No sourness.</flavor>
-        <mouthfeel>Medium to medium-light body with a relatively soft mouthfeel. Highly carbonated. Can have a creamy texture.</mouthfeel>
-        <comments>Modern characterizations of the style often mention a lactic sourness or sour mashing, but extensive brewing records from the larger breweries at the turn of the century have no indication of long acid rests, sour mashing, or extensive conditioning. This is likely a modern homebrewer invention, based on the supposition that since indigenous Bourbon distillers used a sour mash, beer brewers must also have used this process. No contemporaneous records indicate sour mashing or that the beer had a sour profile; rather the opposite, that the beer was brewed as an inexpensive, present-use ale. Enter soured versions in <em>American Wild Ale</em>.</comments>
-        <history>A true American original style, Kentucky Common was almost exclusively produced and sold around the Louisville Kentucky metropolitan area from some time after the Civil War up to Prohibition. Its hallmark was that it was inexpensive and quickly produced, typically 6 to 8 days from mash to delivery. The beer was racked into barrels while actively fermenting (1.020 - 1.022) and tightly bunged to allow carbonation in the saloon cellar. There is some speculation that it was a variant of the lighter common or cream ale produced throughout much of the East prior to the Civil War and that the darker grains were added by the mostly Germanic brewers to help acidify the typical carbonate water of the Louisville area, or that they had a preference for darker colored beers. Up until the late 19th century, Kentucky Common was not brewed in the summer months unless cellars, usually used for malting, were used for fermentation. With the advent of ice machines, the larger breweries were able to brew year round. In the period from 1900 to prohibition, about 75% of the beer sold in the Louisville area was Kentucky Common. With prohibition, the style died completely as the few larger breweries that survived were almost exclusively lager producers.</history>
-        <ingredients>Six-row barley malt was used with 35% corn grits to dilute the excessive protein levels along with 1 to 2% each caramel and black malt. Native American hops, usually about .2 pounds per barrel of Western hops for bittering and a similar amount of New York hops (such as Clusters) for flavor (15 minutes prior to knock out). Imported continental Saazer-type hops (.1 pounds per barrel) were added at knock out for aroma. Water in the Louisville area was typically moderate to high in carbonates. Mash water was often pre-boiled to precipitate the carbonate and Gypsum was commonly added. Considering the time from mash in to kegging for delivery was typically 6 to 8 days, clearly aggressive top-fermenting yeasts was used.</ingredients>
-        <comparison>Like a darker-colored cream ale emphasizing corn, but with some light character malt flavor. Malt flavors and balance are probably closest to modern adjunct-driven international amber or dark lagers, Irish red ales, or Belgian pale ales.</comparison>
+        <impression>birra scura con gusto leggero che pende verso il malto e con finale secco e interessanti
+gusti di malto. Rinfrescante per la sua elevata carbonazione e gusti leggeri, da bere in quantità perché è
+servita molto fresca e con un basso livello alcolico.</impression>
+        <aroma>maltosità da bassa a media, con aroma di cereale, mais o dolce e con lievi accenti di tostato,
+cereale-biscotto, pane o caramello. Aroma di luppolo da medio a moderatamente basso, di solito floreale o
+speziato. Fermentazione pulita, forse con qualche debole estere di frutti di bosco. Sono accettabili bassi
+livelli di DMS, nessuna acidità ed equilibrio tendente al malto.</aroma>
+        <appearance>colore da arancio-ambrato a marroncino, tipicamente limpida ma può avere una leggera torbidezza
+per la maturazione breve. La schiuma può non essere persistente ed è di solito da bianca a beige.</appearance>
+        <flavor>moderata maltosità di cereale dolce con note medio-basse di caramello, toffee, pane e/o biscotto. In
+genere gusti lievi al palato tipici delle birre con succedanei; un leggero dolce di mais è comune. Gusto di
+luppolo floreale o speziato da medio a basso, come pure l’amaro che non deve essere grossolano e neppure
+impartire un retrogusto aspro. Può anche mostrare un leggero fruttato. Nel finale l’equilibrio vira verso il
+malto. Può avere un gusto leggermente siliceo o sulfureo nel finale, che in genere è alquanto secco
+considerando gli apporti dati dai cereali torrefatti e dai sali minerali. Nessuna acidità.</flavor>
+        <mouthfeel>corpo da medio a medio-leggero con boccato relativamente morbido. Molto carbonata. Può avere
+una struttura cremosa.</mouthfeel>
+        <comments>le caratterizzazioni moderne di questo stile menzionano spesso una acidità o ammostamento
+lattico, ma una gran quantità di archivi delle grosse birrerie a cavallo del secolo scorso non riportano
+indicazioni di “acid rest” prolungati, né di ammostamento acido o di maturazione prolungata. Probabilmente
+è una invenzione dei moderni homebrewer basato sul fatto che i distillatori locali di Bourbon Whiskey
+usavano un ammostamento acido: anche i produttori di birra avrebbero potuto seguire lo stesso processo.
+Nessun archivio contemporaneo menziona l’ammostamento acido o che la birra abbia un profilo acido, anzi
+il contrario. Era una birra economica pensata per l’uso quotidiano. Le versioni acide devono essere iscritte
+nella categoria American Wild Ale.</comments>
+        <history>vero stile originale Americano, la Kentucky Common era quasi esclusivamente prodotta e venduta
+nell’area metropolitana della città di Louisville in Kentucky da dopo la Guerra Civile fino al Proibizionismo. Il
+suo tratto distintivo era il basso prezzo e si produceva in fretta, tipicamente 6-8 giorni dall’ammostamento
+alla consegna. La birra era stoccata in botti mentre era ancora in piena fermentazione (1.020-1.022 di gravità) e sigillata bene per permettere la carbonazione nella cantina del saloon. Si pensa che fosse una
+variante della più leggera Common o della Cream Ale, prodotta in gran parte dell’est degli USA prima della
+Guerra Civile e che i cereali più scuri siano stati aggiunti dai molti produttori tedeschi immigrati per
+acidificare la tipica acqua carbonata presente nell’area di Louisville oppure per semplice preferenza per birre
+più scure. Fino alla fine del 19° secolo la Kentucky Common non era prodotta nei mesi estivi, a meno che le
+cantine, di solito usate per la maltazione, fossero utilizzate per la fermentazione. Con l’arrivo delle macchine
+del ghiaccio i produttori più grossi furono in grado di produrla tutto l’anno. Nel periodo dal 1900 fino al
+Proibizionismo (1920), circa il 75% della birra venduta nella zona di Louisville era Kentucky Common. Col
+Proibizionismo lo stile sparì completamente perché le poche grosse birrerie che sopravvissero erano quasi
+esclusivamente produttori di lager.</history>
+        <ingredients>malto di orzo esastico con il 35% di mais per diluire i livelli eccessivi di proteine, insieme a malto
+caramello (1%) e malto Black (2%). Luppoli nativi americani, di solito circa 90 g ogni 160 litri di luppoli della
+West Coast per l’amaro e una quantità simile di luppoli di New York (come il Cluster) per l’aroma (15 minuti
+prima della fine bollitura). Alla fine della bollitura si aggiungevano luppoli europei tipo Saaz (45 g ogni 160
+litri) per l’aroma. L’acqua locale era tipicamente alta in carbonati e quella usata per l’ammostamento veniva
+di solito bollita prima per far precipitare i carbonati in eccesso e poi, di norma, aggiunto il Gypsum (solfato di
+calcio). Poiché il tempo intercorso dall’ammostamento all’infustamento era di solito da sei a otto giorni, si
+usavano ovviamente lieviti aggressivi ad alta fermentazione.</ingredients>
+        <comparison>come una Cream Ale scura che mette in evidenza il mais ma anche un leggero gusto di
+malto. I gusti di malto e l’equilibrio sono probabilmente vicini alle moderne Amber o Dark Lager con
+succedanei, alle Irish Red Ale o alle Belgian Pale Ale.</comparison>
         <examples>Apocalypse Brew Works Ortel’s 1912</examples>
-        <tags>standard-strength, amber-color, top-fermented, north-america, historical-style, balanced</tags>
+        <tags>forza standard, ambrata, alta fermentazione, nord america, stile storico, equilibrata.</tags>
         <stats>
           <og flexible="false">
             <low>1.044</low>
@@ -3670,16 +3951,32 @@
       </subcategory>
       <subcategory id="27-Lichtenhainer">
         <name>Historical Beer: Lichtenhainer</name>
-        <impression>A sour, smoked, lower-gravity historical German wheat beer. Complex yet refreshing character due to high attenuation and carbonation, along with low bitterness and moderate sourness.</impression>
-        <aroma>Moderately strong fresh smoky aroma, light hints of sourness, medium-low fruity esters, possibly apples or lemons, moderate bready-grainy malt. The smoke character is stronger than the bready notes, and the smoke has a ‘dry’ character, like the remnants of an old fire, not a ‘greasy’ smoke.</aroma>
-        <appearance>Tall off-white head, rocky and persistent. Deep yellow to light gold color. Fair clarity, may be somewhat hazy.</appearance>
-        <flavor>Moderately strong fruity flavor, possibly lemons or apples. Moderate intensity, clean lactic tartness (no funk). Similar smoky character as aroma (dry wood fire), medium strength. Dry finish, with acidity and smoke in the aftertaste. Low bitterness; the acidity is providing the balance, not hops. Fresh, clean palate and slightly puckery aftertaste. The wheat character is on the low side; the smoke and acidity are more prominent in the balance. The lemony-tart/green apple flavor is strongest in the finish, with smoke a close second. Complex.</flavor>
-        <mouthfeel>Tingly acidity. High carbonation. Medium to medium-light body.</mouthfeel>
-        <comments>Served young. Smoke and sour is an unusual combination that is not for everyone.</comments>
-        <history>Originating in Lichtenhain, in Thüringen (central Germany). Height of popularity was towards the end of the 1800s, and was widely available throughout Thüringen. Like a pre-1840 Berliner Weisse.</history>
-        <ingredients>Smoked barley malt, wheat malt, lactobacillus, top-fermenting yeast. Grists vary, but the wheat would typically be 30-50%.</ingredients>
-        <comparison>In the same general historical lower-alcohol top-fermenting central European wheat beer family as Gose, Grodziskie, and Berliner weisse, has elements of all of them but having its own unique balance - sour and smoke is not found in any of the other beers. Not as acidic as Berliner weisse, probably more like a smoked Gose without coriander and salt, or a Grodziskie with Gose-like acidity.</comparison>
-        <tags>standard-strength, pale-color, top-fermented, central-europe, historical-style, wheat-beer-family, sour, smoke</tags>
+        <impression>storica birra di frumento tedesca, acida, affumicata e a bassa gravità. Complessa ma
+rinfrescante per l’elevata attenuazione e la carbonazione, unite a un leggero amaro e una moderata acidità.</impression>
+        <aroma>fresco aroma affumicato, moderatamente forte con leggeri sentori acidi, di esteri fruttati di mela o
+limone, medio-bassi, e di pane/cereale moderato. L’affumicato è più forte dell’aroma di pane e ha un
+carattere “secco”, come le braci di un fuoco già terminato e non di fumo “untuoso”.</aroma>
+        <appearance>schiuma alta, massiccia e persistente, di colore avorio. Colore giallo da intenso a dorato chiaro, può
+essere lievemente torbida, ma è spesso ben limpida.</appearance>
+        <flavor>frutta (mela o limone) moderatamente forte. Aspro lattico pulito di moderata intensità (non
+sgradevole). Carattere dell’affumicato simile all’aroma (di fuoco di legna secca) di intensità media. Finale
+secco con acidità e affumicato nel retrogusto. Amaro a basso livello, l’acidità fornisce l’equilibrio al posto del
+luppolo. Palato fresco e pulito, con retrogusto che fa arricciare un po’ le labbra. Il carattere del frumento è
+poco presente, quindi nell’equilibrio generale predominano il fumo e l’acidità. Nel finale predomina il gusto di
+limone o di mela verde/aspra, seguito dall’affumicato. Birra complessa.</flavor>
+        <mouthfeel>acidità pungente, elevata carbonazione e corpo da medio a medio-leggero.</mouthfeel>
+        <comments>si serve giovane. La combinazione di affumicato e acido è alquanto insolita e non è per tutti.</comments>
+        <history>ha origine a Lichtenhain, in Turingia (Germania centrale). L’apice della sua popolarità fu verso la fine
+del 1800 quando era reperibile facilmente in tutta la regione. Come una Berliner Weisse precedente al 1840.</history>
+        <ingredients>malto d’orzo affumicato, malto di frumento, lattobacilli e lievito ad alta fermentazione. La
+percentuale di cereali varia ma il frumento tipicamente rappresenta il 30-50%.</ingredients>
+        <comparison>è nella stessa famiglia storica delle birre di frumento ad alta fermentazione e poco alcoliche
+come la Gose, la Grodziskie, e la Berliner Weisse. Contiene tutti gli elementi presenti in queste, ma ha un
+equilibrio tutto suo: l’acido e l’affumicato non sono presenti in nessun’altra birra. Non è acida come la
+Berliner Weisse, forse è più simile a una Gose affumicata, senza però il coriandolo e il sale o assomiglia a
+una Grodziskie con l’acidità della Gose.</comparison>
+        <tags>forza standard, chiara, alta fermentazione, europa centrale, stile storico, famiglia birre di frumento,
+acida, affumicata.</tags>
         <stats>
           <og flexible="false">
             <low>1.032</low>
@@ -3705,17 +4002,39 @@
       </subcategory>
       <subcategory id="27-london-brown">
         <name>Historical Beer: London Brown Ale</name>
-        <impression>A luscious, sweet, malt-oriented dark brown ale, with caramel and toffee malt complexity and a sweet finish.</impression>
-        <aroma>Moderate malty-sweet aroma, often with a rich, caramel or toffee-like character. Low to medium fruity esters, often dark fruit like plums. Very low to no hop aroma, earthy or floral qualities.</aroma>
-        <appearance>Medium to very dark brown color, but can be nearly black. Nearly opaque, although should be relatively clear if visible. Low to moderate off-white to tan head.</appearance>
-        <flavor>Deep, caramel or toffee-like malty and sweet flavor on the palate and lasting into the finish. Hints of biscuit and coffee are common. Some fruity esters can be present (typically dark fruit); relatively clean fermentation profile for an English ale. Low hop bitterness. Hop flavor is low to non-existent, possibly earthy or floral in character. Moderately-low to no perceivable roasty or bitter black malt flavor. Moderately sweet finish with a smooth, malty aftertaste. May have a sugary-sweet flavor.</flavor>
-        <mouthfeel>Medium body, but the residual sweetness may give a heavier impression. Medium-low to medium carbonation. Quite creamy and smooth in texture, particularly for its gravity.</mouthfeel>
-        <comments>Increasingly rare; Mann’s has over 90% market share in Britain, but in an increasingly small segment. Always bottled. Frequently used as a sweet mixer with cask mild and bitter in pubs. Commercial versions can be pasteurized and back-sweetened, which gives more of a sugary-sweet flavor.</comments>
-        <history>Developed by Mann’s as a bottled product in 1902. Claimed at the time to be “the sweetest beer in London.” Pre-WWI versions were around 5% ABV, but same general balance. Declined in popularity in second half of 20th century, and now nearly extinct.</history>
-        <ingredients>English pale ale malt as a base with a healthy proportion of darker caramel malts and often some roasted (black) malt and wheat malt (this is Mann’s traditional grist - others can rely on dark sugars for color and flavor). Moderate to high carbonate water. English hop varieties are most authentic, though with low flavor and bitterness almost any type could be used. Post-fermentation sweetening with lactose or artificial sweeteners, or sucrose (if pasteurized).</ingredients>
-        <comparison>May seem somewhat like a less roasty version of a sweet stout (and lower-gravity, at least for US sweet stout examples) or a sweet version of a dark mild.</comparison>
+        <impression>una deliziosa Dark Brown Ale dolce e orientata verso il malto, con complessità di
+caramello e toffee e un finale dolce.</impression>
+        <aroma>moderato dolce di malto, spesso con un ricco carattere di caramello o toffee. Esteri fruttati da bassi a
+medi, spesso dall’aroma di prugna. Aroma di luppolo da nullo a minimo, con qualità terrose o floreali.</aroma>
+        <appearance>colore marrone da medio a molto scuro fino a essere quasi nero. Opaca, anche se dovrebbe essere
+relativamente limpida in controluce. Schiuma da bassa a moderata, variabile da color avorio a marroncino.</appearance>
+        <flavor>al palato malto dolce e intenso caramello o toffee che perdurano nel finale. Sono pure comuni note di
+biscotto e caffè. Possono essere presenti esteri fruttati (tipicamente frutta scura) ma il profilo di
+fermentazione è relativamente pulito per una ale inglese. Poco amaro di luppolo mentre il gusto di luppolo è
+da basso a nullo, preferibilmente con caratteristiche terrose o floreali. Gusto di torrefatto o amaro di malto
+Black da moderatamente basso a non percepibile. Finale moderatamente dolce con retrogusto morbido e
+maltato. Può avere un gusto dolce zuccheroso.</flavor>
+        <mouthfeel>corpo medio, ma la dolcezza residua può dare l’impressione di una birra più corposa.
+Carbonazione da medio-bassa a media. Struttura abbastanza cremosa e morbida, in particolare per la sua
+bassa gravità.</mouthfeel>
+        <comments>sempre più rara, con la Mann’s che ha oltre il 90% della quota di marcato nel Regno Unito, ma in
+un segmento sempre più ristretto. Sempre in bottiglia. Nei pub è di frequente miscelata alle Mild e alle Bitter
+in cask per addolcirle. Le versioni commerciali possono essere pastorizzate e addolcite con caramello scuro
+per impartire un maggior gusto dolce-zuccheroso.</comments>
+        <history>sviluppata dalla Mann’s nel 1902 come prodotto in bottiglia. Ai tempi era reclamizzata come “la birra
+più dolce di Londra”. Le versioni precedenti alla prima guerra mondiale avevano circa 5% ABV ma con lo
+stesso equilibrio generale. Nella seconda metà del 20° secolo declinò in popolarità e ora è quasi estinta.</history>
+        <ingredients>malto inglese Pale Ale come base insieme a una generosa porzione di malti caramello scuri e
+spesso anche malto torrefatto (Black) e malto di frumento (questa è la tradizionale lista della Mann’s; altri
+produttori usano zuccheri scuri per il colore e il gusto). Acqua con presenza da moderata ad alta di
+carbonati. Le varietà di luppolo inglese sono le più autentiche, anche se il poco amaro e il limitato gusto
+permettono l’uso di qualsiasi varietà. Addolcimento dopo la fermentazione con lattosio o dolcificanti artificiali,
+o con saccarosio, se è pastorizzata.</ingredients>
+        <comparison>può sembrare una versione meno torrefatta della Sweet Stout (e con minore gravità,
+almeno per quanto riguarda le Sweet Stout americane), o una versione dolce della Dark Mild.</comparison>
         <examples>Harveys Bloomsbury Brown Ale, Mann's Brown Ale</examples>
-        <tags>session-strength, dark-color, top-fermented, british-isles, historical-style, brown-ale-family, malty, sweet</tags>
+        <tags>session beer, scura, alta fermentazione, isole britanniche, stile storico, famiglia brown ale, maltosa,
+dolce.</tags>
         <stats>
           <og flexible="false">
             <low>1.033</low>
@@ -3741,16 +4060,43 @@
       </subcategory>
       <subcategory id="27-piwo">
         <name>Historical Beer: Piwo Grodziskie</name>
-        <impression>A low-gravity, highly-carbonated, light-bodied ale combining an oak-smoked flavor with a clean hop bitterness. Highly sessionable.</impression>
-        <aroma>Low to moderate oak wood smoke is the most prominent aroma component, but can be subtle and hard to detect. A low spicy, herbal, or floral hop aroma is typically present, and should be lower than or equal to the smoke in intensity. Hints of grainy wheat are also detected in the best examples. The aroma is otherwise clean, although light pome fruit esters (especially ripe red apple or pear) are welcome. No acidity. Slight water-derived sulfury notes may be present.</aroma>
-        <appearance>Pale yellow to medium gold in color with excellent clarity. A tall, billowy, white, tightly-knit head with excellent retention is distinctive. Murkiness is a fault.</appearance>
-        <flavor>Moderately-low to medium oak smoke flavor up front which carries into the finish; the smoke can be stronger in flavor than in aroma. The smoke character is gentle, should not be acrid, and can lend an impression of sweetness. A moderate to strong bitterness is readily evident which lingers through the finish. The overall balance is toward bitterness. Low but perceptible spicy, herbal, or floral hop flavor. Low grainy wheat character in the background. Light pome fruit esters (red apple or pear) may be present. Dry, crisp finish. No sourness.</flavor>
-        <mouthfeel>Light in body, with a crisp and dry finish. Carbonation is quite high and can add a slight carbonic bite or prickly sensation. No noticeable alcohol warmth.</mouthfeel>
-        <comments>Pronounced in English as “pivo grow-JEES-kee-uh” (meaning: Grodzisk beer). Known as Grätzer (pronounced “GRATE-sir”) in German-speaking countries, and in some beer literature. Traditionally made using a multi-step mash, a long boil (~2 hours), and multiple strains of ale yeast. The beer is never filtered but Isinglass is used to clarify before bottle conditioning. Traditionally served in tall conical glassware to accommodate the vigorous foam stand.</comments>
-        <history>Developed as a unique style centuries ago in the Polish city of Grodzisk (known as Grätz when ruled by Prussia and Germany). Its fame and popularity rapidly extended to other parts of the world in the late 19th and early 20&gt;th century. Regular commercial production declined after WWII and ceased altogether in the early-mid 1990s. This style description describes the traditional version during its period of greatest popularity.</history>
-        <ingredients>Grain bill usually consists entirely of oak-smoked wheat malt. Oak-smoked wheat malt has a different (and less intense) smoke character than German beechwood-smoked barley malt; it has a drier, crisper, leaner quality - a bacon/ham smoke flavor is inappropriate. Saazer-type hops (Polish, Czech or German), moderate hardness sulfate water, and a relatively clean and attenuative continental ale yeast fermented at moderate ale temperatures are traditional. German hefeweizen yeast or other strains with a phenol or strong ester character are inappropriate.</ingredients>
-        <comparison>Similar in strength to a Berliner Weisse, but never sour. Has a smoked character but less intense than in a Rauchbier.</comparison>
-        <tags>session-strength, pale-color, top-fermented, central-europe, historical-style, wheat-beer-family, bitter, smoke</tags>
+        <impression>ale a bassa gravità, molto carbonata e di corpo leggero, che combina il gusto
+dell’affumicato di quercia con l’amaro pulito del luppolo. Birra molto beverina, una session beer.</impression>
+        <aroma>l’aroma più evidente è fumo di legno di quercia, da basso a moderato, ma può anche essere lieve e
+difficile da percepire. Tipicamente presente un leggero aroma di luppolo speziato, erbaceo o floreale che
+deve essere inferiore o al massimo uguale all’intensità dell’affumicato. Nei migliori esempi sono percepibili
+sentori di frumento. L’aroma è altrimenti pulito, anche se è apprezzabile la presenza di leggeri esteri di
+pomacea (specialmente mela rossa matura o pera). Nessuna acidità. Possono essere presenti leggere note
+solforate derivate dall’acqua.</aroma>
+        <appearance>colore da giallo pallido a dorato medio, con limpidezza eccellente. Schiuma bianca generosa,
+fluttuante, densa e con ottima ritenzione. L’opacità è un difetto.</appearance>
+        <flavor>in evidenza gusto di legno affumicato di quercia, da moderatamente basso a medio, che permane nel
+finale; l’affumicato può essere più forte nel gusto che nell’aroma. Il carattere dell’affumicato è morbido, non
+acre, e può perfino dare una impronta di dolcezza. Subito evidente un amaro da moderato a forte che permane poi nel finale. L’equilibrio generale è verso l’amaro. Gusti speziati, erbacei o floreali di luppolo,
+leggeri ma percepibili. Nello sfondo un gusto leggero di frumento. Possono essere presenti lievi esteri fruttati
+di pomacea (mela rossa o pera). Finale secco e fresco senza nessuna acidità.</flavor>
+        <mouthfeel>corpo leggero con finale secco e fresco. La carbonazione è elevata e può impartire una
+sensazione leggera di pizzicore. Non si percepisce nessun calore da alcol.</mouthfeel>
+        <comments>si pronuncia “pivo grozischi” (significa birra di Grodzisk). Nei paesi di lingua tedesca e nella
+letteratura birraria è conosciuta come Grätzer. Tradizionalmente si produce con un ammostamento a multistep,
+una lunga bollitura di circa due ore e si immettono in fermentazione ceppi multipli di lievito ale. La birra
+non è mai filtrata, ma si usa Isinglass (gelatina di pesce) per chiarificarla prima della maturazione in bottiglia.
+Tradizionalmente si serve in bicchieri alti e conici per lasciare spazio alla vigorosa schiuma.</comments>
+        <history>sviluppata come stile individuale secoli fa nella città polacca di Grodzisk (conosciuta come Grätz
+quando governavano i prussiani e poi i tedeschi). La sua fama e la sua popolarità si estesero rapidamente
+nelle altre parti del mondo a cavallo tra l’800 e il ‘900. La produzione commerciale regolare declinò dopo la
+seconda guerra mondiale e cessò del tutto a metà anni ’90. Questa descrizione riguarda la versione
+tradizionale, durante il periodo della sua maggiore popolarità.</history>
+        <ingredients>solo malto di frumento affumicato con legno di quercia. Ha un carattere meno intenso del malto
+d’orzo tedesco affumicato con legno di faggio: più secco, più fresco e più lieve, mentre non è appropriato
+l’affumicato con note di pancetta/prosciutto. Sono tradizionali luppoli tipo Saaz (polacchi, cechi o tedeschi),
+acqua moderatamente dura e sulfurea e un lievito continentale ale relativamente pulito e attenuante, con
+una fermentazione a temperatura da ale, ma moderata. Non sono appropriati lieviti tedeschi per Hefeweizen
+o altri ceppi che producono fenoli o esteri decisi.</ingredients>
+        <comparison>alcolicità simile alla Berliner Weisse, ma mai acida. Ha un affumicato meno intenso della
+Rauchbier.</comparison>
+        <tags>session beer, chiara, alta fermentazione, europa centrale, stile storico, famiglia birre di frumento, amara,
+affumicata.</tags>
         <stats>
           <og flexible="false">
             <low>1.028</low>
