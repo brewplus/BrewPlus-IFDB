@@ -117,5 +117,15 @@ public class MaltCategory implements XmlAble, Comparable<MaltCategory>
   {
     return codice.compareToIgnoreCase(o.getCodice());
   }
-
+  
+  public boolean isAcidMalt()
+  {
+	  return codice.equalsIgnoreCase("Acid Malt");
+  }
+  
+  public boolean isCrystal()
+  {
+	  return codice.equalsIgnoreCase("Crystal");
+  }
+  
 }
