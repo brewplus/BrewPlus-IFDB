@@ -180,7 +180,7 @@ public class RicettaUtils {
 		if (maltType != null) {
 			List<MaltCategory> maltCategories = Gui.maltCategoryPickerTableModel.getRows();
 
-			String maltTypeName = maltType.getNome();
+			String maltTypeName = maltType.getCategoria();
 
 			for (MaltCategory tmpMaltCategory : maltCategories) {
 				if (maltTypeName.equals(tmpMaltCategory.getNome())) {
