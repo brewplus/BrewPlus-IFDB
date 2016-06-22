@@ -28,48 +28,8 @@ import org.jdom.Element;
  * @author Alessandro
  */
 public class Hop implements InventoryObject {
-
-    /** Creates a new instance of Hop */
-    Ricetta ricetta;
-
-    public Hop() {
-        setGrammi(0.0);
-        setBoilTime(60);
-        setAlfaAcidi(4.5);
-        setNome("Nuovo luppolo");
-        setForma("Fiore");
-        setUso("Kettle");
-        setUnitaMisura("grammi");
-    }
-
-    public Hop(Ricetta ricetta) {
-        this();
-        this.ricetta = ricetta;
-    }
-
-    public void setRicetta(Ricetta ricetta) {
-        this.ricetta = ricetta;
-    }
-
-    public Hop(HopType type) {
-        this();
-        setAlfaAcidi(type.getAlfaAcidi());
-        setHSI(type.getHSI());
-        setNome(type.getNome());
-        setOrigine(type.getProvenienza());
-    }
-
-    public Hop(Ricetta ricetta, HopType type) {
-        this(ricetta);
-        this.ricetta = ricetta;
-        setAlfaAcidi(type.getAlfaAcidi());
-        setHSI(type.getHSI());
-        setNome(type.getNome());
-        setOrigine(type.getProvenienza());
-    }
-
+    
     private double HSI;
-    // serve il wrapper per poter fare il controllo != null nella CalcoloHopLoss
     private Double alfaAcidiPrec;
     private double grammi;
     private int boilTime;
@@ -79,6 +39,47 @@ public class Hop implements InventoryObject {
     private String origine;
     private String uso;
     private String unitaMisura;
+    private Ricetta ricetta;
+    private double IBUTinseth;
+    private double IBURager;
+    private double IBUDaniels;
+    private static String campiXml[] = new String[] { "Grammi", "UnitaMisura", "BoilTime", "AlfaAcidi", "Nome", "Forma", "Origine", "Uso", "HSI", "dataAcquisto" };
+    
+    public Hop() {
+        this.grammi = 0.0;
+        this.boilTime = 60;
+        this.alfaAcidi = 4.5;
+        this.nome=Main.bundle.getString("label.newHop");
+        this.forma = "Fiore";
+        this.uso = "Kettle";
+        this.unitaMisura = Main.bundle.getString("label.unitGram");
+    }
+
+    public Hop(Ricetta ricetta) {
+        this();
+        this.ricetta = ricetta;
+    }
+    
+     public Hop(HopType type) {
+        this();
+        this.alfaAcidi = type.getAlfaAcidi();
+        this.HSI = type.getHSI();
+        this.nome = type.getNome();
+        this.origine = type.getProvenienza();
+    }
+
+    public Hop(Ricetta ricetta, HopType type) {
+        this(ricetta);
+        this.ricetta = ricetta;
+        this.alfaAcidi = type.getAlfaAcidi();
+        this.HSI = type.getHSI();
+        this.nome = type.getNome();
+        this.origine = type.getProvenienza();
+    }
+    
+    public void setRicetta(Ricetta ricetta) {
+        this.ricetta = ricetta;
+    }
 
     public String getUnitaMisura() {
         return this.unitaMisura;
@@ -94,14 +95,13 @@ public class Hop implements InventoryObject {
 
     public void setUso(String uso) {
         this.uso = uso;
-        if (uso.compareToIgnoreCase("dry") == 0) {
+        if ("dry".compareToIgnoreCase(uso) == 0) {
             setBoilTime(0);
         }
-        // modifica IXTLANAS DHEA
-        if (uso.compareToIgnoreCase("DHEA") == 0) {
+        if ("DHEA".compareToIgnoreCase(uso) == 0) {
             setBoilTime(Main.config.getAmaroDHEA());
         }
-        if ((uso.compareToIgnoreCase("first wort") == 0) && (this.ricetta != null)) {
+        if (("first wort".compareToIgnoreCase(uso) == 0) && (this.ricetta != null)) {
             setBoilTime(this.ricetta.getBollitura());
         }
     }
@@ -119,7 +119,7 @@ public class Hop implements InventoryObject {
     }
 
     public double getConvertedGrammi() {
-        return Utils.convertWeight(this.grammi, "grammi", this.unitaMisura);
+        return Utils.convertWeight(this.grammi, Main.bundle.getString("label.unitGram"), this.unitaMisura);
     }
 
     @Override
@@ -168,15 +168,17 @@ public class Hop implements InventoryObject {
         return ((Math.exp(a) - Math.exp(-a)) / (Math.exp(a) + Math.exp(-a)));
     }
 
-    // private Double dIbu=new Double(0);
     public double considerUse(double d) {
-        if ((getUso() != null) && (getUso().compareToIgnoreCase("mash") == 0)) {
+        if ("mash".compareToIgnoreCase(getUso()) == 0) {
+        //if ((getUso() != null) && (getUso().compareToIgnoreCase("mash") == 0)) {
             d *= 0.2;
         }
-        if ((getUso() != null) && (getUso().compareToIgnoreCase("first wort") == 0)) {
+        if ("first wort".compareToIgnoreCase(getUso()) == 0) {
+        //if ((getUso() != null) && (getUso().compareToIgnoreCase("first wort") == 0)) {
             d *= 0.9;
         }
-        if ((getUso() != null) && (getUso().compareToIgnoreCase("dry") == 0)) {
+        if ("dry".compareToIgnoreCase(getUso()) == 0) {
+        //if ((getUso() != null) && (getUso().compareToIgnoreCase("dry") == 0)) {
             d *= 0;
         }
         return d;
@@ -184,10 +186,12 @@ public class Hop implements InventoryObject {
 
     public double considerUseAndForm(double d) {
         d = considerUse(d);
-        if ((getForma() != null) && (getForma().compareToIgnoreCase("pellet") == 0)) {
+        if ("pellet".compareToIgnoreCase(getForma()) == 0) {
+        //if ((getForma() != null) && (getForma().compareToIgnoreCase("pellet") == 0)) {
             d *= 1.1;
         }
-        if ((getForma() != null) && (getForma().compareToIgnoreCase("plug") == 0)) {
+        if ("plug".compareToIgnoreCase(getForma()) == 0) {
+        //if ((getForma() != null) && (getForma().compareToIgnoreCase("plug") == 0)) {
             d *= 1.02;
         }
         return d;
@@ -198,28 +202,30 @@ public class Hop implements InventoryObject {
     }
 
     public static double adjustUtilizationToUseAndForm(Hop hop, double d) {
-
-        if ((hop.getUso() != null) && (hop.getUso().compareToIgnoreCase("mash") == 0)) {
+        if ("mash".compareToIgnoreCase(hop.getUso()) == 0) {
+        //if ((hop.getUso() != null) && (hop.getUso().compareToIgnoreCase("mash") == 0)) {
             d *= 0.7;
         }
-        if ((hop.getUso() != null) && (hop.getUso().compareToIgnoreCase("first wort") == 0)) {
+        if ("first wort".compareToIgnoreCase(hop.getUso()) == 0) {
+        //if ((hop.getUso() != null) && (hop.getUso().compareToIgnoreCase("first wort") == 0)) {
             d *= 0.9;
         }
-        if ((hop.getUso() != null) && (hop.getUso().compareToIgnoreCase("dry") == 0)) {
+        if ("dry".compareToIgnoreCase(hop.getUso()) == 0) {
+        //if ((hop.getUso() != null) && (hop.getUso().compareToIgnoreCase("dry") == 0)) {
             d *= 0;
         }
-        if ((hop.getForma() != null) && (hop.getForma().compareToIgnoreCase("pellet") == 0)) {
+        if ("pellet".compareToIgnoreCase(hop.getUso()) == 0) {
+        //if ((hop.getForma() != null) && (hop.getForma().compareToIgnoreCase("pellet") == 0)) {
             d *= 1.1;
         }
-        if ((hop.getForma() != null) && (hop.getForma().compareToIgnoreCase("plug") == 0)) {
+        if ("plug".compareToIgnoreCase(hop.getUso()) == 0) {
+        //if ((hop.getForma() != null) && (hop.getForma().compareToIgnoreCase("plug") == 0)) {
             d *= 1.02;
         }
         return d;
     }
 
-    private double IBUTinseth;
-    private double IBURager;
-    private double IBUDaniels;
+    
 
     // public static double calcIBUTinseth(Hop hop, double volume, double
     // volumeDiluito, double OG) {
@@ -344,7 +350,7 @@ public class Hop implements InventoryObject {
         }
 
         double ut = 1;
-        if (this.forma.compareToIgnoreCase("pellet") == 0) {
+        if ("pellet".compareToIgnoreCase(this.forma) == 0) {
             ut = -(.0051 * this.boilTime * this.boilTime) + (0.7835 * this.boilTime) + 1.9348;
         } else {
             ut = -(.0041 * this.boilTime * this.boilTime) + (0.6261 * this.boilTime) + 1.5779;
@@ -359,9 +365,6 @@ public class Hop implements InventoryObject {
 
         return ibu;
     }
-
-    private static String campiXml[] = new String[] { "Grammi", "UnitaMisura", "BoilTime", "AlfaAcidi", "Nome", "Forma",
-            "Origine", "Uso", "HSI", "dataAcquisto" };
 
     public static Hop fromXml(Element elem, Ricetta ricetta) {
         Hop hop = new Hop(ricetta);

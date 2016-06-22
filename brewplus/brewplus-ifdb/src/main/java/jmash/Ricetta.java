@@ -105,19 +105,13 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	public static final int dimx = 81;
 	public static final int dimy = 120;
 	public WaterAdjustPanel waterPanel = null;
-	private Gyle gyle = null;
-	private static javax.swing.ImageIcon hopsIcon = new javax.swing.ImageIcon(
-			Ricetta.class.getResource("/jmash/images/hops.gif"));
-	private static javax.swing.ImageIcon maltsIcon = new javax.swing.ImageIcon(
-			Ricetta.class.getResource("/jmash/images/malts.png"));
-	private static javax.swing.ImageIcon brewsIcon = new javax.swing.ImageIcon(
-			Ricetta.class.getResource("/jmash/images/birre.png"));
-	private static javax.swing.ImageIcon dupIcon = new javax.swing.ImageIcon(
-			Ricetta.class.getResource("/jmash/images/editdup.png"));
-	private static javax.swing.ImageIcon bookIcon = new javax.swing.ImageIcon(
-			Ricetta.class.getResource("/jmash/images/bookcase.png"));
-	private static javax.swing.ImageIcon calIcon = new javax.swing.ImageIcon(
-			Ricetta.class.getResource("/jmash/images/descforumpaste.png"));
+	//private Gyle gyle = null;
+	private static javax.swing.ImageIcon hopsIcon = new javax.swing.ImageIcon(Ricetta.class.getResource("/jmash/images/hops.gif"));
+	private static javax.swing.ImageIcon maltsIcon = new javax.swing.ImageIcon(Ricetta.class.getResource("/jmash/images/malts.png"));
+	private static javax.swing.ImageIcon brewsIcon = new javax.swing.ImageIcon(Ricetta.class.getResource("/jmash/images/birre.png"));
+	private static javax.swing.ImageIcon dupIcon = new javax.swing.ImageIcon(Ricetta.class.getResource("/jmash/images/editdup.png"));
+	private static javax.swing.ImageIcon bookIcon = new javax.swing.ImageIcon(Ricetta.class.getResource("/jmash/images/bookcase.png"));
+	private static javax.swing.ImageIcon calIcon = new javax.swing.ImageIcon(Ricetta.class.getResource("/jmash/images/descforumpaste.png"));
 
 	public boolean isDirty() {
 		return this.dirty;
@@ -186,13 +180,13 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		this.glassPanel.setBorder(BorderFactory.createLoweredBevelBorder());
 		this.jPanel10.add(this.glassPanel, 2);
 
-		this.jTabbedPane1.add(this.mashDesign, "Mash design");
+		this.jTabbedPane1.add(this.mashDesign, Main.bundle.getString("label.mashDesign"));
 
 		JScrollPane scrollPanel = new JScrollPane();
 		// scrollPanel.setViewportView(waterPanel);
 		scrollPanel.getViewport().setPreferredSize(new Dimension(0, 0));
-		this.jTabbedPane1.add(waterNeeded.getComponent(0), "Quantità  Acqua");
-		this.jTabbedPane1.add("Qualità  Acqua", waterPanel);
+		this.jTabbedPane1.add(waterNeeded.getComponent(0), Main.bundle.getString("label.waterQuantity"));
+		this.jTabbedPane1.add(Main.bundle.getString("label.waterQuality"), waterPanel);
 
 		this.maltSorter.setTableHeader(this.tblMalts.getTableHeader());
 		this.hopSorter.setTableHeader(this.tblHops.getTableHeader());
@@ -221,7 +215,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		tblHops.setDefaultRenderer(JButton.class,
 				new jmash.component.JTableButtonRenderer(tblHops.getDefaultRenderer(JButton.class)));
 
-		javax.swing.JMenuItem mnuItem = new javax.swing.JMenuItem("Calcolo invecchiamento");
+		javax.swing.JMenuItem mnuItem = new javax.swing.JMenuItem(Main.bundle.getString("label.agingCalculation"));
 		hopPopup.add(mnuItem);
 		mnuItem.addActionListener(new java.awt.event.ActionListener() {
 			@Override
@@ -250,7 +244,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 		thisRicetta.setClosable(true);
 		thisRicetta.setIconifiable(true);
-		thisRicetta.setTitle(java.util.ResourceBundle.getBundle("jmash/lang").getString("Ricetta"));
+		thisRicetta.setTitle(Main.bundle.getString("title.recipe"));
 		thisRicetta.setVisible(true);
 		setVolume(Main.config.getVolumeFin());
 		setVolumeBoll(Main.config.getVolumeBoil());
@@ -267,9 +261,9 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		spinEfficienza.setValue(Main.config.getEfficienza());
 		spinBollitura.setValue(Main.config.getBoilTime());
 
-		((javax.swing.SpinnerNumberModel) spinEfficienza.getModel()).setMaximum(new Integer(100));
-		((javax.swing.SpinnerNumberModel) spinBollitura.getModel()).setMinimum(new Integer(0));
-		((javax.swing.SpinnerNumberModel) spinEfficienza.getModel()).setMinimum(new Integer(1));
+		((javax.swing.SpinnerNumberModel) spinEfficienza.getModel()).setMaximum(100);
+		((javax.swing.SpinnerNumberModel) spinBollitura.getModel()).setMinimum(0);
+		((javax.swing.SpinnerNumberModel) spinEfficienza.getModel()).setMinimum(1);
 
 		jPanel2.setBackground(maltSorter.getTableHeader().getBackground());
 
@@ -359,7 +353,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
 				int rowIndex, int vColIndex) {
 			Double d = (Double) value;
-			setValue((int) Math.rint(d.doubleValue()));
+			setValue((int) Math.rint(d));
 			return this;
 		}
 
@@ -2690,13 +2684,13 @@ public class Ricetta extends javax.swing.JInternalFrame {
 			}
 		}
 
-		List<CanDo<Malt>> cantDoMalt = new ArrayList<CanDo<Malt>>();
-		List<CanDo<Malt>> canDoMalt = new ArrayList<CanDo<Malt>>();
-		List<CanDo<Malt>> mayDoMalt = new ArrayList<CanDo<Malt>>();
+		List<CanDo<Malt>> cantDoMalt = new ArrayList<>();
+		List<CanDo<Malt>> canDoMalt = new ArrayList<>();
+		List<CanDo<Malt>> mayDoMalt = new ArrayList<>();
 
-		List<CanDo<Hop>> cantDoHop = new ArrayList<CanDo<Hop>>();
-		List<CanDo<Hop>> canDoHop = new ArrayList<CanDo<Hop>>();
-		List<CanDo<Hop>> mayDoHop = new ArrayList<CanDo<Hop>>();
+		List<CanDo<Hop>> cantDoHop = new ArrayList<>();
+		List<CanDo<Hop>> canDoHop = new ArrayList<>();
+		List<CanDo<Hop>> mayDoHop = new ArrayList<>();
 
 		for (Malt m : reqMalts) {
 			List<Malt> found = inv.getMalts(m.getNome());
@@ -2715,7 +2709,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		}
 		for (Hop m : reqHops) {
 			List<Hop> found = inv.getHops(m.getNome());
-			if (found.size() == 0)
+			if (found.isEmpty())
 				cantDoHop.add(new CanDo<Hop>(m, null));
 			else if (found.size() == 1) {
 				Hop M = found.get(0);
@@ -2742,11 +2736,10 @@ public class Ricetta extends javax.swing.JInternalFrame {
 				model.addRow(m.getReq());
 			}
 
-			new ChooseFromList("Mancanti...", "I seguenti ingredienti non sono sufficienti nell'inventario:", model)
-					.startModal(this);
+			new ChooseFromList("Mancanti...", "I seguenti ingredienti non sono sufficienti nell'inventario:", model).startModal(this);
 			return;
 		}
-		if (cantDoHop.size() == 0 && cantDoMalt.size() == 0 && mayDoHop.size() == 0 && mayDoMalt.size() == 0) {
+		if (cantDoHop.isEmpty() && cantDoMalt.isEmpty() && mayDoHop.isEmpty() && mayDoMalt.isEmpty()) {
 			new Info("Gli ingredienti sono tutti disponibili in inventario.").startModal(this);
 			return;
 		}
@@ -2840,7 +2833,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 					rob.doubleClick();
 
 					// adding malt
-					p = btnAdd12.getLocationOnScreen();
+					//p = btnAdd12.getLocationOnScreen();
 					p2 = btnAdd1.getLocationOnScreen();
 					rob.moveMouseTo(p2.x + 5, p2.y + 5);
 					rob.click();
@@ -2968,9 +2961,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 					rob.gotoComponent(spinVolumeBoll);
 					rob.deleteAndType(57);
 
-				} catch (AWTException ex) {
-					LOGGER.error(ex.getMessage(), ex);
-				} catch (InterruptedException ex) {
+				} catch (AWTException | InterruptedException ex) {
 					LOGGER.error(ex.getMessage(), ex);
 				}
 			}
