@@ -94,7 +94,7 @@ import jmash.schema.bjcp.Styleguide;
 public class Utils {
 
 
-    private static Logger LOGGER = Logger.getLogger(Utils.class);
+    private static final Logger LOGGER = Logger.getLogger(Utils.class);
 
     /** Creates a new instance of Utils */
     public Utils() {
@@ -113,7 +113,7 @@ public class Utils {
             ObjectOutputStream oos = new ObjectOutputStream(baos);
             oos.writeObject(myImageIcon);
             byte[] theBytes = baos.toByteArray();
-            StringBuffer buf = new StringBuffer();
+            StringBuilder buf = new StringBuilder();
             for (byte b : theBytes) {
                 buf.append((char) b);
             }

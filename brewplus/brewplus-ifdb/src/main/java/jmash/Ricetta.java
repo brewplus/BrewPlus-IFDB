@@ -74,6 +74,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 
 /**
  *
@@ -85,7 +86,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	*
 	*/
 	private static final long serialVersionUID = -3021970158888588464L;
-	private static Logger LOGGER = Logger.getLogger(Ricetta.class);
+	private static final Logger LOGGER = Logger.getLogger(Ricetta.class);
 	/** Creates new form Ricetta */
 	private Boolean isCotta = false;
 	protected Component entered = null;
@@ -1623,7 +1624,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	private void btnAdd12ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd12ActionPerformed
 		// Document doc = this.toRecipeData().toXml();
 		// Main.gui.addFrame(new XmlEditor(doc));
-		frmTimerBoil ftb = new frmTimerBoil(this.hopTableModel, ((Integer) this.spinBollitura.getValue()).intValue(),
+		frmTimerBoil ftb = new frmTimerBoil(this.hopTableModel, ((Integer) this.spinBollitura.getValue()),
 				fldNome.getText().trim());
 		Gui.desktopPane.add(ftb);
 		Utils.center(ftb, this);
@@ -1718,7 +1719,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 				String R = str.substring(i + BEGIN_MALTS.length(), e);
 				Method[] methods = new Malt().getClass().getDeclaredMethods();
 				for (Malt m : rec.getMalts()) {
-					String RR = new String(R);
+					String RR = R;
 
 					for (int j = 0; j < methods.length; j++) {
 						Method method = methods[j];
@@ -1868,7 +1869,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 			out.close();
 
 			FileOutputStream fos = new FileOutputStream(Main.userDir + "/templates/mash.jpg");
-			ImageIO.write(mashDesign.getImage(), "JPEG", fos);
+			ImageIO.write(mashDesign.getImage(), "png", fos);
 			fos.close();
 
 			new Utils.BareBonesBrowserLaunch().openURL("file:///" + Main.userDir + "/templates/output.html");
@@ -2544,12 +2545,13 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	}
 
 	private Integer calcoloFinalGravity() {
-		Integer OGPrevista = Integer.parseInt(((String) this.summaryTableModel.getValueAt(0, 0)).replaceAll(",", ""));
+                DecimalFormat format=(DecimalFormat) DecimalFormat.getInstance();
+                DecimalFormatSymbols symbols=format.getDecimalFormatSymbols();
+		Integer OGPrevista = Integer.parseInt(((String) this.summaryTableModel.getValueAt(0, 0)).replace(String.valueOf(symbols.getDecimalSeparator()), ""));
 		OGPrevista = OGPrevista - 1000;
 		Integer FGPrevista = OGPrevista;
 		if (yeastTableModel.getRows().size() > 0) {
-			Integer attenuazioneMed = (yeastTableModel.getRows().get(0).getAttenuazioneMed() == null ? 75
-					: new Integer(yeastTableModel.getRows().get(0).getAttenuazioneMed()));
+			Integer attenuazioneMed = (yeastTableModel.getRows().get(0).getAttenuazioneMed() == null ? 75 : new Integer(yeastTableModel.getRows().get(0).getAttenuazioneMed()));
 			FGPrevista = (OGPrevista - ((OGPrevista * attenuazioneMed) / 100));
 		}
 		return FGPrevista;
@@ -2561,8 +2563,10 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 	public String getGradiPrevisti() {
 		DecimalFormat df = new DecimalFormat("#.#");
-		Integer OGPrevista = Integer.parseInt(((String) this.summaryTableModel.getValueAt(0, 0)).replaceAll(",", ""))
-				- 1000;
+                DecimalFormat format=(DecimalFormat) DecimalFormat.getInstance();
+                DecimalFormatSymbols symbols=format.getDecimalFormatSymbols();
+                
+		Integer OGPrevista = Integer.parseInt(((String) this.summaryTableModel.getValueAt(0, 0)).replace(String.valueOf(symbols.getDecimalSeparator()), "")) - 1000;
 		return df.format((OGPrevista - calcoloFinalGravity()) / 7.5) + "°C";
 	}
 
