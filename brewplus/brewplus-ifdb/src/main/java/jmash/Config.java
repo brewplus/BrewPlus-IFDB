@@ -50,7 +50,8 @@ public class Config {
     private Integer volumeBoil = 28;
     private Integer metriSLM = 160;
     private Integer amaroDHEA = 45;
-    private Double tempSparge = 76.0;
+   
+    /*private Double tempSparge = 76.0;
     private Double tolleranzaAccensione = 0.0;
     private Double tolleranzaSpegnimento = 0.0;
 
@@ -61,7 +62,7 @@ public class Config {
     private Double intervalloSonda = 1.0;
     private Double temperaturaRampa = 0.0;
     private Integer TempoInerziaRampa = 30;
-    private String invertiSonde = "N";
+    private String invertiSonde = "N";*/
 
     private Double lostToTrub = 0.5;
     private Double lostToSparge = 3.0;
@@ -78,9 +79,7 @@ public class Config {
     private static String campiXml[] = new String[] {"locale", "remoteRoot", "RemoteServer", "RSSFeed", "boilTime", "volumeFin",
             "volumeBoil", "efficienza", "metriSLM", "amaroDHEA", "nickIHB", "passwordIHB", "proxyPort", "proxyHost",
             "lostToTrub", "lostToSparge", "litriPerKg", "evaporazionePerOra", "ebcNewMethod", "potLibGal",
-            "BUGUratiostring", "tempSparge", "tolleranzaAccensione", "tolleranzaSpegnimento", "tempIngressoGrani",
-            "arduinoPort", "gestisciSparge", "testIodio", "intervalloSonda", "temperaturaRampa", "TempoInerziaRampa",
-            "invertiSonde" };
+            "BUGUratiostring"};
 
     public void setRemoteServer(String remoteServer) {
         this.remoteServer = remoteServer;
@@ -103,94 +102,6 @@ public class Config {
             Utils.showException(ex);
         }
         return null;
-    }
-
-    public String getInvertiSonde() {
-        return invertiSonde;
-    }
-
-    public void setInvertiSonde(String invertiSonde) {
-        this.invertiSonde = invertiSonde;
-    }
-
-    public Double getTemperaturaRampa() {
-        return temperaturaRampa;
-    }
-
-    public void setTemperaturaRampa(Double temperaturaRampa) {
-        this.temperaturaRampa = temperaturaRampa;
-    }
-
-    public Double getIntervalloSonda() {
-        return intervalloSonda;
-    }
-
-    public void setIntervalloSonda(Double intervalloSonda) {
-        this.intervalloSonda = intervalloSonda;
-    }
-
-    public String getTestIodio() {
-        return testIodio;
-    }
-
-    public void setTestIodio(String testIodio) {
-        this.testIodio = testIodio;
-    }
-
-    public Double getTolleranzaAccensione() {
-        return tolleranzaAccensione;
-    }
-
-    public void setTolleranzaAccensione(Double tolleranzaAccensione) {
-        this.tolleranzaAccensione = tolleranzaAccensione;
-    }
-
-    public String getGestisciSparge() {
-        return gestisciSparge;
-    }
-
-    public void setGestisciSparge(String gestisciSparge) {
-        this.gestisciSparge = gestisciSparge;
-    }
-
-    public String getArduinoPort() {
-        return arduinoPort;
-    }
-
-    public void setArduinoPort(String arduinoPort) {
-        this.arduinoPort = arduinoPort;
-    }
-
-    public Integer getTempoInerziaRampa() {
-        return TempoInerziaRampa;
-    }
-
-    public void setTempoInerziaRampa(Integer TempoInerziaRampa) {
-        this.TempoInerziaRampa = TempoInerziaRampa;
-    }
-
-    public Double getTempSparge() {
-        return tempSparge;
-    }
-
-    public void setTempSparge(Double tempSparge) {
-        this.tempSparge = tempSparge;
-    }
-
-    public Double getTolleranzaSpegnimento() {
-        return tolleranzaSpegnimento;
-    }
-
-    public void setTolleranzaSpegnimento(Double tolleranzaSpegnimento) {
-        this.tolleranzaSpegnimento = tolleranzaSpegnimento;
-    }
-
-    public Double getTempIngressoGrani() {
-        return tempIngressoGrani;
-    }
-
-    public void setTempIngressoGrani(Double tempIngressoGrani) {
-        this.tempIngressoGrani = tempIngressoGrani;
     }
 
     public Integer getAmaroDHEA() {

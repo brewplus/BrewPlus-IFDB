@@ -423,7 +423,7 @@ public class Main {
 		logger.info("config detected");
 		
 		locale = new Locale.Builder().setLanguage(Main.config.getLocale().toLowerCase()).build();
-		logger.info("Setting localization: "+Main.locale.getLanguage());
+		logger.info("Setting localization: " + Main.locale.getLanguage());
 		
 	}
 

@@ -20,6 +20,7 @@
 package jmash;
 
 import java.util.Date;
+import jmash.interfaces.Constants;
 import jmash.interfaces.InventoryObject;
 import org.jdom.Element;
 
@@ -31,46 +32,6 @@ public class Malt implements InventoryObject {
 
     /** Creates a new instance of Malt */
     Ricetta ricetta;
-
-    public Malt() {
-        setGrammi(000.0);
-        setEbc(10.0);
-        setPotentialSG(1.034);
-        setNome("Innominato");
-        setForma("Grani");
-        setUnitaMisura("grammi");
-    }
-
-    public Malt(Ricetta ricetta) {
-        this();
-        this.ricetta = ricetta;
-    }
-
-    public void setRicetta(Ricetta ricetta) {
-        this.ricetta = ricetta;
-    }
-
-    public Malt(Ricetta ricetta, MaltType type) {
-        this(ricetta);
-        this.ricetta = ricetta;
-        setOrigine(type.getOrigine());
-        setPotentialSG(type.getSg());
-        setNome(type.getNome());
-        setEbc(type.getEbc());
-        setForma(type.getForma());
-        setYield(type.getYield());
-    }
-
-    public Malt(MaltType type) {
-        this();
-        setOrigine(type.getOrigine());
-        setPotentialSG(type.getSg());
-        setNome(type.getNome());
-        setEbc(type.getEbc());
-        setForma(type.getForma());
-        setYield(type.getYield());
-    }
-
     private Double grammi;
     private Double potentialSG;
     private Integer percentuale;
@@ -80,6 +41,46 @@ public class Malt implements InventoryObject {
     private String forma;
     private Double yield;
     private String unitaMisura;
+    public static String campiXml[] = new String[] { "Grammi", "UnitaMisura", "Nome", "Forma", "Ebc", "PotentialSG", "srm", "Origine", "DataAcquisto" };
+     
+    public Malt() {
+        this.grammi = 000.0;
+        this.ebc = 10.0;
+        this.potentialSG = 1.034;
+        this.nome = "Innominato";
+        this.forma = "Grani";
+        this.unitaMisura = "grammi";
+    }
+
+    public Malt(Ricetta ricetta) {
+        this();
+        this.ricetta = ricetta;
+    }
+
+    public Malt(Ricetta ricetta, MaltType type) {
+        this(ricetta);
+        this.ricetta = ricetta;
+        this.origine = type.getOrigine();
+        this.potentialSG = type.getSg();
+        this.nome = type.getNome();
+        this.ebc = type.getEbc();
+        this.forma = type.getForma();
+        this.yield = type.getYield();
+    }
+
+    public Malt(MaltType type) {
+        this();
+        this.origine = type.getOrigine();
+        this.potentialSG = type.getSg();
+        this.nome = type.getNome();
+        this.ebc = type.getEbc();
+        this.forma = type.getForma();
+        this.yield = type.getYield();
+    }
+    
+     public void setRicetta(Ricetta ricetta) {
+        this.ricetta = ricetta;
+    }
 
     public Integer getPercentuale() {
         return percentuale;
@@ -150,10 +151,6 @@ public class Malt implements InventoryObject {
     public void setOrigine(String origine) {
         this.origine = origine;
     }
-    /*
-     * public Double getIGrammi(){ return this.iGrammi; } public Double
-     * getDSG(){ return this.dSG; } public Double getCol(){ return this.dC; }
-     */
 
     public String getForma() {
         return this.forma;
@@ -176,9 +173,6 @@ public class Malt implements InventoryObject {
     public static Malt fromXml(Element elem) {
         return fromXml(elem, null);
     }
-
-    public static String campiXml[] = new String[] { "Grammi", "UnitaMisura", "Nome", "Forma", "Ebc", "PotentialSG",
-            "srm", "Origine", "DataAcquisto" };
 
     public Element toXml() {
         Element malt = new Element("malt");
@@ -222,8 +216,8 @@ public class Malt implements InventoryObject {
 
     public boolean isMashed() {
         return (getForma() != null)
-                && ((getForma().compareToIgnoreCase("grani") == 0) || (getForma().compareToIgnoreCase("fiocchi") == 0)
-                        || (getForma().compareToIgnoreCase("chicchi") == 0));
+                && ((Constants.GRANI.compareToIgnoreCase(getForma()) == 0) || (Constants.FIOCCHI.compareToIgnoreCase(getForma()) == 0)
+                        || (Constants.CHICCHI.compareToIgnoreCase(getForma()) == 0));
     }
 
     public double getMcu(double volume) {
