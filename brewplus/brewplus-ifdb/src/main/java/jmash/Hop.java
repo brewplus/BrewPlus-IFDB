@@ -29,20 +29,20 @@ import org.jdom.Element;
  */
 public class Hop implements InventoryObject {
     
-    private double HSI;
+    private Double HSI;
     private Double alfaAcidiPrec;
-    private double grammi;
-    private int boilTime;
-    private double alfaAcidi;
+    private Double grammi;
+    private Integer boilTime;
+    private Double alfaAcidi;
     private String nome;
     private String forma;
     private String origine;
     private String uso;
     private String unitaMisura;
     private Ricetta ricetta;
-    private double IBUTinseth;
-    private double IBURager;
-    private double IBUDaniels;
+    private Double IBUTinseth;
+    private Double IBURager;
+    private Double IBUDaniels;
     private static String campiXml[] = new String[] { "Grammi", "UnitaMisura", "BoilTime", "AlfaAcidi", "Nome", "Forma", "Origine", "Uso", "HSI", "dataAcquisto" };
     
     public Hop() {
@@ -349,7 +349,7 @@ public class Hop implements InventoryObject {
             c = 1;
         }
 
-        double ut = 1;
+        double ut;
         if ("pellet".compareToIgnoreCase(this.forma) == 0) {
             ut = -(.0051 * this.boilTime * this.boilTime) + (0.7835 * this.boilTime) + 1.9348;
         } else {

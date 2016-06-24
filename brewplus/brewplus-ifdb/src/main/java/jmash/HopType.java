@@ -30,20 +30,8 @@ import org.jdom.Element;
  */
 public class HopType implements XmlAble, Comparable<HopType> {
 
-	private static Logger LOGGER = Logger.getLogger(HopType.class);
-
-	/** Creates a new instance of HopType */
-	public HopType() {
-	}
-
-	public HopType(String nome, String provenienza, double alfaAcidi, String caratteristiche) {
-		setNome(nome);
-		setProvenienza(provenienza);
-		setAlfaAcidi(alfaAcidi);
-		setCaratteristiche(caratteristiche);
-	}
-
-	private String nome;
+	private static final  Logger LOGGER = Logger.getLogger(HopType.class);
+        private String nome;
 	private String provenienza;
 	private Double alfaAcidi;
 	private Double HSI;
@@ -51,6 +39,18 @@ public class HopType implements XmlAble, Comparable<HopType> {
 	private String use;
 	private Double beta;
 	private String utilizzo;
+        private static String campiXml[] = { "Nome", "AA", "Origine", "Des", "HSI", "use", "utilizzo", "beta" };
+        
+	/** Creates a new instance of HopType */
+	public HopType() {
+	}
+
+	public HopType(String nome, String provenienza, double alfaAcidi, String caratteristiche) {
+            this.nome= nome;
+            this.provenienza = provenienza;
+            this.alfaAcidi = alfaAcidi;
+            this.caratteristiche = caratteristiche;
+	}
 
 	public Double getHSI() {
 		return this.HSI;
@@ -115,8 +115,6 @@ public class HopType implements XmlAble, Comparable<HopType> {
 	public void setDes(String caratteristiche) {
 		this.setCaratteristiche(caratteristiche);
 	}
-
-	private static String campiXml[] = { "Nome", "AA", "Origine", "Des", "HSI", "use", "utilizzo", "beta" };
 
 	public static HopType fromXml(Element malt) {
 		HopType type = new HopType();
