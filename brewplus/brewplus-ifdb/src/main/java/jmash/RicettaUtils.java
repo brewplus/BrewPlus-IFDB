@@ -72,7 +72,7 @@ public class RicettaUtils {
 
 			MaltCategory maltCategory = findMaltCategory(recipeMalt);
 
-			if (maltCategory.isAcidMalt()) {
+			if (maltCategory != null && maltCategory.isAcidMalt()) {
 				totalGrainWeightGr -= recipeMalt.getGrammi();
 			}
 		}
@@ -111,7 +111,7 @@ public class RicettaUtils {
 
 			for (Malt recipeMalt : recipeMalts) {
 				MaltCategory recipeMalCategory = findMaltCategory(recipeMalt);
-				if (recipeMalCategory.isAcidMalt()) {
+				if (recipeMalCategory != null && recipeMalCategory.isAcidMalt()) {
 					acidMaltGramms += recipeMalt.getGrammi();
 				}
 			}
@@ -203,11 +203,12 @@ public class RicettaUtils {
 			List<MaltCategory> maltCategories = Gui.maltCategoryPickerTableModel.getRows();
 
 			String maltTypeCategoryCode = maltType.getCategoria();
-
-			for (MaltCategory tmpMaltCategory : maltCategories) {
-				if (maltTypeCategoryCode.equals(tmpMaltCategory.getCodice())) {
-					maltCategory = tmpMaltCategory;
-					break;
+			if (maltTypeCategoryCode != null) {
+				for (MaltCategory tmpMaltCategory : maltCategories) {
+					if (maltTypeCategoryCode.equals(tmpMaltCategory.getCodice())) {
+						maltCategory = tmpMaltCategory;
+						break;
+					}
 				}
 			}
 		}
