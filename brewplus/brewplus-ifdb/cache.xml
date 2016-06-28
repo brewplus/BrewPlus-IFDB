@@ -2,7 +2,7 @@
 <cache>
   <WaterNeeded.kg_V class="java.lang.Double">0.0</WaterNeeded.kg_V>
   <WaterNeeded.RS2_U class="java.lang.Integer">0</WaterNeeded.RS2_U>
-  <CT.eff_V class="java.lang.Double">74.0</CT.eff_V>
+  <CT.eff_V class="java.lang.Double">79.0</CT.eff_V>
   <WaterNeeded.BT_V class="java.lang.Double">60.0</WaterNeeded.BT_V>
   <WaterNeeded.ABS_U class="java.lang.Integer">0</WaterNeeded.ABS_U>
   <WaterNeeded.sparge_U class="java.lang.Integer">0</WaterNeeded.sparge_U>
@@ -54,7 +54,7 @@
   <Main.recipe10 class="java.lang.String" />
   <AlcoolContent.fldRG_U class="java.lang.Integer">0</AlcoolContent.fldRG_U>
   <CarbTool.G1_U class="java.lang.Integer">0</CarbTool.G1_U>
-  <null_V class="java.lang.Double">24.150000000000002</null_V>
+  <null_V class="java.lang.Double">4.3</null_V>
   <Main.recipe4 class="java.lang.String" />
   <Main.recipe3 class="java.lang.String" />
   <WaterNeeded.BS_U class="java.lang.Integer">0</WaterNeeded.BS_U>
@@ -89,7 +89,7 @@
   <CT.lts_U class="java.lang.Integer">0</CT.lts_U>
   <WaterNeeded.rabboccoPostBoil class="java.lang.Double">0.0</WaterNeeded.rabboccoPostBoil>
   <WaterNeeded.PB2_U class="java.lang.Integer">0</WaterNeeded.PB2_U>
-  <Main.utilizzo class="java.lang.String">A:6:ST:2:AC:1:C:8:E:1:F:6:WD:1:CT:12:R:19:YP:1:WN:1:XAE:4:DC:1:</Main.utilizzo>
+  <Main.utilizzo class="java.lang.String">A:6:ST:2:AC:1:C:8:E:1:F:6:WD:1:CT:22:R:20:YP:1:WN:1:XAE:4:DC:1:</Main.utilizzo>
   <WaterNeeded.rabboccoPreBoil class="java.lang.Double">0.0</WaterNeeded.rabboccoPreBoil>
   <CT.ev_U class="java.lang.Integer">0</CT.ev_U>
   <CT.ev_V class="java.lang.Double">4.3</CT.ev_V>

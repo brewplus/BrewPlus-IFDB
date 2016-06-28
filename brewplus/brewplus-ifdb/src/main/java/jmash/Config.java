@@ -284,10 +284,10 @@ public class Config {
     }
 
     public String getLocale() {
-        return locale;
+        return (locale == null ? (java.util.Locale.getDefault().getLanguage()+ "_" + java.util.Locale.getDefault().getCountry()) : locale);
     }
 
     public void setLocale(String locale) {
-        this.locale = locale;
+        this.locale = (locale == null ? (java.util.Locale.getDefault().getLanguage() + "_" + java.util.Locale.getDefault().getCountry()) : locale);
     }
 }

@@ -47,6 +47,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
@@ -57,7 +58,6 @@ import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
-import org.jfree.util.Log;
 
 import jmash.component.MultiLineCellRenderer;
 import jmash.schema.bjcp.Styleguide;
@@ -66,7 +66,7 @@ import jmash.utils.BundleMessage;
 public class Main {
 
 	private static final Logger logger = Logger.getLogger(Main.class);
-        public static BundleMessage bundle = new BundleMessage(java.util.PropertyResourceBundle.getBundle("jmash/lang"));
+        public static BundleMessage bundle;
         
     public static Locale locale;
         
@@ -422,9 +422,10 @@ public class Main {
 		config = Config.fromXml(root);
 		logger.info("config detected");
 		
-		locale = new Locale.Builder().setLanguage(Main.config.getLocale().toLowerCase()).build();
-		logger.info("Setting localization: " + Main.locale.getLanguage());
-		
+		Locale.setDefault(new Locale(config.getLocale().split("_")[0],config.getLocale().split("_")[1]));
+                ResourceBundle.clearCache();
+                logger.info("Setting localization: " + config.getLocale());
+		bundle = new BundleMessage(java.util.PropertyResourceBundle.getBundle("jmash/lang"));
 	}
 
 	public static void readStili() throws Exception {
@@ -863,19 +864,7 @@ public class Main {
 				Constructor k = c.getConstructor(new Class[] { String.class });
 				Object o = k.newInstance(new Object[] { value });
 				putIntoCache(name, o);
-			} catch (IllegalArgumentException ex) {
-				logger.error(ex.getMessage(), ex);
-			} catch (SecurityException ex) {
-				logger.error(ex.getMessage(), ex);
-			} catch (NoSuchMethodException ex) {
-				logger.error(ex.getMessage(), ex);
-			} catch (IllegalAccessException ex) {
-				logger.error(ex.getMessage(), ex);
-			} catch (InvocationTargetException ex) {
-				logger.error(ex.getMessage(), ex);
-			} catch (ClassNotFoundException ex) {
-				logger.error(ex.getMessage(), ex);
-			} catch (InstantiationException ex) {
+			} catch (IllegalArgumentException | SecurityException | NoSuchMethodException | IllegalAccessException | InvocationTargetException | ClassNotFoundException | InstantiationException ex) {
 				logger.error(ex.getMessage(), ex);
 			}
 		}

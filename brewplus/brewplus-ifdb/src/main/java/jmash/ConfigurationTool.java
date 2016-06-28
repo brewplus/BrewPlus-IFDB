@@ -73,7 +73,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		fldPwd.setText(Main.config.getPasswordIHB());
 		fldProxy.setText(Main.config.getProxyHost());
 		fldProxyPort.setText(Main.config.getProxyPort());
-		chckbxNewCheckBox.setSelected((Main.config.getPotLibGal() == 1) ? true : false);
+		chckbxNewCheckBox.setSelected((Main.config.getPotLibGal() == 1));
 
 		cmbBUGURatio = new JComboBox();
 		cmbBUGURatio.setModel(new DefaultComboBoxModel(new String[] { "Tinseth", "Rager", "Daniels" }));
