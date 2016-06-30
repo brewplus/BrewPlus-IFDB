@@ -65,6 +65,12 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		spnNaCl.setModel(0, 0, 999999, 1, "0.0", "WaterAdjustPanel.spnNaCl");
 		spnSoda.setModel(0, 0, 999999, 1, "0.0", "WaterAdjustPanel.spnSoda");
 		
+		spnLacticAcid.setModel(0, 0, 999999, 1, "0.0", "WaterAdjustPanel.spnLacticAcid");
+		spnLacticAcidContent.setModel(0, 0, 100, 1, "0.0", "WaterAdjustPanel.spnLacticAcidContent");
+		spnCitrusAcid.setModel(0, 0, 999999, 1, "0.0", "WaterAdjustPanel.spnCitrusAcid");
+		spnCitrusAcidContent.setModel(0, 0, 100, 1, "0.0", "WaterAdjustPanel.spnCitrusAcidContent");
+		spnAcidulatedMaltContent.setModel(0, 0, 100, 1, "0.0", "WaterAdjustPanel.spnAcidulatedMaltContent");
+		
 		setBackground(getBackground().darker());
 		thread = new Thread() {
 			@Override
@@ -193,6 +199,13 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		jLabel41 = new javax.swing.JLabel();
 		jLabel42 = new javax.swing.JLabel();
 		jLabel43 = new javax.swing.JLabel();
+		jLabel44 = new javax.swing.JLabel();
+		jLabel45 = new javax.swing.JLabel();
+		jLabel46 = new javax.swing.JLabel();
+		jLabel47 = new javax.swing.JLabel();
+		jLabel48 = new javax.swing.JLabel();
+		jLabel49 = new javax.swing.JLabel();
+		jLabel50 = new javax.swing.JLabel();
 		jLabel11 = new javax.swing.JLabel();
 		jLabel12 = new javax.swing.JLabel();
 		jLabel13 = new javax.swing.JLabel();
@@ -219,18 +232,24 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		spnSoda = new jmash.component.JMashSpinner();
 		spnVolume = new jmash.component.JVolumeSpinner();
 		
-		txtFieldAcidMalt = new JTextField();
-		txtFieldAcidMalt.setHorizontalAlignment(JTextField.RIGHT);
-		txtFieldRA = new JTextField();
-		txtFieldRA.setHorizontalAlignment(JTextField.CENTER);
-		txtFieldAlk = new JTextField();
-		txtFieldAlk.setHorizontalAlignment(JTextField.CENTER);
-		txtFieldPH = new JTextField();
-		txtFieldPH.setHorizontalAlignment(JTextField.CENTER);
+		spnAcidulatedMaltContent = new jmash.component.JVolumeSpinner();
+		spnLacticAcid = new jmash.component.JVolumeSpinner();
+		spnLacticAcidContent = new jmash.component.JVolumeSpinner();
+		spnCitrusAcid = new jmash.component.JVolumeSpinner();
+		spnCitrusAcidContent = new jmash.component.JVolumeSpinner();
+		
+		txtAcidMalt = new JTextField();
+		txtAcidMalt.setHorizontalAlignment(JTextField.RIGHT);
+		txtRA = new JTextField();
+		txtRA.setHorizontalAlignment(JTextField.CENTER);
+		txtAlk = new JTextField();
+		txtAlk.setHorizontalAlignment(JTextField.CENTER);
+		txtPH = new JTextField();
+		txtPH.setHorizontalAlignment(JTextField.CENTER);
 
-		setMaximumSize(new java.awt.Dimension(646, 409));
-		setMinimumSize(new java.awt.Dimension(646, 409));
-		setPreferredSize(new java.awt.Dimension(660, 65));
+		//setMaximumSize(new java.awt.Dimension(646, 409));
+		//setMinimumSize(new java.awt.Dimension(646, 409));
+		//setPreferredSize(new java.awt.Dimension(660, 65));
 		setLayout(new java.awt.GridBagLayout());
 
 		fromPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Partenza - ppm",
@@ -869,7 +888,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		jPanel1.add(useSoda, gridBagConstraints);
 		
 
-		spnGypsum.setPreferredSize(new java.awt.Dimension(64, 22));
+		spnGypsum.setPreferredSize(new java.awt.Dimension(128, 22));
 		spnGypsum.addChangeListener(new javax.swing.event.ChangeListener() {
 			public void stateChanged(javax.swing.event.ChangeEvent evt) {
 				spnGypsumStateChanged(evt);
@@ -1006,14 +1025,14 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanelPh.add(jLabel42, gridBagConstraints);
-		txtFieldAcidMalt.setPreferredSize(new java.awt.Dimension(64, 22));
-		txtFieldAcidMalt.setEditable(false);
+		txtAcidMalt.setPreferredSize(new java.awt.Dimension(64, 22));
+		txtAcidMalt.setEditable(false);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridy = 0;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-		jPanelPh.add(txtFieldAcidMalt, gridBagConstraints);
+		jPanelPh.add(txtAcidMalt, gridBagConstraints);
 		jLabel43.setText("grammi");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 2;
@@ -1021,56 +1040,164 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanelPh.add(jLabel43, gridBagConstraints);
+		spnAcidulatedMaltContent.setPreferredSize(new java.awt.Dimension(64, 22));
+		spnAcidulatedMaltContent.addChangeListener(new javax.swing.event.ChangeListener() {
+			public void stateChanged(javax.swing.event.ChangeEvent evt) {
+//				spnAcidulatedMaltContentStateChanged(evt);
+			}
+		});
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 3;
+		gridBagConstraints.gridy = 0;
+		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+		jPanelPh.add(spnAcidulatedMaltContent, gridBagConstraints);
+		jLabel44.setText("%");
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 4;
+		gridBagConstraints.gridy = 0;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+		jPanelPh.add(jLabel44, gridBagConstraints);
+		spnAcidulatedMaltContent.setDoubleValue(2.0);
+		spnAcidulatedMaltContent.setEnabled(false);;
+		
+		jLabel45.setText("Acido lattico");
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 1;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+		jPanelPh.add(jLabel45, gridBagConstraints);
+		spnLacticAcid.setPreferredSize(new java.awt.Dimension(64, 22));
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 1;
+		gridBagConstraints.gridy = 1;
+		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+		jPanelPh.add(spnLacticAcid, gridBagConstraints);
+		jLabel46.setText("ml");
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 2;
+		gridBagConstraints.gridy = 1;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+		jPanelPh.add(jLabel46, gridBagConstraints);
+		spnLacticAcidContent.setPreferredSize(new java.awt.Dimension(64, 22));
+		spnLacticAcidContent.addChangeListener(new javax.swing.event.ChangeListener() {
+			public void stateChanged(javax.swing.event.ChangeEvent evt) {
+//				spnLacticAcidContentStateChanged(evt);
+			}
+		});
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 3;
+		gridBagConstraints.gridy = 1;
+		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+		jPanelPh.add(spnLacticAcidContent, gridBagConstraints);
+		jLabel47.setText("%");
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 4;
+		gridBagConstraints.gridy = 1;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+		jPanelPh.add(jLabel47, gridBagConstraints);
+		spnLacticAcidContent.setDoubleValue(88.0);
+		spnLacticAcidContent.setEnabled(false);
+		
+		jLabel48.setText("Acido citrico");
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 2;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+		jPanelPh.add(jLabel48, gridBagConstraints);
+		spnCitrusAcid.setPreferredSize(new java.awt.Dimension(64, 22));
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 1;
+		gridBagConstraints.gridy = 2;
+		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+		jPanelPh.add(spnCitrusAcid, gridBagConstraints);
+		jLabel49.setText("gr");
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 2;
+		gridBagConstraints.gridy = 2;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+		jPanelPh.add(jLabel49, gridBagConstraints);
+		spnCitrusAcidContent.setPreferredSize(new java.awt.Dimension(64, 22));
+		spnCitrusAcidContent.addChangeListener(new javax.swing.event.ChangeListener() {
+			public void stateChanged(javax.swing.event.ChangeEvent evt) {
+//				spnCitrusAcidContentStateChanged(evt);
+			}
+		});
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 3;
+		gridBagConstraints.gridy = 2;
+		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+		jPanelPh.add(spnCitrusAcidContent, gridBagConstraints);
+		jLabel50.setText("%");
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 4;
+		gridBagConstraints.gridy = 2;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+		jPanelPh.add(jLabel50, gridBagConstraints);
+		spnCitrusAcidContent.setDoubleValue(88.0);
+		spnCitrusAcidContent.setEnabled(false);
+		
 		
 		jLabel39.setText("Alcalinità residua");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
-		gridBagConstraints.gridy = 1;
+		gridBagConstraints.gridy = 3;
 		gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanelPh.add(jLabel39, gridBagConstraints);
-		txtFieldRA.setEditable(false);
-		txtFieldRA.setPreferredSize(new java.awt.Dimension(64, 22));
+		txtRA.setEditable(false);
+		txtRA.setPreferredSize(new java.awt.Dimension(64, 22));
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 1;
-		gridBagConstraints.gridy = 1;
+		gridBagConstraints.gridy = 3;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-		jPanelPh.add(txtFieldRA, gridBagConstraints);
+		jPanelPh.add(txtRA, gridBagConstraints);
 		
 		jLabel40.setText("Alcalinità effettiva");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
-		gridBagConstraints.gridy = 2;
+		gridBagConstraints.gridy = 4;
 		gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanelPh.add(jLabel40, gridBagConstraints);
-		txtFieldAlk.setEditable(false);
-		txtFieldAlk.setPreferredSize(new java.awt.Dimension(64, 22));
+		txtAlk.setEditable(false);
+		txtAlk.setPreferredSize(new java.awt.Dimension(64, 22));
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 1;
-		gridBagConstraints.gridy = 2;
+		gridBagConstraints.gridy = 4;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-		jPanelPh.add(txtFieldAlk, gridBagConstraints);
+		jPanelPh.add(txtAlk, gridBagConstraints);
 		
 		jLabel41.setText("pH");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
-		gridBagConstraints.gridy = 3;
+		gridBagConstraints.gridy = 5;
 		gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanelPh.add(jLabel41, gridBagConstraints);
-		txtFieldPH.setEditable(false);
-		txtFieldPH.setPreferredSize(new java.awt.Dimension(64, 22));
+		txtPH.setEditable(false);
+		txtPH.setPreferredSize(new java.awt.Dimension(64, 22));
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 1;
-		gridBagConstraints.gridy = 3;
+		gridBagConstraints.gridy = 5;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-		jPanelPh.add(txtFieldPH, gridBagConstraints);
+		jPanelPh.add(txtPH, gridBagConstraints);
 		
 		
 		
@@ -1294,6 +1421,13 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	private javax.swing.JLabel jLabel41;
 	private javax.swing.JLabel jLabel42;
 	private javax.swing.JLabel jLabel43;
+	private javax.swing.JLabel jLabel44;
+	private javax.swing.JLabel jLabel45;
+	private javax.swing.JLabel jLabel46;
+	private javax.swing.JLabel jLabel47;
+	private javax.swing.JLabel jLabel48;
+	private javax.swing.JLabel jLabel49;
+	private javax.swing.JLabel jLabel50;
 	private javax.swing.JLabel jLabel4;
 	private javax.swing.JLabel jLabel5;
 	private javax.swing.JLabel jLabel6;
@@ -1338,10 +1472,15 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	private jmash.component.JMashSpinner spnSoda;
 	private jmash.component.JVolumeSpinner spnVolume;
 	
-	private javax.swing.JTextField txtFieldRA;
-	private javax.swing.JTextField txtFieldAlk;
-	private javax.swing.JTextField txtFieldPH;
-	private javax.swing.JTextField txtFieldAcidMalt;
+	private javax.swing.JTextField txtRA;
+	private javax.swing.JTextField txtAlk;
+	private javax.swing.JTextField txtPH;
+	private javax.swing.JTextField txtAcidMalt;
+	private jmash.component.JVolumeSpinner spnAcidulatedMaltContent;
+	private jmash.component.JVolumeSpinner spnLacticAcid;
+	private jmash.component.JVolumeSpinner spnCitrusAcid;
+	private jmash.component.JVolumeSpinner spnLacticAcidContent;
+	private jmash.component.JVolumeSpinner spnCitrusAcidContent;
 	
 	
 	private javax.swing.JCheckBox useCaCl2;
@@ -1649,20 +1788,20 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	}
 	
 	public void setRA(Double RA) {
-		this.txtFieldRA.setText(Utils.format(RA, "0.000"));
+		this.txtRA.setText(Utils.format(RA, "0.000"));
 	}
 	
 	public void setAlk(Double alk) {
-		this.txtFieldAlk.setText(Utils.format(alk, "0.000"));
+		this.txtAlk.setText(Utils.format(alk, "0.000"));
 	}
 	
 	public void setPH(Double pH) {
-		this.txtFieldPH.setText(Utils.format(pH, "0.000"));
+		this.txtPH.setText(Utils.format(pH, "0.000"));
 	}
 	
 	public void setTotalAcidGrainWeightGr(Double grammi)
 	{
-		this.txtFieldAcidMalt.setText(Utils.format(grammi, "0.0"));
+		this.txtAcidMalt.setText(Utils.format(grammi, "0.0"));
 	}
 	
 	
