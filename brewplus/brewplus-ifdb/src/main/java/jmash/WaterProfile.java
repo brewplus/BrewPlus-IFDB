@@ -46,6 +46,13 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
 	private boolean useGypsum = true, useCalciumChloride = true, useSale = true, useEpsom = true, useChalk = true,
 			useSoda = true;
 	private static int pCalcio = 50, pSolfato = 50, pCloruro = 50, pSodio = 50, pMagnesio = 50, pCarbonato = 50;
+	
+	private Double acidulatedMaltContent = 2.0;
+	private Double lacticAcid;
+	private Double lacticAcidContent = 88.0;
+	private Double citrusAcid;
+	private Double citrusAcidContent = 88.0;
+	
 	public static Random R = new Random();
 
 	public WaterProfile() {
@@ -495,8 +502,9 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
 	// ixtlanas NO TYPE
 	public static String campiXml[] = new String[] { "nome", "calcio", "magnesio", "solfato", "cloruro", "sodio",
 			"carbonato" };
+	
 	public static String campiXmlPlus[] = new String[] { "nome", "type", "calcio", "magnesio", "solfato", "cloruro",
-			"sodio", "carbonato", "gypsum", "sale", "epsom", "calciumChloride", "chalk", "soda", };
+			"sodio", "carbonato", "gypsum", "sale", "epsom", "calciumChloride", "chalk", "soda", "acidulatedMaltContent", "lacticAcid", "lacticAcidContent", "citrusAcid", "citrusAcidContent"};
 
 	@Override
 	public Element toXml() {
@@ -557,6 +565,48 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
 
 	public void setType(Integer type) {
 		this.type = type;
+	}
+	
+	
+
+	public Double getAcidulatedMaltContent() {
+		return acidulatedMaltContent;
+	}
+
+	public void setAcidulatedMaltContent(Double acidulatedMaltContent) {
+		this.acidulatedMaltContent = acidulatedMaltContent;
+	}
+
+	public Double getLacticAcid() {
+		return lacticAcid;
+	}
+
+	public void setLacticAcid(Double lacticAcid) {
+		this.lacticAcid = lacticAcid;
+	}
+
+	public Double getLacticAcidContent() {
+		return lacticAcidContent;
+	}
+
+	public void setLacticAcidContent(Double lacticAcidContent) {
+		this.lacticAcidContent = lacticAcidContent;
+	}
+
+	public Double getCitrusAcid() {
+		return citrusAcid;
+	}
+
+	public void setCitrusAcid(Double citrusAcid) {
+		this.citrusAcid = citrusAcid;
+	}
+
+	public Double getCitrusAcidContent() {
+		return citrusAcidContent;
+	}
+
+	public void setCitrusAcidContent(Double citrusAcidContent) {
+		this.citrusAcidContent = citrusAcidContent;
 	}
 
 	@Override

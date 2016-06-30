@@ -21,12 +21,14 @@ import javax.swing.event.ChangeListener;
 import org.apache.log4j.Logger;
 import org.jdom.Document;
 import org.jdom.Element;
+import java.awt.Dimension;
 
 /**
  *
  * @author Alessandro
  */
 public class WaterAdjustPanel extends javax.swing.JPanel {
+	private static final long serialVersionUID = 1L;
 	private static Logger LOGGER = Logger.getLogger(WaterAdjustPanel.class);
 	private JInternalFrame parent;
 	Picker waterPicker;
@@ -888,7 +890,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		jPanel1.add(useSoda, gridBagConstraints);
 		
 
-		spnGypsum.setPreferredSize(new java.awt.Dimension(128, 22));
+		spnGypsum.setPreferredSize(new Dimension(77, 22));
 		spnGypsum.addChangeListener(new javax.swing.event.ChangeListener() {
 			public void stateChanged(javax.swing.event.ChangeEvent evt) {
 				spnGypsumStateChanged(evt);
@@ -1025,7 +1027,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanelPh.add(jLabel42, gridBagConstraints);
-		txtAcidMalt.setPreferredSize(new java.awt.Dimension(64, 22));
+		txtAcidMalt.setPreferredSize(new Dimension(77, 22));
 		txtAcidMalt.setEditable(false);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 1;
