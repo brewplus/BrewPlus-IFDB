@@ -1042,7 +1042,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanelPh.add(jLabel43, gridBagConstraints);
-		spnAcidulatedMaltContent.setPreferredSize(new java.awt.Dimension(64, 22));
+		spnAcidulatedMaltContent.setPreferredSize(new Dimension(77, 22));
 		spnAcidulatedMaltContent.addChangeListener(new javax.swing.event.ChangeListener() {
 			public void stateChanged(javax.swing.event.ChangeEvent evt) {
 //				spnAcidulatedMaltContentStateChanged(evt);
