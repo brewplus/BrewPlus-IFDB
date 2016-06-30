@@ -2151,9 +2151,16 @@ public class Ricetta extends javax.swing.JInternalFrame {
 			};
 			this.colorThread.start();
 		}
-		double mashPH = RicettaUtils.calculatePH(this);
-		this.summaryTableModel.setMashPH(mashPH);
+		
+		PHResult phResult = RicettaUtils.calculatePH(this);
+
+		this.summaryTableModel.setMashPH(phResult.getpH());
 		this.tblSummary.updateUI();
+		this.waterPanel.setPH(phResult.getpH());
+		this.waterPanel.setAlk(phResult.getAlk());
+		this.waterPanel.setRA(phResult.getRA());
+		this.waterPanel.setTotalAcidGrainWeightGr(phResult.getTotalAcidGrainWeightGr());
+		this.waterPanel.updateUI();
 
 		this.dirty = true;
 	}

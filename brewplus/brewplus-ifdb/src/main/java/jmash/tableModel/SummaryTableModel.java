@@ -88,7 +88,7 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
     }
     
     public void setMashPH(double mashPH) {
-		this.mashPH = Double.isNaN(mashPH) ?  "NaN" : NumberFormatter.format02(mashPH);
+		this.mashPH = Double.isNaN(mashPH) ?  "NaN" : NumberFormatter.format03(mashPH);
 	}
     
     public double getMashPH() {

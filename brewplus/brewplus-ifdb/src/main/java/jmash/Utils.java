@@ -50,6 +50,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.channels.FileChannel;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -964,5 +965,18 @@ public class Utils {
         sb.append("</body></html>");
 
         return sb.toString();
+    }
+    
+    public static String format(Double value, String pattern)
+    {
+    	if (!value.isNaN())
+		{
+			DecimalFormat df = new DecimalFormat(pattern);
+			return df.format(value);
+		}
+		else
+		{
+			return "NaN";
+		}
     }
 }

@@ -1,5 +1,6 @@
 package jmash;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +17,10 @@ public class RicettaUtils {
 	public static final double percAcidulatedMaltContent = 2.0 / 100.0;
 
 	public static final double adjustIdrossidoDiCalcio = 0.0;
-
-	public static Double calculatePH(Ricetta recipe) {
+	
+	
+	
+	public static PHResult calculatePH(Ricetta recipe) {
 		Double pH = Double.NaN;
 		List<Malt> recipeMalts = recipe.maltTableModel.getRows();
 
@@ -27,12 +30,14 @@ public class RicettaUtils {
 
 		double totalGrainWeightKg = getTotalGrainWeightKg(recipe);
 		double totalGrainWeightLbs = getTotalGrainWeighLbs(recipe);
-
+		
+		double totalAcidGrainWeightGr = 0.0;
+		
 		for (Malt recipeMalt : recipeMalts) {
 
 			MaltCategory maltCategory = findMaltCategory(recipeMalt);
 
-			if (!maltCategory.isAcidMalt()) {
+			if (maltCategory == null || !maltCategory.isAcidMalt()) {
 				Double lovibond = (recipeMalt.getSrm() + 0.6) / 1.3546;
 				Double pHFromChart = maltCategory == null || maltCategory.isCrystal()
 						? 5.22 - (0.00504 * lovibond / 1000) : maltCategory.getPH();
@@ -47,6 +52,7 @@ public class RicettaUtils {
 			} else {
 				// SE MALTO ACIDO LO TOLGO DAL CALCOLO DEI KG TOTALI
 				totalGrainWeightKg -= (recipeMalt.getGrammi() / 1000);
+				totalAcidGrainWeightGr += recipeMalt.getGrammi();
 			}
 
 		}
@@ -54,14 +60,21 @@ public class RicettaUtils {
 		mediaPesataPH = mediaPesataPH / totalGrainWeightKg;
 		LOGGER.debug("pHSuMediaPesata = " + mediaPesataPH + " tot[" + totalGrainWeightKg + "]Kg tot["
 				+ totalGrainWeightLbs + "]lbs");
-
-		double residualAlcalinity = calculateResidualAlcalinity(recipe);
+		Double effectiveAlcalinity = calculateEffectiveAlcalinity(recipe); 
+		double residualAlcalinity = calculateResidualAlcalinity(recipe, effectiveAlcalinity);
 		double mashVolumeGalloni = getMashVolumeGalloni(recipe);
 
 		pH = mediaPesataPH + (0.1085 * mashVolumeGalloni / totalGrainWeightLbs + 0.013) * residualAlcalinity / 50;
 		LOGGER.debug(" ------> final pH[" + pH + "]");
+		
+		PHResult phResult = new PHResult();
+		phResult.setAlk(effectiveAlcalinity);
+		phResult.setRA(residualAlcalinity);
+		phResult.setpH(pH);
+		phResult.setTotalAcidGrainWeightGr(totalAcidGrainWeightGr);
+		
 
-		return pH;
+		return phResult;
 	}
 
 	public static double getTotalGrainWeightKg(Ricetta recipe) {
@@ -149,13 +162,17 @@ public class RicettaUtils {
 
 		return 0.0;
 	}
-
+	
 	public static double calculateResidualAlcalinity(Ricetta recipe) {
+		return calculateResidualAlcalinity(recipe, null);
+	}
+
+	public static double calculateResidualAlcalinity(Ricetta recipe, Double effectiveAlcalinity) {
 
 		Double residualAlcalinity = Double.NaN;
 
 		try {
-			double effectiveAlcalinity = calculateEffectiveAlcalinity(recipe);
+			effectiveAlcalinity = effectiveAlcalinity != null &&  !effectiveAlcalinity.isNaN() ? effectiveAlcalinity : calculateEffectiveAlcalinity(recipe);
 			double mashWaterProfileCalcium = calculateMashWaterProfile(recipe, "Calcium");
 			double mashWaterProfileMagnesium = calculateMashWaterProfile(recipe, "Magnesium");
 
