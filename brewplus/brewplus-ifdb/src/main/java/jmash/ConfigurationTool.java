@@ -19,7 +19,7 @@
 package jmash;
 
 import java.io.File;
-import javax.swing.ButtonGroup;
+
 import org.jdom.Document;
 import org.jdom.Element;
 import java.awt.GridBagConstraints;
@@ -36,18 +36,23 @@ import java.awt.GridBagLayout;
 import javax.swing.DefaultComboBoxModel;
 
 import jmash.Main.BitterBUGU;
+import jmash.interfaces.Constants;
+import javax.swing.JLabel;
+import java.awt.Dimension;
 
 /**
  *
  * @author Alessandro
  */
 public class ConfigurationTool extends javax.swing.JInternalFrame {
-	JInternalFrame parent;
+		
+	private static final long serialVersionUID = 1L;
+	private JInternalFrame parent;
 
 	/** Creates new form ConfigurationTool */
 	public ConfigurationTool() {
+		
 		initComponents();
-                i18nInitComponents();
 		parent = this;
 		setBorder(Utils.getDefaultBorder());
 		fldEff.setModel(75.0, 1, 100, 1, "0", "CT.eff");
@@ -75,27 +80,45 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		fldProxyPort.setText(Main.config.getProxyPort());
 		chckbxNewCheckBox.setSelected((Main.config.getPotLibGal() == 1));
 
-		cmbBUGURatio = new JComboBox();
-		cmbBUGURatio.setModel(new DefaultComboBoxModel(new String[] { "Tinseth", "Rager", "Daniels" }));
-		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		gbc_comboBox.insets = new Insets(0, 0, 0, 5);
-		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox.gridx = 1;
-		gbc_comboBox.gridy = 4;
-		jPanel1.add(cmbBUGURatio, gbc_comboBox);
+		cmbBUGURatio = new JComboBox<String>();
+		cmbBUGURatio.setModel(new DefaultComboBoxModel<String>(new String[] { "Tinseth", "Rager", "Daniels" }));
+		gbc_cmbBUGU  = new GridBagConstraints();
+		
+		gbc_cmbBUGU.insets = new Insets(0, 0, 5, 5);
+		gbc_cmbBUGU.fill = GridBagConstraints.HORIZONTAL;
+		gbc_cmbBUGU.gridx = 1;
+		gbc_cmbBUGU.gridy = 4;
+		jPanel1.add(cmbBUGURatio, gbc_cmbBUGU);
 		if (Main.config.getBUGURatio() == BitterBUGU.TIN)
 			cmbBUGURatio.setSelectedIndex(0);
 		if (Main.config.getBUGURatio() == BitterBUGU.RAG)
 			cmbBUGURatio.setSelectedIndex(1);
 		if (Main.config.getBUGURatio() == BitterBUGU.DAN)
 			cmbBUGURatio.setSelectedIndex(2);
-
+		
+		lblLanguage = new JLabel(Main.bundle.getString("label.language"));
+		GridBagConstraints gbc_lblLanguage = new GridBagConstraints();
+		gbc_lblLanguage.insets = new Insets(0, 0, 0, 5);
+		gbc_lblLanguage.anchor = GridBagConstraints.WEST;
+		gbc_lblLanguage.gridx = 0;
+		gbc_lblLanguage.gridy = 5;
+		jPanel1.add(lblLanguage, gbc_lblLanguage);
+		
+		cmbLanguage = new JComboBox<String>();
+		cmbLanguage.setModel(new DefaultComboBoxModel<String>(new String[] {Constants.ITALIAN, Constants.ENGLISH}));
+		GridBagConstraints gbc_cmbLanguage = new GridBagConstraints();
+		gbc_cmbLanguage.insets = new Insets(0, 0, 0, 5);
+		gbc_cmbLanguage.fill = GridBagConstraints.HORIZONTAL;
+		gbc_cmbLanguage.gridx = 1;
+		gbc_cmbLanguage.gridy = 5;
+		jPanel1.add(cmbLanguage, gbc_cmbLanguage);
+		
 		spnLostToSparge.setVolume(Main.config.getLostToSparge());
 		spnLostToTrub.setVolume(Main.config.getLostToTrub());
 		spnLitriKg.setVolume(Main.config.getLitriPerKg());
 		spnEvaporazione.setVolume(Main.config.getEvaporazionePerOra());
-
-		ButtonGroup group = new ButtonGroup();
+		cmbLanguage.setSelectedItem("it_IT".equalsIgnoreCase(Main.config.getLocale())?Constants.ITALIAN:Constants.ENGLISH);
+		//ButtonGroup group = new ButtonGroup();
 	}
 
 	/**
@@ -123,15 +146,15 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		fldSLM = new jmash.component.JMashSpinner();
 		jLabel10 = new javax.swing.JLabel();
 		fldBoil = new jmash.component.JMashSpinner();
-		jPanel2 = new javax.swing.JPanel();
+		//jPanel2 = new javax.swing.JPanel();
 		jLabelBUGU = new javax.swing.JLabel();
 		fldServer = new javax.swing.JTextField();
-		jLabel6 = new javax.swing.JLabel();
-		jLabel7 = new javax.swing.JLabel();
+		//jLabel6 = new javax.swing.JLabel();
+		//jLabel7 = new javax.swing.JLabel();
 		fldNick = new javax.swing.JTextField();
 		fldPwd = new javax.swing.JTextField();
-		jLabel8 = new javax.swing.JLabel();
-		jLabel9 = new javax.swing.JLabel();
+		//jLabel8 = new javax.swing.JLabel();
+		//jLabel9 = new javax.swing.JLabel();
 		fldProxy = new javax.swing.JTextField();
 		fldProxyPort = new javax.swing.JTextField();
 		jPanel4 = new javax.swing.JPanel();
@@ -172,8 +195,8 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		getContentPane().add(jToolBar1, gridBagConstraints);
 
 		jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Defaults"));
-		jPanel1.setMinimumSize(new java.awt.Dimension(550, 202));
-		jPanel1.setPreferredSize(new java.awt.Dimension(550, 202));
+		jPanel1.setMinimumSize(new Dimension(550, 210));
+		jPanel1.setPreferredSize(new Dimension(550, 210));
 		GridBagLayout gbl_jPanel1 = new GridBagLayout();
 		gbl_jPanel1.columnWeights = new double[] { 0.0, 1.0, 0.0, 0.0 };
 		jPanel1.setLayout(gbl_jPanel1);
@@ -230,8 +253,6 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		gridBagConstraints_3.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints_3.anchor = java.awt.GridBagConstraints.EAST;
 		jPanel1.add(jLabel2, gridBagConstraints_3);
-
-		fldVolumeFin.setBorder(null);
 		fldVolumeFin.setFont(fldVolumeFin.getFont());
 		gridBagConstraints_4 = new java.awt.GridBagConstraints();
 		gridBagConstraints_4.insets = new Insets(0, 0, 5, 5);
@@ -285,7 +306,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		jLabelBUGU.setText("Ratio BU/GU");
 		gridBagConstraints_8_1 = new java.awt.GridBagConstraints();
 		gridBagConstraints_8_1.fill = GridBagConstraints.HORIZONTAL;
-		gridBagConstraints_8_1.insets = new Insets(0, 0, 0, 5);
+		gridBagConstraints_8_1.insets = new Insets(0, 0, 5, 5);
 		gridBagConstraints_8_1.gridx = 0;
 		gridBagConstraints_8_1.gridy = 4;
 		gridBagConstraints_8_1.anchor = java.awt.GridBagConstraints.EAST;
@@ -338,7 +359,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		jPanel4.setLayout(new java.awt.GridBagLayout());
 
 		jLabel11.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		jLabel11.setText("Lost to trub");
+		jLabel11.setText(Main.bundle.getString("label.lostTrub"));
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 0;
@@ -353,7 +374,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		jPanel4.add(spnLostToTrub, gridBagConstraints);
 
 		jLabel12.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		jLabel12.setText("Lost to sparge");
+		jLabel12.setText(Main.bundle.getString("label.lostInSparge"));
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 1;
@@ -405,9 +426,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
         
-        private void i18nInitComponents() {
-            jLabel11.setText(Main.bundle.getString("label.lostTrub"));
-        }
+      
 	private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
 		Config config = new Config();
 
@@ -427,6 +446,8 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		config.setLostToTrub(spnLostToTrub.getVolume());
 		config.setLitriPerKg(spnLitriKg.getVolume());
 		config.setEvaporazionePerOra(spnEvaporazione.getVolume());
+		config.setLocale(Constants.ITALIAN.equalsIgnoreCase((String)cmbLanguage.getSelectedItem())?"it_IT":"en_US");
+		
 		if (cmbBUGURatio.getSelectedIndex() == 0)
 			config.setBUGURatio(BitterBUGU.TIN);
 		if (cmbBUGURatio.getSelectedIndex() == 1)
@@ -470,12 +491,12 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 	private javax.swing.JLabel jLabel4;
 	private javax.swing.JLabel jLabelBUGU;
 	private javax.swing.JLabel jLabelDHEA;
-	private javax.swing.JLabel jLabel6;
-	private javax.swing.JLabel jLabel7;
-	private javax.swing.JLabel jLabel8;
-	private javax.swing.JLabel jLabel9;
+	//private javax.swing.JLabel jLabel6;
+	//private javax.swing.JLabel jLabel7;
+	//private javax.swing.JLabel jLabel8;
+	//private javax.swing.JLabel jLabel9;
 	private javax.swing.JPanel jPanel1;
-	private javax.swing.JPanel jPanel2;
+	//private javax.swing.JPanel jPanel2;
 	private javax.swing.JPanel jPanel4;
 	private javax.swing.JToolBar jToolBar1;
 	private jmash.component.JVolumeSpinner spnEvaporazione;
@@ -498,7 +519,10 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 	private GridBagConstraints gridBagConstraints_13;
 	private JCheckBox chckbxNewCheckBox;
 	private JButton btnNewButton;
-	private JComboBox cmbBUGURatio;
+	private JComboBox<String> cmbBUGURatio;
+	private JComboBox<String> cmbLanguage;
+	private GridBagConstraints gbc_cmbBUGU;
+	private JLabel lblLanguage;
 	// End of variables declaration//GEN-END:variables
-
+	
 }
