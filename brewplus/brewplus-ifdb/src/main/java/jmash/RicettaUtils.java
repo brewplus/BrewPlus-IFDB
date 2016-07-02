@@ -1,6 +1,5 @@
 package jmash;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,13 +11,7 @@ public class RicettaUtils {
 
 	public static final double percDistilledROMash = 0.0;
 	public static final double percDistilledROSparge = 0.0;
-	public static final double percLacticAcidContent = 88.0 / 100.0;
-	public static final double mlAcidLactic = 0.0;
-	public static final double percAcidulatedMaltContent = 2.0 / 100.0;
-
 	public static final double adjustIdrossidoDiCalcio = 0.0;
-	
-	
 	
 	public static PHResult calculatePH(Ricetta recipe) {
 		Double pH = Double.NaN;
@@ -104,11 +97,19 @@ public class RicettaUtils {
 		try {
 
 			WaterNeeded waterNeeded = recipe.waterNeeded;
+			WaterAdjustPanel waterAdjustPanel = recipe.waterPanel;
+			
 			double mashVolume = waterNeeded.getMashVolume();
 			double mashVolumeGalloni = getMashVolumeGalloni(recipe);
 			double spargeVolume = waterNeeded.getSpargeVolume();
+			
+			double mlAcidLactic = waterAdjustPanel.getLacticAcid();
+			double percLacticAcidContent = waterAdjustPanel.getLacticAcidContent() / 100;
+			double grCitrusAcid = waterAdjustPanel.getCitrusAcid();
+			double percCitrusAcidContent = waterAdjustPanel.getCitrusAcidContent() / 100;
+			double percAcidulatedMaltContent = waterAdjustPanel.getAcidulatedMaltContent() / 100.0;
+			
 
-			WaterAdjustPanel waterAdjustPanel = recipe.waterPanel;
 			double waterCarbStart = waterAdjustPanel.getCarb();
 
 			double adjustBicarbonatoDiSodio = waterAdjustPanel.getAdjustBicarbonatoDiSodio();
@@ -132,7 +133,7 @@ public class RicettaUtils {
 
 			effectiveAlcalinity = ((1.0 - percDistilledROMash) * waterCarbStart * (50.0 / 61.0))
 					+ ((adjustCarbonatoDiCalcio * 130.0) + (((adjustBicarbonatoDiSodio * 157.0)
-							- (176.1 * mlAcidLactic * percLacticAcidContent * 2.0)
+							- (176.1 * (mlAcidLactic * percLacticAcidContent + grCitrusAcid * percCitrusAcidContent) * 2.0)
 							- (4160.4 * acidMaltOz * percAcidulatedMaltContent * 2.5)
 							+ (adjustIdrossidoDiCalcio * 357.0)) / mashVolumeGalloni));
 		} catch (Exception e) {

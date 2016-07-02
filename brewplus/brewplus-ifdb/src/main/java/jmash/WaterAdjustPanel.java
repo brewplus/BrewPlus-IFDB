@@ -6,6 +6,7 @@
 
 package jmash;
 
+import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.io.File;
@@ -21,7 +22,6 @@ import javax.swing.event.ChangeListener;
 import org.apache.log4j.Logger;
 import org.jdom.Document;
 import org.jdom.Element;
-import java.awt.Dimension;
 
 /**
  *
@@ -234,11 +234,11 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		spnSoda = new jmash.component.JMashSpinner();
 		spnVolume = new jmash.component.JVolumeSpinner();
 		
-		spnAcidulatedMaltContent = new jmash.component.JVolumeSpinner();
-		spnLacticAcid = new jmash.component.JVolumeSpinner();
-		spnLacticAcidContent = new jmash.component.JVolumeSpinner();
-		spnCitrusAcid = new jmash.component.JVolumeSpinner();
-		spnCitrusAcidContent = new jmash.component.JVolumeSpinner();
+		spnAcidulatedMaltContent = new jmash.component.JMashSpinner();
+		spnLacticAcid = new jmash.component.JMashSpinner();
+		spnLacticAcidContent = new jmash.component.JMashSpinner();
+		spnCitrusAcid = new jmash.component.JMashSpinner();
+		spnCitrusAcidContent = new jmash.component.JMashSpinner();
 		
 		txtAcidMalt = new JTextField();
 		txtAcidMalt.setHorizontalAlignment(JTextField.RIGHT);
@@ -1045,7 +1045,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		spnAcidulatedMaltContent.setPreferredSize(new Dimension(77, 22));
 		spnAcidulatedMaltContent.addChangeListener(new javax.swing.event.ChangeListener() {
 			public void stateChanged(javax.swing.event.ChangeEvent evt) {
-//				spnAcidulatedMaltContentStateChanged(evt);
+				spinAcidulatedMaltContentStateChanged(evt);
 			}
 		});
 		gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1061,8 +1061,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanelPh.add(jLabel44, gridBagConstraints);
-		spnAcidulatedMaltContent.setDoubleValue(2.0);
-		spnAcidulatedMaltContent.setEnabled(false);;
+		
 		
 		jLabel45.setText("Acido lattico");
 		gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1078,6 +1077,11 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanelPh.add(spnLacticAcid, gridBagConstraints);
+		spnLacticAcid.addChangeListener(new javax.swing.event.ChangeListener() {
+			public void stateChanged(javax.swing.event.ChangeEvent evt) {
+				spinLacticAcidStateChanged(evt);
+			}
+		});
 		jLabel46.setText("ml");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 2;
@@ -1088,7 +1092,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		spnLacticAcidContent.setPreferredSize(new java.awt.Dimension(64, 22));
 		spnLacticAcidContent.addChangeListener(new javax.swing.event.ChangeListener() {
 			public void stateChanged(javax.swing.event.ChangeEvent evt) {
-//				spnLacticAcidContentStateChanged(evt);
+				spinLacticAcidContentStateChanged(evt);
 			}
 		});
 		gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1104,8 +1108,6 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanelPh.add(jLabel47, gridBagConstraints);
-		spnLacticAcidContent.setDoubleValue(88.0);
-		spnLacticAcidContent.setEnabled(false);
 		
 		jLabel48.setText("Acido citrico");
 		gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1115,6 +1117,11 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanelPh.add(jLabel48, gridBagConstraints);
 		spnCitrusAcid.setPreferredSize(new java.awt.Dimension(64, 22));
+		spnCitrusAcid.addChangeListener(new javax.swing.event.ChangeListener() {
+			public void stateChanged(javax.swing.event.ChangeEvent evt) {
+				spinCitrusAcidStateChanged(evt);
+			}
+		});
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridy = 2;
@@ -1131,7 +1138,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		spnCitrusAcidContent.setPreferredSize(new java.awt.Dimension(64, 22));
 		spnCitrusAcidContent.addChangeListener(new javax.swing.event.ChangeListener() {
 			public void stateChanged(javax.swing.event.ChangeEvent evt) {
-//				spnCitrusAcidContentStateChanged(evt);
+				spinCitrusAcidContentStateChanged(evt);
 			}
 		});
 		gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1147,8 +1154,6 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanelPh.add(jLabel50, gridBagConstraints);
-		spnCitrusAcidContent.setDoubleValue(88.0);
-		spnCitrusAcidContent.setEnabled(false);
 		
 		
 		jLabel39.setText("Alcalinità residua");
@@ -1377,7 +1382,31 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	private void spinCalcioStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spinCalcioStateChanged
 		flagRes = true;
 		recalcTreatment();
-	}// GEN-LAST:event_spinCalcioStateChanged
+	}
+	
+	private void spinLacticAcidStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spinCalcioStateChanged
+		recalcTreatment();
+	}
+	
+	private void spinLacticAcidContentStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spinCalcioStateChanged
+		recalcTreatment();
+	}
+	
+	private void spinCitrusAcidStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spinCalcioStateChanged
+		recalcTreatment();
+	}
+	
+	private void spinCitrusAcidContentStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spinCalcioStateChanged
+		recalcTreatment();
+	}
+	
+	private void spinAcidulatedMaltContentStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spinCalcioStateChanged
+		recalcTreatment();
+	}
+	
+	
+	
+	// GEN-LAST:event_spinCalcioStateChanged
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JButton btnA;
@@ -1478,11 +1507,11 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	private javax.swing.JTextField txtAlk;
 	private javax.swing.JTextField txtPH;
 	private javax.swing.JTextField txtAcidMalt;
-	private jmash.component.JVolumeSpinner spnAcidulatedMaltContent;
-	private jmash.component.JVolumeSpinner spnLacticAcid;
-	private jmash.component.JVolumeSpinner spnCitrusAcid;
-	private jmash.component.JVolumeSpinner spnLacticAcidContent;
-	private jmash.component.JVolumeSpinner spnCitrusAcidContent;
+	private jmash.component.JMashSpinner spnAcidulatedMaltContent;
+	private jmash.component.JMashSpinner spnLacticAcid;
+	private jmash.component.JMashSpinner spnCitrusAcid;
+	private jmash.component.JMashSpinner spnLacticAcidContent;
+	private jmash.component.JMashSpinner spnCitrusAcidContent;
 	
 	
 	private javax.swing.JCheckBox useCaCl2;
@@ -1783,6 +1812,26 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	            listener.stateChanged(evt);
 	        }
 	    }
+	}
+	
+	public double getLacticAcid() {
+		return spnLacticAcid.getDoubleValue();
+	}
+	
+	public double getLacticAcidContent() {
+		return spnLacticAcidContent.getDoubleValue();
+	}
+	
+	public double getCitrusAcid() {
+		return spnCitrusAcid.getDoubleValue();
+	}
+	
+	public double getCitrusAcidContent() {
+		return spnCitrusAcidContent.getDoubleValue();
+	}
+	
+	public double getAcidulatedMaltContent() {
+		return spnAcidulatedMaltContent.getDoubleValue();
 	}
 	
 	public void actionPerformed(ActionEvent evt) {
