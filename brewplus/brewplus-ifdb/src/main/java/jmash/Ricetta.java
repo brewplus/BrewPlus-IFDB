@@ -1111,7 +1111,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		jPanel2.add(txtEBC2, gridBagConstraints);
 
-		btnIngredienti.setText("Ingredienti consigliati..");
+		btnIngredienti.setText("Visualizza BJCP");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 22;
 		gridBagConstraints.gridy = 1;
@@ -1681,17 +1681,12 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	public static String END_MASHSTEPS = "{end-mashsteps}";
 
 	private void showIngredienti() {
-		if (brewStyle == null)
+		if (brewStyle == null){
+			LOGGER.warn("No BJCP selected");
 			return;
-		String water, malts, hops, spices, yeasts, stylename;
-		stylename = brewStyle.getNumero() + " " + brewStyle.getNome();
-		water = brewStyle.getWater();
-		malts = brewStyle.getMalt();
-		hops = brewStyle.getHops();
-		spices = brewStyle.getSpices();
-		yeasts = brewStyle.getYeast();
+		}
 
-		frmIngredienti fi = new frmIngredienti(stylename, water, malts, hops, spices, yeasts);
+		frmIngredienti fi = new frmIngredienti(brewStyle);
 		Main.gui.addFrame(fi);
 		Dimension desktopSize = Gui.desktopPane.getSize();
 		Dimension jInternalFrameSize = fi.getSize();
