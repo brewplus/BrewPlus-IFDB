@@ -22,6 +22,9 @@ import javax.swing.event.ChangeListener;
 import org.apache.log4j.Logger;
 import org.jdom.Document;
 import org.jdom.Element;
+import javax.swing.JLabel;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 /**
  *
@@ -181,7 +184,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		jButton3 = new javax.swing.JButton();
 		jPanel5 = new javax.swing.JPanel();
 		jPanelPh = new javax.swing.JPanel();
-		jPanelAdjustPh = new javax.swing.JPanel();
+		jPanelResultWaterProfile = new javax.swing.JPanel();
 		jLabel20 = new javax.swing.JLabel();
 		pCalcio = new javax.swing.JSlider();
 		pMagnesio = new javax.swing.JSlider();
@@ -252,7 +255,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		//setMaximumSize(new java.awt.Dimension(646, 409));
 		//setMinimumSize(new java.awt.Dimension(646, 409));
 		//setPreferredSize(new java.awt.Dimension(660, 65));
-		setLayout(new java.awt.GridBagLayout());
+		setLayout(new GridBagLayout());
 
 		fromPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Partenza - ppm",
 				javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.ABOVE_TOP,
@@ -371,7 +374,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gridBagConstraints.gridy = 0;
 		gridBagConstraints.gridwidth = 3;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+		gridBagConstraints.insets = new Insets(2, 2, 5, 2);
 		add(fromPanel, gridBagConstraints);
 
 		destPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Target - ppm",
@@ -488,7 +491,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gridBagConstraints.gridy = 1;
 		gridBagConstraints.gridwidth = 3;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+		gridBagConstraints.insets = new Insets(2, 2, 5, 2);
 		add(destPanel, gridBagConstraints);
 
 		jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Miglior approssimazione trovata - ppm",
@@ -585,7 +588,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gridBagConstraints.gridy = 2;
 		gridBagConstraints.gridwidth = 3;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+		gridBagConstraints.insets = new Insets(2, 2, 5, 2);
 		add(jPanel4, gridBagConstraints);
 
 		jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Priorità di approssimazione",
@@ -699,7 +702,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridy = 3;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+		gridBagConstraints.insets = new Insets(2, 2, 5, 5);
 		add(jPanel5, gridBagConstraints);
 
 		jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ottenuta tramite queste aggiunte",
@@ -996,20 +999,13 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 3;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+		gridBagConstraints.insets = new Insets(2, 2, 5, 5);
 		add(jPanel1, gridBagConstraints);
 		
 		
 		jPanelPh.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dati pH",
 				javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.ABOVE_TOP,
-				new java.awt.Font("Tahoma", 1, 11))); // NOI18N
-		
-//		GridBagLayout gbl_panel = new GridBagLayout();
-//		gbl_panel.columnWidths = new int[]{0, 0};
-//		gbl_panel.rowHeights = new int[]{0, 0};
-//		gbl_panel.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-//		gbl_panel.rowWeights = new double[]{0.0, Double.MIN_VALUE};
-//		
+				new java.awt.Font("Tahoma", 1, 11))); // NOI18N	
 		jPanelPh.setLayout(new GridBagLayout());
 		
 		
@@ -1017,7 +1013,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gridBagConstraints.gridx = 2;
 		gridBagConstraints.gridy = 3;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+		gridBagConstraints.insets = new Insets(2, 2, 5, 2);
 		add(jPanelPh, gridBagConstraints);
 		
 		jLabel42.setText("Malti acidi");
@@ -1206,6 +1202,111 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 		jPanelPh.add(txtPH, gridBagConstraints);
 		
+		
+		jPanelResultWaterProfile.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " View Resulting Water Profile",
+				javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.ABOVE_TOP,
+				new java.awt.Font("Tahoma", 1, 11))); // NOI18N	
+		jPanelResultWaterProfile.setLayout(new GridBagLayout());
+		
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 4;
+		gridBagConstraints.gridwidth = 3;
+		gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+		gridBagConstraints.insets = new Insets(2, 2, 5, 2);
+		add(jPanelResultWaterProfile, gridBagConstraints);
+		
+		lblMagnesium = new JLabel("Magnesium");
+		gridBagConstraints = new GridBagConstraints();
+		gridBagConstraints.insets = new Insets(2, 2, 2, 2);
+		gridBagConstraints.gridx = 2;
+		gridBagConstraints.gridy = 0;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.CENTER;
+		jPanelResultWaterProfile.add(lblMagnesium, gridBagConstraints);
+		lblNewLabel_4 = new JLabel("Sodium");
+		gridBagConstraints = new GridBagConstraints();
+		gridBagConstraints.insets = new Insets(2, 2, 2, 2);
+		gridBagConstraints.gridx = 3;
+		gridBagConstraints.gridy = 0;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.CENTER;
+		jPanelResultWaterProfile.add(lblNewLabel_4, gridBagConstraints);
+		lblChloride = new JLabel("Chloride");
+		gridBagConstraints = new GridBagConstraints();
+		gridBagConstraints.insets = new Insets(2, 2, 2, 2);
+		gridBagConstraints.gridx = 4;
+		gridBagConstraints.gridy = 0;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.CENTER;
+		jPanelResultWaterProfile.add(lblChloride, gridBagConstraints);
+		lblNewLabel_5 = new JLabel("Sulfate");
+		gridBagConstraints = new GridBagConstraints();
+		gridBagConstraints.insets = new Insets(2, 2, 2, 2);
+		gridBagConstraints.gridx = 5;
+		gridBagConstraints.gridy = 0;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.CENTER;
+		jPanelResultWaterProfile.add(lblNewLabel_5, gridBagConstraints);
+		lblChlorideSulfate = new JLabel("Chloride / Sulfate");
+		gridBagConstraints = new GridBagConstraints();
+		gridBagConstraints.insets = new Insets(2, 2, 2, 2);
+		gridBagConstraints.gridx = 6;
+		gridBagConstraints.gridy = 0;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.CENTER;
+		jPanelResultWaterProfile.add(lblChlorideSulfate, gridBagConstraints);
+		lblmgPpm = new JLabel("(Mg ppm)");
+		gridBagConstraints = new GridBagConstraints();
+		gridBagConstraints.insets = new Insets(2, 2, 2, 2);
+		gridBagConstraints.gridx = 2;
+		gridBagConstraints.gridy = 1;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.CENTER;
+		jPanelResultWaterProfile.add(lblmgPpm, gridBagConstraints);
+		lblnaPpm = new JLabel("(Na ppm)");
+		gridBagConstraints = new GridBagConstraints();
+		gridBagConstraints.insets = new Insets(2, 2, 2, 2);
+		gridBagConstraints.gridx = 3;
+		gridBagConstraints.gridy = 1;
+		jPanelResultWaterProfile.add(lblnaPpm, gridBagConstraints);
+		lblclPpm = new JLabel("(Cl ppm)");
+		GridBagConstraints gbc_lblclPpm = new GridBagConstraints();
+		gbc_lblclPpm.insets = new Insets(2, 2, 2, 2);
+		gbc_lblclPpm.gridx = 4;
+		gbc_lblclPpm.gridy = 1;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.CENTER;
+		jPanelResultWaterProfile.add(lblclPpm, gbc_lblclPpm);
+		lblsoPpm = new JLabel("(SO4 ppm)");
+		gridBagConstraints = new GridBagConstraints();
+		gridBagConstraints.insets = new Insets(2, 2, 2, 2);
+		gridBagConstraints.gridx = 5;
+		gridBagConstraints.gridy = 1;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.CENTER;
+		jPanelResultWaterProfile.add(lblsoPpm, gridBagConstraints);
+		lblRatio = new JLabel("Ratio");
+		gridBagConstraints = new GridBagConstraints();
+		gridBagConstraints.insets = new Insets(2, 2, 2, 2);
+		gridBagConstraints.gridx = 6;
+		gridBagConstraints.gridy = 1;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.CENTER;
+		jPanelResultWaterProfile.add(lblRatio, gridBagConstraints);
+		
+		lblNewLabel = new JLabel("Mash Water Profile ");
+		gridBagConstraints = new GridBagConstraints();
+		gridBagConstraints.insets = new Insets(2, 2, 2, 2);
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 2;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+		jPanelResultWaterProfile.add(lblNewLabel, gridBagConstraints);
+		lblNewLabel_1 = new JLabel("Mash + Sparge Water Profile");
+		gridBagConstraints = new GridBagConstraints();
+		gridBagConstraints.insets = new Insets(2, 2, 2, 2);
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 3;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+		jPanelResultWaterProfile.add(lblNewLabel_1, gridBagConstraints);
+		lblNewLabel_2 = new JLabel("Palmer's Recommended Ranges");
+		gridBagConstraints = new GridBagConstraints();
+		gridBagConstraints.insets = new Insets(2, 2, 2, 2);
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 4;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+		jPanelResultWaterProfile.add(lblNewLabel_2, gridBagConstraints);
 		
 		
 	}// </editor-fold>//GEN-END:initComponents
@@ -1469,7 +1570,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	private javax.swing.JPanel jPanel4;
 	private javax.swing.JPanel jPanel5;
 	private javax.swing.JPanel jPanelPh;
-	private javax.swing.JPanel jPanelAdjustPh;
+	private javax.swing.JPanel jPanelResultWaterProfile;
 	private javax.swing.JToggleButton jToggleButton1;
 	private javax.swing.JSlider pCalcio;
 	private javax.swing.JSlider pCarbonato;
@@ -1662,6 +1763,21 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	}
 
 	private boolean skipRecalc = false;
+	private JLabel lblNewLabel;
+	private JLabel lblNewLabel_1;
+	private JLabel lblNewLabel_2;
+	private JLabel lblNewLabel_3;
+	private JLabel lblcaPpm;
+	private JLabel lblMagnesium;
+	private JLabel lblNewLabel_4;
+	private JLabel lblChloride;
+	private JLabel lblNewLabel_5;
+	private JLabel lblChlorideSulfate;
+	private JLabel lblmgPpm;
+	private JLabel lblnaPpm;
+	private JLabel lblclPpm;
+	private JLabel lblsoPpm;
+	private JLabel lblRatio;
 
 	private void updateTreatment() {
 		double LITRI = spnVolume.getVolume();
