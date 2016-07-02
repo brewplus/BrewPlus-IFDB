@@ -422,10 +422,13 @@ public class Main {
 		config = Config.fromXml(root);
 		logger.info("config detected");
 		
-		Locale.setDefault(new Locale(config.getLocale().split("_")[0],config.getLocale().split("_")[1]));
-                ResourceBundle.clearCache();
-                logger.info("Setting localization: " + config.getLocale());
+		
+		locale = new Locale(config.getLocale().split("_")[0],config.getLocale().split("_")[1]);
+		Locale.setDefault(locale);
+        ResourceBundle.clearCache();
+        logger.info("Setting localization: " + config.getLocale());
 		bundle = new BundleMessage(java.util.PropertyResourceBundle.getBundle("jmash/lang"));
+		
 	}
 
 	public static void readStili() throws Exception {

@@ -936,6 +936,8 @@ public class Utils {
     }
 
     public static String getBJCPHtml(BrewStyle bs) {
+    	
+    	LOGGER.debug("Reading BJCP: " + Main.locale);
         
         ResourceBundle bundle = ResourceBundle.getBundle("jmash/lang", Main.locale);
 
