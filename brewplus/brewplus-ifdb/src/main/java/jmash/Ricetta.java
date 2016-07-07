@@ -2155,9 +2155,30 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		this.waterPanel.setAlk(phResult.getAlk());
 		this.waterPanel.setRA(phResult.getRA());
 		this.waterPanel.setTotalAcidGrainWeightGr(phResult.getTotalAcidGrainWeightGr());
+		
+		
+		this.setWaterProfileValue(ResultingWaterProfileType.MASH_CALCIUM);
+		this.setWaterProfileValue(ResultingWaterProfileType.MASH_MAGNESIUM);
+		this.setWaterProfileValue(ResultingWaterProfileType.MASH_SODIUM);
+		this.setWaterProfileValue(ResultingWaterProfileType.MASH_CHLORIDE);
+		this.setWaterProfileValue(ResultingWaterProfileType.MASH_SULFATE);
+		this.setWaterProfileValue(ResultingWaterProfileType.MASH_CHLORIDE_SULFATE_RATIO);
+		
+		this.setWaterProfileValue(ResultingWaterProfileType.MASH_SPARGE_CALCIUM);
+		this.setWaterProfileValue(ResultingWaterProfileType.MASH_SPARGE_MAGNESIUM);
+		this.setWaterProfileValue(ResultingWaterProfileType.MASH_SPARGE_SODIUM);
+		this.setWaterProfileValue(ResultingWaterProfileType.MASH_SPARGE_CHLORIDE);
+		this.setWaterProfileValue(ResultingWaterProfileType.MASH_SPARGE_SULFATE);
+		this.setWaterProfileValue(ResultingWaterProfileType.MASH_SPARGE_CHLORIDE_SULFATE_RATIO);
+		
 		this.waterPanel.updateUI();
 
 		this.dirty = true;
+	}
+	
+	private void setWaterProfileValue(ResultingWaterProfileType type)
+	{
+		this.waterPanel.setWaterProfile(type, RicettaUtils.getResultingWaterProfile(this, type));
 	}
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables

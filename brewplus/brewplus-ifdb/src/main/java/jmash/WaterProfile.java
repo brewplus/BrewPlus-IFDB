@@ -42,15 +42,15 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
 	private Double cloruro;
 	private Double carbonato;
 	private double diff;
-	private Double gypsum = 0.0, calciumChloride = 0.0, sale = 0.0, epsom = 0.0, chalk = 0.0, soda = 0.0;
+	private Double gypsum = 0.0, calciumChloride = 0.0, sale = 0.0, epsom = 0.0, chalk = 0.0, soda = 0.0, slakedLime = 0.0;
 	private boolean useGypsum = true, useCalciumChloride = true, useSale = true, useEpsom = true, useChalk = true,
 			useSoda = true;
 	private static int pCalcio = 50, pSolfato = 50, pCloruro = 50, pSodio = 50, pMagnesio = 50, pCarbonato = 50;
 	
 	private Double acidulatedMaltContent = 2.0;
-	private Double lacticAcid;
+	private Double lacticAcid = 0.0;
 	private Double lacticAcidContent = 88.0;
-	private Double citrusAcid;
+	private Double citrusAcid = 0.0;
 	private Double citrusAcidContent = 88.0;
 	
 	public static Random R = new Random();
@@ -117,6 +117,13 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
 		p.calciumChloride = this.calciumChloride;
 		p.chalk = this.chalk;
 		p.soda = this.soda;
+		p.slakedLime = this.slakedLime;
+		
+		p.acidulatedMaltContent = this.acidulatedMaltContent;
+		p.lacticAcid = this.lacticAcid;
+		p.lacticAcidContent = this.lacticAcidContent;
+		p.citrusAcid = this.citrusAcid;
+		p.citrusAcidContent = this.citrusAcidContent;
 		p.diff = this.diff;
 		return p;
 	}
@@ -315,6 +322,12 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
 			// norda.target(dublin, L, "dublin");
 			// norda.target(vienna, L, "vienna");
 			// norda.target(pilsen, L, "pilsen");
+			
+			System.out.println("-------------------");
+			
+			WaterProfile res2 = norda.target(bitter, L, "bitter", 1000, null, 100);
+			System.out.println(res2.toXmlPlus().getAttributes());
+			
 		} catch (Exception ex) {
 			LOGGER.error(ex.getMessage(), ex);
 		}
@@ -504,7 +517,7 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
 			"carbonato" };
 	
 	public static String campiXmlPlus[] = new String[] { "nome", "type", "calcio", "magnesio", "solfato", "cloruro",
-			"sodio", "carbonato", "gypsum", "sale", "epsom", "calciumChloride", "chalk", "soda", "acidulatedMaltContent", "lacticAcid", "lacticAcidContent", "citrusAcid", "citrusAcidContent"};
+			"sodio", "carbonato", "gypsum", "sale", "epsom", "calciumChloride", "chalk", "soda", "slakedLime", "acidulatedMaltContent", "lacticAcid", "lacticAcidContent", "citrusAcid", "citrusAcidContent"};
 
 	@Override
 	public Element toXml() {
@@ -608,6 +621,16 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
 	public void setCitrusAcidContent(Double citrusAcidContent) {
 		this.citrusAcidContent = citrusAcidContent;
 	}
+	
+	public Double getSlakedLime() {
+		return slakedLime;
+	}
+	
+	public void setSlakedLime(Double slakedLime) {
+		this.slakedLime = slakedLime;
+	}
+	
+	
 
 	@Override
 	public String getTag() {
@@ -623,5 +646,7 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
 	public int compareTo(WaterProfile o) {
 		return nome.compareToIgnoreCase(o.getNome());
 	}
+	
+	
 
 }
