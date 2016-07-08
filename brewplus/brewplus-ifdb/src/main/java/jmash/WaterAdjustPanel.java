@@ -2304,7 +2304,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	public double getAdjustCarbonatoDiCalcio() {
 		return spnChalk.getDoubleValue();
 	}
-
+	
 	public double getAdjustGypsum() {
 		return spnGypsum.getDoubleValue();
 	}
@@ -2459,17 +2459,8 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 			break;
 	
 		}
-		if ("Calcium".equals(type)) {
-			
-		} else if ("Magnesium".equals(type)) {
-			
-		} else if ("Sodium".equals(type)) {
-			
-		} else if ("Chloride".equals(type)) {
-			
-		} else if ("Sulfate".equals(type)) {
-			
-		}
+		
+
 	}
 
 	public void setSaltValues(SaltType saltType, double volumeMashLitri, double volumeSpargeLitri) {
@@ -2522,5 +2513,120 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		}
 		
 	}
+
+	public boolean useCaCl2() {
+		return useCaCl2.isSelected();
+	}
+
+	public void setUseCaCl2(boolean useCaCl2) {
+		this.useCaCl2.setSelected(useCaCl2);
+	}
+
+	public boolean useChalk() {
+		return useChalk.isSelected();
+	}
+
+	public void setUseChalk(boolean useChalk) {
+		this.useChalk.setSelected(useChalk);
+	}
+
+	public boolean useEpsom() {
+		return useEpsom.isSelected();
+	}
+
+	public void setUseEpsom(boolean useEpsom) {
+		this.useEpsom.setSelected(useEpsom);
+	}
+
+	public boolean useGypsum() {
+		return useGypsum.isSelected();
+	}
+
+	public void setUseGypsum(boolean useGypsum) {
+		this.useGypsum.setSelected(useGypsum);
+	}
+
+	public boolean useNaCl() {
+		return useNaCl.isSelected();
+	}
+
+	public void setUseNaCl(boolean useNaCl) {
+		this.useNaCl.setSelected(useNaCl);
+	}
+
+	public boolean useSoda() {
+		return useSoda.isSelected();
+	}
+
+	public void setUseSoda(boolean useSoda) {
+		this.useSoda.setSelected(useSoda);
+	}
+
+	public boolean useGypsumSparge() {
+		return useGypsumSparge.isSelected();
+	}
+
+	public void setUseGypsumSparge(boolean useGypsumSparge) {
+		this.useGypsumSparge.setSelected(useGypsumSparge);
+	}
+
+	public boolean useEpsomSparge() {
+		return useEpsomSparge.isSelected();
+	}
+
+	public void setUseEpsomSparge(boolean useEpsomSparge) {
+		this.useEpsomSparge.setSelected(useEpsomSparge);
+	}
+
+	public boolean useCaCl2Sparge() {
+		return useCaCl2Sparge.isSelected();
+	}
+
+	public void setUseCaCl2Sparge(boolean useCaCl2Sparge) {
+		this.useCaCl2Sparge.setSelected(useCaCl2Sparge);
+	}
+
+	public boolean useNaClSparge() {
+		return useNaClSparge.isSelected();
+	}
+
+	public void setUseNaClSparge(boolean useNaClSparge) {
+		this.useNaClSparge.setSelected(useNaClSparge);
+	}
+
+	public boolean useChalkSparge() {
+		return useChalkSparge.isSelected();
+	}
+
+	public void setUseChalkSparge(boolean useChalkSparge) {
+		this.useChalkSparge.setSelected(useChalkSparge);
+	}
+
+	public boolean useSodaSparge() {
+		return useSodaSparge.isSelected();
+	}
+
+	public void setUseSodaSparge(boolean useSodaSparge) {
+		this.useSodaSparge.setSelected(useSodaSparge);
+	}
+
+	public boolean useSlackedLime() {
+		return useSlackedLime.isSelected();
+	}
+
+	public void setUseSlackedLime(boolean useSlackedLime) {
+		this.useSlackedLime.setSelected(useSlackedLime);
+	}
+
+	public boolean useSlackedLimeSparge() {
+		return useSlackedLimeSparge.isSelected();
+	}
+
+	public void setUseSlackedLimeSparge(boolean useSlackedLimeSparge) {
+		this.useSlackedLimeSparge.setSelected(useSlackedLimeSparge);
+	}
+
+
+
 
 }
