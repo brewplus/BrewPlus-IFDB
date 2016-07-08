@@ -30,7 +30,6 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.io.*;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
@@ -1703,33 +1702,10 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		LOGGER.debug("Pressed Print Recipe button");
 		RecipeData rec = toRecipeData();
 		List<RecipeModel> summaries = new ArrayList<RecipeModel>();
-		//List<Hop> hops = new ArrayList<Hop>();
-	//	List<Malt> malts = new ArrayList<Malt>();
 		List<Mash> steps = new ArrayList<Mash>();
-		List<Yeast> yeasts = new ArrayList<Yeast>();
 		LOGGER.debug("Prepare Print data model");
 		RecipeModel summary = new RecipeModel();
-//		for (Hop hop :rec.getHops()) {
-//			Hop hop = new Hop();
-//			hop.setNome("Nome.Luppolo." + i);
-//			hop.setGrammi(new Double(i * 1000));
-//			hop.setAlfaAcidi(new Double(i) );
-//			hop.setBoilTime(i * 10);
-//			hop.setIBUTinseth(i);
-//			hop.setForma("Pellets");
-//			hop.setUso("Kettle");
-//			hops.add(hop);
-//		}
 		summary.setHops(rec.getHops());
-//		for (int i=0; i<=5;i++) {
-//			Malt malt = new Malt();
-//			malt.setEbc(new Double("10"));
-//			malt.setNome("Nome.Malto."+ i);
-//			malt.setPercentuale(i);
-//			malt.setPotentialSG(new Double("1030"));
-//			malt.setGrammi(new Double(i*20));
-//			malts.add(malt);
-//		}
 		summary.setMalts(rec.getMalts());
 		for (MashStep mash : rec.getInfusionSteps()) {
 			Mash step = new Mash();
@@ -1739,25 +1715,17 @@ public class Ricetta extends javax.swing.JInternalFrame {
 			steps.add(step);
 		}
 		summary.setSteps(steps);
-//		for (int i=0; i<=1;i++) {
-//			Yeast yeast = new Yeast();
-//			yeast.setNome("Yeast." + i);
-//			yeast.setCodice("S-0" + i);
-//			yeast.setAttenuazioneMed("80%");
-//			yeast.setNote("Note");
-//			yeasts.add(yeast);
-//		}
 		summary.setYeasts(rec.getYeasts());
 		summary.setBoilingTime(rec.getBollitura().toString());
 		summary.setBoilLiters(rec.getVolumeBoll().toString());
 		summary.setAlcoolVolume(getGradiPrevisti());
-		summary.setEbc(getEbc() + "");
+		summary.setEbc(String.format("%.01f",getEbc()));
 		summary.setEfficency(rec.getEfficienza() + "%");
 		summary.setFg(getFGPrevista());
-		summary.setIbu(getIBUTinseth().toString());
+		summary.setIbu(String.format("%.01f",getIBUTinseth()));
 		summary.setOg(getSGPerStampa());
 		summary.setOgPreBoil(getOGPreBoil());
-		summary.setPlato(getPPerStampa().toString());
+		summary.setPlato(String.format("%.01f",getPPerStampa()));
 		summary.setTotalGrain("");
 		summary.setTotalLiters(rec.getVolumeFin().toString());
 		summaries.add(summary);

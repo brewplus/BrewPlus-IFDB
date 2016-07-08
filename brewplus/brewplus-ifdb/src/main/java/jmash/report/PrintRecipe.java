@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.JFrame;
-
 import org.apache.log4j.Logger;
 
 import jmash.report.model.RecipeModel;
@@ -17,7 +15,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.swing.JRViewer;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class PrintRecipe {
 	
@@ -43,11 +41,11 @@ public class PrintRecipe {
 	        
 	    	LOGGER.debug("Fill jasper report with datasource");
 	    	jasperPrint = JasperFillManager.fillReport(report, lParameters, dataSource);
-	    	LOGGER.debug("Write file on system");
-	    	JFrame frame = new JFrame("Ricetta");
-	    	frame.getContentPane().add(new JRViewer(jasperPrint));
-	    	frame.pack();
-	    	frame.setVisible(true);
+	    	LOGGER.debug("Open report in JasperViewer");
+	    	JasperViewer viewer = new JasperViewer(jasperPrint, false);
+	    	viewer.setTitle(recipeName);
+	   
+	    	viewer.setVisible(true);
 	    
 		} catch (JRException e) {
 			LOGGER.debug("Unable to print recipe " + e.getMessage());
