@@ -595,7 +595,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		pCalcio.setMajorTickSpacing(10);
 		pCalcio.setMinorTickSpacing(5);
 		pCalcio.setSnapToTicks(true);
-		pCalcio.setPreferredSize(new java.awt.Dimension(280, 24));
+		pCalcio.setPreferredSize(new Dimension(200, 24));
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
@@ -697,7 +697,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 				javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.ABOVE_TOP,
 				new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 		GridBagLayout gbl_jPanelSali = new GridBagLayout();
-		gbl_jPanelSali.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0};
+		gbl_jPanelSali.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 1.0};
 		jPanelSali.setLayout(gbl_jPanelSali);
 
 		jLabel38.setText("Quantità");
@@ -709,17 +709,24 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gridBagConstraints_1.insets = new Insets(2, 2, 5, 5);
 		jPanelSali.add(jLabel38, gridBagConstraints_1);
 		
+		lblTotale = new JLabel("Totale");
+		GridBagConstraints gbc_lblTotale = new GridBagConstraints();
+		gbc_lblTotale.insets = new Insets(0, 0, 5, 5);
+		gbc_lblTotale.gridx = 2;
+		gbc_lblTotale.gridy = 1;
+		jPanelSali.add(lblTotale, gbc_lblTotale);
+		
 		lblMash = new JLabel("Mash");
 		GridBagConstraints gbc_lblMash = new GridBagConstraints();
 		gbc_lblMash.insets = new Insets(0, 0, 5, 5);
-		gbc_lblMash.gridx = 2;
+		gbc_lblMash.gridx = 3;
 		gbc_lblMash.gridy = 1;
 		jPanelSali.add(lblMash, gbc_lblMash);
 		
 		lblSparge = new JLabel("Sparge");
 		GridBagConstraints gbc_lblSparge = new GridBagConstraints();
 		gbc_lblSparge.insets = new Insets(0, 0, 5, 5);
-		gbc_lblSparge.gridx = 3;
+		gbc_lblSparge.gridx = 4;
 		gbc_lblSparge.gridy = 1;
 		jPanelSali.add(lblSparge, gbc_lblSparge);
 
@@ -759,20 +766,9 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gridBagConstraints.insets = new Insets(2, 2, 5, 5);
 		jPanelSali.add(spnGypsum, gridBagConstraints);
 		
-		useGypsumSparge = new JCheckBox();
-		useGypsumSparge.setSelected(true);
-		useGypsumSparge.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-		useGypsumSparge.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				useGypsumSpargeActionPerformed(evt);
-			}
-		});
 		
-		GridBagConstraints gbc_useGypsumSparge = new GridBagConstraints();
-		gbc_useGypsumSparge.insets = new Insets(0, 0, 5, 5);
-		gbc_useGypsumSparge.gridx = 3;
-		gbc_useGypsumSparge.gridy = 2;
-		jPanelSali.add(useGypsumSparge, gbc_useGypsumSparge);
+		
+		
 		useChalk = new javax.swing.JCheckBox();
 		
 		useChalk.setSelected(true);
@@ -783,15 +779,116 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 			}
 		});
 		
+		txtGyspumMash = new JTextField();
+		txtGyspumMash.setHorizontalAlignment(SwingConstants.CENTER);
+		txtGyspumMash.setPreferredSize(new Dimension(60,22));
+		txtGyspumMash.setEditable(false);
+		GridBagConstraints gbc_txtGyspumMash = new GridBagConstraints();
+		gbc_txtGyspumMash.insets = new Insets(0, 0, 5, 5);
+		gbc_txtGyspumMash.gridx = 3;
+		gbc_txtGyspumMash.gridy = 2;
+		jPanelSali.add(txtGyspumMash, gbc_txtGyspumMash);
+		
 		txtGyspumSparge = new JTextField();
+		txtGyspumSparge.setHorizontalAlignment(SwingConstants.CENTER);
 		txtGyspumSparge.setEditable(false);
+		
 		GridBagConstraints gbc_txtGyspumSparge = new GridBagConstraints();
-		gbc_txtGyspumSparge.insets = new Insets(0, 0, 5, 0);
-//		gbc_txtGyspumSparge.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtGyspumSparge.insets = new Insets(0, 0, 5, 5);
 		gbc_txtGyspumSparge.gridx = 4;
 		gbc_txtGyspumSparge.gridy = 2;
 		jPanelSali.add(txtGyspumSparge, gbc_txtGyspumSparge);
-		txtGyspumSparge.setPreferredSize(new Dimension(77, 22));
+		txtGyspumSparge.setPreferredSize(new Dimension(60, 22));
+		
+		
+		useGypsumSparge = new JCheckBox();
+		useGypsumSparge.setSelected(true);
+		useGypsumSparge.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		useGypsumSparge.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				useGypsumSpargeActionPerformed(evt);
+			}
+		});
+		
+		GridBagConstraints gbc_useGypsumSparge = new GridBagConstraints();
+		gbc_useGypsumSparge.insets = new Insets(0, 0, 5, 0);
+		gbc_useGypsumSparge.gridx = 5;
+		gbc_useGypsumSparge.gridy = 2;		
+		jPanelSali.add(useGypsumSparge, gbc_useGypsumSparge);
+		
+		txtEpsomMash = new JTextField();
+		txtEpsomMash.setHorizontalAlignment(SwingConstants.CENTER);
+		txtEpsomMash.setEditable(false);
+		txtEpsomMash.setPreferredSize(new Dimension(60, 22));
+		GridBagConstraints gbc_txtEpsomMash = new GridBagConstraints();
+		gbc_txtEpsomMash.insets = new Insets(0, 0, 5, 5);
+		gbc_txtEpsomMash.gridx = 3;
+		gbc_txtEpsomMash.gridy = 3;
+		jPanelSali.add(txtEpsomMash, gbc_txtEpsomMash);
+		
+		txtEpsomSparge = new JTextField();
+		txtEpsomSparge.setHorizontalAlignment(SwingConstants.CENTER);
+		txtEpsomSparge.setEditable(false);
+		txtEpsomSparge.setPreferredSize(new Dimension(60, 22));
+		GridBagConstraints gbc_txtEpsomSparge = new GridBagConstraints();
+		gbc_txtEpsomSparge.insets = new Insets(0, 0, 5, 5);
+		gbc_txtEpsomSparge.gridx = 4;
+		gbc_txtEpsomSparge.gridy = 3;
+		jPanelSali.add(txtEpsomSparge, gbc_txtEpsomSparge);
+		
+		useEpsomSparge = new JCheckBox();
+		useEpsomSparge.setSelected(true);
+		useEpsomSparge.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		useEpsomSparge.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				useEpsomSpargeActionPerformed(evt);
+			}
+		});
+		GridBagConstraints gbc_useEpsomSparge = new GridBagConstraints();
+		gbc_useEpsomSparge.insets = new Insets(0, 0, 5, 0);
+		gbc_useEpsomSparge.gridx = 5;
+		gbc_useEpsomSparge.gridy = 3;
+		jPanelSali.add(useEpsomSparge, gbc_useEpsomSparge);
+		
+		txtCaCl2Mash = new JTextField();
+		txtCaCl2Mash.setHorizontalAlignment(SwingConstants.CENTER);
+		txtCaCl2Mash.setEditable(false);
+		txtCaCl2Mash.setPreferredSize(new Dimension(60, 22));
+		GridBagConstraints gbc_txtCaCl2Mash = new GridBagConstraints();
+		gbc_txtCaCl2Mash.insets = new Insets(0, 0, 5, 5);
+		gbc_txtCaCl2Mash.gridx = 3;
+		gbc_txtCaCl2Mash.gridy = 4;
+		jPanelSali.add(txtCaCl2Mash, gbc_txtCaCl2Mash);
+		
+		txtCaCl2Sparge = new JTextField();
+		txtCaCl2Sparge.setHorizontalAlignment(SwingConstants.CENTER);
+		txtCaCl2Sparge.setEditable(false);
+		txtCaCl2Sparge.setPreferredSize(new Dimension(60, 22));
+		GridBagConstraints gbc_txtCaCl2Sparge = new GridBagConstraints();
+		gbc_txtCaCl2Sparge.insets = new Insets(0, 0, 5, 5);
+		gbc_txtCaCl2Sparge.gridx = 4;
+		gbc_txtCaCl2Sparge.gridy = 4;
+		jPanelSali.add(txtCaCl2Sparge, gbc_txtCaCl2Sparge);
+		
+		txtNaClMash = new JTextField();
+		txtNaClMash.setHorizontalAlignment(SwingConstants.CENTER);
+		txtNaClMash.setEditable(false);
+		txtNaClMash.setPreferredSize(new Dimension(60, 22));
+		GridBagConstraints gbc_txtNaClMash = new GridBagConstraints();
+		gbc_txtNaClMash.insets = new Insets(0, 0, 5, 5);
+		gbc_txtNaClMash.gridx = 3;
+		gbc_txtNaClMash.gridy = 5;
+		jPanelSali.add(txtNaClMash, gbc_txtNaClMash);
+		
+		txtNaClSparge = new JTextField();
+		txtNaClSparge.setHorizontalAlignment(SwingConstants.CENTER);
+		txtNaClSparge.setEditable(false);
+		GridBagConstraints gbc_txtNaClSparge = new GridBagConstraints();
+		gbc_txtNaClSparge.insets = new Insets(0, 0, 5, 5);
+		gbc_txtNaClSparge.gridx = 4;
+		gbc_txtNaClSparge.gridy = 5;
+		txtNaClSparge.setPreferredSize(new Dimension(60, 22));
+		jPanelSali.add(txtNaClSparge, gbc_txtNaClSparge);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridy = 6;
@@ -859,29 +956,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gridBagConstraints.insets = new Insets(2, 2, 5, 5);
 		jPanelSali.add(spnEpsom, gridBagConstraints);
 		
-		txtEspomSparge = new JTextField();
-		txtEspomSparge.setEditable(false);
-		GridBagConstraints gbc_txtEspomSparge = new GridBagConstraints();
-		gbc_txtEspomSparge.insets = new Insets(0, 0, 5, 0);
-//		gbc_txtEspomSparge.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtEspomSparge.gridx = 4;
-		gbc_txtEspomSparge.gridy = 3;
-		jPanelSali.add(txtEspomSparge, gbc_txtEspomSparge);
-		txtEspomSparge.setPreferredSize(new Dimension(77, 22));
 		
-		useEpsomSparge = new JCheckBox();
-		useEpsomSparge.setSelected(true);
-		useEpsomSparge.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-		useEpsomSparge.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				useEpsomSpargeActionPerformed(evt);
-			}
-		});
-		GridBagConstraints gbc_useEpsomSparge = new GridBagConstraints();
-		gbc_useEpsomSparge.insets = new Insets(0, 0, 5, 5);
-		gbc_useEpsomSparge.gridx = 3;
-		gbc_useEpsomSparge.gridy = 3;
-		jPanelSali.add(useEpsomSparge, gbc_useEpsomSparge);
 		useSoda = new javax.swing.JCheckBox();
 
 		useSoda.setSelected(true);
@@ -901,20 +976,30 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 			}
 		});
 		GridBagConstraints gbc_useChalkSparge = new GridBagConstraints();
-		gbc_useChalkSparge.insets = new Insets(0, 0, 5, 5);
-		gbc_useChalkSparge.gridx = 3;
+		gbc_useChalkSparge.insets = new Insets(0, 0, 5, 0);
+		gbc_useChalkSparge.gridx = 5;
 		gbc_useChalkSparge.gridy = 6;
 		jPanelSali.add(useChalkSparge, gbc_useChalkSparge);
 		
+		txtChalkMash = new JTextField();
+		txtChalkMash.setHorizontalAlignment(SwingConstants.CENTER);
+		txtChalkMash.setEditable(false);
+		txtChalkMash.setPreferredSize(new Dimension(60, 22));
+		GridBagConstraints gbc_txtChalkMash = new GridBagConstraints();
+		gbc_txtChalkMash.insets = new Insets(0, 0, 5, 5);
+		gbc_txtChalkMash.gridx = 3;
+		gbc_txtChalkMash.gridy = 6;
+		jPanelSali.add(txtChalkMash, gbc_txtChalkMash);
+		
 		txtChalkSparge = new JTextField();
+		txtChalkSparge.setHorizontalAlignment(SwingConstants.CENTER);
 		txtChalkSparge.setEditable(false);
 		GridBagConstraints gbc_txtChalkSparge = new GridBagConstraints();
-		gbc_txtChalkSparge.insets = new Insets(0, 0, 5, 0);
-//		gbc_txtChalkSparge.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtChalkSparge.insets = new Insets(0, 0, 5, 5);
 		gbc_txtChalkSparge.gridx = 4;
 		gbc_txtChalkSparge.gridy = 6;
 		jPanelSali.add(txtChalkSparge, gbc_txtChalkSparge);
-		txtChalkSparge.setPreferredSize(new Dimension(77, 22));
+		txtChalkSparge.setPreferredSize(new Dimension(60, 22));
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridy = 7;
@@ -972,16 +1057,6 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gridBagConstraints.insets = new Insets(2, 2, 5, 5);
 		jPanelSali.add(spnCaCl2, gridBagConstraints);
 		
-		txtCaCl2Sparge = new JTextField();
-		txtCaCl2Sparge.setEditable(false);
-		GridBagConstraints gbc_txtCaCl2Sparge = new GridBagConstraints();
-		gbc_txtCaCl2Sparge.insets = new Insets(0, 0, 5, 0);
-//		gbc_txtCaCl2Sparge.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtCaCl2Sparge.gridx = 4;
-		gbc_txtCaCl2Sparge.gridy = 4;
-		jPanelSali.add(txtCaCl2Sparge, gbc_txtCaCl2Sparge);
-		txtCaCl2Sparge.setPreferredSize(new Dimension(77, 22));
-		
 		useCaCl2Sparge = new JCheckBox();
 		useCaCl2Sparge.setSelected(true);
 		useCaCl2Sparge.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -992,8 +1067,8 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		});
 		
 		GridBagConstraints gbc_useCaCl2Sparge = new GridBagConstraints();
-		gbc_useCaCl2Sparge.insets = new Insets(0, 0, 5, 5);
-		gbc_useCaCl2Sparge.gridx = 3;
+		gbc_useCaCl2Sparge.insets = new Insets(0, 0, 5, 0);
+		gbc_useCaCl2Sparge.gridx = 5;
 		gbc_useCaCl2Sparge.gridy = 4;
 		jPanelSali.add(useCaCl2Sparge, gbc_useCaCl2Sparge);
 		spnSlakedLime = new jmash.component.JMashSpinner();
@@ -1014,20 +1089,30 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 			}
 		});
 		GridBagConstraints gbc_useSodaSparge = new GridBagConstraints();
-		gbc_useSodaSparge.insets = new Insets(0, 0, 5, 5);
-		gbc_useSodaSparge.gridx = 3;
+		gbc_useSodaSparge.insets = new Insets(0, 0, 5, 0);
+		gbc_useSodaSparge.gridx = 5;
 		gbc_useSodaSparge.gridy = 7;
 		jPanelSali.add(useSodaSparge, gbc_useSodaSparge);
 		
+		txtSodaMash = new JTextField();
+		txtSodaMash.setHorizontalAlignment(SwingConstants.CENTER);
+		txtSodaMash.setEditable(false);
+		txtSodaMash.setPreferredSize(new Dimension(60, 22));
+		GridBagConstraints gbc_txtSodaMash = new GridBagConstraints();
+		gbc_txtSodaMash.insets = new Insets(0, 0, 5, 5);
+		gbc_txtSodaMash.gridx = 3;
+		gbc_txtSodaMash.gridy = 7;
+		jPanelSali.add(txtSodaMash, gbc_txtSodaMash);
+		
 		txtSodaSparge = new JTextField();
+		txtSodaSparge.setHorizontalAlignment(SwingConstants.CENTER);
 		txtSodaSparge.setEditable(false);
 		GridBagConstraints gbc_txtSodaSparge = new GridBagConstraints();
-		gbc_txtSodaSparge.insets = new Insets(0, 0, 5, 0);
-//		gbc_txtSodaSparge.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtSodaSparge.insets = new Insets(0, 0, 5, 5);
 		gbc_txtSodaSparge.gridx = 4;
 		gbc_txtSodaSparge.gridy = 7;
 		jPanelSali.add(txtSodaSparge, gbc_txtSodaSparge);
-		txtSodaSparge.setPreferredSize(new Dimension(77, 22));
+		txtSodaSparge.setPreferredSize(new Dimension(60, 22));
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 2;
 		gridBagConstraints.gridy = 8;
@@ -1080,9 +1165,9 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridy = 0;
-		gridBagConstraints.gridwidth = 3;
+		gridBagConstraints.gridwidth = 5;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		gridBagConstraints.insets = new Insets(2, 2, 5, 5);
+		gridBagConstraints.insets = new Insets(2, 2, 5, 0);
 		jPanelSali.add(spnVolume, gridBagConstraints);
 
 		gbc_jPanelSali = new java.awt.GridBagConstraints();
@@ -1103,20 +1188,10 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		});
 		
 		GridBagConstraints gbc_useNaClSparge = new GridBagConstraints();
-		gbc_useNaClSparge.insets = new Insets(0, 0, 5, 5);
-		gbc_useNaClSparge.gridx = 3;
+		gbc_useNaClSparge.insets = new Insets(0, 0, 5, 0);
+		gbc_useNaClSparge.gridx = 5;
 		gbc_useNaClSparge.gridy = 5;
 		jPanelSali.add(useNaClSparge, gbc_useNaClSparge);
-		
-		txtNaClSparge = new JTextField();
-		txtNaClSparge.setEditable(false);
-		GridBagConstraints gbc_txtNaClSparge = new GridBagConstraints();
-		gbc_txtNaClSparge.insets = new Insets(0, 0, 5, 0);
-//		gbc_txtNaClSparge.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtNaClSparge.gridx = 4;
-		gbc_txtNaClSparge.gridy = 5;
-		txtNaClSparge.setPreferredSize(new Dimension(77, 22));
-		jPanelSali.add(txtNaClSparge, gbc_txtNaClSparge);
 		jLabel26 = new javax.swing.JLabel();
 		
 		jLabel26.setText("Carbonato di calcio");
@@ -1161,29 +1236,40 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gbc_useSlakedLime.gridy = 8;
 		jPanelSali.add(useSlackedLime, gbc_useSlakedLime);
 		
-		useSlakedLimeSparge = new JCheckBox();
-		useSlakedLimeSparge.setSelected(true);
-		useSlakedLimeSparge.setEnabled(true);
-		useSlakedLimeSparge.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-		useSlakedLimeSparge.addActionListener(new java.awt.event.ActionListener() {
+		useSlackedLimeSparge = new JCheckBox();
+		useSlackedLimeSparge.setSelected(true);
+		useSlackedLimeSparge.setEnabled(true);
+		useSlackedLimeSparge.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		useSlackedLimeSparge.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				useSlakedLimeSpargeActionPerformed(evt);
 			}
 		});
-		GridBagConstraints gbc_useSlakedLimeSparge = new GridBagConstraints();
-		gbc_useSlakedLimeSparge.insets = new Insets(0, 0, 0, 5);
-		gbc_useSlakedLimeSparge.gridx = 3;
-		gbc_useSlakedLimeSparge.gridy = 8;
-		jPanelSali.add(useSlakedLimeSparge, gbc_useSlakedLimeSparge);
+		GridBagConstraints gbc_useSlackedLimeSparge = new GridBagConstraints();
+		gbc_useSlackedLimeSparge.gridx = 5;
+		gbc_useSlackedLimeSparge.gridy = 8;
+		jPanelSali.add(useSlackedLimeSparge, gbc_useSlackedLimeSparge);
+		
+		txtSlackedLimeMash = new JTextField();
+		txtSlackedLimeMash.setHorizontalAlignment(SwingConstants.CENTER);
+		txtSlackedLimeMash.setEditable(false);
+		txtSlackedLimeMash.setPreferredSize(new Dimension(60, 22));
+		GridBagConstraints gbc_txtSlackedLimeMash = new GridBagConstraints();
+		gbc_txtSlackedLimeMash.insets = new Insets(0, 0, 0, 5);
+		gbc_txtSlackedLimeMash.gridx = 3;
+		gbc_txtSlackedLimeMash.gridy = 8;
+		jPanelSali.add(txtSlackedLimeMash, gbc_txtSlackedLimeMash);
 		
 		txtSlackedLimeSparge = new JTextField();
+		txtSlackedLimeSparge.setHorizontalAlignment(SwingConstants.CENTER);
 		txtSlackedLimeSparge.setEditable(false);
 		GridBagConstraints gbc_txtSlackedLimeSparge = new GridBagConstraints();
-//		gbc_txtSlackedLimeSparge.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtSlackedLimeSparge.gridx = 4;
-		gbc_txtSlackedLimeSparge.gridy = 8;
-		jPanelSali.add(txtSlackedLimeSparge, gbc_txtSlackedLimeSparge);
-		txtSlackedLimeSparge.setPreferredSize(new Dimension(77, 22));
+		gbc_txtSlackedLimeSparge.insets = new Insets(0, 0, 0, 5);
+		//		gbc_txtSlackedLimeSparge.fill = GridBagConstraints.HORIZONTAL;
+				gbc_txtSlackedLimeSparge.gridx = 4;
+				gbc_txtSlackedLimeSparge.gridy = 8;
+				jPanelSali.add(txtSlackedLimeSparge, gbc_txtSlackedLimeSparge);
+				txtSlackedLimeSparge.setPreferredSize(new Dimension(60, 22));
 
 		jPanelPh.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dati pH",
 				javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.ABOVE_TOP,
@@ -1648,31 +1734,31 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	}// GEN-LAST:event_useGypsumActionPerformed
 	
 	private void useSodaSpargeActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_useSodaActionPerformed
-		flagRes = true;
+		recalcTreatment();
 	}// GEN-LAST:event_useSodaActionPerformed
 
 	private void useChalkSpargeActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_useChalkActionPerformed
-		flagRes = true;
+		recalcTreatment();
 	}// GEN-LAST:event_useChalkActionPerformed
 
 	private void useNaClSpargeActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_useNaClActionPerformed
-		flagRes = true;
+		recalcTreatment();
 	}// GEN-LAST:event_useNaClActionPerformed
 
 	private void useCaCl2SpargeActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_useCaCl2ActionPerformed
-		flagRes = true;
+		recalcTreatment();
 	}// GEN-LAST:event_useCaCl2ActionPerformed
 
 	private void useEpsomSpargeActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_useEpsomActionPerformed
-		flagRes = true;
+		recalcTreatment();
 	}// GEN-LAST:event_useEpsomActionPerformed
 
 	private void useGypsumSpargeActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_useGypsumActionPerformed
-		flagRes = true;
+		recalcTreatment();
 	}// GEN-LAST:event_useGypsumActionPerformed
 	
 	private void useSlakedLimeSpargeActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_useGypsumActionPerformed
-		flagRes = true;
+		recalcTreatment();
 	}// GEN-LAST:event_useGypsumActionPerformed
 	
 	private void spinCarb2StateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spinCarb2StateChanged
@@ -2052,7 +2138,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	private JCheckBox useCaCl2Sparge;
 	private JCheckBox useNaClSparge;
 	private JTextField txtGyspumSparge;
-	private JTextField txtEspomSparge;
+	private JTextField txtEpsomSparge;
 	private JTextField txtCaCl2Sparge;
 	private JTextField txtNaClSparge;
 	private GridBagConstraints gbc_jPanelSali;
@@ -2063,8 +2149,16 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	private JTextField txtChalkSparge;
 	private JTextField txtSodaSparge;
 	private JTextField txtSlackedLimeSparge;
-	private JCheckBox useSlakedLimeSparge;
+	private JCheckBox useSlackedLimeSparge;
 	private GridBagConstraints gbc_jPanelApprossimazioni;
+	private JTextField txtGyspumMash;
+	private JTextField txtEpsomMash;
+	private JTextField txtCaCl2Mash;
+	private JTextField txtNaClMash;
+	private JTextField txtChalkMash;
+	private JTextField txtSodaMash;
+	private JTextField txtSlackedLimeMash;
+	private JLabel lblTotale;
 
 	private void updateTreatment() {
 		double LITRI = spnVolume.getVolume();
@@ -2227,6 +2321,10 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		return spnCaCl2.getDoubleValue();
 	}
 	
+	public double getAdjustCloruroDiSodio() {
+		return spnNaCl.getDoubleValue();
+	}
+	
 	public double getAdjustIdrossidoDiCalcio() {
 		return spnSlakedLime.getDoubleValue();
 	}
@@ -2372,6 +2470,57 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		} else if ("Sulfate".equals(type)) {
 			
 		}
+	}
+
+	public void setSaltValues(SaltType saltType, double volumeMashLitri, double volumeSpargeLitri) {
+		double volumeTotale = volumeMashLitri + volumeSpargeLitri;
+		switch (saltType) {
+		case GYPSUM:
+			double gypsumMash = getAdjustGypsum() * (useGypsumSparge.isSelected() ? volumeMashLitri/volumeTotale : 1);
+			double gypsumSparge = useGypsumSparge.isSelected() ? getAdjustGypsum() - gypsumMash : 0.0;
+			this.txtGyspumMash.setText(Utils.format(gypsumMash, "0.0"));
+			this.txtGyspumSparge.setText(Utils.format(gypsumSparge, "0.0"));
+			break;
+		case EPSOM:
+			double epsomMash = getAdjustEpsom() * (useEpsomSparge.isSelected() ? volumeMashLitri/volumeTotale : 1);
+			double epsomSparge = useEpsomSparge.isSelected() ? getAdjustEpsom() - epsomMash : 0.0;
+			this.txtEpsomMash.setText(Utils.format(epsomMash, "0.0"));
+			this.txtEpsomSparge.setText(Utils.format(epsomSparge, "0.0"));
+			break;
+		case CACL2:
+			double caCl2Mash = getAdjustCloruroDiCalcio() * (useCaCl2Sparge.isSelected() ? volumeMashLitri/volumeTotale : 1);
+			double caCl2Sparge = useCaCl2Sparge.isSelected() ? getAdjustCloruroDiCalcio() - caCl2Mash : 0.0;
+			this.txtCaCl2Mash.setText(Utils.format(caCl2Mash, "0.0"));
+			this.txtCaCl2Sparge.setText(Utils.format(caCl2Sparge, "0.0"));
+			break;
+		case NACL:
+			double naClMash = getAdjustCloruroDiSodio() * (useNaClSparge.isSelected() ? volumeMashLitri/volumeTotale : 1);
+			double naClSparge = useNaClSparge.isSelected() ? getAdjustCloruroDiSodio() - naClMash : 0.0;
+			this.txtNaClMash.setText(Utils.format(naClMash, "0.0"));
+			this.txtNaClSparge.setText(Utils.format(naClSparge, "0.0"));
+			break;
+		case CHALK:
+			double chalkMash = getAdjustCarbonatoDiCalcio() * (useChalkSparge.isSelected() ? volumeMashLitri/volumeTotale : 1);
+			double chalkSparge = useChalkSparge.isSelected() ? getAdjustCarbonatoDiCalcio() - chalkMash : 0.0;
+			this.txtChalkMash.setText(Utils.format(chalkMash, "0.0"));
+			this.txtChalkSparge.setText(Utils.format(chalkSparge, "0.0"));
+			break;
+		case SODA:
+			double sodaMash = getAdjustBicarbonatoDiSodio() * (useSodaSparge.isSelected() ? volumeMashLitri/volumeTotale : 1);
+			double sodaSparge = useSodaSparge.isSelected() ? getAdjustBicarbonatoDiSodio() - sodaMash : 0.0;
+			this.txtSodaMash.setText(Utils.format(sodaMash, "0.0"));
+			this.txtSodaSparge.setText(Utils.format(sodaSparge, "0.0"));
+			break;
+		case SLAKED_LIME:
+			double slackedLimeMash = getAdjustIdrossidoDiCalcio() * (useSlackedLimeSparge.isSelected() ? volumeMashLitri/volumeTotale : 1);
+			double slackedLimeSparge = useSlackedLimeSparge.isSelected() ? getAdjustIdrossidoDiCalcio() - slackedLimeMash : 0.0;
+			this.txtSlackedLimeMash.setText(Utils.format(slackedLimeMash, "0.0"));
+			this.txtSlackedLimeSparge.setText(Utils.format(slackedLimeSparge, "0.0"));
+			break;
+		default:
+			break;
+		}
+		
 	}
 
 }

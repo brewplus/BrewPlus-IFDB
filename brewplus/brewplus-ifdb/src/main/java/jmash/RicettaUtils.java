@@ -207,18 +207,26 @@ public class RicettaUtils {
 
 		return maltType;
 	}
+	
+	public static double getMashVolumeLitri(Ricetta recipe) {
+		WaterNeeded waterNeeded = recipe.waterNeeded;
+		return waterNeeded.getMashVolume();
+	}
 
 	public static double getMashVolumeGalloni(Ricetta recipe) {
-		WaterNeeded waterNeeded = recipe.waterNeeded;
-		double mashVolume = waterNeeded.getMashVolume();
+		double mashVolume = getMashVolumeLitri(recipe);
 		double mashVolumeGalloni = mashVolume / 3.785412;
 
 		return mashVolumeGalloni;
 	}
 	
-	public static double getSpargeVolumeGalloni(Ricetta recipe) {
+	public static double getSpargeVolumeLitri(Ricetta recipe) {
 		WaterNeeded waterNeeded = recipe.waterNeeded;
-		double spargeVolume = waterNeeded.getSpargeVolume();
+		return waterNeeded.getSpargeVolume();
+	}
+	
+	public static double getSpargeVolumeGalloni(Ricetta recipe) {
+		double spargeVolume = getSpargeVolumeLitri(recipe);
 		double spargeVolumeGalloni = spargeVolume / 3.785412;
 
 		return spargeVolumeGalloni;

@@ -2147,6 +2147,16 @@ public class Ricetta extends javax.swing.JInternalFrame {
 			this.colorThread.start();
 		}
 		
+		
+		// aggiorna valori sali mash/sparge
+		
+		for (SaltType saltType: SaltType.values())
+		{
+			this.setSaltValues(saltType);
+		}
+		
+		
+		
 		PHResult phResult = RicettaUtils.calculatePH(this);
 
 		this.summaryTableModel.setMashPH(phResult.getpH());
@@ -2156,26 +2166,34 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		this.waterPanel.setRA(phResult.getRA());
 		this.waterPanel.setTotalAcidGrainWeightGr(phResult.getTotalAcidGrainWeightGr());
 		
+		for (ResultingWaterProfileType type: ResultingWaterProfileType.values())
+		{
+			this.setWaterProfileValue(type);
+		}
 		
-		this.setWaterProfileValue(ResultingWaterProfileType.MASH_CALCIUM);
-		this.setWaterProfileValue(ResultingWaterProfileType.MASH_MAGNESIUM);
-		this.setWaterProfileValue(ResultingWaterProfileType.MASH_SODIUM);
-		this.setWaterProfileValue(ResultingWaterProfileType.MASH_CHLORIDE);
-		this.setWaterProfileValue(ResultingWaterProfileType.MASH_SULFATE);
-		this.setWaterProfileValue(ResultingWaterProfileType.MASH_CHLORIDE_SULFATE_RATIO);
-		
-		this.setWaterProfileValue(ResultingWaterProfileType.MASH_SPARGE_CALCIUM);
-		this.setWaterProfileValue(ResultingWaterProfileType.MASH_SPARGE_MAGNESIUM);
-		this.setWaterProfileValue(ResultingWaterProfileType.MASH_SPARGE_SODIUM);
-		this.setWaterProfileValue(ResultingWaterProfileType.MASH_SPARGE_CHLORIDE);
-		this.setWaterProfileValue(ResultingWaterProfileType.MASH_SPARGE_SULFATE);
-		this.setWaterProfileValue(ResultingWaterProfileType.MASH_SPARGE_CHLORIDE_SULFATE_RATIO);
+//		this.setWaterProfileValue(ResultingWaterProfileType.MASH_CALCIUM);
+//		this.setWaterProfileValue(ResultingWaterProfileType.MASH_MAGNESIUM);
+//		this.setWaterProfileValue(ResultingWaterProfileType.MASH_SODIUM);
+//		this.setWaterProfileValue(ResultingWaterProfileType.MASH_CHLORIDE);
+//		this.setWaterProfileValue(ResultingWaterProfileType.MASH_SULFATE);
+//		this.setWaterProfileValue(ResultingWaterProfileType.MASH_CHLORIDE_SULFATE_RATIO);
+//		
+//		this.setWaterProfileValue(ResultingWaterProfileType.MASH_SPARGE_CALCIUM);
+//		this.setWaterProfileValue(ResultingWaterProfileType.MASH_SPARGE_MAGNESIUM);
+//		this.setWaterProfileValue(ResultingWaterProfileType.MASH_SPARGE_SODIUM);
+//		this.setWaterProfileValue(ResultingWaterProfileType.MASH_SPARGE_CHLORIDE);
+//		this.setWaterProfileValue(ResultingWaterProfileType.MASH_SPARGE_SULFATE);
+//		this.setWaterProfileValue(ResultingWaterProfileType.MASH_SPARGE_CHLORIDE_SULFATE_RATIO);
 		
 		this.waterPanel.updateUI();
 
 		this.dirty = true;
 	}
 	
+	private void setSaltValues(SaltType saltType) {
+		this.waterPanel.setSaltValues(saltType, RicettaUtils.getMashVolumeLitri(this), RicettaUtils.getSpargeVolumeLitri(this));
+	}
+
 	private void setWaterProfileValue(ResultingWaterProfileType type)
 	{
 		this.waterPanel.setWaterProfile(type, RicettaUtils.getResultingWaterProfile(this, type));
