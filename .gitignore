@@ -48,4 +48,4 @@ buildNumber.properties
 .mvn/timing.properties
 
 #BrewPlus
-BrewPlus-IFDB.log
+BrewPlus-IFDB.log*
