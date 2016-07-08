@@ -57,6 +57,9 @@ import jmash.component.UpDownPopupMenu;
 import jmash.imagecomponents.ImageFileView;
 import jmash.imagecomponents.ImageFilter;
 import jmash.imagecomponents.ImagePreview;
+import jmash.report.PrintRecipe;
+import jmash.report.model.Mash;
+import jmash.report.model.RecipeModel;
 import jmash.robot.hbRobot;
 import jmash.tableModel.HopTableModel;
 import jmash.tableModel.InventoryObjectTableModel;
@@ -1697,7 +1700,72 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 	// TASTO STAMPA
 	private void btnAdd9ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd9ActionPerformed
+		LOGGER.debug("Pressed Print Recipe button");
+		RecipeData rec = toRecipeData();
+		List<RecipeModel> summaries = new ArrayList<RecipeModel>();
+		//List<Hop> hops = new ArrayList<Hop>();
+	//	List<Malt> malts = new ArrayList<Malt>();
+		List<Mash> steps = new ArrayList<Mash>();
+		List<Yeast> yeasts = new ArrayList<Yeast>();
+		LOGGER.debug("Prepare Print data model");
+		RecipeModel summary = new RecipeModel();
+//		for (Hop hop :rec.getHops()) {
+//			Hop hop = new Hop();
+//			hop.setNome("Nome.Luppolo." + i);
+//			hop.setGrammi(new Double(i * 1000));
+//			hop.setAlfaAcidi(new Double(i) );
+//			hop.setBoilTime(i * 10);
+//			hop.setIBUTinseth(i);
+//			hop.setForma("Pellets");
+//			hop.setUso("Kettle");
+//			hops.add(hop);
+//		}
+		summary.setHops(rec.getHops());
+//		for (int i=0; i<=5;i++) {
+//			Malt malt = new Malt();
+//			malt.setEbc(new Double("10"));
+//			malt.setNome("Nome.Malto."+ i);
+//			malt.setPercentuale(i);
+//			malt.setPotentialSG(new Double("1030"));
+//			malt.setGrammi(new Double(i*20));
+//			malts.add(malt);
+//		}
+		summary.setMalts(rec.getMalts());
+		for (MashStep mash : rec.getInfusionSteps()) {
+			Mash step = new Mash();
+			step.setStepName(mash.getNome());
+			step.setTemperature(mash.getEndTemp().toString());
+			step.setLength(mash.getLength().toString());
+			steps.add(step);
+		}
+		summary.setSteps(steps);
+//		for (int i=0; i<=1;i++) {
+//			Yeast yeast = new Yeast();
+//			yeast.setNome("Yeast." + i);
+//			yeast.setCodice("S-0" + i);
+//			yeast.setAttenuazioneMed("80%");
+//			yeast.setNote("Note");
+//			yeasts.add(yeast);
+//		}
+		summary.setYeasts(rec.getYeasts());
+		summary.setBoilingTime(rec.getBollitura().toString());
+		summary.setBoilLiters(rec.getVolumeBoll().toString());
+		summary.setAlcoolVolume(getGradiPrevisti());
+		summary.setEbc(getEbc() + "");
+		summary.setEfficency(rec.getEfficienza() + "%");
+		summary.setFg(getFGPrevista());
+		summary.setIbu(getIBUTinseth().toString());
+		summary.setOg(getSGPerStampa());
+		summary.setOgPreBoil(getOGPreBoil());
+		summary.setPlato(getPPerStampa().toString());
+		summary.setTotalGrain("");
+		summary.setTotalLiters(rec.getVolumeFin().toString());
+		summaries.add(summary);
+		
 		try {
+			LOGGER.debug("Print PDF recipe.");
+			PrintRecipe.recipe(fldNome!=null?fldNome.getText():Main.bundle.getString("label.noRecipeName"), brewStyle!= null?brewStyle.getNome():Main.bundle.getString("label.noStyleName"), Main.versioneHobbyBrew, summaries);
+			/*
 			RandomAccessFile f = new RandomAccessFile(Main.printTemplate, "r");
 			byte b[] = new byte[(int) f.length()];
 			f.readFully(b);
@@ -1707,7 +1775,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 			int i = str.indexOf(BEGIN_MALTS);
 			int e = str.indexOf(END_MALTS);
 
-			RecipeData rec = toRecipeData();
+			//RecipeData rec = toRecipeData();
 			if (i >= 0 && e >= 0) {
 
 				String S = str.substring(0, i);
@@ -1868,7 +1936,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 			fos.close();
 
 			new Utils.BareBonesBrowserLaunch().openURL("file:///" + Main.userDir + "/templates/output.html");
-
+		*/
 		} catch (Exception ex) {
 			Utils.showException(ex, "", this);
 		}
