@@ -19,6 +19,14 @@
 			<id>mvnrepository.com</id>
 			<url>http://mvnrepository.com/</url>
 		</repository>
+		<repository>
+			<id>jasperreports</id>
+			<url>http://jasperreports.sourceforge.net/maven2/</url>
+		</repository>
+		<repository>
+			<id>jaspersoft</id>
+			<url>http://jaspersoft.artifactoryonline.com/jaspersoft/third-party-ce-artifacts/</url>
+		</repository>
 	</repositories>
 
 	<dependencyManagement>
