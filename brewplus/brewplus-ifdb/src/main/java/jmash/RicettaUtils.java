@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import jmash.PalmerRecommendedRange.PalmerRecommendedRangeType;
+
 public class RicettaUtils {
 
 	private static Logger LOGGER = Logger.getLogger(RicettaUtils.class);
@@ -38,9 +40,6 @@ public class RicettaUtils {
 				Double phPesata = pHFromChart * (recipeMalt.getGrammi() / 1000);
 				mediaPesataPH += phPesata;
 
-//				LOGGER.debug(recipeMalt.getNome() + " -> " + maltCategory + " -> SRM[" + recipeMalt.getSrm() + "] °L["
-//						+ lovibond + "] pH[" + pHFromChart + "] g[" + recipeMalt.getGrammi() + "] phPesata[" + phPesata
-//						+ "]");
 			} else {
 				// SE MALTO ACIDO LO TOLGO DAL CALCOLO DEI KG TOTALI
 				totalGrainWeightKg -= (recipeMalt.getGrammi() / 1000);
@@ -50,13 +49,11 @@ public class RicettaUtils {
 		}
 
 		mediaPesataPH = mediaPesataPH / totalGrainWeightKg;
-//		LOGGER.debug("pHSuMediaPesata = " + mediaPesataPH + " tot[" + totalGrainWeightKg + "]Kg tot[" + totalGrainWeightLbs + "]lbs");
 		Double effectiveAlcalinity = calculateEffectiveAlcalinity(recipe);
 		double residualAlcalinity = calculateResidualAlcalinity(recipe, effectiveAlcalinity);
 		double mashVolumeGalloni = getMashVolumeGalloni(recipe);
 
 		pH = mediaPesataPH + (0.1085 * mashVolumeGalloni / totalGrainWeightLbs + 0.013) * residualAlcalinity / 50;
-//		LOGGER.debug(" ------> final pH[" + pH + "]");
 
 		PHResult phResult = new PHResult();
 		phResult.setAlk(effectiveAlcalinity);
@@ -139,7 +136,6 @@ public class RicettaUtils {
 		} catch (Exception e) {
 			effectiveAlcalinity = Double.NaN;
 		}
-//		LOGGER.debug("effectiveAlcalinity[" + effectiveAlcalinity + "]");
 		return effectiveAlcalinity;
 	}
 
@@ -154,24 +150,16 @@ public class RicettaUtils {
 		Double residualAlcalinity = Double.NaN;
 
 		try {
-			effectiveAlcalinity = effectiveAlcalinity != null && !effectiveAlcalinity.isNaN() ? effectiveAlcalinity
-					: calculateEffectiveAlcalinity(recipe);
-//			double mashWaterProfileCalcium = calculateMashWaterProfile(recipe, "Calcium");
-//			double mashWaterProfileMagnesium = calculateMashWaterProfile(recipe, "Magnesium");
-			
+			effectiveAlcalinity = effectiveAlcalinity != null && !effectiveAlcalinity.isNaN() ? effectiveAlcalinity : calculateEffectiveAlcalinity(recipe);
+		
 			double mashWaterProfileCalcium = getResultingWaterProfile(recipe, ResultingWaterProfileType.MASH_CALCIUM);
 			double mashWaterProfileMagnesium = getResultingWaterProfile(recipe, ResultingWaterProfileType.MASH_MAGNESIUM);
 
-//			LOGGER.debug("mashWaterProfileCalcium=" + mashWaterProfileCalcium);
-//			LOGGER.debug("mashWaterProfileMagnesium=" + mashWaterProfileMagnesium);
-
-			residualAlcalinity = effectiveAlcalinity
-					- ((mashWaterProfileCalcium / 1.4) + (mashWaterProfileMagnesium / 1.7));
+			residualAlcalinity = effectiveAlcalinity - ((mashWaterProfileCalcium / 1.4) + (mashWaterProfileMagnesium / 1.7));
 		} catch (Exception e) {
 			residualAlcalinity = Double.NaN;
 		}
 
-//		LOGGER.debug("residualAlcalinity[" + residualAlcalinity + "]");
 		return residualAlcalinity;
 	}
 
@@ -239,7 +227,7 @@ public class RicettaUtils {
 		return findMaltCategory(maltType);
 	}
 
-	public static Double[] getPalmerRecommendedRange(String type) {
+	public static Double[] getPalmerRecommendedRange(PalmerRecommendedRangeType type) {
 		return PalmerRecommendedRange.rangesMap.get(type);
 	}
 	
@@ -255,8 +243,6 @@ public class RicettaUtils {
 		Double wp = defaultValue;
 		
 		WaterAdjustPanel waterAdjustPanel = recipe.waterPanel;
-		double volumeMash = getMashVolumeGalloni(recipe);
-		double volumeSparge = getSpargeVolumeGalloni(recipe);
 		
 		double volumeMashLitri = getMashVolumeLitri(recipe);
 		double volumeSpargeLitri = getSpargeVolumeLitri(recipe);
@@ -290,85 +276,30 @@ public class RicettaUtils {
 		
 		switch (type) {
 			case MASH_CALCIUM:
+			case MASH_SPARGE_CALCIUM:
 				wp = (1-percDistilledROMash) * waterAdjustPanel.getCalcio() + (adjustCarbonatoDiCalcioMash * 105.89 + adjustGypsumMash * 60.0 + adjustCloruroDiCalcioMash * 72.0 + adjustIdrossidoDiCalcioMash * 143.0) / getMashVolumeGalloni(recipe);
 				break;
 			case MASH_MAGNESIUM:
+			case MASH_SPARGE_MAGNESIUM:
 				wp = (1-percDistilledROMash) * waterAdjustPanel.getMagnesio() + (adjustEpsomMash * 24.6) / getMashVolumeGalloni(recipe);
 				break;
 			case MASH_SODIUM:
+			case MASH_SPARGE_SODIUM:
 				wp = (1-percDistilledROMash) * waterAdjustPanel.getSodio() + (adjustBicarbonatoDiSodioMash * 72.3) / getMashVolumeGalloni(recipe);
 				break;
 			case MASH_CHLORIDE:
+			case MASH_SPARGE_CHLORIDE:
 				wp = (1-percDistilledROMash) * waterAdjustPanel.getCloruro() + (adjustCloruroDiCalcioMash * 127.47) / getMashVolumeGalloni(recipe);
 				break;
 			case MASH_SULFATE:
+			case MASH_SPARGE_SULFATE:
 				wp = (1-percDistilledROMash) * waterAdjustPanel.getSolfato() + (adjustGypsumMash * 147.4 + adjustEpsomMash * 103.0) / getMashVolumeGalloni(recipe);
 				break;
 			case MASH_CHLORIDE_SULFATE_RATIO:
+			case MASH_SPARGE_CHLORIDE_SULFATE_RATIO:
 				Double mashCloride = getResultingWaterProfile(recipe, ResultingWaterProfileType.MASH_CHLORIDE);
 				Double mashSulfate = getResultingWaterProfile(recipe, ResultingWaterProfileType.MASH_SULFATE);
 				wp = mashSulfate != 0.0 ? mashCloride / mashSulfate : Double.NaN;
-				break;
-			case MASH_SPARGE_CALCIUM:
-				if (getSpargeVolumeGalloni(recipe) == 0.0)
-				{
-					wp = getResultingWaterProfile(recipe, ResultingWaterProfileType.MASH_CALCIUM);
-				}
-				else
-				{
-					wp = (1-(((percDistilledROMash*volumeMash)+(percDistilledROSparge*volumeSparge))/(volumeMash + volumeSparge)))*waterAdjustPanel.getCalcio()+((adjustCarbonatoDiCalcio)*105.89+(adjustGypsum)*60.0+(adjustCloruroDiCalcio)*72.0+(adjustIdrossidoDiCalcio)*143.0)/(volumeMash + volumeSparge);
-					
-				}
-				break;
-			case MASH_SPARGE_MAGNESIUM:
-				if (getSpargeVolumeGalloni(recipe) == 0.0)
-				{
-					wp = getResultingWaterProfile(recipe, ResultingWaterProfileType.MASH_MAGNESIUM);
-				}
-				else
-				{
-					wp = getResultingWaterProfile(recipe, ResultingWaterProfileType.MASH_MAGNESIUM);
-				}
-				break;
-			case MASH_SPARGE_SODIUM:
-				if (getSpargeVolumeGalloni(recipe) == 0.0)
-				{
-					wp = getResultingWaterProfile(recipe, ResultingWaterProfileType.MASH_SODIUM);
-				}
-				else
-				{
-					wp = getResultingWaterProfile(recipe, ResultingWaterProfileType.MASH_SODIUM);
-				}
-				break;
-			case MASH_SPARGE_CHLORIDE:
-				if (getSpargeVolumeGalloni(recipe) == 0.0)
-				{
-					wp = getResultingWaterProfile(recipe, ResultingWaterProfileType.MASH_CHLORIDE);
-				}
-				else
-				{
-					wp = getResultingWaterProfile(recipe, ResultingWaterProfileType.MASH_CHLORIDE);
-				}
-				break;
-			case MASH_SPARGE_SULFATE:
-				if (getSpargeVolumeGalloni(recipe) == 0.0)
-				{
-					wp = getResultingWaterProfile(recipe, ResultingWaterProfileType.MASH_SULFATE);
-				}
-				else
-				{
-					wp = getResultingWaterProfile(recipe, ResultingWaterProfileType.MASH_SULFATE);
-				}
-				break;
-			case MASH_SPARGE_CHLORIDE_SULFATE_RATIO:
-				if (getSpargeVolumeGalloni(recipe) == 0.0)
-				{
-					wp = getResultingWaterProfile(recipe, ResultingWaterProfileType.MASH_CHLORIDE_SULFATE_RATIO);
-				}
-				else
-				{
-					wp = getResultingWaterProfile(recipe, ResultingWaterProfileType.MASH_CHLORIDE_SULFATE_RATIO);
-				}
 				break;
 			default:
 			break;
@@ -377,5 +308,16 @@ public class RicettaUtils {
 
 		return wp.isInfinite() || wp.isNaN() ? defaultValue : wp;
 	}
+	
+	public static boolean isPalmerValueOk(Double value, PalmerRecommendedRangeType type)
+	{
+		boolean palmerValueOk = false;
+		if (Double.isFinite(value))
+		{
+			Double[] palmerRange = RicettaUtils.getPalmerRecommendedRange(type);
+			palmerValueOk = palmerRange[0] <= value && value <= palmerRange[1];
+		}
+		return palmerValueOk;
+ 	}
 
 }
