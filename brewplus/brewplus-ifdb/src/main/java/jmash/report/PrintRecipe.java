@@ -16,17 +16,16 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
-import net.sf.jasperreports.view.save.JRPdfSaveContributor;
-import net.sf.jasperreports.view.save.JRSingleSheetXlsSaveContributor;
 
 public class PrintRecipe {
 	
 	private static final Logger LOGGER = Logger.getLogger(PrintRecipe.class);
 	
-	public static final void recipe(String recipeName, String styleName, String brewPlusVersion, List<RecipeModel> recipeModel) {
+	public final void recipe(String recipeName, String styleName, String brewPlusVersion, List<RecipeModel> recipeModel) {
 		try {
 			LOGGER.debug("Retrive recipe jasper file");  
-			InputStream jasperStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("jmash/reports/recipe.jasper");
+			ClassLoader classLoader = getClass().getClassLoader();
+			InputStream jasperStream = classLoader.getResourceAsStream("jmash/reports/recipe.jasper"); 
 			JasperReport report = (JasperReport) JRLoader.loadObject(jasperStream);
 			
 		    Map<String, Object> lParameters = new HashMap<String, Object>();
@@ -35,8 +34,10 @@ public class PrintRecipe {
 		    lParameters.put("pBJCPStyle", styleName);
 		    lParameters.put("pBrewplusVersion", brewPlusVersion);
 		    LOGGER.debug("Retrive report images");
-		    lParameters.put("pLogoDir", ClassLoader.getSystemResource("jmash/reports/logo.png").getPath());
-		    lParameters.put("pBackgroundImage", ClassLoader.getSystemResource("jmash/reports/sfondo.png").getPath());
+		    //lParameters.put("pLogoDir", classLoader.getResource("jmash/reports/logo.png").getFile());
+		    lParameters.put("pLogoDir", ClassLoader.getSystemResourceAsStream("jmash/reports/logo.png"));
+//		    lParameters.put("pBackgroundImage", classLoader.getResource("jmash/reports/sfondo.png").getFile());
+		    lParameters.put("pBackgroundImage", ClassLoader.getSystemResourceAsStream("jmash/reports/sfondo.png"));
 		    JRDataSource dataSource = new JRBeanCollectionDataSource(recipeModel);
 		     
 		    JasperPrint jasperPrint;
