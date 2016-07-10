@@ -16,6 +16,8 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
+import net.sf.jasperreports.view.save.JRPdfSaveContributor;
+import net.sf.jasperreports.view.save.JRSingleSheetXlsSaveContributor;
 
 public class PrintRecipe {
 	
@@ -43,6 +45,7 @@ public class PrintRecipe {
 	    	jasperPrint = JasperFillManager.fillReport(report, lParameters, dataSource);
 	    	LOGGER.debug("Open report in JasperViewer");
 	    	JasperViewer viewer = new JasperViewer(jasperPrint, false);
+	    	
 	    	viewer.setTitle(recipeName);
 	   
 	    	viewer.setVisible(true);

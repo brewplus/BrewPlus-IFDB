@@ -53,7 +53,7 @@
   <WaterAdjustPanel.spinCalcio1_V class="java.lang.Integer">9</WaterAdjustPanel.spinCalcio1_V>
   <WaterNeeded.PB2_U class="java.lang.Integer">0</WaterNeeded.PB2_U>
   <WaterAdjustPanel.spinMagnesio2_V class="java.lang.Integer">4</WaterAdjustPanel.spinMagnesio2_V>
-  <Main.utilizzo class="java.lang.String">A:6:ST:2:AC:2:DF:1:C:8:E:1:F:6:WD:2:CT:26:R:64:YP:1:WN:1:XAE:6:DC:1:</Main.utilizzo>
+  <Main.utilizzo class="java.lang.String">A:6:ST:2:AC:2:DF:1:B:1:C:9:E:1:F:6:WD:2:CT:26:R:65:YP:1:WN:1:XAE:6:DC:1:</Main.utilizzo>
   <WaterAdjustPanel.spinCalcio_V class="java.lang.Integer">9</WaterAdjustPanel.spinCalcio_V>
   <WaterAdjustPanel.spinSolfato_V class="java.lang.Integer">3</WaterAdjustPanel.spinSolfato_V>
   <WaterNeeded.rabboccoPreBoil class="java.lang.Double">0.0</WaterNeeded.rabboccoPreBoil>
