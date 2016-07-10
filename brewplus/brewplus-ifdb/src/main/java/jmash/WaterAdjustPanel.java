@@ -6,7 +6,9 @@
 
 package jmash;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -15,6 +17,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JCheckBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -27,7 +30,10 @@ import javax.swing.event.ChangeListener;
 import org.apache.log4j.Logger;
 import org.jdom.Document;
 import org.jdom.Element;
-import javax.swing.JCheckBox;
+
+//import com.lowagie.text.Font;
+
+import jmash.PalmerRecommendedRange.PalmerRecommendedRangeType;
 
 /**
  *
@@ -1593,25 +1599,26 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 
 		textFieldPalmerCalcium = new JTextField();
 		prepareTextFielsWaterProfileView(textFieldPalmerCalcium, jPanelResultWaterProfile, 1, 3, 10);
-		setPalmerRecommendedRange("Calcium", textFieldPalmerCalcium);
+		setPalmerRecommendedRange(PalmerRecommendedRangeType.CALCIUM, textFieldPalmerCalcium);
 
 		textFieldPalmerMagnesium = new JTextField();
 		prepareTextFielsWaterProfileView(textFieldPalmerMagnesium, jPanelResultWaterProfile, 2, 3, 10);
-		setPalmerRecommendedRange("Magnesium", textFieldPalmerMagnesium);
+		setPalmerRecommendedRange(PalmerRecommendedRangeType.MAGNESIUM, textFieldPalmerMagnesium);
 
 		textFieldPalmerSodium = new JTextField();
 		prepareTextFielsWaterProfileView(textFieldPalmerSodium, jPanelResultWaterProfile, 3, 3, 10);
-		setPalmerRecommendedRange("Sodium", textFieldPalmerSodium);
+		setPalmerRecommendedRange(PalmerRecommendedRangeType.SODIUM, textFieldPalmerSodium);
 
 		textFieldPalmerChloride = new JTextField();
 		prepareTextFielsWaterProfileView(textFieldPalmerChloride, jPanelResultWaterProfile, 4, 3, 10);
-		setPalmerRecommendedRange("Chloride", textFieldPalmerChloride);
+		setPalmerRecommendedRange(PalmerRecommendedRangeType.CHLORIDE, textFieldPalmerChloride);
 
 		textFieldPalmerSulfate = new JTextField();
 		prepareTextFielsWaterProfileView(textFieldPalmerSulfate, jPanelResultWaterProfile, 5, 3, 10);
-		setPalmerRecommendedRange("Sulfate", textFieldPalmerSulfate);
+		setPalmerRecommendedRange(PalmerRecommendedRangeType.SULFATE, textFieldPalmerSulfate);
 
 		textFieldPalmerChlorideSulfateRatio = new JTextField();
+		textFieldPalmerChlorideSulfateRatio.setFont(new Font("Tahoma", Font.BOLD, 9));
 		prepareTextFielsWaterProfileView(textFieldPalmerChlorideSulfateRatio, jPanelResultWaterProfile, 6, 3, 10);
 		
 						
@@ -2387,11 +2394,13 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		this.txtAcidMalt.setText(Utils.format(grammi, "0.0"));
 	}
 
-	private void setPalmerRecommendedRange(String type, JTextField palmerTextfield) {
+	private void setPalmerRecommendedRange(PalmerRecommendedRangeType type, JTextField palmerTextfield) {
+		palmerTextfield.setFont(new Font("Tahoma", Font.BOLD, 9)); // NOI18N
+		palmerTextfield.setForeground(Color.RED);
 		palmerTextfield.setText(readPalmerRecommendedRange(type));
 	}
 
-	private String readPalmerRecommendedRange(String type) {
+	private String readPalmerRecommendedRange(PalmerRecommendedRangeType type) {
 		Double[] range = RicettaUtils.getPalmerRecommendedRange(type);
 		return range[0] + " - " + range[1];
 	}
@@ -2405,9 +2414,9 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		
 		GridBagConstraints gridBagConstraints = new GridBagConstraints();
 		gridBagConstraints.insets = new Insets(0, 0, 5, 5);
-		// gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.anchor = java.awt.GridBagConstraints.CENTER;
-		textField.setPreferredSize(new Dimension(77, 22));
+		textField.setPreferredSize(new Dimension(102, 22));
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
 		gridBagConstraints.gridx = gridx;
 		gridBagConstraints.gridy = gridy;
@@ -2439,29 +2448,56 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 			break;
 		case MASH_SPARGE_CALCIUM:
 			this.textFieldMashSpargeCalcium.setText(Utils.format(resultingWaterProfile, "0.00"));
+			setPalmerColor(textFieldPalmerCalcium, resultingWaterProfile, PalmerRecommendedRangeType.CALCIUM);
 			break;
 		case MASH_SPARGE_MAGNESIUM:
 			this.textFieldMashSpargeMagnesium.setText(Utils.format(resultingWaterProfile, "0.00"));
+			setPalmerColor(textFieldPalmerMagnesium, resultingWaterProfile, PalmerRecommendedRangeType.MAGNESIUM);
 			break;
 		case MASH_SPARGE_SODIUM:
 			this.textFieldMashSpargeSodium.setText(Utils.format(resultingWaterProfile, "0.00"));
+			setPalmerColor(textFieldPalmerSodium, resultingWaterProfile, PalmerRecommendedRangeType.SODIUM);
 			break;
 		case MASH_SPARGE_CHLORIDE:
 			this.textFieldMashSpargeChloride.setText(Utils.format(resultingWaterProfile, "0.00"));
+			setPalmerColor(textFieldPalmerChloride, resultingWaterProfile, PalmerRecommendedRangeType.CHLORIDE);
 			break;
 		case MASH_SPARGE_SULFATE:
 			this.textFieldMashSpargeSulfate.setText(Utils.format(resultingWaterProfile, "0.00"));
+			setPalmerColor(textFieldPalmerSulfate, resultingWaterProfile, PalmerRecommendedRangeType.SULFATE);
 			break;
 		case MASH_SPARGE_CHLORIDE_SULFATE_RATIO:
-			this.textFieldMashSpargeChlorideSulfateRatio.setText("");
+			this.textFieldMashSpargeChlorideSulfateRatio.setText(Utils.format(resultingWaterProfile, "0.00"));
+			setPalmerResult(resultingWaterProfile);
 			break;
 		default:
 			break;
 	
 		}
-		
-
 	}
+
+	private void setPalmerColor(JTextField texfield, Double value, PalmerRecommendedRangeType type)
+	{
+		boolean isPalmerOk = RicettaUtils.isPalmerValueOk(value, type);
+		Color okColor = new Color(31, 112, 68);
+		Color koColor = Color.RED;
+		texfield.setForeground(isPalmerOk ? okColor : koColor);
+	}
+	
+	private void setPalmerResult(Double value) 
+	{
+		String amara = "< 0.77 - Amara "; //"Sotto 0,77, può esaltare l'amarezza";
+		String bilanciata = "Bilanciata";
+		String maltata = "> 1,3 - Maltata"; //Sopra 1,3 può esaltare il maltato";
+		Color okColor = new Color(31, 112, 68);
+		Color koColor = Color.RED;
+		Color color = 0.77 <= value && value <= 1.3 ? okColor : koColor;
+		
+		String text = value < 0.77 ? amara : 0.77 <= value && value <= 1.3 ? bilanciata : maltata;
+		this.textFieldPalmerChlorideSulfateRatio.setText(text);
+		this.textFieldPalmerChlorideSulfateRatio.setForeground(color);
+	}
+		
 
 	public void setSaltValues(SaltType saltType, double volumeMashLitri, double volumeSpargeLitri) {
 		double volumeTotale = volumeMashLitri + volumeSpargeLitri;
