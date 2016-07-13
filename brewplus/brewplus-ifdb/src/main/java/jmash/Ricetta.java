@@ -1726,14 +1726,15 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		summary.setOg(getSGPerStampa());
 		summary.setOgPreBoil(getOGPreBoil());
 		summary.setPlato(String.format("%.01f",getPPerStampa()));
-		summary.setTotalGrain("");
+		summary.setTotalGrain(getGrammiTotali() + " gr.");
 		summary.setTotalLiters(rec.getVolumeFin().toString());
+		summary.setRatioLitreKg(String.format("%.01f",Main.config.getLitriPerKg()));
 		summaries.add(summary);
 		
 		try {
 			LOGGER.debug("Print PDF recipe.");
-			PrintRecipe print = new PrintRecipe();
-			print.recipe(fldNome!=null?fldNome.getText():Main.bundle.getString("label.noRecipeName"), brewStyle!= null?brewStyle.getNome():Main.bundle.getString("label.noStyleName"), Main.versioneHobbyBrew, summaries);
+			//PrintRecipe print = new PrintRecipe();
+			PrintRecipe.recipe(fldNome!=null?fldNome.getText():Main.bundle.getString("label.noRecipeName"), brewStyle!= null?brewStyle.getNome():Main.bundle.getString("label.noStyleName"), Main.versioneHobbyBrew, summaries);
 			/*
 			RandomAccessFile f = new RandomAccessFile(Main.printTemplate, "r");
 			byte b[] = new byte[(int) f.length()];

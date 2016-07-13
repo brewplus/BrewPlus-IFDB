@@ -51,19 +51,6 @@ public class Config {
     private Integer metriSLM = 160;
     private Integer amaroDHEA = 45;
    
-    /*private Double tempSparge = 76.0;
-    private Double tolleranzaAccensione = 0.0;
-    private Double tolleranzaSpegnimento = 0.0;
-
-    private Double tempIngressoGrani = 0.0;
-    private String arduinoPort = "COM1";
-    private String gestisciSparge = "Y";
-    private String testIodio = "Y";
-    private Double intervalloSonda = 1.0;
-    private Double temperaturaRampa = 0.0;
-    private Integer TempoInerziaRampa = 30;
-    private String invertiSonde = "N";*/
-
     private Double lostToTrub = 0.5;
     private Double lostToSparge = 3.0;
     private Double litriPerKg = 3.0;
