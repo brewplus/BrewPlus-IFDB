@@ -191,7 +191,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		// scrollPanel.setViewportView(waterPanel);
 		scrollPanel.getViewport().setPreferredSize(new Dimension(0, 0));
 		this.jTabbedPane1.add(waterNeeded.getComponent(0), Main.bundle.getString("label.waterQuantity"));
-		this.jTabbedPane1.add(waterNeededNew.getComponent(0), Main.bundle.getString("label.waterQuantity") + "_NEW");
+		//this.jTabbedPane1.add(waterNeededNew.getComponent(0), Main.bundle.getString("label.waterQuantity") + "_NEW");
 		this.jTabbedPane1.add(Main.bundle.getString("label.waterQuality"), waterPanel);
 
 
