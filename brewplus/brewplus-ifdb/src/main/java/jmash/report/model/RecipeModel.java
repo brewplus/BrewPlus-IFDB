@@ -20,6 +20,7 @@ public class RecipeModel {
 	private String ibu;	 
 	private String efficency; 
 	private String boilingTime;
+	private String ratioLitreKg;
 	private List<Hop> hops;
 	private List<Malt> malts;
 	private List<Mash> steps;
@@ -120,6 +121,12 @@ public class RecipeModel {
 	}
 	public void setYeasts(List<Yeast> yeasts) {
 		this.yeasts = yeasts;
+	}
+	public String getRatioLitreKg() {
+		return ratioLitreKg;
+	}
+	public void setRatioLitreKg(String ratioLitreKg) {
+		this.ratioLitreKg = ratioLitreKg;
 	}
 	
 }
