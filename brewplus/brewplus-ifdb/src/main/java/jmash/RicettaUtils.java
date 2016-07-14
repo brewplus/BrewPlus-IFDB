@@ -312,7 +312,7 @@ public class RicettaUtils {
 	public static boolean isPalmerValueOk(Double value, PalmerRecommendedRangeType type)
 	{
 		boolean palmerValueOk = false;
-		if (Double.isFinite(value))
+		if (!Double.isNaN(value) && !Double.isInfinite(value))
 		{
 			Double[] palmerRange = RicettaUtils.getPalmerRecommendedRange(type);
 			palmerValueOk = palmerRange[0] <= value && value <= palmerRange[1];

@@ -107,6 +107,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	private boolean dirty = false;
 	public static final int dimx = 81;
 	public static final int dimy = 120;
+	public WaterNeeded waterNeeded = new WaterNeeded();
+	public WaterNeededNew waterNeededNew = new WaterNeededNew();
 	public WaterAdjustPanel waterPanel = null;
 	//private Gyle gyle = null;
 	private static javax.swing.ImageIcon hopsIcon = new javax.swing.ImageIcon(Ricetta.class.getResource("/jmash/images/hops.gif"));
@@ -189,7 +191,9 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		// scrollPanel.setViewportView(waterPanel);
 		scrollPanel.getViewport().setPreferredSize(new Dimension(0, 0));
 		this.jTabbedPane1.add(waterNeeded.getComponent(0), Main.bundle.getString("label.waterQuantity"));
+		this.jTabbedPane1.add(waterNeededNew.getComponent(0), Main.bundle.getString("label.waterQuantity") + "_NEW");
 		this.jTabbedPane1.add(Main.bundle.getString("label.waterQuality"), waterPanel);
+
 
 		this.maltSorter.setTableHeader(this.tblMalts.getTableHeader());
 		this.hopSorter.setTableHeader(this.tblHops.getTableHeader());
@@ -310,6 +314,16 @@ public class Ricetta extends javax.swing.JInternalFrame {
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				LOGGER.debug("waterNeeded changed");
+				ricettaModificata();
+
+			}
+		});
+		
+		waterNeededNew.addChangeListener(new ChangeListener() {
+
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				LOGGER.debug("waterNeededNew changed");
 				ricettaModificata();
 
 			}
@@ -1664,7 +1678,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		glassPanel.setColor(maltTableModel.getSRMMosher());
 	}// GEN-LAST:event_jLabel16MouseClicked
 
-	public WaterNeeded waterNeeded = new WaterNeeded();
+	
 
 	private void btnAdd10ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd10ActionPerformed
 
