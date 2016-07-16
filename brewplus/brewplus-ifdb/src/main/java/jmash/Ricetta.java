@@ -109,6 +109,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	public static final int dimy = 120;
 	public WaterNeeded waterNeeded = new WaterNeeded();
 	public WaterNeededNew waterNeededNew = new WaterNeededNew();
+	public WaterNeededNew2 waterNeededNew2 = new WaterNeededNew2();
 	public WaterAdjustPanel waterPanel = null;
 	//private Gyle gyle = null;
 	private static javax.swing.ImageIcon hopsIcon = new javax.swing.ImageIcon(Ricetta.class.getResource("/jmash/images/hops.gif"));
@@ -191,7 +192,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		// scrollPanel.setViewportView(waterPanel);
 		scrollPanel.getViewport().setPreferredSize(new Dimension(0, 0));
 		this.jTabbedPane1.add(waterNeeded.getComponent(0), Main.bundle.getString("label.waterQuantity"));
-		//this.jTabbedPane1.add(waterNeededNew.getComponent(0), Main.bundle.getString("label.waterQuantity") + "_NEW");
+		this.jTabbedPane1.add(waterNeededNew.getComponent(0), Main.bundle.getString("label.waterQuantity") + "_NEW");
+		this.jTabbedPane1.add(waterNeededNew2.getComponent(0), Main.bundle.getString("label.waterQuantity") + "_NEW_2");
 		this.jTabbedPane1.add(Main.bundle.getString("label.waterQuality"), waterPanel);
 
 
@@ -2123,11 +2125,15 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 		waterNeeded.setMashKg((double) maltTableModel.getGrammiMash() / 1000);
 		waterNeeded.setBatchSize(spinVolumeFin.getVolume());
+		waterNeededNew2.setBatchSize(spinVolumeFin.getVolume());
+		waterNeededNew2.setTotGrani((double) maltTableModel.getGrammiMash() / 1000);
+		waterNeededNew2.setOriginalGravity(maltTableModel.getSG(concentrato));
 		waterNeeded.setBoilTime(getBollitura());
 		waterPanel.setTotWater(waterNeeded.getTotWater());
 		double sg = maltTableModel.getSG(concentrato);
 
 		summaryTableModel.setSG(sg);
+		
 		sg = maltTableModel.getSG(false);
 		summaryTableModel
 				.setSGPB(Utils.Plato2SG(Utils.SG2Plato(sg) * spinVolumeFin.getVolume() / spinVolumeBoll.getVolume()));
