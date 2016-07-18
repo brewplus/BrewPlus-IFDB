@@ -7,7 +7,14 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.GridBagConstraints;
 import java.awt.Image;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -16,28 +23,21 @@ import java.text.SimpleDateFormat;
 import java.util.Iterator;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
+import javax.swing.SwingConstants;
 
 import org.apache.log4j.Logger;
 import org.jdom.Document;
 import org.jdom.Element;
-import javax.swing.ImageIcon;
-import javax.swing.SwingConstants;
-import java.awt.GridBagConstraints;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
 
 import jmash.imagecomponents.ImageFileView;
 import jmash.imagecomponents.ImageFilter;
 import jmash.imagecomponents.ImagePreview;
-import javax.swing.JButton;
-import java.awt.Insets;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class NewCotta extends javax.swing.JInternalFrame {
 
@@ -52,7 +52,7 @@ public class NewCotta extends javax.swing.JInternalFrame {
 	PanelMashLog mashLog;
 	PanelDegustazione degu = new PanelDegustazione();
 	PanelMashStep mashDesign;
-	WaterNeeded waterNeeded = new WaterNeeded();
+	WaterNeededNew2 waterNeeded = new WaterNeededNew2();
 	private File file;
 
 	/** Creates new form NewCotta */

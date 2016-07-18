@@ -107,7 +107,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	private boolean dirty = false;
 	public static final int dimx = 81;
 	public static final int dimy = 120;
-	public WaterNeeded waterNeeded = new WaterNeeded();
+//	public WaterNeeded waterNeeded = new WaterNeeded();
 	public WaterNeededNew2 waterNeededNew2 = new WaterNeededNew2();
 	public WaterAdjustPanel waterPanel = null;
 	//private Gyle gyle = null;
@@ -190,8 +190,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		JScrollPane scrollPanel = new JScrollPane();
 		// scrollPanel.setViewportView(waterPanel);
 		scrollPanel.getViewport().setPreferredSize(new Dimension(0, 0));
-		this.jTabbedPane1.add(waterNeeded.getComponent(0), Main.bundle.getString("label.waterQuantity"));
-		this.jTabbedPane1.add(waterNeededNew2.getComponent(0), Main.bundle.getString("label.waterQuantity") + "_NEW");
+//		this.jTabbedPane1.add(waterNeeded.getComponent(0), Main.bundle.getString("label.waterQuantity"));
+		this.jTabbedPane1.add(waterNeededNew2.getComponent(0), Main.bundle.getString("label.waterQuantity"));
 		this.jTabbedPane1.add(Main.bundle.getString("label.waterQuality"), waterPanel);
 
 
@@ -309,15 +309,15 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		});
 
 	
-		waterNeeded.addChangeListener(new ChangeListener() {
-
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				LOGGER.debug("waterNeeded changed");
-				ricettaModificata();
-
-			}
-		});
+//		waterNeeded.addChangeListener(new ChangeListener() {
+//
+//			@Override
+//			public void stateChanged(ChangeEvent e) {
+//				LOGGER.debug("waterNeeded changed");
+//				ricettaModificata();
+//
+//			}
+//		});
 		
 		waterNeededNew2.addChangeListener(new ChangeListener() {
 
@@ -2121,20 +2121,21 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		summaryTableModel.setTotL(hopTableModel.getGrammi());
 		summaryTableModel.setTotG(maltTableModel.getGrammi());
 
-		waterNeeded.setMashKg((double) maltTableModel.getGrammiMash() / 1000);
-		waterNeeded.setBatchSize(spinVolumeFin.getVolume());
+//		waterNeeded.setMashKg((double) maltTableModel.getGrammiMash() / 1000);
+//		waterNeeded.setBatchSize(spinVolumeFin.getVolume());
 		waterNeededNew2.setBatchSize(spinVolumeFin.getVolume());
 		waterNeededNew2.setTotGrani((double) maltTableModel.getGrammiMash() / 1000);
 		waterNeededNew2.setOriginalGravity(maltTableModel.getSG(concentrato));
-		waterNeeded.setBoilTime(getBollitura());
-		waterPanel.setTotWater(waterNeeded.getTotWater());
+		//waterNeeded.setBoilTime(getBollitura());
+		
+//		waterPanel.setTotWater(waterNeeded.getTotWater());
+		waterPanel.setTotWater(waterNeededNew2.getTotWater());
 		double sg = maltTableModel.getSG(concentrato);
 
 		summaryTableModel.setSG(sg);
 		
 		sg = maltTableModel.getSG(false);
-		summaryTableModel
-				.setSGPB(Utils.Plato2SG(Utils.SG2Plato(sg) * spinVolumeFin.getVolume() / spinVolumeBoll.getVolume()));
+		summaryTableModel.setSGPB(Utils.Plato2SG(Utils.SG2Plato(sg) * spinVolumeFin.getVolume() / spinVolumeBoll.getVolume()));
 
 		tblSummary.setCellSelectionEnabled(false);
 		tblSummary.setRowSelectionAllowed(false);
@@ -2477,7 +2478,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		if (src.getTreatment() != null)
 			waterPanel.setTreatment(src.getTreatment());
 		if (src.getWaterNeeded() != null)
-			waterNeeded.fromXml(src.getWaterNeeded());
+			waterNeededNew2.fromXml(src.getWaterNeeded());
 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -2516,7 +2517,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		src.setSourceWater(waterPanel.getSource());
 		src.setDestWater(waterPanel.getDest());
 		src.setTreatment(waterPanel.getTreatment());
-		src.setWaterNeeded(waterNeeded.toXml());
+		src.setWaterNeeded(waterNeededNew2.toXml());
 		return src;
 	}
 

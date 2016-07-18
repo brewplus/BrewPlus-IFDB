@@ -1152,7 +1152,7 @@ public class Gyle extends javax.swing.JPanel {
 	}// GEN-LAST:event_btnAdd11ActionPerformed
 
 	private void btnAdd10ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd10ActionPerformed
-		WaterNeeded ed = new WaterNeeded(this.volume, summaryTableModel.getTotG() / 1000.0, this.getBollitura(), 60 * (volumeBoll - volume) / this.getBollitura());
+		WaterNeededNew2 ed = new WaterNeededNew2(this.volume, summaryTableModel.getTotG() / 1000.0, this.getBollitura(), 60 * (volumeBoll - volume) / this.getBollitura());
 		Gui.desktopPane.add(ed);
 		Utils.center(ed, ricetta);
 		ed.setVisible(true);
