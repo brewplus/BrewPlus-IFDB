@@ -182,7 +182,7 @@ public class RicettaUtils {
 	
 	public static double getMashVolumeLitri(Ricetta recipe) {
 //		WaterNeeded waterNeeded = recipe.waterNeeded;
-		WaterNeededNew2 waterNeeded = recipe.waterNeededNew2;
+		WaterNeededNew waterNeeded = recipe.waterNeededNew2;
 		return waterNeeded.getMashVolume();
 	}
 
@@ -195,7 +195,7 @@ public class RicettaUtils {
 	
 	public static double getSpargeVolumeLitri(Ricetta recipe) {
 //		WaterNeeded waterNeeded = recipe.waterNeeded;
-		WaterNeededNew2 waterNeeded = recipe.waterNeededNew2;
+		WaterNeededNew waterNeeded = recipe.waterNeededNew2;
 		return waterNeeded.getSpargeVolume();
 	}
 	

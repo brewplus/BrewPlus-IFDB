@@ -31,7 +31,7 @@ public class CopyOfNewCotta extends javax.swing.JInternalFrame {
 	PanelMashLog mashLog;
 	PanelDegustazione degu = new PanelDegustazione();
 	PanelMashStep mashDesign;
-	WaterNeededNew2 waterNeeded = new WaterNeededNew2();
+	WaterNeededNew waterNeeded = new WaterNeededNew();
 	private File file;
 
 	/** Creates new form NewCotta */

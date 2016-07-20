@@ -1,6 +1,5 @@
 package jmash;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -12,28 +11,22 @@ import javax.swing.JCheckBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import org.apache.log4j.Logger;
-
-import jmash.component.JMashSpinner;
 import org.jdom.Element;
 
-public class WaterNeededNew2 extends JInternalFrame {
-	private static final long serialVersionUID = -5301195065823912614L;
-	private static Logger LOGGER = Logger.getLogger(WaterNeededNew2.class);
+import jmash.component.JMashSpinner;
+import jmash.component.JVolumeSpinner;
 
-	private JTabbedPane tabbedPane;
+public class WaterNeededNew extends JInternalFrame {
+	private static final long serialVersionUID = -5301195065823912614L;
+
 	private JPanel panelSparge;
-	private JPanel panelBatchSparge;
-	private JPanel panelNoSparge;
 	private JPanel panelSpecificheCottaSparge;
 	private JPanel panelDatiImpiantoSparge;
 	private JPanel panelCalcoloPerditeSparge;
 	private JPanel panelCalcoloVolumiSparge;
-	// private JPanel panelRabbocchiSparge;
 	private JPanel panelRisultatiSparge;
 	private JLabel lblBatchSize;
 	private JLabel lblGraniTotali;
@@ -89,8 +82,11 @@ public class WaterNeededNew2 extends JInternalFrame {
 	private JMashSpinner spinnerTotaleAcqua;
 	private JLabel lblTotaleAcquaRichiesta;
 	private JLabel lblLitri_10;
+	private JLabel lblLitri_11;
+	private JLabel lblVolumeRealeInFermentatore;
+	private JMashSpinner spinnerVolumeRealeInFermentatore;
 
-	public WaterNeededNew2() {
+	public WaterNeededNew() {
 		initComponents();
 		setBorder(Utils.getDefaultBorder());
 
@@ -102,39 +98,40 @@ public class WaterNeededNew2 extends JInternalFrame {
 		spinnerBatchSize.setModel(Main.config.getVolumeFin(), 0, 1000000, 0.5, "0.00", "WaterNeeded.BS");
 		spinnerGraniTotali.setModel(0.0, 0.0, 1000000.0, 0.5, "0.000", "WaterNeeded.TotGrani");
 		spinnerOriginalGravity.setModel(0.0, 0.0, 1000000.0, 1, "0", "WaterNeeded.OG");
-		spinnerAssorbimentoGraniEsausti.setModel(Main.getFromCache("WaterNeeded.coefficienteAssorbimento", 1.01), 0, 1000000, 0.001, "0.000", "WaterNeeded.ABS");
+		spinnerAssorbimentoGraniEsausti.setModel(Main.getFromCache("WaterNeeded.coefficienteAssorbimento", 1.01), 0, 1000000, 0.001, "0.00", "WaterNeeded.ABS");
 		
-		spinnerPerditeNelTrub.setModel(Main.config.getLostToTrub(), 0.0, 1000000, 0.1, "0.000", "WaterNeeded.trub");
-		spinnerRapportoAcquaGrani.setModel(Main.config.getLitriPerKg(), 0.0, 1000000, 0.25, "0.000", "WaterNeeded.kg");
+		spinnerPerditeNelTrub.setModel(Main.config.getLostToTrub(), 0.0, 1000000, 0.1, "0.00", "WaterNeeded.trub");
+		spinnerRapportoAcquaGrani.setModel(Main.config.getLitriPerKg(), 0.0, 1000000, 0.25, "0.00", "WaterNeeded.kg");
 		
-		spinnerPercentualeEvaporazione.setModel(Main.getFromCache("WaterNeeded.pEV", 4.0), 0.0, 1000000, 0.25, "0.000", "WaterNeeded.pEV");
-		spinnerContrazionePerRaffreddamento.setModel(Main.getFromCache("WaterNeeded.shrink", 4.0), 0, 99, 1, "0.000", "WaterNeeded.shrink");
+		spinnerPercentualeEvaporazione.setModel(Main.getFromCache("WaterNeeded.pEV", 4.0), 0.0, 1000000, 0.25, "0.00", "WaterNeeded.pEV");
+		spinnerContrazionePerRaffreddamento.setModel(Main.getFromCache("WaterNeeded.shrink", 4.0), 0, 99, 1, "0.00", "WaterNeeded.shrink");
 
-		spinnerPerditaPerAssorbimento.setModel(Main.getFromCache("WaterNeeded.perditaPerAssorbimento", 0.0), 0, 1000000, 0.5, "0.000", "WaterNeeded.PerdAss");
-		spinnerPerditaPerEvaporazione.setModel(Main.getFromCache("WaterNeeded.perditaPerEvaporazione", 0.0), 0, 1000000, 0.5, "0.000", "WaterNeeded.PerdEvap");
-		spinnerPerditaPerContrazione.setModel(Main.getFromCache("WaterNeeded.perditaPerContrazione", 0.0), 0, 1000000, 0.5, "0.000", "WaterNeeded.PerdContraz");
+		spinnerPerditaPerAssorbimento.setModel(Main.getFromCache("WaterNeeded.perditaPerAssorbimento", 0.0), 0, 1000000, 0.5, "0.00", "WaterNeeded.PerdAss");
+		spinnerPerditaPerEvaporazione.setModel(Main.getFromCache("WaterNeeded.perditaPerEvaporazione", 0.0), 0, 1000000, 0.5, "0.00", "WaterNeeded.PerdEvap");
+		spinnerPerditaPerContrazione.setModel(Main.getFromCache("WaterNeeded.perditaPerContrazione", 0.0), 0, 1000000, 0.5, "0.00", "WaterNeeded.PerdContraz");
 		
 		
-		spinnerVolumeMostoPreBoil.setModel(Main.getFromCache("WaterNeeded.PB", 0.0), 0, 1000000, 0.5, "0.000", "WaterNeeded.PB");
+		spinnerVolumeMostoPreBoil.setModel(Main.getFromCache("WaterNeeded.PB", 0.0), 0, 1000000, 0.5, "0.00", "WaterNeeded.PB");
 		spinnerOGPreBoil.setModel(Main.getFromCache("WaterNeeded.pOG", 0.0), 0, 1000000, 0.5, "0", "WaterNeeded.pOG");
-		spinnerVolumePostBoil.setModel(Main.getFromCache("WaterNeeded.PostB", 0.0), 0, 1000000, 0.5, "0.000", "WaterNeeded.PostB");
-		spinnerVolumePostRaffreddamento.setModel(Main.getFromCache("WaterNeeded.volumePostRaffreddamento", 0.0), 0, 1000000, 0.5, "0.000", "WaterNeeded.volumePostRaffreddamento");
+		spinnerVolumePostBoil.setModel(Main.getFromCache("WaterNeeded.PostB", 0.0), 0, 1000000, 0.5, "0.00", "WaterNeeded.PostB");
+		spinnerVolumePostRaffreddamento.setModel(Main.getFromCache("WaterNeeded.volumePostRaffreddamento", 0.0), 0, 1000000, 0.5, "0.00", "WaterNeeded.volumePostRaffreddamento");
+		spinnerVolumeRealeInFermentatore.setModel(Main.getFromCache("WaterNeeded.volumeRealeInFermentatore", 0.0), 0, 1000000, 0.5, "0.00", "WaterNeeded.volumeRealeInFermentatore");
 		
-		spinnerAcquaMash.setModel(Main.getFromCache("WaterNeeded.volumeMash", 0.0), 0, 1000000, 0.5, "0.000", "WaterNeeded.volumeMash");
-		spinnerAcquaSparge.setModel(Main.getFromCache("WaterNeeded.volumeSparge", 0.0), 0, 1000000, 0.5, "0.000", "WaterNeeded.volumeSparge");	
-		spinnerTotaleAcqua.setModel(Main.getFromCache("WaterNeeded.volumeTotale", 0.0), 0, 1000000, 0.5, "0.000", "WaterNeeded.volumeTotale");
+		spinnerAcquaMash.setModel(Main.getFromCache("WaterNeeded.volumeMash", 0.0), 0, 1000000, 0.5, "0.00", "WaterNeeded.volumeMash");
+		spinnerAcquaSparge.setModel(Main.getFromCache("WaterNeeded.volumeSparge", 0.0), 0, 1000000, 0.5, "0.00", "WaterNeeded.volumeSparge");	
+		spinnerTotaleAcqua.setModel(Main.getFromCache("WaterNeeded.volumeTotale", 0.0), 0, 1000000, 0.5, "0.00", "WaterNeeded.volumeTotale");
 		
 		
 		
 		
 		setBackground(getBackground().darker());
 		panelSparge.setBackground(panelSparge.getBackground().darker());
+		
+		calcolaQuantitaAcqua();
 
-		// tabbedPane.setEnabledAt(1, false);
-		// tabbedPane.setEnabledAt(2, false);
 	}
 	
-	public WaterNeededNew2(double batchSize, double kg, double boilTime, double evap) {
+	public WaterNeededNew(double batchSize, double kg, double boilTime, double evap) {
         this();
         spinnerBatchSize.setDoubleValue(batchSize);
         spinnerGraniTotali.setDoubleValue(kg);
@@ -147,28 +144,15 @@ public class WaterNeededNew2 extends JInternalFrame {
 
 	private void initComponents() {
 
-		tabbedPane = new JTabbedPane();
 
 		panelSparge = new JPanel(new GridBagLayout());
-		panelBatchSparge = new JPanel(new GridBagLayout());
-		panelNoSparge = new JPanel(new GridBagLayout());
 
 		setClosable(true);
 		setIconifiable(true);
 		setTitle("Acqua necessaria");
 
-		//getContentPane().add(tabbedPane, BorderLayout.CENTER);
-
-		//tabbedPane.addTab("Con Sparge", panelSparge);
-		//tabbedPane.addTab("Batch Sparge", panelBatchSparge);
-		//tabbedPane.addTab("No Sparge", panelNoSparge);
-
-		//getContentPane().add(tabbedPane, java.awt.BorderLayout.CENTER);
-
 		initSpargePanel();
-		//initBatchSpargePanel();
-		//initNoSpargePanel();
-		
+
 		getContentPane().add(panelSparge, java.awt.BorderLayout.CENTER);
 		
 
@@ -210,6 +194,7 @@ public class WaterNeededNew2 extends JInternalFrame {
 		{
 			lblBatchSize = new JLabel("Batch size");
 			GridBagConstraints gbc_lblBatchSize = new GridBagConstraints();
+			gbc_lblBatchSize.anchor = GridBagConstraints.EAST;
 			gbc_lblBatchSize.insets = new Insets(0, 0, 5, 5);
 			gbc_lblBatchSize.gridx = 0;
 			gbc_lblBatchSize.gridy = 0;
@@ -241,6 +226,7 @@ public class WaterNeededNew2 extends JInternalFrame {
 		{
 			lblGraniTotali = new JLabel("Grani totali");
 			GridBagConstraints gbc_lblGraniTotali = new GridBagConstraints();
+			gbc_lblGraniTotali.anchor = GridBagConstraints.EAST;
 			gbc_lblGraniTotali.insets = new Insets(0, 0, 5, 5);
 			gbc_lblGraniTotali.gridx = 0;
 			gbc_lblGraniTotali.gridy = 1;
@@ -272,6 +258,7 @@ public class WaterNeededNew2 extends JInternalFrame {
 		{
 			lblOriginalGravity = new JLabel("Original Gravity");
 			GridBagConstraints gbc_lblOriginalGravity = new GridBagConstraints();
+			gbc_lblOriginalGravity.anchor = GridBagConstraints.EAST;
 			gbc_lblOriginalGravity.insets = new Insets(0, 0, 0, 5);
 			gbc_lblOriginalGravity.gridx = 0;
 			gbc_lblOriginalGravity.gridy = 2;
@@ -329,6 +316,7 @@ public class WaterNeededNew2 extends JInternalFrame {
 		{
 			lblAssorbimentoGraniEsausti = new JLabel("Assorbimento grani esausti");
 			GridBagConstraints gbc_lblAssorbimentoGraniEsausti = new GridBagConstraints();
+			gbc_lblAssorbimentoGraniEsausti.anchor = GridBagConstraints.EAST;
 			gbc_lblAssorbimentoGraniEsausti.insets = new Insets(0, 0, 5, 5);
 			gbc_lblAssorbimentoGraniEsausti.gridx = 0;
 			gbc_lblAssorbimentoGraniEsausti.gridy = 0;
@@ -359,6 +347,7 @@ public class WaterNeededNew2 extends JInternalFrame {
 		{
 			lblRapportoAcquaGrani = new JLabel("Rapporto acqua/grani");
 			GridBagConstraints gbc_lblRapportoAcquaGrani = new GridBagConstraints();
+			gbc_lblRapportoAcquaGrani.anchor = GridBagConstraints.EAST;
 			gbc_lblRapportoAcquaGrani.insets = new Insets(0, 0, 5, 5);
 			gbc_lblRapportoAcquaGrani.gridx = 0;
 			gbc_lblRapportoAcquaGrani.gridy = 1;
@@ -389,6 +378,7 @@ public class WaterNeededNew2 extends JInternalFrame {
 		{
 			lblPercentualeEvaporazione = new JLabel("Percentuale evaporazione");
 			GridBagConstraints gbc_lblPercentualeEvaporazione = new GridBagConstraints();
+			gbc_lblPercentualeEvaporazione.anchor = GridBagConstraints.EAST;
 			gbc_lblPercentualeEvaporazione.insets = new Insets(0, 0, 5, 5);
 			gbc_lblPercentualeEvaporazione.gridx = 0;
 			gbc_lblPercentualeEvaporazione.gridy = 2;
@@ -419,6 +409,7 @@ public class WaterNeededNew2 extends JInternalFrame {
 		{
 			lblContrazionePerRaffreddamento = new JLabel("Contrazione per raffreddamento");
 			GridBagConstraints gbc_lblContrazionePerRaffreddamento = new GridBagConstraints();
+			gbc_lblContrazionePerRaffreddamento.anchor = GridBagConstraints.EAST;
 			gbc_lblContrazionePerRaffreddamento.insets = new Insets(0, 0, 5, 5);
 			gbc_lblContrazionePerRaffreddamento.gridx = 0;
 			gbc_lblContrazionePerRaffreddamento.gridy = 3;
@@ -455,6 +446,7 @@ public class WaterNeededNew2 extends JInternalFrame {
 				}
 			});
 			GridBagConstraints gbc_chckbxPerditeNelTrub = new GridBagConstraints();
+			gbc_chckbxPerditeNelTrub.anchor = GridBagConstraints.EAST;
 			gbc_chckbxPerditeNelTrub.insets = new Insets(0, 0, 5, 5);
 			gbc_chckbxPerditeNelTrub.gridx = 0;
 			gbc_chckbxPerditeNelTrub.gridy = 4;
@@ -511,6 +503,7 @@ public class WaterNeededNew2 extends JInternalFrame {
 		{
 			lblPerditaPerAssorbimento = new JLabel("Perdita per assorbimento");
 			GridBagConstraints gbc_lblPerditaPerAssorbimento = new GridBagConstraints();
+			gbc_lblPerditaPerAssorbimento.anchor = GridBagConstraints.EAST;
 			gbc_lblPerditaPerAssorbimento.insets = new Insets(0, 0, 5, 5);
 			gbc_lblPerditaPerAssorbimento.gridx = 0;
 			gbc_lblPerditaPerAssorbimento.gridy = 0;
@@ -537,6 +530,7 @@ public class WaterNeededNew2 extends JInternalFrame {
 		{
 			lblPerditaPerEvaporazione = new JLabel("Perdita per evaporazione");
 			GridBagConstraints gbc_lblPerditaPerEvaporazione = new GridBagConstraints();
+			gbc_lblPerditaPerEvaporazione.anchor = GridBagConstraints.EAST;
 			gbc_lblPerditaPerEvaporazione.insets = new Insets(0, 0, 5, 5);
 			gbc_lblPerditaPerEvaporazione.gridx = 0;
 			gbc_lblPerditaPerEvaporazione.gridy = 1;
@@ -563,6 +557,7 @@ public class WaterNeededNew2 extends JInternalFrame {
 		{
 			lblPerditaPerContrazione = new JLabel("Perdita per contrazione");
 			GridBagConstraints gbc_lblPerditaPerContrazione = new GridBagConstraints();
+			gbc_lblPerditaPerContrazione.anchor = GridBagConstraints.EAST;
 			gbc_lblPerditaPerContrazione.insets = new Insets(0, 0, 0, 5);
 			gbc_lblPerditaPerContrazione.gridx = 0;
 			gbc_lblPerditaPerContrazione.gridy = 2;
@@ -595,6 +590,7 @@ public class WaterNeededNew2 extends JInternalFrame {
 		panelCalcoloVolumiSparge = new JPanel();
 		panelCalcoloVolumiSparge.setBorder(javax.swing.BorderFactory.createTitledBorder("Calcolo dei volumi"));
 		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0};
 		// gbl_panelSpecificheCottaSparge.columnWeights = new double[]{0.0, 1.0,
 		// 0.0};
 		gridBagLayout.columnWidths = new int[] { 150, 78, 0 };
@@ -613,6 +609,7 @@ public class WaterNeededNew2 extends JInternalFrame {
 		{
 			lblVolumeMostoPreboil = new JLabel("Volume mosto pre-boil");
 			GridBagConstraints gbc_lblVolumeMostoPreboil = new GridBagConstraints();
+			gbc_lblVolumeMostoPreboil.anchor = GridBagConstraints.EAST;
 			gbc_lblVolumeMostoPreboil.insets = new Insets(0, 0, 5, 5);
 			gbc_lblVolumeMostoPreboil.gridx = 0;
 			gbc_lblVolumeMostoPreboil.gridy = 0;
@@ -639,6 +636,7 @@ public class WaterNeededNew2 extends JInternalFrame {
 		{
 			lblOgPreboil = new JLabel("OG pre-boil");
 			GridBagConstraints gbc_lblOgPreboil = new GridBagConstraints();
+			gbc_lblOgPreboil.anchor = GridBagConstraints.EAST;
 			gbc_lblOgPreboil.insets = new Insets(0, 0, 5, 5);
 			gbc_lblOgPreboil.gridx = 0;
 			gbc_lblOgPreboil.gridy = 1;
@@ -665,6 +663,7 @@ public class WaterNeededNew2 extends JInternalFrame {
 		{
 			lblVolumePostboil = new JLabel("Volume post-boil");
 			GridBagConstraints gbc_lblVolumePostboil = new GridBagConstraints();
+			gbc_lblVolumePostboil.anchor = GridBagConstraints.EAST;
 			gbc_lblVolumePostboil.insets = new Insets(0, 0, 5, 5);
 			gbc_lblVolumePostboil.gridx = 0;
 			gbc_lblVolumePostboil.gridy = 2;
@@ -691,7 +690,8 @@ public class WaterNeededNew2 extends JInternalFrame {
 		{
 			lblVolumePostraffreddamento = new JLabel("Volume post-raffreddamento");
 			GridBagConstraints gbc_lblVolumePostraffreddamento = new GridBagConstraints();
-			gbc_lblVolumePostraffreddamento.insets = new Insets(0, 0, 0, 5);
+			gbc_lblVolumePostraffreddamento.anchor = GridBagConstraints.EAST;
+			gbc_lblVolumePostraffreddamento.insets = new Insets(0, 0, 5, 5);
 			gbc_lblVolumePostraffreddamento.gridx = 0;
 			gbc_lblVolumePostraffreddamento.gridy = 3;
 			panelCalcoloVolumiSparge.add(lblVolumePostraffreddamento, gbc_lblVolumePostraffreddamento);
@@ -701,7 +701,7 @@ public class WaterNeededNew2 extends JInternalFrame {
 			spinnerVolumePostRaffreddamento.setEnabled(false);
 			spinnerVolumePostRaffreddamento.setPreferredSize(new Dimension(80, 20));
 			GridBagConstraints gbc_spinnerVolumePostRaffreddamento = new GridBagConstraints();
-			gbc_spinnerVolumePostRaffreddamento.insets = new Insets(0, 0, 0, 5);
+			gbc_spinnerVolumePostRaffreddamento.insets = new Insets(0, 0, 5, 5);
 			gbc_spinnerVolumePostRaffreddamento.gridx = 1;
 			gbc_spinnerVolumePostRaffreddamento.gridy = 3;
 			panelCalcoloVolumiSparge.add(spinnerVolumePostRaffreddamento, gbc_spinnerVolumePostRaffreddamento);
@@ -709,9 +709,36 @@ public class WaterNeededNew2 extends JInternalFrame {
 		{
 			lblLitri_7 = new JLabel("litri");
 			GridBagConstraints gbc_lblLitri_7 = new GridBagConstraints();
+			gbc_lblLitri_7.insets = new Insets(0, 0, 5, 0);
 			gbc_lblLitri_7.gridx = 2;
 			gbc_lblLitri_7.gridy = 3;
 			panelCalcoloVolumiSparge.add(lblLitri_7, gbc_lblLitri_7);
+		}
+		{
+			lblVolumeRealeInFermentatore = new JLabel("Volume reale in fermentatore");
+			GridBagConstraints gbc_lblVolumeRealeInFermentatore = new GridBagConstraints();
+			gbc_lblVolumeRealeInFermentatore.anchor = GridBagConstraints.EAST;
+			gbc_lblVolumeRealeInFermentatore.insets = new Insets(0, 0, 0, 5);
+			gbc_lblVolumeRealeInFermentatore.gridx = 0;
+			gbc_lblVolumeRealeInFermentatore.gridy = 4;
+			panelCalcoloVolumiSparge.add(lblVolumeRealeInFermentatore, gbc_lblVolumeRealeInFermentatore);
+		}
+		{
+			spinnerVolumeRealeInFermentatore = new JMashSpinner();
+			spinnerVolumeRealeInFermentatore.setPreferredSize(new Dimension(80, 20));
+			spinnerVolumeRealeInFermentatore.setEnabled(false);
+			GridBagConstraints gbc_spinnerVolumeRealeInFermentatore = new GridBagConstraints();
+			gbc_spinnerVolumeRealeInFermentatore.insets = new Insets(0, 0, 0, 5);
+			gbc_spinnerVolumeRealeInFermentatore.gridx = 1;
+			gbc_spinnerVolumeRealeInFermentatore.gridy = 4;
+			panelCalcoloVolumiSparge.add(spinnerVolumeRealeInFermentatore, gbc_spinnerVolumeRealeInFermentatore);
+		}
+		{
+			lblLitri_11 = new JLabel("litri");
+			GridBagConstraints gbc_lblLitri_11 = new GridBagConstraints();
+			gbc_lblLitri_11.gridx = 2;
+			gbc_lblLitri_11.gridy = 4;
+			panelCalcoloVolumiSparge.add(lblLitri_11, gbc_lblLitri_11);
 		}
 
 	}
@@ -741,6 +768,7 @@ public class WaterNeededNew2 extends JInternalFrame {
 		{
 			lblAcquaDiMash = new JLabel("Acqua di mash");
 			GridBagConstraints gbc_lblAcquaDiMash = new GridBagConstraints();
+			gbc_lblAcquaDiMash.anchor = GridBagConstraints.EAST;
 			gbc_lblAcquaDiMash.insets = new Insets(0, 0, 5, 5);
 			gbc_lblAcquaDiMash.gridx = 0;
 			gbc_lblAcquaDiMash.gridy = 0;
@@ -767,6 +795,7 @@ public class WaterNeededNew2 extends JInternalFrame {
 		{
 			lblAcquaDiSparge = new JLabel("Acqua di sparge");
 			GridBagConstraints gbc_lblAcquaDiSparge_1 = new GridBagConstraints();
+			gbc_lblAcquaDiSparge_1.anchor = GridBagConstraints.EAST;
 			gbc_lblAcquaDiSparge_1.insets = new Insets(0, 0, 5, 5);
 			gbc_lblAcquaDiSparge_1.gridx = 0;
 			gbc_lblAcquaDiSparge_1.gridy = 1;
@@ -794,6 +823,7 @@ public class WaterNeededNew2 extends JInternalFrame {
 		{
 			lblTotaleAcquaRichiesta = new JLabel("Totale acqua richiesta");
 			GridBagConstraints gbc_lblTotaleAcquaRichiesta = new GridBagConstraints();
+			gbc_lblTotaleAcquaRichiesta.anchor = GridBagConstraints.EAST;
 			gbc_lblTotaleAcquaRichiesta.insets = new Insets(0, 0, 0, 5);
 			gbc_lblTotaleAcquaRichiesta.gridx = 0;
 			gbc_lblTotaleAcquaRichiesta.gridy = 2;
@@ -819,19 +849,26 @@ public class WaterNeededNew2 extends JInternalFrame {
 
 	}
 
-	private void initBatchSpargePanel() {
-
-	}
-
-	private void initNoSpargePanel() {
-
-	}
 
 	public void addChangeListener(ChangeListener listener) {
 		listenerList.add(ChangeListener.class, listener);
 	}
-
 	
+
+	public void removeChangeListener(ChangeListener listener) {
+		listenerList.remove(ChangeListener.class, listener);
+	}
+
+	protected void fireStateChanged(ActionEvent actionEvent) {
+		ChangeListener[] listeners = listenerList.getListeners(ChangeListener.class);
+		if (listeners != null && listeners.length > 0) {
+			ChangeEvent evt = new ChangeEvent(actionEvent);
+			for (ChangeListener listener : listeners) {
+				listener.stateChanged(evt);
+			}
+		}
+	}
+
 
 	public void setBatchSize(double batchSize) {
 		this.spinnerBatchSize.setDoubleValue(batchSize);
@@ -857,10 +894,12 @@ public class WaterNeededNew2 extends JInternalFrame {
 		double percentualeEvaporazione = this.spinnerPercentualeEvaporazione.getDoubleValue();
 		double contrazioneRaffreddamento = this.spinnerContrazionePerRaffreddamento.getDoubleValue();
 		double perditeNelTrub = this.chckbxPerditeNelTrub.isSelected() ? this.spinnerPerditeNelTrub.getDoubleValue() : 0.0;
+		this.spinnerPerditeNelTrub.setEnabled(this.chckbxPerditeNelTrub.isSelected());
 		
 		// inizio calcoli
 		double perditeAssorbimento = totGrani * assorbimentoGraniEsausti;
-		double volumePostRaffreddamento = batchSize + perditeNelTrub;
+		double volumePostRaffreddamento = batchSize;//batchSize + perditeNelTrub;
+		double volumeRealeInFermentaore = volumePostRaffreddamento - perditeNelTrub;
 		double volumePostBoil = volumePostRaffreddamento * (1.0 + (contrazioneRaffreddamento / 100.0));
 		double volumeMostoPreBoil = volumePostBoil * (1.0 + (percentualeEvaporazione / 100.0));
 		double ogPreBoil = (batchSize * originalGravity) / volumeMostoPreBoil;
@@ -880,26 +919,17 @@ public class WaterNeededNew2 extends JInternalFrame {
 		spinnerOGPreBoil.setDoubleValue(ogPreBoil);
 		spinnerVolumePostBoil.setDoubleValue(volumePostBoil);
 		spinnerVolumePostRaffreddamento.setDoubleValue(volumePostRaffreddamento);
+		spinnerVolumeRealeInFermentatore.setDoubleValue(volumeRealeInFermentaore);
 		
 		spinnerAcquaMash.setDoubleValue(acquaMash);
 		spinnerAcquaSparge.setDoubleValue(acquaSparge);
 		spinnerTotaleAcqua.setDoubleValue(acquaTotale);
 		
 		
-		
+		fireStateChanged(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, ""));
 	}
 
-	public double getTotWater() {
-		return spinnerTotaleAcqua.getDoubleValue();
-	}
-
-	public double getMashVolume() {
-		return spinnerAcquaMash.getDoubleValue();
-	}
-
-	public double getSpargeVolume() {
-		return spinnerAcquaSparge.getDoubleValue();
-	}
+	
 	
 	
 	public void fromXml(Element E) {	
@@ -943,6 +973,8 @@ public class WaterNeededNew2 extends JInternalFrame {
         	spinnerVolumePostBoil.setDoubleValue(new Double(E.getAttribute("spinnerVolumePostBoil").getValue()));
         if (E.getAttribute("spinnerVolumePostRaffreddamento") != null)
         	spinnerVolumePostRaffreddamento.setDoubleValue(new Double(E.getAttribute("spinnerVolumePostRaffreddamento").getValue()));
+        if (E.getAttribute("spinnerVolumeRealeInFermentatore") != null)
+        	spinnerVolumeRealeInFermentatore.setDoubleValue(new Double(E.getAttribute("spinnerVolumeRealeInFermentatore").getValue()));
         
         
         
@@ -984,6 +1016,7 @@ public class WaterNeededNew2 extends JInternalFrame {
         E.setAttribute("spinnerOGPreBoil", "" + spinnerOGPreBoil.getDoubleValue());
         E.setAttribute("spinnerVolumePostBoil", "" + spinnerVolumePostBoil.getDoubleValue());
         E.setAttribute("spinnerVolumePostRaffreddamento", "" + spinnerVolumePostRaffreddamento.getDoubleValue());
+        E.setAttribute("spinnerVolumeRealeInFermentatore", "" + spinnerVolumeRealeInFermentatore.getDoubleValue());
         
         E.setAttribute("spinnerAcquaMash", "" + spinnerAcquaMash.getDoubleValue());
         E.setAttribute("spinnerAcquaSparge", "" + spinnerAcquaSparge.getDoubleValue());
@@ -995,7 +1028,41 @@ public class WaterNeededNew2 extends JInternalFrame {
         return E;
     }
 	
+	public double getTotWater() {
+		return spinnerTotaleAcqua.getDoubleValue();
+	}
+
+	public double getMashVolume() {
+		return spinnerAcquaMash.getDoubleValue();
+	}
+
+	public double getSpargeVolume() {
+		return spinnerAcquaSparge.getDoubleValue();
+	}
+
+	public double getOGPreBoil() {
+		return spinnerOGPreBoil.getDoubleValue();
+	}
 	
+	public double getOriginalGravity() {
+		return spinnerOriginalGravity.getDoubleValue();
+	}
+	
+	public double getVolumeMostoPreBoil() {
+		return spinnerVolumeMostoPreBoil.getDoubleValue();
+	}
+	
+	public double getVolumePostBoil() {
+		return spinnerVolumePostBoil.getDoubleValue();
+	}
+	
+	public double getVolumePostRaffreddamento() {
+		return spinnerVolumePostRaffreddamento.getDoubleValue();
+	}
+	
+	public double getVolumeRealeInFermentatore() {
+		return spinnerVolumeRealeInFermentatore.getDoubleValue();
+	}
 	
 
 }

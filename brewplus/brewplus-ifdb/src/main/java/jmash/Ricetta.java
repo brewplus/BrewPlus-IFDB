@@ -108,7 +108,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	public static final int dimx = 81;
 	public static final int dimy = 120;
 //	public WaterNeeded waterNeeded = new WaterNeeded();
-	public WaterNeededNew2 waterNeededNew2 = new WaterNeededNew2();
+	public WaterNeededNew waterNeededNew2 = new WaterNeededNew();
 	public WaterAdjustPanel waterPanel = null;
 	//private Gyle gyle = null;
 	private static javax.swing.ImageIcon hopsIcon = new javax.swing.ImageIcon(Ricetta.class.getResource("/jmash/images/hops.gif"));
@@ -260,6 +260,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		spinBollitura.setEditor(new JSpinner.NumberEditor(spinBollitura, "# min"));
 
 		spinVolumeBoll.setModelFormat(23.0, 0.25, 9999999.0, 0.25, "0.00", "Ricetta.VB");
+		spinVolumePreBoil.setModelFormat(23.0, 0.25, 9999999.0, 0.25, "0.00", "Ricetta.VPB");
 		spinVolumeFin.setModelFormat(23.0, 0.25, 9999999.0, 0.25, "0.00", "Ricetta.VF");
 		spinVolumeDiluito.setModelFormat(23.0, 0.25, 9999999.0, 0.25, "0.00", "Ricetta.DL");
 
@@ -480,6 +481,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		lblDil = new javax.swing.JLabel();
 		spinVolumeDiluito = new jmash.component.JVolumeSpinner();
 		spinVolumeBoll = new jmash.component.JVolumeSpinner();
+		spinVolumePreBoil = new jmash.component.JVolumeSpinner();
+		spinVolumePreBoil.setEnabled(false);
 		spinVolumeFin = new jmash.component.JVolumeSpinner();
 		jButton1 = new javax.swing.JButton();
 		jButton2 = new javax.swing.JButton();
@@ -1004,7 +1007,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		jPanel2.add(txtIBU2, gridBagConstraints);
 
-		jLabel7.setText("In pentola");
+		jLabel7.setText("Volume pre-boil");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 7;
 		gridBagConstraints.gridy = 2;
@@ -1185,7 +1188,9 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		gridBagConstraints.gridwidth = 5;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
-		jPanel2.add(spinVolumeBoll, gridBagConstraints);
+//		jPanel2.add(spinVolumeBoll, gridBagConstraints);
+		jPanel2.add(spinVolumePreBoil, gridBagConstraints);
+
 
 		spinVolumeFin.addChangeListener(new javax.swing.event.ChangeListener() {
 			public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -2130,12 +2135,13 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		
 //		waterPanel.setTotWater(waterNeeded.getTotWater());
 		waterPanel.setTotWater(waterNeededNew2.getTotWater());
+		setVolumePreBoil(waterNeededNew2.getVolumeMostoPreBoil());
 		double sg = maltTableModel.getSG(concentrato);
 
 		summaryTableModel.setSG(sg);
 		
 		sg = maltTableModel.getSG(false);
-		summaryTableModel.setSGPB(Utils.Plato2SG(Utils.SG2Plato(sg) * spinVolumeFin.getVolume() / spinVolumeBoll.getVolume()));
+//		summaryTableModel.setSGPB(Utils.Plato2SG(Utils.SG2Plato(sg) * spinVolumeFin.getVolume() / spinVolumeBoll.getVolume()));
 
 		tblSummary.setCellSelectionEnabled(false);
 		tblSummary.setRowSelectionAllowed(false);
@@ -2215,6 +2221,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		PHResult phResult = RicettaUtils.calculatePH(this);
 
 		this.summaryTableModel.setMashPH(phResult.getpH());
+		this.summaryTableModel.setSGPB((waterNeededNew2.getOGPreBoil() + 1000.0) / 1000.0);
+		
 		this.tblSummary.updateUI();
 		this.waterPanel.setPH(phResult.getpH());
 		this.waterPanel.setAlk(phResult.getAlk());
@@ -2227,9 +2235,12 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		}
 		
 		
+		
+		
 		this.waterPanel.updateUI();
 
 		this.dirty = true;
+		
 	}
 	
 	private void setSaltValues(SaltType saltType) {
@@ -2315,6 +2326,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	private javax.swing.JSpinner spinBollitura;
 	private javax.swing.JSpinner spinEfficienza;
 	private jmash.component.JVolumeSpinner spinVolumeBoll;
+	private jmash.component.JVolumeSpinner spinVolumePreBoil;
 	private jmash.component.JVolumeSpinner spinVolumeDiluito;
 	private jmash.component.JVolumeSpinner spinVolumeFin;
 	private javax.swing.JSplitPane splitPanel;
@@ -2352,6 +2364,16 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	public void setVolumeBoll(double v) {
 		spinVolumeBoll.setVolume(v);
 	}
+	
+	public double getVolumePreBoil() {
+		return spinVolumePreBoil.getVolume();
+	}
+	
+	public void setVolumePreBoil(double v) {
+		spinVolumePreBoil.setVolume(v);
+	}
+	
+
 
 	private String unitaMisura;
 
@@ -2436,6 +2458,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		if (src.getVolumeBoll() != null)
 			setVolumeBoll(src.getVolumeBoll());
 		spinVolumeBoll.setVolume(getVolumeBoll());
+		spinVolumePreBoil.setVolume(getVolumePreBoil());
 		if (src.getBollituraConcentrata() != null)
 			chkConcentratedBoil.setSelected(src.getBollituraConcentrata());
 		if (src.getVolumeDiluito() != null)
@@ -2701,6 +2724,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	public void setEnabled(boolean F) {
 		btnStyle.setEnabled(F);
 		spinVolumeBoll.setEnabled(F);
+		spinVolumePreBoil.setEnabled(F);
 		spinVolumeFin.setEnabled(F);
 		spinVolumeDiluito.setEnabled(F);
 		spinEfficienza.setEnabled(F);
