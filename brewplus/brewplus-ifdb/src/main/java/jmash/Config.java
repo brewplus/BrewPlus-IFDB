@@ -58,6 +58,10 @@ public class Config {
 
     private Boolean ebcNewMethod = true;
     private Integer potLibGal = 0;
+    
+    private Double percentualeEvaporazione = 15.0;
+    private Double contrazionePerRaffreddamento = 4.0;
+    private Boolean biab = Boolean.FALSE;
 
     public String getRemoteServer() {
         return this.remoteServer;
@@ -66,7 +70,7 @@ public class Config {
     private static String campiXml[] = new String[] {"locale", "remoteRoot", "RemoteServer", "RSSFeed", "boilTime", "volumeFin",
             "volumeBoil", "efficienza", "metriSLM", "amaroDHEA", "nickIHB", "passwordIHB", "proxyPort", "proxyHost",
             "lostToTrub", "lostToSparge", "litriPerKg", "evaporazionePerOra", "ebcNewMethod", "potLibGal",
-            "BUGUratiostring"};
+            "BUGUratiostring", "percentualeEvaporazione", "contrazionePerRaffreddamento", "biab"};
 
     public void setRemoteServer(String remoteServer) {
         this.remoteServer = remoteServer;
@@ -138,6 +142,30 @@ public class Config {
     public void setMetriSLM(Integer metriSLM) {
         this.metriSLM = metriSLM;
     }
+    
+    public Double getPercentualeEvaporazione() {
+		return percentualeEvaporazione;
+	}
+    
+    public void setPercentualeEvaporazione(Double percentualeEvaporazione) {
+		this.percentualeEvaporazione = percentualeEvaporazione;
+	}
+    
+    public Double getContrazionePerRaffreddamento() {
+		return contrazionePerRaffreddamento;
+	}
+    
+    public void setContrazionePerRaffreddamento(Double contrazionePerRaffreddamento) {
+		this.contrazionePerRaffreddamento = contrazionePerRaffreddamento;
+	}
+    
+    public Boolean getBiab() {
+		return biab;
+	}
+    
+    public void setBiab(Boolean biab) {
+		this.biab = biab;
+	}
 
     public static String[] getCampiXml() {
         return campiXml;

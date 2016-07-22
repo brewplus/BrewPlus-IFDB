@@ -28,7 +28,6 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
-import java.awt.event.KeyEvent;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +35,7 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -72,8 +72,6 @@ import org.jdom.Document;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 import java.awt.BorderLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -107,8 +105,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	private boolean dirty = false;
 	public static final int dimx = 81;
 	public static final int dimy = 120;
-	public WaterNeeded waterNeeded = new WaterNeeded();
-	public WaterNeededNew waterNeededNew = new WaterNeededNew();
+//	public WaterNeeded waterNeeded = new WaterNeeded();
+	public WaterNeededNew waterNeededNew2 = new WaterNeededNew();
 	public WaterAdjustPanel waterPanel = null;
 	//private Gyle gyle = null;
 	private static javax.swing.ImageIcon hopsIcon = new javax.swing.ImageIcon(Ricetta.class.getResource("/jmash/images/hops.gif"));
@@ -190,8 +188,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		JScrollPane scrollPanel = new JScrollPane();
 		// scrollPanel.setViewportView(waterPanel);
 		scrollPanel.getViewport().setPreferredSize(new Dimension(0, 0));
-		this.jTabbedPane1.add(waterNeeded.getComponent(0), Main.bundle.getString("label.waterQuantity"));
-		//this.jTabbedPane1.add(waterNeededNew.getComponent(0), Main.bundle.getString("label.waterQuantity") + "_NEW");
+//		this.jTabbedPane1.add(waterNeeded.getComponent(0), Main.bundle.getString("label.waterQuantity"));
+		this.jTabbedPane1.add(waterNeededNew2.getComponent(0), Main.bundle.getString("label.waterQuantity"));
 		this.jTabbedPane1.add(Main.bundle.getString("label.waterQuality"), waterPanel);
 
 
@@ -260,6 +258,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		spinBollitura.setEditor(new JSpinner.NumberEditor(spinBollitura, "# min"));
 
 		spinVolumeBoll.setModelFormat(23.0, 0.25, 9999999.0, 0.25, "0.00", "Ricetta.VB");
+		spinVolumePreBoil.setModelFormat(23.0, 0.25, 9999999.0, 0.25, "0.00", "Ricetta.VPB");
 		spinVolumeFin.setModelFormat(23.0, 0.25, 9999999.0, 0.25, "0.00", "Ricetta.VF");
 		spinVolumeDiluito.setModelFormat(23.0, 0.25, 9999999.0, 0.25, "0.00", "Ricetta.DL");
 
@@ -267,6 +266,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		spinVolumeFin.setVolume(Main.config.getVolumeFin());
 		spinEfficienza.setValue(Main.config.getEfficienza());
 		spinBollitura.setValue(Main.config.getBoilTime());
+		chkBiab.setSelected(Main.config.getBiab());
 
 		((javax.swing.SpinnerNumberModel) spinEfficienza.getModel()).setMaximum(100);
 		((javax.swing.SpinnerNumberModel) spinBollitura.getModel()).setMinimum(0);
@@ -309,21 +309,21 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		});
 
 	
-		waterNeeded.addChangeListener(new ChangeListener() {
-
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				LOGGER.debug("waterNeeded changed");
-				ricettaModificata();
-
-			}
-		});
+//		waterNeeded.addChangeListener(new ChangeListener() {
+//
+//			@Override
+//			public void stateChanged(ChangeEvent e) {
+//				LOGGER.debug("waterNeeded changed");
+//				ricettaModificata();
+//
+//			}
+//		});
 		
-		waterNeededNew.addChangeListener(new ChangeListener() {
+		waterNeededNew2.addChangeListener(new ChangeListener() {
 
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				LOGGER.debug("waterNeededNew changed");
+				LOGGER.debug("waterNeededNew2 changed");
 				ricettaModificata();
 
 			}
@@ -477,9 +477,12 @@ public class Ricetta extends javax.swing.JInternalFrame {
 			}
 		});
 		chkConcentratedBoil = new javax.swing.JCheckBox();
+		chkBiab = new JCheckBox("BIAB");
 		lblDil = new javax.swing.JLabel();
 		spinVolumeDiluito = new jmash.component.JVolumeSpinner();
 		spinVolumeBoll = new jmash.component.JVolumeSpinner();
+		spinVolumePreBoil = new jmash.component.JVolumeSpinner();
+		spinVolumePreBoil.setEnabled(false);
 		spinVolumeFin = new jmash.component.JVolumeSpinner();
 		jButton1 = new javax.swing.JButton();
 		jButton2 = new javax.swing.JButton();
@@ -1004,7 +1007,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		jPanel2.add(txtIBU2, gridBagConstraints);
 
-		jLabel7.setText("In pentola");
+		jLabel7.setText("Volume pre-boil");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 7;
 		gridBagConstraints.gridy = 2;
@@ -1096,6 +1099,26 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
 		jPanel2.add(jLabel8, gridBagConstraints);
+		
+		chkBiab.setBackground(javax.swing.UIManager.getDefaults().getColor("PropSheet.setBackground"));
+		chkBiab.setText("BIAB");
+		chkBiab.setToolTipText("BIAB");
+		chkBiab.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		chkBiab.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+		chkBiab.setPreferredSize(new java.awt.Dimension(132, 20));
+		chkBiab.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				chkBiabActionPerformed(evt);
+			}
+		});
+		
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 21;
+		gridBagConstraints.gridy = 2;
+		gridBagConstraints.gridwidth = 1;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
+		jPanel2.add(chkBiab, gridBagConstraints);
 
 		jLabel12.setText("EBC");
 		gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1185,7 +1208,9 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		gridBagConstraints.gridwidth = 5;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
-		jPanel2.add(spinVolumeBoll, gridBagConstraints);
+//		jPanel2.add(spinVolumeBoll, gridBagConstraints);
+		jPanel2.add(spinVolumePreBoil, gridBagConstraints);
+
 
 		spinVolumeFin.addChangeListener(new javax.swing.event.ChangeListener() {
 			public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -1512,6 +1537,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		setSize(new java.awt.Dimension(1141, 516));
 	}// </editor-fold>//GEN-END:initComponents
 
+
 	private UpDownPopupMenu upDownPopupMenu = new UpDownPopupMenu();
 
 	private void tblMaltsMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tblMaltsMouseClicked
@@ -1636,6 +1662,11 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		setDilVisible(chkConcentratedBoil.isSelected());
 		ricettaModificata();
 	}// GEN-LAST:event_chkConcentratedBoilActionPerformed
+	
+	protected void chkBiabActionPerformed(ActionEvent evt) {
+		this.thisRicetta.setBiab(chkBiab.isSelected());
+		ricettaModificata();
+	}
 
 	private void btnAdd12ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd12ActionPerformed
 		// Document doc = this.toRecipeData().toXml();
@@ -2097,6 +2128,12 @@ public class Ricetta extends javax.swing.JInternalFrame {
 			return getVolume();
 		}
 	}
+	
+	public boolean isBIAB()
+	{
+		return chkBiab.isSelected();
+	}
+//	
 
 	private int counter = 0;
 	Thread colorThread = null;
@@ -2121,16 +2158,23 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		summaryTableModel.setTotL(hopTableModel.getGrammi());
 		summaryTableModel.setTotG(maltTableModel.getGrammi());
 
-		waterNeeded.setMashKg((double) maltTableModel.getGrammiMash() / 1000);
-		waterNeeded.setBatchSize(spinVolumeFin.getVolume());
-		waterNeeded.setBoilTime(getBollitura());
-		waterPanel.setTotWater(waterNeeded.getTotWater());
+//		waterNeeded.setMashKg((double) maltTableModel.getGrammiMash() / 1000);
+//		waterNeeded.setBatchSize(spinVolumeFin.getVolume());
+		waterNeededNew2.setBatchSize(spinVolumeFin.getVolume());
+		waterNeededNew2.setTotGrani((double) maltTableModel.getGrammiMash() / 1000);
+		waterNeededNew2.setOriginalGravity(maltTableModel.getSG(concentrato));
+		waterNeededNew2.setBiab(isBIAB(), false);
+		//waterNeeded.setBoilTime(getBollitura());
+		
+//		waterPanel.setTotWater(waterNeeded.getTotWater());
+		waterPanel.setTotWater(waterNeededNew2.getTotWater());
+		setVolumePreBoil(waterNeededNew2.getVolumeMostoPreBoil());
 		double sg = maltTableModel.getSG(concentrato);
 
 		summaryTableModel.setSG(sg);
+		
 		sg = maltTableModel.getSG(false);
-		summaryTableModel
-				.setSGPB(Utils.Plato2SG(Utils.SG2Plato(sg) * spinVolumeFin.getVolume() / spinVolumeBoll.getVolume()));
+//		summaryTableModel.setSGPB(Utils.Plato2SG(Utils.SG2Plato(sg) * spinVolumeFin.getVolume() / spinVolumeBoll.getVolume()));
 
 		tblSummary.setCellSelectionEnabled(false);
 		tblSummary.setRowSelectionAllowed(false);
@@ -2210,6 +2254,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		PHResult phResult = RicettaUtils.calculatePH(this);
 
 		this.summaryTableModel.setMashPH(phResult.getpH());
+		this.summaryTableModel.setSGPB((waterNeededNew2.getOGPreBoil() + 1000.0) / 1000.0);
+		
 		this.tblSummary.updateUI();
 		this.waterPanel.setPH(phResult.getpH());
 		this.waterPanel.setAlk(phResult.getAlk());
@@ -2222,9 +2268,12 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		}
 		
 		
+		
+		
 		this.waterPanel.updateUI();
 
 		this.dirty = true;
+		
 	}
 	
 	private void setSaltValues(SaltType saltType) {
@@ -2310,6 +2359,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	private javax.swing.JSpinner spinBollitura;
 	private javax.swing.JSpinner spinEfficienza;
 	private jmash.component.JVolumeSpinner spinVolumeBoll;
+	private jmash.component.JVolumeSpinner spinVolumePreBoil;
 	private jmash.component.JVolumeSpinner spinVolumeDiluito;
 	private jmash.component.JVolumeSpinner spinVolumeFin;
 	private javax.swing.JSplitPane splitPanel;
@@ -2327,6 +2377,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	private javax.swing.JTextField txtOG1;
 	private javax.swing.JTextField txtOG2;
 	private javax.swing.JTextField txtStile;
+	private JCheckBox chkBiab;
 	// End of variables declaration//GEN-END:variables
 
 	public double getVolume() {
@@ -2347,6 +2398,16 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	public void setVolumeBoll(double v) {
 		spinVolumeBoll.setVolume(v);
 	}
+	
+	public double getVolumePreBoil() {
+		return spinVolumePreBoil.getVolume();
+	}
+	
+	public void setVolumePreBoil(double v) {
+		spinVolumePreBoil.setVolume(v);
+	}
+	
+
 
 	private String unitaMisura;
 
@@ -2377,7 +2438,16 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	public void setBollitura(int bollitura) {
 		this.bollitura = bollitura;
 	}
+	private Boolean biab = Main.config.getBiab();
 
+	public void setBiab(Boolean biab) {
+		this.biab = biab;
+	}
+	
+	public Boolean getBiab() {
+		return biab;
+	}
+	
 	private String note;
 
 	public String getNote() {
@@ -2431,11 +2501,15 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		if (src.getVolumeBoll() != null)
 			setVolumeBoll(src.getVolumeBoll());
 		spinVolumeBoll.setVolume(getVolumeBoll());
+		spinVolumePreBoil.setVolume(getVolumePreBoil());
 		if (src.getBollituraConcentrata() != null)
 			chkConcentratedBoil.setSelected(src.getBollituraConcentrata());
+		if (src.getBiab() != null)
+			chkBiab.setSelected(src.getBiab());
 		if (src.getVolumeDiluito() != null)
 			spinVolumeDiluito.setVolume(src.getVolumeDiluito());
 		chkConcentratedBoilActionPerformed(null);
+		chkBiabActionPerformed(null);
 		if (src.getVolumeFin() != null)
 			setVolume(src.getVolumeFin());
 		spinVolumeFin.setVolume(getVolume());
@@ -2473,7 +2547,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		if (src.getTreatment() != null)
 			waterPanel.setTreatment(src.getTreatment());
 		if (src.getWaterNeeded() != null)
-			waterNeeded.fromXml(src.getWaterNeeded());
+			waterNeededNew2.fromXml(src.getWaterNeeded());
 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -2497,6 +2571,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		src.setVolumeFin(getVolume());
 		src.setVolumeDiluito(getVolumeDiluito());
 		src.setBollituraConcentrata(chkConcentratedBoil.isSelected());
+		src.setBiab(chkBiab.isSelected());
 		src.setEfficienza(getEfficienza());
 		if (brewStyle == null) {
 			src.setCodiceStile("nd");
@@ -2512,7 +2587,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		src.setSourceWater(waterPanel.getSource());
 		src.setDestWater(waterPanel.getDest());
 		src.setTreatment(waterPanel.getTreatment());
-		src.setWaterNeeded(waterNeeded.toXml());
+		src.setWaterNeeded(waterNeededNew2.toXml());
 		return src;
 	}
 
@@ -2696,6 +2771,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	public void setEnabled(boolean F) {
 		btnStyle.setEnabled(F);
 		spinVolumeBoll.setEnabled(F);
+		spinVolumePreBoil.setEnabled(F);
 		spinVolumeFin.setEnabled(F);
 		spinVolumeDiluito.setEnabled(F);
 		spinEfficienza.setEnabled(F);

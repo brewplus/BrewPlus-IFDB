@@ -335,6 +335,9 @@ public class Utils {
                             if (ret.equals(Float.class)) {
                                 m.invoke(obj, new Float(S));
                             }
+                            if (ret.equals(Boolean.class)) {
+                                m.invoke(obj, new Boolean(S));
+                            }
                         }
                     } catch (Exception e) {
                         LOGGER.error("" + m);
