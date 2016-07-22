@@ -40,6 +40,7 @@ public class RecipeData {
     private Double volumeBoll, volumeFin, volumeDiluito;
     private Integer efficienza, bollitura;
     private Boolean bollituraConcentrata;
+    private Boolean biab;
 
     // private BrewStyle style;
     private String codiceStile;
@@ -291,6 +292,7 @@ public class RecipeData {
         if (waterNeeded != null) {
             root.addContent(waterNeeded);
         }
+        root.setAttribute(new Attribute(XmlTags.BIAB, "" + getBiab()));
         return root;
     }
 
@@ -513,6 +515,13 @@ public class RecipeData {
                 setBollituraConcentrata(false);
             }
             try {
+                if (att.getName().compareToIgnoreCase(XmlTags.BIAB) == 0) {
+                    setBiab(att.getBooleanValue());
+                }
+            } catch (org.jdom.DataConversionException ex) {
+                setBiab(false);
+            }
+            try {
                 if (att.getName().compareToIgnoreCase(XmlTags.VOLUME_BOLL) == 0) {
                     setVolumeBoll(att.getDoubleValue());
                 }
@@ -660,4 +669,12 @@ public class RecipeData {
             return volumeDiluito;
         return volumeFin;
     }
+    
+    public Boolean getBiab() {
+		return biab;
+	}
+    
+    public void setBiab(Boolean biab) {
+		this.biab = biab;
+	}
 }

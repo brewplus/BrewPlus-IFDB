@@ -39,6 +39,7 @@ public class XmlTags {
 	public static final String VOLUME_UM = "unita_misura_mostrata";
 	public static final String BOLLITURA = "bollitura";
 	public static final String BOLLITURA_CONC = "bollitura_conc";
+	public static final String BIAB = "BIAB";
 	public static final String NOME = "nome";
 	public static final String NOTE = "note";
 	// foto
