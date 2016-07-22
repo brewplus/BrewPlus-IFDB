@@ -29,9 +29,8 @@ public class RicettaUtils {
 
 			if (maltCategory == null || !maltCategory.isAcidMalt()) {
 				Double lovibond = (recipeMalt.getSrm() + 0.6) / 1.3546;
-
-				Double pHFromChart = maltCategory.isCrystal() ? 5.22 - (0.00504 * lovibond / 1000)
-						: maltCategory != null ? maltCategory.getPH() : MaltCategory.PH_DEFAULT;
+						
+				Double pHFromChart =  maltCategory != null ? (maltCategory.isCrystal() ? 5.22 - (0.00504 * lovibond / 1000) : maltCategory.getPH()) : MaltCategory.PH_DEFAULT;
 				maltsPHfromChart.add(pHFromChart);
 
 				Double phPesata = pHFromChart * (recipeMalt.getGrammi() / 1000);
