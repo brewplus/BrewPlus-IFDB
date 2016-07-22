@@ -2504,8 +2504,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		spinVolumePreBoil.setVolume(getVolumePreBoil());
 		if (src.getBollituraConcentrata() != null)
 			chkConcentratedBoil.setSelected(src.getBollituraConcentrata());
-		if (src.getBiab() != null)
-			chkBiab.setSelected(src.getBiab());
+		chkBiab.setSelected(src.getBiab() != null ? src.getBiab() : false);
 		if (src.getVolumeDiluito() != null)
 			spinVolumeDiluito.setVolume(src.getVolumeDiluito());
 		chkConcentratedBoilActionPerformed(null);
