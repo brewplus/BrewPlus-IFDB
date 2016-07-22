@@ -17,7 +17,6 @@ import javax.swing.event.ChangeListener;
 import org.jdom.Element;
 
 import jmash.component.JMashSpinner;
-import jmash.component.JVolumeSpinner;
 
 public class WaterNeededNew extends JInternalFrame {
 	private static final long serialVersionUID = -5301195065823912614L;
@@ -926,7 +925,7 @@ public class WaterNeededNew extends JInternalFrame {
 		spinnerTotaleAcqua.setDoubleValue(acquaTotale);
 		
 		
-		fireStateChanged(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, ""));
+		fireStateChanged(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, ""));                                                                                                                                                                                                                                           
 	}
 
 	

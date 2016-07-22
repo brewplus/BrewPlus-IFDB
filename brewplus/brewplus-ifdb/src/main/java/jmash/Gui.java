@@ -524,7 +524,7 @@ public class Gui extends javax.swing.JFrame {
 				btnSaveAll14ActionPerformed(evt);
 			}
 		});
-		toolbar.add(btnSaveAll14);
+//		toolbar.add(btnSaveAll14);
 
 		btnSaveAll17.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/pipe.png"))); // NOI18N
 		btnSaveAll17.setToolTipText("Acqua necessaria");
@@ -536,7 +536,7 @@ public class Gui extends javax.swing.JFrame {
 				btnSaveAll17ActionPerformed(evt);
 			}
 		});
-		toolbar.add(btnSaveAll17);
+//		toolbar.add(btnSaveAll17);
 
 		btnSaveAll15.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/drill.png"))); // NOI18N
 		btnSaveAll15.setToolTipText("Calcolo fori filtro");
