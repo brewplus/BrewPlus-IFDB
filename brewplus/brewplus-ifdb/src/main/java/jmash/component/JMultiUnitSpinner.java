@@ -37,8 +37,23 @@ import jmash.Main;
  */
 public abstract class JMultiUnitSpinner extends javax.swing.JPanel {
 
+	private int widthSpinner = 77;
+	private int widthUnit = 55;
+	
 	/** Creates new form JVolumeSpinner */
 	public JMultiUnitSpinner(String[] list) {
+		this(list, 77, 55);
+	}
+	
+	/** Creates new form JVolumeSpinner */
+	public JMultiUnitSpinner(String[] list, int widthUnit) {
+		this(list, 77, widthUnit);
+	}
+	
+	/** Creates new form JVolumeSpinner */
+	public JMultiUnitSpinner(String[] list, int widthSpinner, int widthUnit) {
+		this.widthSpinner = widthSpinner;
+		this.widthUnit = widthUnit;
 		initComponents();
 		for (int i = 0; i < list.length; i++)
 			list[i] = " " + list[i];
@@ -94,10 +109,10 @@ public abstract class JMultiUnitSpinner extends javax.swing.JPanel {
 		this.setLayout(layout);
 		layout.setHorizontalGroup(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
 				.add(layout.createSequentialGroup()
-						.add(jMashSpinner1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 77,
+						.add(jMashSpinner1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, this.widthSpinner,
 								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-						.add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 55,
+						.add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, this.widthUnit,
 								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
 						.addContainerGap()));
 		layout.setVerticalGroup(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
