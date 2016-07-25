@@ -266,9 +266,8 @@ public class WaterNeededNew extends JInternalFrame {
 		// gbl_panelSpecificheCottaSparge.columnWeights = new double[]{0.0, 1.0,
 		// 0.0};
 		gridBagLayout.columnWidths = new int[] {165, 78, 0, 0};
-		;
 		panelDatiImpianto.setLayout(gridBagLayout);
-	
+		
 		gridBagConstraints_1 = new java.awt.GridBagConstraints();
 		gridBagConstraints_1.fill = GridBagConstraints.BOTH;
 		gridBagConstraints_1.gridx = 0;
