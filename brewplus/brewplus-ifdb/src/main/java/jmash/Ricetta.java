@@ -2267,8 +2267,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 			this.setWaterProfileValue(type);
 		}
 		
-		
-		
+		waterPanel.setBIAB(biab);
+	
 		
 		this.waterPanel.updateUI();
 

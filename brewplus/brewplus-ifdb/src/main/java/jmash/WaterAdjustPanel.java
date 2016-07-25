@@ -230,6 +230,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		jLabel13 = new javax.swing.JLabel();
 		jLabel14 = new javax.swing.JLabel();
 		spnVolume = new jmash.component.JVolumeSpinner();
+		spnVolume.setEnabled(false);
 
 		spnAcidulatedMaltContent = new jmash.component.JMashSpinner();
 		spnLacticAcid = new jmash.component.JMashSpinner();
@@ -1537,13 +1538,13 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gridBagConstraints.anchor = java.awt.GridBagConstraints.CENTER;
 		jPanelResultWaterProfile.add(lblChlorideSulfate, gridBagConstraints);
 		
-		lblNewLabel = new JLabel("Mash Water Profile ");
-		gridBagConstraints = new GridBagConstraints();
-		gridBagConstraints.insets = new Insets(2, 2, 5, 5);
-		gridBagConstraints.gridx = 0;
-		gridBagConstraints.gridy = 1;
-		gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-		jPanelResultWaterProfile.add(lblNewLabel, gridBagConstraints);
+		lblMashWP = new JLabel("Mash Water Profile ");
+		gbc_lblMashWP = new GridBagConstraints();
+		gbc_lblMashWP.insets = new Insets(2, 2, 5, 5);
+		gbc_lblMashWP.gridx = 0;
+		gbc_lblMashWP.gridy = 1;
+		gbc_lblMashWP.anchor = java.awt.GridBagConstraints.EAST;
+		jPanelResultWaterProfile.add(lblMashWP, gbc_lblMashWP);
 		
 		
 		textFieldMashCalcium = new JTextField();
@@ -1565,13 +1566,13 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		prepareTextFielsWaterProfileView(textFieldMashChlorideSulfateRatio, jPanelResultWaterProfile, 6, 1, 10);
 		
 		
-		lblLabelMashAndSpargeWP = new JLabel("Mash + Sparge Water Profile");
-		gridBagConstraints = new GridBagConstraints();
-		gridBagConstraints.insets = new Insets(2, 2, 5, 5);
-		gridBagConstraints.gridx = 0;
-		gridBagConstraints.gridy = 2;
-		gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-		jPanelResultWaterProfile.add(lblLabelMashAndSpargeWP, gridBagConstraints);
+		lblMashAndSpargeWP = new JLabel("Mash + Sparge Water Profile");
+		gbc_lblMashAndSpargeWP = new GridBagConstraints();
+		gbc_lblMashAndSpargeWP.insets = new Insets(2, 2, 5, 5);
+		gbc_lblMashAndSpargeWP.gridx = 0;
+		gbc_lblMashAndSpargeWP.gridy = 2;
+		gbc_lblMashAndSpargeWP.anchor = java.awt.GridBagConstraints.EAST;
+		jPanelResultWaterProfile.add(lblMashAndSpargeWP, gbc_lblMashAndSpargeWP);
 		
 		
 		textFieldMashSpargeCalcium = new JTextField();
@@ -2110,8 +2111,8 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	}
 
 	private boolean skipRecalc = false;
-	private JLabel lblNewLabel;
-	private JLabel lblLabelMashAndSpargeWP;
+	private JLabel lblMashWP;
+	private JLabel lblMashAndSpargeWP;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_3;
 	private JLabel lblcaPpm;
@@ -2170,6 +2171,8 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	private JTextField txtSodaMash;
 	private JTextField txtSlackedLimeMash;
 	private JLabel lblTotale;
+	private GridBagConstraints gbc_lblMashWP;
+	private GridBagConstraints gbc_lblMashAndSpargeWP;
 
 	private void updateTreatment() {
 		double LITRI = spnVolume.getVolume();
@@ -2666,6 +2669,53 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		this.useSlackedLimeSparge.setSelected(useSlackedLimeSparge);
 	}
 
+	public void setBIAB(boolean biab) {
+		lblMash.setVisible(!biab);
+		lblSparge.setVisible(!biab);
+		
+		txtGyspumMash.setVisible(!biab);
+		txtGyspumSparge.setVisible(!biab);
+		useGypsumSparge.setVisible(!biab);
+	
+		txtEpsomMash.setVisible(!biab);
+		txtEpsomSparge.setVisible(!biab);
+		useEpsomSparge.setVisible(!biab);
+		
+		txtCaCl2Mash.setVisible(!biab);
+		txtCaCl2Sparge.setVisible(!biab);
+		useCaCl2Sparge.setVisible(!biab);
+		
+		txtNaClMash.setVisible(!biab);
+		txtNaClSparge.setVisible(!biab);
+		useNaClSparge.setVisible(!biab);
+		
+		txtChalkMash.setVisible(!biab);
+		txtChalkSparge.setVisible(!biab);
+		useChalkSparge.setVisible(!biab);
+		
+		txtSodaMash.setVisible(!biab);
+		txtSodaSparge.setVisible(!biab);
+		useSodaSparge.setVisible(!biab);
+		
+		txtSlackedLimeMash.setVisible(!biab);
+		txtSlackedLimeSparge.setVisible(!biab);
+		useSlackedLimeSparge.setVisible(!biab);
+		
+		
+		lblMashAndSpargeWP.setVisible(!biab);
+		textFieldMashSpargeCalcium.setVisible(!biab);
+		textFieldMashSpargeMagnesium.setVisible(!biab);
+		textFieldMashSpargeSodium.setVisible(!biab);
+		textFieldMashSpargeChloride.setVisible(!biab);
+		textFieldMashSpargeSulfate.setVisible(!biab);
+		textFieldMashSpargeChlorideSulfateRatio.setVisible(!biab);
+		
+		lblMashWP.setText(!biab ? "Mash Water Profile" : "BIAB Water Profile");
+		
+		
+		
+	}
+	
 
 
 
