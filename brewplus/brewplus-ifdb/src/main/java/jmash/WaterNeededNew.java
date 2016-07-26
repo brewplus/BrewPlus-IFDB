@@ -81,26 +81,19 @@ public class WaterNeededNew extends JInternalFrame {
 		spinnerBatchSize.setModel(Main.config.getVolumeFin(), 0, 1000000, 0.5, "0.00", "WaterNeeded.BS");
 		spinnerGraniTotali.setModel(0.0, 0.0, 1000000.0, 0.5, "0.000", "WaterNeeded.TotGrani");
 		spinnerOriginalGravity.setModel(0.0, 0.0, 1000000.0, 1, "0", "WaterNeeded.OG");
-		spinnerAssorbimentoGraniEsausti.setModel(Main.getFromCache("WaterNeeded.coefficienteAssorbimento", 1.01), 0,
-				1000000, 0.001, "0.00", "WaterNeeded.ABS");
+		spinnerAssorbimentoGraniEsausti.setModel(Main.getFromCache("WaterNeeded.coefficienteAssorbimento", 1.01), 0, 1000000, 0.001, "0.00", "WaterNeeded.ABS");
 
 		spinnerPerditeNelTrub.setModel(Main.config.getLostToTrub(), 0.0, 1000000, 0.1, "0.00", "WaterNeeded.trub");
 		spinnerRapportoAcquaGrani.setModel(Main.config.getLitriPerKg(), 0.0, 1000000, 0.25, "0.00", "WaterNeeded.kg");
 
-		spinnerPercentualeEvaporazione.setModel(Main.getFromCache("WaterNeeded.pEV", 4.0), 0.0, 1000000, 0.25, "0.00",
-				"WaterNeeded.pEV");
-		spinnerContrazionePerRaffreddamento.setModel(Main.getFromCache("WaterNeeded.shrink", 4.0), 0, 99, 1, "0.00",
-				"WaterNeeded.shrink");
+		spinnerPercentualeEvaporazione.setModel(Main.config.getPercentualeEvaporazione(), 0.0, 100, 0.25, "0.00", "WaterNeeded.pEV");
+		spinnerContrazionePerRaffreddamento.setModel(Main.config.getContrazionePerRaffreddamento(), 0, 100, 0.25, "0.00", "WaterNeeded.shrink");
 
-		spinnerPerditaPerAssorbimento.setModel(Main.getFromCache("WaterNeeded.perditaPerAssorbimento", 0.0), 0, 1000000,
-				0.5, "0.00", "WaterNeeded.PerdAss");
-		spinnerPerditaPerEvaporazione.setModel(Main.getFromCache("WaterNeeded.perditaPerEvaporazione", 0.0), 0, 1000000,
-				0.5, "0.00", "WaterNeeded.PerdEvap");
-		spinnerPerditaPerContrazione.setModel(Main.getFromCache("WaterNeeded.perditaPerContrazione", 0.0), 0, 1000000,
-				0.5, "0.00", "WaterNeeded.PerdContraz");
+		spinnerPerditaPerAssorbimento.setModel(Main.getFromCache("WaterNeeded.perditaPerAssorbimento", 0.0), 0, 1000000, 0.5, "0.00", "WaterNeeded.PerdAss");
+		spinnerPerditaPerEvaporazione.setModel(Main.getFromCache("WaterNeeded.perditaPerEvaporazione", 0.0), 0, 1000000, 0.5, "0.00", "WaterNeeded.PerdEvap");
+		spinnerPerditaPerContrazione.setModel(Main.getFromCache("WaterNeeded.perditaPerContrazione", 0.0), 0, 1000000, 0.5, "0.00", "WaterNeeded.PerdContraz");
 
-		spinnerVolumeMostoPreBoil.setModel(Main.getFromCache("WaterNeeded.PB", 0.0), 0, 1000000, 0.5, "0.00",
-				"WaterNeeded.PB");
+		spinnerVolumeMostoPreBoil.setModel(Main.getFromCache("WaterNeeded.PB", 0.0), 0, 1000000, 0.5, "0.00", "WaterNeeded.PB");
 		spinnerOGPreBoil.setModel(Main.getFromCache("WaterNeeded.pOG", 0.0), 0, 1000000, 0.5, "0", "WaterNeeded.pOG");
 		spinnerVolumePostBoil.setModel(Main.getFromCache("WaterNeeded.PostB", 0.0), 0, 1000000, 0.5, "0.00",
 				"WaterNeeded.PostB");
