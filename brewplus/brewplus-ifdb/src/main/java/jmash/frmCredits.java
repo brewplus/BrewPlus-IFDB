@@ -77,7 +77,7 @@ public class frmCredits extends javax.swing.JInternalFrame {
 		txtApp.setContentType("text/html");
 		txtApp.setBounds(10, 6, 399, 24);
 		txtApp.setText("<html><center><a href='http://www.ilforumdellabirra.net/'>" + Main.Nome + " "
-				+ Main.versioneHobbyBrew + "</a></center></html>");
+				+ Utils.getVersion() + "</a></center></html>");
 		contentPanel.add(txtApp);
 
 		txtCredits.setFont(new Font("Tahoma", Font.PLAIN, 11));

@@ -1779,7 +1779,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		try {
 			LOGGER.debug("Print PDF recipe.");
 			//PrintRecipe print = new PrintRecipe();
-			PrintRecipe.recipe(fldNome!=null?fldNome.getText():Main.bundle.getString("label.noRecipeName"), brewStyle!= null?brewStyle.getNome():Main.bundle.getString("label.noStyleName"), Main.versioneHobbyBrew, summaries);
+			PrintRecipe.recipe(fldNome!=null?fldNome.getText():Main.bundle.getString("label.noRecipeName"), brewStyle!= null?brewStyle.getNome():Main.bundle.getString("label.noStyleName"), Utils.getVersion(), summaries);
 			/*
 			RandomAccessFile f = new RandomAccessFile(Main.printTemplate, "r");
 			byte b[] = new byte[(int) f.length()];
