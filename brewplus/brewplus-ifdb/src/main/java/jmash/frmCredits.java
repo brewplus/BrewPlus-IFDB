@@ -1,31 +1,21 @@
 package jmash;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JEditorPane;
-import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
-import java.awt.Color;
-import javax.swing.SwingConstants;
-import javax.swing.ImageIcon;
-import java.awt.Font;
-import java.net.URI;
-
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 
 import org.apache.log4j.Logger;
-
-import java.awt.Component;
 
 public class frmCredits extends javax.swing.JInternalFrame {
 
@@ -37,56 +27,64 @@ public class frmCredits extends javax.swing.JInternalFrame {
 	private final JPanel contentPanel = new JPanel();
 	private final JEditorPane txtthanks = new JEditorPane();
 	private final JEditorPane txtApp = new JEditorPane();
-	private final JEditorPane txtCredits = new JEditorPane();
+	private final JEditorPane disclaimer = new JEditorPane();
 
 	public frmCredits() {
 		this.setTitle("Info");
 		setResizable(false);
-		setBounds(100, 100, 427, 315);
+		setBounds(100, 100, 450, 600);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		
+        txtApp.setEditable(false);
+        txtApp.setFont(new Font("Tahoma", Font.BOLD, 14));
+        txtApp.setContentType("text/html");
+        txtApp.setBounds(10, 6, 400, 40);
+        txtApp.setText("<html><center><a href='https://github.com/rekhyt75/BrewPlus-IFDB/releases'>" + Main.Nome + " "
+                + Utils.getVersion() + "</a></center></html>");
+        contentPanel.add(txtApp);
 
-		JLabel lblNewLabel_1 = new JLabel("<html>Ixtlanas<br>(project creator - programmer)</html>");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		lblNewLabel_1.setIcon(new ImageIcon(frmCredits.class.getResource("/jmash/images/ixtlanas.jpg")));
-		lblNewLabel_1.setBounds(10, 21, 259, 52);
-		contentPanel.add(lblNewLabel_1);
+		disclaimer.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		disclaimer.setEditable(false);
+		disclaimer.setContentType("text/html");
+		disclaimer.setText("<html><center>"
+		        + "<img src=\"" + frmCredits.class.getResource("/jmash/images/logo-min.png") + "\" alt=\"Buongiollo Homebrewers\" >"
+		        + "<br>"
+		        + "<a href=\"http://www.ilforumdellabirra.net\">Il Forum Della Birra</a>"
+		        + "<br>Based on Hobbybrew 2.0.3 and BrewPlus 1.5.0"
+		        + "</center></html>");
+		disclaimer.setBackground(Color.WHITE);
+		disclaimer.setBounds(10, 40, 400, 120);
+		contentPanel.add(disclaimer);
 
-		JLabel lblBasedOnHobbybrew = new JLabel();
-		lblBasedOnHobbybrew.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lblBasedOnHobbybrew.setText("Based on Hobbybrew 2.0.3 and BrewPlus 1.5.0");
-		lblBasedOnHobbybrew.setHorizontalAlignment(SwingConstants.CENTER);
-		lblBasedOnHobbybrew.setBackground(Color.WHITE);
-		lblBasedOnHobbybrew.setBounds(10, 80, 399, 14);
-		contentPanel.add(lblBasedOnHobbybrew);
-
-		txtthanks.setFont(new Font("Tahoma", Font.PLAIN, 6));
+		txtthanks.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		txtthanks.setEditable(false);
 		txtthanks.setContentType("text/html");
-		txtthanks.setText("<html><span style='font-family:Tahoma; font-size: 9pt'><strong>Thanks to</strong>"
-				+ "<br>Jigen Daisuke (<a href=\"http://www.ilforumdellabirra.net\">Il Forum Della Birra</a>)"
-				+ "<br>Rekhyt (Il Re della Cantina) & Alessandro Peruzzi (pera76)" + "</span></html>");
-		txtthanks.setBounds(10, 106, 699, 41);
+		txtthanks.setText("<html><span style='font-family:Tahoma; font-size: 12pt'><strong>Contributors:</strong>"
+		        + "<br>Alessandro \"pera76\" Peruzzi (Email: " + generateEMailAddress("peruzzi.alessandro","gmail.com") + " )"
+		        + "<br>Angelo \"Girella\" Cerella (Email: " + generateEMailAddress("angelo.cerella","gmail.com") + " )"
+				+ "<br>Michele \"Rekhyt\" Antonecchia  (Telegram: " + generateTelegramUrl("rekhyt") + " )"
+				+ "<br><br><strong>For Italian translation of BJCP, Malt list and Hop list:</strong>"
+				+ "<br>Giovanni \"Sgabuzen\" Iovane ( Email: " + generateEMailAddress("info", "sgabuzen.com") + " )"
+                + "<br>Luciano \"BATIGOLLE\" Picchioni ( Email: " + generateEMailAddress("batigolle", "gmail.com") + " )"
+                + "<br>Massimo \"superpiggy\" Scalvini (Email: " + generateEMailAddress("m.scalvini.80","gmail.com") + " )"
+                + "<br>Vito Fasano (Telegram: " + generateTelegramUrl("VitoFasano") +" - Email: " + generateEMailAddress("vito.fasano","gmail.com") + " )"
+                + "<br><br><strong>Special thanks to:</strong>"
+                + "<br>Antonio De Feo (Telegram: " + generateTelegramUrl("JigenDaisuke") +" )"
+                + "<br>Stefano Longo (Telegram: " + generateTelegramUrl("Essetielle") + " - Email: " + generateEMailAddress("stl.lecce","gmail.com") + " )"
+                + "<br><br></span>"
+                + "<span style='font-family:Tahoma; font-size: 10pt'>"
+                + "<strong>License: </strong><a href=\"https://www.gnu.org/licenses/gpl-3.0.html\">GNU GPL v3.0</a><br>"
+                + "<strong>Disclaimer: </strong>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details."
+                + "<br><br></span>"
+                + "<span style='font-family:Tahoma; font-size: 12pt'>"
+                + "<br><br><strong>Software hosted on GitHub: </strong><a href=\"https://github.com/rekhyt75/BrewPlus-IFDB\">BrewPlus-IFDB</a><br>"
+		        + "</span></html>");
+		txtthanks.setBounds(10, 160, 400, 600);
 		contentPanel.add(txtthanks);
-
-		txtApp.setEditable(false);
-		txtApp.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtApp.setContentType("text/html");
-		txtApp.setBounds(10, 6, 399, 24);
-		txtApp.setText("<html><center><a href='http://www.ilforumdellabirra.net/'>" + Main.Nome + " "
-				+ Utils.getVersion() + "</a></center></html>");
-		contentPanel.add(txtApp);
-
-		txtCredits.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		txtCredits.setEditable(false);
-		txtCredits.setContentType("text/html");
-		txtCredits.setText(
-				"<html><span style='font-family:Tahoma; font-size: 9pt'><strong>Credits</strong><br>Inline help: Jigen Daisuke<br>\r\nSuggested ingredients: ab62, conco, John Priming, source, velleitario</span>\r\n</html>");
-		txtCredits.setBounds(10, 145, 399, 84);
-		contentPanel.add(txtCredits);
 
 		// catch hyperlink
 		try {
@@ -96,7 +94,7 @@ public class frmCredits extends javax.swing.JInternalFrame {
 				public void hyperlinkUpdate(HyperlinkEvent e) {
 					try {
 						if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED)
-							Desktop.getDesktop().browse(new URI("http://www.ilforumdellabirra.net/"));
+						    Desktop.getDesktop().browse(e.getURL().toURI());
 					} catch (Exception ex) {
 					}
 
@@ -113,7 +111,7 @@ public class frmCredits extends javax.swing.JInternalFrame {
 				public void hyperlinkUpdate(HyperlinkEvent e) {
 					try {
 						if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED)
-							Desktop.getDesktop().browse(new URI("http://www.ilforumdellabirra.net/"));
+						    Desktop.getDesktop().browse(e.getURL().toURI());
 					} catch (Exception ex) {
 					}
 
@@ -123,24 +121,23 @@ public class frmCredits extends javax.swing.JInternalFrame {
 			// TODO Auto-generated catch block
 			LOGGER.error(e.getMessage(), e);
 		}
-		try {
-			//
-			txtCredits.addHyperlinkListener(new HyperlinkListener() {
-				@Override
-				public void hyperlinkUpdate(HyperlinkEvent e) {
-					try {
-						if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED)
-							Desktop.getDesktop().browse(new URI("http://www.areabirra.it"));
-					} catch (Exception ex) {
-					}
+        try {
+            disclaimer.addHyperlinkListener(new HyperlinkListener() {
+                @Override
+                public void hyperlinkUpdate(HyperlinkEvent e) {
+                    try {
+                        if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED)
+                            Desktop.getDesktop().browse(e.getURL().toURI());
+                    } catch (Exception ex) {
+                    }
 
-				}
-			});
-
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			LOGGER.error(e.getMessage(), e);
-		}
+                }
+            });
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            LOGGER.error(e.getMessage(), e);
+        }
+        
 
 		{
 			JPanel buttonPane = new JPanel();
@@ -158,5 +155,34 @@ public class frmCredits extends javax.swing.JInternalFrame {
 				getRootPane().setDefaultButton(okButton);
 			}
 		}
+	}
+	
+	// method to prevents email address discovery from sorcecode and spam 
+	private String generateEMailAddress(String name, String domain){
+	    
+	    StringBuffer mail = new StringBuffer();
+	    mail.append(name).append("@").append(domain);
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("<a href=\"mailto:")
+	    .append(mail)
+	    .append("\">")
+	    .append(mail)
+	    .append("</a>");
+        return sb.toString();
+	    
+	}
+	
+	// method to create telegram url
+	private String generateTelegramUrl(String nickname){
+	    StringBuffer telegram = new StringBuffer();
+	    telegram.append("https://telegram.me/").append(nickname);
+	    
+	    StringBuffer sb = new StringBuffer();
+        sb.append("<a href=\"")
+        .append(telegram)
+        .append("\">@")
+        .append(nickname)
+        .append("</a>");
+        return sb.toString();
 	}
 }
