@@ -26,48 +26,41 @@ public class frmCredits extends javax.swing.JInternalFrame {
 	private static Logger LOGGER = Logger.getLogger(frmCredits.class);
 	private final JPanel contentPanel = new JPanel();
 	private final JEditorPane txtthanks = new JEditorPane();
-	private final JEditorPane txtApp = new JEditorPane();
-	private final JEditorPane disclaimer = new JEditorPane();
 
 	public frmCredits() {
 		this.setTitle("Info");
 		setResizable(false);
-		setBounds(100, 100, 450, 600);
+		setBounds(100, 100, 450, 650);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		
-        txtApp.setEditable(false);
-        txtApp.setFont(new Font("Tahoma", Font.BOLD, 14));
-        txtApp.setContentType("text/html");
-        txtApp.setBounds(10, 6, 400, 40);
-        txtApp.setText("<html><center><a href='https://github.com/rekhyt75/BrewPlus-IFDB/releases'>" + Main.Nome + " "
-                + Utils.getVersion() + "</a></center></html>");
-        contentPanel.add(txtApp);
-
-		disclaimer.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		disclaimer.setEditable(false);
-		disclaimer.setContentType("text/html");
-		disclaimer.setText("<html><center>"
-		        + "<img src=\"" + frmCredits.class.getResource("/jmash/images/logo-min.png") + "\" alt=\"Buongiollo Homebrewers\" >"
-		        + "<br>"
-		        + "<a href=\"http://www.ilforumdellabirra.net\">Il Forum Della Birra</a>"
-		        + "<br>Based on Hobbybrew 2.0.3 and BrewPlus 1.5.0"
-		        + "</center></html>");
-		disclaimer.setBackground(Color.WHITE);
-		disclaimer.setBounds(10, 40, 400, 120);
-		contentPanel.add(disclaimer);
 
 		txtthanks.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		txtthanks.setEditable(false);
 		txtthanks.setContentType("text/html");
-		txtthanks.setText("<html><span style='font-family:Tahoma; font-size: 12pt'><strong>Contributors:</strong>"
+		txtthanks.setText("<html><head></head><body><p style=\"margin-top: 0\">"
+		        // title version
+		        + "<span style='font-family:Tahoma; font-size: 18pt; font-weight: bold'>"
+		        + "<center><a href='https://github.com/rekhyt75/BrewPlus-IFDB/releases'>" + Main.Nome + " " + Utils.getVersion() + "</a></center>"
+		        + "<br><br></span>"
+		        // logo
+		        + "<span style='font-family:Tahoma; font-size: 14pt'>"
+		        + "<center>"
+                + "<img src=\"" + frmCredits.class.getResource("/jmash/images/logo-min.png") + "\">"
+                + "<br>"
+                + "<a href=\"http://www.ilforumdellabirra.net\">Il Forum Della Birra</a>"
+                + "<br>Based on Hobbybrew 2.0.3 and BrewPlus 1.5.0"
+                + "</center>"
+                + "<br><br></span>"
+                // thanks
+		        +"<span style='font-family:Tahoma; font-size: 12pt'>"
+		        + "<strong>Contributors:</strong>"
 		        + "<br>Alessandro \"pera76\" Peruzzi (Email: " + generateEMailAddress("peruzzi.alessandro","gmail.com") + " )"
 		        + "<br>Angelo \"Girella\" Cerella (Email: " + generateEMailAddress("angelo.cerella","gmail.com") + " )"
 				+ "<br>Michele \"Rekhyt\" Antonecchia  (Telegram: " + generateTelegramUrl("rekhyt") + " )"
-				+ "<br><br><strong>For Italian translation of BJCP, Malt list and Hop list:</strong>"
+				+ "<br><br><strong>For Italian translation of BJCP, Malt, Hop and Yeast lists:</strong>"
 				+ "<br>Giovanni \"Sgabuzen\" Iovane ( Email: " + generateEMailAddress("info", "sgabuzen.com") + " )"
                 + "<br>Luciano \"BATIGOLLE\" Picchioni ( Email: " + generateEMailAddress("batigolle", "gmail.com") + " )"
                 + "<br>Massimo \"superpiggy\" Scalvini (Email: " + generateEMailAddress("m.scalvini.80","gmail.com") + " )"
@@ -76,14 +69,15 @@ public class frmCredits extends javax.swing.JInternalFrame {
                 + "<br>Antonio De Feo (Telegram: " + generateTelegramUrl("JigenDaisuke") +" )"
                 + "<br>Stefano Longo (Telegram: " + generateTelegramUrl("Essetielle") + " - Email: " + generateEMailAddress("stl.lecce","gmail.com") + " )"
                 + "<br><br></span>"
+                // License and disclaimer
                 + "<span style='font-family:Tahoma; font-size: 10pt'>"
                 + "<strong>License: </strong><a href=\"https://www.gnu.org/licenses/gpl-3.0.html\">GNU GPL v3.0</a><br>"
                 + "<strong>Disclaimer: </strong>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details."
                 + "<br><br></span>"
                 + "<span style='font-family:Tahoma; font-size: 12pt'>"
                 + "<br><br><strong>Software hosted on GitHub: </strong><a href=\"https://github.com/rekhyt75/BrewPlus-IFDB\">BrewPlus-IFDB</a><br>"
-		        + "</span></html>");
-		txtthanks.setBounds(10, 160, 400, 600);
+		        + "</span></p></body></html>");
+		txtthanks.setBounds(10, 20, 400, 800);
 		contentPanel.add(txtthanks);
 
 		// catch hyperlink
@@ -105,38 +99,6 @@ public class frmCredits extends javax.swing.JInternalFrame {
 			// TODO Auto-generated catch block
 			LOGGER.error(e.getMessage(), e);
 		}
-		try {
-			txtApp.addHyperlinkListener(new HyperlinkListener() {
-				@Override
-				public void hyperlinkUpdate(HyperlinkEvent e) {
-					try {
-						if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED)
-						    Desktop.getDesktop().browse(e.getURL().toURI());
-					} catch (Exception ex) {
-					}
-
-				}
-			});
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			LOGGER.error(e.getMessage(), e);
-		}
-        try {
-            disclaimer.addHyperlinkListener(new HyperlinkListener() {
-                @Override
-                public void hyperlinkUpdate(HyperlinkEvent e) {
-                    try {
-                        if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED)
-                            Desktop.getDesktop().browse(e.getURL().toURI());
-                    } catch (Exception ex) {
-                    }
-
-                }
-            });
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            LOGGER.error(e.getMessage(), e);
-        }
         
 
 		{
