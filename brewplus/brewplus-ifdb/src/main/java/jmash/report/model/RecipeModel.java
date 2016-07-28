@@ -25,6 +25,7 @@ public class RecipeModel {
 	private List<Malt> malts;
 	private List<Mash> steps;
 	private List<Yeast> yeasts;
+	private List<MineralSalts> mineralSalts;
 	
 	public List<Hop> getHops() {
 		return hops;
@@ -127,6 +128,12 @@ public class RecipeModel {
 	}
 	public void setRatioLitreKg(String ratioLitreKg) {
 		this.ratioLitreKg = ratioLitreKg;
+	}
+	public List<MineralSalts> getMineralSalts() {
+		return mineralSalts;
+	}
+	public void setMineralSalts(List<MineralSalts> mineralSalts) {
+		this.mineralSalts = mineralSalts;
 	}
 	
 }

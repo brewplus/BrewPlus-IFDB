@@ -58,6 +58,7 @@ import jmash.imagecomponents.ImageFilter;
 import jmash.imagecomponents.ImagePreview;
 import jmash.report.PrintRecipe;
 import jmash.report.model.Mash;
+import jmash.report.model.MineralSalts;
 import jmash.report.model.RecipeModel;
 import jmash.robot.hbRobot;
 import jmash.tableModel.HopTableModel;
@@ -1748,6 +1749,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		RecipeData rec = toRecipeData();
 		List<RecipeModel> summaries = new ArrayList<RecipeModel>();
 		List<Mash> steps = new ArrayList<Mash>();
+		List<MineralSalts> mineralSalts = new ArrayList<MineralSalts>();
+		
 		LOGGER.debug("Prepare Print data model");
 		RecipeModel summary = new RecipeModel();
 		summary.setHops(rec.getHops());
@@ -1761,6 +1764,28 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		}
 		summary.setSteps(steps);
 		summary.setYeasts(rec.getYeasts());
+		//Water Adjust
+		MineralSalts mineralSaltMash = new MineralSalts();
+		mineralSaltMash.setStepName("Mash");
+		mineralSaltMash.setGypsum(String.format("%.01f",waterPanel.getGypsumMash())); 
+		mineralSaltMash.setEpsom(String.format("%.01f",(waterPanel.getEpsomMash())));
+		mineralSaltMash.setCalciumChloride(String.format("%.01f",(waterPanel.getCaCl2Mash()))); //Cloruro di calcio
+		mineralSaltMash.setSodiumChloride(String.format("%.01f",(waterPanel.getNaClMash()))); //Cloruro di sodio
+		mineralSaltMash.setCalciumCarbonate(String.format("%.01f",(waterPanel.getChalkMash())));	//Carbonato di calcio
+		mineralSaltMash.setBakingSoda(String.format("%.01f",(waterPanel.getSodaMash())));		//Bicarbonato di sodio
+		mineralSaltMash.setCalciumHydroxide(String.format("%.01f",(waterPanel.getSlakedLimeMash()))); //Idrossido di calcio
+		mineralSalts.add(mineralSaltMash);
+		MineralSalts mineralSaltSpage = new MineralSalts();
+		mineralSaltSpage.setStepName("Sparge");
+		mineralSaltSpage.setGypsum(String.format("%.01f",waterPanel.getGypsumSparge()));
+		mineralSaltSpage.setEpsom(String.format("%.01f",(waterPanel.getEpsomSparge())));
+		mineralSaltSpage.setCalciumChloride(String.format("%.01f",(waterPanel.getCaCl2Sparge())));
+		mineralSaltSpage.setSodiumChloride(String.format("%.01f",(waterPanel.getNaClSparge())));
+		mineralSaltSpage.setCalciumCarbonate(String.format("%.01f",(waterPanel.getChalkSparge())));
+		mineralSaltSpage.setBakingSoda(String.format("%.01f",(waterPanel.getSodaSparge())));
+		mineralSaltSpage.setCalciumHydroxide(String.format("%.01f",(waterPanel.getSlakedLimeSparge())));
+		mineralSalts.add(mineralSaltSpage);
+		summary.setMineralSalts(mineralSalts);
 		summary.setBoilingTime(rec.getBollitura().toString());
 		summary.setBoilLiters(rec.getVolumeBoll().toString());
 		summary.setAlcoolVolume(getGradiPrevisti());
@@ -1778,180 +1803,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		
 		try {
 			LOGGER.debug("Print PDF recipe.");
-			//PrintRecipe print = new PrintRecipe();
 			PrintRecipe.recipe(fldNome!=null?fldNome.getText():Main.bundle.getString("label.noRecipeName"), brewStyle!= null?brewStyle.getNome():Main.bundle.getString("label.noStyleName"), Utils.getVersion(), summaries);
-			/*
-			RandomAccessFile f = new RandomAccessFile(Main.printTemplate, "r");
-			byte b[] = new byte[(int) f.length()];
-			f.readFully(b);
-			f.close();
-			String str = new String(b);
-			String res = "";
-			int i = str.indexOf(BEGIN_MALTS);
-			int e = str.indexOf(END_MALTS);
-
-			//RecipeData rec = toRecipeData();
-			if (i >= 0 && e >= 0) {
-
-				String S = str.substring(0, i);
-				String R = str.substring(i + BEGIN_MALTS.length(), e);
-				Method[] methods = new Malt().getClass().getDeclaredMethods();
-				for (Malt m : rec.getMalts()) {
-					String RR = R;
-
-					for (int j = 0; j < methods.length; j++) {
-						Method method = methods[j];
-						method.setAccessible(true);
-						if (RR.indexOf("malt." + method.getName()) > -1) {
-							Object o = method.invoke(m);
-							String r = o == null ? "" : o.toString();
-							if (method.getReturnType().toString().equalsIgnoreCase("double")
-									|| method.getReturnType().toString().compareTo(Double.class.toString()) == 0) {
-								r = NumberFormatter.format03((Double) method.invoke(m));
-							}
-							RR = RR.replaceAll("malt." + method.getName(), r);
-						}
-					}
-
-					S += RR;
-				}
-				res += S;
-			}
-			if (e >= 0)
-				str = str.substring(e + END_MALTS.length());
-
-			i = str.indexOf(BEGIN_HOPS);
-			e = str.indexOf(END_HOPS);
-
-			if (i >= 0 && e >= 0) {
-
-				String S = str.substring(0, i);
-				String R = str.substring(i + BEGIN_HOPS.length(), e);
-				Method[] methods = new Hop().getClass().getDeclaredMethods();
-				for (Hop m : rec.getHops()) {
-					String RR = new String(R);
-
-					for (int j = 0; j < methods.length; j++) {
-						Method method = methods[j];
-						method.setAccessible(true);
-						if (RR.indexOf("hop." + method.getName()) > -1) {
-							Object o = method.invoke(m);
-							String r = o == null ? "" : o.toString();
-							if (method.getReturnType().toString().equalsIgnoreCase("double")
-									|| method.getReturnType().toString().compareTo(Double.class.toString()) == 0) {
-								r = NumberFormatter.format01((Double) method.invoke(m));
-							}
-							RR = RR.replaceAll("hop." + method.getName(), r);
-						}
-					}
-					S += RR;
-				}
-				res += S;
-			}
-			if (e >= 0)
-				str = str.substring(e + END_HOPS.length());
-
-			i = str.indexOf(BEGIN_YEASTS);
-			e = str.indexOf(END_YEASTS);
-
-			if (i >= 0 && e >= 0) {
-
-				String S = str.substring(0, i);
-				String R = str.substring(i + BEGIN_YEASTS.length(), e);
-				Method[] methods = new Yeast().getClass().getDeclaredMethods();
-				for (Yeast m : rec.getYeasts()) {
-					String RR = new String(R);
-
-					for (int j = 0; j < methods.length; j++) {
-						Method method = methods[j];
-						method.setAccessible(true);
-						if (RR.indexOf("yeast." + method.getName()) > -1) {
-							Object o = method.invoke(m);
-							String r = o == null ? "" : o.toString();
-							if (method.getReturnType().toString().equalsIgnoreCase("double")
-									|| method.getReturnType().toString().compareTo(Double.class.toString()) == 0) {
-								r = NumberFormatter.format01((Double) method.invoke(m));
-							}
-							RR = RR.replaceAll("yeast." + method.getName(), r);
-						}
-					}
-
-					S += RR;
-				}
-				res += S;
-			}
-			if (e >= 0)
-				str = str.substring(e + END_YEASTS.length());
-
-			// ixtlanas mash steps
-			i = str.indexOf(BEGIN_MASHSTEPS);
-			e = str.indexOf(END_MASHSTEPS);
-			if (i >= 0 && e >= 0) {
-				String S = str.substring(0, i);
-				String R = str.substring(i + BEGIN_MASHSTEPS.length(), e);
-				Method[] methods = new MashStep().getClass().getDeclaredMethods();
-				for (MashStep m : rec.getInfusionSteps()) {
-					String RR = new String(R);
-					for (int j = 0; j < methods.length; j++) {
-						Method method = methods[j];
-						method.setAccessible(true);
-						if (RR.indexOf("MashStep." + method.getName()) > -1) {
-							Object o = method.invoke(m);
-							String r = o == null ? "" : o.toString();
-							if (method.getReturnType().toString().equalsIgnoreCase("double")
-									|| method.getReturnType().toString().compareTo(Double.class.toString()) == 0) {
-								r = NumberFormatter.format01((Double) method.invoke(m));
-							}
-							RR = RR.replaceAll("MashStep." + method.getName(), r);
-						}
-					}
-					S += RR;
-				}
-				res += S;
-			}
-			if (e >= 0)
-				str = str.substring(e + END_MASHSTEPS.length());
-			res += str;
-
-			Method[] methods = rec.getClass().getDeclaredMethods();
-			for (int j = 0; j < methods.length; j++) {
-				Method method = methods[j];
-				method.setAccessible(true);
-				if (res.indexOf("ricetta." + method.getName()) > -1) {
-					String r = "" + method.invoke(rec);
-					if (method.getReturnType().toString().equalsIgnoreCase("double")
-							|| method.getReturnType().toString().compareTo(Double.class.toString()) == 0) {
-						r = NumberFormatter.format01((Double) method.invoke(rec));
-					}
-					res = res.replaceAll("ricetta." + method.getName(), r);
-				}
-			}
-
-			methods = this.getClass().getDeclaredMethods();
-			for (int j = 0; j < methods.length; j++) {
-				Method method = methods[j];
-				method.setAccessible(true);
-				if (res.indexOf("ricetta." + method.getName()) > -1) {
-					String r = "" + method.invoke(this);
-					if (method.getReturnType().toString().equalsIgnoreCase("double")
-							|| method.getReturnType().toString().compareTo(Double.class.toString()) == 0) {
-						r = NumberFormatter.format01((Double) method.invoke(this));
-					}
-					res = res.replaceAll("ricetta." + method.getName(), r);
-				}
-			}
-			File fileOut = new File(Main.userDir + "/templates/output.html");
-			FileWriter fstream = new FileWriter(fileOut);
-			BufferedWriter out = new BufferedWriter(fstream);
-			out.write(res);
-			out.close();
-
-			FileOutputStream fos = new FileOutputStream(Main.userDir + "/templates/mash.jpg");
-			ImageIO.write(mashDesign.getImage(), "png", fos);
-			fos.close();
-
-			new Utils.BareBonesBrowserLaunch().openURL("file:///" + Main.userDir + "/templates/output.html");
-		*/
+			
 		} catch (Exception ex) {
 			Utils.showException(ex, "", this);
 		}

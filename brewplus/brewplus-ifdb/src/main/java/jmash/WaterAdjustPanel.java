@@ -2723,9 +2723,9 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	public double getGypsumMash() {
 		try
 		{
-			return Double.parseDouble(txtGyspumMash.getText());
+			return Double.parseDouble(txtGyspumMash.getText().replaceAll(",", "."));
 		}
-		catch (Exception e)
+		catch (NumberFormatException e)
 		{
 			return Double.NaN;
 		}
@@ -2734,7 +2734,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	public double getGypsumSparge() {
 		try
 		{
-			return Double.parseDouble(txtGyspumSparge.getText());
+			return Double.parseDouble(txtGyspumSparge.getText().replaceAll(",", "."));
 		}
 		catch (Exception e)
 		{
@@ -2749,7 +2749,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	public double getEpsomMash() {
 		try
 		{
-			return Double.parseDouble(txtEpsomMash.getText());
+			return Double.parseDouble(txtEpsomMash.getText().replaceAll(",", "."));
 		}
 		catch (Exception e)
 		{
@@ -2760,7 +2760,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	public double getEpsomSparge() {
 		try
 		{
-			return Double.parseDouble(txtEpsomSparge.getText());
+			return Double.parseDouble(txtEpsomSparge.getText().replaceAll(",", "."));
 		}
 		catch (Exception e)
 		{
@@ -2775,7 +2775,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	public double getCaCl2Mash() {
 		try
 		{
-			return Double.parseDouble(txtCaCl2Mash.getText());
+			return Double.parseDouble(txtCaCl2Mash.getText().replaceAll(",", "."));
 		}
 		catch (Exception e)
 		{
@@ -2786,7 +2786,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	public double getCaCl2Sparge() {
 		try
 		{
-			return Double.parseDouble(txtCaCl2Sparge.getText());
+			return Double.parseDouble(txtCaCl2Sparge.getText().replaceAll(",", "."));
 		}
 		catch (Exception e)
 		{
@@ -2801,7 +2801,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	public double getNaClMash() {
 		try
 		{
-			return Double.parseDouble(txtNaClMash.getText());
+			return Double.parseDouble(txtNaClMash.getText().replaceAll(",", "."));
 		}
 		catch (Exception e)
 		{
@@ -2812,7 +2812,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	public double getNaClSparge() {
 		try
 		{
-			return Double.parseDouble(txtNaClSparge.getText());
+			return Double.parseDouble(txtNaClSparge.getText().replaceAll(",", "."));
 		}
 		catch (Exception e)
 		{
@@ -2827,7 +2827,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	public double getChalkMash() {
 		try
 		{
-			return Double.parseDouble(txtChalkMash.getText());
+			return Double.parseDouble(txtChalkMash.getText().replaceAll(",", "."));
 		}
 		catch (Exception e)
 		{
@@ -2838,7 +2838,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	public double getChalkSparge() {
 		try
 		{
-			return Double.parseDouble(txtChalkSparge.getText());
+			return Double.parseDouble(txtChalkSparge.getText().replaceAll(",", "."));
 		}
 		catch (Exception e)
 		{
@@ -2853,7 +2853,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	public double getSodaMash() {
 		try
 		{
-			return Double.parseDouble(txtSodaMash.getText());
+			return Double.parseDouble(txtSodaMash.getText().replaceAll(",", "."));
 		}
 		catch (Exception e)
 		{
@@ -2864,7 +2864,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	public double getSodaSparge() {
 		try
 		{
-			return Double.parseDouble(txtSodaSparge.getText());
+			return Double.parseDouble(txtSodaSparge.getText().replaceAll(",", "."));
 		}
 		catch (Exception e)
 		{
@@ -2879,7 +2879,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	public double getSlakedLimeMash() {
 		try
 		{
-			return Double.parseDouble(txtSlakedLimeSparge.getText());
+			return Double.parseDouble(txtSlakedLimeSparge.getText().replaceAll(",", "."));
 		}
 		catch (Exception e)
 		{
@@ -2890,7 +2890,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	public double getSlakedLimeSparge() {
 		try
 		{
-			return Double.parseDouble(txtSlakedLimeMash.getText());
+			return Double.parseDouble(txtSlakedLimeMash.getText().replaceAll(",", "."));
 		}
 		catch (Exception e)
 		{
