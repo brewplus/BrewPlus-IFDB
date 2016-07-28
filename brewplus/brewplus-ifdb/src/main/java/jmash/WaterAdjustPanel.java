@@ -2612,9 +2612,17 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	public void setUseGypsumSparge(boolean useGypsumSparge) {
 		this.useGypsumSparge.setSelected(useGypsumSparge);
 	}
+	
+	public boolean isGypsumSpargeActive() {
+		return useGypsumSparge.isVisible() && useGypsumSparge.isSelected();
+	}
 
 	public boolean useEpsomSparge() {
 		return useEpsomSparge.isSelected();
+	}
+	
+	public boolean isEpsomSpargeActive() {
+		return useEpsomSparge.isVisible() && useEpsomSparge.isSelected();
 	}
 
 	public void setUseEpsomSparge(boolean useEpsomSparge) {
@@ -2624,6 +2632,10 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	public boolean useCaCl2Sparge() {
 		return useCaCl2Sparge.isSelected();
 	}
+	
+	public boolean isCaCl2SpargeActive() {
+		return useCaCl2Sparge.isVisible() && useCaCl2Sparge.isSelected();
+	}
 
 	public void setUseCaCl2Sparge(boolean useCaCl2Sparge) {
 		this.useCaCl2Sparge.setSelected(useCaCl2Sparge);
@@ -2631,6 +2643,10 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 
 	public boolean useNaClSparge() {
 		return useNaClSparge.isSelected();
+	}
+	
+	public boolean isNaClSpargeActive() {
+		return useNaClSparge.isVisible() && useNaClSparge.isSelected();
 	}
 
 	public void setUseNaClSparge(boolean useNaClSparge) {
@@ -2640,6 +2656,10 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	public boolean useChalkSparge() {
 		return useChalkSparge.isSelected();
 	}
+	
+	public boolean isChalkSpargeActive() {
+		return useChalkSparge.isVisible() && useChalkSparge.isSelected();
+	}
 
 	public void setUseChalkSparge(boolean useChalkSparge) {
 		this.useChalkSparge.setSelected(useChalkSparge);
@@ -2647,6 +2667,10 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 
 	public boolean useSodaSparge() {
 		return useSodaSparge.isSelected();
+	}
+	
+	public boolean isSodaSpargeActive() {
+		return useSodaSparge.isVisible() && useSodaSparge.isSelected();
 	}
 
 	public void setUseSodaSparge(boolean useSodaSparge) {
@@ -2664,12 +2688,17 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	public boolean useSlakedLimeSparge() {
 		return useSlakedLimeSparge.isSelected();
 	}
+	
+	public boolean isSlakedLimeSpargeActive() {
+		return useSlakedLimeSparge.isVisible() && useSlakedLimeSparge.isSelected();
+	}
 
 	public void setUseSlakedLimeSparge(boolean useSlakedLimeSparge) {
 		this.useSlakedLimeSparge.setSelected(useSlakedLimeSparge);
 	}
 
 	public void setBIAB(boolean biab) {
+		
 		lblMash.setVisible(!biab);
 		lblSparge.setVisible(!biab);
 		
@@ -2711,8 +2740,6 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		textFieldMashSpargeChlorideSulfateRatio.setVisible(!biab);
 		
 		lblMashWP.setText(!biab ? "Mash Water Profile" : "BIAB Water Profile");
-		
-		
 		
 	}
 	
@@ -2897,8 +2924,5 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 			return Double.NaN;
 		}
 	}
-	
-
-
 
 }
