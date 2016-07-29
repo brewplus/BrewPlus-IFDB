@@ -1785,6 +1785,16 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		mineralSaltSpage.setBakingSoda(String.format("%.01f",(waterPanel.getSodaSparge())));
 		mineralSaltSpage.setCalciumHydroxide(String.format("%.01f",(waterPanel.getSlakedLimeSparge())));
 		mineralSalts.add(mineralSaltSpage);
+		MineralSalts mineralSaltTot = new MineralSalts();
+		mineralSaltTot.setStepName("Totale");
+		mineralSaltTot.setGypsum(String.format("%.01f",waterPanel.getGypsum()));
+		mineralSaltTot.setEpsom(String.format("%.01f",(waterPanel.getEpsom())));
+		mineralSaltTot.setCalciumChloride(String.format("%.01f",(waterPanel.getCaCl2())));
+		mineralSaltTot.setSodiumChloride(String.format("%.01f",(waterPanel.getNaCl())));
+		mineralSaltTot.setCalciumCarbonate(String.format("%.01f",(waterPanel.getChalk())));
+		mineralSaltTot.setBakingSoda(String.format("%.01f",(waterPanel.getSoda())));
+		mineralSaltTot.setCalciumHydroxide(String.format("%.01f",(waterPanel.getSlakedLime())));
+		mineralSalts.add(mineralSaltTot);
 		summary.setMineralSalts(mineralSalts);
 		summary.setBoilingTime(rec.getBollitura().toString());
 		summary.setBoilLiters(rec.getVolumeBoll().toString());

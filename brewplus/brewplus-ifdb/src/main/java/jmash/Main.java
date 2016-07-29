@@ -89,7 +89,7 @@ public class Main {
 	public static String coloriXML = "config/colors.xml";
 	public static String configXML = "config/config.xml";
 	public static String inventarioXML = "config/inventario.xml";
-	public static String printTemplate = "templates/ricetta.html";
+	//public static String printTemplate = "templates/ricetta.html";
 	public static Gui gui;
 	public static javax.swing.JDesktopPane desktopPane;
 	public static MultiLineCellRenderer multiLineCellRenderer = new MultiLineCellRenderer();
