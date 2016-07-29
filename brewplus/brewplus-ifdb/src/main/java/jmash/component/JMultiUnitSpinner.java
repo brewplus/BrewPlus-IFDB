@@ -30,6 +30,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import jmash.Main;
+import java.awt.Component;
 
 /**
  *
@@ -45,7 +46,8 @@ public abstract class JMultiUnitSpinner extends javax.swing.JPanel {
 		this(list, 77, 55);
 	}
 	
-	/** Creates new form JVolumeSpinner */
+	/** Creates new form JVolumeSpinner 
+	 * @wbp.parser.constructor*/
 	public JMultiUnitSpinner(String[] list, int widthUnit) {
 		this(list, 77, widthUnit);
 	}
@@ -85,6 +87,7 @@ public abstract class JMultiUnitSpinner extends javax.swing.JPanel {
 
 		jMashSpinner1 = new jmash.component.JMashSpinner();
 		jComboBox1 = new javax.swing.JComboBox();
+		jComboBox1.setAlignmentX(Component.LEFT_ALIGNMENT);
 
 		jMashSpinner1.setBorder(null);
 		jMashSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -92,8 +95,6 @@ public abstract class JMultiUnitSpinner extends javax.swing.JPanel {
 				jMashSpinner1StateChanged(evt);
 			}
 		});
-
-		jComboBox1.setAlignmentX(0.0F);
 		jComboBox1.addItemListener(new java.awt.event.ItemListener() {
 			public void itemStateChanged(java.awt.event.ItemEvent evt) {
 				jComboBox1ItemStateChanged(evt);
