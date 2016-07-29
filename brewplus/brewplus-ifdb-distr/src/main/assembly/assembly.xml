@@ -43,6 +43,15 @@
 				<include>*.*</include>
 			</includes>
 		</fileSet>
+		
+		<fileSet>
+			<outputDirectory>.</outputDirectory>
+			<directory>../../</directory>
+			<includes>
+				<include>LICENSE</include>
+				<include>README.md</include>
+			</includes>
+		</fileSet>
 
 
 
