@@ -38,7 +38,7 @@ import org.jdom.Document;
 import org.jdom.Element;
 
 import jmash.Main.BitterBUGU;
-import jmash.component.JPercentualeSpinner;
+import jmash.component.JUnitSpinner;
 import jmash.interfaces.Constants;
 
 /**
@@ -59,19 +59,11 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		setBorder(Utils.getDefaultBorder());
 		fldEff.setModel(75.0, 1, 100, 1, "0", "CT.eff");
 		fldVolumeFin.setModel(23.0, 1, 9999999, 1, "0.0", "CT.vf");
-		fldVolumeBoll.setModel(23.0, 1, 9999999, 1, "0.0", "CT.vb");
 		fldSLM.setModel(300.0, 1, 8844, 1, "0", "CT.slm");
 		fldDHEA.setModel(45.0, 1, 60, 1, "0", "CT.dhea");
 		fldBoil.setModel(90.0, 1, 1000, 1);
-
-		spnEvaporazione.setModel(Main.config.getLostToTrub(), 0.1, 1000000, 0.1, "0.0", "CT.ev");
-		spnLitriKg.setModel(Main.config.getLostToTrub(), 0.1, 1000000, 0.1, "0.0", "CT.lkg");
-		spnLostToSparge.setModel(Main.config.getLostToTrub(), 0.1, 1000000, 0.1, "0.0", "CT.lts");
-		spnLostToTrub.setModel(Main.config.getLostToTrub(), 0.1, 1000000, 0.1, "0.0", "CT.ltt");
-
 		fldEff.setValue(Main.config.getEfficienza());
 		fldVolumeFin.setValue(Main.config.getVolumeFin());
-		fldVolumeBoll.setValue(Main.config.getVolumeBoil());
 		fldSLM.setValue(Main.config.getMetriSLM());
 		fldDHEA.setValue(Main.config.getAmaroDHEA());
 		fldBoil.setValue(Main.config.getBoilTime());
@@ -114,16 +106,43 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		gbc_cmbLanguage.gridx = 1;
 		gbc_cmbLanguage.gridy = 5;
 		jPanel1.add(cmbLanguage, gbc_cmbLanguage);
+		spnAssorbimentoGraniEsausti.setDoubleValue(Main.config.getLitriPerKg());
+		spnRapportoAcquaGrani.setDoubleValue(Main.config.getRapportoAcquaGrani());
 		
-		spnLostToSparge.setVolume(Main.config.getLostToSparge());
-		spnLostToTrub.setVolume(Main.config.getLostToTrub());
-		spnLitriKg.setVolume(Main.config.getLitriPerKg());
-		spnEvaporazione.setVolume(Main.config.getEvaporazionePerOra());
 		
-		spnPercentualeEvaporazione.setPercentuale(Main.config.getPercentualeEvaporazione());
-		spnContrazionePerRaffreddamento.setPercentuale(Main.config.getContrazionePerRaffreddamento());
+		
+		spnPercentualeEvaporazione.setDoubleValue(Main.config.getPercentualeEvaporazione());
 		chckbxBiab.setSelected(Main.config.getBiab() );
 		
+		spnContrazionePerRaffreddamento.setDoubleValue(Main.config.getContrazionePerRaffreddamento());
+		
+		
+		GridBagConstraints gbc_spnContrazionePerRaffreddamento = new GridBagConstraints();
+		gbc_spnContrazionePerRaffreddamento.insets = new Insets(0, 0, 5, 0);
+		gbc_spnContrazionePerRaffreddamento.gridx = 1;
+		gbc_spnContrazionePerRaffreddamento.gridy = 4;
+		jPanel4.add(spnContrazionePerRaffreddamento, gbc_spnContrazionePerRaffreddamento);
+		jLabel11 = new javax.swing.JLabel();
+		
+		jLabel11.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		jLabel11.setText(Main.bundle.getString("label.lostTrub"));
+		gridBagConstraints_14 = new java.awt.GridBagConstraints();
+		gridBagConstraints_14.insets = new Insets(0, 0, 0, 5);
+		gridBagConstraints_14.gridx = 0;
+		gridBagConstraints_14.gridy = 5;
+		gridBagConstraints_14.anchor = java.awt.GridBagConstraints.EAST;
+		jPanel4.add(jLabel11, gridBagConstraints_14);
+		spnLostToTrub = new jmash.component.JUnitSpinner("L", 57);
+		spnLostToTrub.setModel(Main.config.getLostToTrub(), 0.1, 1000000, 0.1, "0.00", "CT.ltt");
+		spnLostToTrub.setDoubleValue(Main.config.getLostToTrub());
+		
+		spnLostToTrub.setFont(spnLostToTrub.getFont());
+		gridBagConstraints_15 = new java.awt.GridBagConstraints();
+		gridBagConstraints_15.gridx = 1;
+		gridBagConstraints_15.gridy = 5;
+		gridBagConstraints_15.anchor = java.awt.GridBagConstraints.NORTHWEST;
+		jPanel4.add(spnLostToTrub, gridBagConstraints_15);
+
 		cmbLanguage.setSelectedItem("it_IT".equalsIgnoreCase(Main.config.getLocale())?Constants.ITALIAN:Constants.ENGLISH);
 		//ButtonGroup group = new ButtonGroup();
 	}
@@ -136,6 +155,11 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 	// <editor-fold defaultstate="collapsed" desc="Generated
 	// Code">//GEN-BEGIN:initComponents
 	private void initComponents() {
+		
+		
+
+		
+		
 		java.awt.GridBagConstraints gridBagConstraints;
 
 		jToolBar1 = new javax.swing.JToolBar();
@@ -145,11 +169,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		fldEff = new jmash.component.JMashSpinner();
 		jLabel2 = new javax.swing.JLabel();
 		fldVolumeFin = new jmash.component.JMashSpinner();
-		fldVolumeBoll = new jmash.component.JMashSpinner();
-		jLabel3 = new javax.swing.JLabel();
 		jLabel4 = new javax.swing.JLabel();
-		jLabelDHEA = new javax.swing.JLabel();
-		fldDHEA = new jmash.component.JMashSpinner();
 		fldSLM = new jmash.component.JMashSpinner();
 		jLabel10 = new javax.swing.JLabel();
 		fldBoil = new jmash.component.JMashSpinner();
@@ -165,14 +185,6 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		fldProxy = new javax.swing.JTextField();
 		fldProxyPort = new javax.swing.JTextField();
 		jPanel4 = new javax.swing.JPanel();
-		jLabel11 = new javax.swing.JLabel();
-		spnLostToTrub = new jmash.component.JVolumeSpinner();
-		jLabel12 = new javax.swing.JLabel();
-		spnLostToSparge = new jmash.component.JVolumeSpinner();
-		spnLitriKg = new jmash.component.JVolumeSpinner();
-		spnEvaporazione = new jmash.component.JVolumeSpinner();
-		jLabel13 = new javax.swing.JLabel();
-		jLabel14 = new javax.swing.JLabel();
 
 		setBorder(null);
 		setClosable(true);
@@ -267,36 +279,27 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		gridBagConstraints_4.gridy = 2;
 		gridBagConstraints_4.fill = java.awt.GridBagConstraints.BOTH;
 		jPanel1.add(fldVolumeFin, gridBagConstraints_4);
-
-		fldVolumeBoll.setFont(fldVolumeBoll.getFont());
-		gridBagConstraints_5 = new java.awt.GridBagConstraints();
-		gridBagConstraints_5.insets = new Insets(0, 0, 5, 0);
-		gridBagConstraints_5.gridx = 3;
-		gridBagConstraints_5.gridy = 2;
-		gridBagConstraints_5.fill = java.awt.GridBagConstraints.BOTH;
-		jPanel1.add(fldVolumeBoll, gridBagConstraints_5);
-
-		// jLabel3.setFont(jLabel3.getFont());
-		jLabel3.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		jLabel3.setText("Volume bollitura (litri)");
-		gridBagConstraints_6 = new java.awt.GridBagConstraints();
-		gridBagConstraints_6.insets = new Insets(0, 0, 5, 5);
-		gridBagConstraints_6.gridx = 2;
-		gridBagConstraints_6.gridy = 2;
-		gridBagConstraints_6.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		gridBagConstraints_6.anchor = java.awt.GridBagConstraints.EAST;
-		jPanel1.add(jLabel3, gridBagConstraints_6);
-
-		// jLabelDHEA.setFont(jLabelDHEA.getFont());
-		jLabelDHEA.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		jLabelDHEA.setText("Amaro DHEA");
-		gridBagConstraints_7 = new java.awt.GridBagConstraints();
-		gridBagConstraints_7.insets = new Insets(0, 0, 5, 5);
-		gridBagConstraints_7.gridx = 2;
-		gridBagConstraints_7.gridy = 3;
-		gridBagConstraints_7.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		gridBagConstraints_7.anchor = java.awt.GridBagConstraints.EAST;
-		jPanel1.add(jLabelDHEA, gridBagConstraints_7);
+		jLabelDHEA = new javax.swing.JLabel();
+		
+				// jLabelDHEA.setFont(jLabelDHEA.getFont());
+				jLabelDHEA.setFont(new Font("Tahoma", Font.PLAIN, 11));
+				jLabelDHEA.setText("Amaro DHEA");
+				gridBagConstraints_7 = new java.awt.GridBagConstraints();
+				gridBagConstraints_7.insets = new Insets(0, 0, 5, 5);
+				gridBagConstraints_7.gridx = 2;
+				gridBagConstraints_7.gridy = 2;
+				gridBagConstraints_7.fill = java.awt.GridBagConstraints.HORIZONTAL;
+				gridBagConstraints_7.anchor = java.awt.GridBagConstraints.EAST;
+				jPanel1.add(jLabelDHEA, gridBagConstraints_7);
+		fldDHEA = new jmash.component.JMashSpinner();
+		
+				fldDHEA.setFont(fldDHEA.getFont());
+				gridBagConstraints_10 = new java.awt.GridBagConstraints();
+				gridBagConstraints_10.insets = new Insets(0, 0, 5, 0);
+				gridBagConstraints_10.gridx = 3;
+				gridBagConstraints_10.gridy = 2;
+				gridBagConstraints_10.fill = java.awt.GridBagConstraints.BOTH;
+				jPanel1.add(fldDHEA, gridBagConstraints_10);
 
 		jLabel4.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		jLabel4.setText("Metri SLM");
@@ -326,14 +329,6 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		gridBagConstraints_9.gridy = 3;
 		gridBagConstraints_9.fill = java.awt.GridBagConstraints.BOTH;
 		jPanel1.add(fldSLM, gridBagConstraints_9);
-
-		fldDHEA.setFont(fldDHEA.getFont());
-		gridBagConstraints_10 = new java.awt.GridBagConstraints();
-		gridBagConstraints_10.insets = new Insets(0, 0, 5, 0);
-		gridBagConstraints_10.gridx = 3;
-		gridBagConstraints_10.gridy = 3;
-		gridBagConstraints_10.fill = java.awt.GridBagConstraints.BOTH;
-		jPanel1.add(fldDHEA, gridBagConstraints_10);
 
 		// jLabel10.setFont(jLabel10.getFont());
 		jLabel10.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -366,81 +361,50 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		jPanel4.setLayout(new java.awt.GridBagLayout());
 		jPanel4.setMinimumSize(new Dimension(550, 210));
 		jPanel4.setPreferredSize(new Dimension(550, 210));
-
-		jLabel11.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		jLabel11.setText(Main.bundle.getString("label.lostTrub"));
-		gridBagConstraints_14 = new java.awt.GridBagConstraints();
-		gridBagConstraints_14.insets = new Insets(0, 0, 5, 5);
-		gridBagConstraints_14.gridx = 0;
-		gridBagConstraints_14.gridy = 0;
-		gridBagConstraints_14.anchor = java.awt.GridBagConstraints.EAST;
-		jPanel4.add(jLabel11, gridBagConstraints_14);
-
-		spnLostToTrub.setFont(spnLostToTrub.getFont());
-		gridBagConstraints_15 = new java.awt.GridBagConstraints();
-		gridBagConstraints_15.insets = new Insets(0, 0, 5, 5);
-		gridBagConstraints_15.gridx = 1;
-		gridBagConstraints_15.gridy = 0;
-		gridBagConstraints_15.anchor = java.awt.GridBagConstraints.NORTHWEST;
-		jPanel4.add(spnLostToTrub, gridBagConstraints_15);
 		
-		chckbxBiab = new JCheckBox("BIAB");
+		lblBiab = new JLabel("BIAB");
+		GridBagConstraints gbc_lblBiab = new GridBagConstraints();
+		gbc_lblBiab.anchor = GridBagConstraints.EAST;
+		gbc_lblBiab.insets = new Insets(0, 0, 5, 5);
+		gbc_lblBiab.gridx = 0;
+		gbc_lblBiab.gridy = 0;
+		jPanel4.add(lblBiab, gbc_lblBiab);
+		
+		chckbxBiab = new JCheckBox("");
 		GridBagConstraints gbc_chckbxBiab = new GridBagConstraints();
 		gbc_chckbxBiab.insets = new Insets(0, 0, 5, 0);
 		gbc_chckbxBiab.anchor = GridBagConstraints.WEST;
-		gbc_chckbxBiab.gridx = 3;
+		gbc_chckbxBiab.gridx = 1;
 		gbc_chckbxBiab.gridy = 0;
 		jPanel4.add(chckbxBiab, gbc_chckbxBiab);
-
-		jLabel12.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		jLabel12.setText(Main.bundle.getString("label.lostInSparge"));
-		gridBagConstraints_16 = new java.awt.GridBagConstraints();
-		gridBagConstraints_16.insets = new Insets(0, 0, 5, 5);
-		gridBagConstraints_16.gridx = 0;
-		gridBagConstraints_16.gridy = 1;
-		gridBagConstraints_16.anchor = java.awt.GridBagConstraints.EAST;
-		jPanel4.add(jLabel12, gridBagConstraints_16);
-
-		spnLostToSparge.setFont(spnLostToSparge.getFont());
-		gridBagConstraints_17 = new java.awt.GridBagConstraints();
-		gridBagConstraints_17.insets = new Insets(0, 0, 5, 5);
-		gridBagConstraints_17.gridx = 1;
-		gridBagConstraints_17.gridy = 1;
-		gridBagConstraints_17.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		jPanel4.add(spnLostToSparge, gridBagConstraints_17);
-
-		spnLitriKg.setFont(spnLitriKg.getFont());
-		gridBagConstraints_18 = new java.awt.GridBagConstraints();
-		gridBagConstraints_18.insets = new Insets(0, 0, 5, 5);
-		gridBagConstraints_18.gridx = 1;
-		gridBagConstraints_18.gridy = 2;
-		gridBagConstraints_18.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		jPanel4.add(spnLitriKg, gridBagConstraints_18);
-
-		spnEvaporazione.setFont(spnEvaporazione.getFont());
-		gridBagConstraints_19 = new java.awt.GridBagConstraints();
-		gridBagConstraints_19.insets = new Insets(0, 0, 5, 5);
-		gridBagConstraints_19.gridx = 1;
-		gridBagConstraints_19.gridy = 3;
-		gridBagConstraints_19.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		jPanel4.add(spnEvaporazione, gridBagConstraints_19);
+		jLabel13 = new javax.swing.JLabel();
 
 		jLabel13.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		jLabel13.setText("Litri/kg");
+		jLabel13.setText("Assorbimento grani esausti");
 		gridBagConstraints_20 = new java.awt.GridBagConstraints();
 		gridBagConstraints_20.insets = new Insets(0, 0, 5, 5);
 		gridBagConstraints_20.gridx = 0;
-		gridBagConstraints_20.gridy = 2;
+		gridBagConstraints_20.gridy = 1;
 		gridBagConstraints_20.anchor = java.awt.GridBagConstraints.EAST;
 		jPanel4.add(jLabel13, gridBagConstraints_20);
+		spnAssorbimentoGraniEsausti = new JUnitSpinner("L/kg", 57);
+		spnAssorbimentoGraniEsausti.setModel(Main.config.getLitriPerKg(), 0.0, 1000000, 0.01, "0.00", "CT.lkg");
+		spnAssorbimentoGraniEsausti.setFont(spnAssorbimentoGraniEsausti.getFont());
+		gbc_spnAssorbimentoGraniEsausti = new java.awt.GridBagConstraints();
+		gbc_spnAssorbimentoGraniEsausti.insets = new Insets(0, 0, 5, 0);
+		gbc_spnAssorbimentoGraniEsausti.gridx = 1;
+		gbc_spnAssorbimentoGraniEsausti.gridy = 1;
+		gbc_spnAssorbimentoGraniEsausti.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		jPanel4.add(spnAssorbimentoGraniEsausti, gbc_spnAssorbimentoGraniEsausti);
+		jLabel14 = new javax.swing.JLabel();
 
 		jLabel14.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		jLabel14.setText("Evaporazione / h");
+		jLabel14.setText("Rapporto acqua/grani");
 		gridBagConstraints_21 = new java.awt.GridBagConstraints();
 		gridBagConstraints_21.anchor = GridBagConstraints.EAST;
 		gridBagConstraints_21.insets = new Insets(0, 0, 5, 5);
 		gridBagConstraints_21.gridx = 0;
-		gridBagConstraints_21.gridy = 3;
+		gridBagConstraints_21.gridy = 2;
 		jPanel4.add(jLabel14, gridBagConstraints_21);
 
 		gridBagConstraints_22 = new java.awt.GridBagConstraints();
@@ -449,6 +413,15 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		gridBagConstraints_22.gridy = 3;
 		gridBagConstraints_22.fill = java.awt.GridBagConstraints.BOTH;
 		getContentPane().add(jPanel4, gridBagConstraints_22);
+		spnRapportoAcquaGrani = new JUnitSpinner("L/Kg", 57);
+		spnRapportoAcquaGrani.setModel(Main.config.getRapportoAcquaGrani(), 0.0, 1000000, 0.1, "0.00", "CT.ev");
+		spnRapportoAcquaGrani.setFont(spnRapportoAcquaGrani.getFont());
+		gbc_spnRapportoAcquaGrani = new java.awt.GridBagConstraints();
+		gbc_spnRapportoAcquaGrani.insets = new Insets(0, 0, 5, 0);
+		gbc_spnRapportoAcquaGrani.gridx = 1;
+		gbc_spnRapportoAcquaGrani.gridy = 2;
+		gbc_spnRapportoAcquaGrani.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		jPanel4.add(spnRapportoAcquaGrani, gbc_spnRapportoAcquaGrani);
 		
 		
 		lblPercentualeEvaporazione = new JLabel("Percentuale evaporazione");
@@ -456,14 +429,15 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		gbc_lblPercentualeEvaporazione.anchor = GridBagConstraints.EAST;
 		gbc_lblPercentualeEvaporazione.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPercentualeEvaporazione.gridx = 0;
-		gbc_lblPercentualeEvaporazione.gridy = 4;
+		gbc_lblPercentualeEvaporazione.gridy = 3;
 		jPanel4.add(lblPercentualeEvaporazione, gbc_lblPercentualeEvaporazione);
 		
-		spnPercentualeEvaporazione = new JPercentualeSpinner();
+		spnPercentualeEvaporazione = new JUnitSpinner("%", 57);
+		spnPercentualeEvaporazione.setModel(Main.config.getPercentualeEvaporazione(), 0.0, 100, 0.25, "0.00", null);
 		GridBagConstraints gbc_spnPercentualeEvaporazione = new GridBagConstraints();
-		gbc_spnPercentualeEvaporazione.insets = new Insets(0, 0, 5, 5);
+		gbc_spnPercentualeEvaporazione.insets = new Insets(0, 0, 5, 0);
 		gbc_spnPercentualeEvaporazione.gridx = 1;
-		gbc_spnPercentualeEvaporazione.gridy = 4;
+		gbc_spnPercentualeEvaporazione.gridy = 3;
 		jPanel4.add(spnPercentualeEvaporazione, gbc_spnPercentualeEvaporazione);
 		
 		lblContrazionePerRaffreddamento = new JLabel("Contrazione per raffreddamento");
@@ -471,16 +445,12 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		gbc_lblContrazionePerRaffreddamento.insets = new Insets(0, 0, 5, 5);
 		gbc_lblContrazionePerRaffreddamento.anchor = GridBagConstraints.EAST;
 		gbc_lblContrazionePerRaffreddamento.gridx = 0;
-		gbc_lblContrazionePerRaffreddamento.gridy = 5;
+		gbc_lblContrazionePerRaffreddamento.gridy = 4;
 		jPanel4.add(lblContrazionePerRaffreddamento, gbc_lblContrazionePerRaffreddamento);
+		spnContrazionePerRaffreddamento = new JUnitSpinner("%", 57);
+		spnContrazionePerRaffreddamento.setModel(Main.config.getContrazionePerRaffreddamento(), 0.0, 100, 0.25, "0.00", null);
 		
-		spnContrazionePerRaffreddamento = new JPercentualeSpinner();
-		GridBagConstraints gbc_spnContrazionePerRaffreddamento = new GridBagConstraints();
-		gbc_spnContrazionePerRaffreddamento.insets = new Insets(0, 0, 5, 5);
-		gbc_spnContrazionePerRaffreddamento.gridx = 1;
-		gbc_spnContrazionePerRaffreddamento.gridy = 5;
-		jPanel4.add(spnContrazionePerRaffreddamento, gbc_spnContrazionePerRaffreddamento);
-
+		
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
         
@@ -490,7 +460,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 
 		config.setEfficienza(fldEff.getIntegerValue());
 		config.setVolumeFin(fldVolumeFin.getIntegerValue());
-		config.setVolumeBoil(fldVolumeBoll.getIntegerValue());
+//		config.setVolumeBoil(fldVolumeBoll.getIntegerValue());
 		config.setMetriSLM(fldSLM.getIntegerValue());
 		config.setAmaroDHEA(fldDHEA.getIntegerValue());
 		config.setBoilTime(fldBoil.getIntegerValue());
@@ -500,13 +470,12 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		config.setNickIHB(fldNick.getText());
 		config.setPasswordIHB(fldPwd.getText());
 		config.setPotLibGal((chckbxNewCheckBox.isSelected()) ? 1 : 0);
-		config.setLostToSparge(spnLostToSparge.getVolume());
-		config.setLostToTrub(spnLostToTrub.getVolume());
-		config.setLitriPerKg(spnLitriKg.getVolume());
-		config.setEvaporazionePerOra(spnEvaporazione.getVolume());
+		config.setLostToTrub(spnLostToTrub.getDoubleValue());
+		config.setLitriPerKg(spnAssorbimentoGraniEsausti.getDoubleValue());
+		config.setRapportoAcquaGrani(spnRapportoAcquaGrani.getDoubleValue());
 		config.setLocale(Constants.ITALIAN.equalsIgnoreCase((String)cmbLanguage.getSelectedItem())?"it_IT":"en_US");
-		config.setPercentualeEvaporazione(spnPercentualeEvaporazione.getPercentuale());
-		config.setContrazionePerRaffreddamento(spnContrazionePerRaffreddamento.getPercentuale());
+		config.setPercentualeEvaporazione(spnPercentualeEvaporazione.getDoubleValue());
+		config.setContrazionePerRaffreddamento(spnContrazionePerRaffreddamento.getDoubleValue());
 		config.setBiab(chckbxBiab.isSelected());
 		
 		if (cmbBUGURatio.getSelectedIndex() == 0)
@@ -538,17 +507,14 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 	private jmash.component.JMashSpinner fldSLM;
 	private jmash.component.JMashSpinner fldDHEA;
 	private javax.swing.JTextField fldServer;
-	private jmash.component.JMashSpinner fldVolumeBoll;
 	private jmash.component.JMashSpinner fldVolumeFin;
 	private javax.swing.JButton jButton3;
 	private javax.swing.JLabel jLabel1;
 	private javax.swing.JLabel jLabel10;
 	private javax.swing.JLabel jLabel11;
-	private javax.swing.JLabel jLabel12;
 	private javax.swing.JLabel jLabel13;
 	private javax.swing.JLabel jLabel14;
 	private javax.swing.JLabel jLabel2;
-	private javax.swing.JLabel jLabel3;
 	private javax.swing.JLabel jLabel4;
 	private javax.swing.JLabel jLabelBUGU;
 	private javax.swing.JLabel jLabelDHEA;
@@ -560,16 +526,13 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 	//private javax.swing.JPanel jPanel2;
 	private javax.swing.JPanel jPanel4;
 	private javax.swing.JToolBar jToolBar1;
-	private jmash.component.JVolumeSpinner spnEvaporazione;
-	private jmash.component.JVolumeSpinner spnLitriKg;
-	private jmash.component.JVolumeSpinner spnLostToSparge;
-	private jmash.component.JVolumeSpinner spnLostToTrub;
+	private jmash.component.JUnitSpinner spnRapportoAcquaGrani;
+	private jmash.component.JUnitSpinner spnAssorbimentoGraniEsausti;
+	private jmash.component.JUnitSpinner spnLostToTrub;
 	private GridBagConstraints gridBagConstraints_1;
 	private GridBagConstraints gridBagConstraints_2;
 	private GridBagConstraints gridBagConstraints_3;
 	private GridBagConstraints gridBagConstraints_4;
-	private GridBagConstraints gridBagConstraints_5;
-	private GridBagConstraints gridBagConstraints_6;
 	private GridBagConstraints gridBagConstraints_7;
 	private GridBagConstraints gridBagConstraints_8;
 	private GridBagConstraints gridBagConstraints_8_1;
@@ -586,18 +549,17 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 	private JLabel lblLanguage;
 	private GridBagConstraints gridBagConstraints_14;
 	private GridBagConstraints gridBagConstraints_15;
-	private GridBagConstraints gridBagConstraints_16;
-	private GridBagConstraints gridBagConstraints_17;
-	private GridBagConstraints gridBagConstraints_18;
-	private GridBagConstraints gridBagConstraints_19;
+	private GridBagConstraints gbc_spnAssorbimentoGraniEsausti;
+	private GridBagConstraints gbc_spnRapportoAcquaGrani;
 	private GridBagConstraints gridBagConstraints_20;
 	private GridBagConstraints gridBagConstraints_21;
 	private JLabel lblPercentualeEvaporazione;
 	private JLabel lblContrazionePerRaffreddamento;
 	private JCheckBox chckbxBiab;
-	private JPercentualeSpinner spnPercentualeEvaporazione;
-	private JPercentualeSpinner spnContrazionePerRaffreddamento;
+	private JUnitSpinner spnPercentualeEvaporazione;
+	private JUnitSpinner spnContrazionePerRaffreddamento;
 	private GridBagConstraints gridBagConstraints_22;
+	private JLabel lblBiab;
 	// End of variables declaration//GEN-END:variables
 	
 }

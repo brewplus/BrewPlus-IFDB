@@ -52,9 +52,8 @@ public class Config {
     private Integer amaroDHEA = 45;
    
     private Double lostToTrub = 0.5;
-    private Double lostToSparge = 3.0;
-    private Double litriPerKg = 3.0;
-    private Double evaporazionePerOra = 2.0;
+    private Double litriPerKg = 1.01;
+    private Double rapportoAcquaGrani = 5.0;
 
     private Boolean ebcNewMethod = true;
     private Integer potLibGal = 0;
@@ -69,7 +68,7 @@ public class Config {
 
     private static String campiXml[] = new String[] {"locale", "remoteRoot", "RemoteServer", "RSSFeed", "boilTime", "volumeFin",
             "volumeBoil", "efficienza", "metriSLM", "amaroDHEA", "nickIHB", "passwordIHB", "proxyPort", "proxyHost",
-            "lostToTrub", "lostToSparge", "litriPerKg", "evaporazionePerOra", "ebcNewMethod", "potLibGal",
+            "lostToTrub", "litriPerKg", "rapportoAcquaGrani", "ebcNewMethod", "potLibGal",
             "BUGUratiostring", "percentualeEvaporazione", "contrazionePerRaffreddamento", "biab"};
 
     public void setRemoteServer(String remoteServer) {
@@ -215,14 +214,6 @@ public class Config {
         this.lostToTrub = lostToTrub;
     }
 
-    public Double getLostToSparge() {
-        return lostToSparge;
-    }
-
-    public void setLostToSparge(Double lostToSparge) {
-        this.lostToSparge = lostToSparge;
-    }
-
     public Double getLitriPerKg() {
         return litriPerKg;
     }
@@ -231,12 +222,12 @@ public class Config {
         this.litriPerKg = litriPerKg;
     }
 
-    public Double getEvaporazionePerOra() {
-        return evaporazionePerOra;
+    public Double getRapportoAcquaGrani() {
+        return rapportoAcquaGrani;
     }
 
-    public void setEvaporazionePerOra(Double evaporazionePerOra) {
-        this.evaporazionePerOra = evaporazionePerOra;
+    public void setRapportoAcquaGrani(Double rapportoAcquaGrani) {
+        this.rapportoAcquaGrani = rapportoAcquaGrani;
     }
 
     public String getRemoteRoot() {

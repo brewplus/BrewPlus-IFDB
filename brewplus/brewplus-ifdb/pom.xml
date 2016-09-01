@@ -25,6 +25,8 @@
 							<addClasspath>true</addClasspath>
 							<mainClass>jmash.Main</mainClass>
 							<classpathPrefix>lib/</classpathPrefix>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                			<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
 						</manifest>
 						<manifestEntries>
 							<mode>development</mode>

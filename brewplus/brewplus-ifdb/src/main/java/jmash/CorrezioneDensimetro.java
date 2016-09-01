@@ -487,7 +487,7 @@ public class CorrezioneDensimetro extends javax.swing.JInternalFrame {
 			this.pointer = new XYPointerAnnotation("", 0, 0, 5 * Math.PI / 4.0);
 			this.chart.getXYPlot().addAnnotation(this.pointer);
 			this.pointer.setTipRadius(2.0);
-			this.pointer.setBaseRadius(120.0);
+			this.pointer.setBaseRadius(100.0);
 			this.pointer.setFont(new Font("SansSerif", Font.BOLD, 12));
 			this.pointer.setPaint(Color.blue);
 			this.pointer.setTextAnchor(TextAnchor.BOTTOM_CENTER);

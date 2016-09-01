@@ -242,6 +242,10 @@ public class RicettaUtils {
 		double volumeMashLitri = getMashVolumeLitri(recipe);
 		double volumeSpargeLitri = getSpargeVolumeLitri(recipe);
 		double volumeTotaleLitri = volumeMashLitri + volumeSpargeLitri;
+		
+		double volumeMashGalloni = getMashVolumeGalloni(recipe);
+		double volumeSpargeGalloni = getSpargeVolumeGalloni(recipe);
+		double volumeTotaleGalloni = volumeMashGalloni + volumeSpargeGalloni;
 
 		double mashRatio = volumeTotaleLitri > 0.0 ? volumeMashLitri / volumeTotaleLitri : 0.0;
 		// double spargeRatio = volumeTotaleLitri > 0.0 ? volumeSpargeLitri /
@@ -253,13 +257,15 @@ public class RicettaUtils {
 		double adjustIdrossidoDiCalcio = waterAdjustPanel.getAdjustIdrossidoDiCalcio();
 		double adjustEpsom = waterAdjustPanel.getAdjustEpsom();
 		double adjustBicarbonatoDiSodio = waterAdjustPanel.getAdjustBicarbonatoDiSodio();
-
+		double adjustCloruroDiSodio = waterAdjustPanel.getAdjustCloruroDiSodio();
+		
 		double adjustCarbonatoDiCalcioMash = adjustCarbonatoDiCalcio * mashRatio;
 		double adjustGypsumMash = adjustGypsum * mashRatio;
 		double adjustCloruroDiCalcioMash = adjustCloruroDiCalcio * mashRatio;
 		double adjustIdrossidoDiCalcioMash = adjustIdrossidoDiCalcio * mashRatio;
 		double adjustEpsomMash = adjustEpsom * mashRatio;
 		double adjustBicarbonatoDiSodioMash = adjustBicarbonatoDiSodio * mashRatio;
+		double adjustCloruroDiSodioMash = adjustCloruroDiSodio * mashRatio;
 
 		// double adjustCarbonatoDiCalcioSparge = adjustCarbonatoDiCalcio -
 		// adjustCarbonatoDiCalcioMash;
@@ -274,36 +280,54 @@ public class RicettaUtils {
 
 		switch (type) {
 		case MASH_CALCIUM:
-		case MASH_SPARGE_CALCIUM:
 			wp = (1 - percDistilledROMash) * waterAdjustPanel.getCalcio()
 					+ (adjustCarbonatoDiCalcioMash * 105.89 + adjustGypsumMash * 60.0 + adjustCloruroDiCalcioMash * 72.0
-							+ adjustIdrossidoDiCalcioMash * 143.0) / getMashVolumeGalloni(recipe);
+							+ adjustIdrossidoDiCalcioMash * 143.0) / volumeMashGalloni;
+			break;
+		case MASH_SPARGE_CALCIUM:
+			wp = (1 - percDistilledROMash) * waterAdjustPanel.getCalcio()
+					+ (adjustCarbonatoDiCalcio * 105.89 + adjustGypsum * 60.0 + adjustCloruroDiCalcio * 72.0
+							+ adjustIdrossidoDiCalcio * 143.0) / volumeTotaleGalloni;
 			break;
 		case MASH_MAGNESIUM:
+			wp = (1 - percDistilledROMash) * waterAdjustPanel.getMagnesio() + (adjustEpsomMash * 24.6) / volumeMashGalloni;
+			break;
 		case MASH_SPARGE_MAGNESIUM:
-			wp = (1 - percDistilledROMash) * waterAdjustPanel.getMagnesio()
-					+ (adjustEpsomMash * 24.6) / getMashVolumeGalloni(recipe);
+			wp = (1 - percDistilledROMash) * waterAdjustPanel.getMagnesio() + (adjustEpsom * 24.6) / volumeTotaleGalloni;
 			break;
 		case MASH_SODIUM:
+			wp = (1 - percDistilledROMash) * waterAdjustPanel.getSodio()
+			+ (adjustCloruroDiSodioMash * 103.9 + adjustBicarbonatoDiSodioMash * 72.3) / getMashVolumeGalloni(recipe);
+			break;
 		case MASH_SPARGE_SODIUM:
 			wp = (1 - percDistilledROMash) * waterAdjustPanel.getSodio()
-					+ (adjustBicarbonatoDiSodioMash * 72.3) / getMashVolumeGalloni(recipe);
+					+ (adjustCloruroDiSodio * 103.9 + adjustBicarbonatoDiSodio * 72.3) / volumeTotaleGalloni;
 			break;
 		case MASH_CHLORIDE:
+			wp = (1 - percDistilledROMash) * waterAdjustPanel.getCloruro()
+			+ (adjustCloruroDiSodioMash * 160.3 + adjustCloruroDiCalcioMash * 127.47) / volumeMashGalloni;
+			break;
 		case MASH_SPARGE_CHLORIDE:
 			wp = (1 - percDistilledROMash) * waterAdjustPanel.getCloruro()
-					+ (adjustCloruroDiCalcioMash * 127.47) / getMashVolumeGalloni(recipe);
+					+ (adjustCloruroDiSodio * 160.3 + adjustCloruroDiCalcio * 127.47) / volumeTotaleGalloni;
 			break;
 		case MASH_SULFATE:
+			wp = (1 - percDistilledROMash) * waterAdjustPanel.getSolfato()
+			+ (adjustGypsumMash * 147.4 + adjustEpsomMash * 103.0) / volumeMashGalloni;
+			break;
 		case MASH_SPARGE_SULFATE:
 			wp = (1 - percDistilledROMash) * waterAdjustPanel.getSolfato()
-					+ (adjustGypsumMash * 147.4 + adjustEpsomMash * 103.0) / getMashVolumeGalloni(recipe);
+					+ (adjustGypsum * 147.4 + adjustEpsom * 103.0) / volumeTotaleGalloni;
 			break;
 		case MASH_CHLORIDE_SULFATE_RATIO:
-		case MASH_SPARGE_CHLORIDE_SULFATE_RATIO:
 			Double mashCloride = getResultingWaterProfile(recipe, ResultingWaterProfileType.MASH_CHLORIDE);
 			Double mashSulfate = getResultingWaterProfile(recipe, ResultingWaterProfileType.MASH_SULFATE);
 			wp = mashSulfate != 0.0 ? mashCloride / mashSulfate : Double.NaN;
+			break;
+		case MASH_SPARGE_CHLORIDE_SULFATE_RATIO:
+			Double mashClorideTot = getResultingWaterProfile(recipe, ResultingWaterProfileType.MASH_SPARGE_CHLORIDE);
+			Double mashSulfateTot = getResultingWaterProfile(recipe, ResultingWaterProfileType.MASH_SPARGE_SULFATE);
+			wp = mashSulfateTot != 0.0 ? mashClorideTot / mashSulfateTot : Double.NaN;
 			break;
 		default:
 			break;

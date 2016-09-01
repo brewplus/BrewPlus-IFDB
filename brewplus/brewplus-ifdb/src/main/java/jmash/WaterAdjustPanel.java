@@ -1087,7 +1087,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		spnSlakedLime.setPreferredSize(new java.awt.Dimension(64, 22));
 		spnSlakedLime.addChangeListener(new javax.swing.event.ChangeListener() {
 			public void stateChanged(javax.swing.event.ChangeEvent evt) {
-				spnSlackedLimeStateChanged(evt);
+				spnSlakedLimeStateChanged(evt);
 			}
 		});
 		
@@ -1231,11 +1231,11 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gbc_lblNewLabel_1.gridy = 8;
 		jPanelSali.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
-		useSlackedLime = new JCheckBox();
-		useSlackedLime.setSelected(true);
-		useSlackedLime.setEnabled(true);
-		useSlackedLime.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-		useSlackedLime.addActionListener(new java.awt.event.ActionListener() {
+		useSlakedLime = new JCheckBox();
+		useSlakedLime.setSelected(true);
+		useSlakedLime.setEnabled(true);
+		useSlakedLime.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		useSlakedLime.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				useSlakedLimeActionPerformed(evt);
 			}
@@ -1245,42 +1245,42 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gbc_useSlakedLime.insets = new Insets(0, 0, 0, 5);
 		gbc_useSlakedLime.gridx = 1;
 		gbc_useSlakedLime.gridy = 8;
-		jPanelSali.add(useSlackedLime, gbc_useSlakedLime);
+		jPanelSali.add(useSlakedLime, gbc_useSlakedLime);
 		
-		useSlackedLimeSparge = new JCheckBox();
-		useSlackedLimeSparge.setSelected(true);
-		useSlackedLimeSparge.setEnabled(true);
-		useSlackedLimeSparge.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-		useSlackedLimeSparge.addActionListener(new java.awt.event.ActionListener() {
+		useSlakedLimeSparge = new JCheckBox();
+		useSlakedLimeSparge.setSelected(true);
+		useSlakedLimeSparge.setEnabled(true);
+		useSlakedLimeSparge.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		useSlakedLimeSparge.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				useSlakedLimeSpargeActionPerformed(evt);
 			}
 		});
-		GridBagConstraints gbc_useSlackedLimeSparge = new GridBagConstraints();
-		gbc_useSlackedLimeSparge.gridx = 5;
-		gbc_useSlackedLimeSparge.gridy = 8;
-		jPanelSali.add(useSlackedLimeSparge, gbc_useSlackedLimeSparge);
+		GridBagConstraints gbc_useSlakedLimeSparge = new GridBagConstraints();
+		gbc_useSlakedLimeSparge.gridx = 5;
+		gbc_useSlakedLimeSparge.gridy = 8;
+		jPanelSali.add(useSlakedLimeSparge, gbc_useSlakedLimeSparge);
 		
-		txtSlackedLimeMash = new JTextField();
-		txtSlackedLimeMash.setHorizontalAlignment(SwingConstants.CENTER);
-		txtSlackedLimeMash.setEditable(false);
-		txtSlackedLimeMash.setPreferredSize(new Dimension(60, 22));
-		GridBagConstraints gbc_txtSlackedLimeMash = new GridBagConstraints();
-		gbc_txtSlackedLimeMash.insets = new Insets(0, 0, 0, 5);
-		gbc_txtSlackedLimeMash.gridx = 3;
-		gbc_txtSlackedLimeMash.gridy = 8;
-		jPanelSali.add(txtSlackedLimeMash, gbc_txtSlackedLimeMash);
+		txtSlakedLimeMash = new JTextField();
+		txtSlakedLimeMash.setHorizontalAlignment(SwingConstants.CENTER);
+		txtSlakedLimeMash.setEditable(false);
+		txtSlakedLimeMash.setPreferredSize(new Dimension(60, 22));
+		GridBagConstraints gbc_txtSlakedLimeMash = new GridBagConstraints();
+		gbc_txtSlakedLimeMash.insets = new Insets(0, 0, 0, 5);
+		gbc_txtSlakedLimeMash.gridx = 3;
+		gbc_txtSlakedLimeMash.gridy = 8;
+		jPanelSali.add(txtSlakedLimeMash, gbc_txtSlakedLimeMash);
 		
-		txtSlackedLimeSparge = new JTextField();
-		txtSlackedLimeSparge.setHorizontalAlignment(SwingConstants.CENTER);
-		txtSlackedLimeSparge.setEditable(false);
-		GridBagConstraints gbc_txtSlackedLimeSparge = new GridBagConstraints();
-		gbc_txtSlackedLimeSparge.insets = new Insets(0, 0, 0, 5);
+		txtSlakedLimeSparge = new JTextField();
+		txtSlakedLimeSparge.setHorizontalAlignment(SwingConstants.CENTER);
+		txtSlakedLimeSparge.setEditable(false);
+		GridBagConstraints gbc_txtSlakedLimeSparge = new GridBagConstraints();
+		gbc_txtSlakedLimeSparge.insets = new Insets(0, 0, 0, 5);
 		//		gbc_txtSlackedLimeSparge.fill = GridBagConstraints.HORIZONTAL;
-				gbc_txtSlackedLimeSparge.gridx = 4;
-				gbc_txtSlackedLimeSparge.gridy = 8;
-				jPanelSali.add(txtSlackedLimeSparge, gbc_txtSlackedLimeSparge);
-				txtSlackedLimeSparge.setPreferredSize(new Dimension(60, 22));
+				gbc_txtSlakedLimeSparge.gridx = 4;
+				gbc_txtSlakedLimeSparge.gridy = 8;
+				jPanelSali.add(txtSlakedLimeSparge, gbc_txtSlakedLimeSparge);
+				txtSlakedLimeSparge.setPreferredSize(new Dimension(60, 22));
 
 		jPanelPh.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dati pH",
 				javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.ABOVE_TOP,
@@ -1683,7 +1683,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		recalcTreatment();
 	}// GEN-LAST:event_spnSodaStateChanged
 	
-	private void spnSlackedLimeStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spnSodaStateChanged
+	private void spnSlakedLimeStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spnSodaStateChanged
 		recalcTreatment();
 	}// GEN-LAST:event_spnSodaStateChanged
 
@@ -2157,11 +2157,11 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	private JLabel lblMash;
 	private JCheckBox useChalkSparge;
 	private JCheckBox useSodaSparge;
-	private JCheckBox useSlackedLime;
+	private JCheckBox useSlakedLime;
 	private JTextField txtChalkSparge;
 	private JTextField txtSodaSparge;
-	private JTextField txtSlackedLimeSparge;
-	private JCheckBox useSlackedLimeSparge;
+	private JTextField txtSlakedLimeSparge;
+	private JCheckBox useSlakedLimeSparge;
 	private GridBagConstraints gbc_jPanelApprossimazioni;
 	private JTextField txtGyspumMash;
 	private JTextField txtEpsomMash;
@@ -2169,7 +2169,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	private JTextField txtNaClMash;
 	private JTextField txtChalkMash;
 	private JTextField txtSodaMash;
-	private JTextField txtSlackedLimeMash;
+	private JTextField txtSlakedLimeMash;
 	private JLabel lblTotale;
 	private GridBagConstraints gbc_lblMashWP;
 	private GridBagConstraints gbc_lblMashAndSpargeWP;
@@ -2546,10 +2546,10 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 			this.txtSodaSparge.setText(Utils.format(sodaSparge, "0.0"));
 			break;
 		case SLAKED_LIME:
-			double slackedLimeMash = getAdjustIdrossidoDiCalcio() * (useSlackedLimeSparge.isSelected() ? volumeMashLitri/volumeTotale : 1);
-			double slackedLimeSparge = useSlackedLimeSparge.isSelected() ? getAdjustIdrossidoDiCalcio() - slackedLimeMash : 0.0;
-			this.txtSlackedLimeMash.setText(Utils.format(slackedLimeMash, "0.0"));
-			this.txtSlackedLimeSparge.setText(Utils.format(slackedLimeSparge, "0.0"));
+			double slakedLimeMash = getAdjustIdrossidoDiCalcio() * (useSlakedLimeSparge.isSelected() ? volumeMashLitri/volumeTotale : 1);
+			double slakedLimeSparge = useSlakedLimeSparge.isSelected() ? getAdjustIdrossidoDiCalcio() - slakedLimeMash : 0.0;
+			this.txtSlakedLimeMash.setText(Utils.format(slakedLimeMash, "0.0"));
+			this.txtSlakedLimeSparge.setText(Utils.format(slakedLimeSparge, "0.0"));
 			break;
 		default:
 			break;
@@ -2612,9 +2612,17 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	public void setUseGypsumSparge(boolean useGypsumSparge) {
 		this.useGypsumSparge.setSelected(useGypsumSparge);
 	}
+	
+	public boolean isGypsumSpargeActive() {
+		return useGypsumSparge.isVisible() && useGypsumSparge.isSelected();
+	}
 
 	public boolean useEpsomSparge() {
 		return useEpsomSparge.isSelected();
+	}
+	
+	public boolean isEpsomSpargeActive() {
+		return useEpsomSparge.isVisible() && useEpsomSparge.isSelected();
 	}
 
 	public void setUseEpsomSparge(boolean useEpsomSparge) {
@@ -2624,6 +2632,10 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	public boolean useCaCl2Sparge() {
 		return useCaCl2Sparge.isSelected();
 	}
+	
+	public boolean isCaCl2SpargeActive() {
+		return useCaCl2Sparge.isVisible() && useCaCl2Sparge.isSelected();
+	}
 
 	public void setUseCaCl2Sparge(boolean useCaCl2Sparge) {
 		this.useCaCl2Sparge.setSelected(useCaCl2Sparge);
@@ -2631,6 +2643,10 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 
 	public boolean useNaClSparge() {
 		return useNaClSparge.isSelected();
+	}
+	
+	public boolean isNaClSpargeActive() {
+		return useNaClSparge.isVisible() && useNaClSparge.isSelected();
 	}
 
 	public void setUseNaClSparge(boolean useNaClSparge) {
@@ -2640,6 +2656,10 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	public boolean useChalkSparge() {
 		return useChalkSparge.isSelected();
 	}
+	
+	public boolean isChalkSpargeActive() {
+		return useChalkSparge.isVisible() && useChalkSparge.isSelected();
+	}
 
 	public void setUseChalkSparge(boolean useChalkSparge) {
 		this.useChalkSparge.setSelected(useChalkSparge);
@@ -2648,28 +2668,37 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	public boolean useSodaSparge() {
 		return useSodaSparge.isSelected();
 	}
+	
+	public boolean isSodaSpargeActive() {
+		return useSodaSparge.isVisible() && useSodaSparge.isSelected();
+	}
 
 	public void setUseSodaSparge(boolean useSodaSparge) {
 		this.useSodaSparge.setSelected(useSodaSparge);
 	}
 
-	public boolean useSlackedLime() {
-		return useSlackedLime.isSelected();
+	public boolean useSlakedLime() {
+		return useSlakedLime.isSelected();
 	}
 
-	public void setUseSlackedLime(boolean useSlackedLime) {
-		this.useSlackedLime.setSelected(useSlackedLime);
+	public void setUseSlakedLime(boolean useSlakedLime) {
+		this.useSlakedLime.setSelected(useSlakedLime);
 	}
 
-	public boolean useSlackedLimeSparge() {
-		return useSlackedLimeSparge.isSelected();
+	public boolean useSlakedLimeSparge() {
+		return useSlakedLimeSparge.isSelected();
+	}
+	
+	public boolean isSlakedLimeSpargeActive() {
+		return useSlakedLimeSparge.isVisible() && useSlakedLimeSparge.isSelected();
 	}
 
-	public void setUseSlackedLimeSparge(boolean useSlackedLimeSparge) {
-		this.useSlackedLimeSparge.setSelected(useSlackedLimeSparge);
+	public void setUseSlakedLimeSparge(boolean useSlakedLimeSparge) {
+		this.useSlakedLimeSparge.setSelected(useSlakedLimeSparge);
 	}
 
 	public void setBIAB(boolean biab) {
+		
 		lblMash.setVisible(!biab);
 		lblSparge.setVisible(!biab);
 		
@@ -2697,9 +2726,9 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		txtSodaSparge.setVisible(!biab);
 		useSodaSparge.setVisible(!biab);
 		
-		txtSlackedLimeMash.setVisible(!biab);
-		txtSlackedLimeSparge.setVisible(!biab);
-		useSlackedLimeSparge.setVisible(!biab);
+		txtSlakedLimeMash.setVisible(!biab);
+		txtSlakedLimeSparge.setVisible(!biab);
+		useSlakedLimeSparge.setVisible(!biab);
 		
 		
 		lblMashAndSpargeWP.setVisible(!biab);
@@ -2712,11 +2741,188 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		
 		lblMashWP.setText(!biab ? "Mash Water Profile" : "BIAB Water Profile");
 		
-		
-		
 	}
 	
-
-
+	public double getGypsum() {
+		return spnGypsum.getDoubleValue();
+	}
+	
+	public double getGypsumMash() {
+		try
+		{
+			return Double.parseDouble(txtGyspumMash.getText().replaceAll(",", "."));
+		}
+		catch (NumberFormatException e)
+		{
+			return Double.NaN;
+		}
+	}
+	
+	public double getGypsumSparge() {
+		try
+		{
+			return Double.parseDouble(txtGyspumSparge.getText().replaceAll(",", "."));
+		}
+		catch (Exception e)
+		{
+			return Double.NaN;
+		}
+	}
+	
+	public double getEpsom() {
+		return spnEpsom.getDoubleValue();
+	}
+	
+	public double getEpsomMash() {
+		try
+		{
+			return Double.parseDouble(txtEpsomMash.getText().replaceAll(",", "."));
+		}
+		catch (Exception e)
+		{
+			return Double.NaN;
+		}
+	}
+	
+	public double getEpsomSparge() {
+		try
+		{
+			return Double.parseDouble(txtEpsomSparge.getText().replaceAll(",", "."));
+		}
+		catch (Exception e)
+		{
+			return Double.NaN;
+		}
+	}
+	
+	public double getCaCl2() {
+		return spnCaCl2.getDoubleValue();
+	}
+	
+	public double getCaCl2Mash() {
+		try
+		{
+			return Double.parseDouble(txtCaCl2Mash.getText().replaceAll(",", "."));
+		}
+		catch (Exception e)
+		{
+			return Double.NaN;
+		}
+	}
+	
+	public double getCaCl2Sparge() {
+		try
+		{
+			return Double.parseDouble(txtCaCl2Sparge.getText().replaceAll(",", "."));
+		}
+		catch (Exception e)
+		{
+			return Double.NaN;
+		}
+	}
+	
+	public double getNaCl() {
+		return spnNaCl.getDoubleValue();
+	}
+	
+	public double getNaClMash() {
+		try
+		{
+			return Double.parseDouble(txtNaClMash.getText().replaceAll(",", "."));
+		}
+		catch (Exception e)
+		{
+			return Double.NaN;
+		}
+	}
+	
+	public double getNaClSparge() {
+		try
+		{
+			return Double.parseDouble(txtNaClSparge.getText().replaceAll(",", "."));
+		}
+		catch (Exception e)
+		{
+			return Double.NaN;
+		}
+	}
+	
+	public double getChalk() {
+		return spnChalk.getDoubleValue();
+	}
+	
+	public double getChalkMash() {
+		try
+		{
+			return Double.parseDouble(txtChalkMash.getText().replaceAll(",", "."));
+		}
+		catch (Exception e)
+		{
+			return Double.NaN;
+		}
+	}
+	
+	public double getChalkSparge() {
+		try
+		{
+			return Double.parseDouble(txtChalkSparge.getText().replaceAll(",", "."));
+		}
+		catch (Exception e)
+		{
+			return Double.NaN;
+		}
+	}
+	
+	public double getSoda() {
+		return spnSoda.getDoubleValue();
+	}
+	
+	public double getSodaMash() {
+		try
+		{
+			return Double.parseDouble(txtSodaMash.getText().replaceAll(",", "."));
+		}
+		catch (Exception e)
+		{
+			return Double.NaN;
+		}
+	}
+	
+	public double getSodaSparge() {
+		try
+		{
+			return Double.parseDouble(txtSodaSparge.getText().replaceAll(",", "."));
+		}
+		catch (Exception e)
+		{
+			return Double.NaN;
+		}
+	}
+	
+	public double getSlakedLime() {
+		return spnSlakedLime.getDoubleValue();
+	}
+	
+	public double getSlakedLimeMash() {
+		try
+		{
+			return Double.parseDouble(txtSlakedLimeSparge.getText().replaceAll(",", "."));
+		}
+		catch (Exception e)
+		{
+			return Double.NaN;
+		}
+	}
+	
+	public double getSlakedLimeSparge() {
+		try
+		{
+			return Double.parseDouble(txtSlakedLimeMash.getText().replaceAll(",", "."));
+		}
+		catch (Exception e)
+		{
+			return Double.NaN;
+		}
+	}
 
 }

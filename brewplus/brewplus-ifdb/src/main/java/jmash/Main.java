@@ -70,7 +70,7 @@ public class Main {
         
     public static Locale locale;
         
-	public static String versioneHobbyBrew = "2.0.0";
+	//public static String versioneHobbyBrew = "2.0.0";
 	public static Integer webVersion;
 	public static String userDir;
 	public static String waterDir;
@@ -89,7 +89,7 @@ public class Main {
 	public static String coloriXML = "config/colors.xml";
 	public static String configXML = "config/config.xml";
 	public static String inventarioXML = "config/inventario.xml";
-	public static String printTemplate = "templates/ricetta.html";
+	//public static String printTemplate = "templates/ricetta.html";
 	public static Gui gui;
 	public static javax.swing.JDesktopPane desktopPane;
 	public static MultiLineCellRenderer multiLineCellRenderer = new MultiLineCellRenderer();
@@ -169,7 +169,8 @@ public class Main {
 	}
 
 	public static String getVersione() {
-		return versioneHobbyBrew;
+		//return versioneHobbyBrew;
+		return Utils.getVersion();
 	}
 
 	/*private static void check(String str) {
