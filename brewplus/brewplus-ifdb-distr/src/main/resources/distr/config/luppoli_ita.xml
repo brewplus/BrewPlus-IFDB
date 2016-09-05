@@ -85,7 +85,7 @@
   <jmash.HopType Nome="lubelski (Lublin)" AA="5.0" Origine="Polonia" Des="luppolo da aroma molto simile al SAAZ , 2-4%AA." HSI="40.0" use="Boil" utilizzo="Aroma" beta="3.0" />
   <jmash.HopType Nome="Magnum (Ger) " AA="14.0" Origine="Germania" Des="Varietà con alfa acido molto alto con una buona qualità di amaro" HSI="15.0" use="Boil" utilizzo="Amaro" beta="6.5" />
   <jmash.HopType Nome="Magnum (U.S.A.) " AA="12.0" Origine="U.S.A." HSI="30.0" use="Boil" utilizzo="Amaro" beta="6.0" />
-  <jmash.HopType Nome="Mandarina Bavaria" AA="9.0" Origine="U.S.A." Des="Piacevole aroma fruttato che rivela una forte note di Mandarino con una punta dolce. Indicato in birre ad alta e a bassa fermentazione. Viene utilizzato anche in dry-hopping" HSI="30.0" use="Boil" utilizzo="Aroma" beta="5.8" />
+  <jmash.HopType Nome="Mandarina Bavaria" AA="9.0" Origine="Germania" Des="Piacevole aroma fruttato che rivela una forte note di Mandarino con una punta dolce. Indicato in birre ad alta e a bassa fermentazione. Viene utilizzato anche in dry-hopping" HSI="30.0" use="Boil" utilizzo="Aroma" beta="5.8" />
   <jmash.HopType Nome="Marynka" AA="10.0" Origine="Polonia" Des="Intenso e piacevole, associa caratteristiche floreali, erbacee e resinose" HSI="30.0" use="Boil" utilizzo="Amaro" beta="11.7" />
   <jmash.HopType Nome="Millenium" AA="15.5" Origine="U.S.A." HSI="30.0" use="Boil" utilizzo="Amaro" beta="4.8" />
   <jmash.HopType Nome="Minstrel" AA="6.0" Origine="Regno Unito" HSI="30.0" use="Boil" utilizzo="Aroma" beta="3.2" />
