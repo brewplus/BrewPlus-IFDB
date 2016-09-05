@@ -28,15 +28,14 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
-import java.awt.event.KeyEvent;
 import java.io.*;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -57,6 +56,10 @@ import jmash.component.UpDownPopupMenu;
 import jmash.imagecomponents.ImageFileView;
 import jmash.imagecomponents.ImageFilter;
 import jmash.imagecomponents.ImagePreview;
+import jmash.report.PrintRecipe;
+import jmash.report.model.Mash;
+import jmash.report.model.MineralSalts;
+import jmash.report.model.RecipeModel;
 import jmash.robot.hbRobot;
 import jmash.tableModel.HopTableModel;
 import jmash.tableModel.InventoryObjectTableModel;
@@ -70,10 +73,9 @@ import org.jdom.Document;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 import java.awt.BorderLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 
 /**
  *
@@ -85,7 +87,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	*
 	*/
 	private static final long serialVersionUID = -3021970158888588464L;
-	private static Logger LOGGER = Logger.getLogger(Ricetta.class);
+	private static final Logger LOGGER = Logger.getLogger(Ricetta.class);
 	/** Creates new form Ricetta */
 	private Boolean isCotta = false;
 	protected Component entered = null;
@@ -104,6 +106,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	private boolean dirty = false;
 	public static final int dimx = 81;
 	public static final int dimy = 120;
+//	public WaterNeeded waterNeeded = new WaterNeeded();
+	public WaterNeededNew waterNeededNew2 = new WaterNeededNew();
 	public WaterAdjustPanel waterPanel = null;
 	//private Gyle gyle = null;
 	private static javax.swing.ImageIcon hopsIcon = new javax.swing.ImageIcon(Ricetta.class.getResource("/jmash/images/hops.gif"));
@@ -185,8 +189,10 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		JScrollPane scrollPanel = new JScrollPane();
 		// scrollPanel.setViewportView(waterPanel);
 		scrollPanel.getViewport().setPreferredSize(new Dimension(0, 0));
-		this.jTabbedPane1.add(waterNeeded.getComponent(0), Main.bundle.getString("label.waterQuantity"));
+//		this.jTabbedPane1.add(waterNeeded.getComponent(0), Main.bundle.getString("label.waterQuantity"));
+		this.jTabbedPane1.add(waterNeededNew2.getComponent(0), Main.bundle.getString("label.waterQuantity"));
 		this.jTabbedPane1.add(Main.bundle.getString("label.waterQuality"), waterPanel);
+
 
 		this.maltSorter.setTableHeader(this.tblMalts.getTableHeader());
 		this.hopSorter.setTableHeader(this.tblHops.getTableHeader());
@@ -253,6 +259,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		spinBollitura.setEditor(new JSpinner.NumberEditor(spinBollitura, "# min"));
 
 		spinVolumeBoll.setModelFormat(23.0, 0.25, 9999999.0, 0.25, "0.00", "Ricetta.VB");
+		spinVolumePreBoil.setModelFormat(23.0, 0.25, 9999999.0, 0.25, "0.00", "Ricetta.VPB");
 		spinVolumeFin.setModelFormat(23.0, 0.25, 9999999.0, 0.25, "0.00", "Ricetta.VF");
 		spinVolumeDiluito.setModelFormat(23.0, 0.25, 9999999.0, 0.25, "0.00", "Ricetta.DL");
 
@@ -260,6 +267,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		spinVolumeFin.setVolume(Main.config.getVolumeFin());
 		spinEfficienza.setValue(Main.config.getEfficienza());
 		spinBollitura.setValue(Main.config.getBoilTime());
+		chkBiab.setSelected(Main.config.getBiab());
 
 		((javax.swing.SpinnerNumberModel) spinEfficienza.getModel()).setMaximum(100);
 		((javax.swing.SpinnerNumberModel) spinBollitura.getModel()).setMinimum(0);
@@ -302,11 +310,21 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		});
 
 	
-		waterNeeded.addChangeListener(new ChangeListener() {
+//		waterNeeded.addChangeListener(new ChangeListener() {
+//
+//			@Override
+//			public void stateChanged(ChangeEvent e) {
+//				LOGGER.debug("waterNeeded changed");
+//				ricettaModificata();
+//
+//			}
+//		});
+		
+		waterNeededNew2.addChangeListener(new ChangeListener() {
 
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				LOGGER.debug("waterNeeded changed");
+				LOGGER.debug("waterNeededNew2 changed");
 				ricettaModificata();
 
 			}
@@ -460,9 +478,12 @@ public class Ricetta extends javax.swing.JInternalFrame {
 			}
 		});
 		chkConcentratedBoil = new javax.swing.JCheckBox();
+		chkBiab = new JCheckBox("BIAB");
 		lblDil = new javax.swing.JLabel();
 		spinVolumeDiluito = new jmash.component.JVolumeSpinner();
 		spinVolumeBoll = new jmash.component.JVolumeSpinner();
+		spinVolumePreBoil = new jmash.component.JVolumeSpinner();
+		spinVolumePreBoil.setEnabled(false);
 		spinVolumeFin = new jmash.component.JVolumeSpinner();
 		jButton1 = new javax.swing.JButton();
 		jButton2 = new javax.swing.JButton();
@@ -987,7 +1008,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		jPanel2.add(txtIBU2, gridBagConstraints);
 
-		jLabel7.setText("In pentola");
+		jLabel7.setText("Volume pre-boil");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 7;
 		gridBagConstraints.gridy = 2;
@@ -1079,6 +1100,26 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
 		jPanel2.add(jLabel8, gridBagConstraints);
+		
+		chkBiab.setBackground(javax.swing.UIManager.getDefaults().getColor("PropSheet.setBackground"));
+		chkBiab.setText("BIAB");
+		chkBiab.setToolTipText("BIAB");
+		chkBiab.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		chkBiab.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+		chkBiab.setPreferredSize(new java.awt.Dimension(132, 20));
+		chkBiab.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				chkBiabActionPerformed(evt);
+			}
+		});
+		
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 21;
+		gridBagConstraints.gridy = 2;
+		gridBagConstraints.gridwidth = 1;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+		gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
+		jPanel2.add(chkBiab, gridBagConstraints);
 
 		jLabel12.setText("EBC");
 		gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1110,7 +1151,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		jPanel2.add(txtEBC2, gridBagConstraints);
 
-		btnIngredienti.setText("Ingredienti consigliati..");
+		btnIngredienti.setText("Visualizza BJCP");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 22;
 		gridBagConstraints.gridy = 1;
@@ -1168,7 +1209,9 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		gridBagConstraints.gridwidth = 5;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
-		jPanel2.add(spinVolumeBoll, gridBagConstraints);
+//		jPanel2.add(spinVolumeBoll, gridBagConstraints);
+		jPanel2.add(spinVolumePreBoil, gridBagConstraints);
+
 
 		spinVolumeFin.addChangeListener(new javax.swing.event.ChangeListener() {
 			public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -1495,6 +1538,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		setSize(new java.awt.Dimension(1141, 516));
 	}// </editor-fold>//GEN-END:initComponents
 
+
 	private UpDownPopupMenu upDownPopupMenu = new UpDownPopupMenu();
 
 	private void tblMaltsMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tblMaltsMouseClicked
@@ -1619,11 +1663,16 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		setDilVisible(chkConcentratedBoil.isSelected());
 		ricettaModificata();
 	}// GEN-LAST:event_chkConcentratedBoilActionPerformed
+	
+	protected void chkBiabActionPerformed(ActionEvent evt) {
+		this.thisRicetta.setBiab(chkBiab.isSelected());
+		ricettaModificata();
+	}
 
 	private void btnAdd12ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd12ActionPerformed
 		// Document doc = this.toRecipeData().toXml();
 		// Main.gui.addFrame(new XmlEditor(doc));
-		frmTimerBoil ftb = new frmTimerBoil(this.hopTableModel, ((Integer) this.spinBollitura.getValue()).intValue(),
+		frmTimerBoil ftb = new frmTimerBoil(this.hopTableModel, ((Integer) this.spinBollitura.getValue()),
 				fldNome.getText().trim());
 		Gui.desktopPane.add(ftb);
 		Utils.center(ftb, this);
@@ -1661,7 +1710,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		glassPanel.setColor(maltTableModel.getSRMMosher());
 	}// GEN-LAST:event_jLabel16MouseClicked
 
-	public WaterNeeded waterNeeded = new WaterNeeded();
+	
 
 	private void btnAdd10ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd10ActionPerformed
 
@@ -1680,17 +1729,12 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	public static String END_MASHSTEPS = "{end-mashsteps}";
 
 	private void showIngredienti() {
-		if (brewStyle == null)
+		if (brewStyle == null){
+			LOGGER.warn("No BJCP selected");
 			return;
-		String water, malts, hops, spices, yeasts, stylename;
-		stylename = brewStyle.getNumero() + " " + brewStyle.getNome();
-		water = brewStyle.getWater();
-		malts = brewStyle.getMalt();
-		hops = brewStyle.getHops();
-		spices = brewStyle.getSpices();
-		yeasts = brewStyle.getYeast();
+		}
 
-		frmIngredienti fi = new frmIngredienti(stylename, water, malts, hops, spices, yeasts);
+		frmIngredienti fi = new frmIngredienti(brewStyle);
 		Main.gui.addFrame(fi);
 		Dimension desktopSize = Gui.desktopPane.getSize();
 		Dimension jInternalFrameSize = fi.getSize();
@@ -1701,178 +1745,76 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 	// TASTO STAMPA
 	private void btnAdd9ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd9ActionPerformed
+		LOGGER.debug("Pressed Print Recipe button");
+		RecipeData rec = toRecipeData();
+		List<RecipeModel> summaries = new ArrayList<RecipeModel>();
+		List<Mash> steps = new ArrayList<Mash>();
+		List<MineralSalts> mineralSalts = new ArrayList<MineralSalts>();
+		
+		LOGGER.debug("Prepare Print data model");
+		RecipeModel summary = new RecipeModel();
+		summary.setHops(rec.getHops());
+		summary.setMalts(rec.getMalts());
+		for (MashStep mash : rec.getInfusionSteps()) {
+			Mash step = new Mash();
+			step.setStepName(mash.getNome());
+			step.setTemperature(mash.getEndTemp().toString());
+			step.setLength(mash.getLength().toString());
+			steps.add(step);
+		}
+		summary.setSteps(steps);
+		summary.setYeasts(rec.getYeasts());
+		//Water Adjust
+		MineralSalts mineralSaltMash = new MineralSalts();
+		mineralSaltMash.setStepName("Mash");
+		mineralSaltMash.setGypsum(String.format("%.01f",waterPanel.getGypsumMash())); 
+		mineralSaltMash.setEpsom(String.format("%.01f",(waterPanel.getEpsomMash())));
+		mineralSaltMash.setCalciumChloride(String.format("%.01f",(waterPanel.getCaCl2Mash()))); //Cloruro di calcio
+		mineralSaltMash.setSodiumChloride(String.format("%.01f",(waterPanel.getNaClMash()))); //Cloruro di sodio
+		mineralSaltMash.setCalciumCarbonate(String.format("%.01f",(waterPanel.getChalkMash())));	//Carbonato di calcio
+		mineralSaltMash.setBakingSoda(String.format("%.01f",(waterPanel.getSodaMash())));		//Bicarbonato di sodio
+		mineralSaltMash.setCalciumHydroxide(String.format("%.01f",(waterPanel.getSlakedLimeMash()))); //Idrossido di calcio
+		mineralSalts.add(mineralSaltMash);
+		MineralSalts mineralSaltSpage = new MineralSalts();
+		mineralSaltSpage.setStepName("Sparge");
+		mineralSaltSpage.setGypsum(String.format("%.01f",waterPanel.getGypsumSparge()));
+		mineralSaltSpage.setEpsom(String.format("%.01f",(waterPanel.getEpsomSparge())));
+		mineralSaltSpage.setCalciumChloride(String.format("%.01f",(waterPanel.getCaCl2Sparge())));
+		mineralSaltSpage.setSodiumChloride(String.format("%.01f",(waterPanel.getNaClSparge())));
+		mineralSaltSpage.setCalciumCarbonate(String.format("%.01f",(waterPanel.getChalkSparge())));
+		mineralSaltSpage.setBakingSoda(String.format("%.01f",(waterPanel.getSodaSparge())));
+		mineralSaltSpage.setCalciumHydroxide(String.format("%.01f",(waterPanel.getSlakedLimeSparge())));
+		mineralSalts.add(mineralSaltSpage);
+		MineralSalts mineralSaltTot = new MineralSalts();
+		mineralSaltTot.setStepName("Totale");
+		mineralSaltTot.setGypsum(String.format("%.01f",waterPanel.getGypsum()));
+		mineralSaltTot.setEpsom(String.format("%.01f",(waterPanel.getEpsom())));
+		mineralSaltTot.setCalciumChloride(String.format("%.01f",(waterPanel.getCaCl2())));
+		mineralSaltTot.setSodiumChloride(String.format("%.01f",(waterPanel.getNaCl())));
+		mineralSaltTot.setCalciumCarbonate(String.format("%.01f",(waterPanel.getChalk())));
+		mineralSaltTot.setBakingSoda(String.format("%.01f",(waterPanel.getSoda())));
+		mineralSaltTot.setCalciumHydroxide(String.format("%.01f",(waterPanel.getSlakedLime())));
+		mineralSalts.add(mineralSaltTot);
+		summary.setMineralSalts(mineralSalts);
+		summary.setBoilingTime(rec.getBollitura().toString());
+		summary.setBoilLiters(rec.getVolumeBoll().toString());
+		summary.setAlcoolVolume(getGradiPrevisti());
+		summary.setEbc(String.format("%.01f",getEbc()));
+		summary.setEfficency(rec.getEfficienza() + "%");
+		summary.setFg(getFGPrevista());
+		summary.setIbu(String.format("%.01f",getIBUTinseth()));
+		summary.setOg(getSGPerStampa());
+		summary.setOgPreBoil(getOGPreBoil());
+		summary.setPlato(String.format("%.01f",getPPerStampa()));
+		summary.setTotalGrain(getGrammiTotali() + " gr.");
+		summary.setTotalLiters(rec.getVolumeFin().toString());
+		summary.setRatioLitreKg(String.format("%.01f",Main.config.getLitriPerKg()));
+		summaries.add(summary);
+		
 		try {
-			RandomAccessFile f = new RandomAccessFile(Main.printTemplate, "r");
-			byte b[] = new byte[(int) f.length()];
-			f.readFully(b);
-			f.close();
-			String str = new String(b);
-			String res = "";
-			int i = str.indexOf(BEGIN_MALTS);
-			int e = str.indexOf(END_MALTS);
-
-			RecipeData rec = toRecipeData();
-			if (i >= 0 && e >= 0) {
-
-				String S = str.substring(0, i);
-				String R = str.substring(i + BEGIN_MALTS.length(), e);
-				Method[] methods = new Malt().getClass().getDeclaredMethods();
-				for (Malt m : rec.getMalts()) {
-					String RR = new String(R);
-
-					for (int j = 0; j < methods.length; j++) {
-						Method method = methods[j];
-						method.setAccessible(true);
-						if (RR.indexOf("malt." + method.getName()) > -1) {
-							Object o = method.invoke(m);
-							String r = o == null ? "" : o.toString();
-							if (method.getReturnType().toString().equalsIgnoreCase("double")
-									|| method.getReturnType().toString().compareTo(Double.class.toString()) == 0) {
-								r = NumberFormatter.format03((Double) method.invoke(m));
-							}
-							RR = RR.replaceAll("malt." + method.getName(), r);
-						}
-					}
-
-					S += RR;
-				}
-				res += S;
-			}
-			if (e >= 0)
-				str = str.substring(e + END_MALTS.length());
-
-			i = str.indexOf(BEGIN_HOPS);
-			e = str.indexOf(END_HOPS);
-
-			if (i >= 0 && e >= 0) {
-
-				String S = str.substring(0, i);
-				String R = str.substring(i + BEGIN_HOPS.length(), e);
-				Method[] methods = new Hop().getClass().getDeclaredMethods();
-				for (Hop m : rec.getHops()) {
-					String RR = new String(R);
-
-					for (int j = 0; j < methods.length; j++) {
-						Method method = methods[j];
-						method.setAccessible(true);
-						if (RR.indexOf("hop." + method.getName()) > -1) {
-							Object o = method.invoke(m);
-							String r = o == null ? "" : o.toString();
-							if (method.getReturnType().toString().equalsIgnoreCase("double")
-									|| method.getReturnType().toString().compareTo(Double.class.toString()) == 0) {
-								r = NumberFormatter.format01((Double) method.invoke(m));
-							}
-							RR = RR.replaceAll("hop." + method.getName(), r);
-						}
-					}
-					S += RR;
-				}
-				res += S;
-			}
-			if (e >= 0)
-				str = str.substring(e + END_HOPS.length());
-
-			i = str.indexOf(BEGIN_YEASTS);
-			e = str.indexOf(END_YEASTS);
-
-			if (i >= 0 && e >= 0) {
-
-				String S = str.substring(0, i);
-				String R = str.substring(i + BEGIN_YEASTS.length(), e);
-				Method[] methods = new Yeast().getClass().getDeclaredMethods();
-				for (Yeast m : rec.getYeasts()) {
-					String RR = new String(R);
-
-					for (int j = 0; j < methods.length; j++) {
-						Method method = methods[j];
-						method.setAccessible(true);
-						if (RR.indexOf("yeast." + method.getName()) > -1) {
-							Object o = method.invoke(m);
-							String r = o == null ? "" : o.toString();
-							if (method.getReturnType().toString().equalsIgnoreCase("double")
-									|| method.getReturnType().toString().compareTo(Double.class.toString()) == 0) {
-								r = NumberFormatter.format01((Double) method.invoke(m));
-							}
-							RR = RR.replaceAll("yeast." + method.getName(), r);
-						}
-					}
-
-					S += RR;
-				}
-				res += S;
-			}
-			if (e >= 0)
-				str = str.substring(e + END_YEASTS.length());
-
-			// ixtlanas mash steps
-			i = str.indexOf(BEGIN_MASHSTEPS);
-			e = str.indexOf(END_MASHSTEPS);
-			if (i >= 0 && e >= 0) {
-				String S = str.substring(0, i);
-				String R = str.substring(i + BEGIN_MASHSTEPS.length(), e);
-				Method[] methods = new MashStep().getClass().getDeclaredMethods();
-				for (MashStep m : rec.getInfusionSteps()) {
-					String RR = new String(R);
-					for (int j = 0; j < methods.length; j++) {
-						Method method = methods[j];
-						method.setAccessible(true);
-						if (RR.indexOf("MashStep." + method.getName()) > -1) {
-							Object o = method.invoke(m);
-							String r = o == null ? "" : o.toString();
-							if (method.getReturnType().toString().equalsIgnoreCase("double")
-									|| method.getReturnType().toString().compareTo(Double.class.toString()) == 0) {
-								r = NumberFormatter.format01((Double) method.invoke(m));
-							}
-							RR = RR.replaceAll("MashStep." + method.getName(), r);
-						}
-					}
-					S += RR;
-				}
-				res += S;
-			}
-			if (e >= 0)
-				str = str.substring(e + END_MASHSTEPS.length());
-			res += str;
-
-			Method[] methods = rec.getClass().getDeclaredMethods();
-			for (int j = 0; j < methods.length; j++) {
-				Method method = methods[j];
-				method.setAccessible(true);
-				if (res.indexOf("ricetta." + method.getName()) > -1) {
-					String r = "" + method.invoke(rec);
-					if (method.getReturnType().toString().equalsIgnoreCase("double")
-							|| method.getReturnType().toString().compareTo(Double.class.toString()) == 0) {
-						r = NumberFormatter.format01((Double) method.invoke(rec));
-					}
-					res = res.replaceAll("ricetta." + method.getName(), r);
-				}
-			}
-
-			methods = this.getClass().getDeclaredMethods();
-			for (int j = 0; j < methods.length; j++) {
-				Method method = methods[j];
-				method.setAccessible(true);
-				if (res.indexOf("ricetta." + method.getName()) > -1) {
-					String r = "" + method.invoke(this);
-					if (method.getReturnType().toString().equalsIgnoreCase("double")
-							|| method.getReturnType().toString().compareTo(Double.class.toString()) == 0) {
-						r = NumberFormatter.format01((Double) method.invoke(this));
-					}
-					res = res.replaceAll("ricetta." + method.getName(), r);
-				}
-			}
-			File fileOut = new File(Main.userDir + "/templates/output.html");
-			FileWriter fstream = new FileWriter(fileOut);
-			BufferedWriter out = new BufferedWriter(fstream);
-			out.write(res);
-			out.close();
-
-			FileOutputStream fos = new FileOutputStream(Main.userDir + "/templates/mash.jpg");
-			ImageIO.write(mashDesign.getImage(), "JPEG", fos);
-			fos.close();
-
-			new Utils.BareBonesBrowserLaunch().openURL("file:///" + Main.userDir + "/templates/output.html");
-
+			LOGGER.debug("Print PDF recipe.");
+			PrintRecipe.recipe(fldNome!=null?fldNome.getText():Main.bundle.getString("label.noRecipeName"), brewStyle!= null?brewStyle.getNome():Main.bundle.getString("label.noStyleName"), Utils.getVersion(), summaries);
+			
 		} catch (Exception ex) {
 			Utils.showException(ex, "", this);
 		}
@@ -2049,6 +1991,12 @@ public class Ricetta extends javax.swing.JInternalFrame {
 			return getVolume();
 		}
 	}
+	
+	public boolean isBIAB()
+	{
+		return chkBiab.isSelected();
+	}
+//	
 
 	private int counter = 0;
 	Thread colorThread = null;
@@ -2073,16 +2021,23 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		summaryTableModel.setTotL(hopTableModel.getGrammi());
 		summaryTableModel.setTotG(maltTableModel.getGrammi());
 
-		waterNeeded.setMashKg((double) maltTableModel.getGrammiMash() / 1000);
-		waterNeeded.setBatchSize(spinVolumeFin.getVolume());
-		waterNeeded.setBoilTime(getBollitura());
-		waterPanel.setTotWater(waterNeeded.getTotWater());
+//		waterNeeded.setMashKg((double) maltTableModel.getGrammiMash() / 1000);
+//		waterNeeded.setBatchSize(spinVolumeFin.getVolume());
+		waterNeededNew2.setBatchSize(spinVolumeFin.getVolume());
+		waterNeededNew2.setTotGrani((double) maltTableModel.getGrammiMash() / 1000);
+		waterNeededNew2.setOriginalGravity(maltTableModel.getSG(concentrato));
+		waterNeededNew2.setBiab(isBIAB(), false);
+		//waterNeeded.setBoilTime(getBollitura());
+		
+//		waterPanel.setTotWater(waterNeeded.getTotWater());
+		waterPanel.setTotWater(waterNeededNew2.getTotWater());
+		setVolumePreBoil(waterNeededNew2.getVolumeMostoPreBoil());
 		double sg = maltTableModel.getSG(concentrato);
 
 		summaryTableModel.setSG(sg);
+		
 		sg = maltTableModel.getSG(false);
-		summaryTableModel
-				.setSGPB(Utils.Plato2SG(Utils.SG2Plato(sg) * spinVolumeFin.getVolume() / spinVolumeBoll.getVolume()));
+//		summaryTableModel.setSGPB(Utils.Plato2SG(Utils.SG2Plato(sg) * spinVolumeFin.getVolume() / spinVolumeBoll.getVolume()));
 
 		tblSummary.setCellSelectionEnabled(false);
 		tblSummary.setRowSelectionAllowed(false);
@@ -2150,11 +2105,47 @@ public class Ricetta extends javax.swing.JInternalFrame {
 			};
 			this.colorThread.start();
 		}
-		double mashPH = RicettaUtils.calculatePH(this);
-		this.summaryTableModel.setMashPH(mashPH);
+		
+		
+		// aggiorna valori sali mash/sparge
+		
+		for (SaltType saltType: SaltType.values())
+		{
+			this.setSaltValues(saltType);
+		}
+
+		PHResult phResult = RicettaUtils.calculatePH(this);
+
+		this.summaryTableModel.setMashPH(phResult.getpH());
+		this.summaryTableModel.setSGPB((waterNeededNew2.getOGPreBoil() + 1000.0) / 1000.0);
+		
 		this.tblSummary.updateUI();
+		this.waterPanel.setPH(phResult.getpH());
+		this.waterPanel.setAlk(phResult.getAlk());
+		this.waterPanel.setRA(phResult.getRA());
+		this.waterPanel.setTotalAcidGrainWeightGr(phResult.getTotalAcidGrainWeightGr());
+		
+		for (ResultingWaterProfileType type: ResultingWaterProfileType.values())
+		{
+			this.setWaterProfileValue(type);
+		}
+		
+		waterPanel.setBIAB(biab);
+	
+		
+		this.waterPanel.updateUI();
 
 		this.dirty = true;
+		
+	}
+	
+	private void setSaltValues(SaltType saltType) {
+		this.waterPanel.setSaltValues(saltType, RicettaUtils.getMashVolumeLitri(this), RicettaUtils.getSpargeVolumeLitri(this));
+	}
+
+	private void setWaterProfileValue(ResultingWaterProfileType type)
+	{
+		this.waterPanel.setWaterProfile(type, RicettaUtils.getResultingWaterProfile(this, type));
 	}
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2231,6 +2222,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	private javax.swing.JSpinner spinBollitura;
 	private javax.swing.JSpinner spinEfficienza;
 	private jmash.component.JVolumeSpinner spinVolumeBoll;
+	private jmash.component.JVolumeSpinner spinVolumePreBoil;
 	private jmash.component.JVolumeSpinner spinVolumeDiluito;
 	private jmash.component.JVolumeSpinner spinVolumeFin;
 	private javax.swing.JSplitPane splitPanel;
@@ -2248,6 +2240,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	private javax.swing.JTextField txtOG1;
 	private javax.swing.JTextField txtOG2;
 	private javax.swing.JTextField txtStile;
+	private JCheckBox chkBiab;
 	// End of variables declaration//GEN-END:variables
 
 	public double getVolume() {
@@ -2268,6 +2261,16 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	public void setVolumeBoll(double v) {
 		spinVolumeBoll.setVolume(v);
 	}
+	
+	public double getVolumePreBoil() {
+		return spinVolumePreBoil.getVolume();
+	}
+	
+	public void setVolumePreBoil(double v) {
+		spinVolumePreBoil.setVolume(v);
+	}
+	
+
 
 	private String unitaMisura;
 
@@ -2298,7 +2301,16 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	public void setBollitura(int bollitura) {
 		this.bollitura = bollitura;
 	}
+	private Boolean biab = Main.config.getBiab();
 
+	public void setBiab(Boolean biab) {
+		this.biab = biab;
+	}
+	
+	public Boolean getBiab() {
+		return biab;
+	}
+	
 	private String note;
 
 	public String getNote() {
@@ -2352,11 +2364,14 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		if (src.getVolumeBoll() != null)
 			setVolumeBoll(src.getVolumeBoll());
 		spinVolumeBoll.setVolume(getVolumeBoll());
+		spinVolumePreBoil.setVolume(getVolumePreBoil());
 		if (src.getBollituraConcentrata() != null)
 			chkConcentratedBoil.setSelected(src.getBollituraConcentrata());
+		chkBiab.setSelected(src.getBiab() != null ? src.getBiab() : false);
 		if (src.getVolumeDiluito() != null)
 			spinVolumeDiluito.setVolume(src.getVolumeDiluito());
 		chkConcentratedBoilActionPerformed(null);
+		chkBiabActionPerformed(null);
 		if (src.getVolumeFin() != null)
 			setVolume(src.getVolumeFin());
 		spinVolumeFin.setVolume(getVolume());
@@ -2394,7 +2409,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		if (src.getTreatment() != null)
 			waterPanel.setTreatment(src.getTreatment());
 		if (src.getWaterNeeded() != null)
-			waterNeeded.fromXml(src.getWaterNeeded());
+			waterNeededNew2.fromXml(src.getWaterNeeded());
 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -2418,6 +2433,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		src.setVolumeFin(getVolume());
 		src.setVolumeDiluito(getVolumeDiluito());
 		src.setBollituraConcentrata(chkConcentratedBoil.isSelected());
+		src.setBiab(chkBiab.isSelected());
 		src.setEfficienza(getEfficienza());
 		if (brewStyle == null) {
 			src.setCodiceStile("nd");
@@ -2433,7 +2449,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		src.setSourceWater(waterPanel.getSource());
 		src.setDestWater(waterPanel.getDest());
 		src.setTreatment(waterPanel.getTreatment());
-		src.setWaterNeeded(waterNeeded.toXml());
+		src.setWaterNeeded(waterNeededNew2.toXml());
 		return src;
 	}
 
@@ -2544,12 +2560,13 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	}
 
 	private Integer calcoloFinalGravity() {
-		Integer OGPrevista = Integer.parseInt(((String) this.summaryTableModel.getValueAt(0, 0)).replaceAll(",", ""));
+                DecimalFormat format=(DecimalFormat) DecimalFormat.getInstance();
+                DecimalFormatSymbols symbols=format.getDecimalFormatSymbols();
+		Integer OGPrevista = Integer.parseInt(((String) this.summaryTableModel.getValueAt(0, 0)).replace(String.valueOf(symbols.getDecimalSeparator()), ""));
 		OGPrevista = OGPrevista - 1000;
 		Integer FGPrevista = OGPrevista;
 		if (yeastTableModel.getRows().size() > 0) {
-			Integer attenuazioneMed = (yeastTableModel.getRows().get(0).getAttenuazioneMed() == null ? 75
-					: new Integer(yeastTableModel.getRows().get(0).getAttenuazioneMed()));
+			Integer attenuazioneMed = (yeastTableModel.getRows().get(0).getAttenuazioneMed() == null ? 75 : new Integer(yeastTableModel.getRows().get(0).getAttenuazioneMed()));
 			FGPrevista = (OGPrevista - ((OGPrevista * attenuazioneMed) / 100));
 		}
 		return FGPrevista;
@@ -2561,8 +2578,10 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 	public String getGradiPrevisti() {
 		DecimalFormat df = new DecimalFormat("#.#");
-		Integer OGPrevista = Integer.parseInt(((String) this.summaryTableModel.getValueAt(0, 0)).replaceAll(",", ""))
-				- 1000;
+                DecimalFormat format=(DecimalFormat) DecimalFormat.getInstance();
+                DecimalFormatSymbols symbols=format.getDecimalFormatSymbols();
+                
+		Integer OGPrevista = Integer.parseInt(((String) this.summaryTableModel.getValueAt(0, 0)).replace(String.valueOf(symbols.getDecimalSeparator()), "")) - 1000;
 		return df.format((OGPrevista - calcoloFinalGravity()) / 7.5) + "°C";
 	}
 
@@ -2614,6 +2633,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	public void setEnabled(boolean F) {
 		btnStyle.setEnabled(F);
 		spinVolumeBoll.setEnabled(F);
+		spinVolumePreBoil.setEnabled(F);
 		spinVolumeFin.setEnabled(F);
 		spinVolumeDiluito.setEnabled(F);
 		spinEfficienza.setEnabled(F);

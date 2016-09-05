@@ -16,6 +16,8 @@ public class MaltCategory implements XmlAble, Comparable<MaltCategory>
   private String codice;
   private String nome;
   private Double pH;
+  
+  public static final Double PH_DEFAULT = 5.7; 
 
   private static String campiXml[] =
   {

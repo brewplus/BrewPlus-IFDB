@@ -50,26 +50,17 @@ public class Config {
     private Integer volumeBoil = 28;
     private Integer metriSLM = 160;
     private Integer amaroDHEA = 45;
-    private Double tempSparge = 76.0;
-    private Double tolleranzaAccensione = 0.0;
-    private Double tolleranzaSpegnimento = 0.0;
-
-    private Double tempIngressoGrani = 0.0;
-    private String arduinoPort = "COM1";
-    private String gestisciSparge = "Y";
-    private String testIodio = "Y";
-    private Double intervalloSonda = 1.0;
-    private Double temperaturaRampa = 0.0;
-    private Integer TempoInerziaRampa = 30;
-    private String invertiSonde = "N";
-
+   
     private Double lostToTrub = 0.5;
-    private Double lostToSparge = 3.0;
-    private Double litriPerKg = 3.0;
-    private Double evaporazionePerOra = 2.0;
+    private Double litriPerKg = 1.01;
+    private Double rapportoAcquaGrani = 5.0;
 
     private Boolean ebcNewMethod = true;
     private Integer potLibGal = 0;
+    
+    private Double percentualeEvaporazione = 15.0;
+    private Double contrazionePerRaffreddamento = 4.0;
+    private Boolean biab = Boolean.FALSE;
 
     public String getRemoteServer() {
         return this.remoteServer;
@@ -77,10 +68,8 @@ public class Config {
 
     private static String campiXml[] = new String[] {"locale", "remoteRoot", "RemoteServer", "RSSFeed", "boilTime", "volumeFin",
             "volumeBoil", "efficienza", "metriSLM", "amaroDHEA", "nickIHB", "passwordIHB", "proxyPort", "proxyHost",
-            "lostToTrub", "lostToSparge", "litriPerKg", "evaporazionePerOra", "ebcNewMethod", "potLibGal",
-            "BUGUratiostring", "tempSparge", "tolleranzaAccensione", "tolleranzaSpegnimento", "tempIngressoGrani",
-            "arduinoPort", "gestisciSparge", "testIodio", "intervalloSonda", "temperaturaRampa", "TempoInerziaRampa",
-            "invertiSonde" };
+            "lostToTrub", "litriPerKg", "rapportoAcquaGrani", "ebcNewMethod", "potLibGal",
+            "BUGUratiostring", "percentualeEvaporazione", "contrazionePerRaffreddamento", "biab"};
 
     public void setRemoteServer(String remoteServer) {
         this.remoteServer = remoteServer;
@@ -103,94 +92,6 @@ public class Config {
             Utils.showException(ex);
         }
         return null;
-    }
-
-    public String getInvertiSonde() {
-        return invertiSonde;
-    }
-
-    public void setInvertiSonde(String invertiSonde) {
-        this.invertiSonde = invertiSonde;
-    }
-
-    public Double getTemperaturaRampa() {
-        return temperaturaRampa;
-    }
-
-    public void setTemperaturaRampa(Double temperaturaRampa) {
-        this.temperaturaRampa = temperaturaRampa;
-    }
-
-    public Double getIntervalloSonda() {
-        return intervalloSonda;
-    }
-
-    public void setIntervalloSonda(Double intervalloSonda) {
-        this.intervalloSonda = intervalloSonda;
-    }
-
-    public String getTestIodio() {
-        return testIodio;
-    }
-
-    public void setTestIodio(String testIodio) {
-        this.testIodio = testIodio;
-    }
-
-    public Double getTolleranzaAccensione() {
-        return tolleranzaAccensione;
-    }
-
-    public void setTolleranzaAccensione(Double tolleranzaAccensione) {
-        this.tolleranzaAccensione = tolleranzaAccensione;
-    }
-
-    public String getGestisciSparge() {
-        return gestisciSparge;
-    }
-
-    public void setGestisciSparge(String gestisciSparge) {
-        this.gestisciSparge = gestisciSparge;
-    }
-
-    public String getArduinoPort() {
-        return arduinoPort;
-    }
-
-    public void setArduinoPort(String arduinoPort) {
-        this.arduinoPort = arduinoPort;
-    }
-
-    public Integer getTempoInerziaRampa() {
-        return TempoInerziaRampa;
-    }
-
-    public void setTempoInerziaRampa(Integer TempoInerziaRampa) {
-        this.TempoInerziaRampa = TempoInerziaRampa;
-    }
-
-    public Double getTempSparge() {
-        return tempSparge;
-    }
-
-    public void setTempSparge(Double tempSparge) {
-        this.tempSparge = tempSparge;
-    }
-
-    public Double getTolleranzaSpegnimento() {
-        return tolleranzaSpegnimento;
-    }
-
-    public void setTolleranzaSpegnimento(Double tolleranzaSpegnimento) {
-        this.tolleranzaSpegnimento = tolleranzaSpegnimento;
-    }
-
-    public Double getTempIngressoGrani() {
-        return tempIngressoGrani;
-    }
-
-    public void setTempIngressoGrani(Double tempIngressoGrani) {
-        this.tempIngressoGrani = tempIngressoGrani;
     }
 
     public Integer getAmaroDHEA() {
@@ -240,6 +141,30 @@ public class Config {
     public void setMetriSLM(Integer metriSLM) {
         this.metriSLM = metriSLM;
     }
+    
+    public Double getPercentualeEvaporazione() {
+		return percentualeEvaporazione;
+	}
+    
+    public void setPercentualeEvaporazione(Double percentualeEvaporazione) {
+		this.percentualeEvaporazione = percentualeEvaporazione;
+	}
+    
+    public Double getContrazionePerRaffreddamento() {
+		return contrazionePerRaffreddamento;
+	}
+    
+    public void setContrazionePerRaffreddamento(Double contrazionePerRaffreddamento) {
+		this.contrazionePerRaffreddamento = contrazionePerRaffreddamento;
+	}
+    
+    public Boolean getBiab() {
+		return biab;
+	}
+    
+    public void setBiab(Boolean biab) {
+		this.biab = biab;
+	}
 
     public static String[] getCampiXml() {
         return campiXml;
@@ -289,14 +214,6 @@ public class Config {
         this.lostToTrub = lostToTrub;
     }
 
-    public Double getLostToSparge() {
-        return lostToSparge;
-    }
-
-    public void setLostToSparge(Double lostToSparge) {
-        this.lostToSparge = lostToSparge;
-    }
-
     public Double getLitriPerKg() {
         return litriPerKg;
     }
@@ -305,12 +222,12 @@ public class Config {
         this.litriPerKg = litriPerKg;
     }
 
-    public Double getEvaporazionePerOra() {
-        return evaporazionePerOra;
+    public Double getRapportoAcquaGrani() {
+        return rapportoAcquaGrani;
     }
 
-    public void setEvaporazionePerOra(Double evaporazionePerOra) {
-        this.evaporazionePerOra = evaporazionePerOra;
+    public void setRapportoAcquaGrani(Double rapportoAcquaGrani) {
+        this.rapportoAcquaGrani = rapportoAcquaGrani;
     }
 
     public String getRemoteRoot() {
@@ -373,10 +290,10 @@ public class Config {
     }
 
     public String getLocale() {
-        return locale;
+        return (locale == null ? (java.util.Locale.getDefault().getLanguage()+ "_" + java.util.Locale.getDefault().getCountry()) : locale);
     }
 
     public void setLocale(String locale) {
-        this.locale = locale;
+        this.locale = (locale == null ? (java.util.Locale.getDefault().getLanguage() + "_" + java.util.Locale.getDefault().getCountry()) : locale);
     }
 }

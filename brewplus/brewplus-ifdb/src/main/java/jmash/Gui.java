@@ -72,16 +72,44 @@ import org.apache.log4j.Logger;
 public class Gui extends javax.swing.JFrame {
 
 	private static final long serialVersionUID = 348370096080739755L;
-	private static Logger LOGGER = Logger.getLogger(Gui.class);
+	private static final Logger LOGGER = Logger.getLogger(Gui.class);
 	JPopupMenu recipesPopup = new JPopupMenu();
 
-	private Map<JMenuItem, JInternalFrame> Finestre = new HashMap<JMenuItem, JInternalFrame>();
-	private Set<JInternalFrame> listaFinestre = new HashSet<JInternalFrame>();
-
+	private Map<JMenuItem, JInternalFrame> Finestre = new HashMap<>();
+	private Set<JInternalFrame> listaFinestre = new HashSet<>();
+        
+        private void i18nInitComponents() {
+            btnNew.setToolTipText(Main.bundle.getString("title.newRecipe"));
+            btnOpen.setToolTipText(Main.bundle.getString("title.openRecipe"));
+            btnSave.setToolTipText(Main.bundle.getString("title.saveRecipe"));
+            btnSaveAs.setToolTipText(Main.bundle.getString("title.saveRecipeAs"));
+            btnSaveAll1.setToolTipText(Main.bundle.getString("title.dilutions"));
+            btnSaveAll2.setToolTipText(Main.bundle.getString("title.evaporation"));
+            btnMashDesign.setToolTipText(Main.bundle.getString("title.mashDesigner"));
+            btnSaveAll4.setToolTipText(Main.bundle.getString("title.densityRead"));
+            btnSaveAll5.setToolTipText(Main.bundle.getString("title.alcholCalculation"));
+            btnSaveAll7.setToolTipText(Main.bundle.getString("title.primingCalculation"));
+            btnSaveAll8.setToolTipText(Main.bundle.getString("title.mashInTemperature"));
+            btnSaveAll9.setToolTipText(Main.bundle.getString("title.counterflowSizing"));
+            btnSaveAll11.setToolTipText(Main.bundle.getString("title.yeastPitcher"));
+            btnSaveAll14.setToolTipText(Main.bundle.getString("title.waterTreatment"));
+            btnSaveAll17.setToolTipText(Main.bundle.getString("title.waterNeeded"));
+            btnSaveAll15.setToolTipText(Main.bundle.getString("title.filterHoleCalculation"));
+            btnSaveAll20.setToolTipText(Main.bundle.getString("title.HopsSheet"));
+            btnSaveAll18.setToolTipText(Main.bundle.getString("title.beerStyle"));
+            button.setToolTipText(Main.bundle.getString("title.forumFeed"));
+            btnUpdate.setToolTipText(Main.bundle.getString("title.revisionAvailable"));
+            btnSaveAll16.setToolTipText(Main.bundle.getString("title.settings"));
+            btnGuida.setToolTipText(Main.bundle.getString("title.help"));
+            btnNew1.setToolTipText(Main.bundle.getString("title.brewRecording"));
+            btnSaveAll21.setToolTipText(Main.bundle.getString("title.inventory"));
+            btnSaveAll12.setToolTipText(Main.bundle.getString("title.shopping"));
+        }
 	/** Creates new form Gui */
 	public Gui() {
 		try {
 			initComponents();
+                        i18nInitComponents();
 		} catch (Exception ex) {
 		}
 
@@ -203,7 +231,7 @@ public class Gui extends javax.swing.JFrame {
 	}
 
 	public static HopPickerTableModel hopPickerTableModel = new HopPickerTableModel();
-  public static MaltCategoryPickerTableModel maltCategoryPickerTableModel = new MaltCategoryPickerTableModel();
+        public static MaltCategoryPickerTableModel maltCategoryPickerTableModel = new MaltCategoryPickerTableModel();
 	public static MaltPickerTableModel maltPickerTableModel = new MaltPickerTableModel();
 	public static WaterPickerTableModel waterPickerTableModel = new WaterPickerTableModel();
 	public static YeastPickerTableModel yeastPickerTableModel = new YeastPickerTableModel();
@@ -496,7 +524,7 @@ public class Gui extends javax.swing.JFrame {
 				btnSaveAll14ActionPerformed(evt);
 			}
 		});
-		toolbar.add(btnSaveAll14);
+//		toolbar.add(btnSaveAll14);
 
 		btnSaveAll17.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/pipe.png"))); // NOI18N
 		btnSaveAll17.setToolTipText("Acqua necessaria");
@@ -508,7 +536,7 @@ public class Gui extends javax.swing.JFrame {
 				btnSaveAll17ActionPerformed(evt);
 			}
 		});
-		toolbar.add(btnSaveAll17);
+//		toolbar.add(btnSaveAll17);
 
 		btnSaveAll15.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/drill.png"))); // NOI18N
 		btnSaveAll15.setToolTipText("Calcolo fori filtro");
@@ -1164,7 +1192,7 @@ public class Gui extends javax.swing.JFrame {
 	}// GEN-LAST:event_btnUpdateActionPerformed
 
 	private void btnSaveAll17ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll17ActionPerformed
-		addFrame(new WaterNeeded());
+		addFrame(new WaterNeededNew());
 	}// GEN-LAST:event_btnSaveAll17ActionPerformed
 
 	private void btnSaveAll16ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll16ActionPerformed

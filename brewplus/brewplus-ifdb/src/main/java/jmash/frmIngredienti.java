@@ -9,6 +9,7 @@ import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
@@ -35,9 +36,9 @@ public class frmIngredienti extends javax.swing.JInternalFrame {
 	private static final long serialVersionUID = -9088568590286636987L;
 	private final JPanel contentPanel = new JPanel();
 
-	public frmIngredienti(String stylename, String water, String malts, String hops, String spices, String yeasts) {
+	public frmIngredienti(BrewStyle bs) {
 		setClosable(true);
-		this.setTitle("Ingredienti consigliati: " + stylename);
+		this.setTitle("BJCP: " + bs.getNome());
 		setResizable(true);
 		setMaximizable(true);
 		setBounds(100, 100, 546, 406);
@@ -50,13 +51,16 @@ public class frmIngredienti extends javax.swing.JInternalFrame {
 		JTextPane textPane = new JTextPane();
 		textPane.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		textPane.setEditable(false);
+		textPane.setContentType("text/html");
 		contentPanel.add(textPane);
-		String text = "Acqua:\n" + water + "\n\n";
-		text = text + "Malti:\n" + malts + "\n\n";
-		text = text + "Luppoli:\n" + hops + "\n\n";
-		text = text + "Spezie:\n" + spices + "\n\n";
-		text = text + "Lieviti:\n" + yeasts + "\n";
-		textPane.setText(text);
+		
+		String html = Utils.getBJCPHtml(bs);
+		
+		JScrollPane scrollPane = new JScrollPane(textPane);
+		contentPanel.add(scrollPane, BorderLayout.CENTER);
+		
+		textPane.setText(html);
+		textPane.setCaretPosition(0);
 
 		{
 			JPanel buttonPane = new JPanel();

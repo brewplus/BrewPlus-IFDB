@@ -47,6 +47,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
@@ -57,7 +58,6 @@ import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
-import org.jfree.util.Log;
 
 import jmash.component.MultiLineCellRenderer;
 import jmash.schema.bjcp.Styleguide;
@@ -66,11 +66,11 @@ import jmash.utils.BundleMessage;
 public class Main {
 
 	private static final Logger logger = Logger.getLogger(Main.class);
-        public static BundleMessage bundle = new BundleMessage(java.util.PropertyResourceBundle.getBundle("jmash/lang"));
+        public static BundleMessage bundle;
         
     public static Locale locale;
         
-	public static String versioneHobbyBrew = "2.0.0";
+	//public static String versioneHobbyBrew = "2.0.0";
 	public static Integer webVersion;
 	public static String userDir;
 	public static String waterDir;
@@ -89,7 +89,7 @@ public class Main {
 	public static String coloriXML = "config/colors.xml";
 	public static String configXML = "config/config.xml";
 	public static String inventarioXML = "config/inventario.xml";
-	public static String printTemplate = "templates/ricetta.html";
+	//public static String printTemplate = "templates/ricetta.html";
 	public static Gui gui;
 	public static javax.swing.JDesktopPane desktopPane;
 	public static MultiLineCellRenderer multiLineCellRenderer = new MultiLineCellRenderer();
@@ -169,7 +169,8 @@ public class Main {
 	}
 
 	public static String getVersione() {
-		return versioneHobbyBrew;
+		//return versioneHobbyBrew;
+		return Utils.getVersion();
 	}
 
 	/*private static void check(String str) {
@@ -422,8 +423,12 @@ public class Main {
 		config = Config.fromXml(root);
 		logger.info("config detected");
 		
-		locale = new Locale.Builder().setLanguage(Main.config.getLocale().toLowerCase()).build();
-		logger.info("Setting localization: "+Main.locale.getLanguage());
+		
+		locale = new Locale(config.getLocale().split("_")[0],config.getLocale().split("_")[1]);
+		Locale.setDefault(locale);
+        ResourceBundle.clearCache();
+        logger.info("Setting localization: " + config.getLocale());
+		bundle = new BundleMessage(java.util.PropertyResourceBundle.getBundle("jmash/lang"));
 		
 	}
 
@@ -863,19 +868,7 @@ public class Main {
 				Constructor k = c.getConstructor(new Class[] { String.class });
 				Object o = k.newInstance(new Object[] { value });
 				putIntoCache(name, o);
-			} catch (IllegalArgumentException ex) {
-				logger.error(ex.getMessage(), ex);
-			} catch (SecurityException ex) {
-				logger.error(ex.getMessage(), ex);
-			} catch (NoSuchMethodException ex) {
-				logger.error(ex.getMessage(), ex);
-			} catch (IllegalAccessException ex) {
-				logger.error(ex.getMessage(), ex);
-			} catch (InvocationTargetException ex) {
-				logger.error(ex.getMessage(), ex);
-			} catch (ClassNotFoundException ex) {
-				logger.error(ex.getMessage(), ex);
-			} catch (InstantiationException ex) {
+			} catch (IllegalArgumentException | SecurityException | NoSuchMethodException | IllegalAccessException | InvocationTargetException | ClassNotFoundException | InstantiationException ex) {
 				logger.error(ex.getMessage(), ex);
 			}
 		}

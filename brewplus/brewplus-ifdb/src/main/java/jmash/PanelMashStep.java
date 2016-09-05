@@ -74,16 +74,11 @@ public class PanelMashStep extends javax.swing.JPanel {
 	private Ricetta ricetta;
 	private JInternalFrame parentFrame;
 
-	public static ImageIcon newIcon = new ImageIcon(
-			java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/filenew.png")));
-	public static ImageIcon openIcon = new ImageIcon(
-			java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/fileopen.png")));
-	public static ImageIcon saveIcon = new ImageIcon(
-			java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/filesave.png")));
-	public static ImageIcon saveAsIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit()
-			.createImage(Ricetta.class.getResource("/jmash/images/filesaveas.png")));
-	public static ImageIcon detailsIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit()
-			.createImage(Ricetta.class.getResource("/jmash/images/edu_languages.png")));
+	public static ImageIcon newIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/filenew.png")));
+	public static ImageIcon openIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/fileopen.png")));
+	public static ImageIcon saveIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/filesave.png")));
+	public static ImageIcon saveAsIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/filesaveas.png")));
+	public static ImageIcon detailsIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/edu_languages.png")));
 
 	public PanelMashStep(Ricetta r, JInternalFrame parentFrame) {
 		this.ricetta = r;
@@ -611,7 +606,7 @@ public class PanelMashStep extends javax.swing.JPanel {
 		jPanel2.add(jTabbedPane1, java.awt.BorderLayout.CENTER);
 
 		add(jPanel2, java.awt.BorderLayout.CENTER);
-	}// </editor-fold>//GEN-END:initComponents
+	}// </editor-fold>                        
 
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
 		new ShowFormula("", "F = \\frac{T_fin - T_ini} {T_boll - T_ini - T_X^coeff}").startModal(this.parentFrame);

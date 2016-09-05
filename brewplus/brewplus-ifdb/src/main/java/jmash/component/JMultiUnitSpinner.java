@@ -30,6 +30,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import jmash.Main;
+import java.awt.Component;
 
 /**
  *
@@ -37,8 +38,24 @@ import jmash.Main;
  */
 public abstract class JMultiUnitSpinner extends javax.swing.JPanel {
 
+	private int widthSpinner = 77;
+	private int widthUnit = 55;
+	
 	/** Creates new form JVolumeSpinner */
 	public JMultiUnitSpinner(String[] list) {
+		this(list, 77, 55);
+	}
+	
+	/** Creates new form JVolumeSpinner 
+	 * @wbp.parser.constructor*/
+	public JMultiUnitSpinner(String[] list, int widthUnit) {
+		this(list, 77, widthUnit);
+	}
+	
+	/** Creates new form JVolumeSpinner */
+	public JMultiUnitSpinner(String[] list, int widthSpinner, int widthUnit) {
+		this.widthSpinner = widthSpinner;
+		this.widthUnit = widthUnit;
 		initComponents();
 		for (int i = 0; i < list.length; i++)
 			list[i] = " " + list[i];
@@ -70,6 +87,7 @@ public abstract class JMultiUnitSpinner extends javax.swing.JPanel {
 
 		jMashSpinner1 = new jmash.component.JMashSpinner();
 		jComboBox1 = new javax.swing.JComboBox();
+		jComboBox1.setAlignmentX(Component.LEFT_ALIGNMENT);
 
 		jMashSpinner1.setBorder(null);
 		jMashSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -77,8 +95,6 @@ public abstract class JMultiUnitSpinner extends javax.swing.JPanel {
 				jMashSpinner1StateChanged(evt);
 			}
 		});
-
-		jComboBox1.setAlignmentX(0.0F);
 		jComboBox1.addItemListener(new java.awt.event.ItemListener() {
 			public void itemStateChanged(java.awt.event.ItemEvent evt) {
 				jComboBox1ItemStateChanged(evt);
@@ -94,10 +110,10 @@ public abstract class JMultiUnitSpinner extends javax.swing.JPanel {
 		this.setLayout(layout);
 		layout.setHorizontalGroup(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
 				.add(layout.createSequentialGroup()
-						.add(jMashSpinner1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 77,
+						.add(jMashSpinner1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, this.widthSpinner,
 								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-						.add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 55,
+						.add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, this.widthUnit,
 								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
 						.addContainerGap()));
 		layout.setVerticalGroup(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)

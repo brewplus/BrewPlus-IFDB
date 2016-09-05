@@ -7,6 +7,8 @@ import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Iterator;
+
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
@@ -14,8 +16,6 @@ import javax.swing.JRootPane;
 import org.apache.log4j.Logger;
 import org.jdom.Document;
 import org.jdom.Element;
-import javax.swing.ImageIcon;
-import javax.swing.SwingConstants;
 
 /**
  *
@@ -31,7 +31,7 @@ public class CopyOfNewCotta extends javax.swing.JInternalFrame {
 	PanelMashLog mashLog;
 	PanelDegustazione degu = new PanelDegustazione();
 	PanelMashStep mashDesign;
-	WaterNeeded waterNeeded = new WaterNeeded();
+	WaterNeededNew waterNeeded = new WaterNeededNew();
 	private File file;
 
 	/** Creates new form NewCotta */

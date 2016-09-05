@@ -38,9 +38,10 @@ import jmash.tableModel.YeastTableModel;
  */
 public class Gyle extends javax.swing.JPanel {
 
-	private static Logger LOGGER = Logger.getLogger(Gyle.class);
+	private static final Logger LOGGER = Logger.getLogger(Gyle.class);
 
-	/** Creates new form Gyle */
+	/** Creates new form Gyle
+        * @param ricetta */
 	public Gyle(Ricetta ricetta) {
 		this.ricetta = ricetta;
 		this.hopTableModel = new HopTableModel(ricetta);
@@ -116,9 +117,9 @@ public class Gyle extends javax.swing.JPanel {
 		tblHops.getColumnModel().getColumn(1).setPreferredWidth(128);
 		tblMalts.getColumnModel().getColumn(0).setPreferredWidth(32);
 
-		setVolume(Main.config.getVolumeFin());
-		setVolumeBoll(Main.config.getVolumeBoil());
-		setUnitaMisura("litri");
+		this.volume = Main.config.getVolumeFin();
+		this.volumeBoll = Main.config.getVolumeBoil();
+		this.unitaMisura = "litri";
 
 		spinVolumeBollWO.setModelFormat(23.0, 0.25, 9999999.0, 0.25, "0.00", "Gyle.VB");
 		spinVolumeFinWO.setModelFormat(23.0, 0.25, 9999999.0, 0.25, "0.00", "Gyle.VF");
@@ -128,9 +129,9 @@ public class Gyle extends javax.swing.JPanel {
 		spinEfficienza.setValue(Main.config.getEfficienza());
 		spinBollitura.setValue(Main.config.getBoilTime());
 
-		((javax.swing.SpinnerNumberModel) spinEfficienza.getModel()).setMaximum(new Integer(100));
-		((javax.swing.SpinnerNumberModel) spinBollitura.getModel()).setMinimum(new Integer(0));
-		((javax.swing.SpinnerNumberModel) spinEfficienza.getModel()).setMinimum(new Integer(1));
+		((javax.swing.SpinnerNumberModel) spinEfficienza.getModel()).setMaximum(100);
+		((javax.swing.SpinnerNumberModel) spinBollitura.getModel()).setMinimum(0);
+		((javax.swing.SpinnerNumberModel) spinEfficienza.getModel()).setMinimum(1);
 
 		jPanel2.setBackground(maltSorter.getTableHeader().getBackground());
 
@@ -1089,13 +1090,13 @@ public class Gyle extends javax.swing.JPanel {
 	}// GEN-LAST:event_fldNomeKeyTyped
 
 	private void spinBollituraStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spinBollituraStateChanged
-		int v = ((Integer) this.spinBollitura.getValue()).intValue();
+		int v = ((Integer) this.spinBollitura.getValue());
 		setBollitura(v);
 		ricettaModificata();
 	}// GEN-LAST:event_spinBollituraStateChanged
 
 	private void spinEfficienzaStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spinEfficienzaStateChanged
-		int v = ((Integer) this.spinEfficienza.getValue()).intValue();
+		int v = ((Integer) this.spinEfficienza.getValue());
 		if (this.lock.isSelected()) {
 			this.maltTableModel.adjustTo(this.getEfficienza(), this.getVolume(), v, this.getVolume());
 
@@ -1151,8 +1152,7 @@ public class Gyle extends javax.swing.JPanel {
 	}// GEN-LAST:event_btnAdd11ActionPerformed
 
 	private void btnAdd10ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd10ActionPerformed
-		WaterNeeded ed = new WaterNeeded(this.volume, summaryTableModel.getTotG() / 1000.0, this.getBollitura(),
-				60 * (volumeBoll - volume) / this.getBollitura());
+		WaterNeededNew ed = new WaterNeededNew(this.volume, summaryTableModel.getTotG() / 1000.0, this.getBollitura(), 60 * (volumeBoll - volume) / this.getBollitura());
 		Gui.desktopPane.add(ed);
 		Utils.center(ed, ricetta);
 		ed.setVisible(true);
@@ -1316,11 +1316,11 @@ public class Gyle extends javax.swing.JPanel {
 	}
 
 	private int counter = 0;
-	private boolean flgDirty = false;
+	//private boolean flgDirty = false;
 	Thread colorThread = null;
 
 	public void ricettaModificata() {
-		flgDirty = true;
+		//flgDirty = true;
 		summaryTableModel.setIBU(hopTableModel.getIBUTinseth());
 		summaryTableModel.setIBU2(hopTableModel.getIBURager());
 		summaryTableModel.setIBUGaretz(hopTableModel.getIBUGaretz());
