@@ -21,6 +21,12 @@
 			<scope>system</scope>
 			<systemPath>${project.basedir}/../no-maven-libs/HotEqn.jar</systemPath>
 		</dependency>
+		<dependency>
+				<groupId>net.ilforumdellabirra</groupId>
+				<artifactId>it.ifdb</artifactId>
+				<scope>system</scope>
+				<systemPath>${project.basedir}/../no-maven-libs/brewFont.jar</systemPath>
+			</dependency>
 	</dependencies>
 
 	<build>

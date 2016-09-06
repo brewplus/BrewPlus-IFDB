@@ -75,6 +75,13 @@
 				<systemPath>${project.basedir}/no-maven-libs/HotEqn.jar</systemPath>
 			</dependency>
 			<dependency>
+				<groupId>net.ilforumdellabirra</groupId>
+				<artifactId>it.ifdb</artifactId>
+				<version>1.0</version>
+				<scope>system</scope>
+				<systemPath>${project.basedir}/no-maven-libs/brewFont.jar</systemPath>
+			</dependency>
+			<dependency>
 				<groupId>com.google.zxing</groupId>
 				<artifactId>javase</artifactId>
 				<version>3.2.1</version>
