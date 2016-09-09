@@ -27,6 +27,7 @@
 							<classpathPrefix>lib/</classpathPrefix>
 							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                 			<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                			<addExtensions>true</addExtensions>
 						</manifest>
 						<manifestEntries>
 							<mode>development</mode>
@@ -140,12 +141,6 @@
 			<artifactId>apt.hoteqn</artifactId>
 			<scope>system</scope>
 			<systemPath>${project.basedir}/../no-maven-libs/HotEqn.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>net.ilforumdellabirra</groupId>
-			<artifactId>it.ifdb</artifactId>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/../no-maven-libs/brewFont.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.google.zxing</groupId>

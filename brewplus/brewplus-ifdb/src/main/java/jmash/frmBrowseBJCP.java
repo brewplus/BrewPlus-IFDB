@@ -81,7 +81,7 @@ public class frmBrowseBJCP extends JInternalFrame {
 		}
 		DefaultTreeModel treeModel = new DefaultTreeModel(root);
 		final Icon customLeaf = new ImageIcon(
-				java.awt.Toolkit.getDefaultToolkit().createImage(Main.class.getResource("/jmash/images/boccale.gif")));
+				java.awt.Toolkit.getDefaultToolkit().createImage(Main.class.getResource("/jmash/images/bjcp_pint_logo_header.jpg")));
 
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(5);
