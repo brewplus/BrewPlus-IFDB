@@ -1786,7 +1786,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		mineralSaltSpage.setCalciumHydroxide(String.format("%.01f",(waterPanel.getSlakedLimeSparge())));
 		mineralSalts.add(mineralSaltSpage);
 		MineralSalts mineralSaltTot = new MineralSalts();
-		mineralSaltTot.setStepName("Totale");
+		mineralSaltTot.setStepName("Totale Sali");
 		mineralSaltTot.setGypsum(String.format("%.01f",waterPanel.getGypsum()));
 		mineralSaltTot.setEpsom(String.format("%.01f",(waterPanel.getEpsom())));
 		mineralSaltTot.setCalciumChloride(String.format("%.01f",(waterPanel.getCaCl2())));

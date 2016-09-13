@@ -18,7 +18,6 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.repo.DefaultRepositoryService;
 import net.sf.jasperreports.view.JasperViewer;
 
 public class PrintRecipe {
@@ -35,33 +34,39 @@ public class PrintRecipe {
 			
 			// select available fonts
 			String fontname = "";
+			String fontSize = "10";
 			GraphicsEnvironment e = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			boolean f = true;
 	        for(String font:e.getAvailableFontFamilyNames()) {
 	            if(f){
     	            if(font.equalsIgnoreCase("DejaVu Sans")){
     	                fontname = "DejaVu Sans";
+    	                fontSize = "9";
     	                f = false;
     	            } else if (font.equalsIgnoreCase("Times New Roman")){
     	                fontname = "Times New Roman";
+    	                fontSize = "10";
     	                f = false;
     	            } else {
     	                fontname = "Arial";
+    	                fontSize = "10";
     	            }
 	            }
 	        }
 	        LOGGER.info("Using font: " + fontname);
-	        
+	        LOGGER.info("Using font size: " + fontSize);
 	        DefaultJasperReportsContext ctx = DefaultJasperReportsContext.getInstance();
-            DefaultRepositoryService service = new DefaultRepositoryService(ctx);
+           // DefaultRepositoryService service = new DefaultRepositoryService(ctx);
 	        
 	        JRPropertiesUtil props = JRPropertiesUtil.getInstance(ctx);
 	        props.setProperty("net.sf.jasperreports.awt.ignore.missing.font", "true");
 	        props.setProperty("net.sf.jasperreports.default.font.name", fontname);
+	        props.setProperty("net.sf.jasperreports.default.font.size", fontSize);
 						
 			report.setJasperReportsContext(ctx);
 			report.setProperty("net.sf.jasperreports.awt.ignore.missing.font", "true");
 			report.setProperty("net.sf.jasperreports.default.font.name", fontname);
+			report.setProperty("net.sf.jasperreports.default.font.size", fontSize);
 			
 			// end - select available fonts
 				
