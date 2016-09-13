@@ -947,8 +947,8 @@ public class Utils {
 		StringBuilder sb = new StringBuilder();
 		sb.append(
 				"<html><head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}th, td {padding: 5px;}</style></head>");
-		sb.append("<body style=\"font-size:120%;\">");
-		sb.append("<h1 style=\"font-size:140%;\">" + bs.getDesCategoria() + "</h1><br><br>");
+		sb.append("<body style=\"font-size:110%;\">");
+		sb.append("<h1 style=\"font-size:130%;\">" + bs.getDesCategoria() + "</h1><br><br>");
 		sb.append("<b>Aroma:</b><br>" + bs.getAroma() + "<br><br>");
 		sb.append("<b>" + bundle.getString("BJCP.Appearance") + ":</b><br>" + bs.getAppearance() + "<br><br>");
 		sb.append("<b>Gusto:</b><br>" + bs.getFlavor() + "<br><br>");

@@ -1092,7 +1092,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
 		jPanel2.add(fldNome, gridBagConstraints);
 
-		jLabel8.setText("In ferment.");
+		jLabel8.setText("Volume Cotta");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 15;
 		gridBagConstraints.gridy = 2;
