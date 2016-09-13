@@ -568,7 +568,7 @@ public class Gui extends javax.swing.JFrame {
 		});
 		btnSaveAll18 = new javax.swing.JButton();
 
-		btnSaveAll18.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/bjcp_pint_logo_header.jpg"))); // NOI18N
+		btnSaveAll18.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/BJCPLogo.png"))); // NOI18N
 		btnSaveAll18.setToolTipText("Stili e categorie");
 
 		btnSaveAll18.setMaximumSize(new java.awt.Dimension(37, 35));

@@ -1227,8 +1227,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jPanel2.add(spinVolumeFin, gridBagConstraints);
 
 		jButton1.setFont(jButton1.getFont());
-		jButton1.setText("Porta a...");
-		jButton1.setToolTipText("Ridimensiona ricetta");
+		jButton1.setText("Scala a...");
+		jButton1.setToolTipText("Scala valori ricetta");
 		jButton1.setBorder(null);
 		jButton1.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
