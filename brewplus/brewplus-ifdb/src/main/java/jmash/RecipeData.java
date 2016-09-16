@@ -186,19 +186,23 @@ public class RecipeData {
     }
 
     public String getDes4Forum() {
+    	
+    	//SGABUZEN REGNA... quando funziona tolgo questi commenti giuro!
 
-        String S = "Ricetta per " + getNome() + ", ";
+        //String S = "Ricetta per " + getNome() + ", ";
+    	String S = "Ricetta per " + getNome() + "\n";
 
         double volume = getBollituraConcentrata() ? getVolumeDiluito() : getVolumeFin();
-
-        S += String.format("litri finali %.1f (in bollitura %.1f)%n", volume, getVolumeBoll());
-        S += "efficienza  " + getEfficienza() + "%, bollitura " + getBollitura() + " min.\n";
+        //getVolumeBoll() restituisce un parametro non realistico... bisogna sostituirlo con volume pre boil
+        //S += String.format("litri finali %.1f (in bollitura %.1f)%n", volume, getVolumeBoll());
+        S += String.format("Volume cotta %.1f %n", volume, getVolumeBoll());
+        S += "Efficienza  " + getEfficienza() + "%, bollitura " + getBollitura() + " min.\n";
 
         double OG = MaltTableModel.calcolaSG(getMalts(), volume, getEfficienza());
         double EBC = Utils.srmToEbc(MaltTableModel.calcolaSRMMosher(getMalts(), volume));
         double IBU = HopTableModel.getIBUTinseth(getHops(), getVolumeFin(), getVolumeDiluito(), OG);
 
-        S += String.format("OG %.03f; IBU: %.1f; EBC: %.0f;\n", OG, IBU, EBC);
+        S += String.format("OG %.03f;  IBU: %.1f;  EBC: %.0f;\n", OG, IBU, EBC);
         // if(this.getCodiceStile()!=null) {
         // root.addContent(this.getCodiceStile().toXml());
         // }
@@ -223,7 +227,9 @@ public class RecipeData {
             S += "Lieviti:\n";
             for (Yeast y : yeasts) {
                 // ixtlanas aggiunta note
-                S += "  " + y.getNome() + " " + y.getNote() + "\n";
+                //S += "  " + y.getNome() + " " + y.getCodice()+ " " + y.getNote() + "\n";
+                //modifica SGABUZEN niente note e inclusione del codice lievito (es. US05)
+            	S += "  " + y.getNome() + " " + y.getCodice()+ "\n";
             }
 
         }
