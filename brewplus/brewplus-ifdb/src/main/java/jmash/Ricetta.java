@@ -2988,4 +2988,9 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		};
 		T.start();
 	}
+	
+	public WaterNeededNew getWaterNeededNew2() {
+		return waterNeededNew2;
+	}
+	
 }
