@@ -891,12 +891,13 @@ public class PanelMashStep extends javax.swing.JPanel {
 		String str = "";
 		if (this.mashStepTableModel.getRows().size() < 1)
 			return str;
-		str += "Mash Steps:\n";
+		str += "Mash design:\n";
 		for (MashStep y : this.mashStepTableModel.getRows()) {
 			str += " " + y.getNome() + " ";
 			str += +y.getEndTemp() + " °C ";
 			str += y.getLength() + " minuti\n";
 		}
+		str += "\n";
 		// for (MashStep y :this.mashDecoctionStepTableModel.getRows()) {
 		// str+="Decozione al minuto "+y.getStart()+": ";
 		// double F=100.0 * (y.getEndTemp() - y.getStartTemp()) / (100 -

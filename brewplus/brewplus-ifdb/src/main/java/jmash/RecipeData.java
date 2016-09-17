@@ -53,9 +53,9 @@ public class RecipeData {
     private WaterProfile destWater;
     private WaterProfile treatment;
     private Element waterNeeded;
-
+    
     public void setRicetta(Ricetta ricetta) {
-        for (Hop h : hops) {
+    	for (Hop h : hops) {
             h.setRicetta(ricetta);
         }
         for (Malt m : malts) {
@@ -184,11 +184,11 @@ public class RecipeData {
         this.decoctionSteps = decoctionSteps;
     }
     
-    public String getDes4Forum() {
+    public String getDes4Forum(Ricetta ricetta) {
     	//SGABUZEN REGNA... quando funziona tolgo questi commenti giuro!
     	double volume = getBollituraConcentrata() ? getVolumeDiluito() : getVolumeFin();
-    	//double volPB = ;
-    	//double OGPB = ;
+    	double volPB = ricetta.getWaterNeededNew2().getVolumeMostoPreBoil();
+    	double OGPB = MaltTableModel.calcolaSG(getMalts(), volPB, getEfficienza());
     	double OG = MaltTableModel.calcolaSG(getMalts(), volume, getEfficienza());
         double EBC = Utils.srmToEbc(MaltTableModel.calcolaSRMMosher(getMalts(), volume));
         double IBU = HopTableModel.getIBUTinseth(getHops(), getVolumeFin(), getVolumeDiluito(), OG);
@@ -197,9 +197,7 @@ public class RecipeData {
     	S += "Dati ricetta: \n" ;
     	S += String.format("OG: %.03f;  IBU: %.1f;  EBC: %.0f;\n", OG, IBU, EBC);
     	S += String.format("Volume cotta: %.1f litri; \n", volume);
-    	//S += String.format("Volume pre-boil: %.1f litri (%.03f); \n", volPB, OGPB);
-        //getVolumeBoll() restituisce un parametro non realistico... bisogna sostituirlo con volume pre boil
-        //S += String.format("Volume pre-boil: %.1f (%.1f)%n", volumePreboil, getVolumepreBoll());
+    	S += String.format("Volume pre-boil: %.1f litri (%.03f); \n", volPB, OGPB);
         S += "Efficienza: " + getEfficienza() + "%; \n" + "Bollitura: " + getBollitura() + " min.; \n\n";
         
         // if(this.getCodiceStile()!=null) {
@@ -211,9 +209,10 @@ public class RecipeData {
             for (Malt m : malts) {
                 S += String.format("  %.0f gr %s, %.03f;\n", m.getGrammi(), m.getNome(), m.getPotentialSG());
             }
+            S += "\n";
         }
         if (getHops() != null && hops.size() > 0) {
-            S += "Luppoli e altro:\n";
+            S += "Luppoli:\n";
             for (Hop h : hops) {
                 // S+=String.format(" %.0f gr %s, %.01f %%a.a., %d
                 // min;\n",h.getGrammi(),h.getNome(),h.getAlfaAcidi(),h.getBoilTime());
@@ -221,14 +220,15 @@ public class RecipeData {
                 S += String.format("  %.0f gr %s, %.01f %%a.a., %d min, %s;\n", h.getGrammi(), h.getNome(),
                         h.getAlfaAcidi(), h.getBoilTime(), h.getUso());
             }
+            S += "\n";
         }
-
+         
         if (getYeasts() != null && yeasts.size() > 0) {
             S += "Lieviti:\n";
             for (Yeast y : yeasts) {
                 S += "  " + y.getNome() + " " + y.getCodice()+ "\n";
             }
-
+            S += "\n";
         }
         return S;
     }
