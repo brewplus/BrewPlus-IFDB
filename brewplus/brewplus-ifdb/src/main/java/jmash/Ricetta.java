@@ -1714,7 +1714,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 	private void btnAdd10ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd10ActionPerformed
 
-		String MainInfo = toRecipeData().getDes4Forum(this) + mashDesign.getDesc() + "Ricetta generata con Brewplus by iFdB.";
+		String MainInfo = toRecipeData().getDes4Forum(this) + mashDesign.getDesc() + "Ricetta generata con Brewplus " + Utils.getVersion() + " by iFdB.";
 		new Info(MainInfo).startModal(this);
 
 	}// GEN-LAST:event_btnAdd10ActionPerformed
