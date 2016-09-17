@@ -194,10 +194,9 @@ public class RecipeData {
         double IBU = HopTableModel.getIBUTinseth(getHops(), getVolumeFin(), getVolumeDiluito(), OG);
 
         String S = "Ricetta per " + getNome() + ": \n\n";
-    	S += "Dati ricetta: \n" ;
-    	S += String.format("OG: %.03f;  IBU: %.1f;  EBC: %.0f;\n", OG, IBU, EBC);
+    	S += String.format("OG: %.03f;\nIBU: %.1f;\nEBC: %.0f;\n", OG, IBU, EBC);
     	S += String.format("Volume cotta: %.1f litri; \n", volume);
-    	S += String.format("Volume pre-boil: %.1f litri (%.03f); \n", volPB, OGPB);
+    	S += String.format("Volume pre-boil: %.1f litri;\nOG pre-boil: %.03f;\n", volPB, OGPB);
         S += "Efficienza: " + getEfficienza() + "%; \n" + "Bollitura: " + getBollitura() + " min.; \n\n";
         
         // if(this.getCodiceStile()!=null) {
@@ -226,7 +225,7 @@ public class RecipeData {
         if (getYeasts() != null && yeasts.size() > 0) {
             S += "Lieviti:\n";
             for (Yeast y : yeasts) {
-                S += "  " + y.getNome() + " " + y.getCodice()+ "\n";
+                S += "  " + y.getProduttore() + " " + y.getNome() + " " + y.getCodice()+ "\n";
             }
             S += "\n";
         }
