@@ -27,6 +27,7 @@
 							<classpathPrefix>lib/</classpathPrefix>
 							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                 			<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                			<addExtensions>true</addExtensions>
 						</manifest>
 						<manifestEntries>
 							<mode>development</mode>

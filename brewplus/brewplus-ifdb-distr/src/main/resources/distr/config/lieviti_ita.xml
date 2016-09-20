@@ -114,7 +114,7 @@
   <jmash.YeastType nome="British Cask Ale PC" codice="1026" produttore="Wyeast" descrizione="Un ottimo lievito per ogni British Ale maturata in fusto. Produce un piacevole profilo maltato con finale fresco e leggermente acidulo."/>
   <jmash.YeastType nome="London Ale" codice="1028" produttore="Wyeast" descrizione="Ricco, gusto vigoroso e pulito, con una leggera produzione di diacetile. "/>
   <jmash.YeastType nome="Amercan Ale" codice="1056" produttore="Wyeast" descrizione="Aroma molto pulito. Poco fruttato e con una delicata produzione di esteri."/>
-  <jmash.YeastType nome="Irish Ale " codice="1084" produttore="Wyeast" descrizione="Pulito, liscio, morbido, dalla corposità piena. Con un modesto residuo di diacetile e fruttato; ideale per le Stout."/>
+  <jmash.YeastType nome="Irish Ale" codice="1084" produttore="Wyeast" descrizione="Pulito, liscio, morbido, dalla corposità piena. Con un modesto residuo di diacetile e fruttato; ideale per le Stout."/>
   <jmash.YeastType nome="British Ale" codice="1098" produttore="Wyeast" descrizione="Dal ceppo Whitbread. Conferisce un gusto secco e pulito, leggermente aspro, fruttato ed ottimamente bilanciato."/>
   <jmash.YeastType nome="Whitbread Ale" codice="1099" produttore="Wyeast" descrizione="Un lievito dal profilo di fermentazione leggermente fruttato e leggermente maltato. E' meno aspro e secco del Wyeast 1098 British Ale."/>
   <jmash.YeastType nome="Ringwood Ale" codice="1187" produttore="Wyeast" descrizione="Un ceppo di lievito top con incredibili caratteristiche organolettiche. Presenta esteri fruttati con un profilo pieno, la flocculazione è alta, e la birra risulterà limpida senza filtrazione. "/>

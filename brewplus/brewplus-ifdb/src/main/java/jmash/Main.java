@@ -107,7 +107,7 @@ public class Main {
 	public static ImageIcon remIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/edit_remove.png")));
 	public static ImageIcon PieIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/pieicon.png")));
 
-	public static ImageIcon mainIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/boccale.gif")));
+	public static ImageIcon mainIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/BPlusIcon-32.png")));
 
 	public static ImageIcon boilOffIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/steam.png")));
 	public static ImageIcon diluiteIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/extract.png")));
@@ -181,9 +181,10 @@ public class Main {
 	/** Creates a new instance of Main */
 	public Main() {
 		try {
+		    printInfo();
 			readConfig();
 			readLuppoli();
-                        readCategorieMalti();
+			readCategorieMalti();
 			readMalti();
 			readLieviti();
 			readWater();
@@ -430,6 +431,16 @@ public class Main {
         logger.info("Setting localization: " + config.getLocale());
 		bundle = new BundleMessage(java.util.PropertyResourceBundle.getBundle("jmash/lang"));
 		
+	}
+	
+	public static void printInfo()  {
+	    logger.info("java.version: " + System.getProperty("java.version"));
+	    logger.info("java.specification.version: " + System.getProperty("java.specification.version"));
+	    logger.info("java.vm.name: " + System.getProperty("java.vm.name"));
+	    logger.info("java.vm.version: " + System.getProperty("java.vm.version"));
+	    logger.info("java.runtime.version: " + System.getProperty("java.runtime.version"));
+	    logger.info("os.name: " + System.getProperty("os.name"));
+	    logger.info("os.version: " + System.getProperty("os.version"));
 	}
 
 	public static void readStili() throws Exception {
