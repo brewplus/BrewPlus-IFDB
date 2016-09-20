@@ -1092,7 +1092,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
 		jPanel2.add(fldNome, gridBagConstraints);
 
-		jLabel8.setText("In ferment.");
+		jLabel8.setText("Volume Cotta");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 15;
 		gridBagConstraints.gridy = 2;
@@ -1227,8 +1227,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jPanel2.add(spinVolumeFin, gridBagConstraints);
 
 		jButton1.setFont(jButton1.getFont());
-		jButton1.setText("Porta a...");
-		jButton1.setToolTipText("Ridimensiona ricetta");
+		jButton1.setText("Scala a...");
+		jButton1.setToolTipText("Scala valori ricetta");
 		jButton1.setBorder(null);
 		jButton1.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1714,7 +1714,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 	private void btnAdd10ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd10ActionPerformed
 
-		String MainInfo = toRecipeData().getDes4Forum() + mashDesign.getDesc();
+		String MainInfo = toRecipeData().getDes4Forum(this) + mashDesign.getDesc();
+		MainInfo += "Ricetta generata con Brewplus " + Utils.getVersion() + " by iFdB.";
 		new Info(MainInfo).startModal(this);
 
 	}// GEN-LAST:event_btnAdd10ActionPerformed
@@ -1786,7 +1787,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		mineralSaltSpage.setCalciumHydroxide(String.format("%.01f",(waterPanel.getSlakedLimeSparge())));
 		mineralSalts.add(mineralSaltSpage);
 		MineralSalts mineralSaltTot = new MineralSalts();
-		mineralSaltTot.setStepName("Totale");
+		mineralSaltTot.setStepName("Totale Sali");
 		mineralSaltTot.setGypsum(String.format("%.01f",waterPanel.getGypsum()));
 		mineralSaltTot.setEpsom(String.format("%.01f",(waterPanel.getEpsom())));
 		mineralSaltTot.setCalciumChloride(String.format("%.01f",(waterPanel.getCaCl2())));
@@ -2988,4 +2989,9 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		};
 		T.start();
 	}
+	
+	public WaterNeededNew getWaterNeededNew2() {
+		return waterNeededNew2;
+	}
+	
 }

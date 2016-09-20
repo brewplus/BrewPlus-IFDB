@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recipe volume="23.0" volume_boll="28.0" volume_dil="23.0" unita_misura_mostrata="litri" efficienza="75" bollitura="60" bollitura_conc="false" nome="American Amber Ale (Sgabuzen)" note="" fotografia="" codicestile="19A" BIAB="false">
+  <jmash.Hop Grammi="10.0" UnitaMisura="grammi" BoilTime="15" AlfaAcidi="13.2" Nome="Simcoe" Forma="Pellet" Origine="US" Uso="Kettle" HSI="17.0" />
+  <jmash.Hop Grammi="10.0" UnitaMisura="grammi" BoilTime="15" AlfaAcidi="6.9" Nome="Cascade" Forma="Pellet" Origine="US" Uso="Kettle" HSI="50.0" />
+  <jmash.Hop Grammi="20.0" UnitaMisura="grammi" BoilTime="10" AlfaAcidi="13.2" Nome="Simcoe" Forma="Pellet" Origine="US" Uso="Kettle" HSI="17.0" />
+  <jmash.Hop Grammi="20.0" UnitaMisura="grammi" BoilTime="10" AlfaAcidi="6.9" Nome="Cascade" Forma="Pellet" Origine="US" Uso="Kettle" HSI="50.0" />
+  <jmash.Hop Grammi="20.0" UnitaMisura="grammi" BoilTime="5" AlfaAcidi="13.2" Nome="Simcoe" Forma="Pellet" Origine="US" Uso="Kettle" HSI="17.0" />
+  <jmash.Hop Grammi="20.0" UnitaMisura="grammi" BoilTime="5" AlfaAcidi="6.9" Nome="Cascade" Forma="Pellet" Origine="US" Uso="Kettle" HSI="50.0" />
+  <jmash.Hop Grammi="20.0" UnitaMisura="grammi" BoilTime="0" AlfaAcidi="13.2" Nome="Simcoe" Forma="Pellet" Origine="US" Uso="Kettle" HSI="17.0" />
+  <jmash.Hop Grammi="20.0" UnitaMisura="grammi" BoilTime="0" AlfaAcidi="6.9" Nome="Cascade" Forma="Pellet" Origine="US" Uso="Kettle" HSI="50.0" />
+  <jmash.Hop Grammi="30.0" UnitaMisura="grammi" BoilTime="0" AlfaAcidi="12.0" Nome="Simcoe" Forma="Pellet" Origine="US" Uso="Dry" HSI="17.0" />
+  <jmash.Hop Grammi="30.0" UnitaMisura="grammi" BoilTime="0" AlfaAcidi="5.5" Nome="Cascade" Forma="Pellet" Origine="US" Uso="Dry" HSI="50.0" />
+  <jmash.Malt Grammi="500.0" UnitaMisura="grammi" Nome="Miele" Forma="Estratto Liquido" Ebc="0.0" PotentialSG="1.03" srm="0.0" />
+  <jmash.Malt Grammi="4000.0" UnitaMisura="grammi" Nome="Pils" Forma="Grani" Ebc="3.976083380259851" PotentialSG="1.03" srm="2.0198503571720043" />
+  <jmash.Malt Grammi="400.0" UnitaMisura="grammi" Nome="CaraMunich 80" Forma="Grani" Ebc="158.80186465216576" PotentialSG="1.03" srm="80.6713472433002" />
+  <jmash.Malt Grammi="50.0" UnitaMisura="grammi" Nome="Black Malt" Forma="Grani" Ebc="1188.3025953614451" PotentialSG="1.016" srm="603.6577184436142" />
+  <jmash.Malt Grammi="500.0" UnitaMisura="grammi" Nome="Fiocchi Frumento" Forma="Fiocchi" Ebc="3.951991261383576" PotentialSG="1.03" srm="2.007611560782857" />
+  <jmash.Yeast nome="SafAle American Ale" codice="US-05" produttore="Fermentis" descrizione="Il più famoso ceppo di lievito “Ale” americano. Produce birre ben bilanciate con basso diacetile e retrogusto molto pulito e fresco." note="" />
+  <jmash.Yeast nome="SafAle American Ale" codice="US-05" produttore="Fermentis" descrizione="Il più famoso ceppo di lievito “Ale” americano. Produce birre ben bilanciate con basso diacetile e retrogusto molto pulito e fresco." note="" />
+  <jmash.MashStep type="Infusione" start="0" startTemp="68" endTemp="68" length="60" nome="" ramp="5" decoctionRamp1="0" decoctionRamp2="0" decoctionRestL1="0" decoctionRestL2="0" decoctionRestT1="0" decoctionRestT2="0" decoctionRampDown="0" />
+  <jmash.WaterProfile calcio="81.0" magnesio="30.0" solfato="11.0" cloruro="19.0" sodio="6.0" carbonato="80.0" />
+  <jmash.WaterProfile calcio="0.0" magnesio="0.0" solfato="0.0" cloruro="0.0" sodio="0.0" carbonato="0.0" />
+  <jmash.WaterProfile type="2" calcio="81.0" magnesio="30.0" solfato="11.0" cloruro="19.0" sodio="6.0" carbonato="80.0" gypsum="410.9845205523335" sale="0.0" epsom="0.0" calciumChloride="544.2767974882254" chalk="0.0" soda="544.2767974882254" slakedLime="0.0" acidulatedMaltContent="2.0" lacticAcid="2.0" lacticAcidContent="88.0" citrusAcid="0.0" citrusAcidContent="0.0" />
+  <water BatchSize="23.0" GraniTotali="4.95" OriginalGravity="54.71739130434776" AssorbimentoGraniEsausti="1.4" HasPerditeNelTrub="false" PerditeNelTrub="1.0" RapportoAcquaGrani="3.0" PercentualeEvaporazione="13.5" ContrazionePerRaffreddamento="4.0" PerditaPerAssorbimento="6.93" PerditaPerEvaporazione="3.6651420000000003" PerditaPerContrazione="0.9568000000000001" VolumeMostoPreBoil="27.1492" OGPreBoil="46.35495705214144" VolumePostBoil="23.92" VolumePostRaffreddamento="23.0" VolumeRealeInFermentatore="23.0" AcquaMash="14.850000000000001" AcquaSparge="19.2292" TotaleAcqua="34.0792" />
+</recipe>
+

@@ -100,7 +100,7 @@ public class Gui extends javax.swing.JFrame {
             button.setToolTipText(Main.bundle.getString("title.forumFeed"));
             btnUpdate.setToolTipText(Main.bundle.getString("title.revisionAvailable"));
             btnSaveAll16.setToolTipText(Main.bundle.getString("title.settings"));
-            btnGuida.setToolTipText(Main.bundle.getString("title.help"));
+//            btnGuida.setToolTipText(Main.bundle.getString("title.help"));
             btnNew1.setToolTipText(Main.bundle.getString("title.brewRecording"));
             btnSaveAll21.setToolTipText(Main.bundle.getString("title.inventory"));
             btnSaveAll12.setToolTipText(Main.bundle.getString("title.shopping"));
@@ -568,7 +568,7 @@ public class Gui extends javax.swing.JFrame {
 		});
 		btnSaveAll18 = new javax.swing.JButton();
 
-		btnSaveAll18.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/bjcp.png"))); // NOI18N
+		btnSaveAll18.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/BJCPLogo.png"))); // NOI18N
 		btnSaveAll18.setToolTipText("Stili e categorie");
 
 		btnSaveAll18.setMaximumSize(new java.awt.Dimension(37, 35));
@@ -624,19 +624,19 @@ public class Gui extends javax.swing.JFrame {
 		});
 		toolbar.add(btnSaveAll16);
 
-		btnGuida = new JButton();
-		btnGuida.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ShowHelp();
-			}
-		});
-		btnGuida.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/help.png")));
-		btnGuida.setToolTipText("Help");
-		btnGuida.setPreferredSize(new Dimension(37, 35));
-		btnGuida.setMinimumSize(new Dimension(37, 35));
-		btnGuida.setMaximumSize(new Dimension(37, 35));
-		btnGuida.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		toolbar.add(btnGuida);
+//		btnGuida = new JButton();
+//		btnGuida.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				ShowHelp();
+//			}
+//		});
+//		btnGuida.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/help.png")));
+//		btnGuida.setToolTipText("Help");
+//		btnGuida.setPreferredSize(new Dimension(37, 35));
+//		btnGuida.setMinimumSize(new Dimension(37, 35));
+//		btnGuida.setMaximumSize(new Dimension(37, 35));
+//		btnGuida.setFont(new Font("SansSerif", Font.PLAIN, 12));
+//		toolbar.add(btnGuida);
 		toolbar.add(btnUpdate);
 
 		getContentPane().add(toolbar, java.awt.BorderLayout.NORTH);
@@ -841,13 +841,13 @@ public class Gui extends javax.swing.JFrame {
 
 		mnuStiliXML.setText("Stili e categorie");
 
-		JMenuItem mntmSchedaLuppoli = new JMenuItem("Scheda luppoli");
-		mntmSchedaLuppoli.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				mostraSchedaluppoli();
-			}
-		});
-		mnRisorse.add(mntmSchedaLuppoli);
+//		JMenuItem mntmSchedaLuppoli = new JMenuItem("Scheda luppoli");
+//		mntmSchedaLuppoli.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				mostraSchedaluppoli();
+//			}
+//		});
+//		mnRisorse.add(mntmSchedaLuppoli);
 
 		JMenuItem mntmForumBirraBirra = new JMenuItem("Il Forum della Birra Feed");
 		mntmForumBirraBirra.addActionListener(new ActionListener() {
@@ -905,25 +905,25 @@ public class Gui extends javax.swing.JFrame {
 			}
 		});
 
-		mntmNewMenuItem = new JMenuItem("Help");
-		mntmNewMenuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ShowHelp();
-			}
-		});
-		jMenu3.add(mntmNewMenuItem);
+//		mntmNewMenuItem = new JMenuItem("Help");
+//		mntmNewMenuItem.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				ShowHelp();
+//			}
+//		});
+//		jMenu3.add(mntmNewMenuItem);
 
 		JSeparator separator_3 = new JSeparator();
 		jMenu3.add(separator_3);
 		mnuUpdate = new javax.swing.JMenuItem();
 		jMenu3.add(mnuUpdate);
 
-		mnuUpdate.setText("Controllo aggiornamenti");
-		mnuUpdate.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				mnuUpdateActionPerformed(evt);
-			}
-		});
+//		mnuUpdate.setText("Controllo aggiornamenti");
+//		mnuUpdate.addActionListener(new java.awt.event.ActionListener() {
+//			public void actionPerformed(java.awt.event.ActionEvent evt) {
+//				mnuUpdateActionPerformed(evt);
+//			}
+//		});
 
 		JSeparator separator_4 = new JSeparator();
 		jMenu3.add(separator_4);
@@ -1006,8 +1006,17 @@ public class Gui extends javax.swing.JFrame {
 
 	private void btnSaveAll20ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll20ActionPerformed
 		// addFrame(new BrowseTastyBrew());
-		mostraSchedaluppoli();
-	}// GEN-LAST:event_btnSaveAll20ActionPerformed
+        GenericTableModel tableModel = new XmlAbleTableModel(new HopType());
+        tableModel.setRows(Gui.hopPickerTableModel.getRows());
+        try {
+            addFrame(
+                    new XmlAbleEditor(tableModel, HopType.class, Main.luppoliXML, Main.class.getMethod("readLuppoli")));
+        } catch (SecurityException ex) {
+            LOGGER.error(ex.getMessage(), ex);
+        } catch (NoSuchMethodException ex) {
+            LOGGER.error(ex.getMessage(), ex);
+        }
+	}
 
 	private void mnuAcquaXMLActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_mnuAcquaXMLActionPerformed
 		GenericTableModel tableModel = new XmlAbleTableModel(new WaterProfile());
@@ -1022,11 +1031,10 @@ public class Gui extends javax.swing.JFrame {
 		}
 	}// GEN-LAST:event_mnuAcquaXMLActionPerformed
 
-	private void mostraSchedaluppoli() {
-		frmBrowser brow = new frmBrowser("http://brewplus.t15.org/brewplus/docs/Hops/Hops.html", "Scheda luppoli",
-				false);
-		addFrame(brow, true);
-	}
+//	private void mostraSchedaluppoli() {
+//		frmBrowser brow = new frmBrowser("http://brewplus.t15.org/brewplus/docs/Hops/Hops.html", "Scheda luppoli",false);
+//		addFrame(brow, true);
+//	}
 
 	private void btnSaveAll18ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll18ActionPerformed
 		// frmBrowser brow = new
@@ -1469,7 +1477,7 @@ public class Gui extends javax.swing.JFrame {
 
 	private void ShowHelp() {
 		try {
-			new Utils.BareBonesBrowserLaunch().openURL("file:///" + Main.userDir + "/help/index.html");
+			//new Utils.BareBonesBrowserLaunch().openURL("file:///" + Main.userDir + "/help/index.html");
 		} catch (Exception ex) {
 			// Utils.showException(ex,"",this);
 		}
@@ -1670,7 +1678,7 @@ public class Gui extends javax.swing.JFrame {
 	public static javax.swing.JDesktopPane desktopPane;
 	private JButton button;
 	private JMenuItem mntmApriRicetta;
-	private JButton btnGuida;
+//	private JButton btnGuida;
 	private JMenuItem mntmNewMenuItem;
 	private JMenuItem menuItemDelete;
 	private JSeparator separator_5;

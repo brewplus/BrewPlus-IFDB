@@ -946,8 +946,9 @@ public class Utils {
 
 		StringBuilder sb = new StringBuilder();
 		sb.append(
-				"<html><head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}th, td {padding: 5px;}</style></head><body>");
-		sb.append("<h1>" + bs.getDesCategoria() + "</h1><br><br>");
+				"<html><head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}th, td {padding: 5px;}</style></head>");
+		sb.append("<body style=\"font-size:110%;\">");
+		sb.append("<h1 style=\"font-size:130%;\">" + bs.getDesCategoria() + "</h1><br><br>");
 		sb.append("<b>Aroma:</b><br>" + bs.getAroma() + "<br><br>");
 		sb.append("<b>" + bundle.getString("BJCP.Appearance") + ":</b><br>" + bs.getAppearance() + "<br><br>");
 		sb.append("<b>Gusto:</b><br>" + bs.getFlavor() + "<br><br>");
@@ -959,11 +960,11 @@ public class Utils {
 		sb.append("<b>Note della Categoria:</b><br>" + bs.getCatNotes() + "<br><br>");
 
 		sb.append("<table style=\"width:200\">");
-		sb.append("<tr>");
+		sb.append("<tr style=\"font-size:100%;\">");
 		sb.append("<td><b>IBU</b></td><td>" + bs.getDesIBU().replace(".", ",") + "</td>");
-		sb.append("</tr><tr>");
+		sb.append("</tr><tr style=\"font-size:100%;\">");
 		sb.append("<td><b>OG</b></td><td>" + bs.getDesOG().replace(".", ",") + "</td>");
-		sb.append("</tr><tr>");
+		sb.append("</tr><tr style=\"font-size:100%;\">");
 		sb.append("<td><b>FG</b></td><td>" + bs.getDesFG().replace(".", ",") + "</td>");
 		sb.append("</tr></table>");
 
