@@ -47,5 +47,8 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 
-#BrewPlus
+# BrewPlus
 BrewPlus-IFDB.log*
+
+# Others
+Thumbs.db
