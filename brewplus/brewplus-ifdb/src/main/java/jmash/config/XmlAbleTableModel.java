@@ -85,7 +85,7 @@ public class XmlAbleTableModel extends GenericTableModel<XmlAble> {
 				m.invoke(h, (Integer) value);
 			}
 			if (ret.equals(Double.class)) {
-				m.invoke(h, (Double) value);
+				m.invoke(h, value instanceof String ? new Double((String)value) : (Double) value);
 			}
 			if (ret.equals(Long.class)) {
 				m.invoke(h, (Long) value);
