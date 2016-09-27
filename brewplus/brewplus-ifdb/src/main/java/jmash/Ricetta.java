@@ -1798,7 +1798,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		mineralSalts.add(mineralSaltTot);
 		summary.setMineralSalts(mineralSalts);
 		summary.setBoilingTime(rec.getBollitura().toString());
-		summary.setBoilLiters(rec.getVolumeBoll().toString());
+		//summary.setBoilLiters(rec.getVolumeBoll().toString());
+		summary.setBoilLiters(String.format("%.01f",(waterNeededNew2.getVolumeMostoPreBoil())));
 		summary.setAlcoolVolume(getGradiPrevisti());
 		summary.setEbc(String.format("%.01f",getEbc()));
 		summary.setEfficency(rec.getEfficienza() + "%");
@@ -1809,7 +1810,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		summary.setPlato(String.format("%.01f",getPPerStampa()));
 		summary.setTotalGrain(getGrammiTotali() + " gr.");
 		summary.setTotalLiters(rec.getVolumeFin().toString());
-		summary.setRatioLitreKg(String.format("%.01f",Main.config.getLitriPerKg()));
+		//summary.setRatioLitreKg(String.format("%.01f",Main.config.getLitriPerKg()));
+		summary.setRatioLitreKg(String.format("%.01f",Main.config.getRapportoAcquaGrani()));
 		summaries.add(summary);
 		
 		try {
