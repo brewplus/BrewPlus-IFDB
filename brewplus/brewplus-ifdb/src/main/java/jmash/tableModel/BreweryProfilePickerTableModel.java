@@ -41,10 +41,13 @@ public class BreweryProfilePickerTableModel extends PickerTableModel {
 
 	public BreweryProfilePickerTableModel() {
 	}
-
-	String columnNames[] = { "Nome", "Descrizione", "AssorbimentoGraniEsausti", "RapportoAcquaGrani", "PercentualeEvaporazione",
-			"ContrazionePerRaffreddamento", "PerditeNelTrub", "Biab" };
 	
+	String columnNames[] = { "Nome", "Descrizione", "Assorb. grani esausti", "Rapp. acqua/grani",
+			"% evaporazione", "Contraz. x raffred.", "Perdite trub", "BIAB" };
+
+//	String columnNames[] = { "Nomeaaaaa", "Descrizioneeeeeee", "AffffssorbimentoGraniEsausti", "RapportoAcquaGrani", "PercentualeEvaporazione",
+//			"ContrazionePerRaffreddamento", "PerditeNelTrub", "Biab" };
+//	
 	
 	public void addRow(BreweryProfile breweryProfile) {
 		this.dataValues.add(breweryProfile);
@@ -139,5 +142,9 @@ public class BreweryProfilePickerTableModel extends PickerTableModel {
 		if (dataValuesCopy != null)
 			dataValues = dataValuesCopy;
 		fireTableDataChanged();
+	}
+	
+	public String[] getColumnNames() {
+		return columnNames;
 	}
 }

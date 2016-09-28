@@ -13,8 +13,7 @@ public class BreweryProfile implements XmlAble, Comparable<BreweryProfile> {
 
 	private static Logger LOGGER = Logger.getLogger(BreweryProfile.class);
 
-//	private static String campiXml[] = { "Nome", "Descrizione", "Assorb. grani esausti", "Rapp. acqua/grani",
-//			"% evaporazione", "Contraz. x raffred.", "Perdite trub", "BIAB" };
+//	
 	
 	private static String campiXml[] = { "Nome", "Descrizione", "AssorbimentoGraniEsausti", "RapportoAcquaGrani", "PercentualeEvaporazione",
 			"ContrazionePerRaffreddamento", "PerditeNelTrub", "Biab" };
@@ -29,7 +28,7 @@ public class BreweryProfile implements XmlAble, Comparable<BreweryProfile> {
 	private String biab;
 
 	public BreweryProfile() {
-		// TODO Auto-generated constructor stub
+		this(null, null, 1.4, 3.0, 15.0, 4.0, 0.0, "No");
 	}
 
 	public BreweryProfile(String nome, String descrizione, double assorbimentoGraniEsausti, double rapportoAcquaGrani,

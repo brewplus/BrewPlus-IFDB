@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <breweryProfiles>
-  <jmash.BreweryProfile Nome="default" Descrizione="Impianto di default" AssorbimentoGraniEsausti="1.4" RapportoAcquaGrani="3.0" PercentualeEvaporazione="15.0" ContrazionePerRaffreddamento="4.0" PerditeNelTrub="1.0" Biab="No" />
-  <jmash.BreweryProfile Nome="BIAB" Descrizione="Impianto BIAB di default" AssorbimentoGraniEsausti="1.4" RapportoAcquaGrani="3.0" PercentualeEvaporazione="15.0" ContrazionePerRaffreddamento="4.0" PerditeNelTrub="1.0" Biab="Si" />
+  <jmash.BreweryProfile Nome="DEFAULT" Descrizione="default" AssorbimentoGraniEsausti="1.4" RapportoAcquaGrani="3.0" PercentualeEvaporazione="15.0" ContrazionePerRaffreddamento="4.0" PerditeNelTrub="0.0" Biab="No" />
+  <jmash.BreweryProfile Nome="BIAB" Descrizione="BIAB default" AssorbimentoGraniEsausti="1.4" RapportoAcquaGrani="3.0" PercentualeEvaporazione="15.0" ContrazionePerRaffreddamento="4.0" PerditeNelTrub="0.0" Biab="Si" />
 </breweryProfiles>
 

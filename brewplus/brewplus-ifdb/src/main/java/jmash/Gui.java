@@ -232,7 +232,7 @@ public class Gui extends javax.swing.JFrame {
 	}
 
 	public static HopPickerTableModel hopPickerTableModel = new HopPickerTableModel();
-        public static MaltCategoryPickerTableModel maltCategoryPickerTableModel = new MaltCategoryPickerTableModel();
+	public static MaltCategoryPickerTableModel maltCategoryPickerTableModel = new MaltCategoryPickerTableModel();
 	public static MaltPickerTableModel maltPickerTableModel = new MaltPickerTableModel();
 	public static WaterPickerTableModel waterPickerTableModel = new WaterPickerTableModel();
 	public static YeastPickerTableModel yeastPickerTableModel = new YeastPickerTableModel();
@@ -1377,8 +1377,9 @@ public class Gui extends javax.swing.JFrame {
 	}// GEN-LAST:event_mnuMaltiXMLActionPerformed
 	
 	private void mnuProfiliImpiantoXMLActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_mnuMaltiXMLActionPerformed
-		GenericTableModel tableModel = new XmlAbleTableModel(new BreweryProfile());
+		GenericTableModel tableModel = new XmlAbleTableModel(new BreweryProfile(), Gui.breweryProfilePickerTableModel.getColumnNames());
 		tableModel.setRows(Gui.breweryProfilePickerTableModel.getRows());
+		
 		try {
 			addFrame(
 					new XmlAbleEditor(tableModel, BreweryProfile.class, Main.breweryProfileXML, Main.class.getMethod("readProfiliImpianto")));
