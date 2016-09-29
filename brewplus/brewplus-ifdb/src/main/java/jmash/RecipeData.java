@@ -584,15 +584,44 @@ public class RecipeData {
                 }
             }
             if (elem.getName().compareToIgnoreCase(new WaterProfile().getClass().getName()) == 0) {
-                WaterProfile profile = WaterProfile.fromXml(elem);
-                if (profile != null && profile.getType() != null) {
-                    if (profile.getType() == 0)
-                        setSourceWater(profile);
-                    if (profile.getType() == 1)
-                        setDestWater(profile);
-                    if (profile.getType() == 2)
-                        setTreatment(profile);
+               
+            	WaterProfile profile = WaterProfile.fromXml(elem);
+                
+                if (profile != null)
+                {
+                	if (profile.getType() != null) 
+                	{
+	                    if (profile.getType() == 0)
+	                        setSourceWater(profile);
+	                    if (profile.getType() == 1)
+	                        setDestWater(profile);
+	                    if (profile.getType() == 2)
+	                        setTreatment(profile);
+                	}
+                	else
+                	{
+                		// Se nella ricetta ricette in cui non è stato inserito il campo "type" di WaterProfile
+                		// la prima volta è il profilo dell'acqua di partenza,
+                		// la seconda volta è il profilo dell'acqua di target
+                		// la terza volta è profilo dell'acqua calcolata
+                		// (normalmente il type=2 è presente quindi setTreatment(profile)
+                		// verrà eseguito nel precedente blocco di if
+                		// comunque per sicurezza lo inseriamo
+                		if (sourceWater == null)
+                		{
+                			setSourceWater(profile);
+                		}
+                		else if (sourceWater != null && destWater == null)
+                		{
+                			setDestWater(profile);
+                		}
+                		else if (sourceWater != null && destWater != null)
+                		{
+                			setTreatment(profile);
+                		}
+                	}
                 }
+                
             }
             if (elem.getName().compareToIgnoreCase(new MashStep().getClass().getName()) == 0) {
                 MashStep step = MashStep.fromXml(elem);
