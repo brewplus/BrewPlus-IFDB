@@ -13,13 +13,16 @@ public class BreweryProfile implements XmlAble, Comparable<BreweryProfile> {
 
 	private static Logger LOGGER = Logger.getLogger(BreweryProfile.class);
 
-//	
-	
-	private static String campiXml[] = { "Nome", "Descrizione", "AssorbimentoGraniEsausti", "RapportoAcquaGrani", "PercentualeEvaporazione",
-			"ContrazionePerRaffreddamento", "PerditeNelTrub", "Biab" };
+	//
+
+	private static String campiXml[] = { "Nome", "Descrizione", "VolumeFinale", "Efficienza",
+			"AssorbimentoGraniEsausti", "RapportoAcquaGrani", "PercentualeEvaporazione", "ContrazionePerRaffreddamento",
+			"PerditeNelTrub", "Biab" };
 
 	private String nome;
 	private String descrizione;
+	private Double volumeFinale;
+	private Double efficienza;
 	private Double assorbimentoGraniEsausti;
 	private Double rapportoAcquaGrani;
 	private Double percentualeEvaporazione;
@@ -28,13 +31,15 @@ public class BreweryProfile implements XmlAble, Comparable<BreweryProfile> {
 	private String biab;
 
 	public BreweryProfile() {
-		this(null, null, 1.4, 3.0, 15.0, 4.0, 0.0, "No");
+		this(null, null, 23.0, 70.0, 1.4, 3.0, 15.0, 4.0, 0.0, "No");
 	}
 
-	public BreweryProfile(String nome, String descrizione, double assorbimentoGraniEsausti, double rapportoAcquaGrani,
+	public BreweryProfile(String nome, String descrizione, double volumeFinale, double efficienza, double assorbimentoGraniEsausti, double rapportoAcquaGrani,
 			double percentualeEvaporazione, double contrazionePerRaffreddamento, double perditeNelTrub, String biab) {
 		setNome(nome);
 		setDescrizione(descrizione);
+		setVolumeFinale(volumeFinale);
+		setEfficienza(efficienza);
 		setAssorbimentoGraniEsausti(assorbimentoGraniEsausti);
 		setRapportoAcquaGrani(rapportoAcquaGrani);
 		setPercentualeEvaporazione(percentualeEvaporazione);
@@ -67,18 +72,17 @@ public class BreweryProfile implements XmlAble, Comparable<BreweryProfile> {
 	public String[] getXmlFields() {
 		return getCampiXml();
 	}
-	
+
 	public static BreweryProfile fromXml(Element profile) {
 		BreweryProfile breweryProfile = new BreweryProfile();
 		try {
 			breweryProfile = (BreweryProfile) Utils.fromXml(breweryProfile, getCampiXml(), profile);
 		} catch (Exception ex) {
 			Utils.showException(ex);
-		  breweryProfile = new BreweryProfile();
+			breweryProfile = new BreweryProfile();
 		}
 		return breweryProfile;
 	}
-
 
 	public static String[] getCampiXml() {
 		return campiXml;
@@ -102,6 +106,22 @@ public class BreweryProfile implements XmlAble, Comparable<BreweryProfile> {
 
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
+	}
+	
+	public Double getVolumeFinale() {
+		return volumeFinale;
+	}
+
+	public void setVolumeFinale(Double volumeFinale) {
+		this.volumeFinale = volumeFinale;
+	}
+
+	public Double getEfficienza() {
+		return efficienza;
+	}
+
+	public void setEfficienza(Double efficienza) {
+		this.efficienza = efficienza;
 	}
 
 	public Double getAssorbimentoGraniEsausti() {
@@ -160,7 +180,7 @@ public class BreweryProfile implements XmlAble, Comparable<BreweryProfile> {
 			String tmpBiab = biab.trim().toLowerCase();
 			isBiab = "1".equals(tmpBiab) || "true".equals(tmpBiab) || "yes".equals(tmpBiab) || "si".equals(tmpBiab);
 		}
-		
+
 		return isBiab;
 	}
 

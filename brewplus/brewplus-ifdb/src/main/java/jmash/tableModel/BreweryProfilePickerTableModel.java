@@ -42,12 +42,9 @@ public class BreweryProfilePickerTableModel extends PickerTableModel {
 	public BreweryProfilePickerTableModel() {
 	}
 	
-	String columnNames[] = { "Nome", "Descrizione", "Assorb. grani esausti", "Rapp. acqua/grani",
+	String columnNames[] = { "Nome", "Descrizione", "Volume finale", "Efficienza", "Assorb. grani esausti", "Rapp. acqua/grani",
 			"% evaporazione", "Contraz. x raffred.", "Perdite trub", "BIAB" };
 
-//	String columnNames[] = { "Nomeaaaaa", "Descrizioneeeeeee", "AffffssorbimentoGraniEsausti", "RapportoAcquaGrani", "PercentualeEvaporazione",
-//			"ContrazionePerRaffreddamento", "PerditeNelTrub", "Biab" };
-//	
 	
 	public void addRow(BreweryProfile breweryProfile) {
 		this.dataValues.add(breweryProfile);
@@ -90,18 +87,22 @@ public class BreweryProfilePickerTableModel extends PickerTableModel {
 				this.ret.setIcon(Main.extractIcon);
 			}
 			switch (col) {
-			case 8:
+			case 10:
 				return breweryProfile.getBiab();
-			case 7:
+			case 9:
 				return breweryProfile.getPerditeNelTrub();
-			case 6:
+			case 8:
 				return breweryProfile.getContrazionePerRaffreddamento();
-			case 5:
+			case 7:
 				return breweryProfile.getPercentualeEvaporazione();
-			case 4:
+			case 6:
 				return breweryProfile.getRapportoAcquaGrani();
-			case 3:
+			case 5:
 				return breweryProfile.getAssorbimentoGraniEsausti();
+			case 4:
+				return breweryProfile.getEfficienza();
+			case 3:
+				return breweryProfile.getVolumeFinale();
 			case 2:
 				return breweryProfile.getDescrizione();
 			case 1:
