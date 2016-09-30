@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2016-09-27T16:23:40 -->
+<!-- 2016-09-30T14:58:27 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ricetta" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="40e306aa-d668-437e-ba03-4266478354b9">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sommario.xml"/>
 	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
@@ -249,6 +249,7 @@
 		<field name="nome" class="java.lang.String">
 			<fieldDescription><![CDATA[nome]]></fieldDescription>
 		</field>
+		<field name="quantita" class="java.lang.String"/>
 	</subDataset>
 	<subDataset name="yeasts" uuid="33292379-93db-47bc-b91e-d06503f99b22">
 		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sommario.xml"/>
@@ -837,7 +838,15 @@
 								<text><![CDATA[Quantità]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="Table 2_TD" height="20"/>
+						<jr:detailCell style="Table 2_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="45" height="20" uuid="52b6901e-6607-4db8-8468-3c43de909293"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="DejaVu Serif" size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{quantita}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
 					</jr:column>
 				</jr:table>
 			</componentElement>

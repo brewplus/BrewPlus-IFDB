@@ -34,14 +34,14 @@ public class YeastTableModel extends GenericTableModel<Yeast> {
 	 */
 	private static final long serialVersionUID = -401917354676314454L;
 	Ricetta ricetta;
-	private static String[] cN = new String[] { "Codice", "Produttore", "Nome", "Attenuazione" , "Descrizione"};
+	private static String[] cN = new String[] { "Codice", "Produttore", "Nome", "Attenuazione" , "Quantità (gr)", "Descrizione"};
 
 	public YeastTableModel(Ricetta ricetta) {
 		this.ricetta = ricetta;
 		this.columnNames = cN;
 	}
 
-	String fieldNames[] = { "Codice", "Produttore", "Nome", "AttenuazioneMed", "Descrizione" };
+	String fieldNames[] = { "Codice", "Produttore", "Nome", "AttenuazioneMed",  "Quantita", "Descrizione" };
 
 	@Override
 	public Object getValueAt(int row, int col) {

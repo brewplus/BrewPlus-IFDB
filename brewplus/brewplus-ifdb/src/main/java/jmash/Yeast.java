@@ -53,11 +53,21 @@ public class Yeast {
 	private String temperaturaMin;
 	private String temperaturaCons;
 	private String temperaturaMax;
-
+	private String quantita;
+	
 	private static String campiXml[] = { "nome", "codice", "produttore", "forma", "categoria", "descrizione",
 			"attenuazioneMin", "attenuazioneMax", "attenuazioneMed", "temperaturaCons", "temperaturaMin",
-			"temperaturaMax", "note", };
+			"temperaturaMax", "note" };
 
+	
+	public String getQuantita() {
+		return quantita;
+	}
+
+	public void setQuantita(String quantita) {
+		this.quantita = quantita;
+	}
+	
 	public Element toXml() {
 		try {
 			return Utils.toXml(this, getCampiXml());
