@@ -57,7 +57,7 @@ public class Yeast {
 	
 	private static String campiXml[] = { "nome", "codice", "produttore", "forma", "categoria", "descrizione",
 			"attenuazioneMin", "attenuazioneMax", "attenuazioneMed", "temperaturaCons", "temperaturaMin",
-			"temperaturaMax", "note" };
+			"temperaturaMax", "note", "quantita" };
 
 	
 	public String getQuantita() {
