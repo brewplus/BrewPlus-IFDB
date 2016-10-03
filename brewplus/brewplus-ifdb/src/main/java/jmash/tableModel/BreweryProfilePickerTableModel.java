@@ -20,10 +20,18 @@
 
 package jmash.tableModel;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+
 import javax.swing.JLabel;
-import jmash.*;
+
+import org.apache.commons.lang.StringUtils;
+
+import jmash.BreweryProfile;
+import jmash.Main;
 
 /**
  *
@@ -41,11 +49,10 @@ public class BreweryProfilePickerTableModel extends PickerTableModel {
 
 	public BreweryProfilePickerTableModel() {
 	}
-	
-	String columnNames[] = { "Nome", "Descrizione", "Volume finale", "Efficienza", "Assorb. grani esausti", "Rapp. acqua/grani",
-			"% evaporazione", "Contraz. x raffred.", "Perdite trub", "BIAB" };
 
-	
+	String columnNames[] = { "Nome", "Descrizione", "Volume finale", "Efficienza", "Assorb. grani esausti",
+			"Rapp. acqua/grani", "% evaporazione", "Contraz. x raffred.", "Perdite trub", "BIAB" };
+
 	public void addRow(BreweryProfile breweryProfile) {
 		this.dataValues.add(breweryProfile);
 		fireTableDataChanged();
@@ -79,7 +86,7 @@ public class BreweryProfilePickerTableModel extends PickerTableModel {
 
 	@Override
 	public Object getValueAt(int row, int col) {
-		BreweryProfile breweryProfile  = this.dataValues.get(row);
+		BreweryProfile breweryProfile = this.dataValues.get(row);
 		this.ret.setIcon(Main.maltIcon);
 
 		if (breweryProfile != null) {
@@ -110,7 +117,7 @@ public class BreweryProfilePickerTableModel extends PickerTableModel {
 			default:
 				return this.ret;
 			}
-			
+
 		}
 		return null;
 	}
@@ -144,8 +151,81 @@ public class BreweryProfilePickerTableModel extends PickerTableModel {
 			dataValues = dataValuesCopy;
 		fireTableDataChanged();
 	}
-	
+
 	public String[] getColumnNames() {
 		return columnNames;
+	}
+	
+	public String[] getBreweryProfileNames()
+	{
+		return getBreweryProfileNames(null);
+	}
+	
+	public String[] getBreweryProfileNames(String header) {
+		
+		int n = StringUtils.isBlank(header) ? getRowCount() : getRowCount() + 1;
+		int posInit = StringUtils.isBlank(header) ? 0 : 1;
+		String[] breweryProfileNames = new String[n];
+		
+		if (!StringUtils.isBlank(header))
+		{
+			breweryProfileNames[0] = header;
+		}
+		
+		BreweryProfile breweryProfile;
+		for (int i=posInit; i<n; i++) {
+			breweryProfile = getRows().get(i-posInit);
+			breweryProfileNames[i] = breweryProfile.getNome();
+		}
+
+		return breweryProfileNames;
+	}
+
+	public Map<String, BreweryProfile> getBreweryProfiles() {
+		
+		Map<String, BreweryProfile> breweryProfiles = new LinkedHashMap<>();
+		
+		for (BreweryProfile breweryProfile : getRows()) {
+			
+			breweryProfiles.put(breweryProfile.getNome(), breweryProfile);
+		}
+
+		return breweryProfiles;
+	}
+	
+	public BreweryProfile findFirstBreweryProfile(BreweryProfile breweryProfileToFind)
+	{
+		BreweryProfile found = breweryProfileToFind;
+		
+		for (BreweryProfile breweryProfile : getRows()) {
+			
+			if (breweryProfile.equals(breweryProfileToFind))
+			{
+				found.setNome(breweryProfile.getNome());
+				break;
+			}
+			
+		}
+		
+		return found;
+	}
+	
+	public Integer findFirstIndexBreweryProfile(BreweryProfile breweryProfileToFind)
+	{
+		Integer index = null;
+		
+		for (int i=0; i<getRows().size(); i++)
+		{
+			BreweryProfile breweryProfile = getRows().get(i);
+			
+			if (breweryProfile.equals(breweryProfileToFind))
+			{
+				index = i;
+				break;
+			}
+			
+		}
+		
+		return index;
 	}
 }

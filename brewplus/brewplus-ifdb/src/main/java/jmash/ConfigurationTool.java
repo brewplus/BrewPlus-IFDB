@@ -145,6 +145,19 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 
 		cmbLanguage.setSelectedItem("it_IT".equalsIgnoreCase(Main.config.getLocale())?Constants.ITALIAN:Constants.ENGLISH);
 		//ButtonGroup group = new ButtonGroup();
+		
+		
+		
+		BreweryProfile toFind = new BreweryProfile(null, null, Main.config.getVolumeFin(), Main.config.getEfficienza(), Main.config.getLitriPerKg(), Main.config.getRapportoAcquaGrani(), Main.config.getPercentualeEvaporazione(), Main.config.getContrazionePerRaffreddamento(), Main.config.getLostToTrub(), Main.config.getBiab().toString());
+		
+		Integer indexBreweryProfile = Gui.breweryProfilePickerTableModel.findFirstIndexBreweryProfile(toFind);
+		if (indexBreweryProfile != null)
+		{
+			cmbBreweryProfile.setSelectedIndex(indexBreweryProfile);
+		}
+		
+		
+		
 	}
 
 	/**
@@ -362,6 +375,27 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		jPanel4.setMinimumSize(new Dimension(550, 210));
 		jPanel4.setPreferredSize(new Dimension(550, 210));
 		
+		
+		lblBreweryProfile = new JLabel("Profilo impianto");
+		GridBagConstraints gbc_lblProfiliImpianto = new GridBagConstraints();
+		gbc_lblProfiliImpianto.anchor = GridBagConstraints.EAST;
+		gbc_lblProfiliImpianto.insets = new Insets(0, 0, 5, 5);
+		gbc_lblProfiliImpianto.gridx = 0;
+		gbc_lblProfiliImpianto.gridy = 7;
+		jPanel4.add(lblBreweryProfile, gbc_lblProfiliImpianto);
+		
+		cmbBreweryProfile = new JComboBox<>();
+		
+		cmbBreweryProfile.setModel(new DefaultComboBoxModel<String>(Gui.breweryProfilePickerTableModel.getBreweryProfileNames("- Seleziona -")));
+
+		GridBagConstraints gbc_cmbProfiliImpianto = new GridBagConstraints();
+		gbc_cmbProfiliImpianto.anchor = GridBagConstraints.WEST;
+		gbc_cmbProfiliImpianto.insets = new Insets(0, 0, 5, 5);
+		gbc_cmbProfiliImpianto.gridx = 1;
+		gbc_cmbProfiliImpianto.gridy = 7;
+		jPanel4.add(cmbBreweryProfile, gbc_cmbProfiliImpianto);
+		
+		
 		lblBiab = new JLabel("BIAB");
 		GridBagConstraints gbc_lblBiab = new GridBagConstraints();
 		gbc_lblBiab.anchor = GridBagConstraints.EAST;
@@ -545,6 +579,8 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 	private JButton btnNewButton;
 	private JComboBox<String> cmbBUGURatio;
 	private JComboBox<String> cmbLanguage;
+	private JComboBox<String> cmbBreweryProfile;
+	private JLabel lblBreweryProfile;
 	private GridBagConstraints gbc_cmbBUGU;
 	private JLabel lblLanguage;
 	private GridBagConstraints gridBagConstraints_14;

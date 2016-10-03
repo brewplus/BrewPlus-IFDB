@@ -21,8 +21,8 @@ public class BreweryProfile implements XmlAble, Comparable<BreweryProfile> {
 
 	private String nome;
 	private String descrizione;
-	private Double volumeFinale;
-	private Double efficienza;
+	private Integer volumeFinale;
+	private Integer efficienza;
 	private Double assorbimentoGraniEsausti;
 	private Double rapportoAcquaGrani;
 	private Double percentualeEvaporazione;
@@ -31,11 +31,12 @@ public class BreweryProfile implements XmlAble, Comparable<BreweryProfile> {
 	private String biab;
 
 	public BreweryProfile() {
-		this(null, null, 23.0, 70.0, 1.4, 3.0, 15.0, 4.0, 0.0, "No");
+		this(null, null, 23, 70, 1.4, 3.0, 15.0, 4.0, 0.0, "No");
 	}
 
-	public BreweryProfile(String nome, String descrizione, double volumeFinale, double efficienza, double assorbimentoGraniEsausti, double rapportoAcquaGrani,
-			double percentualeEvaporazione, double contrazionePerRaffreddamento, double perditeNelTrub, String biab) {
+	public BreweryProfile(String nome, String descrizione, int volumeFinale, int efficienza,
+			double assorbimentoGraniEsausti, double rapportoAcquaGrani, double percentualeEvaporazione,
+			double contrazionePerRaffreddamento, double perditeNelTrub, String biab) {
 		setNome(nome);
 		setDescrizione(descrizione);
 		setVolumeFinale(volumeFinale);
@@ -107,20 +108,20 @@ public class BreweryProfile implements XmlAble, Comparable<BreweryProfile> {
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
-	
-	public Double getVolumeFinale() {
+
+	public Integer getVolumeFinale() {
 		return volumeFinale;
 	}
 
-	public void setVolumeFinale(Double volumeFinale) {
+	public void setVolumeFinale(Integer volumeFinale) {
 		this.volumeFinale = volumeFinale;
 	}
 
-	public Double getEfficienza() {
+	public Integer getEfficienza() {
 		return efficienza;
 	}
 
-	public void setEfficienza(Double efficienza) {
+	public void setEfficienza(Integer efficienza) {
 		this.efficienza = efficienza;
 	}
 
@@ -182,6 +183,74 @@ public class BreweryProfile implements XmlAble, Comparable<BreweryProfile> {
 		}
 
 		return isBiab;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((assorbimentoGraniEsausti == null) ? 0 : assorbimentoGraniEsausti.hashCode());
+		result = prime * result + ((biab == null) ? 0 : biab.hashCode());
+		result = prime * result
+				+ ((contrazionePerRaffreddamento == null) ? 0 : contrazionePerRaffreddamento.hashCode());
+		result = prime * result + ((efficienza == null) ? 0 : efficienza.hashCode());
+		result = prime * result + ((percentualeEvaporazione == null) ? 0 : percentualeEvaporazione.hashCode());
+		result = prime * result + ((perditeNelTrub == null) ? 0 : perditeNelTrub.hashCode());
+		result = prime * result + ((rapportoAcquaGrani == null) ? 0 : rapportoAcquaGrani.hashCode());
+		result = prime * result + ((volumeFinale == null) ? 0 : volumeFinale.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BreweryProfile other = (BreweryProfile) obj;
+		if (assorbimentoGraniEsausti == null) {
+			if (other.assorbimentoGraniEsausti != null)
+				return false;
+		} else if (!assorbimentoGraniEsausti.equals(other.assorbimentoGraniEsausti))
+			return false;
+		if (biab == null) {
+			if (other.biab != null)
+				return false;
+		} else if (isBiab() != other.isBiab())
+			return false;
+		if (contrazionePerRaffreddamento == null) {
+			if (other.contrazionePerRaffreddamento != null)
+				return false;
+		} else if (!contrazionePerRaffreddamento.equals(other.contrazionePerRaffreddamento))
+			return false;
+		if (efficienza == null) {
+			if (other.efficienza != null)
+				return false;
+		} else if (!efficienza.equals(other.efficienza))
+			return false;
+		if (percentualeEvaporazione == null) {
+			if (other.percentualeEvaporazione != null)
+				return false;
+		} else if (!percentualeEvaporazione.equals(other.percentualeEvaporazione))
+			return false;
+		if (perditeNelTrub == null) {
+			if (other.perditeNelTrub != null)
+				return false;
+		} else if (!perditeNelTrub.equals(other.perditeNelTrub))
+			return false;
+		if (rapportoAcquaGrani == null) {
+			if (other.rapportoAcquaGrani != null)
+				return false;
+		} else if (!rapportoAcquaGrani.equals(other.rapportoAcquaGrani))
+			return false;
+		if (volumeFinale == null) {
+			if (other.volumeFinale != null)
+				return false;
+		} else if (!volumeFinale.equals(other.volumeFinale))
+			return false;
+		return true;
 	}
 
 }
