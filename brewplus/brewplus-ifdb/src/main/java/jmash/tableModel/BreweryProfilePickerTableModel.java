@@ -154,26 +154,24 @@ public class BreweryProfilePickerTableModel extends PickerTableModel {
 	public String[] getColumnNames() {
 		return columnNames;
 	}
-	
-	public String[] getBreweryProfileNames()
-	{
+
+	public String[] getBreweryProfileNames() {
 		return getBreweryProfileNames(null);
 	}
-	
+
 	public String[] getBreweryProfileNames(String header) {
-		
+
 		int n = StringUtils.isBlank(header) ? getRowCount() : getRowCount() + 1;
 		int posInit = StringUtils.isBlank(header) ? 0 : 1;
 		String[] breweryProfileNames = new String[n];
-		
-		if (!StringUtils.isBlank(header))
-		{
+
+		if (!StringUtils.isBlank(header)) {
 			breweryProfileNames[0] = header;
 		}
-		
+
 		BreweryProfile breweryProfile;
-		for (int i=posInit; i<n; i++) {
-			breweryProfile = getRows().get(i-posInit);
+		for (int i = posInit; i < n; i++) {
+			breweryProfile = getRows().get(i - posInit);
 			breweryProfileNames[i] = breweryProfile.getNome();
 		}
 
@@ -181,72 +179,63 @@ public class BreweryProfilePickerTableModel extends PickerTableModel {
 	}
 
 	public Map<String, BreweryProfile> getBreweryProfiles() {
-		
+
 		Map<String, BreweryProfile> breweryProfiles = new LinkedHashMap<>();
-		
+
 		for (BreweryProfile breweryProfile : getRows()) {
-			
+
 			breweryProfiles.put(breweryProfile.getNome(), breweryProfile);
 		}
 
 		return breweryProfiles;
 	}
-	
-	public BreweryProfile findFirstBreweryProfile(BreweryProfile breweryProfileToFind)
-	{
+
+	public BreweryProfile findFirstBreweryProfile(BreweryProfile breweryProfileToFind) {
 		BreweryProfile found = breweryProfileToFind;
-		
+
 		for (BreweryProfile breweryProfile : getRows()) {
-			
-			if (breweryProfile.equals(breweryProfileToFind))
-			{
+
+			if (breweryProfile.equals(breweryProfileToFind)) {
 				found.setNome(breweryProfile.getNome());
 				break;
 			}
-			
+
 		}
-		
+
 		return found;
 	}
-	
-	public Integer findFirstIndexBreweryProfile(BreweryProfile breweryProfileToFind)
-	{
+
+	public Integer findFirstIndexBreweryProfile(BreweryProfile breweryProfileToFind) {
 		Integer index = null;
-		
-		for (int i=0; i<getRows().size(); i++)
-		{
+
+		for (int i = 0; i < getRows().size(); i++) {
 			BreweryProfile breweryProfile = getRows().get(i);
-			
-			if (breweryProfile.equals(breweryProfileToFind))
-			{
+
+			if (breweryProfile.equals(breweryProfileToFind)) {
 				index = i;
 				break;
 			}
-			
+
 		}
-		
+
 		return index;
 	}
-	
-	public BreweryProfile findBreweryProfile(String name)
-	{
+
+	public BreweryProfile findBreweryProfile(String name) {
 		BreweryProfile found = null;
-		
-		if (StringUtils.isNotBlank(name))
-		{
-		
-		for (BreweryProfile breweryProfile : getRows()) {
-			
-			if (name.equals(breweryProfile.getNome()))
-			{
-				found = breweryProfile;
-				break;
+
+		if (StringUtils.isNotBlank(name)) {
+
+			for (BreweryProfile breweryProfile : getRows()) {
+
+				if (name.equals(breweryProfile.getNome())) {
+					found = breweryProfile;
+					break;
+				}
+
 			}
-			
-		}
 		}
 		return found;
 	}
-	
 
 }

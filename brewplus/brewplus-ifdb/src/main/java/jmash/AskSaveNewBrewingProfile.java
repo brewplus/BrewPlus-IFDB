@@ -3,10 +3,6 @@ package jmash;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -77,57 +73,30 @@ public class AskSaveNewBrewingProfile extends Ask {
 		getCentralPanel().add(txtDescrizioneProfilo, gbc_fieldDescrizioneProfilo);
 
 		txtNomeProfilo.getDocument().addDocumentListener(new DocumentListener() {
-			
+
 			@Override
 			public void removeUpdate(DocumentEvent e) {
 				checkFields();
 			}
-			
+
 			@Override
 			public void insertUpdate(DocumentEvent e) {
 				checkFields();
 			}
-			
+
 			@Override
 			public void changedUpdate(DocumentEvent e) {
 				checkFields();
-				
+
 			}
 		});
 
-			
-
-		txtDescrizioneProfilo.addActionListener(new java.awt.event.ActionListener() {
-		    public void actionPerformed(java.awt.event.ActionEvent e)  {
-				checkFields();
-			}
-		});
-		
-		txtDescrizioneProfilo.getDocument().addDocumentListener(new DocumentListener() {
-			
-			@Override
-			public void removeUpdate(DocumentEvent e) {
-				checkFields();
-			}
-			
-			@Override
-			public void insertUpdate(DocumentEvent e) {
-				checkFields();
-			}
-			
-			@Override
-			public void changedUpdate(DocumentEvent e) {
-				checkFields();
-				
-			}
-		});
-		
 		checkFields();
 
 	}
 
 	private void checkFields() {
-		if (StringUtils.isBlank(txtNomeProfilo.getText()) || StringUtils.isBlank(txtDescrizioneProfilo.getText())) {
+		if (StringUtils.isBlank(txtNomeProfilo.getText())) {
 			getOkButton().setEnabled(false);
 		} else {
 			getOkButton().setEnabled(true);
@@ -139,15 +108,15 @@ public class AskSaveNewBrewingProfile extends Ask {
 	}
 
 	public boolean doAsk(JInternalFrame frame) {
-		
+
 		startModal(frame);
 		return get();
 	}
-	
+
 	public String getNomeProfilo() {
 		return txtNomeProfilo.getText().trim();
 	}
-	
+
 	public String getDescrizioneProfilo() {
 		return txtDescrizioneProfilo.getText().trim();
 	}
