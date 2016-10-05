@@ -33,6 +33,13 @@ public class BreweryProfile implements XmlAble, Comparable<BreweryProfile> {
 	public BreweryProfile() {
 		this(null, null, 23, 70, 1.4, 3.0, 15.0, 4.0, 0.0, "No");
 	}
+	
+	public BreweryProfile(int volumeFinale, int efficienza,
+			double assorbimentoGraniEsausti, double rapportoAcquaGrani, double percentualeEvaporazione,
+			double contrazionePerRaffreddamento, double perditeNelTrub, String biab) {
+		this(null, null, volumeFinale, efficienza, assorbimentoGraniEsausti, rapportoAcquaGrani, percentualeEvaporazione, contrazionePerRaffreddamento, perditeNelTrub, biab);
+	}
+
 
 	public BreweryProfile(String nome, String descrizione, int volumeFinale, int efficienza,
 			double assorbimentoGraniEsausti, double rapportoAcquaGrani, double percentualeEvaporazione,
@@ -179,7 +186,7 @@ public class BreweryProfile implements XmlAble, Comparable<BreweryProfile> {
 
 		if (biab != null) {
 			String tmpBiab = biab.trim().toLowerCase();
-			isBiab = "1".equals(tmpBiab) || "true".equals(tmpBiab) || "yes".equals(tmpBiab) || "si".equals(tmpBiab);
+			isBiab = "1".equals(tmpBiab) || "true".equalsIgnoreCase(tmpBiab) || "yes".equalsIgnoreCase(tmpBiab) || "si".equalsIgnoreCase(tmpBiab);
 		}
 
 		return isBiab;

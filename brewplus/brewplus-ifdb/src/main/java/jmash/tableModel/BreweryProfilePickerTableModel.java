@@ -20,7 +20,6 @@
 
 package jmash.tableModel;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -228,4 +227,26 @@ public class BreweryProfilePickerTableModel extends PickerTableModel {
 		
 		return index;
 	}
+	
+	public BreweryProfile findBreweryProfile(String name)
+	{
+		BreweryProfile found = null;
+		
+		if (StringUtils.isNotBlank(name))
+		{
+		
+		for (BreweryProfile breweryProfile : getRows()) {
+			
+			if (name.equals(breweryProfile.getNome()))
+			{
+				found = breweryProfile;
+				break;
+			}
+			
+		}
+		}
+		return found;
+	}
+	
+
 }

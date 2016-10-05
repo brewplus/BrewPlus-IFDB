@@ -238,4 +238,8 @@ public class XmlAbleEditor extends javax.swing.JInternalFrame {
             Utils.showException(ex, "", this);
         }
     }
+    
+    public String getRootTag() {
+		return rootTag;
+	}
 }

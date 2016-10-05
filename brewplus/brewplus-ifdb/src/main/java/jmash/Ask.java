@@ -20,7 +20,11 @@
 
 package jmash;
 
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+
 import javax.swing.JInternalFrame;
+import javax.swing.JPanel;
 
 /**
  *
@@ -55,7 +59,7 @@ public class Ask extends ModalInternalFrame {
 	 */
 	// <editor-fold defaultstate="collapsed" desc="Generated
 	// Code">//GEN-BEGIN:initComponents
-	private void initComponents() {
+	protected void initComponents() {
 
 		txt = new javax.swing.JLabel();
 		jPanel1 = new javax.swing.JPanel();
@@ -71,9 +75,24 @@ public class Ask extends ModalInternalFrame {
 
 		txt.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12));
 		txt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-		txt.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+//		txt.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 		txt.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-		getContentPane().add(txt, java.awt.BorderLayout.CENTER);
+		
+		
+		
+		centralPanel  = new JPanel();
+		centralPanel.setLayout(new java.awt.GridBagLayout());
+
+		
+		GridBagConstraints gbc_lblTxt = new GridBagConstraints();
+		gbc_lblTxt.anchor = GridBagConstraints.CENTER;
+		gbc_lblTxt.insets = new Insets(0, 0, 5, 5);
+		gbc_lblTxt.gridx = 0;
+		gbc_lblTxt.gridy = 0;
+		gbc_lblTxt.gridwidth = 4;
+		getCentralPanel().add(txt, gbc_lblTxt);
+		
+		getContentPane().add(centralPanel, java.awt.BorderLayout.CENTER);
 
 		jPanel1.setLayout(new java.awt.BorderLayout());
 
@@ -121,6 +140,10 @@ public class Ask extends ModalInternalFrame {
 		stopModal();
 		dispose();
 	}// GEN-LAST:event_jButton2ActionPerformed
+	
+	public javax.swing.JPanel getCentralPanel() {
+		return centralPanel;
+	}
 
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
 		this.result = true;
@@ -136,6 +159,9 @@ public class Ask extends ModalInternalFrame {
 	private javax.swing.JLabel jLabel3;
 	private javax.swing.JPanel jPanel1;
 	private javax.swing.JPanel jPanel2;
+	
+	private javax.swing.JPanel centralPanel;
+	
 	private javax.swing.JLabel txt;
 	// End of variables declaration//GEN-END:variables
 
@@ -143,5 +169,9 @@ public class Ask extends ModalInternalFrame {
 		Ask ask = new Ask(what);
 		ask.startModal(frame);
 		return ask.get();
+	}
+	
+	protected javax.swing.JButton getOkButton() {
+		return jButton1;
 	}
 }

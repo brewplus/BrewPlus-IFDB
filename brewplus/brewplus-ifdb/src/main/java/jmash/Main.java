@@ -363,7 +363,7 @@ public class Main {
 				}
 			}
 		}
-		Collections.sort(Gui.maltCategoryPickerTableModel.getRows());
+		Collections.sort(Gui.breweryProfilePickerTableModel.getRows());
 	}
 
 	public static void readMalti() throws Exception {
