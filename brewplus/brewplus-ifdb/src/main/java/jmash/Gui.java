@@ -44,6 +44,7 @@ import javax.swing.TransferHandler;
 import jmash.config.XmlAbleEditor;
 import jmash.config.XmlAbleTableModel;
 import jmash.tableModel.BrewStylePickerTableModel;
+import jmash.tableModel.BreweryProfilePickerTableModel;
 import jmash.tableModel.GenericTableModel;
 import jmash.tableModel.HopPickerTableModel;
 import jmash.tableModel.MaltCategoryPickerTableModel;
@@ -231,11 +232,12 @@ public class Gui extends javax.swing.JFrame {
 	}
 
 	public static HopPickerTableModel hopPickerTableModel = new HopPickerTableModel();
-        public static MaltCategoryPickerTableModel maltCategoryPickerTableModel = new MaltCategoryPickerTableModel();
+	public static MaltCategoryPickerTableModel maltCategoryPickerTableModel = new MaltCategoryPickerTableModel();
 	public static MaltPickerTableModel maltPickerTableModel = new MaltPickerTableModel();
 	public static WaterPickerTableModel waterPickerTableModel = new WaterPickerTableModel();
 	public static YeastPickerTableModel yeastPickerTableModel = new YeastPickerTableModel();
 	public static BrewStylePickerTableModel brewStylePickerTableModel = new BrewStylePickerTableModel();
+	public static BreweryProfilePickerTableModel breweryProfilePickerTableModel = new BreweryProfilePickerTableModel();
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -288,6 +290,7 @@ public class Gui extends javax.swing.JFrame {
 		mnuLuppoliXML = new javax.swing.JMenuItem();
 		mnuCategorieMaltiXML = new javax.swing.JMenuItem();
 		mnuMaltiXML = new javax.swing.JMenuItem();
+		mnuProfiliImpiantoXML = new javax.swing.JMenuItem();
 		mnuLievitiXML = new javax.swing.JMenuItem();
 		mnuAcquaXML = new javax.swing.JMenuItem();
 		jMenu1 = new javax.swing.JMenu();
@@ -868,6 +871,14 @@ public class Gui extends javax.swing.JFrame {
 
 		JSeparator separator_1 = new JSeparator();
 		jMenu2.add(separator_1);
+		
+		mnuProfiliImpiantoXML.setText("Profili impianto");
+		mnuProfiliImpiantoXML.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				mnuProfiliImpiantoXMLActionPerformed(evt);
+			}
+		});
+		jMenu2.add(mnuProfiliImpiantoXML);
 
 		JMenuItem mntmImpostazioni = new JMenuItem("Impostazioni");
 		mntmImpostazioni.addActionListener(new ActionListener() {
@@ -1364,6 +1375,20 @@ public class Gui extends javax.swing.JFrame {
 			LOGGER.error(ex.getMessage(), ex);
 		}
 	}// GEN-LAST:event_mnuMaltiXMLActionPerformed
+	
+	private void mnuProfiliImpiantoXMLActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_mnuMaltiXMLActionPerformed
+		GenericTableModel tableModel = new XmlAbleTableModel(new BreweryProfile(), Gui.breweryProfilePickerTableModel.getColumnNames());
+		tableModel.setRows(Gui.breweryProfilePickerTableModel.getRows());
+		
+		try {
+			addFrame(
+					new XmlAbleEditor(tableModel, BreweryProfile.class, Main.breweryProfileXML, Main.class.getMethod("readProfiliImpianto")));
+		} catch (SecurityException ex) {
+			LOGGER.error(ex.getMessage(), ex);
+		} catch (NoSuchMethodException ex) {
+			LOGGER.error(ex.getMessage(), ex);
+		}
+	}// GEN-LAST:event_mnuMaltiXMLActionPerformed
 
 	private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveActionPerformed
 
@@ -1671,6 +1696,7 @@ public class Gui extends javax.swing.JFrame {
 	private javax.swing.JMenuItem mnuNuova;
 	private javax.swing.JMenuItem mnuStiliXML;
 	private javax.swing.JMenuItem mnuUpdate;
+	private javax.swing.JMenuItem mnuProfiliImpiantoXML;
 	private javax.swing.JToolBar sideBar;
 	private javax.swing.JToolBar taskBar;
 	private javax.swing.JToolBar toolbar;

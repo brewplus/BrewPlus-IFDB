@@ -28,4 +28,5 @@ public interface XmlAble {
 	public String getTag();
 
 	public String[] getXmlFields();
+	
 }

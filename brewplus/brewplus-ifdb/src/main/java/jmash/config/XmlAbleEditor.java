@@ -46,9 +46,26 @@ public class XmlAbleEditor extends javax.swing.JInternalFrame {
     private TableSorter sorter;
     private String filename;
     private Method reloadMethod;
+    
+    private String rootTag;
 
     public XmlAbleEditor(GenericTableModel tableModel, Class newObject, String filename, Method reloadMethod) {
         this.newObject = newObject;
+        
+        try {
+        	Object obj = this.newObject.newInstance();
+			if (obj instanceof XmlAble)
+			{
+				rootTag = ((XmlAble) obj).getTag();
+			}
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
         this.tableModel = tableModel;
         this.filename = filename;
         this.reloadMethod = reloadMethod;
@@ -206,7 +223,8 @@ public class XmlAbleEditor extends javax.swing.JInternalFrame {
     protected void saveList() {
         List list = tableModel.getRows();
         Document doc = new Document();
-        Element root = new Element(((XmlAble) list.get(0)).getTag());
+        
+        Element root = !list.isEmpty() ? new Element(((XmlAble) list.get(0)).getTag()) : new Element(rootTag);
         doc.setRootElement(root);
         for (Object o : list) {
             if (o instanceof XmlAble) {
@@ -220,4 +238,8 @@ public class XmlAbleEditor extends javax.swing.JInternalFrame {
             Utils.showException(ex, "", this);
         }
     }
+    
+    public String getRootTag() {
+		return rootTag;
+	}
 }

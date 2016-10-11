@@ -26,6 +26,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -33,6 +34,8 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import org.jdom.Document;
 import org.jdom.Element;
@@ -40,20 +43,23 @@ import org.jdom.Element;
 import jmash.Main.BitterBUGU;
 import jmash.component.JUnitSpinner;
 import jmash.interfaces.Constants;
+import jmash.interfaces.XmlAble;
 
 /**
  *
  * @author Alessandro
  */
 public class ConfigurationTool extends javax.swing.JInternalFrame {
-		
+
 	private static final long serialVersionUID = 1L;
 	private JInternalFrame parent;
+
+	private boolean actionListenerOn = true;
 
 	/** Creates new form ConfigurationTool */
 	public ConfigurationTool() {
 		setResizable(true);
-		
+
 		initComponents();
 		parent = this;
 		setBorder(Utils.getDefaultBorder());
@@ -76,8 +82,8 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 
 		cmbBUGURatio = new JComboBox<String>();
 		cmbBUGURatio.setModel(new DefaultComboBoxModel<String>(new String[] { "Tinseth", "Rager", "Daniels" }));
-		gbc_cmbBUGU  = new GridBagConstraints();
-		
+		gbc_cmbBUGU = new GridBagConstraints();
+
 		gbc_cmbBUGU.insets = new Insets(0, 0, 5, 5);
 		gbc_cmbBUGU.fill = GridBagConstraints.HORIZONTAL;
 		gbc_cmbBUGU.gridx = 1;
@@ -89,7 +95,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 			cmbBUGURatio.setSelectedIndex(1);
 		if (Main.config.getBUGURatio() == BitterBUGU.DAN)
 			cmbBUGURatio.setSelectedIndex(2);
-		
+
 		lblLanguage = new JLabel(Main.bundle.getString("label.language"));
 		GridBagConstraints gbc_lblLanguage = new GridBagConstraints();
 		gbc_lblLanguage.insets = new Insets(0, 0, 0, 5);
@@ -97,9 +103,9 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		gbc_lblLanguage.gridx = 0;
 		gbc_lblLanguage.gridy = 5;
 		jPanel1.add(lblLanguage, gbc_lblLanguage);
-		
+
 		cmbLanguage = new JComboBox<String>();
-		cmbLanguage.setModel(new DefaultComboBoxModel<String>(new String[] {Constants.ITALIAN, Constants.ENGLISH}));
+		cmbLanguage.setModel(new DefaultComboBoxModel<String>(new String[] { Constants.ITALIAN, Constants.ENGLISH }));
 		GridBagConstraints gbc_cmbLanguage = new GridBagConstraints();
 		gbc_cmbLanguage.insets = new Insets(0, 0, 0, 5);
 		gbc_cmbLanguage.fill = GridBagConstraints.HORIZONTAL;
@@ -108,43 +114,137 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		jPanel1.add(cmbLanguage, gbc_cmbLanguage);
 		spnAssorbimentoGraniEsausti.setDoubleValue(Main.config.getLitriPerKg());
 		spnRapportoAcquaGrani.setDoubleValue(Main.config.getRapportoAcquaGrani());
-		
-		
-		
+
 		spnPercentualeEvaporazione.setDoubleValue(Main.config.getPercentualeEvaporazione());
-		chckbxBiab.setSelected(Main.config.getBiab() );
-		
+		chckbxBiab.setSelected(Main.config.getBiab());
+
 		spnContrazionePerRaffreddamento.setDoubleValue(Main.config.getContrazionePerRaffreddamento());
-		
-		
-		GridBagConstraints gbc_spnContrazionePerRaffreddamento = new GridBagConstraints();
-		gbc_spnContrazionePerRaffreddamento.insets = new Insets(0, 0, 5, 0);
-		gbc_spnContrazionePerRaffreddamento.gridx = 1;
-		gbc_spnContrazionePerRaffreddamento.gridy = 4;
-		jPanel4.add(spnContrazionePerRaffreddamento, gbc_spnContrazionePerRaffreddamento);
+
 		jLabel11 = new javax.swing.JLabel();
-		
+
 		jLabel11.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		jLabel11.setText(Main.bundle.getString("label.lostTrub"));
 		gridBagConstraints_14 = new java.awt.GridBagConstraints();
 		gridBagConstraints_14.insets = new Insets(0, 0, 0, 5);
 		gridBagConstraints_14.gridx = 0;
-		gridBagConstraints_14.gridy = 5;
+		gridBagConstraints_14.gridy = 6;
 		gridBagConstraints_14.anchor = java.awt.GridBagConstraints.EAST;
 		jPanel4.add(jLabel11, gridBagConstraints_14);
 		spnLostToTrub = new jmash.component.JUnitSpinner("L", 57);
-		spnLostToTrub.setModel(Main.config.getLostToTrub(), 0.1, 1000000, 0.1, "0.00", "CT.ltt");
+		spnLostToTrub.setModel(Main.config.getLostToTrub(), 0.0, 1000000, 0.1, "0.00", "CT.ltt");
 		spnLostToTrub.setDoubleValue(Main.config.getLostToTrub());
-		
+
 		spnLostToTrub.setFont(spnLostToTrub.getFont());
 		gridBagConstraints_15 = new java.awt.GridBagConstraints();
 		gridBagConstraints_15.gridx = 1;
-		gridBagConstraints_15.gridy = 5;
+		gridBagConstraints_15.gridy = 6;
 		gridBagConstraints_15.anchor = java.awt.GridBagConstraints.NORTHWEST;
 		jPanel4.add(spnLostToTrub, gridBagConstraints_15);
 
-		cmbLanguage.setSelectedItem("it_IT".equalsIgnoreCase(Main.config.getLocale())?Constants.ITALIAN:Constants.ENGLISH);
-		//ButtonGroup group = new ButtonGroup();
+		cmbLanguage.setSelectedItem(
+				"it_IT".equalsIgnoreCase(Main.config.getLocale()) ? Constants.ITALIAN : Constants.ENGLISH);
+		// ButtonGroup group = new ButtonGroup();
+
+		// BreweryProfile toFind = new BreweryProfile(null, null,
+		// Main.config.getVolumeFin(), Main.config.getEfficienza(),
+		// Main.config.getLitriPerKg(), Main.config.getRapportoAcquaGrani(),
+		// Main.config.getPercentualeEvaporazione(),
+		// Main.config.getContrazionePerRaffreddamento(),
+		// Main.config.getLostToTrub(), Main.config.getBiab().toString());
+		//
+		// Integer indexBreweryProfile =
+		// Gui.breweryProfilePickerTableModel.findFirstIndexBreweryProfile(toFind);
+		// if (indexBreweryProfile != null)
+		// {
+		// cmbBreweryProfile.setSelectedIndex(indexBreweryProfile + 1);
+		// }
+
+		selectBreweryProfile();
+
+		addBreweryProfileListeners();
+
+	}
+
+	private void addBreweryProfileListeners() {
+		cmbBreweryProfile.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				int selectedIndex = cmbBreweryProfile.getSelectedIndex();
+				if (selectedIndex > 0) {
+					actionListenerOn = false;
+					String selectedBreweryProfileName = cmbBreweryProfile.getItemAt(selectedIndex);
+
+					BreweryProfile selectedBreweryProfile = Gui.breweryProfilePickerTableModel
+							.findBreweryProfile(selectedBreweryProfileName);
+
+					fldVolumeFin.setIntegerValue(selectedBreweryProfile.getVolumeFinale());
+					fldEff.setIntegerValue(selectedBreweryProfile.getEfficienza());
+
+					spnAssorbimentoGraniEsausti.setDoubleValue(selectedBreweryProfile.getAssorbimentoGraniEsausti());
+					spnRapportoAcquaGrani.setDoubleValue(selectedBreweryProfile.getRapportoAcquaGrani());
+					spnPercentualeEvaporazione.setDoubleValue(selectedBreweryProfile.getPercentualeEvaporazione());
+					spnContrazionePerRaffreddamento
+							.setDoubleValue(selectedBreweryProfile.getContrazionePerRaffreddamento());
+					spnLostToTrub.setDoubleValue(selectedBreweryProfile.getPerditeNelTrub());
+					chckbxBiab.setSelected(selectedBreweryProfile.isBiab());
+					actionListenerOn = true;
+				}
+
+			}
+
+		});
+
+		fldVolumeFin.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				selectBreweryProfile();
+			}
+		});
+		fldEff.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				selectBreweryProfile();
+			}
+		});
+		spnAssorbimentoGraniEsausti.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				selectBreweryProfile();
+			}
+		});
+		spnRapportoAcquaGrani.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				selectBreweryProfile();
+			}
+		});
+		spnPercentualeEvaporazione.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				selectBreweryProfile();
+			}
+		});
+		spnContrazionePerRaffreddamento.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				selectBreweryProfile();
+			}
+		});
+		spnLostToTrub.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				selectBreweryProfile();
+			}
+		});
+		chckbxBiab.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				selectBreweryProfile();
+			}
+		});
+
 	}
 
 	/**
@@ -155,15 +255,11 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 	// <editor-fold defaultstate="collapsed" desc="Generated
 	// Code">//GEN-BEGIN:initComponents
 	private void initComponents() {
-		
-		
 
-		
-		
 		java.awt.GridBagConstraints gridBagConstraints;
 
 		jToolBar1 = new javax.swing.JToolBar();
-		jButton3 = new javax.swing.JButton();
+		saveButton = new javax.swing.JButton();
 		jPanel1 = new javax.swing.JPanel();
 		jLabel1 = new javax.swing.JLabel();
 		fldEff = new jmash.component.JMashSpinner();
@@ -173,15 +269,15 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		fldSLM = new jmash.component.JMashSpinner();
 		jLabel10 = new javax.swing.JLabel();
 		fldBoil = new jmash.component.JMashSpinner();
-		//jPanel2 = new javax.swing.JPanel();
+		// jPanel2 = new javax.swing.JPanel();
 		jLabelBUGU = new javax.swing.JLabel();
 		fldServer = new javax.swing.JTextField();
-		//jLabel6 = new javax.swing.JLabel();
-		//jLabel7 = new javax.swing.JLabel();
+		// jLabel6 = new javax.swing.JLabel();
+		// jLabel7 = new javax.swing.JLabel();
 		fldNick = new javax.swing.JTextField();
 		fldPwd = new javax.swing.JTextField();
-		//jLabel8 = new javax.swing.JLabel();
-		//jLabel9 = new javax.swing.JLabel();
+		// jLabel8 = new javax.swing.JLabel();
+		// jLabel9 = new javax.swing.JLabel();
 		fldProxy = new javax.swing.JTextField();
 		fldProxyPort = new javax.swing.JTextField();
 		jPanel4 = new javax.swing.JPanel();
@@ -195,16 +291,16 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 
 		jToolBar1.setFloatable(false);
 
-		jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/filesave.png"))); // NOI18N
-		jButton3.setToolTipText("Salva configurazione");
-		jButton3.setBorderPainted(false);
-		jButton3.setContentAreaFilled(false);
-		jButton3.addActionListener(new java.awt.event.ActionListener() {
+		saveButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/filesave.png"))); // NOI18N
+		saveButton.setToolTipText("Salva configurazione");
+		saveButton.setBorderPainted(false);
+		saveButton.setContentAreaFilled(false);
+		saveButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jButton3ActionPerformed(evt);
+				saveConfiguration(evt);
 			}
 		});
-		jToolBar1.add(jButton3);
+		jToolBar1.add(saveButton);
 
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
@@ -280,26 +376,26 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		gridBagConstraints_4.fill = java.awt.GridBagConstraints.BOTH;
 		jPanel1.add(fldVolumeFin, gridBagConstraints_4);
 		jLabelDHEA = new javax.swing.JLabel();
-		
-				// jLabelDHEA.setFont(jLabelDHEA.getFont());
-				jLabelDHEA.setFont(new Font("Tahoma", Font.PLAIN, 11));
-				jLabelDHEA.setText("Amaro DHEA");
-				gridBagConstraints_7 = new java.awt.GridBagConstraints();
-				gridBagConstraints_7.insets = new Insets(0, 0, 5, 5);
-				gridBagConstraints_7.gridx = 2;
-				gridBagConstraints_7.gridy = 2;
-				gridBagConstraints_7.fill = java.awt.GridBagConstraints.HORIZONTAL;
-				gridBagConstraints_7.anchor = java.awt.GridBagConstraints.EAST;
-				jPanel1.add(jLabelDHEA, gridBagConstraints_7);
+
+		// jLabelDHEA.setFont(jLabelDHEA.getFont());
+		jLabelDHEA.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		jLabelDHEA.setText("Amaro DHEA");
+		gridBagConstraints_7 = new java.awt.GridBagConstraints();
+		gridBagConstraints_7.insets = new Insets(0, 0, 5, 5);
+		gridBagConstraints_7.gridx = 2;
+		gridBagConstraints_7.gridy = 2;
+		gridBagConstraints_7.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		gridBagConstraints_7.anchor = java.awt.GridBagConstraints.EAST;
+		jPanel1.add(jLabelDHEA, gridBagConstraints_7);
 		fldDHEA = new jmash.component.JMashSpinner();
-		
-				fldDHEA.setFont(fldDHEA.getFont());
-				gridBagConstraints_10 = new java.awt.GridBagConstraints();
-				gridBagConstraints_10.insets = new Insets(0, 0, 5, 0);
-				gridBagConstraints_10.gridx = 3;
-				gridBagConstraints_10.gridy = 2;
-				gridBagConstraints_10.fill = java.awt.GridBagConstraints.BOTH;
-				jPanel1.add(fldDHEA, gridBagConstraints_10);
+
+		fldDHEA.setFont(fldDHEA.getFont());
+		gridBagConstraints_10 = new java.awt.GridBagConstraints();
+		gridBagConstraints_10.insets = new Insets(0, 0, 5, 0);
+		gridBagConstraints_10.gridx = 3;
+		gridBagConstraints_10.gridy = 2;
+		gridBagConstraints_10.fill = java.awt.GridBagConstraints.BOTH;
+		jPanel1.add(fldDHEA, gridBagConstraints_10);
 
 		jLabel4.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		jLabel4.setText("Metri SLM");
@@ -362,20 +458,47 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		jPanel4.setMinimumSize(new Dimension(550, 210));
 		jPanel4.setPreferredSize(new Dimension(550, 210));
 		
+		
+		gridBagConstraints_22 = new java.awt.GridBagConstraints();
+		gridBagConstraints_22.anchor = GridBagConstraints.EAST;
+		gridBagConstraints_22.gridx = 0;
+		gridBagConstraints_22.gridy = 3;
+		gridBagConstraints_22.fill = java.awt.GridBagConstraints.BOTH;
+		getContentPane().add(jPanel4, gridBagConstraints_22);
+
+		lblBreweryProfile = new JLabel("Profilo impianto");
+		GridBagConstraints gbc_lblProfiliImpianto = new GridBagConstraints();
+		gbc_lblProfiliImpianto.anchor = GridBagConstraints.EAST;
+		gbc_lblProfiliImpianto.insets = new Insets(0, 0, 5, 5);
+		gbc_lblProfiliImpianto.gridx = 0;
+		gbc_lblProfiliImpianto.gridy = 0;
+		jPanel4.add(lblBreweryProfile, gbc_lblProfiliImpianto);
+
+		cmbBreweryProfile = new JComboBox<>();
+		cmbBreweryProfile.setModel(new DefaultComboBoxModel<String>(
+				Gui.breweryProfilePickerTableModel.getBreweryProfileNames("- Seleziona -")));
+
+		GridBagConstraints gbc_cmbProfiliImpianto = new GridBagConstraints();
+		gbc_cmbProfiliImpianto.anchor = GridBagConstraints.WEST;
+		gbc_cmbProfiliImpianto.insets = new Insets(0, 0, 5, 5);
+		gbc_cmbProfiliImpianto.gridx = 1;
+		gbc_cmbProfiliImpianto.gridy = 0;
+		jPanel4.add(cmbBreweryProfile, gbc_cmbProfiliImpianto);
+
 		lblBiab = new JLabel("BIAB");
 		GridBagConstraints gbc_lblBiab = new GridBagConstraints();
 		gbc_lblBiab.anchor = GridBagConstraints.EAST;
 		gbc_lblBiab.insets = new Insets(0, 0, 5, 5);
 		gbc_lblBiab.gridx = 0;
-		gbc_lblBiab.gridy = 0;
+		gbc_lblBiab.gridy = 1;
 		jPanel4.add(lblBiab, gbc_lblBiab);
-		
+
 		chckbxBiab = new JCheckBox("");
 		GridBagConstraints gbc_chckbxBiab = new GridBagConstraints();
 		gbc_chckbxBiab.insets = new Insets(0, 0, 5, 0);
 		gbc_chckbxBiab.anchor = GridBagConstraints.WEST;
 		gbc_chckbxBiab.gridx = 1;
-		gbc_chckbxBiab.gridy = 0;
+		gbc_chckbxBiab.gridy = 1;
 		jPanel4.add(chckbxBiab, gbc_chckbxBiab);
 		jLabel13 = new javax.swing.JLabel();
 
@@ -384,7 +507,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		gridBagConstraints_20 = new java.awt.GridBagConstraints();
 		gridBagConstraints_20.insets = new Insets(0, 0, 5, 5);
 		gridBagConstraints_20.gridx = 0;
-		gridBagConstraints_20.gridy = 1;
+		gridBagConstraints_20.gridy = 2;
 		gridBagConstraints_20.anchor = java.awt.GridBagConstraints.EAST;
 		jPanel4.add(jLabel13, gridBagConstraints_20);
 		spnAssorbimentoGraniEsausti = new JUnitSpinner("L/kg", 57);
@@ -393,7 +516,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		gbc_spnAssorbimentoGraniEsausti = new java.awt.GridBagConstraints();
 		gbc_spnAssorbimentoGraniEsausti.insets = new Insets(0, 0, 5, 0);
 		gbc_spnAssorbimentoGraniEsausti.gridx = 1;
-		gbc_spnAssorbimentoGraniEsausti.gridy = 1;
+		gbc_spnAssorbimentoGraniEsausti.gridy = 2;
 		gbc_spnAssorbimentoGraniEsausti.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		jPanel4.add(spnAssorbimentoGraniEsausti, gbc_spnAssorbimentoGraniEsausti);
 		jLabel14 = new javax.swing.JLabel();
@@ -404,63 +527,60 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		gridBagConstraints_21.anchor = GridBagConstraints.EAST;
 		gridBagConstraints_21.insets = new Insets(0, 0, 5, 5);
 		gridBagConstraints_21.gridx = 0;
-		gridBagConstraints_21.gridy = 2;
+		gridBagConstraints_21.gridy = 3;
 		jPanel4.add(jLabel14, gridBagConstraints_21);
-
-		gridBagConstraints_22 = new java.awt.GridBagConstraints();
-		gridBagConstraints_22.anchor = GridBagConstraints.EAST;
-		gridBagConstraints_22.gridx = 0;
-		gridBagConstraints_22.gridy = 3;
-		gridBagConstraints_22.fill = java.awt.GridBagConstraints.BOTH;
-		getContentPane().add(jPanel4, gridBagConstraints_22);
+		
 		spnRapportoAcquaGrani = new JUnitSpinner("L/Kg", 57);
 		spnRapportoAcquaGrani.setModel(Main.config.getRapportoAcquaGrani(), 0.0, 1000000, 0.1, "0.00", "CT.ev");
 		spnRapportoAcquaGrani.setFont(spnRapportoAcquaGrani.getFont());
 		gbc_spnRapportoAcquaGrani = new java.awt.GridBagConstraints();
 		gbc_spnRapportoAcquaGrani.insets = new Insets(0, 0, 5, 0);
 		gbc_spnRapportoAcquaGrani.gridx = 1;
-		gbc_spnRapportoAcquaGrani.gridy = 2;
+		gbc_spnRapportoAcquaGrani.gridy = 3;
 		gbc_spnRapportoAcquaGrani.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		jPanel4.add(spnRapportoAcquaGrani, gbc_spnRapportoAcquaGrani);
-		
-		
+
 		lblPercentualeEvaporazione = new JLabel("Percentuale evaporazione");
 		GridBagConstraints gbc_lblPercentualeEvaporazione = new GridBagConstraints();
 		gbc_lblPercentualeEvaporazione.anchor = GridBagConstraints.EAST;
 		gbc_lblPercentualeEvaporazione.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPercentualeEvaporazione.gridx = 0;
-		gbc_lblPercentualeEvaporazione.gridy = 3;
+		gbc_lblPercentualeEvaporazione.gridy = 4;
 		jPanel4.add(lblPercentualeEvaporazione, gbc_lblPercentualeEvaporazione);
-		
+
 		spnPercentualeEvaporazione = new JUnitSpinner("%", 57);
 		spnPercentualeEvaporazione.setModel(Main.config.getPercentualeEvaporazione(), 0.0, 100, 0.25, "0.00", null);
 		GridBagConstraints gbc_spnPercentualeEvaporazione = new GridBagConstraints();
 		gbc_spnPercentualeEvaporazione.insets = new Insets(0, 0, 5, 0);
 		gbc_spnPercentualeEvaporazione.gridx = 1;
-		gbc_spnPercentualeEvaporazione.gridy = 3;
+		gbc_spnPercentualeEvaporazione.gridy = 4;
 		jPanel4.add(spnPercentualeEvaporazione, gbc_spnPercentualeEvaporazione);
-		
+
 		lblContrazionePerRaffreddamento = new JLabel("Contrazione per raffreddamento");
 		GridBagConstraints gbc_lblContrazionePerRaffreddamento = new GridBagConstraints();
 		gbc_lblContrazionePerRaffreddamento.insets = new Insets(0, 0, 5, 5);
 		gbc_lblContrazionePerRaffreddamento.anchor = GridBagConstraints.EAST;
 		gbc_lblContrazionePerRaffreddamento.gridx = 0;
-		gbc_lblContrazionePerRaffreddamento.gridy = 4;
+		gbc_lblContrazionePerRaffreddamento.gridy = 5;
 		jPanel4.add(lblContrazionePerRaffreddamento, gbc_lblContrazionePerRaffreddamento);
 		spnContrazionePerRaffreddamento = new JUnitSpinner("%", 57);
 		spnContrazionePerRaffreddamento.setModel(Main.config.getContrazionePerRaffreddamento(), 0.0, 100, 0.25, "0.00", null);
-		
+		GridBagConstraints gbc_spnContrazionePerRaffreddamento = new GridBagConstraints();
+		gbc_spnContrazionePerRaffreddamento.insets = new Insets(0, 0, 5, 0);
+		gbc_spnContrazionePerRaffreddamento.gridx = 1;
+		gbc_spnContrazionePerRaffreddamento.gridy = 5;
+		jPanel4.add(spnContrazionePerRaffreddamento, gbc_spnContrazionePerRaffreddamento);
 		
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
-        
-      
-	private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
+
+	private void saveConfiguration(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
+
 		Config config = new Config();
 
 		config.setEfficienza(fldEff.getIntegerValue());
 		config.setVolumeFin(fldVolumeFin.getIntegerValue());
-//		config.setVolumeBoil(fldVolumeBoll.getIntegerValue());
+		// config.setVolumeBoil(fldVolumeBoll.getIntegerValue());
 		config.setMetriSLM(fldSLM.getIntegerValue());
 		config.setAmaroDHEA(fldDHEA.getIntegerValue());
 		config.setBoilTime(fldBoil.getIntegerValue());
@@ -473,11 +593,12 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		config.setLostToTrub(spnLostToTrub.getDoubleValue());
 		config.setLitriPerKg(spnAssorbimentoGraniEsausti.getDoubleValue());
 		config.setRapportoAcquaGrani(spnRapportoAcquaGrani.getDoubleValue());
-		config.setLocale(Constants.ITALIAN.equalsIgnoreCase((String)cmbLanguage.getSelectedItem())?"it_IT":"en_US");
+		config.setLocale(
+				Constants.ITALIAN.equalsIgnoreCase((String) cmbLanguage.getSelectedItem()) ? "it_IT" : "en_US");
 		config.setPercentualeEvaporazione(spnPercentualeEvaporazione.getDoubleValue());
 		config.setContrazionePerRaffreddamento(spnContrazionePerRaffreddamento.getDoubleValue());
 		config.setBiab(chckbxBiab.isSelected());
-		
+
 		if (cmbBUGURatio.getSelectedIndex() == 0)
 			config.setBUGURatio(BitterBUGU.TIN);
 		if (cmbBUGURatio.getSelectedIndex() == 1)
@@ -495,7 +616,51 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 			System.setProperty("http.proxyHost", config.getProxyHost());
 		if (config.getProxyPort() != null)
 			System.setProperty("http.proxyPort", config.getProxyPort());
+
+		saveCurrentBreweryProfile();
+
 	}// GEN-LAST:event_jButton3ActionPerformed
+
+	private void saveCurrentBreweryProfile() {
+		BreweryProfile breweryProfile = getCurrentBreweryProfile();
+
+		if (!Gui.breweryProfilePickerTableModel.isPresentBreweryProfile(breweryProfile)) {
+
+			AskSaveNewBrewingProfile ask = new AskSaveNewBrewingProfile(breweryProfile,
+					"Salvare i dati configurati anche su un nuovo profilo impianto?");
+
+			if (ask.doAsk(this)) {
+
+				breweryProfile.setNome(ask.getNomeProfilo());
+				breweryProfile.setDescrizione(ask.getDescrizioneProfilo());
+
+				Gui.breweryProfilePickerTableModel.addRow(breweryProfile);
+				cmbBreweryProfile.insertItemAt(breweryProfile.getNome(), cmbBreweryProfile.getItemCount());
+
+				List<BreweryProfile> list = Gui.breweryProfilePickerTableModel.getRows();
+				Document doc = new Document();
+
+				Element root = !list.isEmpty() ? new Element(((XmlAble) list.get(0)).getTag())
+						: new Element(breweryProfile.getTag());
+				doc.setRootElement(root);
+				for (Object o : list) {
+					if (o instanceof XmlAble) {
+						root.addContent(((XmlAble) o).toXml());
+					}
+				}
+				Utils.saveXmlAsFile(doc, new File(Main.breweryProfileXML), this);
+
+			}
+		}
+
+		selectBreweryProfile();
+		// try {
+		// reloadMethod.invoke(Main.class);
+		// } catch (Exception ex) {
+		// Utils.showException(ex, "", this);
+		// }
+
+	}
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private jmash.component.JMashSpinner fldBoil;
@@ -508,7 +673,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 	private jmash.component.JMashSpinner fldDHEA;
 	private javax.swing.JTextField fldServer;
 	private jmash.component.JMashSpinner fldVolumeFin;
-	private javax.swing.JButton jButton3;
+	private javax.swing.JButton saveButton;
 	private javax.swing.JLabel jLabel1;
 	private javax.swing.JLabel jLabel10;
 	private javax.swing.JLabel jLabel11;
@@ -518,12 +683,12 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 	private javax.swing.JLabel jLabel4;
 	private javax.swing.JLabel jLabelBUGU;
 	private javax.swing.JLabel jLabelDHEA;
-	//private javax.swing.JLabel jLabel6;
-	//private javax.swing.JLabel jLabel7;
-	//private javax.swing.JLabel jLabel8;
-	//private javax.swing.JLabel jLabel9;
+	// private javax.swing.JLabel jLabel6;
+	// private javax.swing.JLabel jLabel7;
+	// private javax.swing.JLabel jLabel8;
+	// private javax.swing.JLabel jLabel9;
 	private javax.swing.JPanel jPanel1;
-	//private javax.swing.JPanel jPanel2;
+	// private javax.swing.JPanel jPanel2;
 	private javax.swing.JPanel jPanel4;
 	private javax.swing.JToolBar jToolBar1;
 	private jmash.component.JUnitSpinner spnRapportoAcquaGrani;
@@ -545,6 +710,8 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 	private JButton btnNewButton;
 	private JComboBox<String> cmbBUGURatio;
 	private JComboBox<String> cmbLanguage;
+	private JComboBox<String> cmbBreweryProfile;
+	private JLabel lblBreweryProfile;
 	private GridBagConstraints gbc_cmbBUGU;
 	private JLabel lblLanguage;
 	private GridBagConstraints gridBagConstraints_14;
@@ -561,5 +728,33 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 	private GridBagConstraints gridBagConstraints_22;
 	private JLabel lblBiab;
 	// End of variables declaration//GEN-END:variables
-	
+
+	private void selectBreweryProfile() {
+
+		if (actionListenerOn) {
+			BreweryProfile toFind = getCurrentBreweryProfile();
+
+			Integer indexBreweryProfile = Gui.breweryProfilePickerTableModel.findFirstIndexBreweryProfile(toFind);
+			if (indexBreweryProfile != null) {
+				cmbBreweryProfile.setSelectedIndex(indexBreweryProfile + 1);
+			} else {
+				cmbBreweryProfile.setSelectedIndex(0);
+			}
+		}
+	}
+
+	public BreweryProfile getCurrentBreweryProfile() {
+		Integer volumeFinale = fldVolumeFin.getIntegerValue();
+		Integer efficienza = fldEff.getIntegerValue();
+		Double assorbimentoGraniEsausti = spnAssorbimentoGraniEsausti.getDoubleValue();
+		Double rapportoAcquaGrani = spnRapportoAcquaGrani.getDoubleValue();
+		Double percentualeEvaporazione = spnPercentualeEvaporazione.getDoubleValue();
+		Double contrazionePerRaffreddamento = spnContrazionePerRaffreddamento.getDoubleValue();
+		Double perditeNelTrub = spnLostToTrub.getDoubleValue();
+		String biab = chckbxBiab.isSelected() ? "1" : "0";
+
+		return new BreweryProfile(volumeFinale, efficienza, assorbimentoGraniEsausti, rapportoAcquaGrani,
+				percentualeEvaporazione, contrazionePerRaffreddamento, perditeNelTrub, biab);
+	}
+
 }
