@@ -120,11 +120,6 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 
 		spnContrazionePerRaffreddamento.setDoubleValue(Main.config.getContrazionePerRaffreddamento());
 
-		GridBagConstraints gbc_spnContrazionePerRaffreddamento = new GridBagConstraints();
-		gbc_spnContrazionePerRaffreddamento.insets = new Insets(0, 0, 5, 0);
-		gbc_spnContrazionePerRaffreddamento.gridx = 1;
-		gbc_spnContrazionePerRaffreddamento.gridy = 4;
-		jPanel4.add(spnContrazionePerRaffreddamento, gbc_spnContrazionePerRaffreddamento);
 		jLabel11 = new javax.swing.JLabel();
 
 		jLabel11.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -132,7 +127,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		gridBagConstraints_14 = new java.awt.GridBagConstraints();
 		gridBagConstraints_14.insets = new Insets(0, 0, 0, 5);
 		gridBagConstraints_14.gridx = 0;
-		gridBagConstraints_14.gridy = 5;
+		gridBagConstraints_14.gridy = 6;
 		gridBagConstraints_14.anchor = java.awt.GridBagConstraints.EAST;
 		jPanel4.add(jLabel11, gridBagConstraints_14);
 		spnLostToTrub = new jmash.component.JUnitSpinner("L", 57);
@@ -142,7 +137,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		spnLostToTrub.setFont(spnLostToTrub.getFont());
 		gridBagConstraints_15 = new java.awt.GridBagConstraints();
 		gridBagConstraints_15.gridx = 1;
-		gridBagConstraints_15.gridy = 5;
+		gridBagConstraints_15.gridy = 6;
 		gridBagConstraints_15.anchor = java.awt.GridBagConstraints.NORTHWEST;
 		jPanel4.add(spnLostToTrub, gridBagConstraints_15);
 
@@ -462,13 +457,21 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		jPanel4.setLayout(new java.awt.GridBagLayout());
 		jPanel4.setMinimumSize(new Dimension(550, 210));
 		jPanel4.setPreferredSize(new Dimension(550, 210));
+		
+		
+		gridBagConstraints_22 = new java.awt.GridBagConstraints();
+		gridBagConstraints_22.anchor = GridBagConstraints.EAST;
+		gridBagConstraints_22.gridx = 0;
+		gridBagConstraints_22.gridy = 3;
+		gridBagConstraints_22.fill = java.awt.GridBagConstraints.BOTH;
+		getContentPane().add(jPanel4, gridBagConstraints_22);
 
 		lblBreweryProfile = new JLabel("Profilo impianto");
 		GridBagConstraints gbc_lblProfiliImpianto = new GridBagConstraints();
 		gbc_lblProfiliImpianto.anchor = GridBagConstraints.EAST;
 		gbc_lblProfiliImpianto.insets = new Insets(0, 0, 5, 5);
 		gbc_lblProfiliImpianto.gridx = 0;
-		gbc_lblProfiliImpianto.gridy = 7;
+		gbc_lblProfiliImpianto.gridy = 0;
 		jPanel4.add(lblBreweryProfile, gbc_lblProfiliImpianto);
 
 		cmbBreweryProfile = new JComboBox<>();
@@ -479,7 +482,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		gbc_cmbProfiliImpianto.anchor = GridBagConstraints.WEST;
 		gbc_cmbProfiliImpianto.insets = new Insets(0, 0, 5, 5);
 		gbc_cmbProfiliImpianto.gridx = 1;
-		gbc_cmbProfiliImpianto.gridy = 7;
+		gbc_cmbProfiliImpianto.gridy = 0;
 		jPanel4.add(cmbBreweryProfile, gbc_cmbProfiliImpianto);
 
 		lblBiab = new JLabel("BIAB");
@@ -487,7 +490,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		gbc_lblBiab.anchor = GridBagConstraints.EAST;
 		gbc_lblBiab.insets = new Insets(0, 0, 5, 5);
 		gbc_lblBiab.gridx = 0;
-		gbc_lblBiab.gridy = 0;
+		gbc_lblBiab.gridy = 1;
 		jPanel4.add(lblBiab, gbc_lblBiab);
 
 		chckbxBiab = new JCheckBox("");
@@ -495,7 +498,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		gbc_chckbxBiab.insets = new Insets(0, 0, 5, 0);
 		gbc_chckbxBiab.anchor = GridBagConstraints.WEST;
 		gbc_chckbxBiab.gridx = 1;
-		gbc_chckbxBiab.gridy = 0;
+		gbc_chckbxBiab.gridy = 1;
 		jPanel4.add(chckbxBiab, gbc_chckbxBiab);
 		jLabel13 = new javax.swing.JLabel();
 
@@ -504,7 +507,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		gridBagConstraints_20 = new java.awt.GridBagConstraints();
 		gridBagConstraints_20.insets = new Insets(0, 0, 5, 5);
 		gridBagConstraints_20.gridx = 0;
-		gridBagConstraints_20.gridy = 1;
+		gridBagConstraints_20.gridy = 2;
 		gridBagConstraints_20.anchor = java.awt.GridBagConstraints.EAST;
 		jPanel4.add(jLabel13, gridBagConstraints_20);
 		spnAssorbimentoGraniEsausti = new JUnitSpinner("L/kg", 57);
@@ -513,7 +516,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		gbc_spnAssorbimentoGraniEsausti = new java.awt.GridBagConstraints();
 		gbc_spnAssorbimentoGraniEsausti.insets = new Insets(0, 0, 5, 0);
 		gbc_spnAssorbimentoGraniEsausti.gridx = 1;
-		gbc_spnAssorbimentoGraniEsausti.gridy = 1;
+		gbc_spnAssorbimentoGraniEsausti.gridy = 2;
 		gbc_spnAssorbimentoGraniEsausti.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		jPanel4.add(spnAssorbimentoGraniEsausti, gbc_spnAssorbimentoGraniEsausti);
 		jLabel14 = new javax.swing.JLabel();
@@ -524,22 +527,16 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		gridBagConstraints_21.anchor = GridBagConstraints.EAST;
 		gridBagConstraints_21.insets = new Insets(0, 0, 5, 5);
 		gridBagConstraints_21.gridx = 0;
-		gridBagConstraints_21.gridy = 2;
+		gridBagConstraints_21.gridy = 3;
 		jPanel4.add(jLabel14, gridBagConstraints_21);
-
-		gridBagConstraints_22 = new java.awt.GridBagConstraints();
-		gridBagConstraints_22.anchor = GridBagConstraints.EAST;
-		gridBagConstraints_22.gridx = 0;
-		gridBagConstraints_22.gridy = 3;
-		gridBagConstraints_22.fill = java.awt.GridBagConstraints.BOTH;
-		getContentPane().add(jPanel4, gridBagConstraints_22);
+		
 		spnRapportoAcquaGrani = new JUnitSpinner("L/Kg", 57);
 		spnRapportoAcquaGrani.setModel(Main.config.getRapportoAcquaGrani(), 0.0, 1000000, 0.1, "0.00", "CT.ev");
 		spnRapportoAcquaGrani.setFont(spnRapportoAcquaGrani.getFont());
 		gbc_spnRapportoAcquaGrani = new java.awt.GridBagConstraints();
 		gbc_spnRapportoAcquaGrani.insets = new Insets(0, 0, 5, 0);
 		gbc_spnRapportoAcquaGrani.gridx = 1;
-		gbc_spnRapportoAcquaGrani.gridy = 2;
+		gbc_spnRapportoAcquaGrani.gridy = 3;
 		gbc_spnRapportoAcquaGrani.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		jPanel4.add(spnRapportoAcquaGrani, gbc_spnRapportoAcquaGrani);
 
@@ -548,7 +545,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		gbc_lblPercentualeEvaporazione.anchor = GridBagConstraints.EAST;
 		gbc_lblPercentualeEvaporazione.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPercentualeEvaporazione.gridx = 0;
-		gbc_lblPercentualeEvaporazione.gridy = 3;
+		gbc_lblPercentualeEvaporazione.gridy = 4;
 		jPanel4.add(lblPercentualeEvaporazione, gbc_lblPercentualeEvaporazione);
 
 		spnPercentualeEvaporazione = new JUnitSpinner("%", 57);
@@ -556,7 +553,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		GridBagConstraints gbc_spnPercentualeEvaporazione = new GridBagConstraints();
 		gbc_spnPercentualeEvaporazione.insets = new Insets(0, 0, 5, 0);
 		gbc_spnPercentualeEvaporazione.gridx = 1;
-		gbc_spnPercentualeEvaporazione.gridy = 3;
+		gbc_spnPercentualeEvaporazione.gridy = 4;
 		jPanel4.add(spnPercentualeEvaporazione, gbc_spnPercentualeEvaporazione);
 
 		lblContrazionePerRaffreddamento = new JLabel("Contrazione per raffreddamento");
@@ -564,12 +561,16 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		gbc_lblContrazionePerRaffreddamento.insets = new Insets(0, 0, 5, 5);
 		gbc_lblContrazionePerRaffreddamento.anchor = GridBagConstraints.EAST;
 		gbc_lblContrazionePerRaffreddamento.gridx = 0;
-		gbc_lblContrazionePerRaffreddamento.gridy = 4;
+		gbc_lblContrazionePerRaffreddamento.gridy = 5;
 		jPanel4.add(lblContrazionePerRaffreddamento, gbc_lblContrazionePerRaffreddamento);
 		spnContrazionePerRaffreddamento = new JUnitSpinner("%", 57);
-		spnContrazionePerRaffreddamento.setModel(Main.config.getContrazionePerRaffreddamento(), 0.0, 100, 0.25, "0.00",
-				null);
-
+		spnContrazionePerRaffreddamento.setModel(Main.config.getContrazionePerRaffreddamento(), 0.0, 100, 0.25, "0.00", null);
+		GridBagConstraints gbc_spnContrazionePerRaffreddamento = new GridBagConstraints();
+		gbc_spnContrazionePerRaffreddamento.insets = new Insets(0, 0, 5, 0);
+		gbc_spnContrazionePerRaffreddamento.gridx = 1;
+		gbc_spnContrazionePerRaffreddamento.gridy = 5;
+		jPanel4.add(spnContrazionePerRaffreddamento, gbc_spnContrazionePerRaffreddamento);
+		
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
 
