@@ -220,6 +220,11 @@ public class BreweryProfilePickerTableModel extends PickerTableModel {
 
 		return index;
 	}
+	
+	public boolean isPresentBreweryProfile(BreweryProfile breweryProfileToFind)
+	{
+		return findFirstIndexBreweryProfile(breweryProfileToFind) != null;
+	}
 
 	public BreweryProfile findBreweryProfile(String name) {
 		BreweryProfile found = null;

@@ -96,10 +96,15 @@ public class AskSaveNewBrewingProfile extends Ask {
 	}
 
 	private void checkFields() {
-		if (StringUtils.isBlank(txtNomeProfilo.getText())) {
+		String nome = txtNomeProfilo.getText();
+		if (StringUtils.isBlank(nome)) {
 			getOkButton().setEnabled(false);
 		} else {
-			getOkButton().setEnabled(true);
+			if (Gui.breweryProfilePickerTableModel.findBreweryProfile(nome.trim()) == null) {
+				getOkButton().setEnabled(true);
+			} else {
+				getOkButton().setEnabled(false);
+			}
 		}
 	}
 

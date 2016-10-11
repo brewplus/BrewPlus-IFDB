@@ -575,8 +575,6 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 
 	private void saveConfiguration(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
 
-		
-
 		Config config = new Config();
 
 		config.setEfficienza(fldEff.getIntegerValue());
@@ -617,60 +615,49 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 			System.setProperty("http.proxyHost", config.getProxyHost());
 		if (config.getProxyPort() != null)
 			System.setProperty("http.proxyPort", config.getProxyPort());
-		
-		
-		if (cmbBreweryProfile.getSelectedIndex() == 0) {
-			saveCurrentBreweryProfile();
-		}
-		
-		
-		
-		
+
+		saveCurrentBreweryProfile();
+
 	}// GEN-LAST:event_jButton3ActionPerformed
 
 	private void saveCurrentBreweryProfile() {
 		BreweryProfile breweryProfile = getCurrentBreweryProfile();
-		// File file = new File(Main.breweryProfileXML);
-		//
-		// Document doc = new Document();
-		// Element root = breweryProfile.toXml();
-		// doc.setRootElement(root);
-		//
-		// Utils.saveXmlAsFile(doc, file, this);
-		//
-		
-		AskSaveNewBrewingProfile ask = new AskSaveNewBrewingProfile(breweryProfile, "Salvare i dati configurati anche su un nuovo profilo impianto?");
-		
-		if (ask.doAsk(this)) {
-		   
-			breweryProfile.setNome(ask.getNomeProfilo());
-			breweryProfile.setDescrizione(ask.getDescrizioneProfilo());
-			
-			Gui.breweryProfilePickerTableModel.addRow(breweryProfile);
-			cmbBreweryProfile.insertItemAt(breweryProfile.getNome(), cmbBreweryProfile.getItemCount());
-			
-			List<BreweryProfile> list = Gui.breweryProfilePickerTableModel.getRows();
-			Document doc = new Document();
-			
-			Element root = !list.isEmpty() ? new Element(((XmlAble) list.get(0)).getTag()) : new Element(breweryProfile.getTag());
-			doc.setRootElement(root);
-			for (Object o : list) {
-				if (o instanceof XmlAble) {
-					root.addContent(((XmlAble) o).toXml());
+
+		if (!Gui.breweryProfilePickerTableModel.isPresentBreweryProfile(breweryProfile)) {
+
+			AskSaveNewBrewingProfile ask = new AskSaveNewBrewingProfile(breweryProfile,
+					"Salvare i dati configurati anche su un nuovo profilo impianto?");
+
+			if (ask.doAsk(this)) {
+
+				breweryProfile.setNome(ask.getNomeProfilo());
+				breweryProfile.setDescrizione(ask.getDescrizioneProfilo());
+
+				Gui.breweryProfilePickerTableModel.addRow(breweryProfile);
+				cmbBreweryProfile.insertItemAt(breweryProfile.getNome(), cmbBreweryProfile.getItemCount());
+
+				List<BreweryProfile> list = Gui.breweryProfilePickerTableModel.getRows();
+				Document doc = new Document();
+
+				Element root = !list.isEmpty() ? new Element(((XmlAble) list.get(0)).getTag())
+						: new Element(breweryProfile.getTag());
+				doc.setRootElement(root);
+				for (Object o : list) {
+					if (o instanceof XmlAble) {
+						root.addContent(((XmlAble) o).toXml());
+					}
 				}
+				Utils.saveXmlAsFile(doc, new File(Main.breweryProfileXML), this);
+
 			}
-			Utils.saveXmlAsFile(doc, new File(Main.breweryProfileXML), this);
-			
-		}	
-		
-		
-		
+		}
+
 		selectBreweryProfile();
-//		try {
-//			reloadMethod.invoke(Main.class);
-//		} catch (Exception ex) {
-//			Utils.showException(ex, "", this);
-//		}
+		// try {
+		// reloadMethod.invoke(Main.class);
+		// } catch (Exception ex) {
+		// Utils.showException(ex, "", this);
+		// }
 
 	}
 
