@@ -42,6 +42,7 @@ public class XmlTags {
 	public static final String BIAB = "BIAB";
 	public static final String NOME = "nome";
 	public static final String NOTE = "note";
+	public static final String PRIMING = "priming";
 	// foto
 	public static final String FOTOGRAFIA = "fotografia";
 

@@ -18,9 +18,9 @@
 */
 package jmash;
 
-import java.awt.event.*;
 import java.awt.AWTException;
 import java.awt.AlphaComposite;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -28,9 +28,18 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
-import java.io.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -43,6 +52,7 @@ import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
 import javax.swing.ToolTipManager;
 import javax.swing.event.ChangeEvent;
@@ -51,6 +61,12 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
+
+import org.apache.log4j.Logger;
+import org.jdom.Document;
+import org.jdom.output.Format;
+import org.jdom.output.XMLOutputter;
+
 import jmash.component.GlassPanel;
 import jmash.component.UpDownPopupMenu;
 import jmash.imagecomponents.ImageFileView;
@@ -67,15 +83,6 @@ import jmash.tableModel.MaltTableModel;
 import jmash.tableModel.NumberFormatter;
 import jmash.tableModel.SummaryTableModel;
 import jmash.tableModel.YeastTableModel;
-
-import org.apache.log4j.Logger;
-import org.jdom.Document;
-import org.jdom.output.Format;
-import org.jdom.output.XMLOutputter;
-import java.awt.BorderLayout;
-import java.awt.image.BufferedImage;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 
 /**
  *
@@ -526,6 +533,17 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jScrollPane6 = new javax.swing.JScrollPane();
 		fldNote = new javax.swing.JEditorPane();
 		lblFermentazione = new javax.swing.JLabel();
+		
+		//Issue #33
+	    primingLabel = new javax.swing.JLabel();
+	    abvLabel = new javax.swing.JLabel();
+	    double min = 0.0;
+        double value = 0.0;
+        double max = 100.0;
+        double stepSize = 0.1;
+        SpinnerNumberModel model = new SpinnerNumberModel(value, min, max, stepSize);
+	    spinPriming = new javax.swing.JSpinner(model) ;
+	    jTextAbv = new javax.swing.JTextField() ;
 
 		hopPopup.setLabel("Seleziona");
 
@@ -1121,6 +1139,54 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
 		jPanel2.add(chkBiab, gridBagConstraints);
 
+	       // Issue #33
+        primingLabel = new javax.swing.JLabel();
+        primingLabel.setText("Priming [g/L]");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = gridBagConstraints.RELATIVE;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 20;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
+        jPanel2.add(primingLabel, gridBagConstraints);
+
+        spinPriming.setToolTipText("quantita' di priming considerando il potenziale dello zucchero");
+        spinPriming.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spinPrimingChanged(evt);
+
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = gridBagConstraints.RELATIVE;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
+        jPanel2.add(spinPriming, gridBagConstraints);
+        
+        abvLabel = new javax.swing.JLabel();
+        abvLabel.setText("ABV [% Vol]");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = gridBagConstraints.RELATIVE;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 20;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
+        jPanel2.add(abvLabel, gridBagConstraints);
+
+        jTextAbv.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jTextAbv.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = gridBagConstraints.RELATIVE;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
+        jPanel2.add(jTextAbv, gridBagConstraints);
+
+        // --- end Issue #33
+		
+		
 		jLabel12.setText("EBC");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 19;
@@ -1209,7 +1275,6 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		gridBagConstraints.gridwidth = 5;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
-//		jPanel2.add(spinVolumeBoll, gridBagConstraints);
 		jPanel2.add(spinVolumePreBoil, gridBagConstraints);
 
 
@@ -1592,6 +1657,10 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	private void spinVolumeBollStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spinVolumeBollStateChanged
 		ricettaModificata();
 	}// GEN-LAST:event_spinVolumeBollStateChanged
+	
+    private void spinPrimingChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spinVolumeBollStateChanged
+        ricettaModificata();
+    }
 
 	private void spinVolumeDiluitoStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spinVolumeDiluitoStateChanged
 		ricettaModificata();
@@ -2140,6 +2209,9 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 		this.dirty = true;
 		
+		// Issue #33
+		jTextAbv.setText(getGradiPrevisti());
+		
 	}
 	
 	private void setSaltValues(SaltType saltType) {
@@ -2244,6 +2316,13 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	private javax.swing.JTextField txtOG2;
 	private javax.swing.JTextField txtStile;
 	private JCheckBox chkBiab;
+	
+	// Issue #33
+	private javax.swing.JLabel primingLabel;
+	private javax.swing.JLabel abvLabel;
+	private javax.swing.JSpinner spinPriming;
+	private javax.swing.JTextField jTextAbv;
+	
 	// End of variables declaration//GEN-END:variables
 
 	public double getVolume() {
@@ -2421,6 +2500,13 @@ public class Ricetta extends javax.swing.JInternalFrame {
 						/ (hopTableModel.getRowCount() + maltTableModel.getRowCount()));
 			}
 		});
+		
+		// issue #33
+		if(src.getPriming() != null){
+		    spinPriming.setValue(new Double(src.getPriming()));
+		}
+		
+		
 		ricettaModificata();
 		mashDesign.mashModificato();
 	}
@@ -2453,6 +2539,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		src.setDestWater(waterPanel.getDest());
 		src.setTreatment(waterPanel.getTreatment());
 		src.setWaterNeeded(waterNeededNew2.toXml());
+		// issue #33
+		src.setPriming(spinPriming.getValue().toString());
 		return src;
 	}
 
@@ -2563,15 +2651,21 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	}
 
 	private Integer calcoloFinalGravity() {
-                DecimalFormat format=(DecimalFormat) DecimalFormat.getInstance();
-                DecimalFormatSymbols symbols=format.getDecimalFormatSymbols();
+        DecimalFormat format=(DecimalFormat) DecimalFormat.getInstance();
+        DecimalFormatSymbols symbols=format.getDecimalFormatSymbols();
 		Integer OGPrevista = Integer.parseInt(((String) this.summaryTableModel.getValueAt(0, 0)).replace(String.valueOf(symbols.getDecimalSeparator()), ""));
+
 		OGPrevista = OGPrevista - 1000;
+		LOGGER.debug("Calcolo FG - OGPrevista = " + OGPrevista);
 		Integer FGPrevista = OGPrevista;
-		if (yeastTableModel.getRows().size() > 0) {
-			Integer attenuazioneMed = (yeastTableModel.getRows().get(0).getAttenuazioneMed() == null ? 75 : new Integer(yeastTableModel.getRows().get(0).getAttenuazioneMed()));
-			FGPrevista = (OGPrevista - ((OGPrevista * attenuazioneMed) / 100));
+		Integer attenuazioneMed = 75;
+		if (yeastTableModel.getRows().size() > 0 && yeastTableModel.getRows().get(0).getAttenuazioneMed() != null) {
+		    attenuazioneMed = new Integer(yeastTableModel.getRows().get(0).getAttenuazioneMed());
+		    LOGGER.debug("Calcolo FG - Recupero Attenuazione dalla lista = " + attenuazioneMed);
 		}
+		FGPrevista = (OGPrevista - ((OGPrevista * attenuazioneMed) / 100));
+		LOGGER.debug("Calcolo FG - Attenuazione = " + attenuazioneMed);
+		LOGGER.debug("Calcolo FG - FGPrevista = " + FGPrevista);
 		return FGPrevista;
 	}
 
@@ -2581,11 +2675,23 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 	public String getGradiPrevisti() {
 		DecimalFormat df = new DecimalFormat("#.#");
-                DecimalFormat format=(DecimalFormat) DecimalFormat.getInstance();
-                DecimalFormatSymbols symbols=format.getDecimalFormatSymbols();
+        DecimalFormat format=(DecimalFormat) DecimalFormat.getInstance();
+        DecimalFormatSymbols symbols=format.getDecimalFormatSymbols();
                 
 		Integer OGPrevista = Integer.parseInt(((String) this.summaryTableModel.getValueAt(0, 0)).replace(String.valueOf(symbols.getDecimalSeparator()), "")) - 1000;
-		return df.format((OGPrevista - calcoloFinalGravity()) / 7.5) + "°C";
+		Integer FGPrevista = calcoloFinalGravity();
+
+		LOGGER.debug("OGPrevista = " + OGPrevista);
+		LOGGER.debug("FGPrevista = " + FGPrevista);
+		
+		float gradiStimati = (float) ((OGPrevista.floatValue() - FGPrevista.floatValue()) / 7.5f + (Double)spinPriming.getValue()/10.0f);
+		
+		LOGGER.debug("Gradi Stimati = " + gradiStimati);
+		StringBuilder sb = new StringBuilder("  ");
+		sb.append(df.format(gradiStimati)).append("   ");
+		
+		return sb.toString();
+
 	}
 
 	public String getOsservazioni() {
