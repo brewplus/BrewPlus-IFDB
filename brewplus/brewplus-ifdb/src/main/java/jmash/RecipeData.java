@@ -35,7 +35,7 @@ import jmash.tableModel.MaltTableModel;
 public class RecipeData {
     
     private static Logger LOGGER = Logger.getLogger(RecipeData.class);
-    private String nome, note, unitaMisura, fotografia;
+    private String nome, note, unitaMisura, fotografia, priming;
     private Double volumeBoll, volumeFin, volumeDiluito;
     private Integer efficienza, bollitura;
     private Boolean bollituraConcentrata;
@@ -78,6 +78,14 @@ public class RecipeData {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+    
+    public String getPriming() {
+        return priming;
+    }
+
+    public void setPriming(String priming) {
+        this.priming = priming;
     }
 
     public String getFotografia() {
@@ -247,10 +255,9 @@ public class RecipeData {
         root.setAttribute(new Attribute(XmlTags.NOTE, getNote()));
         // foto
         root.setAttribute(new Attribute(XmlTags.FOTOGRAFIA, "" + getFotografia()));
+        // issue #33
+        root.setAttribute(new Attribute(XmlTags.PRIMING, getPriming()));
 
-        // if(this.getStyle()!=null) {
-        // root.addContent(this.getStyle().toXml());
-        // }
         if (this.getCodiceStile() != null) {
             root.setAttribute(new Attribute(XmlTags.BJCPCOD, "" + getCodiceStile()));
         }
@@ -532,6 +539,9 @@ public class RecipeData {
             }
             if (att.getName().compareToIgnoreCase(XmlTags.NOME) == 0) {
                 setNome(att.getValue());
+            }
+            if (att.getName().compareToIgnoreCase(XmlTags.PRIMING) == 0) {
+                setPriming(att.getValue());
             }
             if (att.getName().compareToIgnoreCase(XmlTags.FOTOGRAFIA) == 0) {
                 setFotografia(att.getValue());
