@@ -304,10 +304,19 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 
 						source.setUseGypsum(useGypsum.isSelected());
 						source.setUseEpsom(useEpsom.isSelected());
-						source.setUseSale(useNaCl.isSelected());
-						source.setUseCalciumChloride(useCaCl2.isSelected());
+						source.setUseNaCl(useNaCl.isSelected());
+						source.setUseCaCl2(useCaCl2.isSelected());
 						source.setUseChalk(useChalk.isSelected());
 						source.setUseSoda(useSoda.isSelected());
+						source.setUseSlakedLime(useSlakedLime.isSelected());
+						
+						source.setUseGypsumSparge(useGypsumSparge.isSelected());
+						source.setUseEpsomSparge(useEpsomSparge.isSelected());
+						source.setUseNaClSparge(useNaClSparge.isSelected());
+						source.setUseCaCl2Sparge(useCaCl2Sparge.isSelected());
+						source.setUseChalkSparge(useChalkSparge.isSelected());
+						source.setUseSodaSparge(useSodaSparge.isSelected());
+						source.setUseSlakedLimeSparge(useSlakedLimeSparge.isSelected());
 
 						res = source.target(dest, LITRI, "", 100, L, 100);
 						setTreatment(res);
@@ -2253,6 +2262,29 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		spnLacticAcidContent.setDoubleValue(res.getLacticAcidContent());
 		spnCitrusAcid.setDoubleValue(res.getCitrusAcid());
 		spnCitrusAcidContent.setDoubleValue(res.getCitrusAcidContent());
+		
+		useGypsum.setSelected(res.getUseGypsum());
+		useGypsumSparge.setSelected(res.getUseGypsumSparge());
+		useEpsom.setSelected(res.getUseEpsom());
+		useEpsomSparge.setSelected(res.getUseEpsomSparge());
+		useCaCl2.setSelected(res.getUseCaCl2());
+		useCaCl2Sparge.setSelected(res.getUseCaCl2Sparge());
+		useNaCl.setSelected(res.getUseNaCl());
+		useNaClSparge.setSelected(res.getUseNaClSparge());
+		useChalk.setSelected(res.getUseChalk());
+		useChalkSparge.setSelected(res.getUseChalkSparge());
+		useSoda.setSelected(res.getUseSoda());
+		useSodaSparge.setSelected(res.getUseSodaSparge());
+		useSlakedLime.setSelected(res.getUseSlakedLime());
+		useSlakedLimeSparge.setSelected(res.getUseSlakedLimeSparge());
+		
+		
+		
+		for (SaltType saltType: SaltType.values())
+		{
+			toggleSalt(saltType);
+		}
+		
 
 		fireStateChanged(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, ""));
 	}
@@ -2271,6 +2303,24 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		treat.setCalciumChloride((spnCaCl2.getDoubleValue() * 1000 / Utils.litToGal(LITRI)));
 		treat.setSoda((spnSoda.getDoubleValue() * 1000 / Utils.litToGal(LITRI)));
 		treat.setChalk((spnChalk.getDoubleValue() * 1000 / Utils.litToGal(LITRI)));
+		
+		treat.setUseGypsum(useGypsum());
+		treat.setUseEpsom(useEpsom());
+		treat.setUseNaCl(useNaCl());
+		treat.setUseCaCl2(useCaCl2());
+		treat.setUseSoda(useSoda());
+		treat.setUseChalk(useChalk());
+		treat.setUseSlakedLime(useSlakedLime());
+		
+		treat.setUseGypsumSparge(useGypsumSparge());
+		treat.setUseEpsomSparge(useEpsomSparge());
+		treat.setUseNaClSparge(useNaClSparge());
+		treat.setUseCaCl2Sparge(useCaCl2Sparge());
+		treat.setUseSodaSparge(useSodaSparge());
+		treat.setUseChalkSparge(useChalkSparge());
+		treat.setUseSlakedLimeSparge(useSlakedLimeSparge());
+		
+		
 
 		treat.setSlakedLime((spnSlakedLime.getDoubleValue() * 1000 / Utils.litToGal(LITRI)));
 		treat.setAcidulatedMaltContent((spnAcidulatedMaltContent.getDoubleValue()));
@@ -2327,6 +2377,14 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		useGypsum.setEnabled(F);
 		useNaCl.setEnabled(F);
 		useSoda.setEnabled(F);
+		useSlakedLime.setEnabled(F);
+		useCaCl2Sparge.setEnabled(F);
+		useChalkSparge.setEnabled(F);
+		useEpsomSparge.setEnabled(F);
+		useGypsumSparge.setEnabled(F);
+		useNaClSparge.setEnabled(F);
+		useSodaSparge.setEnabled(F);
+		useSlakedLimeSparge.setEnabled(F);
 		btnA.setEnabled(F);
 		btnB.setEnabled(F);
 
