@@ -1211,7 +1211,7 @@ public class Gui extends javax.swing.JFrame {
 	}// GEN-LAST:event_btnUpdateActionPerformed
 
 	private void btnSaveAll17ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll17ActionPerformed
-		addFrame(new WaterNeededNew());
+		addFrame(new WaterNeeded());
 	}// GEN-LAST:event_btnSaveAll17ActionPerformed
 
 	private void btnSaveAll16ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll16ActionPerformed

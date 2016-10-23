@@ -113,8 +113,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	private boolean dirty = false;
 	public static final int dimx = 81;
 	public static final int dimy = 120;
-//	public WaterNeeded waterNeeded = new WaterNeeded();
-	public WaterNeededNew waterNeededNew2 = new WaterNeededNew();
+	public WaterNeeded waterNeeded = new WaterNeeded();
 	public WaterAdjustPanel waterPanel = null;
 	//private Gyle gyle = null;
 	private static javax.swing.ImageIcon hopsIcon = new javax.swing.ImageIcon(Ricetta.class.getResource("/jmash/images/hops.gif"));
@@ -197,7 +196,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		// scrollPanel.setViewportView(waterPanel);
 		scrollPanel.getViewport().setPreferredSize(new Dimension(0, 0));
 //		this.jTabbedPane1.add(waterNeeded.getComponent(0), Main.bundle.getString("label.waterQuantity"));
-		this.jTabbedPane1.add(waterNeededNew2.getComponent(0), Main.bundle.getString("label.waterQuantity"));
+		this.jTabbedPane1.add(waterNeeded.getComponent(0), Main.bundle.getString("label.waterQuantity"));
 		this.jTabbedPane1.add(Main.bundle.getString("label.waterQuality"), waterPanel);
 
 
@@ -327,7 +326,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 //			}
 //		});
 		
-		waterNeededNew2.addChangeListener(new ChangeListener() {
+		waterNeeded.addChangeListener(new ChangeListener() {
 
 			@Override
 			public void stateChanged(ChangeEvent e) {
@@ -1868,7 +1867,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		summary.setMineralSalts(mineralSalts);
 		summary.setBoilingTime(rec.getBollitura().toString());
 		//summary.setBoilLiters(rec.getVolumeBoll().toString());
-		summary.setBoilLiters(String.format("%.01f",(waterNeededNew2.getVolumeMostoPreBoil())));
+		summary.setBoilLiters(String.format("%.01f",(waterNeeded.getVolumeMostoPreBoil())));
 		summary.setAlcoolVolume(getGradiPrevisti());
 		summary.setEbc(String.format("%.01f",getEbc()));
 		summary.setEfficency(rec.getEfficienza() + "%");
@@ -2095,15 +2094,15 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 //		waterNeeded.setMashKg((double) maltTableModel.getGrammiMash() / 1000);
 //		waterNeeded.setBatchSize(spinVolumeFin.getVolume());
-		waterNeededNew2.setBatchSize(spinVolumeFin.getVolume());
-		waterNeededNew2.setTotGrani((double) maltTableModel.getGrammiMash() / 1000);
-		waterNeededNew2.setOriginalGravity(maltTableModel.getSG(concentrato));
-		waterNeededNew2.setBiab(isBIAB(), false);
+		waterNeeded.setBatchSize(spinVolumeFin.getVolume());
+		waterNeeded.setTotGrani((double) maltTableModel.getGrammiMash() / 1000);
+		waterNeeded.setOriginalGravity(maltTableModel.getSG(concentrato));
+		waterNeeded.setBiab(isBIAB(), false);
 		//waterNeeded.setBoilTime(getBollitura());
 		
 //		waterPanel.setTotWater(waterNeeded.getTotWater());
-		waterPanel.setTotWater(waterNeededNew2.getTotWater());
-		setVolumePreBoil(waterNeededNew2.getVolumeMostoPreBoil());
+		waterPanel.setTotWater(waterNeeded.getTotWater());
+		setVolumePreBoil(waterNeeded.getVolumeMostoPreBoil());
 		double sg = maltTableModel.getSG(concentrato);
 
 		summaryTableModel.setSG(sg);
@@ -2189,7 +2188,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		PHResult phResult = RicettaUtils.calculatePH(this);
 
 		this.summaryTableModel.setMashPH(phResult.getpH());
-		this.summaryTableModel.setSGPB((waterNeededNew2.getOGPreBoil() + 1000.0) / 1000.0);
+		this.summaryTableModel.setSGPB((waterNeeded.getOGPreBoil() + 1000.0) / 1000.0);
 		
 		this.tblSummary.updateUI();
 		this.waterPanel.setPH(phResult.getpH());
@@ -2491,7 +2490,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		if (src.getTreatment() != null)
 			waterPanel.setTreatment(src.getTreatment());
 		if (src.getWaterNeeded() != null)
-			waterNeededNew2.fromXml(src.getWaterNeeded());
+			waterNeeded.fromXml(src.getWaterNeeded());
 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -2538,7 +2537,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		src.setSourceWater(waterPanel.getSource());
 		src.setDestWater(waterPanel.getDest());
 		src.setTreatment(waterPanel.getTreatment());
-		src.setWaterNeeded(waterNeededNew2.toXml());
+		src.setWaterNeeded(waterNeeded.toXml());
 		// issue #33
 		src.setPriming(spinPriming.getValue().toString());
 		return src;
@@ -3098,8 +3097,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		T.start();
 	}
 	
-	public WaterNeededNew getWaterNeededNew2() {
-		return waterNeededNew2;
+	public WaterNeeded getWaterNeeded() {
+		return waterNeeded;
 	}
 	
 }

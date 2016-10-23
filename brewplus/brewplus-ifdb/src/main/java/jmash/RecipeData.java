@@ -195,7 +195,7 @@ public class RecipeData {
     public String getDes4Forum(Ricetta ricetta) {
     	//SGABUZEN REGNA... quando funziona tolgo questi commenti giuro!
     	double volume = getBollituraConcentrata() ? getVolumeDiluito() : getVolumeFin();
-    	double volPB = ricetta.getWaterNeededNew2().getVolumeMostoPreBoil();
+    	double volPB = ricetta.getWaterNeeded().getVolumeMostoPreBoil();
     	double OGPB = MaltTableModel.calcolaSG(getMalts(), volPB, getEfficienza());
     	double OG = MaltTableModel.calcolaSG(getMalts(), volume, getEfficienza());
         double EBC = Utils.srmToEbc(MaltTableModel.calcolaSRMMosher(getMalts(), volume));
