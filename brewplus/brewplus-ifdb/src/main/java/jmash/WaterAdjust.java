@@ -22,12 +22,14 @@ package jmash;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.border.TitledBorder;
-import jmash.tableModel.NumberFormatter;
 
 import org.apache.log4j.Logger;
 import org.jdom.Document;
 import org.jdom.Element;
+
+import jmash.tableModel.NumberFormatter;
 
 /**
  * Dati delle acque presi da http://www.unm.edu/~draper/beer/waterpro.html
@@ -1078,6 +1080,14 @@ public class WaterAdjust extends javax.swing.JInternalFrame {
 	private javax.swing.JCheckBox useGypsum;
 	private javax.swing.JCheckBox useNaCl;
 	private javax.swing.JCheckBox useSoda;
+	private javax.swing.JCheckBox useSlakedLime;
+	private javax.swing.JCheckBox useCaCl2Sparge;
+	private javax.swing.JCheckBox useChalkSparge;
+	private javax.swing.JCheckBox useEpsomSparge;
+	private javax.swing.JCheckBox useGypsumSparge;
+	private javax.swing.JCheckBox useNaClSparge;
+	private javax.swing.JCheckBox useSodaSparge;
+	private javax.swing.JCheckBox useSlakedLimeSparge;
 	// End of variables declaration//GEN-END:variables
 
 	private boolean flag = true;
@@ -1141,10 +1151,20 @@ public class WaterAdjust extends javax.swing.JInternalFrame {
 
 					source.setUseGypsum(useGypsum.isSelected());
 					source.setUseEpsom(useEpsom.isSelected());
-					source.setUseSale(useNaCl.isSelected());
-					source.setUseCalciumChloride(useCaCl2.isSelected());
+					source.setUseNaCl(useNaCl.isSelected());
+					source.setUseCaCl2(useCaCl2.isSelected());
 					source.setUseChalk(useChalk.isSelected());
 					source.setUseSoda(useSoda.isSelected());
+					source.setUseSlakedLime(useSlakedLime.isSelected());
+					
+					source.setUseGypsumSparge(useGypsumSparge.isSelected());
+					source.setUseEpsomSparge(useEpsomSparge.isSelected());
+					source.setUseNaClSparge(useNaClSparge.isSelected());
+					source.setUseCaCl2Sparge(useCaCl2Sparge.isSelected());
+					source.setUseChalkSparge(useChalkSparge.isSelected());
+					source.setUseSodaSparge(useSodaSparge.isSelected());
+					source.setUseSlakedLimeSparge(useSlakedLimeSparge.isSelected());
+					
 
 					res = source.target(dest, LITRI, "", 100, L, 100);
 

@@ -18,7 +18,7 @@ import org.jdom.Element;
 
 import jmash.component.JUnitSpinner;
 
-public class WaterNeededNew extends JInternalFrame {
+public class WaterNeeded extends JInternalFrame {
 	private static final long serialVersionUID = -5301195065823912614L;
 
 	private JPanel panelWaterNeeded;
@@ -69,7 +69,7 @@ public class WaterNeededNew extends JInternalFrame {
 	private Boolean biab = Boolean.FALSE;
 	private GridBagConstraints gridBagConstraints_1;
 
-	public WaterNeededNew() {
+	public WaterNeeded() {
 		initComponents();
 		setBorder(Utils.getDefaultBorder());
 
@@ -110,7 +110,7 @@ public class WaterNeededNew extends JInternalFrame {
 
 	}
 
-	public WaterNeededNew(double batchSize, double kg, double boilTime, double evap) {
+	public WaterNeeded(double batchSize, double kg, double boilTime, double evap) {
 		this();
 		spinnerBatchSize.setDoubleValue(batchSize);
 		spinnerGraniTotali.setDoubleValue(kg);
