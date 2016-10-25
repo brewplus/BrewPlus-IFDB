@@ -1876,9 +1876,10 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		summary.setOg(getSGPerStampa());
 		summary.setOgPreBoil(getOGPreBoil());
 		summary.setPlato(String.format("%.01f",getPPerStampa()));
-		summary.setTotalGrain(getGrammiTotali() + " gr.");
+		summary.setTotalGrain(String.format("%.03f",new Double(getGrammiTotali())/1000));
 		summary.setTotalLiters(rec.getVolumeFin().toString());
 		//summary.setRatioLitreKg(String.format("%.01f",Main.config.getLitriPerKg()));
+		summary.setMashVolume(String.format("%.01f",getGrammiTotali()*Main.config.getRapportoAcquaGrani()/1000) + "  (" + Main.config.getRapportoAcquaGrani() + " L/Kg)");
 		summary.setRatioLitreKg(String.format("%.01f",Main.config.getRapportoAcquaGrani()));
 		summaries.add(summary);
 		
@@ -2686,8 +2687,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		float gradiStimati = (float) ((OGPrevista.floatValue() - FGPrevista.floatValue()) / 7.5f + (Double)spinPriming.getValue()/10.0f);
 		
 		LOGGER.debug("Gradi Stimati = " + gradiStimati);
-		StringBuilder sb = new StringBuilder("  ");
-		sb.append(df.format(gradiStimati)).append("   ");
+		StringBuilder sb = new StringBuilder();
+		sb.append(df.format(gradiStimati)).append(" °C");
 		
 		return sb.toString();
 

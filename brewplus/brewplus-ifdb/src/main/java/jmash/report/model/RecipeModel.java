@@ -21,6 +21,7 @@ public class RecipeModel {
 	private String efficency; 
 	private String boilingTime;
 	private String ratioLitreKg;
+	private String mashVolume;
 	private List<Hop> hops;
 	private List<Malt> malts;
 	private List<Mash> steps;
@@ -134,6 +135,12 @@ public class RecipeModel {
 	}
 	public void setMineralSalts(List<MineralSalts> mineralSalts) {
 		this.mineralSalts = mineralSalts;
+	}
+	public String getMashVolume() {
+		return mashVolume;
+	}
+	public void setMashVolume(String mashVolume) {
+		this.mashVolume = mashVolume;
 	}
 	
 }

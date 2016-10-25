@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2016-10-03T09:48:00 -->
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2016-10-25T16:39:42 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ricetta" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="40e306aa-d668-437e-ba03-4266478354b9">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sommario.xml"/>
 	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
@@ -369,6 +369,9 @@
 	</field>
 	<field name="mineralSalts" class="java.util.List">
 		<fieldDescription><![CDATA[mineralSalts]]></fieldDescription>
+	</field>
+	<field name="mashVolume" class="java.lang.String">
+		<fieldDescription><![CDATA[mashVolume]]></fieldDescription>
 	</field>
 	<background>
 		<band height="801" splitType="Stretch">
@@ -1019,7 +1022,7 @@
 					<font fontName="DejaVu Serif"/>
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
-				<text><![CDATA[Acqua/Malto (L/Kg)]]></text>
+				<text><![CDATA[Acqua Mash (L)]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="4" y="178" width="101" height="13" uuid="d5b26f10-11e6-4e47-ab6e-33b3fd19ad93"/>
@@ -1037,7 +1040,7 @@
 					<font fontName="DejaVu Serif"/>
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
-				<text><![CDATA[Litri]]></text>
+				<text><![CDATA[Litri finali]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="4" y="87" width="101" height="13" uuid="f6cc862f-db42-4afd-bc04-3eeb14202026"/>
@@ -1071,7 +1074,7 @@
 					<font fontName="DejaVu Serif"/>
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
-				<text><![CDATA[Totale grani]]></text>
+				<text><![CDATA[Totale grani (Kg)]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="4" y="113" width="101" height="13" uuid="5f6ee1e6-0a7e-48e5-b732-5089cc7c0975"/>
@@ -1122,7 +1125,7 @@
 				<text><![CDATA[Efficienza]]></text>
 			</staticText>
 			<textField pattern="">
-				<reportElement x="125" y="35" width="65" height="13" uuid="7b0029f8-92c5-4d59-9a5e-dba92b3d2584"/>
+				<reportElement x="125" y="35" width="105" height="13" uuid="7b0029f8-92c5-4d59-9a5e-dba92b3d2584"/>
 				<textElement>
 					<font fontName="DejaVu Serif"/>
 					<paragraph lineSpacing="Proportional"/>
@@ -1130,7 +1133,7 @@
 				<textFieldExpression><![CDATA[$F{totalLiters}]]></textFieldExpression>
 			</textField>
 			<textField pattern="">
-				<reportElement x="125" y="48" width="65" height="13" uuid="05ce7671-0456-4644-a229-b59c5ea93f65"/>
+				<reportElement x="125" y="48" width="105" height="13" uuid="05ce7671-0456-4644-a229-b59c5ea93f65"/>
 				<textElement>
 					<font fontName="DejaVu Serif"/>
 					<paragraph lineSpacing="Proportional"/>
@@ -1138,7 +1141,7 @@
 				<textFieldExpression><![CDATA[$F{boilLiters}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="125" y="61" width="65" height="13" uuid="02fdad56-244c-4837-a888-f1ec7b7b08de"/>
+				<reportElement x="125" y="61" width="105" height="13" uuid="02fdad56-244c-4837-a888-f1ec7b7b08de"/>
 				<textElement>
 					<font fontName="DejaVu Serif"/>
 					<paragraph lineSpacing="Proportional"/>
@@ -1146,7 +1149,7 @@
 				<textFieldExpression><![CDATA[$F{totalGrain}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="125" y="100" width="65" height="13" uuid="f06a0175-0cfb-46ec-b5c6-e5d93c91bbad"/>
+				<reportElement x="125" y="100" width="105" height="13" uuid="f06a0175-0cfb-46ec-b5c6-e5d93c91bbad"/>
 				<textElement>
 					<font fontName="DejaVu Serif"/>
 					<paragraph lineSpacing="Proportional"/>
@@ -1154,7 +1157,7 @@
 				<textFieldExpression><![CDATA[$F{og}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="125" y="87" width="65" height="13" uuid="3a1c9b2d-28d8-4ed0-bc33-81cfdf2cc9ac"/>
+				<reportElement x="125" y="87" width="105" height="13" uuid="3a1c9b2d-28d8-4ed0-bc33-81cfdf2cc9ac"/>
 				<textElement>
 					<font fontName="DejaVu Serif"/>
 					<paragraph lineSpacing="Proportional"/>
@@ -1162,7 +1165,7 @@
 				<textFieldExpression><![CDATA[$F{ogPreBoil}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="125" y="74" width="65" height="13" uuid="bb3d6250-cb4b-43a6-955d-2b45477631c2"/>
+				<reportElement x="125" y="74" width="105" height="13" uuid="bb3d6250-cb4b-43a6-955d-2b45477631c2"/>
 				<textElement>
 					<font fontName="DejaVu Serif"/>
 					<paragraph lineSpacing="Proportional"/>
@@ -1170,7 +1173,7 @@
 				<textFieldExpression><![CDATA[$F{plato}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="125" y="113" width="65" height="13" uuid="92e40e96-3cb1-4372-8137-994bd24b38d7"/>
+				<reportElement x="125" y="113" width="105" height="13" uuid="92e40e96-3cb1-4372-8137-994bd24b38d7"/>
 				<textElement>
 					<font fontName="DejaVu Serif"/>
 					<paragraph lineSpacing="Proportional"/>
@@ -1178,7 +1181,7 @@
 				<textFieldExpression><![CDATA[$F{fg}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="125" y="126" width="65" height="13" uuid="d1d49990-2058-4ac2-bb62-bc376aff28b6">
+				<reportElement x="125" y="126" width="105" height="13" uuid="d1d49990-2058-4ac2-bb62-bc376aff28b6">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<textElement>
@@ -1188,7 +1191,7 @@
 				<textFieldExpression><![CDATA[$F{alcoolVolume}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement key="" x="125" y="139" width="65" height="13" uuid="cf4c3992-8a61-4606-b17f-76080cb4b6dc">
+				<reportElement key="" x="125" y="139" width="105" height="13" uuid="cf4c3992-8a61-4606-b17f-76080cb4b6dc">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<textElement>
@@ -1198,7 +1201,7 @@
 				<textFieldExpression><![CDATA[$F{ibu}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="125" y="152" width="65" height="13" uuid="0c3f23b6-146a-426b-a959-289f892c0936">
+				<reportElement x="125" y="152" width="105" height="13" uuid="0c3f23b6-146a-426b-a959-289f892c0936">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 				<textElement>
@@ -1208,7 +1211,7 @@
 				<textFieldExpression><![CDATA[$F{ebc}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="125" y="165" width="65" height="13" uuid="445ff75c-84f0-4669-bf77-d59dc258c49d"/>
+				<reportElement x="125" y="165" width="105" height="13" uuid="445ff75c-84f0-4669-bf77-d59dc258c49d"/>
 				<textElement>
 					<font fontName="DejaVu Serif"/>
 					<paragraph lineSpacing="Proportional"/>
@@ -1216,7 +1219,7 @@
 				<textFieldExpression><![CDATA[$F{efficency}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="125" y="178" width="65" height="13" uuid="95c59ea3-bb30-4e91-80e4-0d9023fdf4cd">
+				<reportElement x="125" y="178" width="105" height="13" uuid="95c59ea3-bb30-4e91-80e4-0d9023fdf4cd">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
@@ -1227,7 +1230,7 @@
 				<textFieldExpression><![CDATA[$F{boilingTime}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="280" y="35" width="67" height="13" uuid="4c0571b2-bce0-4231-be82-bdb8b659c6f1">
+				<reportElement x="280" y="35" width="100" height="13" uuid="4c0571b2-bce0-4231-be82-bdb8b659c6f1">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<textElement verticalAlignment="Bottom">
@@ -1237,7 +1240,7 @@
 				<text><![CDATA[Litri]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="280" y="48" width="67" height="13" uuid="e1a2ac1a-85a6-495d-a602-551e78250761">
+				<reportElement x="280" y="48" width="100" height="13" uuid="e1a2ac1a-85a6-495d-a602-551e78250761">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<textElement verticalAlignment="Bottom">
@@ -1247,7 +1250,7 @@
 				<text><![CDATA[Litri in bollitura]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="280" y="61" width="67" height="13" uuid="776109da-9266-4a68-9ad4-84a477ff4247"/>
+				<reportElement x="280" y="61" width="100" height="13" uuid="776109da-9266-4a68-9ad4-84a477ff4247"/>
 				<textElement verticalAlignment="Bottom">
 					<font fontName="DejaVu Serif"/>
 					<paragraph lineSpacing="Proportional"/>
@@ -1255,7 +1258,7 @@
 				<text><![CDATA[O.G.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="280" y="87" width="67" height="13" uuid="3817a640-aac0-4d47-ba6d-d0e301b48b9a"/>
+				<reportElement x="280" y="87" width="100" height="13" uuid="3817a640-aac0-4d47-ba6d-d0e301b48b9a"/>
 				<textElement verticalAlignment="Bottom">
 					<font fontName="DejaVu Serif"/>
 					<paragraph lineSpacing="Proportional"/>
@@ -1263,7 +1266,7 @@
 				<text><![CDATA[Gradi]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="280" y="100" width="67" height="13" uuid="d1bb1de4-66d5-48ea-b138-1f5fa12627cc"/>
+				<reportElement x="280" y="100" width="100" height="13" uuid="d1bb1de4-66d5-48ea-b138-1f5fa12627cc"/>
 				<textElement verticalAlignment="Bottom">
 					<font fontName="DejaVu Serif"/>
 					<paragraph lineSpacing="Proportional"/>
@@ -1271,7 +1274,7 @@
 				<text><![CDATA[Efficienza]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="280" y="74" width="67" height="13" uuid="ec4d77d4-0403-47fd-9128-8f263a77d195"/>
+				<reportElement x="280" y="74" width="100" height="13" uuid="ec4d77d4-0403-47fd-9128-8f263a77d195"/>
 				<textElement verticalAlignment="Bottom">
 					<font fontName="DejaVu Serif"/>
 					<paragraph lineSpacing="Proportional"/>
@@ -1279,7 +1282,7 @@
 				<text><![CDATA[F.G.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="280" y="113" width="106" height="13" uuid="8c5fc209-dfcc-4c69-8e8a-b2e6feba73ab"/>
+				<reportElement x="280" y="113" width="100" height="13" uuid="8c5fc209-dfcc-4c69-8e8a-b2e6feba73ab"/>
 				<textElement verticalAlignment="Bottom">
 					<font fontName="DejaVu Serif"/>
 					<paragraph lineSpacing="Proportional"/>
@@ -1481,16 +1484,12 @@
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 				</reportElement>
 			</line>
-			<textField>
-				<reportElement x="125" y="191" width="65" height="13" uuid="c652dd15-2018-44a0-868e-a18e07494b23">
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-				</reportElement>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="125" y="191" width="105" height="13" uuid="aaca9143-b1fa-410f-a176-5b963ca17a84"/>
 				<textElement>
 					<font fontName="DejaVu Serif"/>
-					<paragraph lineSpacing="Proportional"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{ratioLitreKg}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{mashVolume}]]></textFieldExpression>
 			</textField>
 			<frame>
 				<reportElement positionType="Float" mode="Opaque" x="280" y="366" width="274" height="21" backcolor="#8C9B22" uuid="18e45f70-162a-467e-b4b4-47775e724906">
