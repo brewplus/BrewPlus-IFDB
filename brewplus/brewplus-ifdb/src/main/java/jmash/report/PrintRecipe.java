@@ -69,8 +69,7 @@ public class PrintRecipe {
 			report.setProperty("net.sf.jasperreports.default.font.size", fontSize);
 			
 			// end - select available fonts
-				
-			
+	
 			LOGGER.debug("Set report parameters");
 			lParameters.put("pRecipeName", recipeName);
 		    lParameters.put("pBJCPStyle", styleName);

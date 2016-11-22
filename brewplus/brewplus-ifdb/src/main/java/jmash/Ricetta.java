@@ -2689,7 +2689,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		
 		LOGGER.debug("Gradi Stimati = " + gradiStimati);
 		StringBuilder sb = new StringBuilder();
-		sb.append(df.format(gradiStimati)).append(" °C");
+		sb.append(df.format(gradiStimati)).append(" %Vol.");
 		
 		return sb.toString();
 
