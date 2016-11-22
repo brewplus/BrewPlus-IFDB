@@ -1878,6 +1878,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		summary.setPlato(String.format("%.01f",getPPerStampa()));
 		summary.setTotalGrain(String.format("%.03f",new Double(getGrammiTotali())/1000));
 		summary.setTotalLiters(rec.getVolumeFin().toString());
+		summary.setNote(fldNote.getText());
 		//summary.setRatioLitreKg(String.format("%.01f",Main.config.getLitriPerKg()));
 		summary.setMashVolume(String.format("%.01f",getGrammiTotali()*Main.config.getRapportoAcquaGrani()/1000) + "  (" + Main.config.getRapportoAcquaGrani() + " L/Kg)");
 		summary.setRatioLitreKg(String.format("%.01f",Main.config.getRapportoAcquaGrani()));
