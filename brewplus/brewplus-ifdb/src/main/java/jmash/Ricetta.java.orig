@@ -2723,7 +2723,11 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		
 		LOGGER.debug("Gradi Stimati = " + gradiStimati);
 		StringBuilder sb = new StringBuilder();
+<<<<<<< HEAD
 		sb.append(df.format(gradiStimati)).append(" %Vol.");
+=======
+		sb.append(df.format(gradiStimati)).append("   ");
+>>>>>>> refs/heads/feature/rekhyt-lateAddiction
 		
 		return sb.toString();
 

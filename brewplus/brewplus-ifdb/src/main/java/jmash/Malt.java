@@ -41,6 +41,7 @@ public class Malt implements InventoryObject {
     private String forma;
     private Double yield;
     private String unitaMisura;
+    private boolean lateAddiction;
     public static String campiXml[] = new String[] { "Grammi", "UnitaMisura", "Nome", "Forma", "Ebc", "PotentialSG", "srm", "Origine", "DataAcquisto" };
      
     public Malt() {
@@ -222,5 +223,13 @@ public class Malt implements InventoryObject {
 
     public double getMcu(double volume) {
         return this.getSrm() * Utils.gramsToPound(this.getGrammi()) / Utils.litToGal(volume);
+    }
+
+    public boolean isLateAddiction() {
+        return lateAddiction;
+    }
+
+    public void setLateAddiction(boolean lateAddiction) {
+        this.lateAddiction = lateAddiction;
     }
 }
