@@ -225,43 +225,6 @@ public class Hop implements InventoryObject {
         return d;
     }
 
-    
-
-    // public static double calcIBUTinseth(Hop hop, double volume, double
-    // volumeDiluito, double OG) {
-    //
-    // // Tinseth
-    //// double ibu = (1.65 * Math.pow(0.00013, (this.ricetta.getGravity() - 1))
-    // *
-    //// (1 - Math.exp(-0.04 * this.boilTime)) *
-    //// this.alfaAcidi * this.grammi * 10 / (this.ricetta.getVolume() * 4.15));
-    //
-    //// mg/l of added alpha acids = decimal AA rating * grams hops * 1000
-    //// -------------------------------------
-    //// liters of wort
-    // double v2=volume;
-    //
-    // double mg = hop.getAlfaAcidi() * hop.getGrammi() * 1000 / v2;
-    //
-    //// Bigness factor = 1.65 * 0.000125^(wort gravity - 1)
-    // double BF = 1.65 * Math.pow(0.000125, (OG - 1));
-    //// Boil Time factor = 1 - e^(-0.04 * time in mins) / 4.15
-    // double BT = (1 - Math.exp(-0.04 * hop.getBoilTime())) / 4.15;
-    //// Decimal Alpha Acid Utilization = Bigness Factor * Boil Time Factor
-    // double ut = BF * BT;
-    // ut = adjustUtilizationToUseAndForm(hop, ut);
-    //
-    // double ibu = ut * mg / 100;
-    //
-    //
-    // double v3=volumeDiluito;
-    // double ibu0=ibu;
-    // ibu=ibu*v2/v3;
-    //
-    //
-    // return ibu;
-    // }
-
     public double calcIBUTinseth() {
         if (this.ricetta == null) {
             return -1;
@@ -282,7 +245,7 @@ public class Hop implements InventoryObject {
         double mg = this.alfaAcidi * this.grammi * 1000 / v2;
 
         // Bigness factor = 1.65 * 0.000125^(wort gravity - 1)
-        double BF = 1.65 * Math.pow(0.000125, (this.ricetta.getGravity() - 1));
+        double BF = 1.65 * Math.pow(0.000125, (this.ricetta.getGravityIBU() - 1));
         // Boil Time factor = 1 - e^(-0.04 * time in mins) / 4.15
         double BT = (1 - Math.exp(-0.04 * this.boilTime)) / 4.15;
         // Decimal Alpha Acid Utilization = Bigness Factor * Boil Time Factor
@@ -307,8 +270,8 @@ public class Hop implements InventoryObject {
         // %UTILIZATION = 18.11 + 13.86 * hyptan[(MINUTES - 31.32) / 18.27]
         double ut = 18.11 + 13.86 * hypTan((this.boilTime - 31.32) / 18.27);
         double ga = 0;
-        if (this.ricetta.getGravity() > 1.050) {
-            ga = (this.ricetta.getGravity() - 1.050) / 0.2;
+        if (this.ricetta.getGravityIBU() > 1.050) {
+            ga = (this.ricetta.getGravityIBU() - 1.050) / 0.2;
         }
 
         // IBU = (GRAMS OF HOPS) * %UTILIZATION * %ALPHA * 1000
@@ -334,7 +297,7 @@ public class Hop implements InventoryObject {
             return -1;
         }
 
-        double og = this.ricetta.getGravity();
+        double og = this.ricetta.getGravityIBU();
         double v1 = this.ricetta.getVolumeBoll();
         double v2 = this.ricetta.getVolume();
 

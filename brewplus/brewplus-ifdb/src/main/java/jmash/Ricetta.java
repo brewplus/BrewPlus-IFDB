@@ -120,7 +120,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	private static javax.swing.ImageIcon maltsIcon = new javax.swing.ImageIcon(Ricetta.class.getResource("/jmash/images/malts.png"));
 	private static javax.swing.ImageIcon brewsIcon = new javax.swing.ImageIcon(Ricetta.class.getResource("/jmash/images/birre.png"));
 	private static javax.swing.ImageIcon dupIcon = new javax.swing.ImageIcon(Ricetta.class.getResource("/jmash/images/editdup.png"));
-	private static javax.swing.ImageIcon bookIcon = new javax.swing.ImageIcon(Ricetta.class.getResource("/jmash/images/bookcase.png"));
+	private static javax.swing.ImageIcon bookIcon = new javax.swing.ImageIcon(Ricetta.class.getResource("/jmash/images/BJCPLogo.png"));
 	private static javax.swing.ImageIcon calIcon = new javax.swing.ImageIcon(Ricetta.class.getResource("/jmash/images/descforumpaste.png"));
 
 	public boolean isDirty() {
@@ -914,6 +914,35 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jPanel2.setPreferredSize(new java.awt.Dimension(650, 120));
 		jPanel2.setLayout(new java.awt.GridBagLayout());
 
+		// --------------------------------------------------------------------------------------
+		// First row
+		// --------------------------------------------------------------------------------------
+		
+
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel5.setText(bundle.getString("NomeRicetta")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
+        jPanel2.add(jLabel5, gridBagConstraints);
+
+        fldNome.setMinimumSize(new java.awt.Dimension(200, 24));
+        fldNome.setPreferredSize(new java.awt.Dimension(350, 24));
+        fldNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fldNomeKeyTyped(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 13;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
+        jPanel2.add(fldNome, gridBagConstraints);
+		
 		jLabel2.setText(bundle.getString("style")); // NOI18N
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 15;
@@ -934,6 +963,10 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
 		jPanel2.add(txtStile, gridBagConstraints);
 
+        // --------------------------------------------------------------------------------------
+        // Second row
+        // --------------------------------------------------------------------------------------
+		
 		jLabel3.setText("OG");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 8;
@@ -1025,15 +1058,6 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		jPanel2.add(txtIBU2, gridBagConstraints);
 
-		jLabel7.setText("Volume pre-boil");
-		gridBagConstraints = new java.awt.GridBagConstraints();
-		gridBagConstraints.gridx = 7;
-		gridBagConstraints.gridy = 2;
-		gridBagConstraints.gridwidth = 2;
-		gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-		gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
-		jPanel2.add(jLabel7, gridBagConstraints);
-
 		spinEfficienza.addChangeListener(new javax.swing.event.ChangeListener() {
 			public void stateChanged(javax.swing.event.ChangeEvent evt) {
 				spinEfficienzaStateChanged(evt);
@@ -1068,6 +1092,74 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
 		jPanel2.add(spinBollitura, gridBagConstraints);
+		
+        jLabel12.setText("EBC");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 19;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
+        jPanel2.add(jLabel12, gridBagConstraints);
+
+        txtEBC1.setBackground(new java.awt.Color(204, 204, 255));
+        txtEBC1.setEditable(false);
+        txtEBC1.setFont(new java.awt.Font("Arial", 0, 10));
+        txtEBC1.setMinimumSize(new java.awt.Dimension(38, 22));
+        txtEBC1.setPreferredSize(new java.awt.Dimension(40, 24));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 20;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        jPanel2.add(txtEBC1, gridBagConstraints);
+
+        txtEBC2.setBackground(new java.awt.Color(204, 204, 255));
+        txtEBC2.setEditable(false);
+        txtEBC2.setFont(new java.awt.Font("Arial", 0, 10));
+        txtEBC2.setMinimumSize(new java.awt.Dimension(38, 22));
+        txtEBC2.setPreferredSize(new java.awt.Dimension(40, 24));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 21;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        jPanel2.add(txtEBC2, gridBagConstraints);
+
+        btnIngredienti.setText("Visualizza BJCP");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 22;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        jPanel2.add(btnIngredienti, gridBagConstraints);
+        
+
+        jButton2.setFont(jButton2.getFont());
+        jButton2.setText(" Efficienza % ");
+        jButton2.setBorder(null);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
+        jPanel2.add(jButton2, gridBagConstraints);
+		
+        
+        // --------------------------------------------------------------------------------------
+        // Third row
+        // --------------------------------------------------------------------------------------
+
+        jLabel7.setText("Volume pre-boil");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
+        jPanel2.add(jLabel7, gridBagConstraints);
 
 		lock.setBackground(javax.swing.UIManager.getDefaults().getColor("PropSheet.setBackground"));
 		lock.setText("Adjust");
@@ -1085,30 +1177,6 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
 		jPanel2.add(lock, gridBagConstraints);
 
-		jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		jLabel5.setText(bundle.getString("NomeRicetta")); // NOI18N
-		gridBagConstraints = new java.awt.GridBagConstraints();
-		gridBagConstraints.gridx = 0;
-		gridBagConstraints.gridy = 0;
-		gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-		gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
-		jPanel2.add(jLabel5, gridBagConstraints);
-
-		fldNome.setMinimumSize(new java.awt.Dimension(200, 24));
-		fldNome.setPreferredSize(new java.awt.Dimension(350, 24));
-		fldNome.addKeyListener(new java.awt.event.KeyAdapter() {
-			public void keyTyped(java.awt.event.KeyEvent evt) {
-				fldNomeKeyTyped(evt);
-			}
-		});
-		gridBagConstraints = new java.awt.GridBagConstraints();
-		gridBagConstraints.gridx = 1;
-		gridBagConstraints.gridy = 0;
-		gridBagConstraints.gridwidth = 13;
-		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
-		jPanel2.add(fldNome, gridBagConstraints);
-
 		jLabel8.setText("Volume Cotta");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 15;
@@ -1123,7 +1191,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		chkBiab.setToolTipText("BIAB");
 		chkBiab.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		chkBiab.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-		chkBiab.setPreferredSize(new java.awt.Dimension(132, 20));
+		chkBiab.setPreferredSize(new java.awt.Dimension(50, 20));
 		chkBiab.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				chkBiabActionPerformed(evt);
@@ -1138,13 +1206,15 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
 		jPanel2.add(chkBiab, gridBagConstraints);
 
-	       // Issue #33
+	    // Issue #33
+		
+		//primingLabel.setBackground(javax.swing.UIManager.getDefaults().getColor("PropSheet.setBackground"));
         primingLabel = new javax.swing.JLabel();
         primingLabel.setText("Priming [g/L]");
+        //primingLabel.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = gridBagConstraints.RELATIVE;
+        gridBagConstraints.gridx = 23;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 20;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
         jPanel2.add(primingLabel, gridBagConstraints);
@@ -1157,7 +1227,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = gridBagConstraints.RELATIVE;
+        gridBagConstraints.gridx = 25;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -1167,9 +1237,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
         abvLabel = new javax.swing.JLabel();
         abvLabel.setText("ABV [% Vol]");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = gridBagConstraints.RELATIVE;
+        gridBagConstraints.gridx = 27;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 20;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
         jPanel2.add(abvLabel, gridBagConstraints);
@@ -1177,7 +1246,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
         jTextAbv.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jTextAbv.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = gridBagConstraints.RELATIVE;
+        gridBagConstraints.gridx = 29;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
@@ -1185,43 +1254,6 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
         // --- end Issue #33
 		
-		
-		jLabel12.setText("EBC");
-		gridBagConstraints = new java.awt.GridBagConstraints();
-		gridBagConstraints.gridx = 19;
-		gridBagConstraints.gridy = 1;
-		gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-		gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
-		jPanel2.add(jLabel12, gridBagConstraints);
-
-		txtEBC1.setBackground(new java.awt.Color(204, 204, 255));
-		txtEBC1.setEditable(false);
-		txtEBC1.setFont(new java.awt.Font("Arial", 0, 10));
-		txtEBC1.setMinimumSize(new java.awt.Dimension(38, 22));
-		txtEBC1.setPreferredSize(new java.awt.Dimension(40, 24));
-		gridBagConstraints = new java.awt.GridBagConstraints();
-		gridBagConstraints.gridx = 20;
-		gridBagConstraints.gridy = 1;
-		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		jPanel2.add(txtEBC1, gridBagConstraints);
-
-		txtEBC2.setBackground(new java.awt.Color(204, 204, 255));
-		txtEBC2.setEditable(false);
-		txtEBC2.setFont(new java.awt.Font("Arial", 0, 10));
-		txtEBC2.setMinimumSize(new java.awt.Dimension(38, 22));
-		txtEBC2.setPreferredSize(new java.awt.Dimension(40, 24));
-		gridBagConstraints = new java.awt.GridBagConstraints();
-		gridBagConstraints.gridx = 21;
-		gridBagConstraints.gridy = 1;
-		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		jPanel2.add(txtEBC2, gridBagConstraints);
-
-		btnIngredienti.setText("Visualizza BJCP");
-		gridBagConstraints = new java.awt.GridBagConstraints();
-		gridBagConstraints.gridx = 22;
-		gridBagConstraints.gridy = 1;
-		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		jPanel2.add(btnIngredienti, gridBagConstraints);
 
 		chkConcentratedBoil.setBackground(javax.swing.UIManager.getDefaults().getColor("PropSheet.setBackground"));
 		chkConcentratedBoil.setText("Bollitura concent.");
@@ -1242,26 +1274,6 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
 		jPanel2.add(chkConcentratedBoil, gridBagConstraints);
 
-		lblDil.setText("Dopo diluiz.");
-		gridBagConstraints = new java.awt.GridBagConstraints();
-		gridBagConstraints.gridx = 15;
-		gridBagConstraints.gridy = 3;
-		gridBagConstraints.gridwidth = 2;
-		gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-		gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
-		jPanel2.add(lblDil, gridBagConstraints);
-		spinVolumeDiluito.addChangeListener(new javax.swing.event.ChangeListener() {
-			public void stateChanged(javax.swing.event.ChangeEvent evt) {
-				spinVolumeDiluitoStateChanged(evt);
-			}
-		});
-		gridBagConstraints = new java.awt.GridBagConstraints();
-		gridBagConstraints.gridx = 17;
-		gridBagConstraints.gridy = 3;
-		gridBagConstraints.gridwidth = 5;
-		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
-		jPanel2.add(spinVolumeDiluito, gridBagConstraints);
 
 		spinVolumeBoll.addChangeListener(new javax.swing.event.ChangeListener() {
 			public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -1306,22 +1318,34 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
 		jPanel2.add(jButton1, gridBagConstraints);
+		
 
-		jButton2.setFont(jButton2.getFont());
-		jButton2.setText(" Efficienza % ");
-		jButton2.setBorder(null);
-		jButton2.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jButton2ActionPerformed(evt);
-			}
-		});
-		gridBagConstraints = new java.awt.GridBagConstraints();
-		gridBagConstraints.gridx = 0;
-		gridBagConstraints.gridy = 1;
-		gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-		gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-		gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
-		jPanel2.add(jButton2, gridBagConstraints);
+        // 4th row
+
+        lblDil.setText("Dopo diluiz.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 15;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
+        jPanel2.add(lblDil, gridBagConstraints);
+        
+        spinVolumeDiluito.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spinVolumeDiluitoStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 17;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
+        jPanel2.add(spinVolumeDiluito, gridBagConstraints);
+
+         // --------------------------------------
+        
 
 		jPanel12.add(jPanel2, java.awt.BorderLayout.CENTER);
 
@@ -1800,15 +1824,20 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	private void showIngredienti() {
 		if (brewStyle == null){
 			LOGGER.warn("No BJCP selected");
-			return;
-		}
+			
+	        this.brewStylePicker.startModal(this);
+	        BrewStyle type = (BrewStyle) this.brewStylePicker.getSelection();
+	        setBrewStyle(type.getNumero());
+	        
+		} else {
 
-		frmIngredienti fi = new frmIngredienti(brewStyle);
-		Main.gui.addFrame(fi);
-		Dimension desktopSize = Gui.desktopPane.getSize();
-		Dimension jInternalFrameSize = fi.getSize();
-		fi.setLocation((desktopSize.width - jInternalFrameSize.width) / 2,
-				(desktopSize.height - jInternalFrameSize.height) / 2);
+    		frmIngredienti fi = new frmIngredienti(brewStyle);
+    		Main.gui.addFrame(fi);
+    		Dimension desktopSize = Gui.desktopPane.getSize();
+    		Dimension jInternalFrameSize = fi.getSize();
+    		fi.setLocation((desktopSize.width - jInternalFrameSize.width) / 2,
+    				(desktopSize.height - jInternalFrameSize.height) / 2);
+		}
 
 	}
 
@@ -2641,6 +2670,11 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	public Double getGravity() {
 		return this.maltTableModel.getSG(false);
 	}
+	
+	// return the Gravity for IBU calculation 
+    public Double getGravityIBU() {
+        return this.maltTableModel.getSGIBU(false);
+    }
 
 	public String getSGPerStampa() {
 		return String.format("%.03f", this.maltTableModel.getSG(chkConcentratedBoil.isSelected()));
@@ -2688,7 +2722,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		
 		LOGGER.debug("Gradi Stimati = " + gradiStimati);
 		StringBuilder sb = new StringBuilder();
-		sb.append(df.format(gradiStimati)).append(" °C");
+		sb.append(df.format(gradiStimati)).append("   ");
 		
 		return sb.toString();
 
