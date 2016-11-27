@@ -258,7 +258,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 
 		spnVolume.setModel(40, 1, 999999, 1, "0.0", "WaterAdjustPanel.spnVolume");
 
-		spnCaCl2.setModel(0, 0, 999999, 1, "0.0", "WaterAdjustPanel.spnVolume");
+		spnCaCl2.setModel(0, 0, 999999, 1, "0.0", "WaterAdjustPanel.spnCaCl2");
 		spnChalk.setModel(0, 0, 999999, 1, "0.0", "WaterAdjustPanel.spnChalk");
 		spnEpsom.setModel(0, 0, 999999, 1, "0.0", "WaterAdjustPanel.spnEpsom");
 		spnGypsum.setModel(0, 0, 999999, 1, "0.0", "WaterAdjustPanel.spnGypsum");
