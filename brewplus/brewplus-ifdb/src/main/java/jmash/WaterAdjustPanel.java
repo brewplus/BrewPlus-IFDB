@@ -267,10 +267,10 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		spnSlakedLime.setModel(0, 0, 999999, 1, "0.0", "WaterAdjustPanel.spnSlakedLime");
 
 		spnLacticAcid.setModel(0, 0, 999999, 1, "0.0", "WaterAdjustPanel.spnLacticAcid");
-		spnLacticAcidContent.setModel(0, 0, 100, 1, "0.0", "WaterAdjustPanel.spnLacticAcidContent");
+		spnLacticAcidContent.setModel(88.0, 0, 100, 1, "0.0", null);
 		spnCitrusAcid.setModel(0, 0, 999999, 1, "0.0", "WaterAdjustPanel.spnCitrusAcid");
-		spnCitrusAcidContent.setModel(0, 0, 100, 1, "0.0", "WaterAdjustPanel.spnCitrusAcidContent");
-		spnAcidulatedMaltContent.setModel(0, 0, 100, 1, "0.0", "WaterAdjustPanel.spnAcidulatedMaltContent");
+		spnCitrusAcidContent.setModel(88.0, 0, 100, 1, "0.0", null);
+		spnAcidulatedMaltContent.setModel(2.0, 0, 100, 1, "0.0", null);
 
 		setBackground(getBackground().darker());
 		thread = new Thread() {
