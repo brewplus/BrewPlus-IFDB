@@ -58,11 +58,8 @@ public class JTableButtonMouseListener implements MouseListener {
 
 		button = (JButton) value;
 
-		// System.out.println("mouse clicked, row ="+row);
 		if (this.ricetta != null) {
-			// System.out.println(" this.ricetta.hopPopup.setVisible "+row);
-			// this.ricetta.hopPopup.setVisible(true);
-			// System.out.println(" this.ricetta.hopPopup.show "+row);
+
 			this.ricetta.hopPopup.show(this.__table, e.getX(), e.getY());
 		}
 		buttonEvent = SwingUtilities.convertMouseEvent(this.__table, e, button);

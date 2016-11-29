@@ -492,7 +492,7 @@ public class RecipeData {
         getYeasts().add(Ys);
 
         if (!mashComplexMode) {
-            System.out.println("multistep=" + Utils.arr2Byte(b, Y + 695));
+
             boolean multistep = (Utils.arr2Byte(b, Y + 695) == 3);
             int i = 704;
             int minute = 0, T = (int) Utils.F2C((int) b[M + 259]);

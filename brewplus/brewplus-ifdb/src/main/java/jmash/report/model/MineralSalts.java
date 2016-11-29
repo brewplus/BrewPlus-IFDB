@@ -10,6 +10,8 @@ public class MineralSalts {
 		private String calciumCarbonate ;
 		private String bakingSoda;
 		private String calciumHydroxide;
+		private String acidLactic;
+		private String acidCitric;
 		
 		public String getGypsum() {
 			return gypsum;
@@ -59,4 +61,16 @@ public class MineralSalts {
 		public void setStepName(String stepName) {
 			this.stepName = stepName;
 		}
+        public String getAcidLactic() {
+            return acidLactic;
+        }
+        public void setAcidLactic(String acidLactic) {
+            this.acidLactic = acidLactic;
+        }
+        public String getAcidCitric() {
+            return acidCitric;
+        }
+        public void setAcidCitric(String acidCitric) {
+            this.acidCitric = acidCitric;
+        }
 	}

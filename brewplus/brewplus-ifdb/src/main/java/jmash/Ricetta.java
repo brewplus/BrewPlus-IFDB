@@ -1861,17 +1861,21 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		mineralSaltMash.setCalciumCarbonate(String.format("%.01f",(waterPanel.getChalkMash())));	//Carbonato di calcio
 		mineralSaltMash.setBakingSoda(String.format("%.01f",(waterPanel.getSodaMash())));		//Bicarbonato di sodio
 		mineralSaltMash.setCalciumHydroxide(String.format("%.01f",(waterPanel.getSlakedLimeMash()))); //Idrossido di calcio
+		mineralSaltMash.setAcidLactic(String.format("%.01f",(waterPanel.getLacticAcid())));
+		mineralSaltMash.setAcidCitric(String.format("%.01f",(waterPanel.getCitrusAcid())));
 		mineralSalts.add(mineralSaltMash);
-		MineralSalts mineralSaltSpage = new MineralSalts();
-		mineralSaltSpage.setStepName("Sparge");
-		mineralSaltSpage.setGypsum(String.format("%.01f",waterPanel.getGypsumSparge()));
-		mineralSaltSpage.setEpsom(String.format("%.01f",(waterPanel.getEpsomSparge())));
-		mineralSaltSpage.setCalciumChloride(String.format("%.01f",(waterPanel.getCaCl2Sparge())));
-		mineralSaltSpage.setSodiumChloride(String.format("%.01f",(waterPanel.getNaClSparge())));
-		mineralSaltSpage.setCalciumCarbonate(String.format("%.01f",(waterPanel.getChalkSparge())));
-		mineralSaltSpage.setBakingSoda(String.format("%.01f",(waterPanel.getSodaSparge())));
-		mineralSaltSpage.setCalciumHydroxide(String.format("%.01f",(waterPanel.getSlakedLimeSparge())));
-		mineralSalts.add(mineralSaltSpage);
+		MineralSalts mineralSaltSparge = new MineralSalts();
+		mineralSaltSparge.setStepName("Sparge");
+		mineralSaltSparge.setGypsum(String.format("%.01f",waterPanel.getGypsumSparge()));
+		mineralSaltSparge.setEpsom(String.format("%.01f",(waterPanel.getEpsomSparge())));
+		mineralSaltSparge.setCalciumChloride(String.format("%.01f",(waterPanel.getCaCl2Sparge())));
+		mineralSaltSparge.setSodiumChloride(String.format("%.01f",(waterPanel.getNaClSparge())));
+		mineralSaltSparge.setCalciumCarbonate(String.format("%.01f",(waterPanel.getChalkSparge())));
+		mineralSaltSparge.setBakingSoda(String.format("%.01f",(waterPanel.getSodaSparge())));
+		mineralSaltSparge.setCalciumHydroxide(String.format("%.01f",(waterPanel.getSlakedLimeSparge())));
+		mineralSaltSparge.setAcidLactic("-");
+		mineralSaltSparge.setAcidCitric("-");
+		mineralSalts.add(mineralSaltSparge);
 		MineralSalts mineralSaltTot = new MineralSalts();
 		mineralSaltTot.setStepName("Totale Sali");
 		mineralSaltTot.setGypsum(String.format("%.01f",waterPanel.getGypsum()));
@@ -1881,6 +1885,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		mineralSaltTot.setCalciumCarbonate(String.format("%.01f",(waterPanel.getChalk())));
 		mineralSaltTot.setBakingSoda(String.format("%.01f",(waterPanel.getSoda())));
 		mineralSaltTot.setCalciumHydroxide(String.format("%.01f",(waterPanel.getSlakedLime())));
+		mineralSaltTot.setAcidLactic(String.format("%.01f",(waterPanel.getLacticAcid())));
+		mineralSaltTot.setAcidCitric(String.format("%.01f",(waterPanel.getCitrusAcid())));
 		mineralSalts.add(mineralSaltTot);
 		summary.setMineralSalts(mineralSalts);
 		summary.setBoilingTime(rec.getBollitura().toString());
@@ -1897,8 +1903,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		summary.setTotalGrain(String.format("%.03f",new Double(getGrammiTotali())/1000));
 		summary.setTotalLiters(rec.getVolumeFin().toString());
 		summary.setNote(fldNote.getText());
-		//summary.setRatioLitreKg(String.format("%.01f",Main.config.getLitriPerKg()));
 		summary.setMashVolume(String.format("%.01f",getGrammiTotali()*Main.config.getRapportoAcquaGrani()/1000) + "  (" + Main.config.getRapportoAcquaGrani() + " L/Kg)");
+		summary.setSpargeVolume(String.format("%.01f",waterNeeded.getSpargeVolume()));
 		summary.setRatioLitreKg(String.format("%.01f",Main.config.getRapportoAcquaGrani()));
 		summaries.add(summary);
 		
