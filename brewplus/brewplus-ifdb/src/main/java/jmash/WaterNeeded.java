@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 
 import javax.swing.JCheckBox;
 import javax.swing.JInternalFrame;
@@ -68,7 +69,9 @@ public class WaterNeeded extends JInternalFrame {
 
 	private Boolean biab = Boolean.FALSE;
 	private GridBagConstraints gridBagConstraints_1;
-
+	// OriginalGravity without late addiction fermentables
+	private BigDecimal OriginalGravityIBU = new BigDecimal(0);
+	
 	public WaterNeeded() {
 		initComponents();
 		setBorder(Utils.getDefaultBorder());
@@ -728,7 +731,8 @@ public class WaterNeeded extends JInternalFrame {
 		double volumeRealeInFermentaore = volumePostRaffreddamento - perditeNelTrub;
 		double volumePostBoil = volumePostRaffreddamento * (1.0 + (contrazioneRaffreddamento / 100.0));
 		double volumeMostoPreBoil = volumePostBoil * (1.0 + (percentualeEvaporazione / 100.0));
-		double ogPreBoil = (batchSize * originalGravity) / volumeMostoPreBoil;
+		// fixed to update OG Preboil without late addiction
+		double ogPreBoil = (batchSize * OriginalGravityIBU.intValue()) / volumeMostoPreBoil;
 		double perditaContrazione = volumePostBoil * (contrazioneRaffreddamento / 100.0);
 		double perditaEvaporazione = volumeMostoPreBoil * (percentualeEvaporazione / 100.0);
 
@@ -909,5 +913,13 @@ public class WaterNeeded extends JInternalFrame {
 		calcolaQuantitaAcqua(fireEvent);
 		
 	}
+
+    public BigDecimal getOriginalGravityIBU() {
+        return OriginalGravityIBU;
+    }
+
+    public void setOriginalGravityIBU(BigDecimal originalGravityIBU) {
+        OriginalGravityIBU = originalGravityIBU;
+    }
 
 }

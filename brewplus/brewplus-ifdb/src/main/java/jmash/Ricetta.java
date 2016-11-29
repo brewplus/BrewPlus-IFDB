@@ -35,6 +35,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
@@ -115,7 +116,6 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	public static final int dimy = 120;
 	public WaterNeeded waterNeeded = new WaterNeeded();
 	public WaterAdjustPanel waterPanel = null;
-	//private Gyle gyle = null;
 	private static javax.swing.ImageIcon hopsIcon = new javax.swing.ImageIcon(Ricetta.class.getResource("/jmash/images/hops.gif"));
 	private static javax.swing.ImageIcon maltsIcon = new javax.swing.ImageIcon(Ricetta.class.getResource("/jmash/images/malts.png"));
 	private static javax.swing.ImageIcon brewsIcon = new javax.swing.ImageIcon(Ricetta.class.getResource("/jmash/images/birre.png"));
@@ -195,7 +195,6 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		JScrollPane scrollPanel = new JScrollPane();
 		// scrollPanel.setViewportView(waterPanel);
 		scrollPanel.getViewport().setPreferredSize(new Dimension(0, 0));
-//		this.jTabbedPane1.add(waterNeeded.getComponent(0), Main.bundle.getString("label.waterQuantity"));
 		this.jTabbedPane1.add(waterNeeded.getComponent(0), Main.bundle.getString("label.waterQuantity"));
 		this.jTabbedPane1.add(Main.bundle.getString("label.waterQuality"), waterPanel);
 
@@ -253,6 +252,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		tblMalts.getColumnModel().getColumn(1).setPreferredWidth(128);
 		tblHops.getColumnModel().getColumn(1).setPreferredWidth(128);
 		tblMalts.getColumnModel().getColumn(0).setPreferredWidth(32);
+		tblMalts.getColumnModel().getColumn(7).setPreferredWidth(32);
 
 		thisRicetta.setClosable(true);
 		thisRicetta.setIconifiable(true);
@@ -314,17 +314,6 @@ public class Ricetta extends javax.swing.JInternalFrame {
 				return (JLabel) Ricetta.this.tblMalts.getValueAt(markedRow, 0);
 			}
 		});
-
-	
-//		waterNeeded.addChangeListener(new ChangeListener() {
-//
-//			@Override
-//			public void stateChanged(ChangeEvent e) {
-//				LOGGER.debug("waterNeeded changed");
-//				ricettaModificata();
-//
-//			}
-//		});
 		
 		waterNeeded.addChangeListener(new ChangeListener() {
 
@@ -2123,15 +2112,14 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		summaryTableModel.setTotL(hopTableModel.getGrammi());
 		summaryTableModel.setTotG(maltTableModel.getGrammi());
 
-//		waterNeeded.setMashKg((double) maltTableModel.getGrammiMash() / 1000);
-//		waterNeeded.setBatchSize(spinVolumeFin.getVolume());
+
 		waterNeeded.setBatchSize(spinVolumeFin.getVolume());
 		waterNeeded.setTotGrani((double) maltTableModel.getGrammiMash() / 1000);
 		waterNeeded.setOriginalGravity(maltTableModel.getSG(concentrato));
+		// update OG preBoil
+		waterNeeded.setOriginalGravityIBU(new BigDecimal((maltTableModel.getSGIBU(concentrato)-1)*1000));
 		waterNeeded.setBiab(isBIAB(), false);
-		//waterNeeded.setBoilTime(getBollitura());
 		
-//		waterPanel.setTotWater(waterNeeded.getTotWater());
 		waterPanel.setTotWater(waterNeeded.getTotWater());
 		setVolumePreBoil(waterNeeded.getVolumeMostoPreBoil());
 		double sg = maltTableModel.getSG(concentrato);
@@ -2596,6 +2584,26 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 		return file;
 	}
+	
+    public File saveRicettaPID() {
+        if (this.file == null) {
+            file = Utils.pickFileToSavePID(this, (String) Main.getFromCache("recipe.dir", Main.recipeDir));
+        }
+        if (this.file == null)
+            return null;
+
+        LOGGER.error("TO DO ");
+
+        String pidFormat = toRecipeData().toPID();
+        
+        
+        Utils.saveRecipePIDToFile(pidFormat, this.file, this);
+//
+//        setTitle(this.file.getName());
+//        this.dirty = false;
+
+        return file;
+    }
 
 	public void read(File file) {
 		try {
@@ -2691,16 +2699,16 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		Integer OGPrevista = Integer.parseInt(((String) this.summaryTableModel.getValueAt(0, 0)).replace(String.valueOf(symbols.getDecimalSeparator()), ""));
 
 		OGPrevista = OGPrevista - 1000;
-		LOGGER.debug("Calcolo FG - OGPrevista = " + OGPrevista);
+		//LOGGER.debug("Calcolo FG - OGPrevista = " + OGPrevista);
 		Integer FGPrevista = OGPrevista;
 		Integer attenuazioneMed = 75;
 		if (yeastTableModel.getRows().size() > 0 && yeastTableModel.getRows().get(0).getAttenuazioneMed() != null) {
 		    attenuazioneMed = new Integer(yeastTableModel.getRows().get(0).getAttenuazioneMed());
-		    LOGGER.debug("Calcolo FG - Recupero Attenuazione dalla lista = " + attenuazioneMed);
+		    //LOGGER.debug("Calcolo FG - Recupero Attenuazione dalla lista = " + attenuazioneMed);
 		}
 		FGPrevista = (OGPrevista - ((OGPrevista * attenuazioneMed) / 100));
-		LOGGER.debug("Calcolo FG - Attenuazione = " + attenuazioneMed);
-		LOGGER.debug("Calcolo FG - FGPrevista = " + FGPrevista);
+		//LOGGER.debug("Calcolo FG - Attenuazione = " + attenuazioneMed);
+		//LOGGER.debug("Calcolo FG - FGPrevista = " + FGPrevista);
 		return FGPrevista;
 	}
 
@@ -2716,14 +2724,14 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		Integer OGPrevista = Integer.parseInt(((String) this.summaryTableModel.getValueAt(0, 0)).replace(String.valueOf(symbols.getDecimalSeparator()), "")) - 1000;
 		Integer FGPrevista = calcoloFinalGravity();
 
-		LOGGER.debug("OGPrevista = " + OGPrevista);
-		LOGGER.debug("FGPrevista = " + FGPrevista);
+		//LOGGER.debug("OGPrevista = " + OGPrevista);
+		//LOGGER.debug("FGPrevista = " + FGPrevista);
 		
 		float gradiStimati = (float) ((OGPrevista.floatValue() - FGPrevista.floatValue()) / 7.5f + (Double)spinPriming.getValue()/10.0f);
 		
-		LOGGER.debug("Gradi Stimati = " + gradiStimati);
+		//LOGGER.debug("Gradi Stimati = " + gradiStimati);
 		StringBuilder sb = new StringBuilder();
-		sb.append(df.format(gradiStimati)).append(" %Vol.");
+		sb.append(df.format(gradiStimati));
 		
 		return sb.toString();
 

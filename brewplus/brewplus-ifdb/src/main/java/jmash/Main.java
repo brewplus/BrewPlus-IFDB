@@ -882,12 +882,10 @@ public class Main {
 		}
 		doc.setRootElement(root);
 		XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
-		//String xml = outputter.outputString(doc);
 		try {
 			FileWriter writer = new FileWriter("cache.xml");
 			outputter.output(doc, writer);
 			writer.close();
-			// System.out.println(xml);
 		} catch (IOException e) {
 		}
 	}

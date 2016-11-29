@@ -626,6 +626,21 @@ public class Gui extends javax.swing.JFrame {
 			}
 		});
 		toolbar.add(btnSaveAll16);
+		
+		// ADD export 2 PID feature
+		
+		btnExport2PID = new javax.swing.JButton();
+		btnExport2PID.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/arduinouno01.png"))); // NOI18N
+		btnExport2PID.setToolTipText("Export to PID");
+		btnExport2PID.setMaximumSize(new java.awt.Dimension(37, 35));
+		btnExport2PID.setMinimumSize(new java.awt.Dimension(37, 35));
+		btnExport2PID.setPreferredSize(new java.awt.Dimension(37, 35));
+		btnExport2PID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExport2PIDActionPerformed(evt);
+            }
+        });
+        toolbar.add(btnExport2PID);
 
 //		btnGuida = new JButton();
 //		btnGuida.addActionListener(new ActionListener() {
@@ -1401,6 +1416,18 @@ public class Gui extends javax.swing.JFrame {
 			ed.save();
 		}
 	}// GEN-LAST:event_btnSaveActionPerformed
+	
+	private void btnExport2PIDActionPerformed(java.awt.event.ActionEvent evt) {
+	    
+        if (this.desktop.getSelectedFrame() instanceof Ricetta) {
+            Ricetta ed = (Ricetta) this.desktop.getSelectedFrame();
+            ed.nullFile();
+            File file = ed.saveRicettaPID();
+            Main.putIntoCache("recipe.dir", file.getAbsolutePath());
+            addLastOpenedFile(file);
+        }
+	    
+	}
 
 	private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnNewActionPerformed
 		nuovaRicetta(new Ricetta());
@@ -1709,4 +1736,6 @@ public class Gui extends javax.swing.JFrame {
 	private JMenuItem menuItemDelete;
 	private JSeparator separator_5;
 	private JLabel lblStatus;
+	
+	private javax.swing.JButton btnExport2PID;
 }

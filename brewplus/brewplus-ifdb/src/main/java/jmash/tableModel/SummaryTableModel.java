@@ -29,7 +29,7 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
      */
     private static final long serialVersionUID = -5667189467722852137L;
     private Ricetta ricetta;
-    private static final String[] cN = new String[] { "OG", "Plato", "OG pre-Boll", "°P pre-Boll", "Tinseth", "Rager",
+    private static final String[] cN = new String[] { "OG", "Plato", "OG pre-Boil", "°P pre-Boil", "Tinseth", "Rager",
             "Daniels", "BU/GU", "Tot. Grani", "Tot. Luppoli", "Mash pH"};
 
     public SummaryTableModel(Ricetta ricetta) {
