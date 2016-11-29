@@ -50,6 +50,7 @@ public class MaltType implements XmlAble, Comparable<MaltType> {
 	private String caratteristiche;
 	private String forma;
 	private Double yield;
+	private boolean lateAddiction;
 
 	private String ADD_AFTER_BOIL;
 	private String needMash;
@@ -268,4 +269,12 @@ public class MaltType implements XmlAble, Comparable<MaltType> {
 	public int compareTo(MaltType o) {
 		return nome.compareToIgnoreCase(o.getNome());
 	}
+
+    public boolean getLateAddiction() {
+        return lateAddiction;
+    }
+
+    public void setLateAddiction(boolean lateAddiction) {
+        this.lateAddiction = lateAddiction;
+    }
 }

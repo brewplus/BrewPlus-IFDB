@@ -41,8 +41,8 @@ public class Malt implements InventoryObject {
     private String forma;
     private Double yield;
     private String unitaMisura;
-    private boolean lateAddiction;
-    public static String campiXml[] = new String[] { "Grammi", "UnitaMisura", "Nome", "Forma", "Ebc", "PotentialSG", "srm", "Origine", "DataAcquisto" };
+    private Boolean lateAddiction;
+    public static String campiXml[] = new String[] { "Grammi", "UnitaMisura", "Nome", "Forma", "Ebc", "PotentialSG", "srm", "Origine", "DataAcquisto", "lateAddiction" };
      
     public Malt() {
         this.grammi = 000.0;
@@ -51,6 +51,7 @@ public class Malt implements InventoryObject {
         this.nome = "Innominato";
         this.forma = "Grani";
         this.unitaMisura = "grammi";
+        this.lateAddiction = false;
     }
 
     public Malt(Ricetta ricetta) {
@@ -67,6 +68,7 @@ public class Malt implements InventoryObject {
         this.ebc = type.getEbc();
         this.forma = type.getForma();
         this.yield = type.getYield();
+        this.lateAddiction = type.getLateAddiction();
     }
 
     public Malt(MaltType type) {
@@ -77,6 +79,7 @@ public class Malt implements InventoryObject {
         this.ebc = type.getEbc();
         this.forma = type.getForma();
         this.yield = type.getYield();
+        this.lateAddiction = type.getLateAddiction();
     }
     
      public void setRicetta(Ricetta ricetta) {
@@ -225,11 +228,11 @@ public class Malt implements InventoryObject {
         return this.getSrm() * Utils.gramsToPound(this.getGrammi()) / Utils.litToGal(volume);
     }
 
-    public boolean isLateAddiction() {
+    public Boolean getLateAddiction() {
         return lateAddiction;
     }
 
-    public void setLateAddiction(boolean lateAddiction) {
+    public void setLateAddiction(Boolean lateAddiction) {
         this.lateAddiction = lateAddiction;
     }
 }

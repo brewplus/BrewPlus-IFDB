@@ -42,8 +42,8 @@ public class MaltTableModel extends GenericTableModel<Malt> {
     private static final long serialVersionUID = -1437528549102631806L;
     private static final Logger LOGGER = Logger.getLogger(MaltTableModel.class);
     Ricetta ricetta;
-    private static String[] maltColumnNames = new String[] { "", "Malti e zuccheri", "Q.tà", "U.mis.", "%", "Pot. SG",
-            "Forma", "Colore EBC", "Colore SRM", "Late Add" };
+    private static String[] maltColumnNames = new String[] { "", "Malti e zuccheri", "Quantita'", "U.mis.", "%", "Pot. SG",
+            "Forma", "Colore EBC", "Colore SRM", "Late Addiction" };
 
     public MaltTableModel(Ricetta ricetta) {
         this.ricetta = ricetta;
@@ -79,8 +79,7 @@ public class MaltTableModel extends GenericTableModel<Malt> {
             case 8:
                 return NumberFormatter.format01(m.getSrm());
             case 9:
-                System.out.println("Is Late = " + m.getNome() + " - " + m.isLateAddiction());
-                return m.isLateAddiction();
+                return m.getLateAddiction();
             case 1:
                 return m.getNome();
             default:
@@ -182,7 +181,7 @@ public class MaltTableModel extends GenericTableModel<Malt> {
         double sg = 1;
         double partialSg = 0;
         int flagPot = Main.config.getPotLibGal();
-        LOGGER.debug("flagPot = " + Main.config.getPotLibGal());
+        //LOGGER.debug("flagPot = " + Main.config.getPotLibGal());
         if (malts != null)
             for (Malt m : malts) {
                 double r = 1;
@@ -194,13 +193,13 @@ public class MaltTableModel extends GenericTableModel<Malt> {
                     partialSg = r * ((double) m.getGrammi() / 1000) * ((double) m.getPotentialSG() - 1) * (10 / volume);
                     if ( flagPot == 1) {
                         partialSg *= (0.835);
-                        LOGGER.debug("Rescaling misurement by 0.835");
+                        //LOGGER.debug("Rescaling misurement by 0.835");
                     } 
                     sg += partialSg;
-                    LOGGER.debug("Partial Sg for malt [" + m.getNome() + " - " + m.getPotentialSG() + "] = " + partialSg + " / " + sg);
+                    //LOGGER.debug("Partial Sg for malt [" + m.getNome() + " - " + m.getPotentialSG() + "] = " + partialSg + " / " + sg);
                 }
             }
-        LOGGER.debug("Gravity (total) = " + sg);
+        //LOGGER.debug("Gravity (total) = " + sg);
         return sg;
     }
     
@@ -209,10 +208,10 @@ public class MaltTableModel extends GenericTableModel<Malt> {
         double sg = 1;
         double partialSg = 0;
         int flagPot = Main.config.getPotLibGal();
-        LOGGER.debug("flagPot = " + Main.config.getPotLibGal());
+        //LOGGER.debug("flagPot = " + Main.config.getPotLibGal());
         if (malts != null)
             for (Malt m : malts) {
-                if(!m.isLateAddiction()){
+                if(!m.getLateAddiction()){
                     double r = 1;
                     if (m.isMashed()) {
                         r = ((double) efficienza / 100);
@@ -222,14 +221,14 @@ public class MaltTableModel extends GenericTableModel<Malt> {
                         partialSg = r * ((double) m.getGrammi() / 1000) * ((double) m.getPotentialSG() - 1) * (10 / volume);
                         if ( flagPot == 1) {
                             partialSg *= (0.835);
-                            LOGGER.debug("Rescaling misurement by 0.835");
+                            //LOGGER.debug("Rescaling misurement by 0.835");
                         } 
                         sg += partialSg;
-                        LOGGER.debug("Partial Sg for malt [" + m.getNome() + " - " + m.getPotentialSG() + "] = " + partialSg + " / " + sg);
+                        //LOGGER.debug("Partial Sg for malt [" + m.getNome() + " - " + m.getPotentialSG() + "] = " + partialSg + " / " + sg);
                     }
                 }
             }
-        LOGGER.debug("Gravity (for IBU) = " + sg);
+        //LOGGER.debug("Gravity (for IBU) = " + sg);
         return sg;
     }
 

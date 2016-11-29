@@ -35,6 +35,7 @@ import jmash.tableModel.MaltTableModel;
 public class RecipeData {
     
     private static Logger LOGGER = Logger.getLogger(RecipeData.class);
+    private static final String SEPARATOR = "\n";
     private String nome, note, unitaMisura, fotografia, priming;
     private Double volumeBoll, volumeFin, volumeDiluito;
     private Integer efficienza, bollitura;
@@ -196,7 +197,7 @@ public class RecipeData {
     	//SGABUZEN REGNA... quando funziona tolgo questi commenti giuro!
     	double volume = getBollituraConcentrata() ? getVolumeDiluito() : getVolumeFin();
     	double volPB = ricetta.getWaterNeeded().getVolumeMostoPreBoil();
-    	double OGPB = MaltTableModel.calcolaSG(getMalts(), volPB, getEfficienza());
+    	double OGPB = MaltTableModel.calcolaSGIBU(getMalts(), volPB, getEfficienza());
     	double OG = MaltTableModel.calcolaSG(getMalts(), volume, getEfficienza());
         double EBC = Utils.srmToEbc(MaltTableModel.calcolaSRMMosher(getMalts(), volume));
         double IBU = HopTableModel.getIBUTinseth(getHops(), getVolumeFin(), getVolumeDiluito(), OG);
@@ -206,10 +207,6 @@ public class RecipeData {
     	S += String.format("Volume cotta: %.1f litri; \n", volume);
     	S += String.format("Volume pre-boil: %.1f litri;\nOG pre-boil: %.03f;\n", volPB, OGPB);
         S += "Efficienza: " + getEfficienza() + "%; \n" + "Bollitura: " + getBollitura() + " min.; \n\n";
-        
-        // if(this.getCodiceStile()!=null) {
-        // root.addContent(this.getCodiceStile().toXml());
-        // }
         
         if (getMalts() != null && malts.size() > 0) {
             S += "Malti:\n";
@@ -311,6 +308,68 @@ public class RecipeData {
         Element root = getXmlRoot();
         doc.setRootElement(root);
         return doc;
+    }
+    
+    public String toPID() {
+        StringBuffer sb = new StringBuffer();
+        // File Type
+        sb.append("TYP:RE").append(SEPARATOR);
+        // Recipe Name
+        sb.append("REN:").append(this.nome.length() == 0 ? "NO NAME" : this.nome).append(SEPARATOR);
+        // Boil Time
+        sb.append("CTT:").append(this.bollitura).append(SEPARATOR);
+        
+        // Mash steps
+        List<MashStep> listMashStep = this.getInfusionSteps();
+        int size = listMashStep.size();
+        if(size < 2 || size >=8 ){
+            LOGGER.error("Number of steps must be grater than 2 and lesser than 8 ");
+        } else {
+            MashStep mashIn = listMashStep.get(0);
+            sb.append("N00:").append("Mash-IN").append(SEPARATOR);
+            sb.append("S00:").append(mashIn.getEndTemp()).append(SEPARATOR);
+            sb.append("T00:").append(mashIn.getLength()).append(SEPARATOR);
+            
+            int j = 1;
+            for(j = 1; j < listMashStep.size() - 1; j++){
+                MashStep step = listMashStep.get(j);
+                sb.append("N0").append(j).append(":").append(step.getNome()).append(SEPARATOR);
+                sb.append("S0").append(j).append(":").append(step.getEndTemp()).append(SEPARATOR);
+                sb.append("T0").append(j).append(":").append(step.getLength()).append(SEPARATOR);
+            }
+            
+            for(int k = j; k < 7; k++){
+                sb.append("N0").append(k).append(":0").append(SEPARATOR);
+                sb.append("S0").append(k).append(":0").append(SEPARATOR);
+                sb.append("T0").append(k).append(":0").append(SEPARATOR);
+            }
+            
+            MashStep mashOut = listMashStep.get(size-1);
+            sb.append("N07:").append("Mash-OUT").append(SEPARATOR);
+            sb.append("S07:").append(mashOut.getEndTemp()).append(SEPARATOR);
+            sb.append("T07:").append(mashOut.getLength()).append(SEPARATOR);
+            
+        }
+
+        
+        // Hop 
+        List<Hop> hopList = this.getHops();
+        int i = 0;
+        for(Hop hop : hopList){
+            if(hop.getBoilTime().intValue()>0 || !hop.getUso().equalsIgnoreCase("Dry")){
+                sb.append("H0").append(i).append(":").append(hop.getNome()).append(SEPARATOR);
+                sb.append("M0").append(i).append(":").append(hop.getGrammi()).append(SEPARATOR);
+                sb.append("B0").append(i).append(":").append(hop.getBoilTime() == 0 ? 1 : hop.getBoilTime()).append(SEPARATOR);
+                i++;
+                if(i>=8 ){
+                    LOGGER.error("Too many hop into the recipe");
+                }
+            }
+        }
+        
+        
+        return sb.toString();
+        
     }
 
     public Integer getBollitura() {
@@ -718,4 +777,5 @@ public class RecipeData {
     public void setBiab(Boolean biab) {
 		this.biab = biab;
 	}
+
 }
