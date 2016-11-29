@@ -38,7 +38,7 @@ public class HopTableModel extends GenericTableModel<Hop> {
 	 */
 	private static final long serialVersionUID = -54392409816219092L;
 	Ricetta ricetta;
-	private static String[] hopColumnNames = new String[] { "", "Nome", "Q.tà", "U.mis.", "Forma", "Alfa A.",
+	private static String[] hopColumnNames = new String[] { "", "Nome", "Q.tà", "Un.mis.", "Forma", "Alfa A.",
 			"Bollitura", "Uso", "Tinseth", "Rager", "Daniels", "" };
 
 	public HopTableModel(Ricetta ric) {

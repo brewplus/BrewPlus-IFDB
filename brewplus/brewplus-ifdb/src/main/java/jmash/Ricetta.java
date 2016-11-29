@@ -631,7 +631,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		btnAdd9.setPreferredSize(new java.awt.Dimension(36, 36));
 		btnAdd9.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnAdd9ActionPerformed(evt);
+				printRecipeActionPerformed(evt);
 			}
 		});
 		jPanel6.add(btnAdd9);
@@ -1831,7 +1831,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	}
 
 	// TASTO STAMPA
-	private void btnAdd9ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd9ActionPerformed
+	private void printRecipeActionPerformed(java.awt.event.ActionEvent evt) {
 		LOGGER.debug("Pressed Print Recipe button");
 		RecipeData rec = toRecipeData();
 		List<RecipeModel> summaries = new ArrayList<RecipeModel>();
@@ -2234,7 +2234,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		this.dirty = true;
 		
 		// Issue #33
-		jTextAbv.setText(getGradiPrevisti());
+		jTextAbv.setText("  " + getGradiPrevisti() + " ");
 		
 	}
 	
@@ -2564,7 +2564,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		src.setTreatment(waterPanel.getTreatment());
 		src.setWaterNeeded(waterNeeded.toXml());
 		// issue #33
-		src.setPriming(spinPriming.getValue().toString());
+		src.setPriming("  " + spinPriming.getValue().toString() + " ");
 		return src;
 	}
 

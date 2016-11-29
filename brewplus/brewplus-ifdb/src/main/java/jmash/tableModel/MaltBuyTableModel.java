@@ -33,7 +33,7 @@ public class MaltBuyTableModel extends GenericTableModel<Malt> {
 
 	public MaltBuyTableModel() {
 		this.ret.setIcon(Main.maltIcon);
-		this.columnNames = new String[] { "", "Malti e zuccheri", "Q.tà", "U.mis.", "Pot. SG", "Forma", "Colore",
+		this.columnNames = new String[] { "", "Malti e zuccheri", "Q.tà", "Un.mis.", "Pot. SG", "Forma", "Colore",
 				"Origine", "Data rif." };
 	}
 
