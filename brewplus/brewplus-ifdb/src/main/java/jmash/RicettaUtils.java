@@ -259,13 +259,22 @@ public class RicettaUtils {
 		double adjustBicarbonatoDiSodio = waterAdjustPanel.getSoda();
 		double adjustCloruroDiSodio = waterAdjustPanel.getNaCl();
 		
-		double adjustCarbonatoDiCalcioMash = adjustCarbonatoDiCalcio * mashRatio;
-		double adjustGypsumMash = adjustGypsum * mashRatio;
-		double adjustCloruroDiCalcioMash = adjustCloruroDiCalcio * mashRatio;
-		double adjustIdrossidoDiCalcioMash = adjustIdrossidoDiCalcio * mashRatio;
-		double adjustEpsomMash = adjustEpsom * mashRatio;
-		double adjustBicarbonatoDiSodioMash = adjustBicarbonatoDiSodio * mashRatio;
-		double adjustCloruroDiSodioMash = adjustCloruroDiSodio * mashRatio;
+		double mashRatioCarbonatoDiCalcio = waterAdjustPanel.useChalkSparge() ? 1.0 : mashRatio;
+		double mashRatioGypsum = waterAdjustPanel.useGypsumSparge() ? 1.0 : mashRatio;
+		double mashRatioCloruroDiCalcio = waterAdjustPanel.useCaCl2Sparge() ? 1.0 : mashRatio;
+		double mashRatioIdrossidoDiCalcio = waterAdjustPanel.useSlakedLimeSparge() ? 1.0 : mashRatio;
+		double mashRatioEpsom = waterAdjustPanel.useEpsomSparge() ? 1.0 : mashRatio;
+		double mashRatioBicarbonatoDiSodio = waterAdjustPanel.useSodaSparge() ? 1.0 : mashRatio;
+		double mashRatioCloruroDiSodio = waterAdjustPanel.useNaClSparge() ? 1.0 : mashRatio;
+		
+		
+		double adjustCarbonatoDiCalcioMash = adjustCarbonatoDiCalcio * mashRatioCarbonatoDiCalcio;
+		double adjustGypsumMash = adjustGypsum * mashRatioGypsum;
+		double adjustCloruroDiCalcioMash = adjustCloruroDiCalcio * mashRatioCloruroDiCalcio;
+		double adjustIdrossidoDiCalcioMash = adjustIdrossidoDiCalcio * mashRatioIdrossidoDiCalcio;
+		double adjustEpsomMash = adjustEpsom * mashRatioEpsom;
+		double adjustBicarbonatoDiSodioMash = adjustBicarbonatoDiSodio * mashRatioBicarbonatoDiSodio;
+		double adjustCloruroDiSodioMash = adjustCloruroDiSodio * mashRatioCloruroDiSodio;
 
 		// double adjustCarbonatoDiCalcioSparge = adjustCarbonatoDiCalcio -
 		// adjustCarbonatoDiCalcioMash;
