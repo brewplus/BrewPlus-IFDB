@@ -971,6 +971,12 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.insets = new Insets(2, 2, 5, 5);
 		jPanelSali.add(spnGypsum, gridBagConstraints);
+		
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 2;
+		gridBagConstraints.gridy = 2;
+		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.insets = new Insets(2, 2, 5, 5);
 		unusedGypsum = new JTextField("0,0");
 		unusedGypsum.setHorizontalAlignment(SwingConstants.CENTER);
 		unusedGypsum.setEnabled(false);
@@ -1127,6 +1133,11 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.insets = new Insets(2, 2, 5, 5);
 		jPanelSali.add(spnChalk, gridBagConstraints);
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 2;
+		gridBagConstraints.gridy = 6;
+		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.insets = new Insets(2, 2, 5, 5);
 		unusedChalk = new JTextField("0,0");
 		unusedChalk.setHorizontalAlignment(SwingConstants.CENTER);
 		unusedChalk.setEnabled(false);
@@ -1170,6 +1181,11 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.insets = new Insets(2, 2, 5, 5);
 		jPanelSali.add(spnEpsom, gridBagConstraints);
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 2;
+		gridBagConstraints.gridy = 3;
+		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.insets = new Insets(2, 2, 5, 5);
 		unusedEpsom = new JTextField("0,0");
 		unusedEpsom.setHorizontalAlignment(SwingConstants.CENTER);
 		unusedEpsom.setEnabled(false);
@@ -1239,6 +1255,11 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.insets = new Insets(2, 2, 5, 5);
 		jPanelSali.add(spnSoda, gridBagConstraints);
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 2;
+		gridBagConstraints.gridy = 7;
+		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.insets = new Insets(2, 2, 5, 5);
 		unusedSoda = new JTextField("0,0");
 		unusedSoda.setHorizontalAlignment(SwingConstants.CENTER);
 		unusedSoda.setEnabled(false);
@@ -1283,6 +1304,11 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.insets = new Insets(2, 2, 5, 5);
 		jPanelSali.add(spnCaCl2, gridBagConstraints);
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 2;
+		gridBagConstraints.gridy = 4;
+		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.insets = new Insets(2, 2, 5, 5);
 		unusedCaCl2 = new JTextField("0,0");
 		unusedCaCl2.setHorizontalAlignment(SwingConstants.CENTER);
 		unusedCaCl2.setEnabled(false);
@@ -1352,6 +1378,11 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.insets = new Insets(2, 2, 0, 5);
 		jPanelSali.add(spnSlakedLime, gridBagConstraints);
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 2;
+		gridBagConstraints.gridy = 8;
+		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.insets = new Insets(2, 2, 0, 5);
 		unusedSlakedLime = new JTextField("0,0");
 		unusedSlakedLime.setHorizontalAlignment(SwingConstants.CENTER);
 		unusedSlakedLime.setEnabled(false);
@@ -1395,6 +1426,11 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.insets = new Insets(2, 2, 5, 5);
 		jPanelSali.add(spnNaCl, gridBagConstraints);
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 2;
+		gridBagConstraints.gridy = 5;
+		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.insets = new Insets(2, 2, 5, 5);
 		unusedNaCl = new JTextField("0,0");
 		unusedNaCl.setHorizontalAlignment(SwingConstants.CENTER);
 		unusedNaCl.setEnabled(false);
