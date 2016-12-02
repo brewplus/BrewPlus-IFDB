@@ -78,6 +78,7 @@ public class PrintRecipe {
 		    LOGGER.debug("Retrive report images");
 		    lParameters.put("pLogoDir", ClassLoader.getSystemResourceAsStream("jmash/reports/logo.png"));
 		    lParameters.put("pBackgroundImage", ClassLoader.getSystemResourceAsStream("jmash/reports/sfondo.jpg"));
+		    //lParameters.put("pBaffoDir", ClassLoader.getSystemResourceAsStream("jmash/reports/baffo.png"));
 		    JRDataSource dataSource = new JRBeanCollectionDataSource(recipeModel);	        
 	    	
 		    LOGGER.debug("Fill jasper report with datasource");
