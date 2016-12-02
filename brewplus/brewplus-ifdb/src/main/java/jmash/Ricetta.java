@@ -319,7 +319,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				LOGGER.debug("waterNeededNew2 changed");
+//				LOGGER.debug("waterNeeded changed");
 				ricettaModificata();
 
 			}
