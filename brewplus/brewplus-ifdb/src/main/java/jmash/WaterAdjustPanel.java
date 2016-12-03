@@ -239,21 +239,21 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		spinSolfato.setModel(0, 0, 100000, 1, "0.0", "WaterAdjustPanel.spinSolfato");
 		spinCarb.setModel(0, 0, 100000, 1, "0.0", "WaterAdjustPanel.spinCarb");
 
-		spinCalcio1.setModel(0, 0, 100000, 1, "0.0", "WaterAdjustPanel.spinCalcio1");
-		spinCloruro1.setModel(0, 0, 100000, 1, "0.0", "WaterAdjustPanel.spinCloruro1");
-		spinMagnesio1.setModel(0, 0, 100000, 1, "0.0", "WaterAdjustPanel.spinMagnesio1");
-		spinSodio1.setModel(0, 0, 100000, 1, "0.0", "WaterAdjustPanel.spinSodio1");
-		spinSolfato1.setModel(0, 0, 100000, 1, "0.0", "WaterAdjustPanel.spinSolfato1");
-		spinCarb1.setModel(0, 0, 100000, 1, "0.0", "WaterAdjustPanel.spinCarb1");
+		spinCalcio1.setModel(0, 0, 100000, 1, "0.0", null);
+		spinCloruro1.setModel(0, 0, 100000, 1, "0.0", null);
+		spinMagnesio1.setModel(0, 0, 100000, 1, "0.0", null);
+		spinSodio1.setModel(0, 0, 100000, 1, "0.0", null);
+		spinSolfato1.setModel(0, 0, 100000, 1, "0.0", null);
+		spinCarb1.setModel(0, 0, 100000, 1, "0.0", null);
 
-		spinCalcio2.setModel(0, 0, 100000, 1, "0.0", "WaterAdjustPanel.spinCalcio2");
-		spinCloruro2.setModel(0, 0, 100000, 1, "0.0", "WaterAdjustPanel.spinCloruro2");
-		spinMagnesio2.setModel(0, 0, 100000, 1, "0.0", "WaterAdjustPanel.spinMagnesio2");
-		spinSodio2.setModel(0, 0, 100000, 1, "0.0", "WaterAdjustPanel.spinSodio2");
-		spinSolfato2.setModel(0, 0, 100000, 1, "0.0", "WaterAdjustPanel.spinSolfato2");
-		spinCarb2.setModel(0, 0, 100000, 1, "0.0", "WaterAdjustPanel.spinCarb2");
+		spinCalcio2.setModel(0, 0, 100000, 1, "0.0", null);
+		spinCloruro2.setModel(0, 0, 100000, 1, "0.0", null);
+		spinMagnesio2.setModel(0, 0, 100000, 1, "0.0", null);
+		spinSodio2.setModel(0, 0, 100000, 1, "0.0", null);
+		spinSolfato2.setModel(0, 0, 100000, 1, "0.0", null);
+		spinCarb2.setModel(0, 0, 100000, 1, "0.0", null);
 
-		spnVolume.setModel(40, 1, 999999, 1, "0.0", "WaterAdjustPanel.spnVolume");
+		spnVolume.setModel(23, 1, 999999, 1, "0.0", null);
 
 		spnCaCl2.setModel(0, 0, 999999, 1, "0.0", null);
 		spnChalk.setModel(0, 0, 999999, 1, "0.0", null);
