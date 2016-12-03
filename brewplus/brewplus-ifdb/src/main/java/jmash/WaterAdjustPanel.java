@@ -50,8 +50,6 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	private JLabel lblMashWP;
 	private JLabel lblMashAndSpargeWP;
 	private JLabel lblNewLabel_2;
-	private JLabel lblNewLabel_3;
-	private JLabel lblcaPpm;
 	private JLabel lblMagnesium;
 	private JLabel lblNewLabel_4;
 	private JLabel lblChloride;
@@ -79,7 +77,6 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	private GridBagConstraints gridBagConstraints_1;
 	private JLabel lblNewLabel_1;
 	private GridBagConstraints gridBagConstraints_2;
-	private GridBagConstraints gridBagConstraints_3;
 	private JLabel lblSparge;
 	private JCheckBox useGypsumSparge;
 	private JCheckBox useEpsomSparge;
@@ -233,6 +230,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		this.parent = parent;
 
 		this.waterPicker = new Picker(Gui.waterPickerTableModel);
+		
 		initComponents();
 
 		spinCalcio.setModel(0, 0, 100000, 1, "0.0", "WaterAdjustPanel.spinCalcio");
@@ -258,41 +256,74 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 
 		spnVolume.setModel(40, 1, 999999, 1, "0.0", "WaterAdjustPanel.spnVolume");
 
-		spnCaCl2.setModel(0, 0, 999999, 1, "0.0", "WaterAdjustPanel.spnCaCl2");
-		spnChalk.setModel(0, 0, 999999, 1, "0.0", "WaterAdjustPanel.spnChalk");
-		spnEpsom.setModel(0, 0, 999999, 1, "0.0", "WaterAdjustPanel.spnEpsom");
-		spnGypsum.setModel(0, 0, 999999, 1, "0.0", "WaterAdjustPanel.spnGypsum");
-		spnNaCl.setModel(0, 0, 999999, 1, "0.0", "WaterAdjustPanel.spnNaCl");
-		spnSoda.setModel(0, 0, 999999, 1, "0.0", "WaterAdjustPanel.spnSoda");
-		spnSlakedLime.setModel(0, 0, 999999, 1, "0.0", "WaterAdjustPanel.spnSlakedLime");
+		spnCaCl2.setModel(0, 0, 999999, 1, "0.0", null);
+		spnChalk.setModel(0, 0, 999999, 1, "0.0", null);
+		spnEpsom.setModel(0, 0, 999999, 1, "0.0", null);
+		spnGypsum.setModel(0, 0, 999999, 1, "0.0", null);
+		spnNaCl.setModel(0, 0, 999999, 1, "0.0", null);
+		spnSoda.setModel(0, 0, 999999, 1, "0.0", null);
+		spnSlakedLime.setModel(0, 0, 999999, 1, "0.0", null);
 
-		spnLacticAcid.setModel(0, 0, 999999, 1, "0.0", "WaterAdjustPanel.spnLacticAcid");
+		spnLacticAcid.setModel(0, 0, 999999, 1, "0.0", null);
 		spnLacticAcidContent.setModel(88.0, 0, 100, 1, "0.0", null);
-		spnCitrusAcid.setModel(0, 0, 999999, 1, "0.0", "WaterAdjustPanel.spnCitrusAcid");
+		spnCitrusAcid.setModel(0, 0, 999999, 1, "0.0", null);
 		spnCitrusAcidContent.setModel(88.0, 0, 100, 1, "0.0", null);
 		spnAcidulatedMaltContent.setModel(2.0, 0, 100, 1, "0.0", null);
 
 		setBackground(getBackground().darker());
+		
 		thread = new Thread() {
 			@Override
 			public void run() {
+				
+				
+				
+				
+				
 				List<WaterProfile> L = new ArrayList<WaterProfile>();
+				
 				while (flag) {
+					
 					if (work) {
+						
 						WaterProfile source = new WaterProfile(spinCalcio.getIntegerValue(),
 								spinMagnesio.getIntegerValue(), spinSolfato.getIntegerValue(),
 								spinCloruro.getIntegerValue(), spinSodio.getIntegerValue(), spinCarb.getIntegerValue());
+				
 						if (flagRes) {
 							flagRes = false;
 							res = null;
 							L.clear();
 						}
+						
 						if (res != null)
+						{
 							source = res;
+						}
+						
 						WaterProfile dest = new WaterProfile(spinCalcio1.getIntegerValue(),
 								spinMagnesio1.getIntegerValue(), spinSolfato1.getIntegerValue(),
 								spinCloruro1.getIntegerValue(), spinSodio1.getIntegerValue(),
 								spinCarb1.getIntegerValue());
+						
+						dest.setUseGypsum(useGypsum.isSelected());
+						dest.setUseEpsom(useEpsom.isSelected());
+						dest.setUseNaCl(useNaCl.isSelected());
+						dest.setUseCaCl2(useCaCl2.isSelected());
+						dest.setUseChalk(useChalk.isSelected());
+						dest.setUseSoda(useSoda.isSelected());
+						dest.setUseSlakedLime(useSlakedLime.isSelected());
+						
+						dest.setUseGypsumSparge(useGypsumSparge.isSelected());
+						dest.setUseEpsomSparge(useEpsomSparge.isSelected());
+						dest.setUseNaClSparge(useNaClSparge.isSelected());
+						dest.setUseCaCl2Sparge(useCaCl2Sparge.isSelected());
+						dest.setUseChalkSparge(useChalkSparge.isSelected());
+						dest.setUseSodaSparge(useSodaSparge.isSelected());
+						dest.setUseSlakedLimeSparge(useSlakedLimeSparge.isSelected());
+						
+						
+						
 						double LITRI = spnVolume.getVolume();
 
 						source.setPCalcio(pCalcio.getValue());
@@ -321,6 +352,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 						res = source.target(dest, LITRI, "", 100, L, 100);
 						setTreatment(res);
 					}
+					
 					try {
 						sleep(500);
 					} catch (InterruptedException ex) {
@@ -328,8 +360,11 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 					}
 				}
 			}
+			
+			
 		};
-		thread.start();
+
+//		thread.start();
 	}
 
 	/**
@@ -952,7 +987,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		
 		useGypsum = new javax.swing.JCheckBox();
 
-		useGypsum.setSelected(true);
+		useGypsum.setSelected(false);
 		useGypsum.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		useGypsum.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -986,7 +1021,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 
 		useChalk = new javax.swing.JCheckBox();
 
-		useChalk.setSelected(true);
+		useChalk.setSelected(false);
 		useChalk.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		useChalk.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1016,7 +1051,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		txtGyspumSparge.setPreferredSize(new Dimension(60, 22));
 
 		useGypsumSparge = new JCheckBox();
-		useGypsumSparge.setSelected(true);
+		useGypsumSparge.setSelected(false);
 		useGypsumSparge.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		useGypsumSparge.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1051,7 +1086,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		jPanelSali.add(txtEpsomSparge, gbc_txtEpsomSparge);
 
 		useEpsomSparge = new JCheckBox();
-		useEpsomSparge.setSelected(true);
+		useEpsomSparge.setSelected(false);
 		useEpsomSparge.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		useEpsomSparge.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1163,7 +1198,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		});
 		useEpsom = new javax.swing.JCheckBox();
 
-		useEpsom.setSelected(true);
+		useEpsom.setSelected(false);
 		useEpsom.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		useEpsom.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1195,7 +1230,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 
 		useSoda = new javax.swing.JCheckBox();
 
-		useSoda.setSelected(true);
+		useSoda.setSelected(false);
 		useSoda.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		useSoda.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1204,7 +1239,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		});
 
 		useChalkSparge = new JCheckBox();
-		useChalkSparge.setSelected(true);
+		useChalkSparge.setSelected(false);
 		useChalkSparge.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		useChalkSparge.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1285,7 +1320,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		});
 		useCaCl2 = new javax.swing.JCheckBox();
 
-		useCaCl2.setSelected(true);
+		useCaCl2.setSelected(false);
 		useCaCl2.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		useCaCl2.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1317,7 +1352,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		jPanelSali.add(unusedCaCl2, gridBagConstraints);
 
 		useCaCl2Sparge = new JCheckBox();
-		useCaCl2Sparge.setSelected(true);
+		useCaCl2Sparge.setSelected(false);
 		useCaCl2Sparge.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		useCaCl2Sparge.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1340,7 +1375,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		});
 
 		useSodaSparge = new JCheckBox();
-		useSodaSparge.setSelected(true);
+		useSodaSparge.setSelected(false);
 		useSodaSparge.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		useSodaSparge.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1407,7 +1442,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		});
 		useNaCl = new javax.swing.JCheckBox();
 
-		useNaCl.setSelected(true);
+		useNaCl.setSelected(false);
 		useNaCl.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		useNaCl.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1460,7 +1495,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		add(jPanelSali, gbc_jPanelSali);
 
 		useNaClSparge = new JCheckBox();
-		useNaClSparge.setSelected(true);
+		useNaClSparge.setSelected(false);
 		useNaClSparge.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		useNaClSparge.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1502,8 +1537,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		jPanelSali.add(lblNewLabel_1, gbc_lblNewLabel_1);
 
 		useSlakedLime = new JCheckBox();
-		useSlakedLime.setSelected(true);
-		useSlakedLime.setEnabled(true);
+		useSlakedLime.setSelected(false);
 		useSlakedLime.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		useSlakedLime.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1518,7 +1552,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		jPanelSali.add(useSlakedLime, gbc_useSlakedLime);
 
 		useSlakedLimeSparge = new JCheckBox();
-		useSlakedLimeSparge.setSelected(true);
+		useSlakedLimeSparge.setSelected(false);
 		useSlakedLimeSparge.setEnabled(true);
 		useSlakedLimeSparge.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		useSlakedLimeSparge.addActionListener(new java.awt.event.ActionListener() {
@@ -2274,10 +2308,14 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	}
 
 	private void updateTreatment() {
+		
 		double LITRI = spnVolume.getVolume();
-		if (res == null)
+		if (res == null) {
 			return;
+		}
+		
 		skipRecalc = true;
+		
 		spnCaCl2.setDoubleValue(res.getCalciumChloride() * Utils.litToGal(LITRI) / 1000);
 		spnChalk.setDoubleValue(res.getChalk() * Utils.litToGal(LITRI) / 1000);
 		spnEpsom.setDoubleValue(res.getEpsom() * Utils.litToGal(LITRI) / 1000);
@@ -2285,7 +2323,6 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		spnNaCl.setDoubleValue(res.getSale() * Utils.litToGal(LITRI) / 1000);
 		spnSoda.setDoubleValue(res.getSoda() * Utils.litToGal(LITRI) / 1000);
 		spnSlakedLime.setDoubleValue(res.getSlakedLime() * Utils.litToGal(LITRI) / 1000);
-		skipRecalc = false;
 		spinCalcio2.setIntegerValue((int) res.getCalcioTotale());
 		spinMagnesio2.setIntegerValue((int) res.getMagnesioTotale());
 		spinSolfato2.setIntegerValue((int) res.getSolfatoTotale());
@@ -2321,13 +2358,17 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 			toggleSalt(saltType);
 		}
 		
+		skipRecalc = false;
 
 		fireStateChanged(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, ""));
 	}
 
 	private void recalcTreatment() {
 		if (skipRecalc)
+		{
 			return;
+		}
+		
 		double LITRI = spnVolume.getVolume();
 		WaterProfile treat = new WaterProfile(spinCalcio.getIntegerValue(), spinMagnesio.getIntegerValue(),
 				spinSolfato.getIntegerValue(), spinCloruro.getIntegerValue(), spinSodio.getIntegerValue(),
@@ -2355,8 +2396,6 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		treat.setUseSodaSparge(useSodaSparge());
 		treat.setUseChalkSparge(useChalkSparge());
 		treat.setUseSlakedLimeSparge(useSlakedLimeSparge());
-		
-		
 
 		treat.setSlakedLime((spnSlakedLime.getDoubleValue() * 1000 / Utils.litToGal(LITRI)));
 		treat.setAcidulatedMaltContent((spnAcidulatedMaltContent.getDoubleValue()));
@@ -2375,6 +2414,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 
 	@Override
 	public void setEnabled(boolean F) {
+		
 		jToggleButton1.setEnabled(F);
 		pCalcio.setEnabled(F);
 		pCarbonato.setEnabled(F);
@@ -2407,25 +2447,28 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		spnNaCl.setEnabled(F);
 		spnSoda.setEnabled(F);
 		spnVolume.setEnabled(F);
+		
 		useCaCl2.setEnabled(F);
-		useChalk.setEnabled(F);
-		useEpsom.setEnabled(F);
-		useGypsum.setEnabled(F);
-		useNaCl.setEnabled(F);
-		useSoda.setEnabled(F);
-		useSlakedLime.setEnabled(F);
 		useCaCl2Sparge.setEnabled(F);
+		useChalk.setEnabled(F);
 		useChalkSparge.setEnabled(F);
+		useEpsom.setEnabled(F);
 		useEpsomSparge.setEnabled(F);
+		useGypsum.setEnabled(F);
 		useGypsumSparge.setEnabled(F);
+		useNaCl.setEnabled(F);
 		useNaClSparge.setEnabled(F);
+		useSoda.setEnabled(F);
 		useSodaSparge.setEnabled(F);
+		useSlakedLime.setEnabled(F);
 		useSlakedLimeSparge.setEnabled(F);
+		
+		
 		btnA.setEnabled(F);
 		btnB.setEnabled(F);
 
 	}
-
+	
 	public void setTotWater(double size) {
 		spnVolume.setVolume(size);
 	}
@@ -3038,14 +3081,17 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 
 	private void toggleSalt(JCheckBox useSalt, JMashSpinner totSalt, JTextField unusedTotSalt, JTextField mashSalt,
 			JTextField spargeSalt, JCheckBox useSpargeSalt) {
-
-		totSalt.setVisible(useSalt.isSelected());
-		unusedTotSalt.setVisible(!useSalt.isSelected());
-
-		mashSalt.setEnabled(useSalt.isSelected());
-		spargeSalt.setEnabled(useSalt.isSelected());
-		useSpargeSalt.setEnabled(useSalt.isSelected());
-
+		
+		if (!work)
+		{
+			totSalt.setVisible(useSalt.isSelected());
+			unusedTotSalt.setVisible(!useSalt.isSelected());
+	
+			mashSalt.setEnabled(useSalt.isSelected());
+			spargeSalt.setEnabled(useSalt.isSelected());
+			useSpargeSalt.setEnabled(useSalt.isSelected());
+		}
+		
 	}
 
 	private void toggleSalt(SaltType saltType) {

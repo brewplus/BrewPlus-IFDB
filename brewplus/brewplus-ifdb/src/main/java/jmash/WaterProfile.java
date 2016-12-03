@@ -49,20 +49,20 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
 	private Double chalk = 0.0;
 	private Double soda = 0.0;
 	private Double slakedLime = 0.0;
-	private Boolean useGypsum = true;
-	private Boolean useCaCl2 = true;
-	private Boolean useNaCl = true;
-	private Boolean useEpsom = true;
-	private Boolean useChalk = true;
-	private Boolean useSoda = true;
-	private Boolean useSlakedLime = true;
-	private Boolean useGypsumSparge = true;
-	private Boolean useCaCl2Sparge = true;
-	private Boolean useNaClSparge = true;
-	private Boolean useEpsomSparge = true;
-	private Boolean useChalkSparge = true;
-	private Boolean useSodaSparge = true;
-	private Boolean useSlakedLimeSparge = true;
+	private Boolean useGypsum = Boolean.FALSE;
+	private Boolean useCaCl2 = Boolean.FALSE;
+	private Boolean useNaCl = Boolean.FALSE;
+	private Boolean useEpsom = Boolean.FALSE;
+	private Boolean useChalk = Boolean.FALSE;
+	private Boolean useSoda = Boolean.FALSE;
+	private Boolean useSlakedLime = Boolean.FALSE;
+	private Boolean useGypsumSparge = Boolean.FALSE;
+	private Boolean useCaCl2Sparge = Boolean.FALSE;
+	private Boolean useNaClSparge = Boolean.FALSE;
+	private Boolean useEpsomSparge = Boolean.FALSE;
+	private Boolean useChalkSparge = Boolean.FALSE;
+	private Boolean useSodaSparge = Boolean.FALSE;
+	private Boolean useSlakedLimeSparge = Boolean.FALSE;
 	private static int pCalcio = 50, pSolfato = 50, pCloruro = 50, pSodio = 50, pMagnesio = 50, pCarbonato = 50;
 
 	private Double acidulatedMaltContent = 2.0;
@@ -143,6 +143,23 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
 		p.citrusAcid = this.citrusAcid;
 		p.citrusAcidContent = this.citrusAcidContent;
 		p.diff = this.diff;
+		
+		
+		p.useCaCl2 = this.useCaCl2;
+		p.useCaCl2Sparge = this.useCaCl2Sparge;
+		p.useChalk = this.useChalk;
+		p.useChalkSparge = this.useChalkSparge;
+		p.useEpsom = this.useEpsom;
+		p.useEpsomSparge = this.useEpsomSparge;
+		p.useGypsum = this.useGypsum;
+		p.useGypsumSparge = this.useGypsumSparge;
+		p.useNaCl = this.useNaCl;
+		p.useNaClSparge = this.useNaClSparge;
+		p.useSlakedLime = this.useSlakedLime;
+		p.useSlakedLimeSparge = this.useSlakedLimeSparge;
+		p.useSoda = this.useSoda;
+		p.useSodaSparge = this.useSodaSparge;
+		
 		return p;
 	}
 
@@ -154,6 +171,23 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
 			for (int i = 0; i < POPULATION; i++) {
 				WaterProfile p = new WaterProfile(this.calcio, this.magnesio, this.solfato, this.cloruro, this.sodio,
 						this.carbonato);
+
+				p.useCaCl2 = this.useCaCl2;
+				p.useCaCl2Sparge = this.useCaCl2Sparge;
+				p.useChalk = this.useChalk;
+				p.useChalkSparge = this.useChalkSparge;
+				p.useEpsom = this.useEpsom;
+				p.useEpsomSparge = this.useEpsomSparge;
+				p.useGypsum = this.useGypsum;
+				p.useGypsumSparge = this.useGypsumSparge;
+				p.useNaCl = this.useNaCl;
+				p.useNaClSparge = this.useNaClSparge;
+				p.useSlakedLime = this.useSlakedLime;
+				p.useSlakedLimeSparge = this.useSlakedLimeSparge;
+				p.useSoda = this.useSoda;
+				p.useSodaSparge = this.useSodaSparge;
+				
+				
 				/*
 				 * p.gypsum=R.nextInt(1000); p.sale=R.nextInt(1000);
 				 * p.epsom=R.nextInt(1000); p.calciumCloride=R.nextInt(1000);
@@ -170,8 +204,8 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
 			}
 
 			Collections.sort(L, new Compare());
-			best = L.get(
-					0);/*
+			best = L.get(0);
+			/*
 						 * System.out.println(k+") first.diff="+best.diff +
 						 * ", \tgypsum="+best.gypsum+ ", calciumChloride="
 						 * +best.calciumCloride+ ", sale="+best.sale+ ", epsom="
@@ -248,6 +282,8 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
 						p.epsom = 0.0;
 					if (!useSlakedLime)
 						p.slakedLime = 0.0;
+					
+					
 
 					L.add(p);
 				}
@@ -257,6 +293,22 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
 			for (int i = 0; i < SEED; i++) {
 				WaterProfile p = new WaterProfile(this.calcio, this.magnesio, this.solfato, this.cloruro, this.sodio,
 						this.carbonato);
+				
+				p.useCaCl2 = this.useCaCl2;
+				p.useCaCl2Sparge = this.useCaCl2Sparge;
+				p.useChalk = this.useChalk;
+				p.useChalkSparge = this.useChalkSparge;
+				p.useEpsom = this.useEpsom;
+				p.useEpsomSparge = this.useEpsomSparge;
+				p.useGypsum = this.useGypsum;
+				p.useGypsumSparge = this.useGypsumSparge;
+				p.useNaCl = this.useNaCl;
+				p.useNaClSparge = this.useNaClSparge;
+				p.useSlakedLime = this.useSlakedLime;
+				p.useSlakedLimeSparge = this.useSlakedLimeSparge;
+				p.useSoda = this.useSoda;
+				p.useSodaSparge = this.useSodaSparge;
+				
 				p.gypsum = (double) R.nextInt(10000);
 				p.sale = (double) R.nextInt(10000);
 				p.epsom = (double) R.nextInt(10000);
