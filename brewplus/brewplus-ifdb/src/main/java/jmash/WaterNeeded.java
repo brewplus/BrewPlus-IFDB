@@ -857,7 +857,11 @@ public class WaterNeeded extends JInternalFrame {
 	public double getTotWater() {
 		return spinnerTotaleAcqua.getDoubleValue();
 	}
-
+	
+	public double getRapportoAcquaGrani() {
+		return spinnerRapportoAcquaGrani.getDoubleValue();
+	}
+	
 	public double getMashVolume() {
 		return spinnerAcquaMash.getDoubleValue();
 	}
