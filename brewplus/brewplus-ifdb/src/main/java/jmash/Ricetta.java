@@ -1890,7 +1890,6 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		mineralSalts.add(mineralSaltTot);
 		summary.setMineralSalts(mineralSalts);
 		summary.setBoilingTime(rec.getBollitura().toString());
-		//summary.setBoilLiters(rec.getVolumeBoll().toString());
 		summary.setBoilLiters(String.format("%.01f",(waterNeeded.getVolumeMostoPreBoil())));
 		summary.setAlcoolVolume(getGradiPrevisti());
 		summary.setEbc(String.format("%.01f",getEbc()));
@@ -1901,11 +1900,10 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		summary.setOgPreBoil(getOGPreBoil());
 		summary.setPlato(String.format("%.01f",getPPerStampa()));
 		summary.setTotalGrain(String.format("%.03f",new Double(getGrammiTotali())/1000));
-		summary.setTotalLiters(rec.getVolumeFin().toString());
+		summary.setTotalLiters(String.format("%.01f",waterNeeded.getVolumeRealeInFermentatore()));
 		summary.setNote(fldNote.getText());
-		summary.setMashVolume(String.format("%.01f",getGrammiTotali()*Main.config.getRapportoAcquaGrani()/1000) + "  (" + Main.config.getRapportoAcquaGrani() + " L/Kg)");
+		summary.setMashVolume(String.format("%.01f",waterNeeded.getMashVolume()) + "  (" + waterNeeded.getRapportoAcquaGrani() + " L/Kg)");
 		summary.setSpargeVolume(String.format("%.01f",waterNeeded.getSpargeVolume()));
-		summary.setRatioLitreKg(String.format("%.01f",Main.config.getRapportoAcquaGrani()));
 		summaries.add(summary);
 		
 		try {
