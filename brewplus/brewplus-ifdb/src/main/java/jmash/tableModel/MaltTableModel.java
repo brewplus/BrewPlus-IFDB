@@ -64,7 +64,10 @@ public class MaltTableModel extends GenericTableModel<Malt> {
         if (m != null) {
             switch (col) {
             case 2:
-                return (hmFormatterUM.get(m.getUnitaMisura())).format(m.getConvertedGrammi());
+            	/** ISSUE #47 */
+            	Quantita qnt = new Quantita(hmFormatterUM.get(m.getUnitaMisura()).format(m.getConvertedGrammi()));
+            	qnt.setUnitaMisura(m.getUnitaMisura());
+                return qnt;
             case 3:
                 return m.getUnitaMisura();
             case 4:
@@ -96,8 +99,9 @@ public class MaltTableModel extends GenericTableModel<Malt> {
             if ((m != null) && (value != null)) {
                 switch (col) {
                 case 2:
+                	/** ISSUE #47 */
                     m.setGrammi(
-                            Utils.convertWeight(NF.parse((String) value).doubleValue(), m.getUnitaMisura(), "grammi"));
+                            Utils.convertWeight(NF.parse(((Quantita) value).getValue()).doubleValue(), m.getUnitaMisura(), "grammi"));
                     break;
                 case 3:
                     m.setUnitaMisura(((String) value));

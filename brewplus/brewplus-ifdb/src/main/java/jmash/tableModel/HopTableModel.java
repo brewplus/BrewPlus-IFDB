@@ -75,7 +75,10 @@ public class HopTableModel extends GenericTableModel<Hop> {
 					hmFormatterUM.remove("grammi");
 					hmFormatterUM.put("grammi", new NumberFormatter("0"));
 				}
-				return (hmFormatterUM.get(h.getUnitaMisura())).format(h.getConvertedGrammi());
+				/** ISSUE #47 */
+				Quantita qnt = new Quantita(hmFormatterUM.get(h.getUnitaMisura()).format(h.getConvertedGrammi()));
+            	qnt.setUnitaMisura(h.getUnitaMisura());
+                return qnt;
 			case 3:
 				return h.getUnitaMisura();
 			case 4:
@@ -117,8 +120,9 @@ public class HopTableModel extends GenericTableModel<Hop> {
 					h.setNome(((String) value));
 					break;
 				case 2:
-					h.setGrammi(
-							Utils.convertWeight(NF.parse((String) value).doubleValue(), h.getUnitaMisura(), "grammi"));
+					/** ISSUE #47 */
+                    h.setGrammi(
+                            Utils.convertWeight(NF.parse(((Quantita) value).getValue()).doubleValue(), h.getUnitaMisura(), "grammi"));
 					break;
 				case 3:
 					h.setUnitaMisura(((String) value));

@@ -1,5 +1,8 @@
 package jmash;
 
+/**
+ * Creata per issue #47 per poter ordinare le quantita su tabella
+ */
 public class Quantita {
 	
 	private String number;

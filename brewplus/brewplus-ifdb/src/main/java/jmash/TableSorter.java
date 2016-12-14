@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -93,6 +95,23 @@ public class TableSorter extends AbstractTableModel {
 		public int compare(Object o1, Object o2) {
 			return o1.toString().compareTo(o2.toString());
 		}
+	};
+	/** ISSUE #47 */
+	protected static NumberFormat NF = NumberFormat.getInstance();
+	
+	public static final Comparator QUANTITA_COMPARATOR = new Comparator() {
+
+		@Override
+		public int compare(Object o1, Object o2) {
+			 try {
+				Double d1 = Utils.convertWeight(NF.parse(((Quantita) o1).getValue()).doubleValue(), ((Quantita) o1).getUnitaMisura(), "grammi");
+				Double d2 = Utils.convertWeight(NF.parse(((Quantita) o2).getValue()).doubleValue(), ((Quantita) o2).getUnitaMisura(), "grammi");
+				return d1.compareTo(d2);
+			} catch (ParseException e) {
+				return o1.toString().compareTo(o2.toString());
+			}
+		}
+		
 	};
 	private Row[] viewToModel;
 	private int[] modelToView;

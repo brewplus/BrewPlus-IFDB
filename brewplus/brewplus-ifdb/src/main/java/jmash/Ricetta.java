@@ -203,6 +203,10 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		this.hopSorter.setTableHeader(this.tblHops.getTableHeader());
 		this.yeastSorter.setTableHeader(this.tblYeast.getTableHeader());
 		this.summarySorter.setTableHeader(this.tblSummary.getTableHeader());
+		
+		/** ISSUE #47 */
+		this.maltSorter.setColumnComparator(Quantita.class, TableSorter.QUANTITA_COMPARATOR);
+		this.hopSorter.setColumnComparator(Quantita.class, TableSorter.QUANTITA_COMPARATOR);
 
 		this.tblHops.setSelectionMode(0);
 		this.tblMalts.setSelectionMode(0);
