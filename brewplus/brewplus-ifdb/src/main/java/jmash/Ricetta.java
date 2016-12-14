@@ -171,6 +171,13 @@ public class Ricetta extends javax.swing.JInternalFrame {
 				ricettaModificata();
 			}
 		});
+		
+		this.yeastTableModel.addTableModelListener(new TableModelListener() {
+			@Override
+			public void tableChanged(TableModelEvent ev) {
+				ricettaModificata();
+			}
+		});
 		this.mashDesign = new PanelMashStep(this, this);
 
 		initComponents();

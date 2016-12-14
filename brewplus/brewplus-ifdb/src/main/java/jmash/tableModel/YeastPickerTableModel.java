@@ -40,7 +40,7 @@ public class YeastPickerTableModel extends PickerTableModel {
 	}
 
 	LinkedList<YeastType> dataValues = new LinkedList<YeastType>();
-	String columnNames[] = { "Produttore", "Codice", "Nome", "Forma" };
+	String columnNames[] = { "Produttore", "Codice", "Nome", "Attenuazione Media (%)", "Forma" };
 
 	public void addRow(YeastType h) {
 		this.dataValues.add(h);
@@ -70,7 +70,7 @@ public class YeastPickerTableModel extends PickerTableModel {
 
 	@Override
 	public int getColumnCount() {
-		return 3;
+		return 4;
 	}
 
 	@Override
@@ -83,6 +83,8 @@ public class YeastPickerTableModel extends PickerTableModel {
 			case 2:
 				return h.getNome();
 			case 3:
+				return h.getAttenuazioneMed();
+			case 4:
 				return h.getForma();
 			case 0:
 			default:
