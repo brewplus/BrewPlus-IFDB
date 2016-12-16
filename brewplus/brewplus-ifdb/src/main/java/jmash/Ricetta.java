@@ -53,6 +53,7 @@ import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
 import javax.swing.ToolTipManager;
@@ -1213,7 +1214,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
         primingLabel.setText("Priming [g/L]");
         //primingLabel.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 23;
+        gridBagConstraints.gridx = 22;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
@@ -1227,7 +1228,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 25;
+        gridBagConstraints.gridx = 24;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -1237,7 +1238,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
         abvLabel = new javax.swing.JLabel();
         abvLabel.setText("ABV [% Vol]");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 27;
+        gridBagConstraints.gridx = 26;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
@@ -1246,14 +1247,35 @@ public class Ricetta extends javax.swing.JInternalFrame {
         jTextAbv.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jTextAbv.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 29;
+        gridBagConstraints.gridx = 28;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
         jPanel2.add(jTextAbv, gridBagConstraints);
-
+        
         // --- end Issue #33
-		
+        co2Label = new javax.swing.JLabel();
+        co2Label.setText("Vol.CO2");
+        //primingLabel.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 30;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
+        jPanel2.add(co2Label, gridBagConstraints);
+        
+        jTextCo2 = new JTextField();
+        jTextCo2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jTextCo2.setEditable(false);
+        jTextCo2.setToolTipText("Volumi di C02 considerando zucchero di priming e volumi già disciolti in mosto");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 32;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
+        jPanel2.add(jTextCo2, gridBagConstraints);
+        
+        jTextCo2.setText(" " + calcoloVolumiC02() + " ");
 
 		chkConcentratedBoil.setBackground(javax.swing.UIManager.getDefaults().getColor("PropSheet.setBackground"));
 		chkConcentratedBoil.setText("Bollitura concent.");
@@ -2243,8 +2265,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		this.dirty = true;
 		
 		// Issue #33
-		jTextAbv.setText("  " + getGradiPrevisti() + " ");
-		
+		jTextAbv.setText(" " + getGradiPrevisti() + " ");
+		jTextCo2.setText(" " + calcoloVolumiC02() + " ");
 	}
 	
 	private void setSaltValues(SaltType saltType) {
@@ -2355,6 +2377,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	private javax.swing.JLabel abvLabel;
 	private javax.swing.JSpinner spinPriming;
 	private javax.swing.JTextField jTextAbv;
+	private javax.swing.JLabel co2Label;
+	private javax.swing.JTextField jTextCo2;
 	
 	// End of variables declaration//GEN-END:variables
 
@@ -2751,7 +2775,47 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		return sb.toString();
 
 	}
-
+	
+	private String calcoloVolumiC02() {
+		Integer temperaturaMaxFerm = -1;
+		if (yeastTableModel.getRows().size() > 0 && yeastTableModel.getRows().get(0).getTemperaturaMaxFerm() != null) {
+			temperaturaMaxFerm = new Integer(yeastTableModel.getRows().get(0).getTemperaturaMaxFerm());
+		}
+		
+		// volumi già disciolti nel mosto in base alla temperatura max di fermentazione
+		Double co2 = 0d;
+		if (temperaturaMaxFerm >= 0 && temperaturaMaxFerm < 2) {
+			co2 = 1.7;
+		} else if (temperaturaMaxFerm >= 2  && temperaturaMaxFerm < 4) {
+			co2 = 1.6;
+		} else if (temperaturaMaxFerm >= 4  && temperaturaMaxFerm < 6) {
+			co2 = 1.5;
+		} else if (temperaturaMaxFerm >= 6  && temperaturaMaxFerm < 8) {
+			co2 = 1.4;
+		} else if (temperaturaMaxFerm >= 8  && temperaturaMaxFerm < 10) {
+			co2 = 1.3;
+		} else if (temperaturaMaxFerm >= 10 && temperaturaMaxFerm < 12) {
+			co2 = 1.2;
+		} else if (temperaturaMaxFerm >= 12 && temperaturaMaxFerm < 14) {
+			co2 = 1.12;
+		} else if (temperaturaMaxFerm >= 14 && temperaturaMaxFerm < 16) {
+			co2 = 1.05;
+		} else if (temperaturaMaxFerm >= 16 && temperaturaMaxFerm < 18) {
+			co2 = 0.99;
+		} else if (temperaturaMaxFerm >= 18 && temperaturaMaxFerm < 20) {
+			co2 = 0.93;
+		} else if (temperaturaMaxFerm >= 20 && temperaturaMaxFerm < 22) {
+			co2 = 0.88;
+		} else if (temperaturaMaxFerm >= 22) {
+			co2 = 0.83;
+		}
+		
+		DecimalFormat df = new DecimalFormat("#.##");
+		Double primingGrL =(Double)spinPriming.getValue();
+		co2 = co2 + (primingGrL / 4);//ogni 4 grammi di zucchero semplice danno 1 volume
+		return df.format(co2);
+	}
+	
 	public String getOsservazioni() {
 		return fldNote.getText().replaceAll("\n", "<br/>");
 	}

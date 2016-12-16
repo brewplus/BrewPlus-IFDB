@@ -54,6 +54,7 @@ public class Yeast {
 	private String temperaturaCons;
 	private String temperaturaMax;
 	private String quantita;
+	private String temperaturaMaxFerm;
 	
 	private static String campiXml[] = { "nome", "codice", "produttore", "forma", "categoria", "descrizione",
 			"attenuazioneMin", "attenuazioneMax", "attenuazioneMed", "temperaturaCons", "temperaturaMin",
@@ -217,6 +218,7 @@ public class Yeast {
 		setAttenuazioneMax(type.getAttenuazioneMax());
 		setTemperaturaMin(type.getTemperaturaMin());
 		setTemperaturaMax(type.getTemperaturaMax());
+		setTemperaturaMaxFerm(type.getTemperaturaMaxFerm());
 		setNote("");
 	}
 
@@ -234,6 +236,14 @@ public class Yeast {
 
 	public void setAttenuazioneMed(String attenuazioneMed) {
 		this.attenuazioneMed = attenuazioneMed;
+	}
+
+	public String getTemperaturaMaxFerm() {
+		return temperaturaMaxFerm;
+	}
+
+	public void setTemperaturaMaxFerm(String temperaturaMaxFerm) {
+		this.temperaturaMaxFerm = temperaturaMaxFerm;
 	}
 
 }
