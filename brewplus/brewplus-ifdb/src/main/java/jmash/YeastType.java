@@ -51,7 +51,7 @@ public class YeastType implements XmlAble {
 	private String temperaturaMaxFerm;
 
 	private static String campiXml[] = { "nome", "codice", "produttore", "forma", "categoria", 
-			"attenuazioneMed", "attenuazioneMin", "attenuazioneMax", "temperaturaMin", "temperaturaMax", "descrizione",};
+			"attenuazioneMed", "attenuazioneMin", "attenuazioneMax", "temperaturaMin", "temperaturaMax", "descrizione"};
 
 	public String getNome() {
 		return this.nome;
@@ -134,6 +134,12 @@ public class YeastType implements XmlAble {
 	}
 
 	public String getAttenuazioneMed() {
+		if (attenuazioneMed != null && !"".equals(attenuazioneMed)) {			
+			return this.attenuazioneMed;
+		} else if (getAttenuazioneMin() != null && !"".equals(getAttenuazioneMin()) &&
+				getAttenuazioneMax() != null && !"".equals(getAttenuazioneMax())) {
+			return (String.valueOf((Integer.valueOf(getAttenuazioneMin())+Integer.valueOf(getAttenuazioneMax()))/2));
+		}
 		return this.attenuazioneMed;
 	}
 

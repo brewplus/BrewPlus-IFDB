@@ -213,7 +213,12 @@ public class Yeast {
 		setForma(type.getForma());
 		setCategoria(type.getCategoria());
 		setDescrizione(type.getDescrizione());
-		setAttenuazioneMed(type.getAttenuazioneMed());
+		if (type.getAttenuazioneMed() != null && !"".equals(type.getAttenuazioneMed())) {			
+			setAttenuazioneMed(type.getAttenuazioneMed());
+		} else if (type.getAttenuazioneMin() != null && !"".equals(type.getAttenuazioneMin()) &&
+				type.getAttenuazioneMax() != null && !"".equals(type.getAttenuazioneMax())) {
+			setAttenuazioneMed(String.valueOf((Integer.valueOf(type.getAttenuazioneMin())+Integer.valueOf(type.getAttenuazioneMax()))/2));
+		}
 		setAttenuazioneMin(type.getAttenuazioneMin());
 		setAttenuazioneMax(type.getAttenuazioneMax());
 		setTemperaturaMin(type.getTemperaturaMin());
