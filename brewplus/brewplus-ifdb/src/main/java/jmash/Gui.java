@@ -1099,7 +1099,7 @@ public class Gui extends javax.swing.JFrame {
 		try {
 			nuovaRicetta(new Ricetta(XMLReader.XMLfromString(str), null));
 		} catch (Exception ex2) {
-			Utils.showException(ex2, "Impossibile riconoscere una ricetta di HobbyBrew.");
+			Utils.showException(ex2, "Impossibile riconoscere una ricetta di BrewPlus.");
 		}
 	}// GEN-LAST:event_mnuFromPromashActionPerformed
 

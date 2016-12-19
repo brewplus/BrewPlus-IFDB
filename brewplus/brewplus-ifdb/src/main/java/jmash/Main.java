@@ -70,7 +70,7 @@ public class Main {
         
     public static Locale locale;
         
-	//public static String versioneHobbyBrew = "2.0.0";
+	//public static String versioneBrewPlus = "2.1.0";
 	public static Integer webVersion;
 	public static String userDir;
 	public static String waterDir;
@@ -175,7 +175,7 @@ public class Main {
 	}
 
 	public static String getVersione() {
-		//return versioneHobbyBrew;
+		//return versioneBrewPlus;
 		return Utils.getVersion();
 	}
 
