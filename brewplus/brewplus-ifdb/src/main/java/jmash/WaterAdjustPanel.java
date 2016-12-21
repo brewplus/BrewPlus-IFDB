@@ -232,12 +232,31 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 
 		initComponents();
 
-		spinCalcio.setModel(0, 0, 100000, 1, "0.0", "WaterAdjustPanel.spinCalcio");
-		spinCloruro.setModel(0, 0, 100000, 1, "0.0", "WaterAdjustPanel.spinCloruro");
-		spinMagnesio.setModel(0, 0, 100000, 1, "0.0", "WaterAdjustPanel.spinMagnesio");
-		spinSodio.setModel(0, 0, 100000, 1, "0.0", "WaterAdjustPanel.spinSodio");
-		spinSolfato.setModel(0, 0, 100000, 1, "0.0", "WaterAdjustPanel.spinSolfato");
-		spinCarb.setModel(0, 0, 100000, 1, "0.0", "WaterAdjustPanel.spinCarb");
+		// spinCalcio.setModel(0, 0, 100000, 1, "0.0",
+		// "WaterAdjustPanel.spinCalcio");
+		// spinCloruro.setModel(0, 0, 100000, 1, "0.0",
+		// "WaterAdjustPanel.spinCloruro");
+		// spinMagnesio.setModel(0, 0, 100000, 1, "0.0",
+		// "WaterAdjustPanel.spinMagnesio");
+		// spinSodio.setModel(0, 0, 100000, 1, "0.0",
+		// "WaterAdjustPanel.spinSodio");
+		// spinSolfato.setModel(0, 0, 100000, 1, "0.0",
+		// "WaterAdjustPanel.spinSolfato");
+		// spinCarb.setModel(0, 0, 100000, 1, "0.0",
+		// "WaterAdjustPanel.spinCarb");
+
+		spinCalcio.setModel(Main.config.getCalcioSource() != null ? Main.config.getCalcioSource() : 0, 0, 100000, 1,
+				"0.0", null);
+		spinCloruro.setModel(Main.config.getCloruroSource() != null ? Main.config.getCloruroSource() : 0, 0, 100000, 1,
+				"0.0", null);
+		spinMagnesio.setModel(Main.config.getMagnesioSource() != null ? Main.config.getMagnesioSource() : 0, 0, 100000,
+				1, "0.0", null);
+		spinSodio.setModel(Main.config.getSodioSource() != null ? Main.config.getSodioSource() : 0, 0, 100000, 1, "0.0",
+				null);
+		spinSolfato.setModel(Main.config.getSolfatoSource() != null ? Main.config.getSolfatoSource() : 0, 0, 100000, 1,
+				"0.0", null);
+		spinCarb.setModel(Main.config.getCarbonatoSource() != null ? Main.config.getCarbonatoSource() : 0, 0, 100000, 1,
+				"0.0", null);
 
 		spinCalcio1.setModel(0, 0, 100000, 1, "0.0", null);
 		spinCloruro1.setModel(0, 0, 100000, 1, "0.0", null);
@@ -271,6 +290,9 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 
 		setBackground(getBackground().darker());
 
+		findWaterProfile(WaterProfile.Type.SOURCE);
+		findWaterProfile(WaterProfile.Type.TARGET);
+
 		thread = new Thread() {
 			@Override
 			public void run() {
@@ -281,9 +303,9 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 
 					if (work) {
 
-						WaterProfile source = new WaterProfile(spinCalcio.getIntegerValue(),
-								spinMagnesio.getIntegerValue(), spinSolfato.getIntegerValue(),
-								spinCloruro.getIntegerValue(), spinSodio.getIntegerValue(), spinCarb.getIntegerValue());
+						WaterProfile source = new WaterProfile(spinCalcio.getDoubleValue(),
+								spinMagnesio.getDoubleValue(), spinSolfato.getDoubleValue(),
+								spinCloruro.getDoubleValue(), spinSodio.getDoubleValue(), spinCarb.getDoubleValue());
 
 						if (flagRes) {
 							flagRes = false;
@@ -295,10 +317,10 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 							source = res;
 						}
 
-						WaterProfile dest = new WaterProfile(spinCalcio1.getIntegerValue(),
-								spinMagnesio1.getIntegerValue(), spinSolfato1.getIntegerValue(),
-								spinCloruro1.getIntegerValue(), spinSodio1.getIntegerValue(),
-								spinCarb1.getIntegerValue());
+						WaterProfile dest = new WaterProfile(spinCalcio1.getDoubleValue(),
+								spinMagnesio1.getDoubleValue(), spinSolfato1.getDoubleValue(),
+								spinCloruro1.getDoubleValue(), spinSodio1.getDoubleValue(),
+								spinCarb1.getDoubleValue());
 
 						dest.setUseGypsum(useGypsum.isSelected());
 						dest.setUseEpsom(useEpsom.isSelected());
@@ -356,6 +378,60 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		};
 
 		thread.start();
+	}
+
+	private void findWaterProfile(WaterProfile.Type type) {
+
+		WaterProfile waterProfile = null;
+
+		switch (type) {
+
+		case SOURCE:
+			waterProfile = new WaterProfile(spinCalcio.getDoubleValue(), spinMagnesio.getDoubleValue(),
+					spinSolfato.getDoubleValue(), spinCloruro.getDoubleValue(), spinSodio.getDoubleValue(),
+					spinCarb.getDoubleValue());
+			break;
+		case TARGET:
+			waterProfile = new WaterProfile(spinCalcio1.getDoubleValue(), spinMagnesio1.getDoubleValue(),
+					spinSolfato1.getIntegerValue(), spinCloruro1.getDoubleValue(), spinSodio1.getDoubleValue(),
+					spinCarb1.getDoubleValue());
+			break;
+		case BEST_APPROXIMATION:
+			break;
+
+		}
+
+		if (waterProfile != null) {
+
+			WaterProfile waterProfileFound = Gui.waterPickerTableModel.findFirstWaterProfile(waterProfile);
+
+			if (waterProfileFound != null && waterProfileFound.getNome() != null) {
+				switch (type) {
+				case SOURCE:
+					setSource(waterProfileFound);
+					break;
+				case TARGET:
+					setDest(waterProfileFound);
+					break;
+				case BEST_APPROXIMATION:
+					break;
+				}
+			} else {
+				switch (type) {
+				case SOURCE:
+					sourceName = null;
+					((TitledBorder) fromPanel.getBorder()).setTitle("Partenza - ppm");
+					break;
+				case TARGET:
+					destName = null;
+					((TitledBorder) destPanel.getBorder()).setTitle("Target - ppm");
+					break;
+				case BEST_APPROXIMATION:
+					break;
+				}
+			}
+		}
+
 	}
 
 	/**
@@ -1945,22 +2021,27 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 
 	private void spinSodio1StateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spinSodio1StateChanged
 		recalcTreatment();
+		findWaterProfile(WaterProfile.Type.TARGET);
 	}// GEN-LAST:event_spinSodio1StateChanged
 
 	private void spinCloruro1StateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spinCloruro1StateChanged
 		recalcTreatment();
+		findWaterProfile(WaterProfile.Type.TARGET);
 	}// GEN-LAST:event_spinCloruro1StateChanged
 
 	private void spinSolfato1StateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spinSolfato1StateChanged
 		recalcTreatment();
+		findWaterProfile(WaterProfile.Type.TARGET);
 	}// GEN-LAST:event_spinSolfato1StateChanged
 
 	private void spinMagnesio1StateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spinMagnesio1StateChanged
 		recalcTreatment();
+		findWaterProfile(WaterProfile.Type.TARGET);
 	}// GEN-LAST:event_spinMagnesio1StateChanged
 
 	private void spinCalcio1StateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spinCalcio1StateChanged
 		recalcTreatment();
+		findWaterProfile(WaterProfile.Type.TARGET);
 	}// GEN-LAST:event_spinCalcio1StateChanged
 
 	private void spnSodaStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spnSodaStateChanged
@@ -2070,6 +2151,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 
 	private void spinCarb1StateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spinCarb1StateChanged
 		recalcTreatment();
+		findWaterProfile(WaterProfile.Type.TARGET);
 	}// GEN-LAST:event_spinCarb1StateChanged
 
 	private void btnBActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnBActionPerformed
@@ -2105,31 +2187,37 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	private void spinCarbStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spinCarbStateChanged
 		flagRes = true;
 		recalcTreatment();
+		findWaterProfile(WaterProfile.Type.SOURCE);
 	}// GEN-LAST:event_spinCarbStateChanged
 
 	private void spinSodioStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spinSodioStateChanged
 		flagRes = true;
 		recalcTreatment();
+		findWaterProfile(WaterProfile.Type.SOURCE);
 	}// GEN-LAST:event_spinSodioStateChanged
 
 	private void spinCloruroStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spinCloruroStateChanged
 		flagRes = true;
 		recalcTreatment();
+		findWaterProfile(WaterProfile.Type.SOURCE);
 	}// GEN-LAST:event_spinCloruroStateChanged
 
 	private void spinSolfatoStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spinSolfatoStateChanged
 		flagRes = true;
 		recalcTreatment();
+		findWaterProfile(WaterProfile.Type.SOURCE);
 	}// GEN-LAST:event_spinSolfatoStateChanged
 
 	private void spinMagnesioStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spinMagnesioStateChanged
 		flagRes = true;
 		recalcTreatment();
+		findWaterProfile(WaterProfile.Type.SOURCE);
 	}// GEN-LAST:event_spinMagnesioStateChanged
 
 	private void spinCalcioStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spinCalcioStateChanged
 		flagRes = true;
 		recalcTreatment();
+		findWaterProfile(WaterProfile.Type.SOURCE);
 	}
 
 	private void spinLacticAcidStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spinCalcioStateChanged
@@ -2182,9 +2270,9 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		if (file == null) {
 			return;
 		}
-		WaterProfile source = new WaterProfile(spinCalcio.getIntegerValue(), spinMagnesio.getIntegerValue(),
-				spinSolfato.getIntegerValue(), spinCloruro.getIntegerValue(), spinSodio.getIntegerValue(),
-				spinCarb.getIntegerValue());
+		WaterProfile source = new WaterProfile(spinCalcio.getDoubleValue(), spinMagnesio.getDoubleValue(),
+				spinSolfato.getDoubleValue(), spinCloruro.getDoubleValue(), spinSodio.getDoubleValue(),
+				spinCarb.getDoubleValue());
 		source.setNome(sourceName);
 		if (!file.exists())
 			source.setNome(file.getName());
@@ -2222,9 +2310,9 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 			return;
 		}
 
-		WaterProfile source = new WaterProfile(spinCalcio1.getIntegerValue(), spinMagnesio1.getIntegerValue(),
-				spinSolfato1.getIntegerValue(), spinCloruro1.getIntegerValue(), spinSodio1.getIntegerValue(),
-				spinCarb1.getIntegerValue());
+		WaterProfile source = new WaterProfile(spinCalcio1.getDoubleValue(), spinMagnesio1.getDoubleValue(),
+				spinSolfato1.getDoubleValue(), spinCloruro1.getDoubleValue(), spinSodio1.getDoubleValue(),
+				spinCarb1.getDoubleValue());
 		source.setNome(destName);
 		if (!file.exists())
 			source.setNome(file.getName());
@@ -2244,17 +2332,17 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	private Thread thread;
 
 	public WaterProfile getSource() {
-		WaterProfile source = new WaterProfile(spinCalcio.getIntegerValue(), spinMagnesio.getIntegerValue(),
-				spinSolfato.getIntegerValue(), spinCloruro.getIntegerValue(), spinSodio.getIntegerValue(),
-				spinCarb.getIntegerValue());
+		WaterProfile source = new WaterProfile(spinCalcio.getDoubleValue(), spinMagnesio.getDoubleValue(),
+				spinSolfato.getDoubleValue(), spinCloruro.getDoubleValue(), spinSodio.getDoubleValue(),
+				spinCarb.getDoubleValue());
 		source.setNome(sourceName);
 		return source;
 	}
 
 	public WaterProfile getDest() {
-		WaterProfile dest = new WaterProfile(spinCalcio1.getIntegerValue(), spinMagnesio1.getIntegerValue(),
-				spinSolfato1.getIntegerValue(), spinCloruro1.getIntegerValue(), spinSodio1.getIntegerValue(),
-				spinCarb1.getIntegerValue());
+		WaterProfile dest = new WaterProfile(spinCalcio1.getDoubleValue(), spinMagnesio1.getDoubleValue(),
+				spinSolfato1.getDoubleValue(), spinCloruro1.getDoubleValue(), spinSodio1.getDoubleValue(),
+				spinCarb1.getDoubleValue());
 		dest.setNome(destName);
 		return dest;
 	}
@@ -2268,12 +2356,12 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 			return;
 		sourceName = profile.getNome();
 		((TitledBorder) fromPanel.getBorder()).setTitle("Origine - " + sourceName);
-		spinCalcio.setIntegerValue((int) profile.getCalcio().doubleValue());
-		spinSodio.setIntegerValue((int) profile.getSodio().doubleValue());
-		spinSolfato.setIntegerValue((int) profile.getSolfato().doubleValue());
-		spinMagnesio.setIntegerValue((int) profile.getMagnesio().doubleValue());
-		spinCloruro.setIntegerValue((int) profile.getCloruro().doubleValue());
-		spinCarb.setIntegerValue((int) profile.getCarbonato().doubleValue());
+		spinCalcio.setDoubleValue(profile.getCalcio().doubleValue());
+		spinSodio.setDoubleValue(profile.getSodio().doubleValue());
+		spinSolfato.setDoubleValue(profile.getSolfato().doubleValue());
+		spinMagnesio.setDoubleValue(profile.getMagnesio().doubleValue());
+		spinCloruro.setDoubleValue(profile.getCloruro().doubleValue());
+		spinCarb.setDoubleValue(profile.getCarbonato().doubleValue());
 	}
 
 	public void setDest(WaterProfile profile) {
@@ -2281,12 +2369,12 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 			return;
 		destName = profile.getNome();
 		((TitledBorder) destPanel.getBorder()).setTitle("Target - " + destName);
-		spinCalcio1.setIntegerValue((int) profile.getCalcio().doubleValue());
-		spinSodio1.setIntegerValue((int) profile.getSodio().doubleValue());
-		spinSolfato1.setIntegerValue((int) profile.getSolfato().doubleValue());
-		spinMagnesio1.setIntegerValue((int) profile.getMagnesio().doubleValue());
-		spinCloruro1.setIntegerValue((int) profile.getCloruro().doubleValue());
-		spinCarb1.setIntegerValue((int) profile.getCarbonato().doubleValue());
+		spinCalcio1.setDoubleValue(profile.getCalcio().doubleValue());
+		spinSodio1.setDoubleValue(profile.getSodio().doubleValue());
+		spinSolfato1.setDoubleValue(profile.getSolfato().doubleValue());
+		spinMagnesio1.setDoubleValue(profile.getMagnesio().doubleValue());
+		spinCloruro1.setDoubleValue(profile.getCloruro().doubleValue());
+		spinCarb1.setDoubleValue(profile.getCarbonato().doubleValue());
 	}
 
 	public void setTreatment(WaterProfile profile) {
@@ -2353,9 +2441,9 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		}
 
 		double LITRI = spnVolume.getVolume();
-		WaterProfile treat = new WaterProfile(spinCalcio.getIntegerValue(), spinMagnesio.getIntegerValue(),
-				spinSolfato.getIntegerValue(), spinCloruro.getIntegerValue(), spinSodio.getIntegerValue(),
-				spinCarb.getIntegerValue());
+		WaterProfile treat = new WaterProfile(spinCalcio.getDoubleValue(), spinMagnesio.getDoubleValue(),
+				spinSolfato.getDoubleValue(), spinCloruro.getDoubleValue(), spinSodio.getDoubleValue(),
+				spinCarb.getDoubleValue());
 		res = treat;
 		treat.setGypsum((spnGypsum.getDoubleValue() * 1000 / Utils.litToGal(LITRI)));
 		treat.setEpsom((spnEpsom.getDoubleValue() * 1000 / Utils.litToGal(LITRI)));
@@ -2393,6 +2481,9 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		for (SaltType saltType : SaltType.values()) {
 			toggleSalt(saltType);
 		}
+		
+//		findWaterProfile(WaterProfile.Type.SOURCE);
+//		findWaterProfile(WaterProfile.Type.TARGET);
 	}
 
 	@Override
@@ -2456,9 +2547,9 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	}
 
 	public void fer() {
-		WaterProfile wp = new WaterProfile(spinCalcio.getIntegerValue(), spinMagnesio.getIntegerValue(),
-				spinSolfato.getIntegerValue(), spinCloruro.getIntegerValue(), spinSodio.getIntegerValue(),
-				spinCarb.getIntegerValue());
+		WaterProfile wp = new WaterProfile(spinCalcio.getDoubleValue(), spinMagnesio.getDoubleValue(),
+				spinSolfato.getDoubleValue(), spinCloruro.getDoubleValue(), spinSodio.getDoubleValue(),
+				spinCarb.getDoubleValue());
 		String txt = "HD = " + (2.5 * wp.getCalcio() + 4.16 * wp.getMagnesio());
 		double alk = (wp.getCarbonato() * 50.0 / 61.0);
 		txt += "\nAlk = " + alk;

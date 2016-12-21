@@ -238,6 +238,7 @@ public class Gui extends javax.swing.JFrame {
 	public static YeastPickerTableModel yeastPickerTableModel = new YeastPickerTableModel();
 	public static BrewStylePickerTableModel brewStylePickerTableModel = new BrewStylePickerTableModel();
 	public static BreweryProfilePickerTableModel breweryProfilePickerTableModel = new BreweryProfilePickerTableModel();
+	
 
 	/**
 	 * This method is called from within the constructor to initialize the form.

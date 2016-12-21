@@ -61,6 +61,13 @@ public class Config {
     private Double percentualeEvaporazione = 15.0;
     private Double contrazionePerRaffreddamento = 4.0;
     private Boolean biab = Boolean.FALSE;
+    
+    private Double calcioSource;
+	private Double sodioSource;
+	private Double magnesioSource;
+	private Double solfatoSource;
+	private Double cloruroSource;
+	private Double carbonatoSource;
 
     public String getRemoteServer() {
         return this.remoteServer;
@@ -69,7 +76,9 @@ public class Config {
     private static String campiXml[] = new String[] {"locale", "remoteRoot", "RemoteServer", "RSSFeed", "boilTime", "volumeFin",
             "volumeBoil", "efficienza", "metriSLM", "amaroDHEA", "nickIHB", "passwordIHB", "proxyPort", "proxyHost",
             "lostToTrub", "litriPerKg", "rapportoAcquaGrani", "ebcNewMethod", "potLibGal",
-            "BUGUratiostring", "percentualeEvaporazione", "contrazionePerRaffreddamento", "biab"};
+            "BUGUratiostring", "percentualeEvaporazione", "contrazionePerRaffreddamento", "biab",
+            "calcioSource", "magnesioSource", "solfatoSource", "cloruroSource", "sodioSource", "carbonatoSource"
+    };
 
     public void setRemoteServer(String remoteServer) {
         this.remoteServer = remoteServer;
@@ -166,7 +175,55 @@ public class Config {
 		this.biab = biab;
 	}
 
-    public static String[] getCampiXml() {
+    public Double getCalcioSource() {
+		return calcioSource;
+	}
+
+	public void setCalcioSource(Double calcioSource) {
+		this.calcioSource = calcioSource;
+	}
+
+	public Double getSodioSource() {
+		return sodioSource;
+	}
+
+	public void setSodioSource(Double sodioSource) {
+		this.sodioSource = sodioSource;
+	}
+
+	public Double getMagnesioSource() {
+		return magnesioSource;
+	}
+
+	public void setMagnesioSource(Double magnesioSource) {
+		this.magnesioSource = magnesioSource;
+	}
+
+	public Double getSolfatoSource() {
+		return solfatoSource;
+	}
+
+	public void setSolfatoSource(Double solfatoSource) {
+		this.solfatoSource = solfatoSource;
+	}
+
+	public Double getCloruroSource() {
+		return cloruroSource;
+	}
+
+	public void setCloruroSource(Double cloruroSource) {
+		this.cloruroSource = cloruroSource;
+	}
+
+	public Double getCarbonatoSource() {
+		return carbonatoSource;
+	}
+
+	public void setCarbonatoSource(Double carbonatoSource) {
+		this.carbonatoSource = carbonatoSource;
+	}
+
+	public static String[] getCampiXml() {
         return campiXml;
     }
 

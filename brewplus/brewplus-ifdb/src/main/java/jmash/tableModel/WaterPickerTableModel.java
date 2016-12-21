@@ -20,8 +20,13 @@
 
 package jmash.tableModel;
 
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.lang.StringUtils;
+
 import jmash.*;
 
 public class WaterPickerTableModel extends PickerTableModel {
@@ -101,5 +106,93 @@ public class WaterPickerTableModel extends PickerTableModel {
 
 	@Override
 	public void setValueAt(Object value, int row, int col) {
+	}
+	
+	public String[] getWaterNames() {
+		return getWaterNames(null);
+	}
+
+	public String[] getWaterNames(String header) {
+
+		int n = StringUtils.isBlank(header) ? getRowCount() : getRowCount() + 1;
+		int posInit = StringUtils.isBlank(header) ? 0 : 1;
+		String[] waterNames = new String[n];
+
+		if (!StringUtils.isBlank(header)) {
+			waterNames[0] = header;
+		}
+
+		WaterProfile waterProfile;
+		for (int i = posInit; i < n; i++) {
+			waterProfile = getRows().get(i - posInit);
+			waterNames[i] = waterProfile.getNome();
+		}
+
+		return waterNames;
+	}
+	
+	public Map<String, WaterProfile> getWaterProfiles() {
+
+		Map<String, WaterProfile> waterProfiles = new LinkedHashMap<>();
+
+		for (WaterProfile waterProfile : getRows()) {
+
+			waterProfiles.put(waterProfile.getNome(), waterProfile);
+		}
+
+		return waterProfiles;
+	}
+
+	public WaterProfile findFirstWaterProfile(WaterProfile waterProfileToFind) {
+		WaterProfile found = waterProfileToFind;
+
+		for (WaterProfile waterProfile : getRows()) {
+
+			if (waterProfile.isLiteEquals(waterProfileToFind)) {
+				found.setNome(waterProfile.getNome());
+				break;
+			}
+
+		}
+
+		return found;
+	}
+
+	public Integer findFirstIndexWaterProfile(WaterProfile waterProfileToFind) {
+		Integer index = null;
+
+		for (int i = 0; i < getRows().size(); i++) {
+			WaterProfile waterProfile = getRows().get(i);
+
+			if (waterProfile.isLiteEquals(waterProfileToFind)) {
+				index = i;
+				break;
+			}
+
+		}
+
+		return index;
+	}
+	
+	public boolean isPresentWaterProfile(WaterProfile waterProfileToFind)
+	{
+		return findFirstIndexWaterProfile(waterProfileToFind) != null;
+	}
+
+	public WaterProfile findWaterProfile(String name) {
+		WaterProfile found = null;
+
+		if (StringUtils.isNotBlank(name)) {
+
+			for (WaterProfile waterProfile : getRows()) {
+
+				if (name.equals(waterProfile.getNome())) {
+					found = waterProfile;
+					break;
+				}
+
+			}
+		}
+		return found;
 	}
 }
