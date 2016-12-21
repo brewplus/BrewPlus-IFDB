@@ -292,6 +292,10 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 
 		findWaterProfile(WaterProfile.Type.SOURCE);
 		findWaterProfile(WaterProfile.Type.TARGET);
+		
+		for (SaltType saltType : SaltType.values()) {
+			toggleSalt(saltType);
+		}
 
 		thread = new Thread() {
 			@Override
