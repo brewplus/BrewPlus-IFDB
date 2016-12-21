@@ -1161,7 +1161,7 @@
 					<font fontName="DejaVu Serif"/>
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
-				<text><![CDATA[EBC (Daniels)]]></text>
+				<text><![CDATA[EBC (Mosher)]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="4" y="161" width="101" height="13" uuid="927f87fe-32d7-478e-92c8-a5ee26df57b6"/>
