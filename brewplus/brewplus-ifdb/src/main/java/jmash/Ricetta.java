@@ -2037,7 +2037,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	}// GEN-LAST:event_spinBollituraStateChanged
 
 	private void spinEfficienzaStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spinEfficienzaStateChanged
-		int v = ((Integer) this.spinEfficienza.getValue()).intValue();
+		double v = ((Double) this.spinEfficienza.getValue()).doubleValue();
 		if (this.lock.isSelected()) {
 			this.maltTableModel.adjustTo(this.thisRicetta.getEfficienza(), this.thisRicetta.getVolume(), v,
 					this.thisRicetta.getVolume());
