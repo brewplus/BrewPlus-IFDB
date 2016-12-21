@@ -870,8 +870,8 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 
 		Config config = new Config();
 
-		config.setEfficienza((int) fldEff.getDoubleValue());
-		config.setVolumeFin((int) fldVolumeFin.getDoubleValue());
+		config.setEfficienza(fldEff.getDoubleValue());
+		config.setVolumeFin(fldVolumeFin.getDoubleValue());
 		// config.setVolumeBoil(fldVolumeBoll.getIntegerValue());
 		config.setMetriSLM(fldSLM.getIntegerValue());
 		config.setAmaroDHEA(fldDHEA.getIntegerValue());
@@ -885,8 +885,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		config.setLostToTrub(spnLostToTrub.getDoubleValue());
 		config.setLitriPerKg(spnAssorbimentoGraniEsausti.getDoubleValue());
 		config.setRapportoAcquaGrani(spnRapportoAcquaGrani.getDoubleValue());
-		config.setLocale(
-				Constants.ITALIAN.equalsIgnoreCase((String) cmbLanguage.getSelectedItem()) ? "it_IT" : "en_US");
+		config.setLocale(Constants.ITALIAN.equalsIgnoreCase((String) cmbLanguage.getSelectedItem()) ? "it_IT" : "en_US");
 		config.setPercentualeEvaporazione(spnPercentualeEvaporazione.getDoubleValue());
 		config.setContrazionePerRaffreddamento(spnContrazionePerRaffreddamento.getDoubleValue());
 		config.setBiab(chckbxBiab.isSelected());
@@ -1091,8 +1090,8 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 	}
 
 	public BreweryProfile getCurrentBreweryProfile() {
-		Integer volumeFinale = new Integer((int) fldVolumeFin.getDoubleValue());
-		Integer efficienza = new Integer((int) fldEff.getDoubleValue());
+		Double volumeFinale = fldVolumeFin.getDoubleValue();
+		Double efficienza = fldEff.getDoubleValue();
 		Double assorbimentoGraniEsausti = spnAssorbimentoGraniEsausti.getDoubleValue();
 		Double rapportoAcquaGrani = spnRapportoAcquaGrani.getDoubleValue();
 		Double percentualeEvaporazione = spnPercentualeEvaporazione.getDoubleValue();

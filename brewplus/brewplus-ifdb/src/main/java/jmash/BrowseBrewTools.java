@@ -462,7 +462,7 @@ public class BrowseBrewTools extends javax.swing.JInternalFrame {
 			String k2 = "<span class=\"value\">";
 			int e = str.indexOf(k2, i) + k2.length();
 			String eff = str.substring(e, str.indexOf("%", e)).trim();
-			rd.setEfficienza(new Double(eff).intValue());
+			rd.setEfficienza(new Double(eff));
 		}
 
 		{

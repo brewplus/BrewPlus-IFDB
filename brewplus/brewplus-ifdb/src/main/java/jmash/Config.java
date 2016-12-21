@@ -45,9 +45,9 @@ public class Config {
     private String BUGUratiostring;
 
     private Integer boilTime = 90;
-    private Integer efficienza = 75;
-    private Integer volumeFin = 23;
-    private Integer volumeBoil = 28;
+    private Double efficienza = 75.0;
+    private Double volumeFin = 23.0;
+    private Double volumeBoil = 28.0;
     private Integer metriSLM = 160;
     private Integer amaroDHEA = 45;
    
@@ -119,27 +119,27 @@ public class Config {
         this.boilTime = boilTime;
     }
 
-    public Integer getEfficienza() {
+    public Double getEfficienza() {
         return this.efficienza;
     }
 
-    public void setEfficienza(Integer efficienza) {
+    public void setEfficienza(Double efficienza) {
         this.efficienza = efficienza;
     }
 
-    public Integer getVolumeFin() {
+    public Double getVolumeFin() {
         return this.volumeFin;
     }
 
-    public void setVolumeFin(Integer volumeFin) {
+    public void setVolumeFin(Double volumeFin) {
         this.volumeFin = volumeFin;
     }
 
-    public Integer getVolumeBoil() {
+    public Double getVolumeBoil() {
         return this.volumeBoil;
     }
 
-    public void setVolumeBoil(Integer volumeBoil) {
+    public void setVolumeBoil(Double volumeBoil) {
         this.volumeBoil = volumeBoil;
     }
 

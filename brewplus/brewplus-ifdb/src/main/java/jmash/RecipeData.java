@@ -38,7 +38,8 @@ public class RecipeData {
     private static final String SEPARATOR = "\n";
     private String nome, note, unitaMisura, fotografia, priming;
     private Double volumeBoll, volumeFin, volumeDiluito;
-    private Integer efficienza, bollitura;
+    private Double efficienza;
+    private Integer bollitura;
     private Boolean bollituraConcentrata;
     private Boolean biab;
 
@@ -137,11 +138,11 @@ public class RecipeData {
         this.volumeFin = volumeFin;
     }
 
-    public Integer getEfficienza() {
+    public Double getEfficienza() {
         return efficienza;
     }
 
-    public void setEfficienza(Integer efficienza) {
+    public void setEfficienza(Double efficienza) {
         this.efficienza = efficienza;
     }
 
@@ -398,7 +399,7 @@ public class RecipeData {
 
         setVolumeFin(Utils.galToLit(Utils.arr2Double((byte[]) b, 97)));
         setVolumeBoll(Utils.galToLit(Utils.arr2Double((byte[]) b, 101)));
-        setEfficienza((int) (100 * Utils.arr2Double((byte[]) b, 113)));
+        setEfficienza((100 * Utils.arr2Double((byte[]) b, 113)));
         setBollitura((int) b[117]);
 
         BrewStyle style = new BrewStyle();
@@ -556,10 +557,10 @@ public class RecipeData {
 
             try {
                 if (att.getName().compareToIgnoreCase(XmlTags.EFFICIENZA) == 0) {
-                    setEfficienza(att.getIntValue());
+                    setEfficienza(att.getDoubleValue());
                 }
             } catch (org.jdom.DataConversionException ex) {
-                setEfficienza(0);
+                setEfficienza(0.0);
             }
             try {
                 if (att.getName().compareToIgnoreCase(XmlTags.VOLUME) == 0) {

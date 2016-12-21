@@ -300,7 +300,7 @@ public class MaltTableModel extends GenericTableModel<Malt> {
         return srm;
     }
 
-    public void adjustTo(int effTo, double volTo, int effFrom, double volFrom) {
+    public void adjustTo(double effTo, double volTo, double effFrom, double volFrom) {
         if (dataValues != null)
             for (Malt m : this.dataValues) {
                 BigDecimal bd = new BigDecimal(m.getGrammi());

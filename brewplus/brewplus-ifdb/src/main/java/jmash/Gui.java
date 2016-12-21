@@ -1181,7 +1181,7 @@ public class Gui extends javax.swing.JFrame {
 
 		String eff = str.substring(str.indexOf("Brewhouse Efficiency:") + "Brewhouse Efficiency:".length(),
 				str.indexOf("Wort Boil Time:")).replace("%", "").trim();
-		rd.setEfficienza(new Integer(eff));
+		rd.setEfficienza(new Double(eff));
 		if (str.indexOf("Batch Size (L):") > 0) {
 			String bs = str.substring(str.indexOf("Batch Size (L):") + "Batch Size (L):".length(),
 					str.indexOf("Wort Size (L):")).trim();

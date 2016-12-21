@@ -21,8 +21,8 @@ public class BreweryProfile implements XmlAble, Comparable<BreweryProfile> {
 
 	private String nome;
 	private String descrizione;
-	private Integer volumeFinale;
-	private Integer efficienza;
+	private Double volumeFinale;
+	private Double efficienza;
 	private Double assorbimentoGraniEsausti;
 	private Double rapportoAcquaGrani;
 	private Double percentualeEvaporazione;
@@ -34,14 +34,14 @@ public class BreweryProfile implements XmlAble, Comparable<BreweryProfile> {
 		this(null, null, 23, 70, 1.4, 3.0, 15.0, 4.0, 0.0, "No");
 	}
 	
-	public BreweryProfile(int volumeFinale, int efficienza,
+	public BreweryProfile(double volumeFinale, double efficienza,
 			double assorbimentoGraniEsausti, double rapportoAcquaGrani, double percentualeEvaporazione,
 			double contrazionePerRaffreddamento, double perditeNelTrub, String biab) {
 		this(null, null, volumeFinale, efficienza, assorbimentoGraniEsausti, rapportoAcquaGrani, percentualeEvaporazione, contrazionePerRaffreddamento, perditeNelTrub, biab);
 	}
 
 
-	public BreweryProfile(String nome, String descrizione, int volumeFinale, int efficienza,
+	public BreweryProfile(String nome, String descrizione, double volumeFinale, double efficienza,
 			double assorbimentoGraniEsausti, double rapportoAcquaGrani, double percentualeEvaporazione,
 			double contrazionePerRaffreddamento, double perditeNelTrub, String biab) {
 		setNome(nome);
@@ -116,19 +116,19 @@ public class BreweryProfile implements XmlAble, Comparable<BreweryProfile> {
 		this.descrizione = descrizione;
 	}
 
-	public Integer getVolumeFinale() {
+	public Double getVolumeFinale() {
 		return volumeFinale;
 	}
 
-	public void setVolumeFinale(Integer volumeFinale) {
+	public void setVolumeFinale(Double volumeFinale) {
 		this.volumeFinale = volumeFinale;
 	}
 
-	public Integer getEfficienza() {
+	public Double getEfficienza() {
 		return efficienza;
 	}
 
-	public void setEfficienza(Integer efficienza) {
+	public void setEfficienza(Double efficienza) {
 		this.efficienza = efficienza;
 	}
 

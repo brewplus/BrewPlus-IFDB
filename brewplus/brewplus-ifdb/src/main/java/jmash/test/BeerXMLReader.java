@@ -130,7 +130,7 @@ public class BeerXMLReader {
 				String V = E.getValue();
 				if (V.equals("-"))
 					V = "100";
-				R.setEfficienza(new Double(V).intValue());
+				R.setEfficienza(new Double(V));
 			} else if (E.getName().equalsIgnoreCase("BOIL_TIME")) {
 				R.setBollitura(new Double(E.getValue()).intValue());
 			} else if (E.getName().equalsIgnoreCase("BOIL_SIZE")) {

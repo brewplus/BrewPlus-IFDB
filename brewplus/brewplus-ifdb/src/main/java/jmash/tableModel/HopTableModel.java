@@ -221,7 +221,7 @@ public class HopTableModel extends GenericTableModel<Hop> {
 		return gr;
 	}
 
-	public void adjustTo(int effTo, double volTo, int effFrom, double volFrom) {
+	public void adjustTo(double effTo, double volTo, double effFrom, double volFrom) {
 		if (dataValues != null)
 			for (Hop h : this.dataValues) {
 				BigDecimal bd = new BigDecimal(h.getGrammi());

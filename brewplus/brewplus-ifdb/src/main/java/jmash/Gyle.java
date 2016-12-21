@@ -1439,13 +1439,13 @@ public class Gyle extends javax.swing.JPanel {
 		this.unitaMisura = unitaMisura;
 	}
 
-	private int efficienza = Main.config.getEfficienza();
+	private double efficienza = Main.config.getEfficienza();
 
-	public int getEfficienza() {
+	public double getEfficienza() {
 		return this.efficienza;
 	}
 
-	public void setEfficienza(int v) {
+	public void setEfficienza(double v) {
 		this.efficienza = v;
 	}
 
