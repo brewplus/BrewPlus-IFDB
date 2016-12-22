@@ -19,13 +19,21 @@
 
 package jmash;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.beans.PropertyVetoException;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -35,12 +43,22 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.JSeparator;
 import javax.swing.JToolBar;
+import javax.swing.SwingConstants;
 import javax.swing.TransferHandler;
+import javax.swing.border.EmptyBorder;
+
+import org.apache.log4j.Logger;
+
 import jmash.config.XmlAbleEditor;
 import jmash.config.XmlAbleTableModel;
 import jmash.tableModel.BrewStylePickerTableModel;
@@ -52,25 +70,11 @@ import jmash.tableModel.MaltPickerTableModel;
 import jmash.tableModel.WaterPickerTableModel;
 import jmash.tableModel.YeastPickerTableModel;
 import jmash.test.BeerXMLReader;
-import java.awt.Color;
-import java.awt.Dimension;
-
-import javax.swing.ImageIcon;
-import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.image.BufferedImage;
-
-import javax.swing.JMenu;
-import javax.swing.JButton;
-import java.awt.Font;
-import javax.swing.JLabel;
-import javax.swing.border.EmptyBorder;
-
-import org.apache.log4j.Logger;
+import jmash.utils.Utility;
 
 public class Gui extends javax.swing.JFrame {
+	
+	private static final String PATH_BACKGROUND =  "/jmash/images/bkgrnd.jpg";
 
 	private static final long serialVersionUID = 348370096080739755L;
 	private static final Logger LOGGER = Logger.getLogger(Gui.class);
@@ -314,7 +318,12 @@ public class Gui extends javax.swing.JFrame {
 		// desktop.setBackground(Color.BLUE);
 
 		BufferedImage bf = null;
-		bf = ImageIO.read(getClass().getResourceAsStream("/jmash/images/bkgrnd.jpg"));
+		LocalDate today = LocalDate.now();
+		
+		LocalDate currentOttoDec = LocalDate.of(today.getYear(), Month.DECEMBER, 8);
+		LocalDate nextBefana = LocalDate.of(today.getYear() + 1, Month.JANUARY, 6);
+		
+		bf = ImageIO.read(getClass().getResourceAsStream(Utility.getPathImageByPeriod(PATH_BACKGROUND)));
 		desktop = new JDesktopBackground(bf);
 
 		desktop.setDoubleBuffered(true);
