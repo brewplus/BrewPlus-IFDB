@@ -41,8 +41,12 @@ public class XmlAbleTableModel extends GenericTableModel<XmlAble> {
 	private XmlAble xmlAble;
 
 	public XmlAbleTableModel(XmlAble xmlAble) {
+		this(xmlAble, xmlAble.getXmlFields());
+	}
+	
+	public XmlAbleTableModel(XmlAble xmlAble, String[] columnNames) {
 		this.xmlAble = xmlAble;
-		this.columnNames = xmlAble.getXmlFields();
+		this.columnNames = columnNames;
 	}
 
 	@Override
@@ -85,7 +89,7 @@ public class XmlAbleTableModel extends GenericTableModel<XmlAble> {
 				m.invoke(h, (Integer) value);
 			}
 			if (ret.equals(Double.class)) {
-				m.invoke(h, (Double) value);
+				m.invoke(h, value instanceof String ? new Double((String)value) : (Double) value);
 			}
 			if (ret.equals(Long.class)) {
 				m.invoke(h, (Long) value);

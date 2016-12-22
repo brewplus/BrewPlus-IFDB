@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<recipe volume="23.0" volume_boll="28.0" volume_dil="17.0" unita_misura_mostrata="litri" efficienza="75" bollitura="60" bollitura_conc="false" nome="Irish Velvet Stout (Sgabuzen)" note="" fotografia="" codicestile="16B" BIAB="false">
+<recipe volume="23.0" volume_boll="28.0" volume_dil="17.0" unita_misura_mostrata="litri" efficienza="75" bollitura="60" bollitura_conc="false" nome="Irish Velvet Stout (Sgabuzen)" note="" fotografia="" priming="  0.0 " codicestile="16B" BIAB="false">
   <jmash.Hop Grammi="38.0" UnitaMisura="grammi" BoilTime="60" AlfaAcidi="6.9" Nome="Challenger" Forma="Pellet" Origine="Regno Unito" Uso="Kettle" />
   <jmash.Hop Grammi="28.0" UnitaMisura="grammi" BoilTime="10" AlfaAcidi="6.9" Nome="Challenger" Forma="Pellet" Origine="Regno Unito" Uso="Kettle" />
-  <jmash.Malt Grammi="4200.0" UnitaMisura="grammi" Nome="Pale Ale" Forma="Grani" Ebc="6.5009999999999994" PotentialSG="1.03" srm="3.3025079999999996" />
-  <jmash.Malt Grammi="200.0" UnitaMisura="grammi" Nome="Black" Forma="" Ebc="1599.6399999999999" PotentialSG="1.016" srm="812.61712" />
-  <jmash.Malt Grammi="400.0" UnitaMisura="grammi" Nome="Roast Barley" Forma="Grani" Ebc="1599.6399999999999" PotentialSG="1.01" srm="812.61712" />
-  <jmash.Malt Grammi="400.0" UnitaMisura="grammi" Nome="Crystal" Forma="Grani" Ebc="150.0" PotentialSG="1.03" srm="76.2" />
-  <jmash.Malt Grammi="300.0" UnitaMisura="grammi" Nome="Fiocchi di Orzo" Forma="Fiocchi" Ebc="3.94" PotentialSG="1.03" srm="2.00152" />
-  <jmash.Malt Grammi="300.0" UnitaMisura="grammi" Nome="Fiocchi di Frumento" Forma="Fiocchi" Ebc="3.94" PotentialSG="1.03" srm="2.00152" />
-  <jmash.Malt Grammi="300.0" UnitaMisura="grammi" Nome="Fiocchi di Avena" Forma="Fiocchi" Ebc="1.97" PotentialSG="1.03" srm="1.00076" />
+  <jmash.Malt Grammi="4200.0" UnitaMisura="grammi" Nome="Pale Ale" Forma="Grani" Ebc="6.505940759999999" PotentialSG="1.03" srm="3.3050179060799993" lateAddiction="false" />
+  <jmash.Malt Grammi="200.0" UnitaMisura="grammi" Nome="Black" Forma="" Ebc="1600.8557263999999" PotentialSG="1.016" srm="813.2347090111999" lateAddiction="false" />
+  <jmash.Malt Grammi="400.0" UnitaMisura="grammi" Nome="Roast Barley" Forma="Grani" Ebc="1600.8557263999999" PotentialSG="1.01" srm="813.2347090111999" lateAddiction="false" />
+  <jmash.Malt Grammi="400.0" UnitaMisura="grammi" Nome="Crystal" Forma="Grani" Ebc="150.114" PotentialSG="1.03" srm="76.257912" lateAddiction="false" />
+  <jmash.Malt Grammi="300.0" UnitaMisura="grammi" Nome="Fiocchi di Orzo" Forma="Fiocchi" Ebc="3.9429944000000003" PotentialSG="1.03" srm="2.0030411552" lateAddiction="false" />
+  <jmash.Malt Grammi="300.0" UnitaMisura="grammi" Nome="Fiocchi di Frumento" Forma="Fiocchi" Ebc="3.9429944000000003" PotentialSG="1.03" srm="2.0030411552" lateAddiction="false" />
+  <jmash.Malt Grammi="300.0" UnitaMisura="grammi" Nome="Fiocchi di Avena" Forma="Fiocchi" Ebc="1.9714972000000002" PotentialSG="1.03" srm="1.0015205776" lateAddiction="false" />
   <jmash.Yeast nome="Irish Ale " codice="1084" produttore="Wyeast" descrizione="Pulito, liscio, morbido, dalla corposità piena. Con un modesto residuo di diacetile e fruttato; ideale per le Stout." note="" />
   <jmash.MashStep type="Infusione" start="0" startTemp="68" endTemp="68" length="60" nome="Single step" ramp="0" decoctionRamp1="0" decoctionRamp2="0" decoctionRestL1="0" decoctionRestL2="0" decoctionRestT1="0" decoctionRestT2="0" decoctionRampDown="0" />
   <jmash.WaterProfile calcio="81.0" magnesio="30.0" solfato="11.0" cloruro="19.0" sodio="6.0" carbonato="80.0" />
   <jmash.WaterProfile calcio="0.0" magnesio="0.0" solfato="0.0" cloruro="0.0" sodio="0.0" carbonato="0.0" />
-  <jmash.WaterProfile type="2" calcio="81.0" magnesio="30.0" solfato="11.0" cloruro="19.0" sodio="6.0" carbonato="80.0" gypsum="338.6635476145268" sale="0.0" epsom="0.0" calciumChloride="560.91150073656" chalk="0.0" soda="444.4959062440665" slakedLime="0.0" acidulatedMaltContent="2.0" lacticAcid="1.5" lacticAcidContent="88.0" citrusAcid="0.0" citrusAcidContent="0.0" />
-  <water BatchSize="23.0" GraniTotali="5.9" OriginalGravity="56.5" AssorbimentoGraniEsausti="1.4" HasPerditeNelTrub="false" PerditeNelTrub="1.0" RapportoAcquaGrani="3.0" PercentualeEvaporazione="15.0" ContrazionePerRaffreddamento="4.0" PerditaPerAssorbimento="8.26" PerditaPerEvaporazione="4.1262" PerditaPerContrazione="0.9568000000000001" VolumeMostoPreBoil="27.508" OGPreBoil="47.240802675585286" VolumePostBoil="23.92" VolumePostRaffreddamento="23.0" VolumeRealeInFermentatore="23.0" AcquaMash="17.700000000000003" AcquaSparge="18.067999999999998" TotaleAcqua="35.768" />
+  <jmash.WaterProfile type="2" calcio="81.0" magnesio="30.0" solfato="11.0" cloruro="19.0" sodio="6.0" carbonato="80.0" gypsum="338.6635476145268" sale="0.0" epsom="0.0" calciumChloride="560.91150073656" chalk="0.0" soda="444.4959062440665" slakedLime="0.0" acidulatedMaltContent="2.0" lacticAcid="1.5" lacticAcidContent="88.0" citrusAcid="0.0" citrusAcidContent="88.0" useGypsum="true" useCaCl2="true" useNaCl="false" useEpsom="false" useChalk="false" useSoda="true" useSlakedLime="false" useGypsumSparge="false" useCaCl2Sparge="false" useNaClSparge="false" useEpsomSparge="false" useChalkSparge="false" useSodaSparge="false" useSlakedLimeSparge="false" />
+  <water BatchSize="23.0" GraniTotali="5.9" OriginalGravity="56.5" AssorbimentoGraniEsausti="1.4" HasPerditeNelTrub="false" PerditeNelTrub="1.0" RapportoAcquaGrani="3.0" PercentualeEvaporazione="15.0" ContrazionePerRaffreddamento="4.0" PerditaPerAssorbimento="8.26" PerditaPerEvaporazione="4.1262" PerditaPerContrazione="0.9568000000000001" VolumeMostoPreBoil="27.508" OGPreBoil="46.82274247491639" VolumePostBoil="23.92" VolumePostRaffreddamento="23.0" VolumeRealeInFermentatore="23.0" AcquaMash="17.700000000000003" AcquaSparge="18.067999999999998" TotaleAcqua="35.768" />
 </recipe>
 

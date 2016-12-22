@@ -473,14 +473,6 @@ public class Utils {
 
 	public static void saveXmlAsFile(Document doc, File file, JInternalFrame parent) {
 
-		if ("1".equals(System.getProperty("ide"))) {
-			if (!file.exists()) {
-				// solo per esecuzioni per eclipse/netbeans
-				String currentDir = System.getProperty("user.dir");
-				String currentParentDir = new File(currentDir).getParent();
-				file = new File(currentParentDir + "/brewplus-ifdb-distr/src/main/resources/distr/" + file.toString());
-			}
-		}
 		XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
 
 		String xml = outputter.outputString(doc);
@@ -498,6 +490,24 @@ public class Utils {
 		}
 		new Info("Salvataggio eseguito con successo").startModal(parent);
 	}
+	
+    public static void saveRecipePIDToFile(String content, File file, JInternalFrame parent) {
+
+        try {
+
+            OutputStream out = new FileOutputStream(file);
+            Writer writer = new OutputStreamWriter(out, "UTF-8");
+            writer.write(content);
+            writer.flush();
+            writer.close();
+            LOGGER.debug(content);
+        } catch (IOException e) {
+            Msg ask = new Msg("Errore: salvataggio non riuscito\n" + e);
+            ask.startModal(parent);
+            return;
+        }
+        new Info("Salvataggio eseguito con successo").startModal(parent);
+    }
 
 	private static float hsb[] = new float[3];
 
@@ -589,18 +599,23 @@ public class Utils {
 	}
 
 	public static File pickFileToSave(JInternalFrame parent, String dir) {
-		return pickFileToSave(parent, dir, ".xml");
+		return pickFileToSave(parent, dir, "xml");
 	}
+	
+    public static File pickFileToSavePID(JInternalFrame parent, String dir) {
+        LOGGER.error("TO DO PICK");
+        return pickFileToSave(parent, dir, "bpl");
+    }
 
 	public static File pickFileToSave(JInternalFrame parent, String dir, String ext) {
-		PickFile pick = new PickFile(true, dir);
+		PickFile pick = new PickFile(true, dir, ext);
 		pick.startModal(parent);
 		File file = pick.getSelectedFile();
 		if (file == null) {
 			return null;
 		}
 		if (!file.getName().endsWith(ext)) {
-			file = new File(file.toString() + ext);
+			file = new File(file.toString() + "." + ext);
 		}
 		if (file.exists()) {
 			if (Ask.doAsk(parent, "Il file esiste gia', si desidera sovrascriverlo?") == false) {

@@ -27,6 +27,7 @@ import java.util.Random;
 
 import org.apache.log4j.Logger;
 import org.jdom.Element;
+
 import jmash.interfaces.XmlAble;
 
 public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
@@ -42,18 +43,40 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
 	private Double cloruro;
 	private Double carbonato;
 	private double diff;
-	private Double gypsum = 0.0, calciumChloride = 0.0, sale = 0.0, epsom = 0.0, chalk = 0.0, soda = 0.0, slakedLime = 0.0;
-	private boolean useGypsum = true, useCalciumChloride = true, useSale = true, useEpsom = true, useChalk = true,
-			useSoda = true;
+	private Double gypsum = 0.0;
+	private Double calciumChloride = 0.0;
+	private Double sale = 0.0;
+	private Double epsom = 0.0;
+	private Double chalk = 0.0;
+	private Double soda = 0.0;
+	private Double slakedLime = 0.0;
+	private Boolean useGypsum = Boolean.FALSE;
+	private Boolean useCaCl2 = Boolean.FALSE;
+	private Boolean useNaCl = Boolean.FALSE;
+	private Boolean useEpsom = Boolean.FALSE;
+	private Boolean useChalk = Boolean.FALSE;
+	private Boolean useSoda = Boolean.FALSE;
+	private Boolean useSlakedLime = Boolean.FALSE;
+	private Boolean useGypsumSparge = Boolean.FALSE;
+	private Boolean useCaCl2Sparge = Boolean.FALSE;
+	private Boolean useNaClSparge = Boolean.FALSE;
+	private Boolean useEpsomSparge = Boolean.FALSE;
+	private Boolean useChalkSparge = Boolean.FALSE;
+	private Boolean useSodaSparge = Boolean.FALSE;
+	private Boolean useSlakedLimeSparge = Boolean.FALSE;
 	private static int pCalcio = 50, pSolfato = 50, pCloruro = 50, pSodio = 50, pMagnesio = 50, pCarbonato = 50;
-	
+
 	private Double acidulatedMaltContent = 2.0;
 	private Double lacticAcid = 0.0;
 	private Double lacticAcidContent = 88.0;
 	private Double citrusAcid = 0.0;
 	private Double citrusAcidContent = 88.0;
-	
+
 	public static Random R = new Random();
+	
+	public enum Type {
+		SOURCE, TARGET, BEST_APPROXIMATION;
+	}
 
 	public WaterProfile() {
 		this.calcio = 0.0;
@@ -118,13 +141,29 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
 		p.chalk = this.chalk;
 		p.soda = this.soda;
 		p.slakedLime = this.slakedLime;
-		
+
 		p.acidulatedMaltContent = this.acidulatedMaltContent;
 		p.lacticAcid = this.lacticAcid;
 		p.lacticAcidContent = this.lacticAcidContent;
 		p.citrusAcid = this.citrusAcid;
 		p.citrusAcidContent = this.citrusAcidContent;
 		p.diff = this.diff;
+
+		p.useCaCl2 = this.useCaCl2;
+		p.useCaCl2Sparge = this.useCaCl2Sparge;
+		p.useChalk = this.useChalk;
+		p.useChalkSparge = this.useChalkSparge;
+		p.useEpsom = this.useEpsom;
+		p.useEpsomSparge = this.useEpsomSparge;
+		p.useGypsum = this.useGypsum;
+		p.useGypsumSparge = this.useGypsumSparge;
+		p.useNaCl = this.useNaCl;
+		p.useNaClSparge = this.useNaClSparge;
+		p.useSlakedLime = this.useSlakedLime;
+		p.useSlakedLimeSparge = this.useSlakedLimeSparge;
+		p.useSoda = this.useSoda;
+		p.useSodaSparge = this.useSodaSparge;
+
 		return p;
 	}
 
@@ -136,6 +175,22 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
 			for (int i = 0; i < POPULATION; i++) {
 				WaterProfile p = new WaterProfile(this.calcio, this.magnesio, this.solfato, this.cloruro, this.sodio,
 						this.carbonato);
+
+				p.useCaCl2 = this.useCaCl2;
+				p.useCaCl2Sparge = this.useCaCl2Sparge;
+				p.useChalk = this.useChalk;
+				p.useChalkSparge = this.useChalkSparge;
+				p.useEpsom = this.useEpsom;
+				p.useEpsomSparge = this.useEpsomSparge;
+				p.useGypsum = this.useGypsum;
+				p.useGypsumSparge = this.useGypsumSparge;
+				p.useNaCl = this.useNaCl;
+				p.useNaClSparge = this.useNaClSparge;
+				p.useSlakedLime = this.useSlakedLime;
+				p.useSlakedLimeSparge = this.useSlakedLimeSparge;
+				p.useSoda = this.useSoda;
+				p.useSodaSparge = this.useSodaSparge;
+
 				/*
 				 * p.gypsum=R.nextInt(1000); p.sale=R.nextInt(1000);
 				 * p.epsom=R.nextInt(1000); p.calciumCloride=R.nextInt(1000);
@@ -152,19 +207,18 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
 			}
 
 			Collections.sort(L, new Compare());
-			best = L.get(
-					0);/*
-						 * System.out.println(k+") first.diff="+best.diff +
-						 * ", \tgypsum="+best.gypsum+ ", calciumChloride="
-						 * +best.calciumCloride+ ", sale="+best.sale+ ", epsom="
-						 * +best.epsom );
-						 * System.out.println("\tcalcio="+best.getCalcio()+"("+
-						 * dest.calcio+")"+ ", magnesio="
-						 * +best.getMagnesio()+"("+dest.magnesio+")"+
-						 * ", cloruri="+best.getCloruri()+"("+dest.cloruri+")"+
-						 * ", solfato="+best.getSolfato()+"("+dest.solfato+")"+
-						 * ", sodio="+best.getSodio()+"("+dest.sodio+")" );
-						 */
+			best = L.get(0);
+			/*
+			 * System.out.println(k+") first.diff="+best.diff +
+			 * ", \tgypsum="+best.gypsum+ ", calciumChloride="
+			 * +best.calciumCloride+ ", sale="+best.sale+ ", epsom=" +best.epsom
+			 * ); System.out.println("\tcalcio="+best.getCalcio()+"("+
+			 * dest.calcio+")"+ ", magnesio="
+			 * +best.getMagnesio()+"("+dest.magnesio+")"+
+			 * ", cloruri="+best.getCloruri()+"("+dest.cloruri+")"+
+			 * ", solfato="+best.getSolfato()+"("+dest.solfato+")"+
+			 * ", sodio="+best.getSodio()+"("+dest.sodio+")" );
+			 */
 			if (best.diff == 0) {
 				break;
 			}
@@ -212,18 +266,24 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
 					if (p.calciumChloride < 0) {
 						p.calciumChloride = 0.0;
 					}
+					if (p.slakedLime < 0) {
+						p.slakedLime = 0.0;
+					}
+
 					if (!useSoda)
 						p.soda = 0.0;
 					if (!useChalk)
 						p.chalk = 0.0;
 					if (!useGypsum)
 						p.gypsum = 0.0;
-					if (!useCalciumChloride)
+					if (!useCaCl2)
 						p.calciumChloride = 0.0;
-					if (!useSale)
+					if (!useNaCl)
 						p.sale = 0.0;
 					if (!useEpsom)
 						p.epsom = 0.0;
+					if (!useSlakedLime)
+						p.slakedLime = 0.0;
 
 					L.add(p);
 				}
@@ -233,6 +293,22 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
 			for (int i = 0; i < SEED; i++) {
 				WaterProfile p = new WaterProfile(this.calcio, this.magnesio, this.solfato, this.cloruro, this.sodio,
 						this.carbonato);
+
+				p.useCaCl2 = this.useCaCl2;
+				p.useCaCl2Sparge = this.useCaCl2Sparge;
+				p.useChalk = this.useChalk;
+				p.useChalkSparge = this.useChalkSparge;
+				p.useEpsom = this.useEpsom;
+				p.useEpsomSparge = this.useEpsomSparge;
+				p.useGypsum = this.useGypsum;
+				p.useGypsumSparge = this.useGypsumSparge;
+				p.useNaCl = this.useNaCl;
+				p.useNaClSparge = this.useNaClSparge;
+				p.useSlakedLime = this.useSlakedLime;
+				p.useSlakedLimeSparge = this.useSlakedLimeSparge;
+				p.useSoda = this.useSoda;
+				p.useSodaSparge = this.useSodaSparge;
+
 				p.gypsum = (double) R.nextInt(10000);
 				p.sale = (double) R.nextInt(10000);
 				p.epsom = (double) R.nextInt(10000);
@@ -245,9 +321,9 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
 					p.chalk = 0.0;
 				if (!useGypsum)
 					p.gypsum = 0.0;
-				if (!useCalciumChloride)
+				if (!useCaCl2)
 					p.calciumChloride = 0.0;
-				if (!useSale)
+				if (!useNaCl)
 					p.sale = 0.0;
 				if (!useEpsom)
 					p.epsom = 0.0;
@@ -322,12 +398,12 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
 			// norda.target(dublin, L, "dublin");
 			// norda.target(vienna, L, "vienna");
 			// norda.target(pilsen, L, "pilsen");
-			
+
 			System.out.println("-------------------");
-			
+
 			WaterProfile res2 = norda.target(bitter, L, "bitter", 1000, null, 100);
 			System.out.println(res2.toXmlPlus().getAttributes());
-			
+
 		} catch (Exception ex) {
 			LOGGER.error(ex.getMessage(), ex);
 		}
@@ -490,23 +566,23 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
 	}
 
 	public static WaterProfile fromXml(Element elem) {
-		WaterProfile malt = new WaterProfile(0, 0, 0, 0, 0, 0);
+		WaterProfile waterProfile = new WaterProfile(0, 0, 0, 0, 0, 0);
 		try {
-			malt = (WaterProfile) Utils.fromXml(malt, campiXmlPlus, elem);
+			waterProfile = (WaterProfile) Utils.fromXml(waterProfile, campiXmlPlus, elem);
 		} catch (Exception ex) {
 			Utils.showException(ex);
 		}
-		return malt;
+		return waterProfile;
 	}
 
 	public static WaterProfile fromXmlPlus(Element elem) {
-		WaterProfile malt = new WaterProfile(0, 0, 0, 0, 0, 0);
+		WaterProfile waterProfile = new WaterProfile(0, 0, 0, 0, 0, 0);
 		try {
-			malt = (WaterProfile) Utils.fromXml(malt, campiXmlPlus, elem);
+			waterProfile = (WaterProfile) Utils.fromXml(waterProfile, campiXmlPlus, elem);
 		} catch (Exception ex) {
 			Utils.showException(ex);
 		}
-		return malt;
+		return waterProfile;
 	}
 
 	// public static String campiXml[]=new
@@ -515,9 +591,14 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
 	// ixtlanas NO TYPE
 	public static String campiXml[] = new String[] { "nome", "calcio", "magnesio", "solfato", "cloruro", "sodio",
 			"carbonato" };
-	
+
 	public static String campiXmlPlus[] = new String[] { "nome", "type", "calcio", "magnesio", "solfato", "cloruro",
-			"sodio", "carbonato", "gypsum", "sale", "epsom", "calciumChloride", "chalk", "soda", "slakedLime", "acidulatedMaltContent", "lacticAcid", "lacticAcidContent", "citrusAcid", "citrusAcidContent"};
+			"sodio", "carbonato", "gypsum", "sale", "epsom", "calciumChloride", "chalk", "soda", "slakedLime",
+			"acidulatedMaltContent", "lacticAcid", "lacticAcidContent", "citrusAcid", "citrusAcidContent", "useGypsum",
+
+			"useCaCl2", "useNaCl", "useEpsom", "useChalk", "useSoda", "useSlakedLime", "useGypsumSparge",
+			"useCaCl2Sparge", "useNaClSparge", "useEpsomSparge", "useChalkSparge", "useSodaSparge",
+			"useSlakedLimeSparge" };
 
 	@Override
 	public Element toXml() {
@@ -540,28 +621,60 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
 		return malt;
 	}
 
-	public void setUseGypsum(boolean useGypsum) {
+	public void setUseGypsum(Boolean useGypsum) {
 		this.useGypsum = useGypsum;
 	}
 
-	public void setUseCalciumChloride(boolean useCalciumChloride) {
-		this.useCalciumChloride = useCalciumChloride;
+	public void setUseCaCl2(Boolean useCaCl2) {
+		this.useCaCl2 = useCaCl2;
 	}
 
-	public void setUseSale(boolean useSale) {
-		this.useSale = useSale;
+	public void setUseNaCl(Boolean useNaCl) {
+		this.useNaCl = useNaCl;
 	}
 
-	public void setUseEpsom(boolean useEpsom) {
+	public void setUseEpsom(Boolean useEpsom) {
 		this.useEpsom = useEpsom;
 	}
 
-	public void setUseChalk(boolean useChalk) {
+	public void setUseChalk(Boolean useChalk) {
 		this.useChalk = useChalk;
 	}
 
-	public void setUseSoda(boolean useSoda) {
+	public void setUseSoda(Boolean useSoda) {
 		this.useSoda = useSoda;
+	}
+
+	public void setUseSlakedLime(Boolean useSlakedLime) {
+		this.useSlakedLime = useSlakedLime;
+	}
+
+	public void setUseCaCl2Sparge(Boolean useCaCl2Sparge) {
+		this.useCaCl2Sparge = useCaCl2Sparge;
+	}
+
+	public void setUseChalkSparge(Boolean useChalkSparge) {
+		this.useChalkSparge = useChalkSparge;
+	}
+
+	public void setUseEpsomSparge(Boolean useEpsomSparge) {
+		this.useEpsomSparge = useEpsomSparge;
+	}
+
+	public void setUseGypsumSparge(Boolean useGypsumSparge) {
+		this.useGypsumSparge = useGypsumSparge;
+	}
+
+	public void setUseNaClSparge(Boolean useNaClSparge) {
+		this.useNaClSparge = useNaClSparge;
+	}
+
+	public void setUseSlakedLimeSparge(Boolean useSlakedLimeSparge) {
+		this.useSlakedLimeSparge = useSlakedLimeSparge;
+	}
+
+	public void setUseSodaSparge(Boolean useSodaSparge) {
+		this.useSodaSparge = useSodaSparge;
 	}
 
 	public String getNome() {
@@ -579,8 +692,6 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
 	public void setType(Integer type) {
 		this.type = type;
 	}
-	
-	
 
 	public Double getAcidulatedMaltContent() {
 		return acidulatedMaltContent;
@@ -621,16 +732,14 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
 	public void setCitrusAcidContent(Double citrusAcidContent) {
 		this.citrusAcidContent = citrusAcidContent;
 	}
-	
+
 	public Double getSlakedLime() {
 		return slakedLime;
 	}
-	
+
 	public void setSlakedLime(Double slakedLime) {
 		this.slakedLime = slakedLime;
 	}
-	
-	
 
 	@Override
 	public String getTag() {
@@ -646,7 +755,111 @@ public class WaterProfile implements XmlAble, Comparable<WaterProfile> {
 	public int compareTo(WaterProfile o) {
 		return nome.compareToIgnoreCase(o.getNome());
 	}
-	
-	
+
+	public Boolean getUseCaCl2() {
+		return useCaCl2;
+	}
+
+	public Boolean getUseNaCl() {
+		return useNaCl;
+	}
+
+	public Boolean getUseEpsom() {
+		return useEpsom;
+	}
+
+	public Boolean getUseChalk() {
+		return useChalk;
+	}
+
+	public Boolean getUseSoda() {
+		return useSoda;
+	}
+
+	public Boolean getUseSlakedLime() {
+		return useSlakedLime;
+	}
+
+	public Boolean getUseGypsum() {
+		return useGypsum;
+	}
+
+	public Boolean getUseGypsumSparge() {
+		return useGypsumSparge;
+	}
+
+	public Boolean getUseCaCl2Sparge() {
+		return useCaCl2Sparge;
+	}
+
+	public Boolean getUseNaClSparge() {
+		return useNaClSparge;
+	}
+
+	public Boolean getUseEpsomSparge() {
+		return useEpsomSparge;
+	}
+
+	public Boolean getUseChalkSparge() {
+		return useChalkSparge;
+	}
+
+	public Boolean getUseSodaSparge() {
+		return useSodaSparge;
+	}
+
+	public Boolean getUseSlakedLimeSparge() {
+		return useSlakedLimeSparge;
+	}
+
+	public boolean isLiteEmpty() {
+		if ((calcio == null || calcio.equals(0.0)) && (magnesio == null || magnesio.equals(0.0))
+				&& (solfato == null || solfato.equals(0.0)) && (cloruro == null || cloruro.equals(0.0))
+				&& (sodio == null || sodio.equals(0.0)) && (carbonato == null || carbonato.equals(0.0))) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isLiteEquals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		WaterProfile other = (WaterProfile) obj;
+		if (calcio == null) {
+			if (other.calcio != null)
+				return false;
+		} else if (!calcio.equals(other.calcio))
+			return false;
+		if (carbonato == null) {
+			if (other.carbonato != null)
+				return false;
+		} else if (!carbonato.equals(other.carbonato))
+			return false;
+		if (cloruro == null) {
+			if (other.cloruro != null)
+				return false;
+		} else if (!cloruro.equals(other.cloruro))
+			return false;
+		if (magnesio == null) {
+			if (other.magnesio != null)
+				return false;
+		} else if (!magnesio.equals(other.magnesio))
+			return false;
+		if (sodio == null) {
+			if (other.sodio != null)
+				return false;
+		} else if (!sodio.equals(other.sodio))
+			return false;
+		if (solfato == null) {
+			if (other.solfato != null)
+				return false;
+		} else if (!solfato.equals(other.solfato))
+			return false;
+		return true;
+	}
 
 }

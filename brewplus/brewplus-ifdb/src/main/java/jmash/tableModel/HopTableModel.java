@@ -38,7 +38,7 @@ public class HopTableModel extends GenericTableModel<Hop> {
 	 */
 	private static final long serialVersionUID = -54392409816219092L;
 	Ricetta ricetta;
-	private static String[] hopColumnNames = new String[] { "", "Nome", "Q.tà", "U.mis.", "Forma", "Alfa A.",
+	private static String[] hopColumnNames = new String[] { "", "Nome", "Q.tà", "Un.mis.", "Forma", "Alfa A.",
 			"Bollitura", "Uso", "Tinseth", "Rager", "Daniels", "" };
 
 	public HopTableModel(Ricetta ric) {
@@ -75,7 +75,10 @@ public class HopTableModel extends GenericTableModel<Hop> {
 					hmFormatterUM.remove("grammi");
 					hmFormatterUM.put("grammi", new NumberFormatter("0"));
 				}
-				return (hmFormatterUM.get(h.getUnitaMisura())).format(h.getConvertedGrammi());
+				/** ISSUE #47 */
+				Quantita qnt = new Quantita(hmFormatterUM.get(h.getUnitaMisura()).format(h.getConvertedGrammi()));
+            	qnt.setUnitaMisura(h.getUnitaMisura());
+                return qnt;
 			case 3:
 				return h.getUnitaMisura();
 			case 4:
@@ -117,8 +120,9 @@ public class HopTableModel extends GenericTableModel<Hop> {
 					h.setNome(((String) value));
 					break;
 				case 2:
-					h.setGrammi(
-							Utils.convertWeight(NF.parse((String) value).doubleValue(), h.getUnitaMisura(), "grammi"));
+					/** ISSUE #47 */
+                    h.setGrammi(
+                            Utils.convertWeight(NF.parse(((Quantita) value).getValue()).doubleValue(), h.getUnitaMisura(), "grammi"));
 					break;
 				case 3:
 					h.setUnitaMisura(((String) value));
@@ -217,7 +221,7 @@ public class HopTableModel extends GenericTableModel<Hop> {
 		return gr;
 	}
 
-	public void adjustTo(int effTo, double volTo, int effFrom, double volFrom) {
+	public void adjustTo(double effTo, double volTo, double effFrom, double volFrom) {
 		if (dataValues != null)
 			for (Hop h : this.dataValues) {
 				BigDecimal bd = new BigDecimal(h.getGrammi());

@@ -442,7 +442,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 					}
 				}
 			} else {
-				Msg.showMsg("Il file non è una lista della spesa Hobbybrew!", this);
+				Msg.showMsg("Il file non è una lista della spesa BrewPlus!", this);
 			}
 		}
 	}

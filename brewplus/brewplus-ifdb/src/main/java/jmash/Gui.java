@@ -19,13 +19,21 @@
 
 package jmash;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.beans.PropertyVetoException;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -35,15 +43,26 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.JSeparator;
 import javax.swing.JToolBar;
+import javax.swing.SwingConstants;
 import javax.swing.TransferHandler;
+import javax.swing.border.EmptyBorder;
+
+import org.apache.log4j.Logger;
+
 import jmash.config.XmlAbleEditor;
 import jmash.config.XmlAbleTableModel;
 import jmash.tableModel.BrewStylePickerTableModel;
+import jmash.tableModel.BreweryProfilePickerTableModel;
 import jmash.tableModel.GenericTableModel;
 import jmash.tableModel.HopPickerTableModel;
 import jmash.tableModel.MaltCategoryPickerTableModel;
@@ -51,25 +70,11 @@ import jmash.tableModel.MaltPickerTableModel;
 import jmash.tableModel.WaterPickerTableModel;
 import jmash.tableModel.YeastPickerTableModel;
 import jmash.test.BeerXMLReader;
-import java.awt.Color;
-import java.awt.Dimension;
-
-import javax.swing.ImageIcon;
-import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.image.BufferedImage;
-
-import javax.swing.JMenu;
-import javax.swing.JButton;
-import java.awt.Font;
-import javax.swing.JLabel;
-import javax.swing.border.EmptyBorder;
-
-import org.apache.log4j.Logger;
+import jmash.utils.Utility;
 
 public class Gui extends javax.swing.JFrame {
+	
+	private static final String PATH_BACKGROUND =  "/jmash/images/bkgrnd.jpg";
 
 	private static final long serialVersionUID = 348370096080739755L;
 	private static final Logger LOGGER = Logger.getLogger(Gui.class);
@@ -231,11 +236,13 @@ public class Gui extends javax.swing.JFrame {
 	}
 
 	public static HopPickerTableModel hopPickerTableModel = new HopPickerTableModel();
-        public static MaltCategoryPickerTableModel maltCategoryPickerTableModel = new MaltCategoryPickerTableModel();
+	public static MaltCategoryPickerTableModel maltCategoryPickerTableModel = new MaltCategoryPickerTableModel();
 	public static MaltPickerTableModel maltPickerTableModel = new MaltPickerTableModel();
 	public static WaterPickerTableModel waterPickerTableModel = new WaterPickerTableModel();
 	public static YeastPickerTableModel yeastPickerTableModel = new YeastPickerTableModel();
 	public static BrewStylePickerTableModel brewStylePickerTableModel = new BrewStylePickerTableModel();
+	public static BreweryProfilePickerTableModel breweryProfilePickerTableModel = new BreweryProfilePickerTableModel();
+	
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -288,6 +295,7 @@ public class Gui extends javax.swing.JFrame {
 		mnuLuppoliXML = new javax.swing.JMenuItem();
 		mnuCategorieMaltiXML = new javax.swing.JMenuItem();
 		mnuMaltiXML = new javax.swing.JMenuItem();
+		mnuProfiliImpiantoXML = new javax.swing.JMenuItem();
 		mnuLievitiXML = new javax.swing.JMenuItem();
 		mnuAcquaXML = new javax.swing.JMenuItem();
 		jMenu1 = new javax.swing.JMenu();
@@ -310,7 +318,12 @@ public class Gui extends javax.swing.JFrame {
 		// desktop.setBackground(Color.BLUE);
 
 		BufferedImage bf = null;
-		bf = ImageIO.read(getClass().getResourceAsStream("/jmash/images/bkgrnd.jpg"));
+		LocalDate today = LocalDate.now();
+		
+		LocalDate currentOttoDec = LocalDate.of(today.getYear(), Month.DECEMBER, 8);
+		LocalDate nextBefana = LocalDate.of(today.getYear() + 1, Month.JANUARY, 6);
+		
+		bf = ImageIO.read(getClass().getResourceAsStream(Utility.getPathImageByPeriod(PATH_BACKGROUND)));
 		desktop = new JDesktopBackground(bf);
 
 		desktop.setDoubleBuffered(true);
@@ -623,6 +636,21 @@ public class Gui extends javax.swing.JFrame {
 			}
 		});
 		toolbar.add(btnSaveAll16);
+		
+		// ADD export 2 PID feature
+		
+		btnExport2PID = new javax.swing.JButton();
+		btnExport2PID.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/arduinouno01.png"))); // NOI18N
+		btnExport2PID.setToolTipText("Export to PID");
+		btnExport2PID.setMaximumSize(new java.awt.Dimension(37, 35));
+		btnExport2PID.setMinimumSize(new java.awt.Dimension(37, 35));
+		btnExport2PID.setPreferredSize(new java.awt.Dimension(37, 35));
+		btnExport2PID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExport2PIDActionPerformed(evt);
+            }
+        });
+        toolbar.add(btnExport2PID);
 
 //		btnGuida = new JButton();
 //		btnGuida.addActionListener(new ActionListener() {
@@ -868,6 +896,14 @@ public class Gui extends javax.swing.JFrame {
 
 		JSeparator separator_1 = new JSeparator();
 		jMenu2.add(separator_1);
+		
+		mnuProfiliImpiantoXML.setText("Profili impianto");
+		mnuProfiliImpiantoXML.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				mnuProfiliImpiantoXMLActionPerformed(evt);
+			}
+		});
+		jMenu2.add(mnuProfiliImpiantoXML);
 
 		JMenuItem mntmImpostazioni = new JMenuItem("Impostazioni");
 		mntmImpostazioni.addActionListener(new ActionListener() {
@@ -1073,7 +1109,7 @@ public class Gui extends javax.swing.JFrame {
 		try {
 			nuovaRicetta(new Ricetta(XMLReader.XMLfromString(str), null));
 		} catch (Exception ex2) {
-			Utils.showException(ex2, "Impossibile riconoscere una ricetta di HobbyBrew.");
+			Utils.showException(ex2, "Impossibile riconoscere una ricetta di BrewPlus.");
 		}
 	}// GEN-LAST:event_mnuFromPromashActionPerformed
 
@@ -1154,7 +1190,7 @@ public class Gui extends javax.swing.JFrame {
 
 		String eff = str.substring(str.indexOf("Brewhouse Efficiency:") + "Brewhouse Efficiency:".length(),
 				str.indexOf("Wort Boil Time:")).replace("%", "").trim();
-		rd.setEfficienza(new Integer(eff));
+		rd.setEfficienza(new Double(eff));
 		if (str.indexOf("Batch Size (L):") > 0) {
 			String bs = str.substring(str.indexOf("Batch Size (L):") + "Batch Size (L):".length(),
 					str.indexOf("Wort Size (L):")).trim();
@@ -1200,7 +1236,7 @@ public class Gui extends javax.swing.JFrame {
 	}// GEN-LAST:event_btnUpdateActionPerformed
 
 	private void btnSaveAll17ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll17ActionPerformed
-		addFrame(new WaterNeededNew());
+		addFrame(new WaterNeeded());
 	}// GEN-LAST:event_btnSaveAll17ActionPerformed
 
 	private void btnSaveAll16ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll16ActionPerformed
@@ -1364,6 +1400,20 @@ public class Gui extends javax.swing.JFrame {
 			LOGGER.error(ex.getMessage(), ex);
 		}
 	}// GEN-LAST:event_mnuMaltiXMLActionPerformed
+	
+	private void mnuProfiliImpiantoXMLActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_mnuMaltiXMLActionPerformed
+		GenericTableModel tableModel = new XmlAbleTableModel(new BreweryProfile(), Gui.breweryProfilePickerTableModel.getColumnNames());
+		tableModel.setRows(Gui.breweryProfilePickerTableModel.getRows());
+		
+		try {
+			addFrame(
+					new XmlAbleEditor(tableModel, BreweryProfile.class, Main.breweryProfileXML, Main.class.getMethod("readProfiliImpianto")));
+		} catch (SecurityException ex) {
+			LOGGER.error(ex.getMessage(), ex);
+		} catch (NoSuchMethodException ex) {
+			LOGGER.error(ex.getMessage(), ex);
+		}
+	}// GEN-LAST:event_mnuMaltiXMLActionPerformed
 
 	private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveActionPerformed
 
@@ -1376,6 +1426,18 @@ public class Gui extends javax.swing.JFrame {
 			ed.save();
 		}
 	}// GEN-LAST:event_btnSaveActionPerformed
+	
+	private void btnExport2PIDActionPerformed(java.awt.event.ActionEvent evt) {
+	    
+        if (this.desktop.getSelectedFrame() instanceof Ricetta) {
+            Ricetta ed = (Ricetta) this.desktop.getSelectedFrame();
+            ed.nullFile();
+            File file = ed.saveRicettaPID();
+            Main.putIntoCache("recipe.dir", file.getAbsolutePath());
+            addLastOpenedFile(file);
+        }
+	    
+	}
 
 	private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnNewActionPerformed
 		nuovaRicetta(new Ricetta());
@@ -1671,6 +1733,7 @@ public class Gui extends javax.swing.JFrame {
 	private javax.swing.JMenuItem mnuNuova;
 	private javax.swing.JMenuItem mnuStiliXML;
 	private javax.swing.JMenuItem mnuUpdate;
+	private javax.swing.JMenuItem mnuProfiliImpiantoXML;
 	private javax.swing.JToolBar sideBar;
 	private javax.swing.JToolBar taskBar;
 	private javax.swing.JToolBar toolbar;
@@ -1683,4 +1746,6 @@ public class Gui extends javax.swing.JFrame {
 	private JMenuItem menuItemDelete;
 	private JSeparator separator_5;
 	private JLabel lblStatus;
+	
+	private javax.swing.JButton btnExport2PID;
 }

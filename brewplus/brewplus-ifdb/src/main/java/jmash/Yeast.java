@@ -53,11 +53,22 @@ public class Yeast {
 	private String temperaturaMin;
 	private String temperaturaCons;
 	private String temperaturaMax;
-
+	private String quantita;
+	private String temperaturaMaxFerm;
+	
 	private static String campiXml[] = { "nome", "codice", "produttore", "forma", "categoria", "descrizione",
 			"attenuazioneMin", "attenuazioneMax", "attenuazioneMed", "temperaturaCons", "temperaturaMin",
-			"temperaturaMax", "note", };
+			"temperaturaMax", "note", "quantita", "temperaturaMaxFerm" };
 
+	
+	public String getQuantita() {
+		return quantita;
+	}
+
+	public void setQuantita(String quantita) {
+		this.quantita = quantita;
+	}
+	
 	public Element toXml() {
 		try {
 			return Utils.toXml(this, getCampiXml());
@@ -202,11 +213,17 @@ public class Yeast {
 		setForma(type.getForma());
 		setCategoria(type.getCategoria());
 		setDescrizione(type.getDescrizione());
-		setAttenuazioneMed(type.getAttenuazioneMed());
+		if (type.getAttenuazioneMed() != null && !"".equals(type.getAttenuazioneMed())) {			
+			setAttenuazioneMed(type.getAttenuazioneMed());
+		} else if (type.getAttenuazioneMin() != null && !"".equals(type.getAttenuazioneMin()) &&
+				type.getAttenuazioneMax() != null && !"".equals(type.getAttenuazioneMax())) {
+			setAttenuazioneMed(String.valueOf((Integer.valueOf(type.getAttenuazioneMin())+Integer.valueOf(type.getAttenuazioneMax()))/2));
+		}
 		setAttenuazioneMin(type.getAttenuazioneMin());
 		setAttenuazioneMax(type.getAttenuazioneMax());
 		setTemperaturaMin(type.getTemperaturaMin());
 		setTemperaturaMax(type.getTemperaturaMax());
+		setTemperaturaMaxFerm(type.getTemperaturaMaxFerm());
 		setNote("");
 	}
 
@@ -224,6 +241,14 @@ public class Yeast {
 
 	public void setAttenuazioneMed(String attenuazioneMed) {
 		this.attenuazioneMed = attenuazioneMed;
+	}
+
+	public String getTemperaturaMaxFerm() {
+		return temperaturaMaxFerm;
+	}
+
+	public void setTemperaturaMaxFerm(String temperaturaMaxFerm) {
+		this.temperaturaMaxFerm = temperaturaMaxFerm;
 	}
 
 }

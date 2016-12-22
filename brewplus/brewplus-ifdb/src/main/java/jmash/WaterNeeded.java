@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 
 import javax.swing.JCheckBox;
 import javax.swing.JInternalFrame;
@@ -18,7 +19,7 @@ import org.jdom.Element;
 
 import jmash.component.JUnitSpinner;
 
-public class WaterNeededNew extends JInternalFrame {
+public class WaterNeeded extends JInternalFrame {
 	private static final long serialVersionUID = -5301195065823912614L;
 
 	private JPanel panelWaterNeeded;
@@ -68,8 +69,10 @@ public class WaterNeededNew extends JInternalFrame {
 
 	private Boolean biab = Boolean.FALSE;
 	private GridBagConstraints gridBagConstraints_1;
-
-	public WaterNeededNew() {
+	// OriginalGravity without late addiction fermentables
+	private BigDecimal OriginalGravityIBU = new BigDecimal(0);
+	
+	public WaterNeeded() {
 		initComponents();
 		setBorder(Utils.getDefaultBorder());
 
@@ -110,7 +113,7 @@ public class WaterNeededNew extends JInternalFrame {
 
 	}
 
-	public WaterNeededNew(double batchSize, double kg, double boilTime, double evap) {
+	public WaterNeeded(double batchSize, double kg, double boilTime, double evap) {
 		this();
 		spinnerBatchSize.setDoubleValue(batchSize);
 		spinnerGraniTotali.setDoubleValue(kg);
@@ -728,9 +731,12 @@ public class WaterNeededNew extends JInternalFrame {
 		double volumeRealeInFermentaore = volumePostRaffreddamento - perditeNelTrub;
 		double volumePostBoil = volumePostRaffreddamento * (1.0 + (contrazioneRaffreddamento / 100.0));
 		double volumeMostoPreBoil = volumePostBoil * (1.0 + (percentualeEvaporazione / 100.0));
-		double ogPreBoil = (batchSize * originalGravity) / volumeMostoPreBoil;
-		double perditaContrazione = volumePostBoil * (contrazioneRaffreddamento / 100.0);
-		double perditaEvaporazione = volumeMostoPreBoil * (percentualeEvaporazione / 100.0);
+		// fixed to update OG Preboil without late addiction
+		double ogPreBoil = (batchSize * OriginalGravityIBU.intValue()) / volumeMostoPreBoil;
+//		double perditaContrazione = volumePostBoil * (contrazioneRaffreddamento / 100.0);
+		double perditaContrazione = volumePostRaffreddamento * (contrazioneRaffreddamento / 100.0);
+//		double perditaEvaporazione = volumeMostoPreBoil * (percentualeEvaporazione / 100.0);
+		double perditaEvaporazione = volumePostBoil * (percentualeEvaporazione / 100.0);
 
 		double acquaTotale = volumeMostoPreBoil + perditeAssorbimento;
 		double acquaMash = !biab ? totGrani * rapportoAcquaGrani : acquaTotale;
@@ -853,7 +859,11 @@ public class WaterNeededNew extends JInternalFrame {
 	public double getTotWater() {
 		return spinnerTotaleAcqua.getDoubleValue();
 	}
-
+	
+	public double getRapportoAcquaGrani() {
+		return spinnerRapportoAcquaGrani.getDoubleValue();
+	}
+	
 	public double getMashVolume() {
 		return spinnerAcquaMash.getDoubleValue();
 	}
@@ -909,5 +919,13 @@ public class WaterNeededNew extends JInternalFrame {
 		calcolaQuantitaAcqua(fireEvent);
 		
 	}
+
+    public BigDecimal getOriginalGravityIBU() {
+        return OriginalGravityIBU;
+    }
+
+    public void setOriginalGravityIBU(BigDecimal originalGravityIBU) {
+        OriginalGravityIBU = originalGravityIBU;
+    }
 
 }

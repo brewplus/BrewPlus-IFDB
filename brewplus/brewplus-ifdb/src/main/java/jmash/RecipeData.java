@@ -35,9 +35,11 @@ import jmash.tableModel.MaltTableModel;
 public class RecipeData {
     
     private static Logger LOGGER = Logger.getLogger(RecipeData.class);
-    private String nome, note, unitaMisura, fotografia;
+    private static final String SEPARATOR = "\n";
+    private String nome, note, unitaMisura, fotografia, priming;
     private Double volumeBoll, volumeFin, volumeDiluito;
-    private Integer efficienza, bollitura;
+    private Double efficienza;
+    private Integer bollitura;
     private Boolean bollituraConcentrata;
     private Boolean biab;
 
@@ -78,6 +80,14 @@ public class RecipeData {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+    
+    public String getPriming() {
+        return priming;
+    }
+
+    public void setPriming(String priming) {
+        this.priming = priming;
     }
 
     public String getFotografia() {
@@ -128,11 +138,11 @@ public class RecipeData {
         this.volumeFin = volumeFin;
     }
 
-    public Integer getEfficienza() {
+    public Double getEfficienza() {
         return efficienza;
     }
 
-    public void setEfficienza(Integer efficienza) {
+    public void setEfficienza(Double efficienza) {
         this.efficienza = efficienza;
     }
 
@@ -187,8 +197,8 @@ public class RecipeData {
     public String getDes4Forum(Ricetta ricetta) {
     	//SGABUZEN REGNA... quando funziona tolgo questi commenti giuro!
     	double volume = getBollituraConcentrata() ? getVolumeDiluito() : getVolumeFin();
-    	double volPB = ricetta.getWaterNeededNew2().getVolumeMostoPreBoil();
-    	double OGPB = MaltTableModel.calcolaSG(getMalts(), volPB, getEfficienza());
+    	double volPB = ricetta.getWaterNeeded().getVolumeMostoPreBoil();
+    	double OGPB = MaltTableModel.calcolaSGIBU(getMalts(), volPB, getEfficienza());
     	double OG = MaltTableModel.calcolaSG(getMalts(), volume, getEfficienza());
         double EBC = Utils.srmToEbc(MaltTableModel.calcolaSRMMosher(getMalts(), volume));
         double IBU = HopTableModel.getIBUTinseth(getHops(), getVolumeFin(), getVolumeDiluito(), OG);
@@ -198,10 +208,6 @@ public class RecipeData {
     	S += String.format("Volume cotta: %.1f litri; \n", volume);
     	S += String.format("Volume pre-boil: %.1f litri;\nOG pre-boil: %.03f;\n", volPB, OGPB);
         S += "Efficienza: " + getEfficienza() + "%; \n" + "Bollitura: " + getBollitura() + " min.; \n\n";
-        
-        // if(this.getCodiceStile()!=null) {
-        // root.addContent(this.getCodiceStile().toXml());
-        // }
         
         if (getMalts() != null && malts.size() > 0) {
             S += "Malti:\n";
@@ -247,10 +253,9 @@ public class RecipeData {
         root.setAttribute(new Attribute(XmlTags.NOTE, getNote()));
         // foto
         root.setAttribute(new Attribute(XmlTags.FOTOGRAFIA, "" + getFotografia()));
+        // issue #33
+        root.setAttribute(new Attribute(XmlTags.PRIMING, getPriming()));
 
-        // if(this.getStyle()!=null) {
-        // root.addContent(this.getStyle().toXml());
-        // }
         if (this.getCodiceStile() != null) {
             root.setAttribute(new Attribute(XmlTags.BJCPCOD, "" + getCodiceStile()));
         }
@@ -305,6 +310,68 @@ public class RecipeData {
         doc.setRootElement(root);
         return doc;
     }
+    
+    public String toPID() {
+        StringBuffer sb = new StringBuffer();
+        // File Type
+        sb.append("TYP:RE").append(SEPARATOR);
+        // Recipe Name
+        sb.append("REN:").append(this.nome.length() == 0 ? "NO NAME" : this.nome).append(SEPARATOR);
+        // Boil Time
+        sb.append("CTT:").append(this.bollitura).append(SEPARATOR);
+        
+        // Mash steps
+        List<MashStep> listMashStep = this.getInfusionSteps();
+        int size = listMashStep.size();
+        if(size < 2 || size >=8 ){
+            LOGGER.error("Number of steps must be grater than 2 and lesser than 8 ");
+        } else {
+            MashStep mashIn = listMashStep.get(0);
+            sb.append("N00:").append("Mash-IN").append(SEPARATOR);
+            sb.append("S00:").append(mashIn.getEndTemp()).append(SEPARATOR);
+            sb.append("T00:").append(mashIn.getLength()).append(SEPARATOR);
+            
+            int j = 1;
+            for(j = 1; j < listMashStep.size() - 1; j++){
+                MashStep step = listMashStep.get(j);
+                sb.append("N0").append(j).append(":").append(step.getNome()).append(SEPARATOR);
+                sb.append("S0").append(j).append(":").append(step.getEndTemp()).append(SEPARATOR);
+                sb.append("T0").append(j).append(":").append(step.getLength()).append(SEPARATOR);
+            }
+            
+            for(int k = j; k < 7; k++){
+                sb.append("N0").append(k).append(":0").append(SEPARATOR);
+                sb.append("S0").append(k).append(":0").append(SEPARATOR);
+                sb.append("T0").append(k).append(":0").append(SEPARATOR);
+            }
+            
+            MashStep mashOut = listMashStep.get(size-1);
+            sb.append("N07:").append("Mash-OUT").append(SEPARATOR);
+            sb.append("S07:").append(mashOut.getEndTemp()).append(SEPARATOR);
+            sb.append("T07:").append(mashOut.getLength()).append(SEPARATOR);
+            
+        }
+
+        
+        // Hop 
+        List<Hop> hopList = this.getHops();
+        int i = 0;
+        for(Hop hop : hopList){
+            if(hop.getBoilTime().intValue()>0 || !hop.getUso().equalsIgnoreCase("Dry")){
+                sb.append("H0").append(i).append(":").append(hop.getNome()).append(SEPARATOR);
+                sb.append("M0").append(i).append(":").append(hop.getGrammi()).append(SEPARATOR);
+                sb.append("B0").append(i).append(":").append(hop.getBoilTime() == 0 ? 1 : hop.getBoilTime()).append(SEPARATOR);
+                i++;
+                if(i>=8 ){
+                    LOGGER.error("Too many hop into the recipe");
+                }
+            }
+        }
+        
+        
+        return sb.toString();
+        
+    }
 
     public Integer getBollitura() {
         return bollitura;
@@ -332,7 +399,7 @@ public class RecipeData {
 
         setVolumeFin(Utils.galToLit(Utils.arr2Double((byte[]) b, 97)));
         setVolumeBoll(Utils.galToLit(Utils.arr2Double((byte[]) b, 101)));
-        setEfficienza((int) (100 * Utils.arr2Double((byte[]) b, 113)));
+        setEfficienza((100 * Utils.arr2Double((byte[]) b, 113)));
         setBollitura((int) b[117]);
 
         BrewStyle style = new BrewStyle();
@@ -426,7 +493,7 @@ public class RecipeData {
         getYeasts().add(Ys);
 
         if (!mashComplexMode) {
-            System.out.println("multistep=" + Utils.arr2Byte(b, Y + 695));
+
             boolean multistep = (Utils.arr2Byte(b, Y + 695) == 3);
             int i = 704;
             int minute = 0, T = (int) Utils.F2C((int) b[M + 259]);
@@ -490,10 +557,10 @@ public class RecipeData {
 
             try {
                 if (att.getName().compareToIgnoreCase(XmlTags.EFFICIENZA) == 0) {
-                    setEfficienza(att.getIntValue());
+                    setEfficienza(att.getDoubleValue());
                 }
             } catch (org.jdom.DataConversionException ex) {
-                setEfficienza(0);
+                setEfficienza(0.0);
             }
             try {
                 if (att.getName().compareToIgnoreCase(XmlTags.VOLUME) == 0) {
@@ -532,6 +599,9 @@ public class RecipeData {
             }
             if (att.getName().compareToIgnoreCase(XmlTags.NOME) == 0) {
                 setNome(att.getValue());
+            }
+            if (att.getName().compareToIgnoreCase(XmlTags.PRIMING) == 0) {
+                setPriming(att.getValue());
             }
             if (att.getName().compareToIgnoreCase(XmlTags.FOTOGRAFIA) == 0) {
                 setFotografia(att.getValue());
@@ -584,15 +654,44 @@ public class RecipeData {
                 }
             }
             if (elem.getName().compareToIgnoreCase(new WaterProfile().getClass().getName()) == 0) {
-                WaterProfile profile = WaterProfile.fromXml(elem);
-                if (profile != null && profile.getType() != null) {
-                    if (profile.getType() == 0)
-                        setSourceWater(profile);
-                    if (profile.getType() == 1)
-                        setDestWater(profile);
-                    if (profile.getType() == 2)
-                        setTreatment(profile);
+               
+            	WaterProfile profile = WaterProfile.fromXml(elem);
+                
+                if (profile != null)
+                {
+                	if (profile.getType() != null) 
+                	{
+	                    if (profile.getType() == 0)
+	                        setSourceWater(profile);
+	                    if (profile.getType() == 1)
+	                        setDestWater(profile);
+	                    if (profile.getType() == 2)
+	                        setTreatment(profile);
+                	}
+                	else
+                	{
+                		// Se nella ricetta ricette in cui non è stato inserito il campo "type" di WaterProfile
+                		// la prima volta è il profilo dell'acqua di partenza,
+                		// la seconda volta è il profilo dell'acqua di target
+                		// la terza volta è profilo dell'acqua calcolata
+                		// (normalmente il type=2 è presente quindi setTreatment(profile)
+                		// verrà eseguito nel precedente blocco di if
+                		// comunque per sicurezza lo inseriamo
+                		if (sourceWater == null)
+                		{
+                			setSourceWater(profile);
+                		}
+                		else if (sourceWater != null && destWater == null)
+                		{
+                			setDestWater(profile);
+                		}
+                		else if (sourceWater != null && destWater != null)
+                		{
+                			setTreatment(profile);
+                		}
+                	}
                 }
+                
             }
             if (elem.getName().compareToIgnoreCase(new MashStep().getClass().getName()) == 0) {
                 MashStep step = MashStep.fromXml(elem);
@@ -679,4 +778,5 @@ public class RecipeData {
     public void setBiab(Boolean biab) {
 		this.biab = biab;
 	}
+
 }

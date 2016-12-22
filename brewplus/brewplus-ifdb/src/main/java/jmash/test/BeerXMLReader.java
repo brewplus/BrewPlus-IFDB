@@ -47,7 +47,6 @@ public class BeerXMLReader {
 			Document doc = Utils.readFileAsXml(file.getAbsolutePath());
 			// Document doc=Utils.readFileAsXml("C:/mash.xml");
 			Element root = doc.getRootElement();
-			// System.out.println(root.getName());
 			for (int i = 0; i < root.getChildren().size(); i++) {
 				Element E = (Element) root.getChildren().get(i);
 				if (E.getName().equalsIgnoreCase("HOPS")) {
@@ -99,7 +98,7 @@ public class BeerXMLReader {
 		for (int i = 0; i < root.getChildren().size(); i++) {
 
 			Element E = (Element) root.getChildren().get(i);
-			// System.out.println(E.getName());
+
 			if (E.getName().equalsIgnoreCase("HOPS")) {
 				R.setHops(parseBeerXMLHops(E));
 			} else if (E.getName().equalsIgnoreCase("FERMENTABLES")) {
@@ -131,7 +130,7 @@ public class BeerXMLReader {
 				String V = E.getValue();
 				if (V.equals("-"))
 					V = "100";
-				R.setEfficienza(new Double(V).intValue());
+				R.setEfficienza(new Double(V));
 			} else if (E.getName().equalsIgnoreCase("BOIL_TIME")) {
 				R.setBollitura(new Double(E.getValue()).intValue());
 			} else if (E.getName().equalsIgnoreCase("BOIL_SIZE")) {
@@ -160,7 +159,7 @@ public class BeerXMLReader {
 			 * COHUMULONE MYRCENE
 			 */
 			Element E = (Element) root.getChildren().get(i);
-			// System.out.println("HOP: "+E.getName()+"="+E.getValue());
+
 
 			if (E.getName().equalsIgnoreCase("NAME")) {
 				H.setNome(E.getValue());
@@ -197,7 +196,7 @@ public class BeerXMLReader {
 			}
 
 		}
-		// System.out.println(H.toXml().toString());
+
 		return H;
 	}
 
@@ -244,7 +243,7 @@ public class BeerXMLReader {
 					H.setForma("Altro");
 			}
 		}
-		// System.out.println(H.toXml().toString());
+
 		return H;
 	}
 
@@ -280,7 +279,7 @@ public class BeerXMLReader {
 				H.setCodice(E.getValue());
 			}
 		}
-		// System.out.println(H.toXml().toString());
+
 		return H;
 	}
 
@@ -294,7 +293,7 @@ public class BeerXMLReader {
 	public static void parseBeerXMLMisc(Element root) {
 		for (int i = 0; i < root.getChildren().size(); i++) {
 			Element E = (Element) root.getChildren().get(i);
-			// System.out.println("MISC: "+E.getName()+"="+E.getValue());
+
 		}
 	}
 
@@ -308,7 +307,7 @@ public class BeerXMLReader {
 	public static void parseBeerXMLWater(Element root) {
 		for (int i = 0; i < root.getChildren().size(); i++) {
 			Element E = (Element) root.getChildren().get(i);
-			// System.out.println("WATER: "+E.getName()+"="+E.getValue());
+
 		}
 	}
 
@@ -322,7 +321,7 @@ public class BeerXMLReader {
 	public static void parseBeerXMLEquip(Element root) {
 		for (int i = 0; i < root.getChildren().size(); i++) {
 			Element E = (Element) root.getChildren().get(i);
-			// System.out.println("EQ: "+E.getName()+"="+E.getValue());
+
 		}
 	}
 
@@ -336,7 +335,7 @@ public class BeerXMLReader {
 	public static void parseBeerXMLStyle(Element root) {
 		for (int i = 0; i < root.getChildren().size(); i++) {
 			Element E = (Element) root.getChildren().get(i);
-			// System.out.println("STYLE: "+E.getName()+"="+E.getValue());
+
 		}
 	}
 
@@ -346,7 +345,7 @@ public class BeerXMLReader {
 			Element E = (Element) root.getChildren().get(i);
 			MashStep ms = parseBeerXMLMashStep(E);
 			steps.add(ms);
-			// System.out.println(ms);
+
 		}
 		return steps;
 	}
@@ -372,7 +371,7 @@ public class BeerXMLReader {
 				H.setEndTemp((int) Utils.parseDouble(E.getValue()));
 			}
 		}
-		// System.out.println(H.toXml().toString());
+
 		return H;
 	}
 
@@ -388,7 +387,7 @@ public class BeerXMLReader {
 		List<MashStep> steps = new ArrayList<MashStep>();
 		for (int i = 0; i < root.getChildren().size(); i++) {
 			Element E = (Element) root.getChildren().get(i);
-			// System.out.println("MASH: "+E.getName()+"="+E.getValue());
+
 
 			steps.addAll(parseBeerXMLMashSteps(E));
 		}

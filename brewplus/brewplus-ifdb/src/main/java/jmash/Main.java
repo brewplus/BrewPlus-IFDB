@@ -70,7 +70,7 @@ public class Main {
         
     public static Locale locale;
         
-	//public static String versioneHobbyBrew = "2.0.0";
+	//public static String versioneBrewPlus = "2.1.0";
 	public static Integer webVersion;
 	public static String userDir;
 	public static String waterDir;
@@ -89,6 +89,7 @@ public class Main {
 	public static String coloriXML = "config/colors.xml";
 	public static String configXML = "config/config.xml";
 	public static String inventarioXML = "config/inventario.xml";
+	public static String breweryProfileXML = "config/profili_impianto.xml";
 	//public static String printTemplate = "templates/ricetta.html";
 	public static Gui gui;
 	public static javax.swing.JDesktopPane desktopPane;
@@ -119,6 +120,11 @@ public class Main {
 	public static ImageIcon xmlIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/xml.png")));
 	public static ImageIcon androidIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/android.png")));
 
+	public static ImageIcon allGrainIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Main.class.getResource("/jmash/images/ag.png")));
+	public static ImageIcon biabIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Main.class.getResource("/jmash/images/biab.png")));
+	
+	
+	
 	public static enum BitterBUGU { // metodo di calcolo BU/GU
 		TIN, RAG, DAN
 	}
@@ -169,7 +175,7 @@ public class Main {
 	}
 
 	public static String getVersione() {
-		//return versioneHobbyBrew;
+		//return versioneBrewPlus;
 		return Utils.getVersion();
 	}
 
@@ -183,6 +189,7 @@ public class Main {
 		try {
 		    printInfo();
 			readConfig();
+			readProfiliImpianto();
 			readLuppoli();
 			readCategorieMalti();
 			readMalti();
@@ -335,6 +342,28 @@ public class Main {
 			}
 		}
 		Collections.sort(Gui.maltCategoryPickerTableModel.getRows());
+	}
+  
+  public static void readProfiliImpianto() throws Exception {
+		Gui.breweryProfilePickerTableModel.emptyRows();
+		Document doc = Utils.readFileAsXml(Main.breweryProfileXML);
+		if (doc == null) {
+			return;
+		}
+		Element root = doc.getRootElement();
+		if (root.getName().compareToIgnoreCase("breweryProfiles") == 0) {
+			logger.info("brewery profiles detected");
+			@SuppressWarnings("unchecked")
+			Iterator iterator = root.getChildren().iterator();
+			while (iterator.hasNext()) {
+				Element breweryProfile = (Element) iterator.next();
+				BreweryProfile profile = BreweryProfile.fromXml(breweryProfile);
+				if (profile != null) {
+					Gui.breweryProfilePickerTableModel.addRow(profile);
+				}
+			}
+		}
+		Collections.sort(Gui.breweryProfilePickerTableModel.getRows());
 	}
 
 	public static void readMalti() throws Exception {
@@ -853,12 +882,10 @@ public class Main {
 		}
 		doc.setRootElement(root);
 		XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
-		//String xml = outputter.outputString(doc);
 		try {
 			FileWriter writer = new FileWriter("cache.xml");
 			outputter.output(doc, writer);
 			writer.close();
-			// System.out.println(xml);
 		} catch (IOException e) {
 		}
 	}
