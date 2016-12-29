@@ -29,8 +29,7 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
      */
     private static final long serialVersionUID = -5667189467722852137L;
     private Ricetta ricetta;
-    private static final String[] cN = new String[] { "OG", "Plato", "OG pre-Boil", "°P pre-Boil", "Tinseth", "Rager",
-            "Daniels", "BU/GU", "Tot. Grani", "Tot. Luppoli", "Mash pH"};
+    private static final String[] cN = new String[] { "OG", "Plato", "OG pre-Boil", "°P pre-Boil", "Tinseth", "BU/GU", "Tot. Grani", "Tot. Luppoli", "Mash pH"};
 
     public SummaryTableModel(Ricetta ricetta) {
         this.setRicetta(ricetta);
@@ -123,13 +122,17 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
             return sSGPB;
         case 3:
             return sPPB;
+        //case 4:
+        //case 5:
         case 4:
-            return sIBU;
+        	BitterBUGU tiporatioBU = Main.config.getBUGURatio();
+        	if (tiporatioBU == BitterBUGU.TIN)
+        		return sIBU;
+            if (tiporatioBU == BitterBUGU.DAN)
+            	 return sIBU2;
+            if (tiporatioBU == BitterBUGU.RAG)
+            	return sIBUD;
         case 5:
-            return sIBU2;
-        case 6:
-            return sIBUD;
-        case 7:
             double iburatio = 0;
             BitterBUGU tiporatio = Main.config.getBUGURatio();
             if (tiporatio == BitterBUGU.TIN)
@@ -143,11 +146,11 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
               return NumberFormatter.format02(0.0);
             }
             return NumberFormatter.format02(iburatio / ((getSG() - 1) * 1000));
-        case 8:
+        case 6:
             return sTotG;
-        case 9:
+        case 7:
             return sTotL;
-        case 10:
+        case 8:
             return mashPH;
 
         default:
@@ -159,7 +162,7 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
 
     @Override
     public boolean isCellEditable(int row, int col) {
-        return col < 8;
+        return col < 0;
     }
 
     @Override
@@ -183,12 +186,18 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
     }
 
     public void setBUGUratio() {
-        if (Main.config.getBUGURatio() == BitterBUGU.TIN)
-            cN[7] = "BU/GU Tinseth";
-        if (Main.config.getBUGURatio() == BitterBUGU.RAG)
-            cN[7] = "BU/GU Rager";
-        if (Main.config.getBUGURatio() == BitterBUGU.DAN)
-            cN[7] = "BU/GU Daniels";
+        if (Main.config.getBUGURatio() == BitterBUGU.TIN) {
+        	cN[4] = "Tinseth";
+            cN[5] = "BU/GU Tinseth";
+        }
+        if (Main.config.getBUGURatio() == BitterBUGU.RAG) {
+        	cN[4] = "Rager";
+            cN[5] = "BU/GU Rager";
+        }
+        if (Main.config.getBUGURatio() == BitterBUGU.DAN) {
+        	cN[4] = "Daniels";
+            cN[5] = "BU/GU Daniels";
+        }
     }
 
     public double getSG() {

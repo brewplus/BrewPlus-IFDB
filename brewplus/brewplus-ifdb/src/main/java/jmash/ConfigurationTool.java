@@ -502,7 +502,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		jPanelDefaults.add(jLabel4, gridBagConstraints_8);
 
 		jLabelBUGU.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		jLabelBUGU.setText("Ratio BU/GU");
+		jLabelBUGU.setText("IBU");
 		gridBagConstraints_8_1 = new java.awt.GridBagConstraints();
 		gridBagConstraints_8_1.fill = GridBagConstraints.HORIZONTAL;
 		gridBagConstraints_8_1.insets = new Insets(0, 0, 5, 5);
@@ -906,6 +906,11 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 
 		Main.config = config;
 		File file = new File(Main.configXML);
+        if ("1".equals(System.getProperty("ide"))) {
+            String currentDir = System.getProperty("user.dir");
+            String currentParentDir = new File(currentDir).getParent();
+            file = new File(currentParentDir + "/brewplus-ifdb-distr/src/main/resources/distr/" + Main.configXML);
+        }
 		Document doc = new Document();
 		Element root = config.toXml();
 		doc.setRootElement(root);

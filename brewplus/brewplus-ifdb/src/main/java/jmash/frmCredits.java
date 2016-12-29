@@ -60,6 +60,7 @@ public class frmCredits extends javax.swing.JInternalFrame {
 		        + "<br>Alessandro \"pera76\" Peruzzi (Email: " + generateEMailAddress("peruzzi.alessandro","gmail.com") + " )"
 		        + "<br>Angelo \"Girella\" Cerella (Email: " + generateEMailAddress("angelo.cerella","gmail.com") + " )"
 				+ "<br>Michele \"Rekhyt\" Antonecchia  (Telegram: " + generateTelegramUrl("rekhyt") + " )"
+				+ "<br>Diego \"DellaBotte\" Varriale  (Telegram: " + generateTelegramUrl("DiegoDellaBotte") + " )"
 				+ "<br><br><strong>For Italian translation of BJCP, Malt, Hop and Yeast lists:</strong>"
 				+ "<br>Giovanni \"Sgabuzen\" Iovane ( Email: " + generateEMailAddress("info", "sgabuzen.com") + " )"
                 + "<br>Luciano \"BATIGOLLE\" Picchioni ( Email: " + generateEMailAddress("batigolle", "gmail.com") + " )"

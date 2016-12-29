@@ -25,7 +25,9 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+
 import jmash.*;
+import jmash.Main.BitterBUGU;
 
 /**
  *
@@ -39,12 +41,21 @@ public class HopTableModel extends GenericTableModel<Hop> {
 	private static final long serialVersionUID = -54392409816219092L;
 	Ricetta ricetta;
 	private static String[] hopColumnNames = new String[] { "", "Nome", "Q.tà", "Un.mis.", "Forma", "Alfa A.",
-			"Bollitura", "Uso", "Tinseth", "Rager", "Daniels", "" };
+			"Bollitura", "Uso", "Tinseth", "" };
 
 	public HopTableModel(Ricetta ric) {
 		this.ricetta = ric;
 		ret.setIcon(Main.clockIcon);
 		this.columnNames = hopColumnNames;
+        if (Main.config.getBUGURatio() == BitterBUGU.TIN) {
+        	this.columnNames[8] = "Tinseth";
+        }
+        if (Main.config.getBUGURatio() == BitterBUGU.RAG) {
+        	this.columnNames[8] = "Rager";
+        }
+        if (Main.config.getBUGURatio() == BitterBUGU.DAN) {
+        	this.columnNames[8] = "Daniels";
+        }
 	}
 
 	private static JButton ret = new JButton("");
@@ -90,12 +101,14 @@ public class HopTableModel extends GenericTableModel<Hop> {
 			case 7:
 				return h.getUso();
 			case 8:
-				return NumberFormatter.format01(h.getIBUTinseth());
+	        	BitterBUGU tiporatioBU = Main.config.getBUGURatio();
+	        	if (tiporatioBU == BitterBUGU.TIN)
+	        		return NumberFormatter.format01(h.getIBUTinseth());
+	            if (tiporatioBU == BitterBUGU.DAN)
+	            	return NumberFormatter.format01(h.getIBURager());
+	            if (tiporatioBU == BitterBUGU.RAG)
+	            	return NumberFormatter.format01(h.getIBUDaniels());
 			case 9:
-				return NumberFormatter.format01(h.getIBURager());
-			case 10:
-				return NumberFormatter.format01(h.getIBUDaniels());
-			case 11:
 				return ret;
 			}
 		}
@@ -105,7 +118,7 @@ public class HopTableModel extends GenericTableModel<Hop> {
 	@Override
 	public boolean isCellEditable(int row, int col) {
 		return // false;
-		((col < 8) && (col > 0));
+		((col < 6) && (col > 0));
 	}
 
 	@Override
@@ -139,7 +152,6 @@ public class HopTableModel extends GenericTableModel<Hop> {
 				case 7:
 					h.setUso((String) value);
 					break;
-
 				default:
 					break;
 				}

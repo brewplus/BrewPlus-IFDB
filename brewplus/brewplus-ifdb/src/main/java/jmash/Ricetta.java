@@ -230,7 +230,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		tblHops.getColumnModel().getColumn(7).setCellEditor(new jmash.component.JSpinnerEditor(XmlTags.HOP_USAGE));
 		tblHops.getColumnModel().getColumn(1).setPreferredWidth(128);
 		tblHops.getColumnModel().getColumn(0).setPreferredWidth(32);
-		tblHops.getColumnModel().getColumn(11).setPreferredWidth(32);
+		tblHops.getColumnModel().getColumn(9).setPreferredWidth(32);
 
 		tblHops.getColumnModel().getColumn(1).setCellRenderer(Main.multiLineCellRenderer);
 		tblMalts.getColumnModel().getColumn(1).setCellRenderer(Main.multiLineCellRenderer);
@@ -307,13 +307,13 @@ public class Ricetta extends javax.swing.JInternalFrame {
 			}
 		});
 
-		this.tblHops.getColumnModel().getColumn(11).setCellRenderer(new DefaultTableCellRenderer() {
+		this.tblHops.getColumnModel().getColumn(9).setCellRenderer(new DefaultTableCellRenderer() {
 			private static final long serialVersionUID = -1649193412422579171L;
 
 			@Override
 			public Component getTableCellRendererComponent(JTable tblDataTable, Object value, boolean isSelected,
 					boolean hasFocus, int markedRow, int col) {
-				return (Component) Ricetta.this.tblHops.getValueAt(markedRow, 11);
+				return (Component) Ricetta.this.tblHops.getValueAt(markedRow, 9);
 			}
 		});
 
