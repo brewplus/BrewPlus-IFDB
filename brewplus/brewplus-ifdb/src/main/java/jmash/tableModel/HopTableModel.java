@@ -118,7 +118,7 @@ public class HopTableModel extends GenericTableModel<Hop> {
 	@Override
 	public boolean isCellEditable(int row, int col) {
 		return // false;
-		((col < 6) && (col > 0));
+		((col < 9) && (col > 0));
 	}
 
 	@Override
