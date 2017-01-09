@@ -39,6 +39,8 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -2587,7 +2589,17 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		} else {
 			src.setCodiceStile(brewStyle.getNumero());
 		}
-		src.setHops(hopTableModel.getRows());
+		List<Hop> hopRows = new ArrayList<Hop>(hopTableModel.getRows());
+		Collections.sort(hopRows, new Comparator<Hop>() {
+			@Override
+			public int compare(Hop o1, Hop o2) {
+				if (o2.getBoilTime().equals(o1.getBoilTime())) {
+					return o1.getNome().compareTo(o2.getNome());
+				}
+				return o2.getBoilTime().compareTo(o1.getBoilTime());
+			}
+		});
+		src.setHops(hopRows);
 		src.setMalts(maltTableModel.getRows());
 		src.setYeasts(yeastTableModel.getRows());
 		src.setInfusionSteps(mashDesign.mashStepTableModel.getRows());
