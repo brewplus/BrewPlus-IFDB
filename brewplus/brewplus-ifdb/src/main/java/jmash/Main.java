@@ -79,6 +79,7 @@ public class Main {
 	public static String shoppingDir;
 	public static String mashDir;
 	public static String Nome = "BrewPlus";
+	public static String resource_distr = "/brewplus-ifdb-distr/src/main/resources/distr/";
 	public static String luppoliXML = "config/luppoli_ita.xml";
 	public static String maltiXML = "config/malti_ita.xml";
 	public static String maltCategoriesXML = "config/categorie_malti.xml";

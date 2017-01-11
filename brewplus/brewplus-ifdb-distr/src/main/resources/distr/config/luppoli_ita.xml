@@ -75,6 +75,7 @@
   <jmash.HopType Nome="Herkules" AA="15.5" Origine="Germania" Des="Luppolo con un elevato alfa acido, dall'aroma fortemente speziato." HSI="40.0" use="Boil" utilizzo="Amaro" beta="4.8" />
   <jmash.HopType Nome="Horizon" AA="12.0" Origine="U.S.A." HSI="30.0" use="Boil" utilizzo="Amaro" beta="7.5" />
   <jmash.HopType Nome="Huell Melon" AA="6.1" Origine="Germania" Des="Dona note di melone e fragola e può essere utilizzato in molti stili birrai.Si sposa bene con le birre di frumento, ma anche con Pale Ale fino all'utilizzo nelle birre Brett" HSI="30.0" use="Boil" utilizzo="Aroma" beta="" />
+  <jmash.HopType Nome="Irish Moss" AA="0.0" Origine="Irlanda" Des="È composto da alghe marine che permettono un'ottima coagulazione e sedimentazione delle proteine" HSI="1.0" use="Boil" utilizzo="Altro" />
   <jmash.HopType Nome="Jarrylo" AA="16.2" Origine="U.S.A." Des="Il suo aroma spicca con banana, pera, arancia, spezie e fruttato. I suoi aromi lo rendono davvero unico in molti stili birrai che spaziano dalle Saison alle American Pale Ale. Adatto anche per birre single hop" HSI="30.0" use="Boil" utilizzo="Aroma" beta="" />
   <jmash.HopType Nome="Jester" AA="8.0" Origine="Regno Unito" HSI="30.0" use="Boil" utilizzo="Aroma" beta="5" />
   <jmash.HopType Nome="Junga" AA="11.5" Origine="Polonia" Des="Nuova varietà polacca con ottime proprietà amaricanti e aromatiche. Un aroma molto forte e spiccato e adatto a Pale e Lager luppolate Sprigiona aromi di Ribes nero, pompelmo e piccante" HSI="30.0" use="Boil" utilizzo="Amaro" beta="6.5" />

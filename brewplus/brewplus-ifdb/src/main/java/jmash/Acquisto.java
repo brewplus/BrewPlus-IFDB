@@ -406,7 +406,13 @@ public class Acquisto extends javax.swing.JInternalFrame {
 		obj.setDes(fldDes.getText());
 		obj.setData(fldDate.getDate());
 		Document doc = obj.toXml();
-		Utils.saveXmlAsFile(doc, file, this);
+        if ("1".equals(System.getProperty("ide"))) {
+            String currentDir = System.getProperty("user.dir");
+            String currentParentDir = new File(currentDir).getParent();
+            Utils.saveXmlAsFile(doc, new File(currentParentDir + Main.resource_distr + this.file.getName()), this);
+        } else {
+        	Utils.saveXmlAsFile(doc, file, this);
+        }
 
 		setTitle(this.file.getName());
 	}
