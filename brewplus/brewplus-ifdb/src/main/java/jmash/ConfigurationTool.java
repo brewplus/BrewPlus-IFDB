@@ -909,7 +909,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
         if ("1".equals(System.getProperty("ide"))) {
             String currentDir = System.getProperty("user.dir");
             String currentParentDir = new File(currentDir).getParent();
-            file = new File(currentParentDir + "/brewplus-ifdb-distr/src/main/resources/distr/" + Main.configXML);
+            file = new File(currentParentDir + Main.resource_distr + Main.configXML);
         }
 		Document doc = new Document();
 		Element root = config.toXml();
@@ -951,7 +951,13 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 						root.addContent(((XmlAble) o).toXml());
 					}
 				}
-				Utils.saveXmlAsFile(doc, new File(Main.breweryProfileXML), this);
+				if ("1".equals(System.getProperty("ide"))) {
+		            String currentDir = System.getProperty("user.dir");
+		            String currentParentDir = new File(currentDir).getParent();
+		            Utils.saveXmlAsFile(doc, new File(currentParentDir + Main.resource_distr + Main.breweryProfileXML), this);
+		        } else {
+		        	Utils.saveXmlAsFile(doc, new File(Main.breweryProfileXML), this);
+		        }
 
 			}
 		}
@@ -981,7 +987,13 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 						root.addContent(((XmlAble) o).toXml());
 					}
 				}
-				Utils.saveXmlAsFile(doc, new File(Main.waterXML), this);
+				if ("1".equals(System.getProperty("ide"))) {
+		            String currentDir = System.getProperty("user.dir");
+		            String currentParentDir = new File(currentDir).getParent();
+		            Utils.saveXmlAsFile(doc, new File(currentParentDir + Main.resource_distr + Main.waterXML), this);
+		        } else {
+		        	Utils.saveXmlAsFile(doc, new File(Main.waterXML), this);
+		        }
 
 			}
 		}

@@ -939,7 +939,7 @@ public class Utils {
 					// solo per esecuzioni per eclipse/netbeans
 					String currentDir = System.getProperty("user.dir");
 					String currentParentDir = new File(currentDir).getParent();
-					bjcpStylesXML = currentParentDir + "/brewplus-ifdb-distr/src/main/resources/distr/" + bjcpStylesXML;
+					bjcpStylesXML = currentParentDir + Main.resource_distr + bjcpStylesXML;
 				}
 			}
 
