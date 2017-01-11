@@ -147,7 +147,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		this.summaryTableModel = new SummaryTableModel(this);
 		this.yeastTableModel = new YeastTableModel(this);
 		this.glassPanel = new GlassPanel(this);
-		this.hopPicker = new Picker(Gui.hopPickerTableModel);
+		this.hopPicker = new HopTypePicker();
 		this.hopPicker.setIcon(hopsIcon);
 		this.maltPicker = new MaltTypePicker();
 
