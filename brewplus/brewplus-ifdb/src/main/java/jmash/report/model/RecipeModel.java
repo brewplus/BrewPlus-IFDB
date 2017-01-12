@@ -18,6 +18,7 @@ public class RecipeModel {
 	private String plato;
 	private String ebc;	 
 	private String ibu;	 
+	private String ibuLabel;
 	private String efficency; 
 	private String boilingTime;
 	private String ratioLitreKg;
@@ -155,6 +156,12 @@ public class RecipeModel {
 	}
 	public void setNote(String note) {
 		this.note = note;
+	}
+	public String getIbuLabel() {
+		return ibuLabel;
+	}
+	public void setIbuLabel(String ibuLabel) {
+		this.ibuLabel = ibuLabel;
 	}
 	
 }

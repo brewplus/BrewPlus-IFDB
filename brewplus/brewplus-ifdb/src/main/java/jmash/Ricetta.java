@@ -71,6 +71,7 @@ import org.jdom.Document;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
+import jmash.Main.BitterBUGU;
 import jmash.component.GlassPanel;
 import jmash.component.UpDownPopupMenu;
 import jmash.imagecomponents.ImageFileView;
@@ -1930,7 +1931,18 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		summary.setEbc(String.format("%.01f",getEbc()));
 		summary.setEfficency(rec.getEfficienza() + "%");
 		summary.setFg(getFGPrevista());
-		summary.setIbu(String.format("%.01f",getIBUTinseth()));
+		if (Main.config.getBUGURatio() == BitterBUGU.TIN) {
+			summary.setIbu(String.format("%.01f",hopTableModel.getIBUTinseth()));
+			summary.setIbuLabel("IBU (Tinseth)");
+		}
+		if (Main.config.getBUGURatio() == BitterBUGU.RAG) {
+			summary.setIbu(String.format("%.01f",hopTableModel.getIBURager()));
+			summary.setIbuLabel("IBU (Rager)");
+		}
+		if (Main.config.getBUGURatio() == BitterBUGU.DAN) {
+			summary.setIbu(String.format("%.01f",hopTableModel.getIBUDaniels()));
+			summary.setIbuLabel("IBU (Daniels)");
+		}
 		summary.setOg(getSGPerStampa());
 		summary.setOgPreBoil(getOGPreBoil());
 		summary.setPlato(String.format("%.01f",getPPerStampa()));
