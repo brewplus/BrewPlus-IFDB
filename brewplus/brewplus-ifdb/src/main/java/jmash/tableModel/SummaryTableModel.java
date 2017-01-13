@@ -65,12 +65,12 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
 
     public void setIBU(double IBU) {
         this.IBU = IBU;
-        sIBU = NumberFormatter.format01(this.getIBU()) + " IBU";
+        sIBU = NumberFormatter.format01(IBU) + " IBU";
     }
 
     public void setIBU2(double IBU2) {
         this.IBU2 = IBU2;
-        sIBU2 = NumberFormatter.format01(this.getIBU2()) + " IBU";
+        sIBU2 = NumberFormatter.format01(IBU2) + " IBU";
     }
 
     public void setIBUGaretz(double IBUGaretz) {
@@ -79,7 +79,7 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
 
     public void setIBUDaniels(double IBUDaniels) {
         this.IBUDaniels = IBUDaniels;
-        sIBUD = NumberFormatter.format01(this.getIBUDaniels()) + " IBU";
+        sIBUD = NumberFormatter.format01(IBUDaniels) + " IBU";
     }
 
     public void setIBURager(double IBURager) {
@@ -129,9 +129,9 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
         	if (tiporatioBU == BitterBUGU.TIN)
         		return sIBU;
             if (tiporatioBU == BitterBUGU.DAN)
-            	 return sIBU2;
+            	return sIBUD; 
             if (tiporatioBU == BitterBUGU.RAG)
-            	return sIBUD;
+            	return sIBU2;
         case 5:
             double iburatio = 0;
             BitterBUGU tiporatio = Main.config.getBUGURatio();
