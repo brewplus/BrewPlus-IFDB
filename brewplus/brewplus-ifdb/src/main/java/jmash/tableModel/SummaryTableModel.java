@@ -1,5 +1,4 @@
 /*
- *  Copyright 2005, 2006 Alessandro Chiari.
  *
  *  This file is part of BrewPlus.
  *
@@ -19,17 +18,23 @@
  */
 package jmash.tableModel;
 
+import javax.swing.table.TableColumn;
+
 import jmash.*;
 import jmash.Main.BitterBUGU;
 
 public class SummaryTableModel extends GenericTableModel<Hop> {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = -5667189467722852137L;
+    
+    public static final int TINSETH_COLUMN=4;
+	public static final int RAGER_COLUMN=5;
+	public static final int DANIELS_COLUMN=6;
+	public static final int BU_GU_COLUMN=7;
+	
     private Ricetta ricetta;
-    private static final String[] cN = new String[] { "OG", "Plato", "OG pre-Boil", "°P pre-Boil", "Tinseth", "BU/GU", "Tot. Grani", "Tot. Luppoli", "Mash pH"};
+    private static final String[] cN = new String[] { "OG", "Plato", "OG pre-Boil", "°P pre-Boil", "Tinseth", "Rager",
+            "Daniels", "BU/GU", "Tot. Grani", "Tot. Luppoli", "Mash pH"};
 
     public SummaryTableModel(Ricetta ricetta) {
         this.setRicetta(ricetta);
@@ -87,12 +92,12 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
     }
     
     public void setMashPH(double mashPH) {
-		this.mashPH = Double.isNaN(mashPH) ?  "NaN" : NumberFormatter.format03(mashPH);
-	}
+        this.mashPH = Double.isNaN(mashPH) ?  "NaN" : NumberFormatter.format03(mashPH);
+    }
     
     public double getMashPH() {
-		return "NaN".equals(mashPH) ? Double.NaN : Double.parseDouble(mashPH);
-	}
+        return "NaN".equals(mashPH) ? Double.NaN : Double.parseDouble(mashPH);
+    }
 
     private int totG = 0;
 
@@ -122,17 +127,13 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
             return sSGPB;
         case 3:
             return sPPB;
-        //case 4:
-        //case 5:
         case 4:
-        	BitterBUGU tiporatioBU = Main.config.getBUGURatio();
-        	if (tiporatioBU == BitterBUGU.TIN)
-        		return sIBU;
-            if (tiporatioBU == BitterBUGU.DAN)
-            	 return sIBU2;
-            if (tiporatioBU == BitterBUGU.RAG)
-            	return sIBUD;
+            return sIBU;
         case 5:
+            return sIBU2;
+        case 6:
+            return sIBUD;
+        case 7:
             double iburatio = 0;
             BitterBUGU tiporatio = Main.config.getBUGURatio();
             if (tiporatio == BitterBUGU.TIN)
@@ -146,11 +147,11 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
               return NumberFormatter.format02(0.0);
             }
             return NumberFormatter.format02(iburatio / ((getSG() - 1) * 1000));
-        case 6:
-            return sTotG;
-        case 7:
-            return sTotL;
         case 8:
+            return sTotG;
+        case 9:
+            return sTotL;
+        case 10:
             return mashPH;
 
         default:
@@ -162,7 +163,7 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
 
     @Override
     public boolean isCellEditable(int row, int col) {
-        return col < 0;
+        return false;
     }
 
     @Override
@@ -186,19 +187,19 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
     }
 
     public void setBUGUratio() {
-        if (Main.config.getBUGURatio() == BitterBUGU.TIN) {
-        	cN[4] = "Tinseth";
-            cN[5] = "BU/GU Tinseth";
-        }
-        if (Main.config.getBUGURatio() == BitterBUGU.RAG) {
-        	cN[4] = "Rager";
-            cN[5] = "BU/GU Rager";
-        }
-        if (Main.config.getBUGURatio() == BitterBUGU.DAN) {
-        	cN[4] = "Daniels";
-            cN[5] = "BU/GU Daniels";
-        }
+        if (Main.config.getBUGURatio() == BitterBUGU.TIN)
+            cN[7] = "BU/GU Tinseth";
+        else if (Main.config.getBUGURatio() == BitterBUGU.RAG)
+            cN[7] = "BU/GU Rager";
+        else if (Main.config.getBUGURatio() == BitterBUGU.DAN)
+            cN[7] = "BU/GU Daniels";
+        if (columnNames != null)
+        {
+        	columnNames[7] = cN[7];
+        }	
     }
+    
+   
 
     public double getSG() {
         return SG;
@@ -264,4 +265,8 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
         this.totL = totL;
         sTotL = NumberFormatter.format00(getTotL()) + " gr";
     }
+    
+    
+
+    
 }
