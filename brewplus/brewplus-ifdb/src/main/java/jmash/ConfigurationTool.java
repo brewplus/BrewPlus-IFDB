@@ -57,9 +57,11 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 	private JInternalFrame parent;
 
 	private boolean actionListenerOn = true;
+	private Gui gui;
 
 	/** Creates new form ConfigurationTool */
-	public ConfigurationTool() {
+	public ConfigurationTool(Gui gui) {
+		this.gui = gui;
 		setResizable(true);
 
 		initComponents();
@@ -919,8 +921,10 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 			System.setProperty("http.proxyHost", config.getProxyHost());
 		if (config.getProxyPort() != null)
 			System.setProperty("http.proxyPort", config.getProxyPort());
-
+		
 		saveCurrentBreweryProfile();
+		
+		gui.updateRicette();
 
 	}// GEN-LAST:event_jButton3ActionPerformed
 

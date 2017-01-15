@@ -20,6 +20,7 @@
 package jmash;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
@@ -908,7 +909,7 @@ public class Gui extends javax.swing.JFrame {
 		JMenuItem mntmImpostazioni = new JMenuItem("Impostazioni");
 		mntmImpostazioni.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				addFrame(new ConfigurationTool());
+				addFrame(new ConfigurationTool(Gui.this));
 			}
 		});
 		jMenu2.add(mntmImpostazioni);
@@ -1240,7 +1241,7 @@ public class Gui extends javax.swing.JFrame {
 	}// GEN-LAST:event_btnSaveAll17ActionPerformed
 
 	private void btnSaveAll16ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll16ActionPerformed
-		addFrame(new ConfigurationTool());
+		addFrame(new ConfigurationTool(Gui.this));
 	}// GEN-LAST:event_btnSaveAll16ActionPerformed
 
 	private void btnSaveAll15ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll15ActionPerformed
@@ -1748,4 +1749,13 @@ public class Gui extends javax.swing.JFrame {
 	private JLabel lblStatus;
 	
 	private javax.swing.JButton btnExport2PID;
+
+	public void updateRicette() {
+		
+		for (Component c: this.desktop.getComponents()) {
+			if (c instanceof Ricetta) {
+				((Ricetta) c).ricettaModificata();
+			}
+		}
+	}
 }
