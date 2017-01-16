@@ -1,6 +1,7 @@
 Release 2.2.0
 
 
+
 Release 2.1.0 - Xmas16
 
 - Add "Late Addiction" feature to better estimate IBU (fixed PreBoil and recipe flag save)
@@ -22,26 +23,27 @@ Release 2.1.0 - Xmas16
 - Configurazione->Impostazioni: move final volume and efficiency into Brewing system data
 - Image managment respect from the period of year
 
+
 Release 2.0.1
 
-* Fixed problem with recipe printing
-* Revisited export to forum feature 
-* changed icon and background
-* new default recipes
-* increased fonts for BJCP 
-* removed old help
-* fixed hop list form
-* minor fixes
+- Fixed problem with recipe printing
+- Revisited export to forum feature 
+- changed icon and background
+- new default recipes
+- increased fonts for BJCP 
+- removed old help
+- fixed hop list form
+- minor fixes
+
 
 Release 2.0.0
 
-* Introdotto BJCP 2015
-* Modificato calcolo PH come in EZWaterCalculator
-* Gestione Sgabuzen della quantità dell'acqua
-* Nuova gestione della stampa della ricetta
-* Tradotto il BJCP in italiano
-* Aggiunti i Credits per chi ha collaborato e riferimento alla licenza
-* correzione di vari bug minori
+- Introdotto BJCP 2015
+- Modificato calcolo PH come in EZWaterCalculator
+- Gestione Sgabuzen della quantità dell'acqua
+- Nuova gestione della stampa della ricetta
+- Tradotto il BJCP in italiano
+- Aggiunti i Credits per chi ha collaborato e riferimento alla licenza
+- correzione di vari bug minori
 
 Licenza GPL v3
-
