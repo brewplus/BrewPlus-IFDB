@@ -30,7 +30,8 @@ Release 2.0.1
 * fixed hop list form
 * minor fixes
 
-Relase 2.0.0
+Release 2.0.0
+
 * Introdotto BJCP 2015
 * Modificato calcolo PH come in EZWaterCalculator
 * Gestione Sgabuzen della quantità dell'acqua
