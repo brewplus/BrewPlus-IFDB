@@ -64,13 +64,17 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 import org.apache.log4j.Logger;
 import org.jdom.Document;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
+import jmash.Main.BitterBUGU;
 import jmash.component.GlassPanel;
 import jmash.component.UpDownPopupMenu;
 import jmash.imagecomponents.ImageFileView;
@@ -354,6 +358,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		setBorder(Utils.getDefaultBorder());
 		this.mashDesign.mashModificato();
 		setDilVisible(false);
+		setCurrentIBU();
 		dirty = false;
 	}
 
@@ -1930,7 +1935,18 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		summary.setEbc(String.format("%.01f",getEbc()));
 		summary.setEfficency(rec.getEfficienza() + "%");
 		summary.setFg(getFGPrevista());
-		summary.setIbu(String.format("%.01f",getIBUTinseth()));
+		if (Main.config.getBUGURatio() == BitterBUGU.TIN) {
+			summary.setIbu(String.format("%.01f",hopTableModel.getIBUTinseth()));
+			summary.setIbuLabel("IBU (Tinseth)");
+		}
+		if (Main.config.getBUGURatio() == BitterBUGU.RAG) {
+			summary.setIbu(String.format("%.01f",hopTableModel.getIBURager()));
+			summary.setIbuLabel("IBU (Rager)");
+		}
+		if (Main.config.getBUGURatio() == BitterBUGU.DAN) {
+			summary.setIbu(String.format("%.01f",hopTableModel.getIBUDaniels()));
+			summary.setIbuLabel("IBU (Daniels)");
+		}
 		summary.setOg(getSGPerStampa());
 		summary.setOgPreBoil(getOGPreBoil());
 		summary.setPlato(String.format("%.01f",getPPerStampa()));
@@ -2149,6 +2165,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		summaryTableModel.setIBUGaretz(hopTableModel.getIBUGaretz());
 		summaryTableModel.setIBUDaniels(hopTableModel.getIBUDaniels());
 
+		setCurrentIBU();
+		
 		summaryTableModel.setTotL(hopTableModel.getGrammi());
 		summaryTableModel.setTotG(maltTableModel.getGrammi());
 
@@ -3237,4 +3255,81 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		return waterNeeded;
 	}
 	
+	public void setCurrentIBU() {
+		TableColumn tinsethColumn = tblSummary.getColumn(summaryTableModel.getColumnName(SummaryTableModel.TINSETH_COLUMN));
+		TableColumn ragerColumn = tblSummary.getColumn(summaryTableModel.getColumnName(SummaryTableModel.RAGER_COLUMN));
+		TableColumn danielsColumn = tblSummary.getColumn(summaryTableModel.getColumnName(SummaryTableModel.DANIELS_COLUMN));
+
+		TableColumn visibleIBUColumn;
+		TableColumn invisibleIBUColumn1;
+		TableColumn invisibleIBUColumn2;
+
+		int width = 0;
+		int minWidth = 0;
+		int maxWidth = 0;
+		int preferredWidth = 0;
+
+		if (tinsethColumn.getWidth() > 0) {
+			width = tinsethColumn.getWidth();
+			minWidth = tinsethColumn.getMinWidth();
+			maxWidth = tinsethColumn.getMaxWidth();
+			preferredWidth = tinsethColumn.getPreferredWidth();
+		} else if (ragerColumn.getWidth() > 0) {
+			width = ragerColumn.getWidth();
+			minWidth = ragerColumn.getMinWidth();
+			maxWidth = ragerColumn.getMaxWidth();
+			preferredWidth = ragerColumn.getPreferredWidth();
+		} else if (danielsColumn.getWidth() > 0) {
+			width = danielsColumn.getWidth();
+			minWidth = danielsColumn.getMinWidth();
+			maxWidth = danielsColumn.getMaxWidth();
+			preferredWidth = danielsColumn.getPreferredWidth();
+		}
+
+		switch (Main.config.getBUGURatio()) {
+			case DAN:
+				visibleIBUColumn = danielsColumn;
+				invisibleIBUColumn1 = tinsethColumn;
+				invisibleIBUColumn2 = ragerColumn;
+				break;
+			case RAG:
+				visibleIBUColumn = ragerColumn;
+				invisibleIBUColumn1 = tinsethColumn;
+				invisibleIBUColumn2 = danielsColumn;
+				break;
+			case TIN:
+				visibleIBUColumn = tinsethColumn;
+				invisibleIBUColumn1 = danielsColumn;
+				invisibleIBUColumn2 = ragerColumn;
+				break;
+			default:
+				visibleIBUColumn = tinsethColumn;
+				invisibleIBUColumn1 = danielsColumn;
+				invisibleIBUColumn2 = ragerColumn;
+				break;
+		}
+
+		if (width > 0) {
+			visibleIBUColumn.setWidth(width);
+			visibleIBUColumn.setMinWidth(minWidth);
+			visibleIBUColumn.setMaxWidth(maxWidth);
+			visibleIBUColumn.setPreferredWidth(preferredWidth);
+
+			invisibleIBUColumn1.setWidth(0);
+			invisibleIBUColumn1.setMinWidth(0);
+			invisibleIBUColumn1.setMaxWidth(0);
+
+			invisibleIBUColumn2.setWidth(0);
+			invisibleIBUColumn2.setMinWidth(0);
+			invisibleIBUColumn2.setMaxWidth(0);
+
+			summaryTableModel.setBUGUratio();
+
+			JTableHeader th = tblSummary.getTableHeader();
+			TableColumnModel tcm = th.getColumnModel();
+			TableColumn tc = tcm.getColumn(SummaryTableModel.BU_GU_COLUMN);
+			tc.setHeaderValue(summaryTableModel.getColumnName(SummaryTableModel.BU_GU_COLUMN));
+			th.repaint();
+		}
+	}	
 }
