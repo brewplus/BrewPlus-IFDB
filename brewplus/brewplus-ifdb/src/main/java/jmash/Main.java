@@ -52,16 +52,19 @@ import java.util.ResourceBundle;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.jdom.Attribute;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
+import org.jfree.util.Log;
 
 import jmash.component.MultiLineCellRenderer;
 import jmash.schema.bjcp.Styleguide;
 import jmash.utils.BundleMessage;
+import jmash.utils.Cli;
 
 public class Main {
 
@@ -72,26 +75,31 @@ public class Main {
         
 	//public static String versioneBrewPlus = "2.1.0";
 	public static Integer webVersion;
-	public static String userDir;
-	public static String waterDir;
-	public static String recipeDir;
-	public static String batchDir;
-	public static String shoppingDir;
-	public static String mashDir;
+	public static HashMap<String,File> folderMap;
+	public static String __USERDIR = "userDir";
+	public static String __WATERDIR = "waterDir";
+	public static String __RECIPEDIR = "recipeDir";
+	public static String __BATCHDIR = "batchDir";
+	public static String __SHOPPINGDIR = "shoppingDir";
+	public static String __MASHDIR = "mashDir";
+	public static String __CONFIGDIR = "configDir";
+	
 	public static String Nome = "BrewPlus";
 	public static String resource_distr = "/brewplus-ifdb-distr/src/main/resources/distr/";
-	public static String luppoliXML = "config/luppoli_ita.xml";
-	public static String maltiXML = "config/malti_ita.xml";
-	public static String maltCategoriesXML = "config/categorie_malti.xml";
-	public static String waterXML = "config/water.xml";
-	public static String yeastXML = "config/lieviti_ita.xml";
-	public static String stiliXML = "config/stili.xml";
-	public static String bjcpStylesXML = "config/styleguide-2015.xml";
-	public static String coloriXML = "config/colors.xml";
-	public static String configXML = "config/config.xml";
-	public static String inventarioXML = "config/inventario.xml";
-	public static String breweryProfileXML = "config/profili_impianto.xml";
-	//public static String printTemplate = "templates/ricetta.html";
+	
+	public static HashMap<String,File> configFileMap;
+	public static String __XMLHOPS = "xml.hops";
+	public static String __XMLMALT = "xml.malt";
+	public static String __XMLCATEGORIES = "xml.categories";
+	public static String __XMLWATER = "xml.water";
+	public static String __XMLYEAST = "xml.yeast";
+	public static String __XMLSTYLES = "xml.styles";
+	public static String __XMLBJCP = "xml.bjcp";
+	public static String __XMLCOLORS = "xml.colors";
+	public static String __XMLCONFIG = "xml.config";
+	public static String __XMLINVENTORY = "xml.inventory";
+	public static String __XMLBREPROFILE = "xml.breweryProfile";
+
 	public static Gui gui;
 	public static javax.swing.JDesktopPane desktopPane;
 	public static MultiLineCellRenderer multiLineCellRenderer = new MultiLineCellRenderer();
@@ -176,14 +184,9 @@ public class Main {
 	}
 
 	public static String getVersione() {
-		//return versioneBrewPlus;
 		return Utils.getVersion();
 	}
 
-	/*private static void check(String str) {
-		MaltType m = getMaltTypeByWords(str);
-		logger.debug(str + " -> " + (m == null ? "NON TROVATO" : m.getNome()));
-	}*/
 
 	/** Creates a new instance of Main */
 	public Main() {
@@ -198,8 +201,8 @@ public class Main {
 			readWater();
 			readColors();
 
-			Styleguide bjcp = Utils.readBjcpXml(bjcpStylesXML);
-			Document doc = Utils.readFileAsXml(bjcpStylesXML);
+			Styleguide bjcp = Utils.readBjcpXml(Main.getConfigfileName(__XMLBJCP));
+			Document doc = Utils.readFileAsXml(Main.getConfigfileName(__XMLBJCP));
 			Element root = doc.getRootElement();
 			Gui.brewStylePickerTableModel.setRows(getBJCPStyles(root));
 			logger.info("BJCP styles detected");
@@ -237,12 +240,20 @@ public class Main {
 			logger.error(ex.getMessage(), ex);
 		}
 	}
+	
+	private class Option {
+	     String flag, opt;
+	     public Option(String flag, String opt) { this.flag = flag; this.opt = opt; }
+	}
 
 	/**
 	 * @param args
 	 *            the command line arguments
 	 */
 	public static void main(String[] args) {
+		
+		new Cli(args).parse();		
+		
 		try {
 			AzatothLookAndFeel myLAF = new AzatothLookAndFeel();
 			UIManager.setLookAndFeel(myLAF);
@@ -251,12 +262,9 @@ public class Main {
 			logger.error(e.getMessage(), e);
 			return;
 		}
-		userDir = System.getProperty("user.dir");
-		recipeDir = userDir + "/recipes/";
-		batchDir = userDir + "/batches/";
-		mashDir = userDir + "/mashes/";
-		shoppingDir = userDir + "/shopping/";
-		waterDir = userDir + "/water/";
+		
+		setFolders();
+
 		new Main();
 		try {
 			if (args.length > 0 && args[0].compareToIgnoreCase("showNews") == 0) {
@@ -271,9 +279,100 @@ public class Main {
 		}
 	}
 
+	private static void setFolders() {		
+		
+		folderMap = new HashMap<String,File>();
+		String userDir = System.getProperty("user.home")+"/.brewplus2/";
+		folderMap.put(__USERDIR, new File(userDir));
+
+		folderMap.put(__RECIPEDIR, new File(userDir + "/recipes/"));
+		folderMap.put(__BATCHDIR, new File(userDir + "/batches/"));
+		folderMap.put(__MASHDIR, new File(userDir + "/mashes/"));
+		folderMap.put(__SHOPPINGDIR, new File(userDir + "/shopping/"));
+		folderMap.put(__WATERDIR, new File(userDir + "/water/"));
+		folderMap.put(__CONFIGDIR, new File(userDir + "/config/"));
+
+		File ud = new File(userDir);
+		
+		boolean firstRun = !ud.exists();
+		if(firstRun){	
+			try{
+				ud.mkdir();
+				for(String key : folderMap.keySet()){
+					File f = (File)folderMap.get(key);
+					if(!f.exists()){
+						f.mkdir();
+						logger.debug("first run creating folder: \"" + f.getCanonicalPath() +"\"");
+					} 
+				}
+			} catch(IOException e) {
+				logger.error(e.getMessage());
+			}
+		}
+		
+		configFileMap = new HashMap<String, File>();
+		configFileMap.put(__XMLHOPS,  new File(userDir + "/config/" + "luppoli_ita.xml"));
+		configFileMap.put(__XMLMALT, new File(userDir + "/config/" + "malti_ita.xml"));
+		configFileMap.put(__XMLCATEGORIES, new File(userDir + "/config/" + "categorie_malti.xml"));
+		configFileMap.put(__XMLWATER, new File(userDir + "/config/" + "water.xml"));
+		configFileMap.put(__XMLYEAST, new File(userDir + "/config/" + "lieviti_ita.xml"));
+		configFileMap.put(__XMLSTYLES, new File(userDir + "/config/" + "stili.xml"));
+		configFileMap.put(__XMLBJCP, new File(userDir + "/config/" + "styleguide-2015.xml"));
+		configFileMap.put(__XMLCOLORS, new File(userDir + "/config/" + "colors.xml"));
+		configFileMap.put(__XMLCONFIG, new File(userDir + "/config/" + "config.xml"));
+		configFileMap.put(__XMLINVENTORY, new File(userDir + "/config/" + "inventario.xml"));
+		configFileMap.put(__XMLBREPROFILE, new File(userDir + "/config/" + "profili_impianto.xml"));
+		
+		if(firstRun){
+			logger.info("Copying config files into user config folder");
+			File cfgSource = new File(System.getProperty("user.dir")+"/config/");
+			File cfgDest = (File)folderMap.get(__CONFIGDIR);
+			try {
+			    FileUtils.copyDirectory(cfgSource, cfgDest);
+			    FileUtils.deleteDirectory(cfgSource);
+			} catch (IOException e) {
+			    e.printStackTrace();
+			}
+			
+			File recipeSource = new File(System.getProperty("user.dir")+"/recipes/");
+			File recipeDest = (File)folderMap.get(__RECIPEDIR);
+			try {
+			    FileUtils.copyDirectory(recipeSource, recipeDest);
+			    FileUtils.deleteDirectory(recipeSource);
+			} catch (IOException e) {
+			    e.printStackTrace();
+			}
+		}
+
+	}
+	
+	public static String getFolderName(String key){
+		File f = (File)folderMap.get(key);
+		String name = "";
+		try {
+			name = f.getCanonicalPath();
+		} catch (IOException e) {
+			logger.error(e.getMessage());
+		}
+		
+		return name;
+	}
+	
+	public static String getConfigfileName(String key){
+		File f = (File)configFileMap.get(key);
+		String name = "";
+		try {
+			name = f.getCanonicalPath();
+		} catch (IOException e) {
+			logger.error(e.getMessage());
+		}
+		
+		return name;
+	}
+
 	public static void readLuppoli() throws Exception {
 		Gui.hopPickerTableModel.emptyRows();
-		Document doc = Utils.readFileAsXml(Main.luppoliXML);
+		Document doc = Utils.readFileAsXml(Main.getConfigfileName(Main.__XMLHOPS));
 		if (doc == null) {
 			return;
 		}
@@ -325,7 +424,7 @@ public class Main {
   
   public static void readCategorieMalti() throws Exception {
 		Gui.maltCategoryPickerTableModel.emptyRows();
-		Document doc = Utils.readFileAsXml(Main.maltCategoriesXML);
+		Document doc = Utils.readFileAsXml(Main.getConfigfileName(Main.__XMLCATEGORIES));
 		if (doc == null) {
 			return;
 		}
@@ -347,7 +446,7 @@ public class Main {
   
   public static void readProfiliImpianto() throws Exception {
 		Gui.breweryProfilePickerTableModel.emptyRows();
-		Document doc = Utils.readFileAsXml(Main.breweryProfileXML);
+		Document doc = Utils.readFileAsXml(Main.getConfigfileName(Main.__XMLBREPROFILE));
 		if (doc == null) {
 			return;
 		}
@@ -369,7 +468,7 @@ public class Main {
 
 	public static void readMalti() throws Exception {
 		Gui.maltPickerTableModel.emptyRows();
-		Document doc = Utils.readFileAsXml(Main.maltiXML);
+		Document doc = Utils.readFileAsXml(Main.getConfigfileName(Main.__XMLMALT));
 		if (doc == null) {
 			return;
 		}
@@ -391,7 +490,7 @@ public class Main {
 
 	public static void readLieviti() throws Exception {
 		Gui.yeastPickerTableModel.emptyRows();
-		Document doc = Utils.readFileAsXml(Main.yeastXML);
+		Document doc = Utils.readFileAsXml(Main.getConfigfileName(Main.__XMLYEAST));
 		if (doc == null) {
 			return;
 		}
@@ -417,7 +516,7 @@ public class Main {
 
 	public static void readWater() throws Exception {
 		Gui.waterPickerTableModel.emptyRows();
-		Document doc = Utils.readFileAsXml(Main.waterXML);
+		Document doc = Utils.readFileAsXml(Main.getConfigfileName(Main.__XMLWATER));
 		if (doc == null) {
 			return;
 		}
@@ -446,7 +545,7 @@ public class Main {
 
 	public static void readConfig()  {
 
-		Document doc = Utils.readFileAsXml(Main.configXML);
+		Document doc = Utils.readFileAsXml(Main.getConfigfileName(Main.__XMLCONFIG));
 		if (doc == null) {
 			return;
 		}
@@ -475,7 +574,7 @@ public class Main {
 
 	public static void readStili() throws Exception {
 		Gui.brewStylePickerTableModel.emptyRows();
-		Document doc = Utils.readFileAsXml(Main.stiliXML);
+		Document doc = Utils.readFileAsXml(Main.getConfigfileName(Main.__XMLSTYLES));
 		if (doc == null) {
 			return;
 		}
@@ -494,7 +593,7 @@ public class Main {
 	public static BinaryTreeNode treeColor;
 
 	public static void readColors() throws Exception {
-		Document doc = Utils.readFileAsXml(Main.coloriXML);
+		Document doc = Utils.readFileAsXml(Main.getConfigfileName(Main.__XMLCOLORS));
 		if (doc == null) {
 			return;
 		}

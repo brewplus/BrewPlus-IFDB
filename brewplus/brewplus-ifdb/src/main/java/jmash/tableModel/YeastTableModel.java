@@ -50,7 +50,7 @@ public class YeastTableModel extends GenericTableModel<Yeast> {
 			Method m = h.getClass().getMethod("get" + Utils.capitalize(this.fieldNames[col]));
 			return m.invoke(h);
 		} catch (Exception e) {
-			Utils.showException(e, "Il file " + Main.stiliXML + " non corrisponde al formato.", ricetta);
+			Utils.showException(e, "Il file " + Main.getConfigfileName(Main.__XMLSTYLES) + " non corrisponde al formato.", ricetta);
 		}
 		return null;
 	}

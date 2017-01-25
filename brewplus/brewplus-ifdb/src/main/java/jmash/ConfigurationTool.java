@@ -907,11 +907,11 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 			config.setBUGURatio(BitterBUGU.DAN);
 
 		Main.config = config;
-		File file = new File(Main.configXML);
+		File file = new File(Main.getConfigfileName(Main.__XMLCONFIG));
         if ("1".equals(System.getProperty("ide"))) {
             String currentDir = System.getProperty("user.dir");
             String currentParentDir = new File(currentDir).getParent();
-            file = new File(currentParentDir + Main.resource_distr + Main.configXML);
+            file = new File(currentParentDir + Main.resource_distr + Main.getConfigfileName(Main.__XMLCONFIG));
         }
 		Document doc = new Document();
 		Element root = config.toXml();
@@ -958,9 +958,9 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 				if ("1".equals(System.getProperty("ide"))) {
 		            String currentDir = System.getProperty("user.dir");
 		            String currentParentDir = new File(currentDir).getParent();
-		            Utils.saveXmlAsFile(doc, new File(currentParentDir + Main.resource_distr + Main.breweryProfileXML), this);
+		            Utils.saveXmlAsFile(doc, new File(currentParentDir + Main.resource_distr + Main.getConfigfileName(Main.__XMLBREPROFILE)), this);
 		        } else {
-		        	Utils.saveXmlAsFile(doc, new File(Main.breweryProfileXML), this);
+		        	Utils.saveXmlAsFile(doc, new File(Main.getConfigfileName(Main.__XMLBREPROFILE)), this);
 		        }
 
 			}
@@ -994,9 +994,9 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 				if ("1".equals(System.getProperty("ide"))) {
 		            String currentDir = System.getProperty("user.dir");
 		            String currentParentDir = new File(currentDir).getParent();
-		            Utils.saveXmlAsFile(doc, new File(currentParentDir + Main.resource_distr + Main.waterXML), this);
+		            Utils.saveXmlAsFile(doc, new File(currentParentDir + Main.resource_distr + Main.getConfigfileName(Main.__XMLWATER)), this);
 		        } else {
-		        	Utils.saveXmlAsFile(doc, new File(Main.waterXML), this);
+		        	Utils.saveXmlAsFile(doc, new File(Main.getConfigfileName(Main.__XMLWATER)), this);
 		        }
 
 			}

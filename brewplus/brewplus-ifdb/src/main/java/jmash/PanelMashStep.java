@@ -827,7 +827,7 @@ public class PanelMashStep extends javax.swing.JPanel {
 	}// GEN-LAST:event_jButton5ActionPerformed
 
 	private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton4ActionPerformed
-		File file1 = Utils.pickFileToLoad(new JInternalFrame(), Main.mashDir);
+		File file1 = Utils.pickFileToLoad(new JInternalFrame(), Main.getFolderName(Main.__MASHDIR));
 		if (file1 != null) {
 
 			Document doc = Utils.readFileAsXml(file1.toString());
@@ -949,7 +949,7 @@ public class PanelMashStep extends javax.swing.JPanel {
 	public void save(File savefile) {
 
 		if (savefile == null) {
-			savefile = Utils.pickFileToSave(new JInternalFrame(), Main.mashDir);
+			savefile = Utils.pickFileToSave(new JInternalFrame(), Main.getFolderName(Main.__MASHDIR));
 		}
 		if (savefile == null)
 			return;

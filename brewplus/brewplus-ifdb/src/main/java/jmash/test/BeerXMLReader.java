@@ -40,7 +40,7 @@ public class BeerXMLReader {
 	 */
 	public static void main(String[] args) {
 		File file = Utils.pickFileToLoad(new JInternalFrame(),
-				(String) Main.getFromCache("recipe.dir", Main.recipeDir));
+				(String) Main.getFromCache("recipe.dir", Main.getFolderName(Main.__RECIPEDIR)));
 		if (file != null) {
 			// Main.putIntoCache("recipe.dir",file.getAbsolutePath());
 
