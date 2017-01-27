@@ -22,6 +22,9 @@ package jmash;
 
 import jmash.Main.BitterBUGU;
 
+import java.io.File;
+import java.util.HashMap;
+
 import org.jdom.Element;
 
 /**
@@ -34,6 +37,26 @@ public class Config {
     public Config() {
     }
 
+	public static String __USERDIR = "userDir";
+	public static String __WATERDIR = "waterDir";
+	public static String __RECIPEDIR = "recipeDir";
+	public static String __BATCHDIR = "batchDir";
+	public static String __SHOPPINGDIR = "shoppingDir";
+	public static String __MASHDIR = "mashDir";
+	public static String __CONFIGDIR = "configDir";
+	public static String __XMLHOPS = "xml.hops";
+	public static String __XMLMALT = "xml.malt";
+	public static String __XMLCATEGORIES = "xml.categories";
+	public static String __XMLWATER = "xml.water";
+	public static String __XMLYEAST = "xml.yeast";
+	public static String __XMLSTYLES = "xml.styles";
+	public static String __XMLBJCP = "xml.bjcp";
+	public static String __XMLCOLORS = "xml.colors";
+	public static String __XMLCONFIG = "xml.config";
+	public static String __XMLINVENTORY = "xml.inventory";
+	public static String __XMLBREPROFILE = "xml.breweryProfile";
+
+    
     private String locale;
     private String remoteServer;
     private String remoteRoot;

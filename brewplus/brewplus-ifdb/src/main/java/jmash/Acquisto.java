@@ -132,7 +132,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 		btnOpen.setVisible(false);
 		btnInventario.setVisible(false);
 		jPanel3.setVisible(false);
-		file = new File(Main.getConfigfileName(Main.__XMLINVENTORY));
+		file = new File(Main.getConfigfileName(Config.__XMLINVENTORY));
 		try {
 			read(file);
 		} catch (Exception ex) {
@@ -395,7 +395,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 	public void save() {
 
 		if (this.file == null) {
-			this.file = Utils.pickFileToSave(this, Main.getFolderName(Main.__RECIPEDIR));
+			this.file = Utils.pickFileToSave(this, Main.getFolderName(Config.__RECIPEDIR));
 		}
 		if (this.file == null)
 			return;
@@ -418,7 +418,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 	}
 
 	private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnOpenActionPerformed
-		File f = Utils.pickFileToLoad(new JInternalFrame(), Main.getFolderName(Main.__SHOPPINGDIR));
+		File f = Utils.pickFileToLoad(new JInternalFrame(), Main.getFolderName(Config.__SHOPPINGDIR));
 
 		try {
 			read(f);

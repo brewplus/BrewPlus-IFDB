@@ -76,7 +76,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
+<!-- 			<plugin>
 				<groupId>org.jvnet.jaxb2.maven2</groupId>
 				<artifactId>maven-jaxb2-plugin</artifactId>
 				<executions>
@@ -108,7 +108,7 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin> -->
 		</plugins>
 	</build>
 
@@ -203,6 +203,11 @@
 					<artifactId>xml-apis-ext</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>net.ilforumdellabirra</groupId>
+			<artifactId>bjcp-model</artifactId>
+			<version>1.0.0-FINAL</version>
 		</dependency>
 	</dependencies>
 

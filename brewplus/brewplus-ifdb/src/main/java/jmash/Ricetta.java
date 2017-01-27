@@ -2641,7 +2641,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 	public File saveRicetta() {
 		if (this.file == null) {
-			file = Utils.pickFileToSave(this, (String) Main.getFromCache("recipe.dir", Main.getFolderName(Main.__RECIPEDIR)));
+			file = Utils.pickFileToSave(this, (String) Main.getFromCache("recipe.dir", Main.getFolderName(Config.__RECIPEDIR)));
 		}
 		if (this.file == null)
 			return null;
@@ -2657,7 +2657,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	
     public File saveRicettaPID() {
         if (this.file == null) {
-            file = Utils.pickFileToSavePID(this, (String) Main.getFromCache("recipe.dir", Main.getFolderName(Main.__RECIPEDIR)));
+            file = Utils.pickFileToSavePID(this, (String) Main.getFromCache("recipe.dir", Main.getFolderName(Config.__RECIPEDIR)));
         }
         if (this.file == null)
             return null;

@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<jmash.Config locale="it_IT" remoteRoot="http://www.ilforumdellabirra.net/" RemoteServer="http://www.ilforumdellabirra.net/" RSSFeed="http://www.ilforumdellabirra.net/feed.php" boilTime="60" volumeFin="23.0" volumeBoil="28.0" efficienza="70.0" metriSLM="100" amaroDHEA="45" nickIHB="" passwordIHB="" proxyPort="" proxyHost="" lostToTrub="0.1" litriPerKg="1.4" rapportoAcquaGrani="3.0" ebcNewMethod="true" potLibGal="0" BUGUratiostring="TIN" percentualeEvaporazione="15.0" contrazionePerRaffreddamento="4.0" biab="false" calcioSource="0.0" magnesioSource="0.0" solfatoSource="0.0" cloruroSource="0.0" sodioSource="0.0" carbonatoSource="0.0" />
-

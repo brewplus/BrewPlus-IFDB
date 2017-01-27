@@ -368,7 +368,7 @@ public class NewCotta extends javax.swing.JInternalFrame {
 
 	private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton5ActionPerformed
 		File file1 = Utils.pickFileToLoad(new JInternalFrame(),
-				(String) Main.getFromCache("recipe.dir", Main.getFolderName(Main.__RECIPEDIR)));
+				(String) Main.getFromCache("recipe.dir", Main.getFolderName(Config.__RECIPEDIR)));
 		if (file1 != null) {
 			ricettaOriginale.read(file1);
 			if (Ask.doAsk(this, "Si vuole usare questa ricetta come base per la cotta reale?")) {
@@ -439,7 +439,7 @@ public class NewCotta extends javax.swing.JInternalFrame {
 
 	public void save() {
 		if (this.file == null) {
-			this.file = Utils.pickFileToSave(this, (String) Main.getFromCache("batch.dir", Main.getFolderName(Main.__BATCHDIR)));
+			this.file = Utils.pickFileToSave(this, (String) Main.getFromCache("batch.dir", Main.getFolderName(Config.__BATCHDIR)));
 		}
 		if (this.file == null)
 			return;
@@ -449,7 +449,7 @@ public class NewCotta extends javax.swing.JInternalFrame {
 	}
 
 	public void saveAs() {
-		File file1 = Utils.pickFileToSave(this, (String) Main.getFromCache("batch.dir", Main.getFolderName(Main.__BATCHDIR)));
+		File file1 = Utils.pickFileToSave(this, (String) Main.getFromCache("batch.dir", Main.getFolderName(Config.__BATCHDIR)));
 		if (file1 == null)
 			return;
 		Utils.saveXmlAsFile(toXml(), file1, this);
@@ -459,7 +459,7 @@ public class NewCotta extends javax.swing.JInternalFrame {
 	}
 
 	public void read() {
-		File file1 = Utils.pickFileToLoad(new JInternalFrame(), (String) Main.getFromCache("batch.dir", Main.getFolderName(Main.__BATCHDIR)));
+		File file1 = Utils.pickFileToLoad(new JInternalFrame(), (String) Main.getFromCache("batch.dir", Main.getFolderName(Config.__BATCHDIR)));
 
 		if (file1 != null) {
 			this.file = file1;

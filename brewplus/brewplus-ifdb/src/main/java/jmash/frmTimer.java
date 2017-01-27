@@ -255,9 +255,9 @@ public class frmTimer extends javax.swing.JFrame {
     private void diQuesto(Boolean isStep) {
         File wav = null;
         if (isStep)
-            wav = new File(Main.getFolderName(Main.__USERDIR) + "/templates/b1.wav");
+            wav = new File(Main.getFolderName(Config.__USERDIR) + "/templates/b1.wav");
         else
-            wav = new File(Main.getFolderName(Main.__USERDIR) + "/templates/b0.wav");
+            wav = new File(Main.getFolderName(Config.__USERDIR) + "/templates/b0.wav");
         try {
             Clip clip = AudioSystem.getClip();
             AudioInputStream inputStream = AudioSystem.getAudioInputStream(wav);

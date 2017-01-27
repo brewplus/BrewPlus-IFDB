@@ -634,7 +634,7 @@ public class WaterBlend extends ModalInternalFrame {
 	// End of variables declaration//GEN-END:variables
 
 	private void loadFrom() {
-		File file = Utils.pickFileToLoad(this, Main.getFolderName(Main.__WATERDIR));
+		File file = Utils.pickFileToLoad(this, Main.getFolderName(Config.__WATERDIR));
 		if (file == null)
 			return;
 		Document doc = Utils.readFileAsXml(file.toString());
@@ -654,7 +654,7 @@ public class WaterBlend extends ModalInternalFrame {
 
 	public void saveFrom() {
 
-		File file = Utils.pickFileToSave(this, Main.getFolderName(Main.__WATERDIR));
+		File file = Utils.pickFileToSave(this, Main.getFolderName(Config.__WATERDIR));
 		if (file == null) {
 			return;
 		}
@@ -673,7 +673,7 @@ public class WaterBlend extends ModalInternalFrame {
 	private String destName = null;
 
 	private void loadDest() {
-		File file = Utils.pickFileToLoad(this, Main.getFolderName(Main.__WATERDIR));
+		File file = Utils.pickFileToLoad(this, Main.getFolderName(Config.__WATERDIR));
 		if (file == null)
 			return;
 		Document doc = Utils.readFileAsXml(file.toString());
@@ -691,7 +691,7 @@ public class WaterBlend extends ModalInternalFrame {
 
 	public void saveDest() {
 
-		File file = Utils.pickFileToSave(this, Main.getFolderName(Main.__WATERDIR));
+		File file = Utils.pickFileToSave(this, Main.getFolderName(Config.__WATERDIR));
 		if (file == null) {
 			return;
 		}

@@ -148,21 +148,6 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 
 		cmbLanguage.setSelectedItem(
 				"it_IT".equalsIgnoreCase(Main.config.getLocale()) ? Constants.ITALIAN : Constants.ENGLISH);
-		// ButtonGroup group = new ButtonGroup();
-
-		// BreweryProfile toFind = new BreweryProfile(null, null,
-		// Main.config.getVolumeFin(), Main.config.getEfficienza(),
-		// Main.config.getLitriPerKg(), Main.config.getRapportoAcquaGrani(),
-		// Main.config.getPercentualeEvaporazione(),
-		// Main.config.getContrazionePerRaffreddamento(),
-		// Main.config.getLostToTrub(), Main.config.getBiab().toString());
-		//
-		// Integer indexBreweryProfile =
-		// Gui.breweryProfilePickerTableModel.findFirstIndexBreweryProfile(toFind);
-		// if (indexBreweryProfile != null)
-		// {
-		// cmbBreweryProfile.setSelectedIndex(indexBreweryProfile + 1);
-		// }
 
 		selectBreweryProfile();
 
@@ -907,11 +892,11 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 			config.setBUGURatio(BitterBUGU.DAN);
 
 		Main.config = config;
-		File file = new File(Main.getConfigfileName(Main.__XMLCONFIG));
+		File file = new File(Main.getConfigfileName(Config.__XMLCONFIG));
         if ("1".equals(System.getProperty("ide"))) {
             String currentDir = System.getProperty("user.dir");
             String currentParentDir = new File(currentDir).getParent();
-            file = new File(currentParentDir + Main.resource_distr + Main.getConfigfileName(Main.__XMLCONFIG));
+            file = new File(currentParentDir + Main.resource_distr + Main.getConfigfileName(Config.__XMLCONFIG));
         }
 		Document doc = new Document();
 		Element root = config.toXml();
@@ -958,9 +943,9 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 				if ("1".equals(System.getProperty("ide"))) {
 		            String currentDir = System.getProperty("user.dir");
 		            String currentParentDir = new File(currentDir).getParent();
-		            Utils.saveXmlAsFile(doc, new File(currentParentDir + Main.resource_distr + Main.getConfigfileName(Main.__XMLBREPROFILE)), this);
+		            Utils.saveXmlAsFile(doc, new File(currentParentDir + Main.resource_distr + Main.getConfigfileName(Config.__XMLBREPROFILE)), this);
 		        } else {
-		        	Utils.saveXmlAsFile(doc, new File(Main.getConfigfileName(Main.__XMLBREPROFILE)), this);
+		        	Utils.saveXmlAsFile(doc, new File(Main.getConfigfileName(Config.__XMLBREPROFILE)), this);
 		        }
 
 			}
@@ -994,9 +979,9 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 				if ("1".equals(System.getProperty("ide"))) {
 		            String currentDir = System.getProperty("user.dir");
 		            String currentParentDir = new File(currentDir).getParent();
-		            Utils.saveXmlAsFile(doc, new File(currentParentDir + Main.resource_distr + Main.getConfigfileName(Main.__XMLWATER)), this);
+		            Utils.saveXmlAsFile(doc, new File(currentParentDir + Main.resource_distr + Main.getConfigfileName(Config.__XMLWATER)), this);
 		        } else {
-		        	Utils.saveXmlAsFile(doc, new File(Main.getConfigfileName(Main.__XMLWATER)), this);
+		        	Utils.saveXmlAsFile(doc, new File(Main.getConfigfileName(Config.__XMLWATER)), this);
 		        }
 
 			}
