@@ -861,7 +861,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 
 	private void saveConfiguration(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
 
-		ConfigurationManager config = new ConfigurationManager();
+		ConfigurationManager config = ConfigurationManager.getIstance();
 		
 		//TODO da rivedere a che serve il codice seguente
 

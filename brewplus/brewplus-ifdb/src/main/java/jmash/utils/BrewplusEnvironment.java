@@ -23,7 +23,7 @@ public class BrewplusEnvironment {
 
 	private static String userDir = System.getProperty("user.dir") + "/.brewplus2/";
 
-	public BrewplusEnvironment() {
+	protected BrewplusEnvironment() {
 
 		folderMap = new HashMap<String, File>();
 		folderMap.put(Constants.DIR_RECIPE, new File(userDir + "/recipes/"));

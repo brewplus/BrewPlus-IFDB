@@ -45,12 +45,13 @@ public class ConfigurationManager {
 	
 //	private String userDir = System.getProperty("user.dir")+"/skeleton/";
 	
-	public ConfigurationManager(){
+	protected ConfigurationManager(){
 		
 		
 		try
 		{
 
+			logger.info("Reading and configuring Environment");
 			BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
 			Parameters params = new Parameters();
 			FileBasedConfigurationBuilder<XMLConfiguration> builder =

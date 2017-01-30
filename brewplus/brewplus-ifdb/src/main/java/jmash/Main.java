@@ -444,7 +444,7 @@ public class Main {
 
 	public static void readConfig()  {
 
-		ConfigurationManager cm = new ConfigurationManager();
+		ConfigurationManager cm = ConfigurationManager.getIstance();
 		logger.info("config detected");
 		
 		generalConfig = cm.getIstance().getGeneralConfig();
