@@ -60,8 +60,10 @@ import javax.swing.border.EmptyBorder;
 
 import org.apache.log4j.Logger;
 
+import jmash.config.ConfigurationManager;
 import jmash.config.XmlAbleEditor;
 import jmash.config.XmlAbleTableModel;
+import jmash.config.bean.GeneralConfig;
 import jmash.tableModel.BrewStylePickerTableModel;
 import jmash.tableModel.BreweryProfilePickerTableModel;
 import jmash.tableModel.GenericTableModel;
@@ -71,11 +73,16 @@ import jmash.tableModel.MaltPickerTableModel;
 import jmash.tableModel.WaterPickerTableModel;
 import jmash.tableModel.YeastPickerTableModel;
 import jmash.test.BeerXMLReader;
+import jmash.utils.BrewplusEnvironment;
+import jmash.utils.Constants;
 import jmash.utils.Utility;
 
 public class Gui extends javax.swing.JFrame {
 	
-	private static final String PATH_BACKGROUND =  "/jmash/images/bkgrnd.jpg";
+//	private static final String PATH_BACKGROUND =  "/jmash/images/bkgrnd.jpg";
+	private static final String PATH_BACKGROUND =  "/jmash/images/back.gif";
+	private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
+	private static BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
 
 	private static final long serialVersionUID = 348370096080739755L;
 	private static final Logger LOGGER = Logger.getLogger(Gui.class);
@@ -760,7 +767,7 @@ public class Gui extends javax.swing.JFrame {
 		mntmApriRicetta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				File file = Utils.pickFileToLoad(new JInternalFrame(),
-						(String) Main.getFromCache("recipe.dir", Main.getFolderName(Config.__RECIPEDIR)));
+						(String) Main.getFromCache("recipe.dir", bpenv.getFolderName(Constants.DIR_RECIPE)));
 				if (file != null) {
 					addLastOpenedFile(file);
 					nuovaRicetta(new Ricetta(file));
@@ -1047,7 +1054,7 @@ public class Gui extends javax.swing.JFrame {
         tableModel.setRows(Gui.hopPickerTableModel.getRows());
         try {
             addFrame(
-                    new XmlAbleEditor(tableModel, HopType.class, Main.getConfigfileName(Config.__XMLHOPS), Main.class.getMethod("readLuppoli")));
+                    new XmlAbleEditor(tableModel, HopType.class, bpenv.getConfigfileName(Constants.XML_HOPS), Main.class.getMethod("readLuppoli")));
         } catch (SecurityException ex) {
             LOGGER.error(ex.getMessage(), ex);
         } catch (NoSuchMethodException ex) {
@@ -1059,7 +1066,7 @@ public class Gui extends javax.swing.JFrame {
 		GenericTableModel tableModel = new XmlAbleTableModel(new WaterProfile());
 		tableModel.setRows(Gui.waterPickerTableModel.getRows());
 		try {
-			addFrame(new XmlAbleEditor(tableModel, WaterProfile.class, Main.getConfigfileName(Config.__XMLWATER),
+			addFrame(new XmlAbleEditor(tableModel, WaterProfile.class, bpenv.getConfigfileName(Constants.XML_WATER),
 					Main.class.getMethod("readWater")));
 		} catch (SecurityException ex) {
 			LOGGER.error(ex.getMessage(), ex);
@@ -1089,7 +1096,7 @@ public class Gui extends javax.swing.JFrame {
 			RecipeData data = new RecipeData();
 			Ricetta R = new Ricetta();
 			try {
-				File file = Utils.pickFileToLoad(R, (String) Main.getFromCache("promash.dir", Main.getFolderName(Config.__RECIPEDIR)), "rec");
+				File file = Utils.pickFileToLoad(R, (String) Main.getFromCache("promash.dir", bpenv.getFolderName(Constants.DIR_RECIPE)), "rec");
 				if (file != null) {
 					Main.putIntoCache("promash.dir", file.getAbsolutePath());
 					data.readRec(file.toString());
@@ -1224,7 +1231,7 @@ public class Gui extends javax.swing.JFrame {
 		tableModel.setRows(Gui.yeastPickerTableModel.getRows());
 		try {
 			addFrame(
-					new XmlAbleEditor(tableModel, YeastType.class, Main.getConfigfileName(Config.__XMLYEAST), Main.class.getMethod("readLieviti")));
+					new XmlAbleEditor(tableModel, YeastType.class, bpenv.getConfigfileName(Constants.XML_YEAST), Main.class.getMethod("readLieviti")));
 		} catch (SecurityException ex) {
 			LOGGER.error(ex.getMessage(), ex);
 		} catch (NoSuchMethodException ex) {
@@ -1304,7 +1311,7 @@ public class Gui extends javax.swing.JFrame {
 			return;
 		}
 		try {
-			String remoteRoot = Main.config.getRemoteRoot();
+			String remoteRoot = generalConfig.getRemoteRoot();
 			if (remoteRoot == null)
 				remoteRoot = "http://brewplus.t15.org/brewplus";
 			if (!remoteRoot.startsWith("http://"))
@@ -1369,7 +1376,7 @@ public class Gui extends javax.swing.JFrame {
 
 	private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnOpenActionPerformed
 		File file = Utils.pickFileToLoad(new JInternalFrame(),
-				(String) Main.getFromCache("recipe.dir", Main.getFolderName(Config.__RECIPEDIR)));
+				(String) Main.getFromCache("recipe.dir", bpenv.getFolderName(Constants.DIR_RECIPE)));
 		if (file != null) {
 			addLastOpenedFile(file);
 			nuovaRicetta(new Ricetta(file));
@@ -1381,7 +1388,7 @@ public class Gui extends javax.swing.JFrame {
 		tableModel.setRows(Gui.maltCategoryPickerTableModel.getRows());
 		try {
 			addFrame(
-					new XmlAbleEditor(tableModel, MaltCategory.class, Main.getConfigfileName(Config.__XMLCATEGORIES), Main.class.getMethod("readCategorieMalti")));
+					new XmlAbleEditor(tableModel, MaltCategory.class, bpenv.getConfigfileName(Constants.XML_CATEGORIES), Main.class.getMethod("readCategorieMalti")));
 		} catch (SecurityException ex) {
 			LOGGER.error(ex.getMessage(), ex);
 		} catch (NoSuchMethodException ex) {
@@ -1394,7 +1401,7 @@ public class Gui extends javax.swing.JFrame {
 		Gui.maltPickerTableModel.setFilterOff();
 		tableModel.setRows(Gui.maltPickerTableModel.getRows());
 		try {
-			addFrame(new XmlAbleEditor(tableModel, MaltType.class, Main.getConfigfileName(Config.__XMLMALT), Main.class.getMethod("readMalti")));
+			addFrame(new XmlAbleEditor(tableModel, MaltType.class, bpenv.getConfigfileName(Constants.XML_MALT), Main.class.getMethod("readMalti")));
 		} catch (SecurityException ex) {
 			LOGGER.error(ex.getMessage(), ex);
 		} catch (NoSuchMethodException ex) {
@@ -1408,7 +1415,7 @@ public class Gui extends javax.swing.JFrame {
 		
 		try {
 			addFrame(
-					new XmlAbleEditor(tableModel, BreweryProfile.class, Main.getConfigfileName(Config.__XMLBREPROFILE), Main.class.getMethod("readProfiliImpianto")));
+					new XmlAbleEditor(tableModel, BreweryProfile.class, bpenv.getConfigfileName(Constants.XML_BREPROFILE), Main.class.getMethod("readProfiliImpianto")));
 		} catch (SecurityException ex) {
 			LOGGER.error(ex.getMessage(), ex);
 		} catch (NoSuchMethodException ex) {
@@ -1449,7 +1456,7 @@ public class Gui extends javax.swing.JFrame {
 		tableModel.setRows(Gui.hopPickerTableModel.getRows());
 		try {
 			addFrame(
-					new XmlAbleEditor(tableModel, HopType.class, Main.getConfigfileName(Config.__XMLHOPS), Main.class.getMethod("readLuppoli")));
+					new XmlAbleEditor(tableModel, HopType.class, bpenv.getConfigfileName(Constants.XML_HOPS), Main.class.getMethod("readLuppoli")));
 		} catch (SecurityException ex) {
 			LOGGER.error(ex.getMessage(), ex);
 		} catch (NoSuchMethodException ex) {

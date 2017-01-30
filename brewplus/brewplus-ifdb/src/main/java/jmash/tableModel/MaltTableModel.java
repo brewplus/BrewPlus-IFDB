@@ -28,11 +28,13 @@ import javax.swing.JLabel;
 import org.apache.log4j.Logger;
 
 import jmash.*;
+import jmash.config.ConfigurationManager;
+import jmash.config.bean.GeneralConfig;
 
 /**
  *
  * @author Alessandro
- * 
+ * @author rekhyt
  */
 public class MaltTableModel extends GenericTableModel<Malt> {
 
@@ -40,6 +42,7 @@ public class MaltTableModel extends GenericTableModel<Malt> {
      *
      */
     private static final long serialVersionUID = -1437528549102631806L;
+    private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
     private static final Logger LOGGER = Logger.getLogger(MaltTableModel.class);
     Ricetta ricetta;
     private static String[] maltColumnNames = new String[] { "", "Malti e zuccheri", "Quantita'", "Un.mis.", "%", "Pot. SG",
@@ -184,8 +187,8 @@ public class MaltTableModel extends GenericTableModel<Malt> {
     public static double calcolaSG(List<Malt> malts, double volume, double efficienza) {
         double sg = 1;
         double partialSg = 0;
-        int flagPot = Main.config.getPotLibGal();
-        //LOGGER.debug("flagPot = " + Main.config.getPotLibGal());
+        int flagPot = generalConfig.getPotLibGal();
+        //LOGGER.debug("flagPot = " + generalConfig.getPotLibGal());
         if (malts != null)
             for (Malt m : malts) {
                 double r = 1;
@@ -211,8 +214,8 @@ public class MaltTableModel extends GenericTableModel<Malt> {
     public static double calcolaSGIBU(List<Malt> malts, double volume, double efficienza) {
         double sg = 1;
         double partialSg = 0;
-        int flagPot = Main.config.getPotLibGal();
-        //LOGGER.debug("flagPot = " + Main.config.getPotLibGal());
+        int flagPot = generalConfig.getPotLibGal();
+        //LOGGER.debug("flagPot = " + generalConfig.getPotLibGal());
         if (malts != null)
             for (Malt m : malts) {
                 if(!m.getLateAddiction()){

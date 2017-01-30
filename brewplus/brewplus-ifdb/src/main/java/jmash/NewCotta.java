@@ -38,10 +38,13 @@ import org.jdom.Element;
 import jmash.imagecomponents.ImageFileView;
 import jmash.imagecomponents.ImageFilter;
 import jmash.imagecomponents.ImagePreview;
+import jmash.utils.BrewplusEnvironment;
+import jmash.utils.Constants;
 
 public class NewCotta extends javax.swing.JInternalFrame {
 
 	private static Logger LOGGER = Logger.getLogger(NewCotta.class);
+	private static BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
 
 	String fotografia = "";
 	protected Component entered = null;
@@ -368,7 +371,7 @@ public class NewCotta extends javax.swing.JInternalFrame {
 
 	private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton5ActionPerformed
 		File file1 = Utils.pickFileToLoad(new JInternalFrame(),
-				(String) Main.getFromCache("recipe.dir", Main.getFolderName(Config.__RECIPEDIR)));
+				(String) Main.getFromCache("recipe.dir", bpenv.getFolderName(Constants.DIR_RECIPE)));
 		if (file1 != null) {
 			ricettaOriginale.read(file1);
 			if (Ask.doAsk(this, "Si vuole usare questa ricetta come base per la cotta reale?")) {
@@ -439,7 +442,7 @@ public class NewCotta extends javax.swing.JInternalFrame {
 
 	public void save() {
 		if (this.file == null) {
-			this.file = Utils.pickFileToSave(this, (String) Main.getFromCache("batch.dir", Main.getFolderName(Config.__BATCHDIR)));
+			this.file = Utils.pickFileToSave(this, (String) Main.getFromCache("batch.dir", bpenv.getFolderName(Constants.DIR_BATCH)));
 		}
 		if (this.file == null)
 			return;
@@ -449,7 +452,7 @@ public class NewCotta extends javax.swing.JInternalFrame {
 	}
 
 	public void saveAs() {
-		File file1 = Utils.pickFileToSave(this, (String) Main.getFromCache("batch.dir", Main.getFolderName(Config.__BATCHDIR)));
+		File file1 = Utils.pickFileToSave(this, (String) Main.getFromCache("batch.dir", bpenv.getFolderName(Constants.DIR_BATCH)));
 		if (file1 == null)
 			return;
 		Utils.saveXmlAsFile(toXml(), file1, this);
@@ -459,7 +462,7 @@ public class NewCotta extends javax.swing.JInternalFrame {
 	}
 
 	public void read() {
-		File file1 = Utils.pickFileToLoad(new JInternalFrame(), (String) Main.getFromCache("batch.dir", Main.getFolderName(Config.__BATCHDIR)));
+		File file1 = Utils.pickFileToLoad(new JInternalFrame(), (String) Main.getFromCache("batch.dir", bpenv.getFolderName(Constants.DIR_BATCH)));
 
 		if (file1 != null) {
 			this.file = file1;

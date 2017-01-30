@@ -35,6 +35,9 @@ import org.jdom.JDOMException;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
+import jmash.config.ConfigurationManager;
+import jmash.config.bean.GeneralConfig;
+
 /**
  *
  * @author Alessandro
@@ -42,6 +45,7 @@ import org.jdom.output.XMLOutputter;
 public class UploadRicetta extends javax.swing.JInternalFrame {
 
 	private static Logger LOGGER = Logger.getLogger(UploadRicetta.class);
+	private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
 
 	/**
 	 * 
@@ -65,13 +69,9 @@ public class UploadRicetta extends javax.swing.JInternalFrame {
 		this.txtNome1.setText(nomeRicetta);
 		Document doc = new Document();
 		try {
-			// doc=XMLReader.readXML("http://127.0.0.1/ricette_stile_xml.asp");
-			doc = XMLReader.readXML("http://" + Main.config.getRemoteServer() + "/ricette_stile_xml.asp");
+			doc = XMLReader.readXML("http://" + generalConfig.getRemoteServer() + "/ricette_stile_xml.asp");
 		} catch (JDOMException e) {
 			Msg.showMsg("Il file non corrisponde al formato:\n", this
-			// +
-			// e.getCause().toString().replace("org.xml.sax.SAXParseException:
-			// ", "")
 			);
 			return;
 		} catch (IOException e) {

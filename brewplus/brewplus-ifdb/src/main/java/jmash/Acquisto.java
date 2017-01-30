@@ -39,6 +39,8 @@ import com.toedter.calendar.JDateChooserCellEditor;
 
 import jmash.tableModel.HopBuyTableModel;
 import jmash.tableModel.MaltBuyTableModel;
+import jmash.utils.BrewplusEnvironment;
+import jmash.utils.Constants;
 
 /**
  *
@@ -49,6 +51,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 	/** Creates new form Acquisto */
 	// boolean showInventario=false;
 	private static SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+	private static BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
 
 	public static Acquisto buildFRMInventario() {
 		Acquisto frm = new Acquisto();
@@ -132,7 +135,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 		btnOpen.setVisible(false);
 		btnInventario.setVisible(false);
 		jPanel3.setVisible(false);
-		file = new File(Main.getConfigfileName(Config.__XMLINVENTORY));
+		file = new File(bpenv.getConfigfileName(Constants.XML_INVENTORY));
 		try {
 			read(file);
 		} catch (Exception ex) {
@@ -395,7 +398,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 	public void save() {
 
 		if (this.file == null) {
-			this.file = Utils.pickFileToSave(this, Main.getFolderName(Config.__RECIPEDIR));
+			this.file = Utils.pickFileToSave(this, bpenv.getFolderName(Constants.DIR_RECIPE));
 		}
 		if (this.file == null)
 			return;
@@ -418,7 +421,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 	}
 
 	private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnOpenActionPerformed
-		File f = Utils.pickFileToLoad(new JInternalFrame(), Main.getFolderName(Config.__SHOPPINGDIR));
+		File f = Utils.pickFileToLoad(new JInternalFrame(), bpenv.getFolderName(Constants.DIR_SHOPPING));
 
 		try {
 			read(f);

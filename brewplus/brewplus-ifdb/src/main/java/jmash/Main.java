@@ -59,27 +59,31 @@ import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
-import org.jfree.util.Log;
 
 import jmash.component.MultiLineCellRenderer;
+import jmash.config.ConfigurationManager;
+import jmash.config.bean.GeneralConfig;
 import jmash.schema.bjcp.Styleguide;
+import jmash.utils.BrewplusEnvironment;
 import jmash.utils.BundleMessage;
 import jmash.utils.Cli;
+import jmash.utils.Constants;
 
 public class Main {
 
 	private static final Logger logger = Logger.getLogger(Main.class);
-        public static BundleMessage bundle;
+    public static BundleMessage bundle;
         
     public static Locale locale;
         
 	//public static String versioneBrewPlus = "2.1.0";
 	public static Integer webVersion;
-	public static HashMap<String,File> folderMap;
-	public static HashMap<String,File> configFileMap;
+
 	
 	public static String Nome = "BrewPlus";
 	public static String resource_distr = "/brewplus-ifdb-distr/src/main/resources/distr/";
+	
+	private static BrewplusEnvironment bpenv;
 
 	public static Gui gui;
 	public static javax.swing.JDesktopPane desktopPane;
@@ -113,6 +117,8 @@ public class Main {
 	public static ImageIcon allGrainIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Main.class.getResource("/jmash/images/ag.png")));
 	public static ImageIcon biabIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Main.class.getResource("/jmash/images/biab.png")));
 	
+	
+	private static GeneralConfig generalConfig;
 	
 	
 	public static enum BitterBUGU { // metodo di calcolo BU/GU
@@ -172,6 +178,9 @@ public class Main {
 	/** Creates a new instance of Main */
 	public Main() {
 		try {
+			
+			bpenv = BrewplusEnvironment.getIstance();
+			
 		    printInfo();
 			readConfig();
 			readProfiliImpianto();
@@ -182,8 +191,8 @@ public class Main {
 			readWater();
 			readColors();
 
-			Styleguide bjcp = Utils.readBjcpXml(Main.getConfigfileName(Config.__XMLBJCP));
-			Document doc = Utils.readFileAsXml(Main.getConfigfileName(Config.__XMLBJCP));
+			Styleguide bjcp = Utils.readBjcpXml(bpenv.getConfigfileName(Constants.XML_BJCP));
+			Document doc = Utils.readFileAsXml(bpenv.getConfigfileName(Constants.XML_BJCP));
 			Element root = doc.getRootElement();
 			Gui.brewStylePickerTableModel.setRows(getBJCPStyles(root));
 			logger.info("BJCP styles detected");
@@ -207,10 +216,10 @@ public class Main {
 
 		gui.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
 
-		if (config.getProxyHost() != null)
-			System.setProperty("http.proxyHost", config.getProxyHost());
-		if (config.getProxyPort() != null)
-			System.setProperty("http.proxyPort", config.getProxyPort());
+		if (generalConfig.getProxyHost() != null)
+			System.setProperty("http.proxyHost", generalConfig.getProxyHost());
+		if (generalConfig.getProxyPort() != null)
+			System.setProperty("http.proxyPort", generalConfig.getProxyPort());
 
 		try {
 			update();
@@ -244,12 +253,12 @@ public class Main {
 			return;
 		}
 		
-		setFolders();
+		
 
 		new Main();
 		try {
 			if (args.length > 0 && args[0].compareToIgnoreCase("showNews") == 0) {
-				String str = config.getRemoteRoot();
+				String str = generalConfig.getRemoteRoot();
 				if (!str.startsWith("http://"))
 					str = "http://" + str;
 				if (!str.endsWith("/"))
@@ -260,98 +269,11 @@ public class Main {
 		}
 	}
 
-	private static void setFolders() {		
-		
-		folderMap = new HashMap<String,File>();
-		String userDir = System.getProperty("user.dir")+"/.brewplus2/";
-		folderMap.put(Config.__USERDIR, new File(userDir));
 
-		folderMap.put(Config.__RECIPEDIR, new File(userDir + "/recipes/"));
-		folderMap.put(Config.__BATCHDIR, new File(userDir + "/batches/"));
-		folderMap.put(Config.__MASHDIR, new File(userDir + "/mashes/"));
-		folderMap.put(Config.__SHOPPINGDIR, new File(userDir + "/shopping/"));
-		folderMap.put(Config.__WATERDIR, new File(userDir + "/water/"));
-		folderMap.put(Config.__CONFIGDIR, new File(userDir + "/config/"));
-
-		File ud = new File(userDir);
-		
-		boolean firstRun = !ud.exists();
-		if(firstRun){	
-			try{
-				ud.mkdir();
-				for(String key : folderMap.keySet()){
-					File f = (File)folderMap.get(key);
-					if(!f.exists()){
-						f.mkdir();
-						logger.debug("first run creating folder: \"" + f.getCanonicalPath() +"\"");
-					} 
-				}
-			} catch(IOException e) {
-				logger.error(e.getMessage());
-			}
-		}
-		
-		configFileMap = new HashMap<String, File>();
-		configFileMap.put(Config.__XMLHOPS,  new File(userDir + "/config/" + "luppoli_ita.xml"));
-		configFileMap.put(Config.__XMLMALT, new File(userDir + "/config/" + "malti_ita.xml"));
-		configFileMap.put(Config.__XMLCATEGORIES, new File(userDir + "/config/" + "categorie_malti.xml"));
-		configFileMap.put(Config.__XMLWATER, new File(userDir + "/config/" + "water.xml"));
-		configFileMap.put(Config.__XMLYEAST, new File(userDir + "/config/" + "lieviti_ita.xml"));
-		configFileMap.put(Config.__XMLSTYLES, new File(userDir + "/config/" + "stili.xml"));
-		configFileMap.put(Config.__XMLBJCP, new File(userDir + "/config/" + "styleguide-2015.xml"));
-		configFileMap.put(Config.__XMLCOLORS, new File(userDir + "/config/" + "colors.xml"));
-		configFileMap.put(Config.__XMLCONFIG, new File(userDir + "/config/" + "config.xml"));
-		configFileMap.put(Config.__XMLINVENTORY, new File(userDir + "/config/" + "inventario.xml"));
-		configFileMap.put(Config.__XMLBREPROFILE, new File(userDir + "/config/" + "profili_impianto.xml"));
-		
-		if(firstRun){
-			logger.info("Copying config files into user config folder");
-			File cfgSource = new File(System.getProperty("user.dir")+"/skeleton/config/");
-			File cfgDest = (File)folderMap.get(Config.__CONFIGDIR);
-			try {
-			    FileUtils.copyDirectory(cfgSource, cfgDest);
-			} catch (IOException e) {
-			    e.printStackTrace();
-			}
-			
-			File recipeSource = new File(System.getProperty("user.dir")+"/skeleton/recipes/");
-			File recipeDest = (File)folderMap.get(Config.__RECIPEDIR);
-			try {
-			    FileUtils.copyDirectory(recipeSource, recipeDest);
-			} catch (IOException e) {
-			    e.printStackTrace();
-			}
-		}
-
-	}
-	
-	public static String getFolderName(String key){
-		File f = (File)folderMap.get(key);
-		String name = "";
-		try {
-			name = f.getCanonicalPath();
-		} catch (IOException e) {
-			logger.error(e.getMessage());
-		}
-		
-		return name;
-	}
-	
-	public static String getConfigfileName(String key){
-		File f = (File)configFileMap.get(key);
-		String name = "";
-		try {
-			name = f.getCanonicalPath();
-		} catch (IOException e) {
-			logger.error(e.getMessage());
-		}
-		
-		return name;
-	}
 
 	public static void readLuppoli() throws Exception {
 		Gui.hopPickerTableModel.emptyRows();
-		Document doc = Utils.readFileAsXml(Main.getConfigfileName(Config.__XMLHOPS));
+		Document doc = Utils.readFileAsXml(bpenv.getConfigfileName(Constants.XML_HOPS));
 		if (doc == null) {
 			return;
 		}
@@ -403,7 +325,7 @@ public class Main {
   
   public static void readCategorieMalti() throws Exception {
 		Gui.maltCategoryPickerTableModel.emptyRows();
-		Document doc = Utils.readFileAsXml(Main.getConfigfileName(Config.__XMLCATEGORIES));
+		Document doc = Utils.readFileAsXml(bpenv.getConfigfileName(Constants.XML_CATEGORIES));
 		if (doc == null) {
 			return;
 		}
@@ -425,7 +347,7 @@ public class Main {
   
   public static void readProfiliImpianto() throws Exception {
 		Gui.breweryProfilePickerTableModel.emptyRows();
-		Document doc = Utils.readFileAsXml(Main.getConfigfileName(Config.__XMLBREPROFILE));
+		Document doc = Utils.readFileAsXml(bpenv.getConfigfileName(Constants.XML_BREPROFILE));
 		if (doc == null) {
 			return;
 		}
@@ -447,7 +369,7 @@ public class Main {
 
 	public static void readMalti() throws Exception {
 		Gui.maltPickerTableModel.emptyRows();
-		Document doc = Utils.readFileAsXml(Main.getConfigfileName(Config.__XMLMALT));
+		Document doc = Utils.readFileAsXml(bpenv.getConfigfileName(Constants.XML_MALT));
 		if (doc == null) {
 			return;
 		}
@@ -469,7 +391,7 @@ public class Main {
 
 	public static void readLieviti() throws Exception {
 		Gui.yeastPickerTableModel.emptyRows();
-		Document doc = Utils.readFileAsXml(Main.getConfigfileName(Config.__XMLYEAST));
+		Document doc = Utils.readFileAsXml(bpenv.getConfigfileName(Constants.XML_YEAST));
 		if (doc == null) {
 			return;
 		}
@@ -495,7 +417,7 @@ public class Main {
 
 	public static void readWater() throws Exception {
 		Gui.waterPickerTableModel.emptyRows();
-		Document doc = Utils.readFileAsXml(Main.getConfigfileName(Config.__XMLWATER));
+		Document doc = Utils.readFileAsXml(bpenv.getConfigfileName(Constants.XML_WATER));
 		if (doc == null) {
 			return;
 		}
@@ -520,23 +442,18 @@ public class Main {
 		Collections.sort(Gui.waterPickerTableModel.getRows());
 	}
 
-	public static Config config;
-
 	public static void readConfig()  {
 
-		Document doc = Utils.readFileAsXml(Main.getConfigfileName(Config.__XMLCONFIG));
-		if (doc == null) {
-			return;
-		}
-		Element root = doc.getRootElement();
-		config = Config.fromXml(root);
+		ConfigurationManager cm = new ConfigurationManager();
 		logger.info("config detected");
 		
+		generalConfig = cm.getIstance().getGeneralConfig();
 		
-		locale = new Locale(config.getLocale().split("_")[0],config.getLocale().split("_")[1]);
+		
+		locale = new Locale(generalConfig.getLocale().split("_")[0],generalConfig.getLocale().split("_")[1]);
 		Locale.setDefault(locale);
         ResourceBundle.clearCache();
-        logger.info("Setting localization: " + config.getLocale());
+        logger.info("Setting localization: " + generalConfig.getLocale());
 		bundle = new BundleMessage(java.util.PropertyResourceBundle.getBundle("jmash/lang"));
 		
 	}
@@ -553,7 +470,7 @@ public class Main {
 
 	public static void readStili() throws Exception {
 		Gui.brewStylePickerTableModel.emptyRows();
-		Document doc = Utils.readFileAsXml(Main.getConfigfileName(Config.__XMLSTYLES));
+		Document doc = Utils.readFileAsXml(bpenv.getConfigfileName(Constants.XML_STYLES));
 		if (doc == null) {
 			return;
 		}
@@ -572,7 +489,7 @@ public class Main {
 	public static BinaryTreeNode treeColor;
 
 	public static void readColors() throws Exception {
-		Document doc = Utils.readFileAsXml(Main.getConfigfileName(Config.__XMLCOLORS));
+		Document doc = Utils.readFileAsXml(bpenv.getConfigfileName(Constants.XML_COLORS));
 		if (doc == null) {
 			return;
 		}
@@ -768,10 +685,10 @@ public class Main {
 	@SuppressWarnings("unused")
 	public void update() throws FileNotFoundException, IOException {
 		boolean ret = false;
-		System.setProperty("http.proxyHost", Main.config.getProxyHost());
-		System.setProperty("http.proxyPort", Main.config.getProxyPort());
+		System.setProperty("http.proxyHost", generalConfig.getProxyHost());
+		System.setProperty("http.proxyPort", generalConfig.getProxyPort());
 
-		String remoteRoot = Main.config.getRemoteRoot();
+		String remoteRoot = generalConfig.getRemoteRoot();
 		if (remoteRoot == null)
 			remoteRoot = "http://www.ilforumdellabirra.net/";
 
