@@ -502,13 +502,13 @@ public class WaterNeeded extends JInternalFrame {
 
 		panelWaterNeeded.add(panelCalcoloVolumi, gridBagConstraints);
 		{
-			lblStrikeWater = new JLabel("Temperatura \"di lancio"");
+			lblStrikeWater = new JLabel("Temperatura di lancio");
 			GridBagConstraints gbc_lblStrikeWater = new GridBagConstraints();
 			gbc_lblStrikeWater.anchor = GridBagConstraints.EAST;
 			gbc_lblStrikeWater.insets = new Insets(0, 0, 5, 5);
 			gbc_lblStrikeWater.gridx = 0;
 			gbc_lblStrikeWater.gridy = 0;
-			panelRisultati.add(lblStrikeWater, gbc_lblStrikeWater);
+			panelCalcoloVolumi.add(lblStrikeWater, gbc_lblStrikeWater);
 		}
 		{
 			spinnerStrikeWater = new JUnitSpinner("°C", 57);
@@ -518,7 +518,7 @@ public class WaterNeeded extends JInternalFrame {
 			gbc_spinnerStrikeWater.insets = new Insets(0, 0, 5, 5);
 			gbc_spinnerStrikeWater.gridx = 1;
 			gbc_spinnerStrikeWater.gridy = 0;
-			panelRisultati.add(spinnerAcquaMash, gbc_spinnerAcquaMash);
+			panelCalcoloVolumi.add(spinnerStrikeWater, gbc_spinnerStrikeWater);
 		}
 		{
 			lblVolumeImpasto = new JLabel("Volume occupato dal mash");
@@ -785,7 +785,7 @@ public class WaterNeeded extends JInternalFrame {
 		double acquaMash = !biab ? totGrani * rapportoAcquaGrani : acquaTotale;
 		double acquaSparge = acquaTotale - acquaMash;
 		double volumeImpasto = acquaMash + 0.67 * totGrani;
-		double StrikeWater = ((0.2 / rapportoAcquaGrani) * (68 - 18)) + 68;
+		double StrikeWater = ((0.2 / rapportoAcquaGrani) * (getTf() - getTi())) + getTf();
 				
 		spinnerPerditaPerAssorbimento.setDoubleValue(perditeAssorbimento);
 		spinnerPerditaPerEvaporazione.setDoubleValue(perditaEvaporazione);
