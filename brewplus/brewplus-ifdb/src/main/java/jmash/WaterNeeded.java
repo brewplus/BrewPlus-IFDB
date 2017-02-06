@@ -779,7 +779,7 @@ public class WaterNeeded extends JInternalFrame {
 		// fixed to update OG Preboil without late addiction
 		double ogPreBoil = (batchSize * OriginalGravityIBU.intValue()) / volumeMostoPreBoil;
 		double perditaContrazione = volumePostRaffreddamento * (contrazioneRaffreddamento / 100.0);
-		double perditaEvaporazione = volumePostBoil * (percentualeEvaporazione / 100.0) * (Ricetta.getBollitura() / 60.0);
+		double perditaEvaporazione = volumePostBoil * (percentualeEvaporazione / 100.0) * (getBoilTime() / 60.0);
 
 		double acquaTotale = volumeMostoPreBoil + perditeAssorbimento;
 		double acquaMash = !biab ? totGrani * rapportoAcquaGrani : acquaTotale;
@@ -989,6 +989,21 @@ public class WaterNeeded extends JInternalFrame {
 
     public void setOriginalGravityIBU(BigDecimal originalGravityIBU) {
         OriginalGravityIBU = originalGravityIBU;
+    }
+    
+    private double getBoilTime()
+    {
+    	return 60.0;
+    }
+    
+    private Double getTi()
+    {
+    	return 18.0;
+    }
+    
+    private Double getTf()
+    {
+    	return 68.0;
     }
 
 }
