@@ -107,7 +107,7 @@ public class WaterNeeded extends JInternalFrame {
 		spinnerVolumeRealeInFermentatore.setModel(Main.getFromCache("WaterNeeded.volumeRealeInFermentatore", 0.0), 0, 1000000, 0.5, "0.00", "WaterNeeded.volumeRealeInFermentatore");
 
 		spinnerAcquaMash.setModel(Main.getFromCache("WaterNeeded.volumeMash", 0.0), 0, 1000000, 0.5, "0.00", "WaterNeeded.volumeMash");
-		//spinnerStrikeWater.setModel(Main.getFromCache("WaterNeeded.volumeMash", 0.0), 0, 1000000, 0.5, "0.00", "WaterNeeded.volumeMash");
+		spinnerStrikeWater.setModel(Main.getFromCache("WaterNeeded.StrikeWater", 0.0), 0, 1000000, 0.5, "0.00", "WaterNeeded.StrikeWater");
 		spinnerAcquaSparge.setModel(Main.getFromCache("WaterNeeded.volumeSparge", 0.0), 0, 1000000, 0.5, "0.00", "WaterNeeded.volumeSparge");
 		spinnerTotaleAcqua.setModel(Main.getFromCache("WaterNeeded.volumeTotale", 0.0), 0, 1000000, 0.5, "0.00", "WaterNeeded.volumeTotale");
 
@@ -501,14 +501,32 @@ public class WaterNeeded extends JInternalFrame {
 		gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
 
 		panelWaterNeeded.add(panelCalcoloVolumi, gridBagConstraints);
-		//inserire "volume occupato dal mash" MashVolume = LitriMash + 0.67 * KgMash
+		{
+			lblStrikeWater = new JLabel("Temperatura \"di lancio"");
+			GridBagConstraints gbc_lblStrikeWater = new GridBagConstraints();
+			gbc_lblStrikeWater.anchor = GridBagConstraints.EAST;
+			gbc_lblStrikeWater.insets = new Insets(0, 0, 5, 5);
+			gbc_lblStrikeWater.gridx = 0;
+			gbc_lblStrikeWater.gridy = 0;
+			panelRisultati.add(lblStrikeWater, gbc_lblStrikeWater);
+		}
+		{
+			spinnerStrikeWater = new JUnitSpinner("°C", 57);
+			spinnerStrikeWater.setEnabled(false);
+			spinnerStrikeWater.setPreferredSize(new Dimension(148, 22));
+			GridBagConstraints gbc_spinnerStrikeWater = new GridBagConstraints();
+			gbc_spinnerStrikeWater.insets = new Insets(0, 0, 5, 5);
+			gbc_spinnerStrikeWater.gridx = 1;
+			gbc_spinnerStrikeWater.gridy = 0;
+			panelRisultati.add(spinnerAcquaMash, gbc_spinnerAcquaMash);
+		}
 		{
 			lblVolumeImpasto = new JLabel("Volume occupato dal mash");
 			GridBagConstraints gbc_lblVolumeImpasto = new GridBagConstraints();
 			gbc_lblVolumeImpasto.anchor = GridBagConstraints.EAST;
 			gbc_lblVolumeImpasto.insets = new Insets(0, 0, 5, 5);
 			gbc_lblVolumeImpasto.gridx = 0;
-			gbc_lblVolumeImpasto.gridy = 0;
+			gbc_lblVolumeImpasto.gridy = 1;
 			panelCalcoloVolumi.add(lblVolumeImpasto, gbc_lblVolumeImpasto);
 		}
 		{
@@ -518,7 +536,7 @@ public class WaterNeeded extends JInternalFrame {
 			GridBagConstraints gbc_spinnerVolumeImpasto = new GridBagConstraints();
 			gbc_spinnerVolumeImpasto.insets = new Insets(0, 0, 5, 5);
 			gbc_spinnerVolumeImpasto.gridx = 1;
-			gbc_spinnerVolumeImpasto.gridy = 0;
+			gbc_spinnerVolumeImpasto.gridy = 1;
 			panelCalcoloVolumi.add(spinnerVolumeImpasto, gbc_spinnerVolumeImpasto);
 		}
 		{
@@ -527,7 +545,7 @@ public class WaterNeeded extends JInternalFrame {
 			gbc_lblVolumeMostoPreboil.anchor = GridBagConstraints.EAST;
 			gbc_lblVolumeMostoPreboil.insets = new Insets(0, 0, 5, 5);
 			gbc_lblVolumeMostoPreboil.gridx = 0;
-			gbc_lblVolumeMostoPreboil.gridy = 1;
+			gbc_lblVolumeMostoPreboil.gridy = 2;
 			panelCalcoloVolumi.add(lblVolumeMostoPreboil, gbc_lblVolumeMostoPreboil);
 		}
 		{
@@ -537,7 +555,7 @@ public class WaterNeeded extends JInternalFrame {
 			GridBagConstraints gbc_spinnerVolumeMostoPreBoil = new GridBagConstraints();
 			gbc_spinnerVolumeMostoPreBoil.insets = new Insets(0, 0, 5, 5);
 			gbc_spinnerVolumeMostoPreBoil.gridx = 1;
-			gbc_spinnerVolumeMostoPreBoil.gridy = 1;
+			gbc_spinnerVolumeMostoPreBoil.gridy = 2;
 			panelCalcoloVolumi.add(spinnerVolumeMostoPreBoil, gbc_spinnerVolumeMostoPreBoil);
 		}
 		{
@@ -546,7 +564,7 @@ public class WaterNeeded extends JInternalFrame {
 			gbc_lblOgPreboil.anchor = GridBagConstraints.EAST;
 			gbc_lblOgPreboil.insets = new Insets(0, 0, 5, 5);
 			gbc_lblOgPreboil.gridx = 0;
-			gbc_lblOgPreboil.gridy = 2;
+			gbc_lblOgPreboil.gridy = 3;
 			panelCalcoloVolumi.add(lblOgPreboil, gbc_lblOgPreboil);
 		}
 		{
@@ -556,7 +574,7 @@ public class WaterNeeded extends JInternalFrame {
 			GridBagConstraints gbc_spinnerOGPreBoil = new GridBagConstraints();
 			gbc_spinnerOGPreBoil.insets = new Insets(0, 0, 5, 5);
 			gbc_spinnerOGPreBoil.gridx = 1;
-			gbc_spinnerOGPreBoil.gridy = 2;
+			gbc_spinnerOGPreBoil.gridy = 3;
 			panelCalcoloVolumi.add(spinnerOGPreBoil, gbc_spinnerOGPreBoil);
 		}
 		{
@@ -565,7 +583,7 @@ public class WaterNeeded extends JInternalFrame {
 			gbc_lblVolumePostboil.anchor = GridBagConstraints.EAST;
 			gbc_lblVolumePostboil.insets = new Insets(0, 0, 5, 5);
 			gbc_lblVolumePostboil.gridx = 0;
-			gbc_lblVolumePostboil.gridy = 3;
+			gbc_lblVolumePostboil.gridy = 4;
 			panelCalcoloVolumi.add(lblVolumePostboil, gbc_lblVolumePostboil);
 		}
 		{
@@ -575,7 +593,7 @@ public class WaterNeeded extends JInternalFrame {
 			GridBagConstraints gbc_spinnerVolumePostBoil = new GridBagConstraints();
 			gbc_spinnerVolumePostBoil.insets = new Insets(0, 0, 5, 5);
 			gbc_spinnerVolumePostBoil.gridx = 1;
-			gbc_spinnerVolumePostBoil.gridy = 3;
+			gbc_spinnerVolumePostBoil.gridy = 4;
 			panelCalcoloVolumi.add(spinnerVolumePostBoil, gbc_spinnerVolumePostBoil);
 		}
 		{
@@ -584,7 +602,7 @@ public class WaterNeeded extends JInternalFrame {
 			gbc_lblVolumePostraffreddamento.anchor = GridBagConstraints.EAST;
 			gbc_lblVolumePostraffreddamento.insets = new Insets(0, 0, 5, 5);
 			gbc_lblVolumePostraffreddamento.gridx = 0;
-			gbc_lblVolumePostraffreddamento.gridy = 4;
+			gbc_lblVolumePostraffreddamento.gridy = 5;
 			panelCalcoloVolumi.add(lblVolumePostraffreddamento, gbc_lblVolumePostraffreddamento);
 		}
 		{
@@ -594,7 +612,7 @@ public class WaterNeeded extends JInternalFrame {
 			GridBagConstraints gbc_spinnerVolumePostRaffreddamento = new GridBagConstraints();
 			gbc_spinnerVolumePostRaffreddamento.insets = new Insets(0, 0, 5, 5);
 			gbc_spinnerVolumePostRaffreddamento.gridx = 1;
-			gbc_spinnerVolumePostRaffreddamento.gridy = 4;
+			gbc_spinnerVolumePostRaffreddamento.gridy = 5;
 			panelCalcoloVolumi.add(spinnerVolumePostRaffreddamento, gbc_spinnerVolumePostRaffreddamento);
 		}
 		{
@@ -603,7 +621,7 @@ public class WaterNeeded extends JInternalFrame {
 			gbc_lblVolumeRealeInFermentatore.anchor = GridBagConstraints.EAST;
 			gbc_lblVolumeRealeInFermentatore.insets = new Insets(0, 0, 0, 5);
 			gbc_lblVolumeRealeInFermentatore.gridx = 0;
-			gbc_lblVolumeRealeInFermentatore.gridy = 5;
+			gbc_lblVolumeRealeInFermentatore.gridy = 6;
 			panelCalcoloVolumi.add(lblVolumeRealeInFermentatore, gbc_lblVolumeRealeInFermentatore);
 		}
 		{
@@ -613,7 +631,7 @@ public class WaterNeeded extends JInternalFrame {
 			GridBagConstraints gbc_spinnerVolumeRealeInFermentatore = new GridBagConstraints();
 			gbc_spinnerVolumeRealeInFermentatore.insets = new Insets(0, 0, 0, 5);
 			gbc_spinnerVolumeRealeInFermentatore.gridx = 1;
-			gbc_spinnerVolumeRealeInFermentatore.gridy = 5;
+			gbc_spinnerVolumeRealeInFermentatore.gridy = 6;
 			panelCalcoloVolumi.add(spinnerVolumeRealeInFermentatore, gbc_spinnerVolumeRealeInFermentatore);
 		}
 
@@ -760,21 +778,21 @@ public class WaterNeeded extends JInternalFrame {
 		double volumeMostoPreBoil = volumePostBoil * (1.0 + (percentualeEvaporazione / 100.0));
 		// fixed to update OG Preboil without late addiction
 		double ogPreBoil = (batchSize * OriginalGravityIBU.intValue()) / volumeMostoPreBoil;
-//		double perditaContrazione = volumePostBoil * (contrazioneRaffreddamento / 100.0);
 		double perditaContrazione = volumePostRaffreddamento * (contrazioneRaffreddamento / 100.0);
-//		double perditaEvaporazione = volumeMostoPreBoil * (percentualeEvaporazione / 100.0);
 		double perditaEvaporazione = volumePostBoil * (percentualeEvaporazione / 100.0) * (Ricetta.getBollitura() / 60.0);
 
 		double acquaTotale = volumeMostoPreBoil + perditeAssorbimento;
 		double acquaMash = !biab ? totGrani * rapportoAcquaGrani : acquaTotale;
 		double acquaSparge = acquaTotale - acquaMash;
 		double volumeImpasto = acquaMash + 0.67 * totGrani;
-
+		double StrikeWater = ((0.2 / rapportoAcquaGrani) * (68 - 18)) + 68;
+				
 		spinnerPerditaPerAssorbimento.setDoubleValue(perditeAssorbimento);
 		spinnerPerditaPerEvaporazione.setDoubleValue(perditaEvaporazione);
 		spinnerPerditaPerContrazione.setDoubleValue(perditaContrazione);
 
 		spinnerVolumeImpasto.setDoubleValue(volumeImpasto);
+		spinnerStrikeWater.setDoubleValue(StrikeWater);
 		spinnerVolumeMostoPreBoil.setDoubleValue(volumeMostoPreBoil);
 		spinnerOGPreBoil.setDoubleValue(ogPreBoil);
 		spinnerVolumePostBoil.setDoubleValue(volumePostBoil);
@@ -831,6 +849,9 @@ public class WaterNeeded extends JInternalFrame {
 		if (E.getAttribute("VolumeImpasto") != null)
 			spinnerVolumeImpasto
 					.setDoubleValue(new Double(E.getAttribute("VolumeImpasto").getValue()));
+		if (E.getAttribute("StrikeWater") != null)
+			spinnerStrikeWater
+					.setDoubleValue(new Double(E.getAttribute("StrikeWater").getValue()));
 		if (E.getAttribute("VolumeMostoPreBoil") != null)
 			spinnerVolumeMostoPreBoil
 					.setDoubleValue(new Double(E.getAttribute("VolumeMostoPreBoil").getValue()));
@@ -876,6 +897,7 @@ public class WaterNeeded extends JInternalFrame {
 		E.setAttribute("PerditaPerContrazione", "" + spinnerPerditaPerContrazione.getDoubleValue());
 		
 		E.setAttribute("VolumeImpasto", "" + spinnerVolumeImpasto.getDoubleValue());
+		E.setAttribute("StrikeWater", "" + spinnerStrikeWater.getDoubleValue());
 		E.setAttribute("VolumeMostoPreBoil", "" + spinnerVolumeMostoPreBoil.getDoubleValue());
 		E.setAttribute("OGPreBoil", "" + spinnerOGPreBoil.getDoubleValue());
 		E.setAttribute("VolumePostBoil", "" + spinnerVolumePostBoil.getDoubleValue());
@@ -915,6 +937,10 @@ public class WaterNeeded extends JInternalFrame {
 
 	public double getVolumeImpasto() {
 		return spinnerVolumeImpasto.getDoubleValue();
+	}
+	
+	public double getStrikeWater() {
+		return spinnerStrikeWater.getDoubleValue();
 	}
 	
 	public double getVolumeMostoPreBoil() {
