@@ -763,7 +763,7 @@ public class WaterNeeded extends JInternalFrame {
 //		double perditaContrazione = volumePostBoil * (contrazioneRaffreddamento / 100.0);
 		double perditaContrazione = volumePostRaffreddamento * (contrazioneRaffreddamento / 100.0);
 //		double perditaEvaporazione = volumeMostoPreBoil * (percentualeEvaporazione / 100.0);
-		double perditaEvaporazione = volumePostBoil * (percentualeEvaporazione / 100.0) * (Ricetta.getBollitura() / 60.0);
+		double perditaEvaporazione = volumePostBoil * (percentualeEvaporazione / 100.0) * (getBoilTime() / 60.0);
 
 		double acquaTotale = volumeMostoPreBoil + perditeAssorbimento;
 		double acquaMash = !biab ? totGrani * rapportoAcquaGrani : acquaTotale;
@@ -963,6 +963,21 @@ public class WaterNeeded extends JInternalFrame {
 
     public void setOriginalGravityIBU(BigDecimal originalGravityIBU) {
         OriginalGravityIBU = originalGravityIBU;
+    }
+    
+    private double getBoilTime()
+    {
+    	return 60.0;
+    }
+    
+    private Double getTi()
+    {
+    	return 18.0;
+    }
+    
+    private Double getTf()
+    {
+    	return 68.0;
     }
 
 }
