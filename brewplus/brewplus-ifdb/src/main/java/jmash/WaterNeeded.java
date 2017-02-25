@@ -785,7 +785,7 @@ public class WaterNeeded extends JInternalFrame {
 		double acquaMash = !biab ? totGrani * rapportoAcquaGrani : acquaTotale;
 		double acquaSparge = acquaTotale - acquaMash;
 		double volumeImpasto = acquaMash + 0.67 * totGrani;
-		double StrikeWater = ((0.2 / rapportoAcquaGrani) * (getTf() - getTi())) + getTf();
+		double StrikeWater = ((0.41 / rapportoAcquaGrani) * (getTf() - getTi())) + getTf();
 				
 		spinnerPerditaPerAssorbimento.setDoubleValue(perditeAssorbimento);
 		spinnerPerditaPerEvaporazione.setDoubleValue(perditaEvaporazione);
