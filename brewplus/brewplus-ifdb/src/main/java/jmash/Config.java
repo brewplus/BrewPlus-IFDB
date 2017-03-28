@@ -45,6 +45,7 @@ public class Config {
     private String BUGUratiostring;
 
     private Integer boilTime = 90;
+    private Double tempGrani = 10.0;
     private Double efficienza = 75.0;
     private Double volumeFin = 23.0;
     private Double volumeBoil = 28.0;
@@ -73,7 +74,7 @@ public class Config {
         return this.remoteServer;
     }
 
-    private static String campiXml[] = new String[] {"locale", "remoteRoot", "RemoteServer", "RSSFeed", "boilTime", "volumeFin",
+    private static String campiXml[] = new String[] {"locale", "remoteRoot", "RemoteServer", "RSSFeed", "boilTime", "tempGrani", "volumeFin",
             "volumeBoil", "efficienza", "metriSLM", "amaroDHEA", "nickIHB", "passwordIHB", "proxyPort", "proxyHost",
             "lostToTrub", "litriPerKg", "rapportoAcquaGrani", "ebcNewMethod", "potLibGal",
             "BUGUratiostring", "percentualeEvaporazione", "contrazionePerRaffreddamento", "biab",
@@ -113,6 +114,14 @@ public class Config {
 
     public Integer getBoilTime() {
         return this.boilTime;
+    }
+    
+    public Double getTempGrani(){
+    	return this.tempGrani;
+    }
+    
+    public void setTempGrani(Double tempGrani){
+    	this.tempGrani = tempGrani;
     }
 
     public void setBoilTime(Integer boilTime) {
