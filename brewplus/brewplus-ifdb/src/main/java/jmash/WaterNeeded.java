@@ -31,6 +31,7 @@ public class WaterNeeded extends JInternalFrame {
 	private JLabel lblBatchSize;
 	private JLabel lblGraniTotali;
 	private JLabel lblOriginalGravity;
+	private JLabel lblBoilTime;
 	private JLabel lblAssorbimentoGraniEsausti;
 	private JLabel lblRapportoAcquaGrani;
 	private JLabel lblPercentualeEvaporazione;
@@ -39,6 +40,7 @@ public class WaterNeeded extends JInternalFrame {
 	private JUnitSpinner spinnerBatchSize;
 	private JUnitSpinner spinnerGraniTotali;
 	private JUnitSpinner spinnerOriginalGravity;
+	private JUnitSpinner spinnerBoilTime;
 	private JUnitSpinner spinnerAssorbimentoGraniEsausti;
 	private JUnitSpinner spinnerRapportoAcquaGrani;
 	private JUnitSpinner spinnerPercentualeEvaporazione;
@@ -88,6 +90,7 @@ public class WaterNeeded extends JInternalFrame {
 		spinnerBatchSize.setModel(Main.config.getVolumeFin(), 0, 1000000, 0.5, "0.00", "WaterNeeded.BS");
 		spinnerGraniTotali.setModel(0.0, 0.0, 1000000.0, 0.5, "0.000", "WaterNeeded.TotGrani");
 		spinnerOriginalGravity.setModel(0.0, 0.0, 1000000.0, 1, "0", "WaterNeeded.OG");
+		spinnerBoilTime.setModel(Main.config.getBoilTime(), 0, 1000000, 0.5, "0.00", "WaterNeeded.BT");
 		
 		spinnerAssorbimentoGraniEsausti.setModel(Main.config.getLitriPerKg(), 0, 1000000, 0.1, "0.00", null);
 		spinnerRapportoAcquaGrani.setModel(Main.config.getRapportoAcquaGrani(), 0.0, 1000000, 0.1, "0.00", null);
@@ -123,8 +126,8 @@ public class WaterNeeded extends JInternalFrame {
 		this();
 		spinnerBatchSize.setDoubleValue(batchSize);
 		spinnerGraniTotali.setDoubleValue(kg);
-
-		// spnBoiltime.setDoubleValue(boilTime);
+		spinnerBoilTime.setDoubleValue(boilTime);
+		
 		// spnEvaporation.setVolume(evap);
 
 		calcolaQuantitaAcqua();
@@ -248,6 +251,30 @@ public class WaterNeeded extends JInternalFrame {
 			gbc_spinnerOriginalGravity.gridx = 1;
 			gbc_spinnerOriginalGravity.gridy = 2;
 			panelSpecificheCotta.add(spinnerOriginalGravity, gbc_spinnerOriginalGravity);
+		}
+		{
+			lblBoilTime = new JLabel("Boil Time");
+			GridBagConstraints gbc_lblBoilTime = new GridBagConstraints();
+			gbc_lblBoilTime.anchor = GridBagConstraints.EAST;
+			gbc_lblBoilTime.insets = new Insets(0, 0, 5, 5);
+			gbc_lblBoilTime.gridx = 0;
+			gbc_lblBoilTime.gridy = 3;
+			panelSpecificheCotta.add(lblBoilTime, gbc_lblBoilTime);
+		}
+		{
+			spinnerBoilTime = new JUnitSpinner("min", 57);
+			spinnerBoilTime.getSpinner().setPreferredSize(new Dimension(148, 22));
+			spinnerBoilTime.addChangeListener(new ChangeListener() {
+				public void stateChanged(ChangeEvent e) {
+					calcolaQuantitaAcqua();
+				}
+			});
+			spinnerBoilTime.setEnabled(false);
+			GridBagConstraints gbc_spinnerBoilTime = new GridBagConstraints();
+			gbc_spinnerBoilTime.insets = new Insets(0, 0, 5, 5);
+			gbc_spinnerBoilTime.gridx = 1;
+			gbc_spinnerBoilTime.gridy = 3;
+			panelSpecificheCotta.add(spinnerBoilTime, gbc_spinnerBoilTime);
 		}
 
 	}
@@ -750,6 +777,10 @@ public class WaterNeeded extends JInternalFrame {
 		double sg = (originalGravity * 1000) - 1000;
 		this.spinnerOriginalGravity.setDoubleValue(sg);
 	}
+	
+	public void setBoilTime(double boilTime){
+		this.spinnerBoilTime.setDoubleValue(boilTime);
+	}
 
 	public void calcolaQuantitaAcqua() {
 		calcolaQuantitaAcqua(false);
@@ -761,6 +792,7 @@ public class WaterNeeded extends JInternalFrame {
 		double batchSize = this.spinnerBatchSize.getDoubleValue();
 		double totGrani = this.spinnerGraniTotali.getDoubleValue();
 		double originalGravity = this.spinnerOriginalGravity.getDoubleValue();
+		double boilTime = this.spinnerBoilTime.getDoubleValue();
 		double assorbimentoGraniEsausti = this.spinnerAssorbimentoGraniEsausti.getDoubleValue();
 		double rapportoAcquaGrani = this.spinnerRapportoAcquaGrani.getDoubleValue();
 		double percentualeEvaporazione = this.spinnerPercentualeEvaporazione.getDoubleValue();
@@ -779,14 +811,15 @@ public class WaterNeeded extends JInternalFrame {
 		// fixed to update OG Preboil without late addiction
 		double ogPreBoil = (batchSize * OriginalGravityIBU.intValue()) / volumeMostoPreBoil;
 		double perditaContrazione = volumePostRaffreddamento * (contrazioneRaffreddamento / 100.0);
-		double perditaEvaporazione = volumePostBoil * (percentualeEvaporazione / 100.0) * (getBoilTime() / 60.0);
+		double perditaEvaporazione = volumePostBoil * (percentualeEvaporazione / 100.0) * (boilTime / 60.0);
 
 		double acquaTotale = volumeMostoPreBoil + perditeAssorbimento;
 		double acquaMash = !biab ? totGrani * rapportoAcquaGrani : acquaTotale;
 		double acquaSparge = acquaTotale - acquaMash;
 		double volumeImpasto = acquaMash + 0.67 * totGrani;
-		double StrikeWater = ((0.41 / rapportoAcquaGrani) * (getTf() - getTi())) + getTf();
-				
+		double StrikeWater = ((0.41 / (acquaMash / totGrani)) * (getTf() - getTi())) + getTf();
+		
+		
 		spinnerPerditaPerAssorbimento.setDoubleValue(perditeAssorbimento);
 		spinnerPerditaPerEvaporazione.setDoubleValue(perditaEvaporazione);
 		spinnerPerditaPerContrazione.setDoubleValue(perditaContrazione);
@@ -817,6 +850,8 @@ public class WaterNeeded extends JInternalFrame {
 			spinnerGraniTotali.setDoubleValue(new Double(E.getAttribute("GraniTotali").getValue()));
 		if (E.getAttribute("OriginalGravity") != null)
 			spinnerOriginalGravity.setDoubleValue(new Double(E.getAttribute("OriginalGravity").getValue()));
+		if (E.getAttribute("BoilTime") != null)
+			spinnerBoilTime.setDoubleValue(new Double(E.getAttribute("BoilTime").getValue()));
 		if (E.getAttribute("AssorbimentoGraniEsausti") != null)
 			spinnerAssorbimentoGraniEsausti
 					.setDoubleValue(new Double(E.getAttribute("AssorbimentoGraniEsausti").getValue()));
@@ -881,6 +916,7 @@ public class WaterNeeded extends JInternalFrame {
 		E.setAttribute("BatchSize", "" + spinnerBatchSize.getDoubleValue());
 		E.setAttribute("GraniTotali", "" + spinnerGraniTotali.getDoubleValue());
 		E.setAttribute("OriginalGravity", "" + spinnerOriginalGravity.getDoubleValue());
+		E.setAttribute("BoilTime", "" + spinnerBoilTime.getDoubleValue());
 		E.setAttribute("AssorbimentoGraniEsausti", "" + spinnerAssorbimentoGraniEsausti.getDoubleValue());
 
 		E.setAttribute("HasPerditeNelTrub", "" + chckbxPerditeNelTrub.isSelected());

@@ -50,7 +50,7 @@ public class Config {
     private Double volumeBoil = 28.0;
     private Integer metriSLM = 160;
     private Integer amaroDHEA = 45;
-   
+    
     private Double lostToTrub = 0.5;
     private Double litriPerKg = 1.01;
     private Double rapportoAcquaGrani = 5.0;
@@ -134,7 +134,8 @@ public class Config {
     public void setVolumeFin(Double volumeFin) {
         this.volumeFin = volumeFin;
     }
-
+    
+    
     public Double getVolumeBoil() {
         return this.volumeBoil;
     }
