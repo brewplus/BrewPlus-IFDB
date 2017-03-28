@@ -2171,6 +2171,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		summaryTableModel.setTotG(maltTableModel.getGrammi());
 
 
+		waterNeeded.setBoilTime(getBollitura());
 		waterNeeded.setBatchSize(spinVolumeFin.getVolume());
 		waterNeeded.setTotGrani((double) maltTableModel.getGrammiMash() / 1000);
 		waterNeeded.setOriginalGravity(maltTableModel.getSG(concentrato));

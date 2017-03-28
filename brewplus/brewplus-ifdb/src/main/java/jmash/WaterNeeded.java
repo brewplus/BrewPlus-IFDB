@@ -1027,10 +1027,6 @@ public class WaterNeeded extends JInternalFrame {
         OriginalGravityIBU = originalGravityIBU;
     }
     
-    private double getBoilTime()
-    {
-    	return 60.0;
-    }
     
     private Double getTi()
     {
