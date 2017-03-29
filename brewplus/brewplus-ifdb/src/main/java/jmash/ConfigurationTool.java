@@ -166,6 +166,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		fldSLM.setValue(Main.config.getMetriSLM());
 		fldDHEA.setValue(Main.config.getAmaroDHEA());
 		fldBoil.setValue(Main.config.getBoilTime());
+		fldTempGrani.setModel(10.0, 1, 100, 1);
 		fldTempGrani.setValue(Main.config.getTempGrani());
 		fldServer.setText(Main.config.getRemoteServer());
 		fldNick.setText(Main.config.getNickIHB());

@@ -74,11 +74,11 @@ public class Config {
         return this.remoteServer;
     }
 
-    private static String campiXml[] = new String[] {"locale", "remoteRoot", "RemoteServer", "RSSFeed", "boilTime", "tempGrani", "volumeFin",
+    private static String campiXml[] = new String[] {"locale", "remoteRoot", "RemoteServer", "RSSFeed", "boilTime", "volumeFin",
             "volumeBoil", "efficienza", "metriSLM", "amaroDHEA", "nickIHB", "passwordIHB", "proxyPort", "proxyHost",
             "lostToTrub", "litriPerKg", "rapportoAcquaGrani", "ebcNewMethod", "potLibGal",
             "BUGUratiostring", "percentualeEvaporazione", "contrazionePerRaffreddamento", "biab",
-            "calcioSource", "magnesioSource", "solfatoSource", "cloruroSource", "sodioSource", "carbonatoSource"
+            "calcioSource", "magnesioSource", "solfatoSource", "cloruroSource", "sodioSource", "carbonatoSource", "tempGrani"
     };
 
     public void setRemoteServer(String remoteServer) {
