@@ -1,32 +1,31 @@
 package jmash;
 
 import java.awt.BorderLayout;
-import java.awt.Desktop;
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.ArrayList;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.UIManager;
-import javax.swing.border.EmptyBorder;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
-import java.awt.Color;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.ImageIcon;
-import java.awt.Font;
-import java.io.File;
-import java.net.URI;
-import java.util.ArrayList;
 import javax.swing.Timer;
+import javax.swing.border.EmptyBorder;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import jmash.utils.BrewplusEnvironment;
+import jmash.utils.Constants;
 
 public class frmTimer extends javax.swing.JFrame {
 
@@ -253,11 +252,13 @@ public class frmTimer extends javax.swing.JFrame {
     }
 
     private void diQuesto(Boolean isStep) {
+    	
+    	BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
         File wav = null;
         if (isStep)
-            wav = new File(Main.userDir + "/templates/b1.wav");
+            wav = new File(bpenv.getFolderName(Constants.DIR_USER) + "/templates/b1.wav");
         else
-            wav = new File(Main.userDir + "/templates/b0.wav");
+            wav = new File(bpenv.getFolderName(Constants.DIR_USER) + "/templates/b0.wav");
         try {
             Clip clip = AudioSystem.getClip();
             AudioInputStream inputStream = AudioSystem.getAudioInputStream(wav);

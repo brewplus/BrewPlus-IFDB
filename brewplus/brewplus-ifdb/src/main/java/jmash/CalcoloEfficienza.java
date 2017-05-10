@@ -6,13 +6,18 @@
 
 package jmash;
 
+import jmash.config.ConfigurationManager;
+import jmash.config.bean.GeneralConfig;
 import jmash.tableModel.NumberFormatter;
 
 /**
  *
  * @author Alessandro
+ * @author rekhyt
  */
 public class CalcoloEfficienza extends ModalInternalFrame {
+	
+	private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
 
 	/** Creates new form CalcoloEfficienza */
 	private Ricetta ricetta;
@@ -161,7 +166,7 @@ public class CalcoloEfficienza extends ModalInternalFrame {
 		for (Malt m : ricetta.maltTableModel.getRows()) {
 			double pts = m.getPotentialSG() * 1000 - 1000;
 			double grs = m.getGrammi();
-			if (Main.config.getPotLibGal() == 1) {
+			if (generalConfig.getPotLibGal() == 1) {
 				// anglosaxon
 				if (m.isMashed())
 					X += pts * Utils.kgToPound(grs / 1000) / Utils.litToGal(jVolumeSpinner1.getVolume());
@@ -194,7 +199,7 @@ public class CalcoloEfficienza extends ModalInternalFrame {
 			double pts = m.getPotentialSG() * 1000 - 1000;
 			double grs = m.getGrammi();
 			if (m.isMashed())
-				if (Main.config.getPotLibGal() == 1) {
+				if (generalConfig.getPotLibGal() == 1) {
 					X += pts * Utils.kgToPound(grs / 1000) / Utils.litToGal(jVolumeSpinner1.getVolume());
 				} else {
 					// metric mashed
@@ -202,7 +207,7 @@ public class CalcoloEfficienza extends ModalInternalFrame {
 					totGrammi += grs;
 				}
 			else {
-				if (Main.config.getPotLibGal() == 1) {
+				if (generalConfig.getPotLibGal() == 1) {
 					xpts += pts * Utils.kgToPound(grs / 1000) / Utils.litToGal(jVolumeSpinner1.getVolume());
 				} else {
 					// metric not mashed

@@ -18,9 +18,12 @@ import javax.swing.event.ChangeListener;
 import org.jdom.Element;
 
 import jmash.component.JUnitSpinner;
+import jmash.config.ConfigurationManager;
+import jmash.config.bean.GeneralConfig;
 
 public class WaterNeeded extends JInternalFrame {
 	private static final long serialVersionUID = -5301195065823912614L;
+	private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
 
 	private JPanel panelWaterNeeded;
 	private JPanel panelSpecificheCotta;
@@ -76,20 +79,15 @@ public class WaterNeeded extends JInternalFrame {
 		initComponents();
 		setBorder(Utils.getDefaultBorder());
 
-		// spinnerBackSize.setModel(Main.config.getVolumeFin(), 0, 1000000, 0.5,
-		// "0.0", "WaterNeeded.BS");
-		// spinnerTrub.setModel(Main.config.getVolumeFin(), 0, 1000000, 0.5,
-		// "0.0", "WaterNeeded.Trub");
-
-		spinnerBatchSize.setModel(Main.config.getVolumeFin(), 0, 1000000, 0.5, "0.00", "WaterNeeded.BS");
+		spinnerBatchSize.setModel(generalConfig.getVolumeFin(), 0, 1000000, 0.5, "0.00", "WaterNeeded.BS");
 		spinnerGraniTotali.setModel(0.0, 0.0, 1000000.0, 0.5, "0.000", "WaterNeeded.TotGrani");
 		spinnerOriginalGravity.setModel(0.0, 0.0, 1000000.0, 1, "0", "WaterNeeded.OG");
 		
-		spinnerAssorbimentoGraniEsausti.setModel(Main.config.getLitriPerKg(), 0, 1000000, 0.1, "0.00", null);
-		spinnerRapportoAcquaGrani.setModel(Main.config.getRapportoAcquaGrani(), 0.0, 1000000, 0.1, "0.00", null);
-		spinnerPercentualeEvaporazione.setModel(Main.config.getPercentualeEvaporazione(), 0.0, 100, 0.25, "0.00", null);
-		spinnerContrazionePerRaffreddamento.setModel(Main.config.getContrazionePerRaffreddamento(), 0, 100, 0.25, "0.00", null);
-		spinnerPerditeNelTrub.setModel(Main.config.getLostToTrub(), 0.0, 1000000, 0.1, "0.00", null);
+		spinnerAssorbimentoGraniEsausti.setModel(generalConfig.getLitriPerKg(), 0, 1000000, 0.1, "0.00", null);
+		spinnerRapportoAcquaGrani.setModel(generalConfig.getRapportoAcquaGrani(), 0.0, 1000000, 0.1, "0.00", null);
+		spinnerPercentualeEvaporazione.setModel(generalConfig.getPercentualeEvaporazione(), 0.0, 100, 0.25, "0.00", null);
+		spinnerContrazionePerRaffreddamento.setModel(generalConfig.getContrazionePerRaffreddamento(), 0, 100, 0.25, "0.00", null);
+		spinnerPerditeNelTrub.setModel(generalConfig.getLostToTrub(), 0.0, 1000000, 0.1, "0.00", null);
 
 		spinnerPerditaPerAssorbimento.setModel(Main.getFromCache("WaterNeeded.perditaPerAssorbimento", 0.0), 0, 1000000, 0.5, "0.00", "WaterNeeded.PerdAss");
 		spinnerPerditaPerEvaporazione.setModel(Main.getFromCache("WaterNeeded.perditaPerEvaporazione", 0.0), 0, 1000000, 0.5, "0.00", "WaterNeeded.PerdEvap");
@@ -105,7 +103,7 @@ public class WaterNeeded extends JInternalFrame {
 		spinnerAcquaSparge.setModel(Main.getFromCache("WaterNeeded.volumeSparge", 0.0), 0, 1000000, 0.5, "0.00", "WaterNeeded.volumeSparge");
 		spinnerTotaleAcqua.setModel(Main.getFromCache("WaterNeeded.volumeTotale", 0.0), 0, 1000000, 0.5, "0.00", "WaterNeeded.volumeTotale");
 
-		setBiab(Main.config.getBiab(), false);
+		setBiab(generalConfig.getBiab(), false);
 		setBackground(getBackground().darker());
 		panelWaterNeeded.setBackground(panelWaterNeeded.getBackground().darker());
 

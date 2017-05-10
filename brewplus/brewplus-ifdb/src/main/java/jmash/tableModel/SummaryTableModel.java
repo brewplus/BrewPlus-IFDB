@@ -22,10 +22,13 @@ import javax.swing.table.TableColumn;
 
 import jmash.*;
 import jmash.Main.BitterBUGU;
+import jmash.config.ConfigurationManager;
+import jmash.config.bean.GeneralConfig;
 
 public class SummaryTableModel extends GenericTableModel<Hop> {
 
     private static final long serialVersionUID = -5667189467722852137L;
+    private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
     
     public static final int TINSETH_COLUMN=4;
 	public static final int RAGER_COLUMN=5;
@@ -128,12 +131,12 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
         case 3:
             return sPPB;
         case 4:
-        	BitterBUGU tiporatioBU = Main.config.getBUGURatio();
-        	if (tiporatioBU == BitterBUGU.TIN)
+        	String tiporatioBU = generalConfig.getBUGUratiostring();
+        	if (BitterBUGU.TIN.equals(tiporatioBU))
         		return sIBU;
-            if (tiporatioBU == BitterBUGU.DAN)
+            if (BitterBUGU.DAN.equals(tiporatioBU))
             	return sIBUD; 
-            if (tiporatioBU == BitterBUGU.RAG)
+            if (BitterBUGU.RAG.equals(tiporatioBU))
             	return sIBU2;
         case 5:
             return sIBU2;
@@ -141,12 +144,12 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
             return sIBUD;
         case 7:
             double iburatio = 0;
-            BitterBUGU tiporatio = Main.config.getBUGURatio();
-            if (tiporatio == BitterBUGU.TIN)
+            String tiporatio = generalConfig.getBUGUratiostring();
+            if (BitterBUGU.TIN.equals(tiporatio))
                 iburatio = this.getIBU();
-            if (tiporatio == BitterBUGU.DAN)
+            if (BitterBUGU.DAN.equals(tiporatio))
                 iburatio = this.getIBUDaniels();
-            if (tiporatio == BitterBUGU.RAG)
+            if (BitterBUGU.RAG.equals(tiporatio))
                 iburatio = this.getIBU2();
             if (Double.isNaN(iburatio / ((getSG() - 1) * 1000)))
             {
@@ -193,11 +196,11 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
     }
 
     public void setBUGUratio() {
-        if (Main.config.getBUGURatio() == BitterBUGU.TIN)
+        if (generalConfig.getBUGUratiostring().equals(BitterBUGU.TIN))
             cN[7] = "BU/GU Tinseth";
-        else if (Main.config.getBUGURatio() == BitterBUGU.RAG)
+        else if (generalConfig.getBUGUratiostring().equals(BitterBUGU.RAG))
             cN[7] = "BU/GU Rager";
-        else if (Main.config.getBUGURatio() == BitterBUGU.DAN)
+        else if (generalConfig.getBUGUratiostring().equals(BitterBUGU.DAN))
             cN[7] = "BU/GU Daniels";
         if (columnNames != null)
         {

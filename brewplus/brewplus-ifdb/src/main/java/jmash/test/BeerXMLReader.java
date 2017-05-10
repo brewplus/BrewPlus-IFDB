@@ -12,7 +12,12 @@ package jmash.test;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.JInternalFrame;
+
+import org.jdom.Document;
+import org.jdom.Element;
+
 import jmash.Hop;
 import jmash.Main;
 import jmash.Malt;
@@ -21,8 +26,8 @@ import jmash.RecipeData;
 import jmash.Ricetta;
 import jmash.Utils;
 import jmash.Yeast;
-import org.jdom.Document;
-import org.jdom.Element;
+import jmash.utils.BrewplusEnvironment;
+import jmash.utils.Constants;
 
 /**
  *
@@ -39,8 +44,9 @@ public class BeerXMLReader {
 	 *            the command line arguments
 	 */
 	public static void main(String[] args) {
+		BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
 		File file = Utils.pickFileToLoad(new JInternalFrame(),
-				(String) Main.getFromCache("recipe.dir", Main.recipeDir));
+				(String) Main.getFromCache("recipe.dir", bpenv.getFolderName(Constants.DIR_RECIPE)));
 		if (file != null) {
 			// Main.putIntoCache("recipe.dir",file.getAbsolutePath());
 

@@ -44,16 +44,22 @@ import org.jdom.Element;
 import jmash.Main.BitterBUGU;
 import jmash.component.JMashSpinner;
 import jmash.component.JUnitSpinner;
-import jmash.interfaces.Constants;
+import jmash.config.ConfigurationManager;
+import jmash.config.bean.GeneralConfig;
 import jmash.interfaces.XmlAble;
+import jmash.utils.BrewplusEnvironment;
+import jmash.utils.Constants;
 
 /**
  *
  * @author Alessandro
+ * @author rekhyt
  */
 public class ConfigurationTool extends javax.swing.JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
+	private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
+	private static BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
 	private JInternalFrame parent;
 
 	private boolean actionListenerOn = true;
@@ -73,17 +79,17 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		fldSLM.setModel(300.0, 1, 8844, 1, "0", "CT.slm");
 		fldDHEA.setModel(45.0, 1, 60, 1, "0", "CT.dhea");
 		fldBoil.setModel(90.0, 1, 1000, 1);
-		fldEff.setDoubleValue(Main.config.getEfficienza());
-		fldVolumeFin.setDoubleValue(Main.config.getVolumeFin());
-		fldSLM.setValue(Main.config.getMetriSLM());
-		fldDHEA.setValue(Main.config.getAmaroDHEA());
-		fldBoil.setValue(Main.config.getBoilTime());
-		fldServer.setText(Main.config.getRemoteServer());
-		fldNick.setText(Main.config.getNickIHB());
-		fldPwd.setText(Main.config.getPasswordIHB());
-		fldProxy.setText(Main.config.getProxyHost());
-		fldProxyPort.setText(Main.config.getProxyPort());
-		chckbxNewCheckBox.setSelected((Main.config.getPotLibGal() == 1));
+		fldEff.setDoubleValue(generalConfig.getEfficienza());
+		fldVolumeFin.setDoubleValue(generalConfig.getVolumeFin());
+		fldSLM.setValue(generalConfig.getMetriSLM());
+		fldDHEA.setValue(generalConfig.getAmaroDHEA());
+		fldBoil.setValue(generalConfig.getBoilTime());
+		fldServer.setText(generalConfig.getRemoteServer());
+		fldNick.setText(generalConfig.getNickIHB());
+		fldPwd.setText(generalConfig.getPasswordIHB());
+		fldProxy.setText(generalConfig.getProxyHost());
+		fldProxyPort.setText(generalConfig.getProxyPort());
+		chckbxNewCheckBox.setSelected((generalConfig.getPotLibGal() == 1));
 
 		cmbBUGURatio = new JComboBox<String>();
 		cmbBUGURatio.setModel(new DefaultComboBoxModel<String>(new String[] { "Tinseth", "Rager", "Daniels" }));
@@ -94,11 +100,11 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		gbc_cmbBUGU.gridx = 1;
 		gbc_cmbBUGU.gridy = 2;
 		jPanelDefaults.add(cmbBUGURatio, gbc_cmbBUGU);
-		if (Main.config.getBUGURatio() == BitterBUGU.TIN)
+		if (BitterBUGU.TIN.equals(generalConfig.getBUGUratiostring()))
 			cmbBUGURatio.setSelectedIndex(0);
-		if (Main.config.getBUGURatio() == BitterBUGU.RAG)
+		if (BitterBUGU.RAG.equals(generalConfig.getBUGUratiostring()))
 			cmbBUGURatio.setSelectedIndex(1);
-		if (Main.config.getBUGURatio() == BitterBUGU.DAN)
+		if (BitterBUGU.DAN.equals(generalConfig.getBUGUratiostring()))
 			cmbBUGURatio.setSelectedIndex(2);
 
 		lblLanguage = new JLabel(Main.bundle.getString("label.language"));
@@ -117,13 +123,13 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		gbc_cmbLanguage.gridx = 1;
 		gbc_cmbLanguage.gridy = 3;
 		jPanelDefaults.add(cmbLanguage, gbc_cmbLanguage);
-		spnAssorbimentoGraniEsausti.setDoubleValue(Main.config.getLitriPerKg());
-		spnRapportoAcquaGrani.setDoubleValue(Main.config.getRapportoAcquaGrani());
+		spnAssorbimentoGraniEsausti.setDoubleValue(generalConfig.getLitriPerKg());
+		spnRapportoAcquaGrani.setDoubleValue(generalConfig.getRapportoAcquaGrani());
 
-		spnPercentualeEvaporazione.setDoubleValue(Main.config.getPercentualeEvaporazione());
-		chckbxBiab.setSelected(Main.config.getBiab());
+		spnPercentualeEvaporazione.setDoubleValue(generalConfig.getPercentualeEvaporazione());
+		chckbxBiab.setSelected(generalConfig.getBiab());
 
-		spnContrazionePerRaffreddamento.setDoubleValue(Main.config.getContrazionePerRaffreddamento());
+		spnContrazionePerRaffreddamento.setDoubleValue(generalConfig.getContrazionePerRaffreddamento());
 
 		jLabel11 = new javax.swing.JLabel();
 
@@ -136,8 +142,8 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		gridBagConstraints_14.anchor = java.awt.GridBagConstraints.EAST;
 		jPanelDatiImpianto.add(jLabel11, gridBagConstraints_14);
 		spnLostToTrub = new jmash.component.JUnitSpinner("L", 57);
-		spnLostToTrub.setModel(Main.config.getLostToTrub(), 0.0, 1000000, 0.1, "0.00", "CT.ltt");
-		spnLostToTrub.setDoubleValue(Main.config.getLostToTrub());
+		spnLostToTrub.setModel(generalConfig.getLostToTrub(), 0.0, 1000000, 0.1, "0.00", "CT.ltt");
+		spnLostToTrub.setDoubleValue(generalConfig.getLostToTrub());
 
 		spnLostToTrub.setFont(spnLostToTrub.getFont());
 		gridBagConstraints_15 = new java.awt.GridBagConstraints();
@@ -147,43 +153,28 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		jPanelDatiImpianto.add(spnLostToTrub, gridBagConstraints_15);
 
 		cmbLanguage.setSelectedItem(
-				"it_IT".equalsIgnoreCase(Main.config.getLocale()) ? Constants.ITALIAN : Constants.ENGLISH);
-		// ButtonGroup group = new ButtonGroup();
-
-		// BreweryProfile toFind = new BreweryProfile(null, null,
-		// Main.config.getVolumeFin(), Main.config.getEfficienza(),
-		// Main.config.getLitriPerKg(), Main.config.getRapportoAcquaGrani(),
-		// Main.config.getPercentualeEvaporazione(),
-		// Main.config.getContrazionePerRaffreddamento(),
-		// Main.config.getLostToTrub(), Main.config.getBiab().toString());
-		//
-		// Integer indexBreweryProfile =
-		// Gui.breweryProfilePickerTableModel.findFirstIndexBreweryProfile(toFind);
-		// if (indexBreweryProfile != null)
-		// {
-		// cmbBreweryProfile.setSelectedIndex(indexBreweryProfile + 1);
-		// }
+				"it_IT".equalsIgnoreCase(generalConfig.getLocale()) ? Constants.ITALIAN : Constants.ENGLISH);
 
 		selectBreweryProfile();
 
 		addBreweryProfileListeners();
 		
-		double calcioSource = Main.config.getCalcioSource() != null ? Main.config.getCalcioSource() : 0.0;
+		double calcioSource = generalConfig.getCalcioSource() != null ? generalConfig.getCalcioSource() : 0.0;
 		spinnerCalcioOrigine.setModel(calcioSource, 0, 100000, 1, "0.0", null);
 		spinnerCalcioOrigine.setDoubleValue(calcioSource);
-		double cloruroSource = Main.config.getCloruroSource() != null ? Main.config.getCloruroSource() : 0.0;
+		double cloruroSource = generalConfig.getCloruroSource() != null ? generalConfig.getCloruroSource() : 0.0;
 		spinnerCloruroOrigine.setModel(cloruroSource, 0, 100000, 1, "0.0", null);
 		spinnerCloruroOrigine.setDoubleValue(cloruroSource);
-		double magnesioSource = Main.config.getMagnesioSource() != null ? Main.config.getMagnesioSource() : 0.0;
+		double magnesioSource = generalConfig.getMagnesioSource() != null ? generalConfig.getMagnesioSource() : 0.0;
 		spinnerMagnesioOrigine.setModel(magnesioSource, 0, 100000, 1, "0.0", null);
 		spinnerMagnesioOrigine.setDoubleValue(magnesioSource);
-		double sodioSource = Main.config.getSodioSource() != null ? Main.config.getSodioSource() : 0.0;
+		double sodioSource = generalConfig.getSodioSource() != null ? generalConfig.getSodioSource() : 0.0;
 		spinnerSodioOrigine.setModel(sodioSource, 0, 100000, 1, "0.0", null);
 		spinnerSodioOrigine.setDoubleValue(sodioSource);
-		double solfatoSource = Main.config.getSolfatoSource() != null ? Main.config.getSolfatoSource() : 0.0;
+		double solfatoSource = generalConfig.getSolfatoSource() != null ? generalConfig.getSolfatoSource() : 0.0;
 		spinnerSolfatoOrigine.setModel(solfatoSource, 0, 100000, 1, "0.0", null);
 		spinnerSolfatoOrigine.setDoubleValue(solfatoSource);
-		double carbonatoSource = Main.config.getCarbonatoSource() != null ? Main.config.getCarbonatoSource() : 0.0;
+		double carbonatoSource = generalConfig.getCarbonatoSource() != null ? generalConfig.getCarbonatoSource() : 0.0;
 		spinnerCarbonatoOrigine.setModel(carbonatoSource, 0, 100000, 1, "0.0", null);
 		spinnerCarbonatoOrigine.setDoubleValue(carbonatoSource);
 		selectWaterProfileOrigine();
@@ -761,7 +752,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		jPanelDatiImpianto.add(lblPercentualeEfficienza, gbc_lblPercentualeEfficienza);
 
 		fldEff = new JUnitSpinner("%", 57);
-		fldEff.setModel(Main.config.getEfficienza(), 0.0, 100, 0.25, "0.00", "CT.eff");
+		fldEff.setModel(generalConfig.getEfficienza(), 0.0, 100, 0.25, "0.00", "CT.eff");
 		
 //		fldEff.setModel(75.0, 1, 100, 1, "0", "CT.eff");
 		GridBagConstraints gbc_spnPercentualeEfficienza = new GridBagConstraints();
@@ -784,8 +775,8 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		gridBagConstraints_30.anchor = java.awt.GridBagConstraints.EAST;
 		jPanelDatiImpianto.add(jLabelVolumeFinale, gridBagConstraints_30);
 		fldVolumeFin = new JUnitSpinner("L", 57);
-		fldVolumeFin.setModel(Main.config.getVolumeFin(), 0.0, 1000000, 0.1, "0.00", "CT.ltt");
-		fldVolumeFin.setDoubleValue(Main.config.getVolumeFin());
+		fldVolumeFin.setModel(generalConfig.getVolumeFin(), 0.0, 1000000, 0.1, "0.00", "CT.ltt");
+		fldVolumeFin.setDoubleValue(generalConfig.getVolumeFin());
 
 		fldVolumeFin.setFont(fldVolumeFin.getFont());
 		GridBagConstraints gridBagConstraints_31 = new java.awt.GridBagConstraints();
@@ -805,7 +796,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		gridBagConstraints_20.anchor = java.awt.GridBagConstraints.EAST;
 		jPanelDatiImpianto.add(jLabel13, gridBagConstraints_20);
 		spnAssorbimentoGraniEsausti = new JUnitSpinner("L/kg", 57);
-		spnAssorbimentoGraniEsausti.setModel(Main.config.getLitriPerKg(), 0.0, 1000000, 0.01, "0.00", "CT.lkg");
+		spnAssorbimentoGraniEsausti.setModel(generalConfig.getLitriPerKg(), 0.0, 1000000, 0.01, "0.00", "CT.lkg");
 		spnAssorbimentoGraniEsausti.setFont(spnAssorbimentoGraniEsausti.getFont());
 		gbc_spnAssorbimentoGraniEsausti = new java.awt.GridBagConstraints();
 		gbc_spnAssorbimentoGraniEsausti.insets = new Insets(0, 0, 5, 0);
@@ -825,7 +816,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		jPanelDatiImpianto.add(jLabel14, gridBagConstraints_21);
 		
 		spnRapportoAcquaGrani = new JUnitSpinner("L/Kg", 57);
-		spnRapportoAcquaGrani.setModel(Main.config.getRapportoAcquaGrani(), 0.0, 1000000, 0.1, "0.00", "CT.ev");
+		spnRapportoAcquaGrani.setModel(generalConfig.getRapportoAcquaGrani(), 0.0, 1000000, 0.1, "0.00", "CT.ev");
 		spnRapportoAcquaGrani.setFont(spnRapportoAcquaGrani.getFont());
 		gbc_spnRapportoAcquaGrani = new java.awt.GridBagConstraints();
 		gbc_spnRapportoAcquaGrani.insets = new Insets(0, 0, 5, 0);
@@ -843,7 +834,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		jPanelDatiImpianto.add(lblPercentualeEvaporazione, gbc_lblPercentualeEvaporazione);
 
 		spnPercentualeEvaporazione = new JUnitSpinner("%", 57);
-		spnPercentualeEvaporazione.setModel(Main.config.getPercentualeEvaporazione(), 0.0, 100, 0.25, "0.00", null);
+		spnPercentualeEvaporazione.setModel(generalConfig.getPercentualeEvaporazione(), 0.0, 100, 0.25, "0.00", null);
 		GridBagConstraints gbc_spnPercentualeEvaporazione = new GridBagConstraints();
 		gbc_spnPercentualeEvaporazione.insets = new Insets(0, 0, 5, 0);
 		gbc_spnPercentualeEvaporazione.gridx = 1;
@@ -858,7 +849,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		gbc_lblContrazionePerRaffreddamento.gridy = 7;
 		jPanelDatiImpianto.add(lblContrazionePerRaffreddamento, gbc_lblContrazionePerRaffreddamento);
 		spnContrazionePerRaffreddamento = new JUnitSpinner("%", 57);
-		spnContrazionePerRaffreddamento.setModel(Main.config.getContrazionePerRaffreddamento(), 0.0, 100, 0.25, "0.00", null);
+		spnContrazionePerRaffreddamento.setModel(generalConfig.getContrazionePerRaffreddamento(), 0.0, 100, 0.25, "0.00", null);
 		GridBagConstraints gbc_spnContrazionePerRaffreddamento = new GridBagConstraints();
 		gbc_spnContrazionePerRaffreddamento.insets = new Insets(0, 0, 5, 0);
 		gbc_spnContrazionePerRaffreddamento.gridx = 1;
@@ -870,57 +861,61 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 
 	private void saveConfiguration(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
 
-		Config config = new Config();
-
-		config.setEfficienza(fldEff.getDoubleValue());
-		config.setVolumeFin(fldVolumeFin.getDoubleValue());
-		// config.setVolumeBoil(fldVolumeBoll.getIntegerValue());
-		config.setMetriSLM(fldSLM.getIntegerValue());
-		config.setAmaroDHEA(fldDHEA.getIntegerValue());
-		config.setBoilTime(fldBoil.getIntegerValue());
-		config.setProxyHost(fldProxy.getText());
-		config.setProxyPort(fldProxyPort.getText());
-		config.setRemoteServer(fldServer.getText());
-		config.setNickIHB(fldNick.getText());
-		config.setPasswordIHB(fldPwd.getText());
-		config.setPotLibGal((chckbxNewCheckBox.isSelected()) ? 1 : 0);
-		config.setLostToTrub(spnLostToTrub.getDoubleValue());
-		config.setLitriPerKg(spnAssorbimentoGraniEsausti.getDoubleValue());
-		config.setRapportoAcquaGrani(spnRapportoAcquaGrani.getDoubleValue());
-		config.setLocale(Constants.ITALIAN.equalsIgnoreCase((String) cmbLanguage.getSelectedItem()) ? "it_IT" : "en_US");
-		config.setPercentualeEvaporazione(spnPercentualeEvaporazione.getDoubleValue());
-		config.setContrazionePerRaffreddamento(spnContrazionePerRaffreddamento.getDoubleValue());
-		config.setBiab(chckbxBiab.isSelected());
+		ConfigurationManager config = ConfigurationManager.getIstance();
 		
-		config.setCalcioSource(spinnerCalcioOrigine.getDoubleValue());
-		config.setMagnesioSource(spinnerMagnesioOrigine.getDoubleValue());
-		config.setSolfatoSource(spinnerSolfatoOrigine.getDoubleValue());
-		config.setCloruroSource(spinnerCloruroOrigine.getDoubleValue());
-		config.setSodioSource(spinnerSodioOrigine.getDoubleValue());
-		config.setCarbonatoSource(spinnerCarbonatoOrigine.getDoubleValue());
+		//TODO da rivedere a che serve il codice seguente
 
-		if (cmbBUGURatio.getSelectedIndex() == 0)
-			config.setBUGURatio(BitterBUGU.TIN);
-		if (cmbBUGURatio.getSelectedIndex() == 1)
-			config.setBUGURatio(BitterBUGU.RAG);
-		if (cmbBUGURatio.getSelectedIndex() == 2)
-			config.setBUGURatio(BitterBUGU.DAN);
+//		config.setEfficienza(fldEff.getDoubleValue());
+//		config.setVolumeFin(fldVolumeFin.getDoubleValue());
+//		// config.setVolumeBoil(fldVolumeBoll.getIntegerValue());
+//		config.setMetriSLM(fldSLM.getIntegerValue());
+//		config.setAmaroDHEA(fldDHEA.getIntegerValue());
+//		config.setBoilTime(fldBoil.getIntegerValue());
+//		config.setProxyHost(fldProxy.getText());
+//		config.setProxyPort(fldProxyPort.getText());
+//		config.setRemoteServer(fldServer.getText());
+//		config.setNickIHB(fldNick.getText());
+//		config.setPasswordIHB(fldPwd.getText());
+//		config.setPotLibGal((chckbxNewCheckBox.isSelected()) ? 1 : 0);
+//		config.setLostToTrub(spnLostToTrub.getDoubleValue());
+//		config.setLitriPerKg(spnAssorbimentoGraniEsausti.getDoubleValue());
+//		config.setRapportoAcquaGrani(spnRapportoAcquaGrani.getDoubleValue());
+//		config.setLocale(Constants.ITALIAN.equalsIgnoreCase((String) cmbLanguage.getSelectedItem()) ? "it_IT" : "en_US");
+//		config.setPercentualeEvaporazione(spnPercentualeEvaporazione.getDoubleValue());
+//		config.setContrazionePerRaffreddamento(spnContrazionePerRaffreddamento.getDoubleValue());
+//		config.setBiab(chckbxBiab.isSelected());
+//		
+//		config.setCalcioSource(spinnerCalcioOrigine.getDoubleValue());
+//		config.setMagnesioSource(spinnerMagnesioOrigine.getDoubleValue());
+//		config.setSolfatoSource(spinnerSolfatoOrigine.getDoubleValue());
+//		config.setCloruroSource(spinnerCloruroOrigine.getDoubleValue());
+//		config.setSodioSource(spinnerSodioOrigine.getDoubleValue());
+//		config.setCarbonatoSource(spinnerCarbonatoOrigine.getDoubleValue());
+//
+//		if (cmbBUGURatio.getSelectedIndex() == 0)
+//			config.setBUGURatio(BitterBUGU.TIN);
+//		if (cmbBUGURatio.getSelectedIndex() == 1)
+//			config.setBUGURatio(BitterBUGU.RAG);
+//		if (cmbBUGURatio.getSelectedIndex() == 2)
+//			config.setBUGURatio(BitterBUGU.DAN);
 
-		Main.config = config;
-		File file = new File(Main.configXML);
+//		generalConfig = config;
+		File file = new File(bpenv.getConfigfileName(Constants.XML_CONFIG));
         if ("1".equals(System.getProperty("ide"))) {
             String currentDir = System.getProperty("user.dir");
             String currentParentDir = new File(currentDir).getParent();
-            file = new File(currentParentDir + Main.resource_distr + Main.configXML);
+            file = new File(currentParentDir + Main.resource_distr + bpenv.getConfigfileName(Constants.XML_CONFIG));
         }
-		Document doc = new Document();
-		Element root = config.toXml();
-		doc.setRootElement(root);
-		Utils.saveXmlAsFile(doc, file, this);
-		if (config.getProxyHost() != null)
-			System.setProperty("http.proxyHost", config.getProxyHost());
-		if (config.getProxyPort() != null)
-			System.setProperty("http.proxyPort", config.getProxyPort());
+        
+        //TODO da rivedere a che serve il codice seguente
+//		Document doc = new Document();
+//		Element root = config.toXml();
+//		doc.setRootElement(root);
+//		Utils.saveXmlAsFile(doc, file, this);
+//		if (config.getProxyHost() != null)
+//			System.setProperty("http.proxyHost", config.getProxyHost());
+//		if (config.getProxyPort() != null)
+//			System.setProperty("http.proxyPort", config.getProxyPort());
 		
 		saveCurrentBreweryProfile();
 		
@@ -958,9 +953,9 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 				if ("1".equals(System.getProperty("ide"))) {
 		            String currentDir = System.getProperty("user.dir");
 		            String currentParentDir = new File(currentDir).getParent();
-		            Utils.saveXmlAsFile(doc, new File(currentParentDir + Main.resource_distr + Main.breweryProfileXML), this);
+		            Utils.saveXmlAsFile(doc, new File(currentParentDir + Main.resource_distr + bpenv.getConfigfileName(Constants.XML_BREPROFILE)), this);
 		        } else {
-		        	Utils.saveXmlAsFile(doc, new File(Main.breweryProfileXML), this);
+		        	Utils.saveXmlAsFile(doc, new File(bpenv.getConfigfileName(Constants.XML_BREPROFILE)), this);
 		        }
 
 			}
@@ -994,9 +989,9 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 				if ("1".equals(System.getProperty("ide"))) {
 		            String currentDir = System.getProperty("user.dir");
 		            String currentParentDir = new File(currentDir).getParent();
-		            Utils.saveXmlAsFile(doc, new File(currentParentDir + Main.resource_distr + Main.waterXML), this);
+		            Utils.saveXmlAsFile(doc, new File(currentParentDir + Main.resource_distr + bpenv.getConfigfileName(Constants.XML_WATER)), this);
 		        } else {
-		        	Utils.saveXmlAsFile(doc, new File(Main.waterXML), this);
+		        	Utils.saveXmlAsFile(doc, new File(bpenv.getConfigfileName(Constants.XML_WATER)), this);
 		        }
 
 			}

@@ -52,6 +52,7 @@ import java.util.ResourceBundle;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.jdom.Attribute;
 import org.jdom.Document;
@@ -60,38 +61,30 @@ import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
 import jmash.component.MultiLineCellRenderer;
+import jmash.config.ConfigurationManager;
+import jmash.config.bean.GeneralConfig;
 import jmash.schema.bjcp.Styleguide;
+import jmash.utils.BrewplusEnvironment;
 import jmash.utils.BundleMessage;
+import jmash.utils.Cli;
+import jmash.utils.Constants;
 
 public class Main {
 
 	private static final Logger logger = Logger.getLogger(Main.class);
-        public static BundleMessage bundle;
+    public static BundleMessage bundle;
         
     public static Locale locale;
         
 	//public static String versioneBrewPlus = "2.1.0";
 	public static Integer webVersion;
-	public static String userDir;
-	public static String waterDir;
-	public static String recipeDir;
-	public static String batchDir;
-	public static String shoppingDir;
-	public static String mashDir;
+
+	
 	public static String Nome = "BrewPlus";
 	public static String resource_distr = "/brewplus-ifdb-distr/src/main/resources/distr/";
-	public static String luppoliXML = "config/luppoli_ita.xml";
-	public static String maltiXML = "config/malti_ita.xml";
-	public static String maltCategoriesXML = "config/categorie_malti.xml";
-	public static String waterXML = "config/water.xml";
-	public static String yeastXML = "config/lieviti_ita.xml";
-	public static String stiliXML = "config/stili.xml";
-	public static String bjcpStylesXML = "config/styleguide-2015.xml";
-	public static String coloriXML = "config/colors.xml";
-	public static String configXML = "config/config.xml";
-	public static String inventarioXML = "config/inventario.xml";
-	public static String breweryProfileXML = "config/profili_impianto.xml";
-	//public static String printTemplate = "templates/ricetta.html";
+	
+	private static BrewplusEnvironment bpenv;
+
 	public static Gui gui;
 	public static javax.swing.JDesktopPane desktopPane;
 	public static MultiLineCellRenderer multiLineCellRenderer = new MultiLineCellRenderer();
@@ -124,6 +117,8 @@ public class Main {
 	public static ImageIcon allGrainIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Main.class.getResource("/jmash/images/ag.png")));
 	public static ImageIcon biabIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Main.class.getResource("/jmash/images/biab.png")));
 	
+	
+	private static GeneralConfig generalConfig;
 	
 	
 	public static enum BitterBUGU { // metodo di calcolo BU/GU
@@ -176,18 +171,16 @@ public class Main {
 	}
 
 	public static String getVersione() {
-		//return versioneBrewPlus;
 		return Utils.getVersion();
 	}
 
-	/*private static void check(String str) {
-		MaltType m = getMaltTypeByWords(str);
-		logger.debug(str + " -> " + (m == null ? "NON TROVATO" : m.getNome()));
-	}*/
 
 	/** Creates a new instance of Main */
 	public Main() {
 		try {
+			
+			bpenv = BrewplusEnvironment.getIstance();
+			
 		    printInfo();
 			readConfig();
 			readProfiliImpianto();
@@ -198,8 +191,8 @@ public class Main {
 			readWater();
 			readColors();
 
-			Styleguide bjcp = Utils.readBjcpXml(bjcpStylesXML);
-			Document doc = Utils.readFileAsXml(bjcpStylesXML);
+			Styleguide bjcp = Utils.readBjcpXml(bpenv.getConfigfileName(Constants.XML_BJCP));
+			Document doc = Utils.readFileAsXml(bpenv.getConfigfileName(Constants.XML_BJCP));
 			Element root = doc.getRootElement();
 			Gui.brewStylePickerTableModel.setRows(getBJCPStyles(root));
 			logger.info("BJCP styles detected");
@@ -223,10 +216,10 @@ public class Main {
 
 		gui.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
 
-		if (config.getProxyHost() != null)
-			System.setProperty("http.proxyHost", config.getProxyHost());
-		if (config.getProxyPort() != null)
-			System.setProperty("http.proxyPort", config.getProxyPort());
+		if (generalConfig.getProxyHost() != null)
+			System.setProperty("http.proxyHost", generalConfig.getProxyHost());
+		if (generalConfig.getProxyPort() != null)
+			System.setProperty("http.proxyPort", generalConfig.getProxyPort());
 
 		try {
 			update();
@@ -237,12 +230,20 @@ public class Main {
 			logger.error(ex.getMessage(), ex);
 		}
 	}
+	
+	private class Option {
+	     String flag, opt;
+	     public Option(String flag, String opt) { this.flag = flag; this.opt = opt; }
+	}
 
 	/**
 	 * @param args
 	 *            the command line arguments
 	 */
 	public static void main(String[] args) {
+		
+		new Cli(args).parse();		
+		
 		try {
 			AzatothLookAndFeel myLAF = new AzatothLookAndFeel();
 			UIManager.setLookAndFeel(myLAF);
@@ -251,16 +252,13 @@ public class Main {
 			logger.error(e.getMessage(), e);
 			return;
 		}
-		userDir = System.getProperty("user.dir");
-		recipeDir = userDir + "/recipes/";
-		batchDir = userDir + "/batches/";
-		mashDir = userDir + "/mashes/";
-		shoppingDir = userDir + "/shopping/";
-		waterDir = userDir + "/water/";
+		
+		
+
 		new Main();
 		try {
 			if (args.length > 0 && args[0].compareToIgnoreCase("showNews") == 0) {
-				String str = config.getRemoteRoot();
+				String str = generalConfig.getRemoteRoot();
 				if (!str.startsWith("http://"))
 					str = "http://" + str;
 				if (!str.endsWith("/"))
@@ -271,9 +269,11 @@ public class Main {
 		}
 	}
 
+
+
 	public static void readLuppoli() throws Exception {
 		Gui.hopPickerTableModel.emptyRows();
-		Document doc = Utils.readFileAsXml(Main.luppoliXML);
+		Document doc = Utils.readFileAsXml(bpenv.getConfigfileName(Constants.XML_HOPS));
 		if (doc == null) {
 			return;
 		}
@@ -325,7 +325,7 @@ public class Main {
   
   public static void readCategorieMalti() throws Exception {
 		Gui.maltCategoryPickerTableModel.emptyRows();
-		Document doc = Utils.readFileAsXml(Main.maltCategoriesXML);
+		Document doc = Utils.readFileAsXml(bpenv.getConfigfileName(Constants.XML_CATEGORIES));
 		if (doc == null) {
 			return;
 		}
@@ -347,7 +347,7 @@ public class Main {
   
   public static void readProfiliImpianto() throws Exception {
 		Gui.breweryProfilePickerTableModel.emptyRows();
-		Document doc = Utils.readFileAsXml(Main.breweryProfileXML);
+		Document doc = Utils.readFileAsXml(bpenv.getConfigfileName(Constants.XML_BREPROFILE));
 		if (doc == null) {
 			return;
 		}
@@ -369,7 +369,7 @@ public class Main {
 
 	public static void readMalti() throws Exception {
 		Gui.maltPickerTableModel.emptyRows();
-		Document doc = Utils.readFileAsXml(Main.maltiXML);
+		Document doc = Utils.readFileAsXml(bpenv.getConfigfileName(Constants.XML_MALT));
 		if (doc == null) {
 			return;
 		}
@@ -391,7 +391,7 @@ public class Main {
 
 	public static void readLieviti() throws Exception {
 		Gui.yeastPickerTableModel.emptyRows();
-		Document doc = Utils.readFileAsXml(Main.yeastXML);
+		Document doc = Utils.readFileAsXml(bpenv.getConfigfileName(Constants.XML_YEAST));
 		if (doc == null) {
 			return;
 		}
@@ -417,7 +417,7 @@ public class Main {
 
 	public static void readWater() throws Exception {
 		Gui.waterPickerTableModel.emptyRows();
-		Document doc = Utils.readFileAsXml(Main.waterXML);
+		Document doc = Utils.readFileAsXml(bpenv.getConfigfileName(Constants.XML_WATER));
 		if (doc == null) {
 			return;
 		}
@@ -442,23 +442,18 @@ public class Main {
 		Collections.sort(Gui.waterPickerTableModel.getRows());
 	}
 
-	public static Config config;
-
 	public static void readConfig()  {
 
-		Document doc = Utils.readFileAsXml(Main.configXML);
-		if (doc == null) {
-			return;
-		}
-		Element root = doc.getRootElement();
-		config = Config.fromXml(root);
+		ConfigurationManager cm = ConfigurationManager.getIstance();
 		logger.info("config detected");
 		
+		generalConfig = cm.getIstance().getGeneralConfig();
 		
-		locale = new Locale(config.getLocale().split("_")[0],config.getLocale().split("_")[1]);
+		
+		locale = new Locale(generalConfig.getLocale().split("_")[0],generalConfig.getLocale().split("_")[1]);
 		Locale.setDefault(locale);
         ResourceBundle.clearCache();
-        logger.info("Setting localization: " + config.getLocale());
+        logger.info("Setting localization: " + generalConfig.getLocale());
 		bundle = new BundleMessage(java.util.PropertyResourceBundle.getBundle("jmash/lang"));
 		
 	}
@@ -475,7 +470,7 @@ public class Main {
 
 	public static void readStili() throws Exception {
 		Gui.brewStylePickerTableModel.emptyRows();
-		Document doc = Utils.readFileAsXml(Main.stiliXML);
+		Document doc = Utils.readFileAsXml(bpenv.getConfigfileName(Constants.XML_STYLES));
 		if (doc == null) {
 			return;
 		}
@@ -494,7 +489,7 @@ public class Main {
 	public static BinaryTreeNode treeColor;
 
 	public static void readColors() throws Exception {
-		Document doc = Utils.readFileAsXml(Main.coloriXML);
+		Document doc = Utils.readFileAsXml(bpenv.getConfigfileName(Constants.XML_COLORS));
 		if (doc == null) {
 			return;
 		}
@@ -690,10 +685,10 @@ public class Main {
 	@SuppressWarnings("unused")
 	public void update() throws FileNotFoundException, IOException {
 		boolean ret = false;
-		System.setProperty("http.proxyHost", Main.config.getProxyHost());
-		System.setProperty("http.proxyPort", Main.config.getProxyPort());
+		System.setProperty("http.proxyHost", generalConfig.getProxyHost());
+		System.setProperty("http.proxyPort", generalConfig.getProxyPort());
 
-		String remoteRoot = Main.config.getRemoteRoot();
+		String remoteRoot = generalConfig.getRemoteRoot();
 		if (remoteRoot == null)
 			remoteRoot = "http://www.ilforumdellabirra.net/";
 

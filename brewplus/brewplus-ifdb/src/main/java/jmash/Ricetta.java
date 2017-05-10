@@ -77,6 +77,8 @@ import org.jdom.output.XMLOutputter;
 import jmash.Main.BitterBUGU;
 import jmash.component.GlassPanel;
 import jmash.component.UpDownPopupMenu;
+import jmash.config.ConfigurationManager;
+import jmash.config.bean.GeneralConfig;
 import jmash.imagecomponents.ImageFileView;
 import jmash.imagecomponents.ImageFilter;
 import jmash.imagecomponents.ImagePreview;
@@ -91,6 +93,8 @@ import jmash.tableModel.MaltTableModel;
 import jmash.tableModel.NumberFormatter;
 import jmash.tableModel.SummaryTableModel;
 import jmash.tableModel.YeastTableModel;
+import jmash.utils.BrewplusEnvironment;
+import jmash.utils.Constants;
 
 /**
  *
@@ -103,6 +107,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	*/
 	private static final long serialVersionUID = -3021970158888588464L;
 	private static final Logger LOGGER = Logger.getLogger(Ricetta.class);
+	private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
 	/** Creates new form Ricetta */
 	private Boolean isCotta = false;
 	protected Component entered = null;
@@ -276,8 +281,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		thisRicetta.setIconifiable(true);
 		thisRicetta.setTitle(Main.bundle.getString("title.recipe"));
 		thisRicetta.setVisible(true);
-		setVolume(Main.config.getVolumeFin());
-		setVolumeBoll(Main.config.getVolumeBoil());
+		setVolume(generalConfig.getVolumeFin());
+		setVolumeBoll(generalConfig.getVolumeBoil());
 		setUnitaMisura("litri");
 
 		spinBollitura.setEditor(new JSpinner.NumberEditor(spinBollitura, "# min"));
@@ -287,11 +292,11 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		spinVolumeFin.setModelFormat(23.0, 0.25, 9999999.0, 0.25, "0.00", "Ricetta.VF");
 		spinVolumeDiluito.setModelFormat(23.0, 0.25, 9999999.0, 0.25, "0.00", "Ricetta.DL");
 
-		spinVolumeBoll.setVolume(Main.config.getVolumeBoil());
-		spinVolumeFin.setVolume(Main.config.getVolumeFin());
-		spinEfficienza.setValue(Main.config.getEfficienza());
-		spinBollitura.setValue(Main.config.getBoilTime());
-		chkBiab.setSelected(Main.config.getBiab());
+		spinVolumeBoll.setVolume(generalConfig.getVolumeBoil());
+		spinVolumeFin.setVolume(generalConfig.getVolumeFin());
+		spinEfficienza.setValue(generalConfig.getEfficienza());
+		spinBollitura.setValue(generalConfig.getBoilTime());
+		chkBiab.setSelected(generalConfig.getBiab());
 
 		((javax.swing.SpinnerNumberModel) spinEfficienza.getModel()).setMaximum(100);
 		((javax.swing.SpinnerNumberModel) spinBollitura.getModel()).setMinimum(0);
@@ -1935,15 +1940,15 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		summary.setEbc(String.format("%.01f",getEbc()));
 		summary.setEfficency(rec.getEfficienza() + "%");
 		summary.setFg(getFGPrevista());
-		if (Main.config.getBUGURatio() == BitterBUGU.TIN) {
+		if (BitterBUGU.TIN.equals(generalConfig.getBUGUratiostring())) {
 			summary.setIbu(String.format("%.01f",hopTableModel.getIBUTinseth()));
 			summary.setIbuLabel("IBU (Tinseth)");
 		}
-		if (Main.config.getBUGURatio() == BitterBUGU.RAG) {
+		if (BitterBUGU.RAG.equals(generalConfig.getBUGUratiostring())) {
 			summary.setIbu(String.format("%.01f",hopTableModel.getIBURager()));
 			summary.setIbuLabel("IBU (Rager)");
 		}
-		if (Main.config.getBUGURatio() == BitterBUGU.DAN) {
+		if (BitterBUGU.DAN.equals(generalConfig.getBUGUratiostring())) {
 			summary.setIbu(String.format("%.01f",hopTableModel.getIBUDaniels()));
 			summary.setIbuLabel("IBU (Daniels)");
 		}
@@ -2442,7 +2447,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		this.unitaMisura = unitaMisura;
 	}
 
-	private double efficienza = Main.config.getEfficienza();
+	private double efficienza = generalConfig.getEfficienza();
 
 	public double getEfficienza() {
 		return this.efficienza;
@@ -2452,7 +2457,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		this.efficienza = v;
 	}
 
-	private int bollitura = Main.config.getBoilTime();
+	private int bollitura = generalConfig.getBoilTime();
 
 	public int getBollitura() {
 		return this.bollitura;
@@ -2461,7 +2466,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	public void setBollitura(int bollitura) {
 		this.bollitura = bollitura;
 	}
-	private Boolean biab = Main.config.getBiab();
+	private Boolean biab = generalConfig.getBiab();
 
 	public void setBiab(Boolean biab) {
 		this.biab = biab;
@@ -2640,8 +2645,9 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	}
 
 	public File saveRicetta() {
+		BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
 		if (this.file == null) {
-			file = Utils.pickFileToSave(this, (String) Main.getFromCache("recipe.dir", Main.recipeDir));
+			file = Utils.pickFileToSave(this, (String) Main.getFromCache("recipe.dir", bpenv.getFolderName(Constants.DIR_RECIPE)));
 		}
 		if (this.file == null)
 			return null;
@@ -2656,8 +2662,10 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	}
 	
     public File saveRicettaPID() {
+    	
+    	BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
         if (this.file == null) {
-            file = Utils.pickFileToSavePID(this, (String) Main.getFromCache("recipe.dir", Main.recipeDir));
+            file = Utils.pickFileToSavePID(this, (String) Main.getFromCache("recipe.dir", bpenv.getFolderName(Constants.DIR_RECIPE)));
         }
         if (this.file == null)
             return null;
@@ -3285,28 +3293,23 @@ public class Ricetta extends javax.swing.JInternalFrame {
 			maxWidth = danielsColumn.getMaxWidth();
 			preferredWidth = danielsColumn.getPreferredWidth();
 		}
-
-		switch (Main.config.getBUGURatio()) {
-			case DAN:
+		
+		if (BitterBUGU.TIN.equals(generalConfig.getBUGUratiostring())) {
 				visibleIBUColumn = danielsColumn;
 				invisibleIBUColumn1 = tinsethColumn;
 				invisibleIBUColumn2 = ragerColumn;
-				break;
-			case RAG:
+		} else if (BitterBUGU.RAG.equals(generalConfig.getBUGUratiostring())) {
 				visibleIBUColumn = ragerColumn;
 				invisibleIBUColumn1 = tinsethColumn;
 				invisibleIBUColumn2 = danielsColumn;
-				break;
-			case TIN:
+		} else if (BitterBUGU.DAN.equals(generalConfig.getBUGUratiostring())) {
 				visibleIBUColumn = tinsethColumn;
 				invisibleIBUColumn1 = danielsColumn;
 				invisibleIBUColumn2 = ragerColumn;
-				break;
-			default:
+		} else {
 				visibleIBUColumn = tinsethColumn;
 				invisibleIBUColumn1 = danielsColumn;
 				invisibleIBUColumn2 = ragerColumn;
-				break;
 		}
 
 		if (width > 0) {
