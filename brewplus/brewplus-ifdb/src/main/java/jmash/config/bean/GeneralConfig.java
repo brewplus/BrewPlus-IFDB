@@ -2,7 +2,7 @@ package jmash.config.bean;
 
 /**
 *
-* @author rekhyts
+* @author rekhyt
 */
 
 public class GeneralConfig {

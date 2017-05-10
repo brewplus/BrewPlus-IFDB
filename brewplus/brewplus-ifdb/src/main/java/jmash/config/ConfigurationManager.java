@@ -35,7 +35,7 @@ import jmash.utils.Constants;
 
 /**
  *
- * @author rekhyts
+ * @author rekhyt
  */
 public class ConfigurationManager {
 	

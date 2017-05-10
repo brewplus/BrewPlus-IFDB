@@ -79,8 +79,8 @@ import jmash.utils.Utility;
 
 public class Gui extends javax.swing.JFrame {
 	
-//	private static final String PATH_BACKGROUND =  "/jmash/images/bkgrnd.jpg";
-	private static final String PATH_BACKGROUND =  "/jmash/images/back.gif";
+	private static final String PATH_BACKGROUND =  "/jmash/images/bkgrnd.jpg";
+//	private static final String PATH_BACKGROUND =  "/jmash/images/back.gif";
 	private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
 	private static BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
 
