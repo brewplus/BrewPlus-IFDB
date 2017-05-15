@@ -15,12 +15,16 @@ import javax.swing.JPanel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.apache.log4j.Logger;
 import org.jdom.Element;
 
 import jmash.component.JUnitSpinner;
 
 public class WaterNeeded extends JInternalFrame {
 	private static final long serialVersionUID = -5301195065823912614L;
+	private static final Logger LOGGER = Logger.getLogger(WaterNeeded.class);
+	
+	private static final Double DEFAULT_TEMP_MASHIN= 68.0;
 
 	private JPanel panelWaterNeeded;
 	private JPanel panelSpecificheCotta;
@@ -77,6 +81,7 @@ public class WaterNeeded extends JInternalFrame {
 	private GridBagConstraints gridBagConstraints_1;
 	// OriginalGravity without late addiction fermentables
 	private BigDecimal OriginalGravityIBU = new BigDecimal(0);
+	private Double temperaturaMashIn = DEFAULT_TEMP_MASHIN;
 	
 	public WaterNeeded() {
 		initComponents();
@@ -817,15 +822,15 @@ public class WaterNeeded extends JInternalFrame {
 		double acquaMash = !biab ? totGrani * rapportoAcquaGrani : acquaTotale;
 		double acquaSparge = acquaTotale - acquaMash;
 		double volumeImpasto = acquaMash + 0.67 * totGrani;
-		double StrikeWater = ((0.41 / (acquaMash / totGrani)) * ( getTf() - temperaturaGrani() )) + getTf();
-		
+		double strikeWater = ((0.41 / (acquaMash / totGrani)) * ( getTemperaturaMashIn() - getTemperaturaGrani() )) + getTemperaturaMashIn();
+		LOGGER.debug("StrikeWater[" + strikeWater + "°]");
 		
 		spinnerPerditaPerAssorbimento.setDoubleValue(perditeAssorbimento);
 		spinnerPerditaPerEvaporazione.setDoubleValue(perditaEvaporazione);
 		spinnerPerditaPerContrazione.setDoubleValue(perditaContrazione);
 
 		spinnerVolumeImpasto.setDoubleValue(volumeImpasto);
-		spinnerStrikeWater.setDoubleValue(StrikeWater);
+		spinnerStrikeWater.setDoubleValue(strikeWater);
 		spinnerVolumeMostoPreBoil.setDoubleValue(volumeMostoPreBoil);
 		spinnerOGPreBoil.setDoubleValue(ogPreBoil);
 		spinnerVolumePostBoil.setDoubleValue(volumePostBoil);
@@ -1028,14 +1033,22 @@ public class WaterNeeded extends JInternalFrame {
     }
     
     
-    private Double temperaturaGrani()
+    private Double getTemperaturaGrani()
     {
+    	LOGGER.debug("Letto temperaturaGrani[" + Main.config.getTempGrani() + "°]");
     	return Main.config.getTempGrani();
     }
     
-    private Double getTf()
+    private Double getTemperaturaMashIn()
     {
-    	return 68.0;
+    	LOGGER.debug("Letto mashIn[" + this.temperaturaMashIn + "°]");
+    	return temperaturaMashIn;
     }
+    
+    public void setTemperaturaMashIn(Double temperaturaMashIn) {
+		this.temperaturaMashIn = temperaturaMashIn != null ? temperaturaMashIn : DEFAULT_TEMP_MASHIN;
+		LOGGER.debug("Impostato mashIn[" + this.temperaturaMashIn + "°]");
+		calcolaQuantitaAcqua();
+	}
 
 }

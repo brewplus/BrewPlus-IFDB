@@ -23,6 +23,9 @@ package jmash;
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
@@ -30,14 +33,10 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import javax.swing.ImageIcon;
 
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
-import jmash.tableModel.MashDecoctionStepTableModel;
-import jmash.tableModel.MashInfusionStepTableModel;
-import jmash.tableModel.MashStepTableModel;
-import jmash.tableModel.NumberFormatter;
 
 import org.jdom.Document;
 import org.jdom.Element;
@@ -55,10 +54,11 @@ import org.jfree.chart.renderer.xy.XYAreaRenderer;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
-import javax.swing.JButton;
-import java.awt.Dimension;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
+import jmash.tableModel.MashDecoctionStepTableModel;
+import jmash.tableModel.MashInfusionStepTableModel;
+import jmash.tableModel.MashStepTableModel;
+import jmash.tableModel.NumberFormatter;
 
 /**
  *
@@ -1078,6 +1078,12 @@ public class PanelMashStep extends javax.swing.JPanel {
 			rds = this.mashStepTableModel.getDataSet(rds);
 			rds = this.mashDecoctionStepTableModel.getDataSet(rds);
 			rds = this.mashInfusionStepTableModel.getDataSet(rds);
+		}
+		
+		if (this.mashStepTableModel.getRows() != null && !this.mashStepTableModel.getRows().isEmpty())
+		{
+			MashStep mashInStep = this.mashStepTableModel.getRow(0);
+			ricetta.getWaterNeeded().setTemperaturaMashIn(new Double(mashInStep.getStartTemp()));
 		}
 	}
 
