@@ -823,7 +823,6 @@ public class WaterNeeded extends JInternalFrame {
 		double acquaSparge = acquaTotale - acquaMash;
 		double volumeImpasto = acquaMash + 0.67 * totGrani;
 		double strikeWater = ((0.41 / (acquaMash / totGrani)) * ( getTemperaturaMashIn() - getTemperaturaGrani() )) + getTemperaturaMashIn();
-		LOGGER.debug("StrikeWater[" + strikeWater + "°]");
 		
 		spinnerPerditaPerAssorbimento.setDoubleValue(perditeAssorbimento);
 		spinnerPerditaPerEvaporazione.setDoubleValue(perditaEvaporazione);
@@ -1035,19 +1034,16 @@ public class WaterNeeded extends JInternalFrame {
     
     private Double getTemperaturaGrani()
     {
-    	LOGGER.debug("Letto temperaturaGrani[" + Main.config.getTempGrani() + "°]");
     	return Main.config.getTempGrani();
     }
     
     private Double getTemperaturaMashIn()
     {
-    	LOGGER.debug("Letto mashIn[" + this.temperaturaMashIn + "°]");
     	return temperaturaMashIn;
     }
     
     public void setTemperaturaMashIn(Double temperaturaMashIn) {
 		this.temperaturaMashIn = temperaturaMashIn != null ? temperaturaMashIn : DEFAULT_TEMP_MASHIN;
-		LOGGER.debug("Impostato mashIn[" + this.temperaturaMashIn + "°]");
 		calcolaQuantitaAcqua();
 	}
 
