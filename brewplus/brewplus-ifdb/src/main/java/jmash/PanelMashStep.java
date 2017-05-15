@@ -1082,6 +1082,12 @@ public class PanelMashStep extends javax.swing.JPanel {
 			rds = this.mashDecoctionStepTableModel.getDataSet(rds);
 			rds = this.mashInfusionStepTableModel.getDataSet(rds);
 		}
+		
+		if (this.mashStepTableModel.getRows() != null && !this.mashStepTableModel.getRows().isEmpty())
+		{
+			MashStep mashInStep = this.mashStepTableModel.getRow(0);
+			ricetta.getWaterNeeded().setTemperaturaMashIn(new Double(mashInStep.getStartTemp()));
+		}
 	}
 
 	public void setReadOnly() {

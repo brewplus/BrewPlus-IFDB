@@ -2176,6 +2176,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		summaryTableModel.setTotG(maltTableModel.getGrammi());
 
 
+		waterNeeded.setBoilTime(getBollitura());
 		waterNeeded.setBatchSize(spinVolumeFin.getVolume());
 		waterNeeded.setTotGrani((double) maltTableModel.getGrammiMash() / 1000);
 		waterNeeded.setOriginalGravity(maltTableModel.getSG(concentrato));
@@ -2780,7 +2781,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		//LOGGER.debug("Calcolo FG - OGPrevista = " + OGPrevista);
 		Integer FGPrevista = OGPrevista;
 		Integer attenuazioneMed = 75;
-		if (yeastTableModel.getRows().size() > 0 && yeastTableModel.getRows().get(0).getAttenuazioneMed() != null && !"".equals(yeastTableModel.getRows().get(0).getAttenuazioneMed())) {
+		if (yeastTableModel.getRows() != null && yeastTableModel.getRows().size() > 0 && yeastTableModel.getRows().get(0).getAttenuazioneMed() != null && !"".equals(yeastTableModel.getRows().get(0).getAttenuazioneMed())) {
 		    attenuazioneMed = new Integer(yeastTableModel.getRows().get(0).getAttenuazioneMed());
 		    //LOGGER.debug("Calcolo FG - Recupero Attenuazione dalla lista = " + attenuazioneMed);
 		}
@@ -2817,7 +2818,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	
 	private String calcoloVolumiC02() {
 		Integer temperaturaMaxFerm = -1;
-		if (yeastTableModel.getRows().size() > 0 && yeastTableModel.getRows().get(0).getTemperaturaMaxFerm() != null && !"".equals(yeastTableModel.getRows().get(0).getTemperaturaMaxFerm())) {
+		if (yeastTableModel.getRows() != null && yeastTableModel.getRows().size() > 0 && yeastTableModel.getRows().get(0).getTemperaturaMaxFerm() != null && !"".equals(yeastTableModel.getRows().get(0).getTemperaturaMaxFerm())) {
 			temperaturaMaxFerm = new Integer(yeastTableModel.getRows().get(0).getTemperaturaMaxFerm());
 		}
 		

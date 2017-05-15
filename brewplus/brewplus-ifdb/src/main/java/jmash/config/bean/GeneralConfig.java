@@ -19,6 +19,7 @@ public class GeneralConfig {
     private String BUGUratiostring;
 
     private Integer boilTime;
+    private Double tempGrani = 10.0;
     private Double efficienza;
     private Double volumeFin;
     private Double volumeBoil;
@@ -104,6 +105,15 @@ public class GeneralConfig {
 	public void setBoilTime(Integer boilTime) {
 		this.boilTime = boilTime;
 	}
+	
+	public Double getTempGrani(){
+    	return this.tempGrani;
+    }
+    
+    public void setTempGrani(Double tempGrani){
+    	this.tempGrani = tempGrani;
+    }
+    
 	public Double getEfficienza() {
 		return efficienza;
 	}
