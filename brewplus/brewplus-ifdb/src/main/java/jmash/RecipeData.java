@@ -20,6 +20,8 @@
 
 package jmash;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -319,12 +321,15 @@ public class RecipeData {
         sb.append("REN:").append(this.nome.length() == 0 ? "NO NAME" : this.nome).append(SEPARATOR);
         // Boil Time
         sb.append("CTT:").append(this.bollitura).append(SEPARATOR);
+        // Strike Water
+        BigDecimal swt =  new BigDecimal(this.getWaterNeeded().getAttributeValue("StrikeWater"));
+        sb.append("STW:").append(swt.setScale(0, RoundingMode.HALF_EVEN)).append(SEPARATOR);
         
         // Mash steps
         List<MashStep> listMashStep = this.getInfusionSteps();
         int size = listMashStep.size();
-        if(size < 2 || size >=8 ){
-            LOGGER.error("Number of steps must be grater than 2 and lesser than 8 ");
+        if(size < 1 || size >=8 ){
+            LOGGER.error("Number of steps must be grater than 1 and lesser than 7 ");
         } else {
             MashStep mashIn = listMashStep.get(0);
             sb.append("N00:").append("Mash-IN").append(SEPARATOR);
@@ -359,7 +364,8 @@ public class RecipeData {
         for(Hop hop : hopList){
             if(hop.getBoilTime().intValue()>0 || !hop.getUso().equalsIgnoreCase("Dry")){
                 sb.append("H0").append(i).append(":").append(hop.getNome()).append(SEPARATOR);
-                sb.append("M0").append(i).append(":").append(hop.getGrammi()).append(SEPARATOR);
+                BigDecimal hg = new BigDecimal(hop.getGrammi());
+                sb.append("M0").append(i).append(":").append(hg.setScale(0, RoundingMode.HALF_EVEN)).append(SEPARATOR);
                 sb.append("B0").append(i).append(":").append(hop.getBoilTime() == 0 ? 1 : hop.getBoilTime()).append(SEPARATOR);
                 i++;
                 if(i>=8 ){
@@ -368,8 +374,10 @@ public class RecipeData {
             }
         }
         
+        LOGGER.info("PID recipe:");
+        LOGGER.info(sb.toString().toUpperCase());
         
-        return sb.toString();
+        return sb.toString().toUpperCase();
         
     }
 

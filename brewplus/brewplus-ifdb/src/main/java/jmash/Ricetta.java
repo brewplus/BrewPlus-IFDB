@@ -631,21 +631,6 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		});
 		jPanel6.add(btnAdd6);
 
-		btnAdd8.setIcon(Main.strikeIcon);
-		btnAdd8.setToolTipText("Temperatura mash in");
-		btnAdd8.setContentAreaFilled(false);
-		btnAdd8.setBorderPainted(false);
-		btnAdd8.setAlignmentX(0.5F);
-		btnAdd8.setMaximumSize(new java.awt.Dimension(30, 30));
-		btnAdd8.setMinimumSize(new java.awt.Dimension(30, 30));
-		btnAdd8.setPreferredSize(new java.awt.Dimension(36, 36));
-		btnAdd8.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnAdd8ActionPerformed(evt);
-			}
-		});
-		jPanel6.add(btnAdd8);
-
 		btnAdd9.setIcon(Main.printIcon);
 		btnAdd9.setToolTipText("Stampa");
 		btnAdd9.setContentAreaFilled(false);
@@ -687,20 +672,6 @@ public class Ricetta extends javax.swing.JInternalFrame {
 			}
 		});
 		jPanel6.add(btnAdd11);
-
-		btnAdd12.setIcon(new ImageIcon(Ricetta.class.getResource("/jmash/images/timer2.png")));
-		btnAdd12.setToolTipText("Genera timer di bollitura");
-		btnAdd12.setContentAreaFilled(false);
-		btnAdd12.setBorderPainted(false);
-		btnAdd12.setAlignmentX(0.5F);
-		btnAdd12.setMinimumSize(new java.awt.Dimension(32, 32));
-		btnAdd12.setPreferredSize(new java.awt.Dimension(36, 36));
-		btnAdd12.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnAdd12ActionPerformed(evt);
-			}
-		});
-		jPanel6.add(btnAdd12);
 
 		jPanel10.add(jPanel6);
 
@@ -1795,17 +1766,6 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		ricettaModificata();
 	}
 
-	private void btnAdd12ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd12ActionPerformed
-		// Document doc = this.toRecipeData().toXml();
-		// Main.gui.addFrame(new XmlEditor(doc));
-		frmTimerBoil ftb = new frmTimerBoil(this.hopTableModel, ((Integer) this.spinBollitura.getValue()),
-				fldNome.getText().trim());
-		Gui.desktopPane.add(ftb);
-		Utils.center(ftb, this);
-		ftb.setVisible(true);
-
-	}// GEN-LAST:event_btnAdd12ActionPerformed
-
 	private void btnAdd11ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd11ActionPerformed
 
 		finalizeInInventory();
@@ -1978,14 +1938,6 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		Utils.center(fi, this);
 		fi.setVisible(true);
 	}
-
-	private void btnAdd8ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd8ActionPerformed
-		StrikeTemp ed = new StrikeTemp();
-		ed.setKgMalto(this.summaryTableModel.getTotG() / 1000);
-		Gui.desktopPane.add(ed);
-		Utils.center(ed, this);
-		ed.setVisible(true);
-	}// GEN-LAST:event_btnAdd8ActionPerformed
 
 	private void btnAdd6ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd6ActionPerformed
 		DiluitionForm ed = new DiluitionForm(this.getVolume(), this.getGravity(), this.hopTableModel.getIBUTinseth());

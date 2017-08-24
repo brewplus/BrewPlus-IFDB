@@ -111,7 +111,6 @@ public class Gui extends javax.swing.JFrame {
             btnSaveAll20.setToolTipText(Main.bundle.getString("title.HopsSheet"));
             btnSaveAll18.setToolTipText(Main.bundle.getString("title.beerStyle"));
             button.setToolTipText(Main.bundle.getString("title.forumFeed"));
-            btnUpdate.setToolTipText(Main.bundle.getString("title.revisionAvailable"));
             btnSaveAll16.setToolTipText(Main.bundle.getString("title.settings"));
 //            btnGuida.setToolTipText(Main.bundle.getString("title.help"));
             btnNew1.setToolTipText(Main.bundle.getString("title.brewRecording"));
@@ -282,7 +281,6 @@ public class Gui extends javax.swing.JFrame {
 		btnSaveAll17 = new javax.swing.JButton();
 		btnSaveAll15 = new javax.swing.JButton();
 		jSeparator2 = new javax.swing.JSeparator();
-		btnUpdate = new javax.swing.JButton();
 		sideBar = new javax.swing.JToolBar();
 		btnNew1 = new javax.swing.JButton();
 		btnSaveAll21 = new javax.swing.JButton();
@@ -499,30 +497,6 @@ public class Gui extends javax.swing.JFrame {
 		});
 		toolbar.add(btnSaveAll7);
 
-		btnSaveAll8.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/temp.png"))); // NOI18N
-		btnSaveAll8.setToolTipText("Temperatura mash in");
-		btnSaveAll8.setMaximumSize(new java.awt.Dimension(37, 35));
-		btnSaveAll8.setMinimumSize(new java.awt.Dimension(37, 35));
-		btnSaveAll8.setPreferredSize(new java.awt.Dimension(37, 35));
-		btnSaveAll8.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnSaveAll8ActionPerformed(evt);
-			}
-		});
-		toolbar.add(btnSaveAll8);
-
-		btnSaveAll9.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/controflusso.png"))); // NOI18N
-		btnSaveAll9.setToolTipText("Dimensionamento controflusso");
-		btnSaveAll9.setMaximumSize(new java.awt.Dimension(37, 35));
-		btnSaveAll9.setMinimumSize(new java.awt.Dimension(37, 35));
-		btnSaveAll9.setPreferredSize(new java.awt.Dimension(37, 35));
-		btnSaveAll9.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnSaveAll9ActionPerformed(evt);
-			}
-		});
-		toolbar.add(btnSaveAll9);
-
 		btnSaveAll11.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/bubbles.png"))); // NOI18N
 		btnSaveAll11.setToolTipText("Yeast pitcher - calcolo inoculo");
 		btnSaveAll11.setMaximumSize(new java.awt.Dimension(37, 35));
@@ -559,17 +533,6 @@ public class Gui extends javax.swing.JFrame {
 		});
 //		toolbar.add(btnSaveAll17);
 
-		btnSaveAll15.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/drill.png"))); // NOI18N
-		btnSaveAll15.setToolTipText("Calcolo fori filtro");
-		btnSaveAll15.setMaximumSize(new java.awt.Dimension(37, 35));
-		btnSaveAll15.setMinimumSize(new java.awt.Dimension(37, 35));
-		btnSaveAll15.setPreferredSize(new java.awt.Dimension(37, 35));
-		btnSaveAll15.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnSaveAll15ActionPerformed(evt);
-			}
-		});
-		toolbar.add(btnSaveAll15);
 
 		JSeparator separator_2 = new JSeparator();
 		separator_2.setOrientation(SwingConstants.VERTICAL);
@@ -620,16 +583,6 @@ public class Gui extends javax.swing.JFrame {
 		jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 		toolbar.add(jSeparator2);
 
-		btnUpdate.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/update.png"))); // NOI18N
-		btnUpdate.setToolTipText("Aggiornamento disponibile");
-		btnUpdate.setMaximumSize(new java.awt.Dimension(37, 35));
-		btnUpdate.setMinimumSize(new java.awt.Dimension(37, 35));
-		btnUpdate.setPreferredSize(new java.awt.Dimension(37, 35));
-		btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnUpdateActionPerformed(evt);
-			}
-		});
 		btnSaveAll16 = new javax.swing.JButton();
 
 		btnSaveAll16.setFont(btnSaveAll16.getFont());
@@ -659,21 +612,6 @@ public class Gui extends javax.swing.JFrame {
             }
         });
         toolbar.add(btnExport2PID);
-
-//		btnGuida = new JButton();
-//		btnGuida.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				ShowHelp();
-//			}
-//		});
-//		btnGuida.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/help.png")));
-//		btnGuida.setToolTipText("Help");
-//		btnGuida.setPreferredSize(new Dimension(37, 35));
-//		btnGuida.setMinimumSize(new Dimension(37, 35));
-//		btnGuida.setMaximumSize(new Dimension(37, 35));
-//		btnGuida.setFont(new Font("SansSerif", Font.PLAIN, 12));
-//		toolbar.add(btnGuida);
-		toolbar.add(btnUpdate);
 
 		getContentPane().add(toolbar, java.awt.BorderLayout.NORTH);
 
@@ -949,25 +887,10 @@ public class Gui extends javax.swing.JFrame {
 			}
 		});
 
-//		mntmNewMenuItem = new JMenuItem("Help");
-//		mntmNewMenuItem.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				ShowHelp();
-//			}
-//		});
-//		jMenu3.add(mntmNewMenuItem);
-
 		JSeparator separator_3 = new JSeparator();
 		jMenu3.add(separator_3);
 		mnuUpdate = new javax.swing.JMenuItem();
 		jMenu3.add(mnuUpdate);
-
-//		mnuUpdate.setText("Controllo aggiornamenti");
-//		mnuUpdate.addActionListener(new java.awt.event.ActionListener() {
-//			public void actionPerformed(java.awt.event.ActionEvent evt) {
-//				mnuUpdateActionPerformed(evt);
-//			}
-//		});
 
 		JSeparator separator_4 = new JSeparator();
 		jMenu3.add(separator_4);
@@ -1237,11 +1160,7 @@ public class Gui extends javax.swing.JFrame {
 		} catch (NoSuchMethodException ex) {
 			LOGGER.error(ex.getMessage(), ex);
 		}
-	}// GEN-LAST:event_mnuLievitiXMLActionPerformed
-
-	private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnUpdateActionPerformed
-		updateProgram();
-	}// GEN-LAST:event_btnUpdateActionPerformed
+	}// GEN-LAST:event_mnuLievitiXMLActionPerformeds
 
 	private void btnSaveAll17ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll17ActionPerformed
 		addFrame(new WaterNeeded());
@@ -1251,9 +1170,6 @@ public class Gui extends javax.swing.JFrame {
 		addFrame(new ConfigurationTool(Gui.this));
 	}// GEN-LAST:event_btnSaveAll16ActionPerformed
 
-	private void btnSaveAll15ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll15ActionPerformed
-		addFrame(new CalcoloForiZapap());
-	}// GEN-LAST:event_btnSaveAll15ActionPerformed
 
 	private void btnSaveAll14ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll14ActionPerformed
 		addFrame(new WaterDesign(), true);
@@ -1270,14 +1186,6 @@ public class Gui extends javax.swing.JFrame {
 	private void btnSaveAll11ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll11ActionPerformed
 		addFrame(new YeastPitching());
 	}// GEN-LAST:event_btnSaveAll11ActionPerformed
-
-	private void btnSaveAll9ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll9ActionPerformed
-		addFrame(new DimensionamentoControflusso(), true);
-	}// GEN-LAST:event_btnSaveAll9ActionPerformed
-
-	private void btnSaveAll8ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll8ActionPerformed
-		addFrame(new StrikeTemp());
-	}// GEN-LAST:event_btnSaveAll8ActionPerformed
 
 	private void btnSaveAll7ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll7ActionPerformed
 		addFrame(new CarbonationTool(), true);
@@ -1302,37 +1210,6 @@ public class Gui extends javax.swing.JFrame {
 	private void btnSaveAll1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll1ActionPerformed
 		addFrame(new DiluitionForm());
 	}// GEN-LAST:event_btnSaveAll1ActionPerformed
-
-	private void updateProgram() {
-		try {
-			Utils.copyFile("runner.jar", "_runner.jar");
-		} catch (IOException ex) {
-			Utils.showException(ex, "Impossibile eseguire l'update: non è stato possibile creare il file _runner.jar");
-			return;
-		}
-		try {
-			String remoteRoot = generalConfig.getRemoteRoot();
-			if (remoteRoot == null)
-				remoteRoot = "http://brewplus.t15.org/brewplus";
-			if (!remoteRoot.startsWith("http://"))
-				remoteRoot = "http://" + remoteRoot;
-			if (!remoteRoot.endsWith("/"))
-				remoteRoot += "/";
-
-			// test con classe locale per debug IXTLANAS
-			// String[] address= {remoteRoot};
-			// runner.Main.main(address);
-			Process p = Runtime.getRuntime().exec("java -jar _runner.jar " + remoteRoot);
-			chiudiGui();
-		} catch (Exception ex) {
-			Utils.showException(ex, "Impossibile lanciare l'update.");
-		}
-	}
-
-	private void mnuUpdateActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_mnuUpdateActionPerformed
-		updateProgram();
-
-	}// GEN-LAST:event_mnuUpdateActionPerformed
 
 	public void setStatusBar(String T) {
 		lblStatus.setText(T);
@@ -1719,7 +1596,6 @@ public class Gui extends javax.swing.JFrame {
 	private javax.swing.JButton btnSaveAll8;
 	private javax.swing.JButton btnSaveAll9;
 	private javax.swing.JButton btnSaveAs;
-	public javax.swing.JButton btnUpdate;
 	private javax.swing.JDesktopPane desktop;
 	private javax.swing.JMenu jMenu1;
 	private javax.swing.JMenu jMenu2;
