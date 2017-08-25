@@ -18,7 +18,6 @@
 */
 package jmash;
 
-import java.awt.AWTException;
 import java.awt.AlphaComposite;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -27,10 +26,8 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -74,7 +71,6 @@ import org.jdom.Document;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
-import jmash.Main.BitterBUGU;
 import jmash.component.GlassPanel;
 import jmash.component.UpDownPopupMenu;
 import jmash.config.ConfigurationManager;
@@ -86,7 +82,6 @@ import jmash.report.PrintRecipe;
 import jmash.report.model.Mash;
 import jmash.report.model.MineralSalts;
 import jmash.report.model.RecipeModel;
-import jmash.robot.hbRobot;
 import jmash.tableModel.HopTableModel;
 import jmash.tableModel.InventoryObjectTableModel;
 import jmash.tableModel.MaltTableModel;
@@ -1900,15 +1895,15 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		summary.setEbc(String.format("%.01f",getEbc()));
 		summary.setEfficency(rec.getEfficienza() + "%");
 		summary.setFg(getFGPrevista());
-		if (BitterBUGU.TIN.equals(generalConfig.getBUGUratiostring())) {
+		if (Constants.IBU_TIN.equals(generalConfig.getBUGUratiostring())) {
 			summary.setIbu(String.format("%.01f",hopTableModel.getIBUTinseth()));
 			summary.setIbuLabel("IBU (Tinseth)");
 		}
-		if (BitterBUGU.RAG.equals(generalConfig.getBUGUratiostring())) {
+		if (Constants.IBU_RAG.equals(generalConfig.getBUGUratiostring())) {
 			summary.setIbu(String.format("%.01f",hopTableModel.getIBURager()));
 			summary.setIbuLabel("IBU (Rager)");
 		}
-		if (BitterBUGU.DAN.equals(generalConfig.getBUGUratiostring())) {
+		if (Constants.IBU_DAN.equals(generalConfig.getBUGUratiostring())) {
 			summary.setIbu(String.format("%.01f",hopTableModel.getIBUDaniels()));
 			summary.setIbuLabel("IBU (Daniels)");
 		}
@@ -2122,8 +2117,6 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		summaryTableModel.setIBUGaretz(hopTableModel.getIBUGaretz());
 		summaryTableModel.setIBUDaniels(hopTableModel.getIBUDaniels());
 
-		setCurrentIBU();
-		
 		summaryTableModel.setTotL(hopTableModel.getGrammi());
 		summaryTableModel.setTotG(maltTableModel.getGrammi());
 
@@ -2141,6 +2134,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		double sg = maltTableModel.getSG(concentrato);
 
 		summaryTableModel.setSG(sg);
+		
+		setCurrentIBU();
 		
 		sg = maltTableModel.getSG(false);
 //		summaryTableModel.setSGPB(Utils.Plato2SG(Utils.SG2Plato(sg) * spinVolumeFin.getVolume() / spinVolumeBoll.getVolume()));
@@ -3054,164 +3049,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		}
 	}
 
-	public void demo() {
-		Thread T = new Thread() {
-			@Override
-			public void run() {
-				try {
-					hbRobot rob = new hbRobot();
-					// select style
-					Point p = btnAdd12.getLocationOnScreen();
-					Point p2 = btnStyle.getLocationOnScreen();
-					rob.moveMouse(p.x, p.y, p2.x + 5, p2.y + 5);
-					rob.click();
-					Thread.sleep(500);
-					rob.moveMouse(p2.x + 5, p2.y + 5, p2.x + 5 + 350, p2.y + 5 + 120);
-					rob.click();
 
-					rob.type("ENGL");
-					rob.delay(1000);
-
-					rob.moveMouseRel(0, 128);
-					rob.doubleClick();
-
-					// adding malt
-					//p = btnAdd12.getLocationOnScreen();
-					p2 = btnAdd1.getLocationOnScreen();
-					rob.moveMouseTo(p2.x + 5, p2.y + 5);
-					rob.click();
-					Thread.sleep(500);
-					rob.moveMouse(p2.x + 5, p2.y + 5, p2.x + 5 + 220, p2.y + 5 + 20);
-					rob.click();
-
-					rob.type("PALE");
-					rob.delay(100);
-					rob.mouseWheel(5);
-					rob.moveMouseRel(0, 80);
-					rob.delay(100);
-					rob.doubleClick();
-
-					p2 = tblMalts.getLocationOnScreen();
-					rob.moveMouseTo(p2.x + 200, p2.y + 10);
-					rob.deleteAndType(3800);
-
-					rob.gotoComponent(btnAdd1);
-					rob.click();
-					Thread.sleep(500);
-					rob.moveMouse(p2.x + 5, p2.y + 5, p2.x + 5 + 220, p2.y + 5 + 20);
-					rob.click();
-
-					rob.type("CRYST");
-
-					rob.delay(100);
-					rob.keyPress(KeyEvent.VK_DOWN);
-					rob.delay(100);
-					rob.keyPress(KeyEvent.VK_DOWN);
-					p2 = maltPicker.btnOk.getLocationOnScreen();
-					rob.moveMouseTo(p2.x + 10, p2.y + 10);
-					rob.click();
-
-					p2 = tblMalts.getLocationOnScreen();
-					rob.moveMouseTo(p2.x + 200, p2.y + 20);
-					rob.deleteAndType(200);
-
-					rob.gotoComponent(spinEfficienza);
-					rob.deleteAndType(81);
-
-					// adding hops
-					rob.gotoComponent(btnAdd);
-					rob.click();
-					Thread.sleep(500);
-					p2 = hopPicker.getLocationOnScreen();
-					rob.moveMouseTo(p2.x + 25, p2.y + 100);
-					rob.click();
-
-					rob.type("GOLDING");
-					rob.delay(200);
-					rob.keyPress(KeyEvent.VK_DOWN);
-					rob.delay(100);
-					rob.gotoComponent(hopPicker.btnOk);
-					rob.doubleClick();
-
-					p2 = tblHops.getLocationOnScreen();
-					rob.moveMouseTo(p2.x + 160, p2.y + 10);
-					rob.deleteAndType(40);
-
-					rob.gotoComponent(btnAdd);
-					rob.click();
-					Thread.sleep(500);
-					p2 = hopPicker.getLocationOnScreen();
-					rob.moveMouseTo(p2.x + 25, p2.y + 100);
-					rob.click();
-
-					rob.type("GOLDING");
-					rob.delay(200);
-					rob.keyPress(KeyEvent.VK_DOWN);
-					rob.delay(100);
-					rob.gotoComponent(hopPicker.btnOk);
-					rob.doubleClick();
-
-					p2 = tblHops.getLocationOnScreen();
-					rob.moveMouseTo(p2.x + 160, p2.y + 20);
-					rob.deleteAndType(40);
-
-					rob.moveMouseTo(p2.x + 420, p2.y + 20);
-					rob.deleteAndType(15);
-
-					rob.gotoComponent(btnAdd);
-					rob.click();
-					Thread.sleep(500);
-					p2 = hopPicker.getLocationOnScreen();
-					rob.moveMouseTo(p2.x + 25, p2.y + 100);
-					rob.click();
-					rob.type("cascad");
-					rob.delay(200);
-					rob.gotoComponent(hopPicker.btnOk);
-					rob.doubleClick();
-
-					p2 = tblHops.getLocationOnScreen();
-					rob.moveMouseTo(p2.x + 160, p2.y + 36);
-					rob.deleteAndType(40);
-
-					rob.moveMouseTo(p2.x + 460, p2.y + 36);
-					rob.doubleClick();
-					rob.delay(500);
-					rob.keyPress(KeyEvent.VK_DOWN);
-					rob.delay(100);
-					rob.keyPress(KeyEvent.VK_DOWN);
-					rob.delay(120);
-					rob.keyPress(KeyEvent.VK_DOWN);
-					rob.delay(180);
-					rob.keyPress(KeyEvent.VK_ENTER);
-					rob.keyPress(KeyEvent.VK_TAB);
-
-					rob.gotoComponent(fldNome);
-					rob.doubleClick();
-					rob.type("GOLDEN BITTER ALE");
-					rob.keyPress(KeyEvent.VK_ENTER);
-
-					rob.gotoComponent(spinBollitura);
-					rob.doubleClick();
-					rob.type("75 min");
-
-					rob.delay(1500);
-					rob.gotoComponent(lock);
-					rob.click();
-
-					rob.delay(500);
-					rob.gotoComponent(spinVolumeFin);
-					rob.deleteAndType(50);
-					rob.gotoComponent(spinVolumeBoll);
-					rob.deleteAndType(57);
-
-				} catch (AWTException | InterruptedException ex) {
-					LOGGER.error(ex.getMessage(), ex);
-				}
-			}
-		};
-		T.start();
-	}
-	
 	public WaterNeeded getWaterNeeded() {
 		return waterNeeded;
 	}
@@ -3247,15 +3085,15 @@ public class Ricetta extends javax.swing.JInternalFrame {
 			preferredWidth = danielsColumn.getPreferredWidth();
 		}
 		
-		if (BitterBUGU.TIN.equals(generalConfig.getBUGUratiostring())) {
+		if (Constants.IBU_TIN.equals(generalConfig.getBUGUratiostring())) {
 				visibleIBUColumn = danielsColumn;
 				invisibleIBUColumn1 = tinsethColumn;
 				invisibleIBUColumn2 = ragerColumn;
-		} else if (BitterBUGU.RAG.equals(generalConfig.getBUGUratiostring())) {
+		} else if (Constants.IBU_RAG.equals(generalConfig.getBUGUratiostring())) {
 				visibleIBUColumn = ragerColumn;
 				invisibleIBUColumn1 = tinsethColumn;
 				invisibleIBUColumn2 = danielsColumn;
-		} else if (BitterBUGU.DAN.equals(generalConfig.getBUGUratiostring())) {
+		} else if (Constants.IBU_DAN.equals(generalConfig.getBUGUratiostring())) {
 				visibleIBUColumn = tinsethColumn;
 				invisibleIBUColumn1 = danielsColumn;
 				invisibleIBUColumn2 = ragerColumn;
@@ -3279,11 +3117,13 @@ public class Ricetta extends javax.swing.JInternalFrame {
 			invisibleIBUColumn2.setMinWidth(0);
 			invisibleIBUColumn2.setMaxWidth(0);
 
-			summaryTableModel.setBUGUratio();
 
 			JTableHeader th = tblSummary.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc = tcm.getColumn(SummaryTableModel.BU_GU_COLUMN);
+			
+			summaryTableModel.setBUGUratio();
+			
 			tc.setHeaderValue(summaryTableModel.getColumnName(SummaryTableModel.BU_GU_COLUMN));
 			th.repaint();
 		}

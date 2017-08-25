@@ -26,10 +26,14 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-import jmash.*;
-import jmash.Main.BitterBUGU;
+import jmash.Hop;
+import jmash.Main;
+import jmash.Quantita;
+import jmash.Ricetta;
+import jmash.Utils;
 import jmash.config.ConfigurationManager;
 import jmash.config.bean.GeneralConfig;
+import jmash.utils.Constants;
 
 /**
  *
@@ -51,13 +55,13 @@ public class HopTableModel extends GenericTableModel<Hop> {
 		this.ricetta = ric;
 		ret.setIcon(Main.clockIcon);
 		this.columnNames = hopColumnNames;
-        if (BitterBUGU.TIN.equals(generalConfig.getBUGUratiostring())) {
+        if (Constants.IBU_TIN.equals(generalConfig.getBUGUratiostring())) {
         	this.columnNames[8] = "Tinseth";
         }
-        if (BitterBUGU.RAG.equals(generalConfig.getBUGUratiostring())) {
+        if (Constants.IBU_RAG.equals(generalConfig.getBUGUratiostring())) {
         	this.columnNames[8] = "Rager";
         }
-        if (BitterBUGU.DAN.equals(generalConfig.getBUGUratiostring())) {
+        if (Constants.IBU_DAN.equals(generalConfig.getBUGUratiostring())) {
         	this.columnNames[8] = "Daniels";
         }
 	}
@@ -106,11 +110,11 @@ public class HopTableModel extends GenericTableModel<Hop> {
 				return h.getUso();
 			case 8:
 	        	String tiporatioBU = generalConfig.getBUGUratiostring();
-	        	if (BitterBUGU.TIN.equals(tiporatioBU))
+	        	if (Constants.IBU_TIN.equals(tiporatioBU))
 	        		return NumberFormatter.format01(h.getIBUTinseth());
-	        	if (BitterBUGU.DAN.equals(tiporatioBU))
+	        	if (Constants.IBU_RAG.equals(tiporatioBU))
 	            	return NumberFormatter.format01(h.getIBURager());
-	        	if (BitterBUGU.RAG.equals(tiporatioBU))
+	        	if (Constants.IBU_DAN.equals(tiporatioBU))
 	            	return NumberFormatter.format01(h.getIBUDaniels());
 			case 9:
 				return ret;

@@ -38,6 +38,7 @@ public class RecipeData {
     
     private static Logger LOGGER = Logger.getLogger(RecipeData.class);
     private static final String SEPARATOR = "\n";
+    private static final int BUFFERE_LENGHT = 30;
     private String nome, note, unitaMisura, fotografia, priming;
     private Double volumeBoll, volumeFin, volumeDiluito;
     private Double efficienza;
@@ -325,6 +326,18 @@ public class RecipeData {
         BigDecimal swt =  new BigDecimal(this.getWaterNeeded().getAttributeValue("StrikeWater"));
         sb.append("STW:").append(swt.setScale(0, RoundingMode.HALF_EVEN)).append(SEPARATOR);
         
+        // Malt list
+        List<Malt> listMalts = this.getMalts();
+        int y = 0;
+        for(Malt malt : listMalts){
+        	if(y<10){
+        		sb.append("L0").append(y).append(":").append(malt.getNome()).append(SEPARATOR);
+        	}else{
+        		sb.append("L").append(y).append(":").append(malt.getNome()).append(SEPARATOR);
+        	}
+        	
+        }
+        
         // Mash steps
         List<MashStep> listMashStep = this.getInfusionSteps();
         int size = listMashStep.size();
@@ -362,7 +375,7 @@ public class RecipeData {
         List<Hop> hopList = this.getHops();
         int i = 0;
         for(Hop hop : hopList){
-            if(hop.getBoilTime().intValue()>0 || !hop.getUso().equalsIgnoreCase("Dry")){
+            if(!hop.getUso().equalsIgnoreCase("Dry")){ // i luppoli in Dry Hopping non devono essere considerati
                 sb.append("H0").append(i).append(":").append(hop.getNome()).append(SEPARATOR);
                 BigDecimal hg = new BigDecimal(hop.getGrammi());
                 sb.append("M0").append(i).append(":").append(hg.setScale(0, RoundingMode.HALF_EVEN)).append(SEPARATOR);

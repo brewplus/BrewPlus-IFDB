@@ -27,7 +27,11 @@ import javax.swing.JLabel;
 
 import org.apache.log4j.Logger;
 
-import jmash.*;
+import jmash.Main;
+import jmash.Malt;
+import jmash.Quantita;
+import jmash.Ricetta;
+import jmash.Utils;
 import jmash.config.ConfigurationManager;
 import jmash.config.bean.GeneralConfig;
 

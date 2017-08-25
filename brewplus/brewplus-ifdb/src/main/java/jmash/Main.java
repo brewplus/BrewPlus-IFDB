@@ -119,13 +119,6 @@ public class Main {
 	
 	
 	private static GeneralConfig generalConfig;
-	
-	
-	public static enum BitterBUGU { // metodo di calcolo BU/GU
-		TIN, RAG, DAN
-	}
-        
-        
          
 	public static MaltType getMaltTypeByWords(String des) {
 		des = des.toLowerCase();

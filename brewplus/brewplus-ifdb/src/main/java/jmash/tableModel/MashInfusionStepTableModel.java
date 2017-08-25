@@ -24,9 +24,13 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-import jmash.*;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
+
+import jmash.MashStep;
+import jmash.PanelMashStep;
+import jmash.Ricetta;
+import jmash.Utils;
 
 /**
  *
