@@ -72,15 +72,15 @@ import jmash.tableModel.MaltCategoryPickerTableModel;
 import jmash.tableModel.MaltPickerTableModel;
 import jmash.tableModel.WaterPickerTableModel;
 import jmash.tableModel.YeastPickerTableModel;
-import jmash.test.BeerXMLReader;
+import jmash.utils.BeerXMLReader;
 import jmash.utils.BrewplusEnvironment;
 import jmash.utils.Constants;
 import jmash.utils.Utility;
 
 public class Gui extends javax.swing.JFrame {
 	
-//	private static final String PATH_BACKGROUND =  "/jmash/images/bkgrnd.jpg";
-	private static final String PATH_BACKGROUND =  "/jmash/images/back.gif";
+	private static final String PATH_BACKGROUND =  "/jmash/images/bkgrnd.jpg";
+//	private static final String PATH_BACKGROUND =  "/jmash/images/back.gif";
 	private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
 	private static BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
 
@@ -601,7 +601,7 @@ public class Gui extends javax.swing.JFrame {
 		// ADD export 2 PID feature
 		
 		btnExport2PID = new javax.swing.JButton();
-		btnExport2PID.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/arduinouno01.png"))); // NOI18N
+		btnExport2PID.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/exportPid.png"))); // NOI18N
 		btnExport2PID.setToolTipText("Export to PID");
 		btnExport2PID.setMaximumSize(new java.awt.Dimension(37, 35));
 		btnExport2PID.setMinimumSize(new java.awt.Dimension(37, 35));
@@ -889,11 +889,7 @@ public class Gui extends javax.swing.JFrame {
 
 		JSeparator separator_3 = new JSeparator();
 		jMenu3.add(separator_3);
-		mnuUpdate = new javax.swing.JMenuItem();
-		jMenu3.add(mnuUpdate);
-
-		JSeparator separator_4 = new JSeparator();
-		jMenu3.add(separator_4);
+		
 		jMenu3.add(mnuAbout);
 
 		jMenuBar1.add(jMenu3);
@@ -1616,7 +1612,6 @@ public class Gui extends javax.swing.JFrame {
 	private javax.swing.JMenuItem mnuMaltiXML;
 	private javax.swing.JMenuItem mnuNuova;
 	private javax.swing.JMenuItem mnuStiliXML;
-	private javax.swing.JMenuItem mnuUpdate;
 	private javax.swing.JMenuItem mnuProfiliImpiantoXML;
 	private javax.swing.JToolBar sideBar;
 	private javax.swing.JToolBar taskBar;

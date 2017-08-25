@@ -201,7 +201,6 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
 
     public void setBUGUratio() {
         if (generalConfig.getBUGUratiostring().equals(Constants.IBU_TIN)){
-        	LOGGER.info(cN[7]);
             cN[7] = "BU/GU Tinseth";
         }else if (generalConfig.getBUGUratiostring().equals(Constants.IBU_RAG)){
         	cN[7] = "BU/GU Rager";
@@ -212,7 +211,6 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
         {
         	columnNames[7] = cN[7];
         }	
-//        LOGGER.info(columnNames[7]);
     }
     
    

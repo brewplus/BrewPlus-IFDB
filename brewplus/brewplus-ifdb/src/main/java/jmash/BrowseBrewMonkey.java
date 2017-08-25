@@ -21,7 +21,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
-import jmash.test.BeerXMLReader;
+import jmash.utils.BeerXMLReader;
 
 /**
  *

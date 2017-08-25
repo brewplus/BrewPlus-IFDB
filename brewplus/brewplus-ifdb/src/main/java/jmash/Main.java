@@ -105,7 +105,7 @@ public class Main {
 	public static ImageIcon mainIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/BPlusIcon-32.png")));
 
 	public static ImageIcon boilOffIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/steam.png")));
-	public static ImageIcon diluiteIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/extract.png")));
+	public static ImageIcon diluiteIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/diluizioni.png")));
 	public static ImageIcon uploadIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/upload.png")));
 	public static ImageIcon strikeIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/temp.png")));
 	public static ImageIcon printIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/fileprint.png")));

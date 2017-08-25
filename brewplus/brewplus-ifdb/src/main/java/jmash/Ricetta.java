@@ -33,6 +33,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
@@ -1842,6 +1843,14 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		RecipeModel summary = new RecipeModel();
 		summary.setHops(rec.getHops());
 		summary.setMalts(rec.getMalts());
+		
+		Mash strike = new Mash();
+		strike.setStepName("Strike Water");
+		BigDecimal sw = new BigDecimal(waterNeeded.getStrikeWater());
+		strike.setTemperature(sw.setScale(0, RoundingMode.HALF_UP).toString());
+		strike.setLength("--");
+		steps.add(strike);
+		
 		for (MashStep mash : rec.getInfusionSteps()) {
 			Mash step = new Mash();
 			step.setStepName(mash.getNome());
@@ -3085,7 +3094,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 			preferredWidth = danielsColumn.getPreferredWidth();
 		}
 		
-		if (Constants.IBU_TIN.equals(generalConfig.getBUGUratiostring())) {
+		if (Constants.IBU_DAN.equals(generalConfig.getBUGUratiostring())) {
 				visibleIBUColumn = danielsColumn;
 				invisibleIBUColumn1 = tinsethColumn;
 				invisibleIBUColumn2 = ragerColumn;
@@ -3093,7 +3102,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 				visibleIBUColumn = ragerColumn;
 				invisibleIBUColumn1 = tinsethColumn;
 				invisibleIBUColumn2 = danielsColumn;
-		} else if (Constants.IBU_DAN.equals(generalConfig.getBUGUratiostring())) {
+		} else if (Constants.IBU_TIN.equals(generalConfig.getBUGUratiostring())) {
 				visibleIBUColumn = tinsethColumn;
 				invisibleIBUColumn1 = danielsColumn;
 				invisibleIBUColumn2 = ragerColumn;
