@@ -21,6 +21,7 @@ package jmash;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
@@ -64,6 +65,7 @@ import jmash.config.ConfigurationManager;
 import jmash.config.XmlAbleEditor;
 import jmash.config.XmlAbleTableModel;
 import jmash.config.bean.GeneralConfig;
+import jmash.magazzino.FrmSelezioneRicette;
 import jmash.tableModel.BrewStylePickerTableModel;
 import jmash.tableModel.BreweryProfilePickerTableModel;
 import jmash.tableModel.GenericTableModel;
@@ -681,6 +683,7 @@ public class Gui extends javax.swing.JFrame {
 		sideBar.setOrientation(1);
 
 		btnNew1.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/kettle.png"))); // NOI18N
+                btnNew1.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnNew1.setToolTipText("Registrazione cotte");
 		btnNew1.setMaximumSize(new java.awt.Dimension(37, 35));
 		btnNew1.setMinimumSize(new java.awt.Dimension(37, 35));
@@ -693,6 +696,7 @@ public class Gui extends javax.swing.JFrame {
 		sideBar.add(btnNew1);
 
 		btnSaveAll21.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/inventario.png"))); // NOI18N
+                btnSaveAll21.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnSaveAll21.setToolTipText("Inventario");
 		btnSaveAll21.setMaximumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll21.setMinimumSize(new java.awt.Dimension(37, 35));
@@ -705,6 +709,7 @@ public class Gui extends javax.swing.JFrame {
 		sideBar.add(btnSaveAll21);
 
 		btnSaveAll12.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/carrello.png"))); // NOI18N
+                btnSaveAll12.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnSaveAll12.setToolTipText("Acquisti");
 		btnSaveAll12.setMaximumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll12.setMinimumSize(new java.awt.Dimension(37, 35));
@@ -729,6 +734,18 @@ public class Gui extends javax.swing.JFrame {
 		sideBar.add(btnSaveAll13);
 
 		getContentPane().add(sideBar, java.awt.BorderLayout.WEST);
+		
+		btnMultiRecipe = new JButton();
+		btnMultiRecipe.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/order.png")));
+                btnMultiRecipe.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                btnMultiRecipe.setToolTipText("Verifica scorte per più ricette");
+                btnMultiRecipe.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				btnMultiRecipeActionPerformed(evt);
+			}
+		});
+		sideBar.add(btnMultiRecipe);
 
 		taskBar.setFloatable(false);
 
@@ -1302,7 +1319,12 @@ public class Gui extends javax.swing.JFrame {
 	private void btnSaveAll1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll1ActionPerformed
 		addFrame(new DiluitionForm());
 	}// GEN-LAST:event_btnSaveAll1ActionPerformed
-
+        
+        private void btnMultiRecipeActionPerformed(java.awt.event.ActionEvent evt) {
+           if (!FrmSelezioneRicette.isVisible)
+               addFrame(new FrmSelezioneRicette());
+        }
+        
 	private void updateProgram() {
 		try {
 			Utils.copyFile("runner.jar", "_runner.jar");
@@ -1756,6 +1778,7 @@ public class Gui extends javax.swing.JFrame {
 	private JLabel lblStatus;
 	
 	private javax.swing.JButton btnExport2PID;
+	private JButton btnMultiRecipe;
 
 	public void updateRicette() {
 		

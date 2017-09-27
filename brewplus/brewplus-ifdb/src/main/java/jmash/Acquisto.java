@@ -49,7 +49,6 @@ import jmash.utils.Constants;
 public class Acquisto extends javax.swing.JInternalFrame {
 
 	/** Creates new form Acquisto */
-	// boolean showInventario=false;
 	private static SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
 	private static BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
 
@@ -60,9 +59,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 	}
 
 	public static Acquisto newAcquisto() {
-		Acquisto frm = new Acquisto();
-
-		return frm;
+		return new Acquisto();
 	}
 
 	private Acquisto() {
