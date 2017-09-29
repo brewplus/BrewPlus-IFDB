@@ -31,7 +31,6 @@ public class FrmScalaRicetta extends javax.swing.JDialog {
     private static final String FERMENTABILE = "FERMENTABILE";
     private static final String LUPPOLI = "LUPPOLI";
     private static BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
-    private javax.swing.JInternalFrame internalFrame;
     /**
      * Creates new form FrmScalaRicetta
      * @param parent
@@ -42,10 +41,9 @@ public class FrmScalaRicetta extends javax.swing.JDialog {
         initComponents();
     }
     
-    public FrmScalaRicetta(AcquistoIngredienti inventario, java.awt.Frame parent, boolean modal, javax.swing.JInternalFrame internalFrame) {
+    public FrmScalaRicetta(AcquistoIngredienti inventario, java.awt.Frame parent, boolean modal) {
         this(parent,modal);
         this.inventario = inventario;
-        this.internalFrame = internalFrame;
         btnScalaInventario.setCursor(new Cursor(Cursor.HAND_CURSOR));
         tblScalaIngredienti.getModel().addTableModelListener(new CheckBoxModelListener());
     }
@@ -210,8 +208,9 @@ public class FrmScalaRicetta extends javax.swing.JDialog {
         }
         Document doc = inventario.toXml();
         File file = new File(bpenv.getConfigfileName(Constants.XML_INVENTORY));
-        Utils.saveXmlAsFile(doc, file, this.internalFrame);
+        Utils.saveXmlAsFile(doc, file, null);
         JOptionPane.showMessageDialog(this, "Gli Ingredienti sono stati scalati dall'inventario.", "Scala Ingredienti", JOptionPane.INFORMATION_MESSAGE); 
+        this.dispose();
     }//GEN-LAST:event_btnScalaInventarioActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

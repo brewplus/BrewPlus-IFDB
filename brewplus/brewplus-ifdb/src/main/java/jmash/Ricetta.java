@@ -1833,7 +1833,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
         
         private void ScalaIngredientiDaInventario(java.awt.event.ActionEvent evt) {
             if (tblMalts.getRowCount() > 0) {
-               FrmScalaRicetta frmScala = new FrmScalaRicetta(caricaDisponibilitaMagazzino(),new javax.swing.JFrame(), true, this);
+               FrmScalaRicetta frmScala = new FrmScalaRicetta(caricaDisponibilitaMagazzino(),new javax.swing.JFrame(), true);
                frmScala.loadFermentabili((TableSorter) tblMalts.getModel());
                frmScala.loadLuppoli((TableSorter) tblHops.getModel());
                frmScala.setLocationRelativeTo(this);
