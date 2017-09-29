@@ -617,7 +617,7 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
         }
     }
      
-     private AcquistoIngredienti caricaDisponibilitaMagazzino() {
+     public static AcquistoIngredienti caricaDisponibilitaMagazzino() {
         File file = new File(bpenv.getConfigfileName(Constants.XML_INVENTORY));
         AcquistoIngredienti acquistoIngredienti = new AcquistoIngredienti();
         if (file.exists()) {

@@ -82,6 +82,8 @@ import jmash.config.bean.GeneralConfig;
 import jmash.imagecomponents.ImageFileView;
 import jmash.imagecomponents.ImageFilter;
 import jmash.imagecomponents.ImagePreview;
+import jmash.magazzino.FrmScalaRicetta;
+import static jmash.magazzino.FrmSelezioneRicette.caricaDisponibilitaMagazzino;
 import jmash.report.PrintRecipe;
 import jmash.report.model.Mash;
 import jmash.report.model.MineralSalts;
@@ -718,6 +720,11 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		btnScalaIngredienti.setAlignmentX(0.5F);
 		btnScalaIngredienti.setMinimumSize(new java.awt.Dimension(32, 32));
 		btnScalaIngredienti.setPreferredSize(new java.awt.Dimension(36, 36));
+                btnScalaIngredienti.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				ScalaIngredientiDaInventario(evt);
+			}
+		});
                 jPanel6.add(btnScalaIngredienti);
                 
 		jPanel10.add(jPanel6);
@@ -1823,7 +1830,20 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		ftb.setVisible(true);
 
 	}// GEN-LAST:event_btnAdd12ActionPerformed
+        
+        private void ScalaIngredientiDaInventario(java.awt.event.ActionEvent evt) {
+            if (tblMalts.getRowCount() > 0) {
+               FrmScalaRicetta frmScala = new FrmScalaRicetta(caricaDisponibilitaMagazzino(),new javax.swing.JFrame(), true, this);
+               frmScala.loadFermentabili((TableSorter) tblMalts.getModel());
+               frmScala.loadLuppoli((TableSorter) tblHops.getModel());
+               frmScala.setLocationRelativeTo(this);
+               frmScala.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Non è stata caricata nessuna Ricetta.", "Scala Ingredienti", JOptionPane.WARNING_MESSAGE); 
+            }
 
+	}
+        
 	private void btnAdd11ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd11ActionPerformed
 
 		finalizeInInventory();
