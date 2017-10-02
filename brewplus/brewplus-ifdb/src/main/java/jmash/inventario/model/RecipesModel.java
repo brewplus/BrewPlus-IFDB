@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package jmash.magazzino.model;
+package jmash.inventario.model;
 
 import java.util.List;
 import jmash.Hop;

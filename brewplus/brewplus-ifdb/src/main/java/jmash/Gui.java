@@ -65,7 +65,7 @@ import jmash.config.ConfigurationManager;
 import jmash.config.XmlAbleEditor;
 import jmash.config.XmlAbleTableModel;
 import jmash.config.bean.GeneralConfig;
-import jmash.magazzino.FrmSelezioneRicette;
+import jmash.inventario.FrmSelezioneRicette;
 import jmash.tableModel.BrewStylePickerTableModel;
 import jmash.tableModel.BreweryProfilePickerTableModel;
 import jmash.tableModel.GenericTableModel;

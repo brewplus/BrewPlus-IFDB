@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package jmash.magazzino;
+package jmash.inventario;
 
+import jmash.AcquistoIngredienti;
 import java.awt.Cursor;
 import java.io.File;
 import java.util.ArrayList;
@@ -16,13 +17,12 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
-import jmash.AcquistoIngredienti;
 import jmash.Hop;
 import jmash.Malt;
 import jmash.RecipeData;
 import jmash.Utils;
 import jmash.Yeast;
-import jmash.magazzino.model.RecipesModel;
+import jmash.inventario.model.RecipesModel;
 import jmash.report.PrintRecipe;;
 import jmash.utils.BrewplusEnvironment;
 import jmash.utils.Constants;
@@ -35,7 +35,8 @@ import org.jdom.Element;
  * @author a.cerella
  */
 public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
-
+    
+    private AcquistoIngredienti inventario = null;
     /**
      * Creates new form FrmSelezioneRicette
      */
@@ -72,7 +73,6 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         btnVerifica = new javax.swing.JButton();
         btnStampaFabbisogno = new javax.swing.JButton();
-        btnScala = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -88,12 +88,16 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Verifica Ingredienti");
         setMaximumSize(new java.awt.Dimension(988, 574));
         setMinimumSize(new java.awt.Dimension(988, 574));
         setPreferredSize(new java.awt.Dimension(988, 574));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setMaximumSize(new java.awt.Dimension(164, 67));
+        jPanel1.setMinimumSize(new java.awt.Dimension(164, 67));
+        jPanel1.setPreferredSize(new java.awt.Dimension(164, 67));
 
         btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/filesave_delete.png"))); // NOI18N
         btnClose.setToolTipText("Chiudi");
@@ -127,14 +131,12 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnSave)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                    .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 470, 170, 60));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 460, 170, 70));
 
         tblElencoRicette.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -271,6 +273,8 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
         getContentPane().add(btnRemove, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.setMaximumSize(new java.awt.Dimension(164, 67));
+        jPanel2.setRequestFocusEnabled(false);
 
         btnVerifica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/chkinventario.png"))); // NOI18N
         btnVerifica.setToolTipText("Verifica Disponibiltà");
@@ -288,14 +292,6 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
             }
         });
 
-        btnScala.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/sacco.png"))); // NOI18N
-        btnScala.setToolTipText("Scala da Magazzino");
-        btnScala.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnScalaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -305,8 +301,6 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
                 .addComponent(btnVerifica)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnStampaFabbisogno)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnScala)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -314,13 +308,12 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnScala, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnVerifica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnStampaFabbisogno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, 240, 60));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 460, -1, 70));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -342,7 +335,6 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
                         throw new Exception();    
                     addDatiRicetta(recipe);
                     btnStampaFabbisogno.setEnabled(false);
-                    btnScala.setEnabled(false);
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(this, "La Ricetta selezionata non è compatibile oppure non contiene malti. ", "Ricetta scartata", JOptionPane.ERROR_MESSAGE); 
                 }
@@ -362,7 +354,6 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
             subLuppoli(recipe.getHops());
             subLieviti(recipe.getYeasts());
             btnStampaFabbisogno.setEnabled(false);
-            btnScala.setEnabled(false);
             if (listaRicette.isEmpty()) {
                 btnVerifica.setEnabled(false);  
             }
@@ -376,12 +367,11 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void btnVerificaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerificaActionPerformed
-        AcquistoIngredienti giacenza = caricaDisponibilitaMagazzino();
-        ScalaDisponibilitaFermentabili(giacenza.getMalti());
-        ScalaDisponibilitaLuppoli(giacenza.getLuppoli());
-        ScalaDisponibilitaLieviti(giacenza.getLieviti());
+        inventario = caricaDisponibilitaMagazzino();
+        ScalaDisponibilitaFermentabili(inventario.getMalti());
+        ScalaDisponibilitaLuppoli(inventario.getLuppoli());
+        ScalaDisponibilitaLieviti(inventario.getLieviti());
         btnStampaFabbisogno.setEnabled(true);
-        btnScala.setEnabled(true);
     }//GEN-LAST:event_btnVerificaActionPerformed
 
     private void btnStampaFabbisognoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStampaFabbisognoActionPerformed
@@ -449,10 +439,6 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnStampaFabbisognoActionPerformed
 
-    private void btnScalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScalaActionPerformed
-      
-    }//GEN-LAST:event_btnScalaActionPerformed
-
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
          JOptionPane.showMessageDialog(this, "La funzionalità non è al momento disponibile ", "Salvataggio ricette", JOptionPane.WARNING_MESSAGE); 
     }//GEN-LAST:event_btnSaveActionPerformed
@@ -462,7 +448,6 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnRemove;
     private javax.swing.JButton btnSave;
-    private javax.swing.JButton btnScala;
     private javax.swing.JButton btnStampaFabbisogno;
     private javax.swing.JButton btnVerifica;
     private javax.swing.JPanel jPanel1;
@@ -500,8 +485,6 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
         btnVerifica.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnStampaFabbisogno.setEnabled(false);
         btnStampaFabbisogno.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btnScala.setEnabled(false);
-        btnScala.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnAddRicetta.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnRemove.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnClose.setCursor(new Cursor(Cursor.HAND_CURSOR));

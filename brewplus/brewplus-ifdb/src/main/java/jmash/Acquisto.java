@@ -36,6 +36,18 @@ import org.jdom.Document;
 import org.jdom.Element;
 
 import com.toedter.calendar.JDateChooserCellEditor;
+import jmash.Gui;
+import jmash.Hop;
+import jmash.HopType;
+import jmash.Main;
+import jmash.Malt;
+import jmash.MaltType;
+import jmash.MaltTypePicker;
+import jmash.Msg;
+import jmash.Picker;
+import jmash.Ricetta;
+import jmash.Utils;
+import jmash.XmlTags;
 
 import jmash.tableModel.HopBuyTableModel;
 import jmash.tableModel.MaltBuyTableModel;

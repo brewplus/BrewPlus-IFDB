@@ -4,9 +4,6 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="title" type="java.lang.String" value="Scala Ingredienti"/>
-    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[681, 399]"/>
-    </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[681, 399]"/>
     </Property>
@@ -69,9 +66,9 @@
                 <Column editable="false" title="Tipo" type="java.lang.String"/>
                 <Column editable="false" title="Nome" type="java.lang.String"/>
                 <Column editable="false" title="Forma" type="java.lang.String"/>
-                <Column editable="false" title="Necessario" type="java.lang.Double"/>
-                <Column editable="false" title="Disponibile" type="java.lang.Double"/>
-                <Column editable="false" title="Rimanenti" type="java.lang.Double"/>
+                <Column editable="false" title="Necessario (gr)" type="java.lang.Double"/>
+                <Column editable="false" title="Disponibile (gr)" type="java.lang.Double"/>
+                <Column editable="false" title="Rimanenti (gr)" type="java.lang.Double"/>
                 <Column editable="true" title="Forza" type="java.lang.Boolean"/>
               </Table>
             </Property>

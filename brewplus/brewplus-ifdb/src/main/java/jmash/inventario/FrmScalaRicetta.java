@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package jmash.magazzino;
+package jmash.inventario;
 
+import jmash.AcquistoIngredienti;
 import java.awt.Cursor;
 import java.io.File;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import jmash.AcquistoIngredienti;
 import jmash.Hop;
 import jmash.Malt;
 import jmash.Quantita;
@@ -106,7 +106,6 @@ public class FrmScalaRicetta extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Scala Ingredienti");
-        setMaximumSize(new java.awt.Dimension(681, 399));
         setMinimumSize(new java.awt.Dimension(681, 399));
         setModal(true);
         setResizable(false);
@@ -116,7 +115,7 @@ public class FrmScalaRicetta extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Tipo", "Nome", "Forma", "Necessario", "Disponibile", "Rimanenti", "Forza"
+                "Tipo", "Nome", "Forma", "Necessario (gr)", "Disponibile (gr)", "Rimanenti (gr)", "Forza"
             }
         ) {
             Class[] types = new Class [] {
@@ -191,7 +190,7 @@ public class FrmScalaRicetta extends javax.swing.JDialog {
         DefaultTableModel tableModel = (DefaultTableModel)(tblScalaIngredienti.getModel());
         for (int ii = 0; ii < tblScalaIngredienti.getRowCount(); ii++) {
             if (((Double)tableModel.getValueAt(ii, 5)) < 0 && !(Boolean)tableModel.getValueAt(ii, 6)) {
-                JOptionPane.showMessageDialog(this, "Il " + tableModel.getValueAt(ii, 0) + " : " + tableModel.getValueAt(ii, 1) + " non è sufficiente. Per poter procedere devi forzare l'operazione.", "Scala Ingredienti", JOptionPane.WARNING_MESSAGE); 
+                JOptionPane.showMessageDialog(this, "Il " + tableModel.getValueAt(ii, 0) + " : [" + tableModel.getValueAt(ii, 1) + "] non è sufficiente. Per poter procedere devi \"Forzare\" l'operazione selezionando l'ingrediente.", "Scala Ingredienti", JOptionPane.WARNING_MESSAGE); 
                 return;
             }
         }

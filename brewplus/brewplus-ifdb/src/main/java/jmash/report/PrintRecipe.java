@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import jmash.magazzino.model.RecipesModel;
+import jmash.inventario.model.RecipesModel;
 
 import org.apache.log4j.Logger;
 

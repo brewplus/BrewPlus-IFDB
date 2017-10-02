@@ -23,6 +23,10 @@ package jmash;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import jmash.Hop;
+import jmash.Malt;
+import jmash.Utils;
+import jmash.Yeast;
 
 import org.jdom.Document;
 import org.jdom.Element;
