@@ -197,14 +197,14 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Nome", "Forma", "Necessario (gr)", "Disponibile (gr)", "Mancanti (gr)"
+                "Nome", "Forma", "A.A.", "Necessario (gr)", "Disponibile (gr)", "Mancanti (gr)"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -415,6 +415,7 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
                     Hop hop = new Hop();
                     hop.setNome((String)modelLuppoli.getValueAt(ii, 0));
                     hop.setForma((String)modelLuppoli.getValueAt(ii, 1));
+                    hop.setAlfaAcidi((Double)modelLuppoli.getValueAt(ii, 2));
                     hop.setGrammi((Double)modelLuppoli.getValueAt(ii, COL_FABB_LUPPOLI));
                     hops.add(hop);
                   }
@@ -470,8 +471,8 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
     private static Integer idRicetta = 0;
     private static final Integer COL_QUANT_FERMENTABILI = 3;
     private static final Integer COL_FABB_FERMENTABILI = 5;
-    private static final Integer COL_QUANT_LUPPOLI = 2;
-    private static final Integer COL_FABB_LUPPOLI = 4;
+    private static final Integer COL_QUANT_LUPPOLI = 3;
+    private static final Integer COL_FABB_LUPPOLI = 5;
     private static final Integer COL_QUANT_LIEVITI = 2;
     private static final Integer COL_FABB_LIEVITI = 4;
     private static BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
@@ -550,7 +551,7 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
                     break;
                 }
             }
-            if (!esiste) model.addRow(new Object[]{luppolo.getNome(), luppolo.getForma(), luppolo.getGrammi()});   
+            if (!esiste) model.addRow(new Object[]{luppolo.getNome(), luppolo.getForma(), luppolo.getAlfaAcidi(), luppolo.getGrammi()});   
         }
     }
     
@@ -652,7 +653,7 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
             for (Hop luppolo : luppoli) {
                 if (luppolo.getNome().equalsIgnoreCase((String)modelLuppoli.getValueAt(ii, 0))&& luppolo.getForma().equalsIgnoreCase((String)modelLuppoli.getValueAt(ii, 1))) {
                     esiste = true;
-                    modelLuppoli.setValueAt(luppolo.getGrammi(), ii, 3);
+                    modelLuppoli.setValueAt(luppolo.getGrammi(), ii, 4);
                     if (luppolo.getGrammi() - (Double)modelLuppoli.getValueAt(ii, COL_QUANT_LUPPOLI) > 0)
                        modelLuppoli.setValueAt(0, ii, COL_FABB_LUPPOLI); 
                     else 
@@ -660,7 +661,7 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
                     break;
                 }
             }
-            if (!esiste)  {modelLuppoli.setValueAt(0, ii, 3); modelLuppoli.setValueAt((Double)modelLuppoli.getValueAt(ii, COL_QUANT_LUPPOLI), ii, COL_FABB_LUPPOLI);}
+            if (!esiste)  {modelLuppoli.setValueAt(0, ii, 4); modelLuppoli.setValueAt((Double)modelLuppoli.getValueAt(ii, COL_QUANT_LUPPOLI), ii, COL_FABB_LUPPOLI);}
         }
     }
     

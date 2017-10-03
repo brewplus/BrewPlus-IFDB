@@ -107,6 +107,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	/**
 	*
 	*/
+        public static boolean isAlreadyDrop;
 	private static final long serialVersionUID = -3021970158888588464L;
 	private static final Logger LOGGER = Logger.getLogger(Ricetta.class);
 	private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
@@ -151,6 +152,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	}
 
 	public Ricetta() {
+                isAlreadyDrop = false;
 		this.thisRicetta = this;
 		this.hopTableModel = new HopTableModel(this);
 		this.waterPanel = new WaterAdjustPanel(this);

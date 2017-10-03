@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import jmash.Hop;
 import jmash.Malt;
 import jmash.Quantita;
+import jmash.Ricetta;
 import jmash.TableSorter;
 import jmash.Utils;
 import jmash.component.CheckBoxModelListener;
@@ -26,7 +27,6 @@ import org.jdom.Document;
  */
 public class FrmScalaRicetta extends javax.swing.JDialog {
     
-   // private TableSorter modelFermentabili;
     private AcquistoIngredienti inventario;
     private static final String FERMENTABILE = "FERMENTABILE";
     private static final String LUPPOLI = "LUPPOLI";
@@ -187,29 +187,32 @@ public class FrmScalaRicetta extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnScalaInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScalaInventarioActionPerformed
-        DefaultTableModel tableModel = (DefaultTableModel)(tblScalaIngredienti.getModel());
-        for (int ii = 0; ii < tblScalaIngredienti.getRowCount(); ii++) {
-            if (((Double)tableModel.getValueAt(ii, 5)) < 0 && !(Boolean)tableModel.getValueAt(ii, 6)) {
-                JOptionPane.showMessageDialog(this, "Il " + tableModel.getValueAt(ii, 0) + " : [" + tableModel.getValueAt(ii, 1) + "] non è sufficiente. Per poter procedere devi \"Forzare\" l'operazione selezionando l'ingrediente.", "Scala Ingredienti", JOptionPane.WARNING_MESSAGE); 
-                return;
+        if ((!Ricetta.isAlreadyDrop) || (Ricetta.isAlreadyDrop && ( JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "Gli ingredienti della Ricetta risultano già scalati. Sei sicuro di continuare?", "Scala Ingredienti",JOptionPane.YES_NO_OPTION)))) {
+            DefaultTableModel tableModel = (DefaultTableModel)(tblScalaIngredienti.getModel());
+            for (int ii = 0; ii < tblScalaIngredienti.getRowCount(); ii++) {
+                if (((Double)tableModel.getValueAt(ii, 5)) < 0 && !(Boolean)tableModel.getValueAt(ii, 6)) {
+                    JOptionPane.showMessageDialog(this, "Il " + tableModel.getValueAt(ii, 0) + " : [" + tableModel.getValueAt(ii, 1) + "] non è sufficiente. Per poter procedere devi \"Forzare\" l'operazione selezionando l'ingrediente.", "Scala Ingredienti", JOptionPane.WARNING_MESSAGE); 
+                    return;
+                }
             }
+            for (int ii = 0; ii < tblScalaIngredienti.getRowCount(); ii++) {
+                if (FERMENTABILE.equalsIgnoreCase((String)tableModel.getValueAt(ii, 0)))
+                    for (Malt malto : inventario.getMalti()) 
+                        if (malto.getNome().equalsIgnoreCase((String)tblScalaIngredienti.getValueAt(ii, 1)) && malto.getForma().equalsIgnoreCase((String)tblScalaIngredienti.getValueAt(ii, 2)))
+                              inventario.getMalti().get(inventario.getMalti().indexOf(malto)).setGrammi(((Double)tableModel.getValueAt(ii, 5)) > 0 ? (Double)tableModel.getValueAt(ii, 5) : 0);
+                if (LUPPOLI.equalsIgnoreCase((String)tableModel.getValueAt(ii, 0)))
+                    for (Hop hop : inventario.getLuppoli()) 
+                        if (hop.getNome().equalsIgnoreCase((String)tblScalaIngredienti.getValueAt(ii, 1)) && hop.getForma().equalsIgnoreCase((String)tblScalaIngredienti.getValueAt(ii, 2)))
+                              inventario.getLuppoli().get(inventario.getLuppoli().indexOf(hop)).setGrammi(((Double)tableModel.getValueAt(ii, 5)) > 0 ? (Double)tableModel.getValueAt(ii, 5) : 0);
+
+            }
+            Document doc = inventario.toXml();
+            File file = new File(bpenv.getConfigfileName(Constants.XML_INVENTORY));
+            Utils.saveXmlAsFile(doc, file, null);
+            JOptionPane.showMessageDialog(this, "Gli Ingredienti sono stati scalati dall'inventario.", "Scala Ingredienti", JOptionPane.INFORMATION_MESSAGE); 
+            Ricetta.isAlreadyDrop = true;
+            this.dispose();
         }
-        for (int ii = 0; ii < tblScalaIngredienti.getRowCount(); ii++) {
-            if (FERMENTABILE.equalsIgnoreCase((String)tableModel.getValueAt(ii, 0)))
-                for (Malt malto : inventario.getMalti()) 
-                    if (malto.getNome().equalsIgnoreCase((String)tblScalaIngredienti.getValueAt(ii, 1)) && malto.getForma().equalsIgnoreCase((String)tblScalaIngredienti.getValueAt(ii, 2)))
-                          inventario.getMalti().get(inventario.getMalti().indexOf(malto)).setGrammi(((Double)tableModel.getValueAt(ii, 5)) > 0 ? (Double)tableModel.getValueAt(ii, 5) : 0);
-            if (LUPPOLI.equalsIgnoreCase((String)tableModel.getValueAt(ii, 0)))
-                for (Hop hop : inventario.getLuppoli()) 
-                    if (hop.getNome().equalsIgnoreCase((String)tblScalaIngredienti.getValueAt(ii, 1)) && hop.getForma().equalsIgnoreCase((String)tblScalaIngredienti.getValueAt(ii, 2)))
-                          inventario.getLuppoli().get(inventario.getLuppoli().indexOf(hop)).setGrammi(((Double)tableModel.getValueAt(ii, 5)) > 0 ? (Double)tableModel.getValueAt(ii, 5) : 0);
-            
-        }
-        Document doc = inventario.toXml();
-        File file = new File(bpenv.getConfigfileName(Constants.XML_INVENTORY));
-        Utils.saveXmlAsFile(doc, file, null);
-        JOptionPane.showMessageDialog(this, "Gli Ingredienti sono stati scalati dall'inventario.", "Scala Ingredienti", JOptionPane.INFORMATION_MESSAGE); 
-        this.dispose();
     }//GEN-LAST:event_btnScalaInventarioActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
