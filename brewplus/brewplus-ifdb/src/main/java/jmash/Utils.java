@@ -87,8 +87,6 @@ import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
-import jmash.config.ConfigurationManager;
-import jmash.config.bean.GeneralConfig;
 import jmash.schema.bjcp.Styleguide;
 
 /**
@@ -98,7 +96,6 @@ import jmash.schema.bjcp.Styleguide;
 public class Utils {
 
 	private static final Logger LOGGER = Logger.getLogger(Utils.class);
-	private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
 
 	/** Creates a new instance of Utils */
 	public Utils() {
@@ -243,7 +240,7 @@ public class Utils {
 		 * http://en.wikipedia.org/wiki/Standard_Reference_Method
 		 * http://www.beercolor.com/FEQs.htm
 		 */
-		if (generalConfig.getEbcNewMethod())
+		if (Main.config.getEbcNewMethod())
 			return 1.97 * srm;
 		return 2.65 * srm - 1.2;
 		// return (srm-0.46)/0.375;
@@ -256,7 +253,7 @@ public class Utils {
 		 * http://en.wikipedia.org/wiki/Standard_Reference_Method
 		 * http://www.beercolor.com/FEQs.htm
 		 */
-		if (generalConfig.getEbcNewMethod())
+		if (Main.config.getEbcNewMethod())
 			return ebc * 0.508;
 		return 0.377 * ebc + 0.45;
 	}
@@ -437,7 +434,7 @@ public class Utils {
 		 * 
 		 * data += "&" + URLEncoder.encode("testo", "UTF-8") + "=" +
 		 * URLEncoder.encode(ST, "UTF-8"); URL url = new URL("http://" +
-		 * generalConfig.getRemoteRoot() + "/bug.asp?" + data);
+		 * Main.config.getRemoteRoot() + "/bug.asp?" + data);
 		 * 
 		 * URLConnection conn = url.openConnection(); conn.setDoOutput(true);
 		 * conn.setDoInput(true);
@@ -942,7 +939,7 @@ public class Utils {
 					// solo per esecuzioni per eclipse/netbeans
 					String currentDir = System.getProperty("user.dir");
 					String currentParentDir = new File(currentDir).getParent();
-					bjcpStylesXML = currentParentDir + Main.resource_distr + bjcpStylesXML;
+					bjcpStylesXML = currentParentDir + "/brewplus-ifdb-distr/src/main/resources/distr/" + bjcpStylesXML;
 				}
 			}
 

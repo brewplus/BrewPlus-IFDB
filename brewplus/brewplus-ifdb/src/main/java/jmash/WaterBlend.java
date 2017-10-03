@@ -7,22 +7,19 @@
 package jmash;
 
 import java.io.File;
-
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.border.TitledBorder;
-
 import org.jdom.Document;
 import org.jdom.Element;
-
-import jmash.utils.BrewplusEnvironment;
-import jmash.utils.Constants;
+import org.jdom.output.Format;
+import org.jdom.output.XMLOutputter;
 
 /**
  *
  * @author Alessandro
  */
 public class WaterBlend extends ModalInternalFrame {
-	
-	private static BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
 
 	/** Creates new form WaterBlend */
 	public WaterBlend() {
@@ -637,7 +634,7 @@ public class WaterBlend extends ModalInternalFrame {
 	// End of variables declaration//GEN-END:variables
 
 	private void loadFrom() {
-		File file = Utils.pickFileToLoad(this, bpenv.getFolderName(Constants.DIR_WATER));
+		File file = Utils.pickFileToLoad(this, Main.waterDir);
 		if (file == null)
 			return;
 		Document doc = Utils.readFileAsXml(file.toString());
@@ -657,7 +654,7 @@ public class WaterBlend extends ModalInternalFrame {
 
 	public void saveFrom() {
 
-		File file = Utils.pickFileToSave(this, bpenv.getFolderName(Constants.DIR_WATER));
+		File file = Utils.pickFileToSave(this, Main.waterDir);
 		if (file == null) {
 			return;
 		}
@@ -676,7 +673,7 @@ public class WaterBlend extends ModalInternalFrame {
 	private String destName = null;
 
 	private void loadDest() {
-		File file = Utils.pickFileToLoad(this, bpenv.getFolderName(Constants.DIR_WATER));
+		File file = Utils.pickFileToLoad(this, Main.waterDir);
 		if (file == null)
 			return;
 		Document doc = Utils.readFileAsXml(file.toString());
@@ -694,7 +691,7 @@ public class WaterBlend extends ModalInternalFrame {
 
 	public void saveDest() {
 
-		File file = Utils.pickFileToSave(this, bpenv.getFolderName(Constants.DIR_WATER));
+		File file = Utils.pickFileToSave(this, Main.waterDir);
 		if (file == null) {
 			return;
 		}

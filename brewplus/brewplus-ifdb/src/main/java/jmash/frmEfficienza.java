@@ -15,21 +15,21 @@ import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import jmash.component.JVolumeSpinner;
-import jmash.config.ConfigurationManager;
-import jmash.config.bean.GeneralConfig;
 import jmash.component.JGravitySpinner;
 import jmash.tableModel.NumberFormatter;
 
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 
-
-
 public class frmEfficienza extends javax.swing.JInternalFrame {
 
-
+    /**
+     * 
+     */
     private static final long serialVersionUID = -1218837417290578L;
-    private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
+    /**
+     * 
+     */
     private final JPanel contentPanel = new JPanel();
     private final Ricetta ricetta;
     private final JVolumeSpinner volumeSpinnerPREBOIL;
@@ -162,7 +162,7 @@ public class frmEfficienza extends javax.swing.JInternalFrame {
         for (Malt m : ricetta.maltTableModel.getRows()) {
             double pts = m.getPotentialSG() * 1000 - 1000;
             double grs = m.getGrammi();
-            if (generalConfig.getPotLibGal() == 1) {
+            if (Main.config.getPotLibGal() == 1) {
                 // anglosaxon
                 if (m.isMashed())
                     X += pts * Utils.kgToPound(grs / 1000) / Utils.litToGal(volumeSpinnerPREBOIL.getVolume());
@@ -190,7 +190,7 @@ public class frmEfficienza extends javax.swing.JInternalFrame {
         for (Malt m : ricetta.maltTableModel.getRows()) {
             double pts = m.getPotentialSG() * 1000 - 1000;
             double grs = m.getGrammi();
-            if (generalConfig.getPotLibGal() == 1) {
+            if (Main.config.getPotLibGal() == 1) {
                 // anglosaxon
                 if (m.isMashed())
                     X += pts * Utils.kgToPound(grs / 1000) / Utils.litToGal(volumeSpinnerBREWHOUSE.getVolume());

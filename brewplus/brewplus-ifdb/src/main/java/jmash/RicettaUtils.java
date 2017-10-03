@@ -23,7 +23,7 @@ public class RicettaUtils {
 
 		double totalAcidGrainWeightGr = 0.0;
 
-		for (Malt recipeMalt : recipeMalts != null ? recipeMalts : new ArrayList<Malt>()) {
+		for (Malt recipeMalt : recipeMalts) {
 
 			MaltCategory maltCategory = findMaltCategory(recipeMalt);
 
@@ -64,7 +64,7 @@ public class RicettaUtils {
 
 		double totalGrainWeightGr = recipe.maltTableModel.getTotGrammi();
 
-		for (Malt recipeMalt : recipe.maltTableModel.getRows() != null ? recipe.maltTableModel.getRows() : new ArrayList<Malt>()) {
+		for (Malt recipeMalt : recipe.maltTableModel.getRows()) {
 
 			MaltCategory maltCategory = findMaltCategory(recipeMalt);
 

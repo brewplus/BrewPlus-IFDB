@@ -58,10 +58,10 @@ import org.jdom.Element;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
-import jmash.config.ConfigurationManager;
-import jmash.config.bean.GeneralConfig;
-
 /**
+ *
+ *
+ *
  * @author Alessandro
  *
  */
@@ -73,8 +73,6 @@ public class BrowseHobbyBirra extends javax.swing.JInternalFrame {
 	 */
 	private static final long serialVersionUID = 909356925171057928L;
 	private static Logger LOGGER = Logger.getLogger(BrowseHobbyBirra.class);
-	
-	private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
 
 	/** Creates new form BrowseHobbyBirra */
 
@@ -84,12 +82,12 @@ public class BrowseHobbyBirra extends javax.swing.JInternalFrame {
 
 		setBorder(Utils.getDefaultBorder());
 
-		Document doc = Utils.readFileAsXml("http://" + generalConfig.getRemoteServer() + "/ricette_stile_xml.asp");
+		Document doc = Utils.readFileAsXml("http://" + Main.config.getRemoteServer() + "/ricette_stile_xml.asp");
 		if (doc == null) {
 			return;
 		}
 		Document doc2 = Utils
-				.readFileAsXml("http://" + generalConfig.getRemoteServer() + "/ricette_unconfirmed_stile_xml.asp");
+				.readFileAsXml("http://" + Main.config.getRemoteServer() + "/ricette_unconfirmed_stile_xml.asp");
 		if (doc2 == null) {
 			return;
 		}
@@ -232,7 +230,7 @@ public class BrowseHobbyBirra extends javax.swing.JInternalFrame {
 						RecipeTreeNode node = (RecipeTreeNode) BrowseHobbyBirra.this.jTree1.getSelectionPath()
 								.getLastPathComponent();
 						LOGGER.info("ricetta selezionata ID =" + node.getId());
-						Document doc = Utils.readFileAsXml("http://" + generalConfig.getRemoteServer()
+						Document doc = Utils.readFileAsXml("http://" + Main.config.getRemoteServer()
 								+ "/view_ricetta_xml.asp?id_ricetta_HB=" + node.getId());
 						if (doc == null) {
 							return;
@@ -252,7 +250,7 @@ public class BrowseHobbyBirra extends javax.swing.JInternalFrame {
 						RecipeTreeNode node = (RecipeTreeNode) BrowseHobbyBirra.this.jTree1.getSelectionPath()
 								.getLastPathComponent();
 						LOGGER.info("ricetta selezionata ID =" + node.getId());
-						Document doc = Utils.readFileAsXml("http://" + generalConfig.getRemoteServer()
+						Document doc = Utils.readFileAsXml("http://" + Main.config.getRemoteServer()
 								+ "/view_ricetta_xml.asp?id_ricetta_HB=" + node.getId());
 						if (doc == null) {
 							return;
@@ -269,7 +267,7 @@ public class BrowseHobbyBirra extends javax.swing.JInternalFrame {
 
 	private void expandNode(StyleTreeNode node, String U, DefaultTreeModel tm) {
 		Document doc = Utils.readFileAsXml(
-				"http://" + generalConfig.getRemoteServer() + "/ricette" + U + "_xml.asp?id_stile=" + node.getIdStile());
+				"http://" + Main.config.getRemoteServer() + "/ricette" + U + "_xml.asp?id_stile=" + node.getIdStile());
 		if (doc == null) {
 			return;
 		}

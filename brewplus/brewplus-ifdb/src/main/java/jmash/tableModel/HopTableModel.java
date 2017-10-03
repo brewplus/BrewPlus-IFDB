@@ -25,16 +25,11 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-
 import jmash.*;
-import jmash.Main.BitterBUGU;
-import jmash.config.ConfigurationManager;
-import jmash.config.bean.GeneralConfig;
 
 /**
  *
  * @author Alessandro
- * @author rekhyt
  */
 public class HopTableModel extends GenericTableModel<Hop> {
 
@@ -42,24 +37,14 @@ public class HopTableModel extends GenericTableModel<Hop> {
 	 *
 	 */
 	private static final long serialVersionUID = -54392409816219092L;
-	private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
 	Ricetta ricetta;
 	private static String[] hopColumnNames = new String[] { "", "Nome", "Q.tà", "Un.mis.", "Forma", "Alfa A.",
-			"Bollitura", "Uso", "Tinseth", "" };
+			"Bollitura", "Uso", "Tinseth", "Rager", "Daniels", "" };
 
 	public HopTableModel(Ricetta ric) {
 		this.ricetta = ric;
 		ret.setIcon(Main.clockIcon);
 		this.columnNames = hopColumnNames;
-        if (BitterBUGU.TIN.equals(generalConfig.getBUGUratiostring())) {
-        	this.columnNames[8] = "Tinseth";
-        }
-        if (BitterBUGU.RAG.equals(generalConfig.getBUGUratiostring())) {
-        	this.columnNames[8] = "Rager";
-        }
-        if (BitterBUGU.DAN.equals(generalConfig.getBUGUratiostring())) {
-        	this.columnNames[8] = "Daniels";
-        }
 	}
 
 	private static JButton ret = new JButton("");
@@ -105,14 +90,12 @@ public class HopTableModel extends GenericTableModel<Hop> {
 			case 7:
 				return h.getUso();
 			case 8:
-	        	String tiporatioBU = generalConfig.getBUGUratiostring();
-	        	if (BitterBUGU.TIN.equals(tiporatioBU))
-	        		return NumberFormatter.format01(h.getIBUTinseth());
-	        	if (BitterBUGU.DAN.equals(tiporatioBU))
-	            	return NumberFormatter.format01(h.getIBURager());
-	        	if (BitterBUGU.RAG.equals(tiporatioBU))
-	            	return NumberFormatter.format01(h.getIBUDaniels());
+				return NumberFormatter.format01(h.getIBUTinseth());
 			case 9:
+				return NumberFormatter.format01(h.getIBURager());
+			case 10:
+				return NumberFormatter.format01(h.getIBUDaniels());
+			case 11:
 				return ret;
 			}
 		}
@@ -122,7 +105,7 @@ public class HopTableModel extends GenericTableModel<Hop> {
 	@Override
 	public boolean isCellEditable(int row, int col) {
 		return // false;
-		((col < 9) && (col > 0));
+		((col < 8) && (col > 0));
 	}
 
 	@Override
@@ -156,6 +139,7 @@ public class HopTableModel extends GenericTableModel<Hop> {
 				case 7:
 					h.setUso((String) value);
 					break;
+
 				default:
 					break;
 				}
@@ -219,7 +203,7 @@ public class HopTableModel extends GenericTableModel<Hop> {
 		double vf = this.ricetta.getVolume();
 		double bg = (vf / vb) * (this.ricetta.getGravity() - 1) + 1;
 		double gf = 5 * (bg - 0.85);
-		double tf = (generalConfig.getMetriSLM() / 168) * 0.02 + 1;
+		double tf = (Main.config.getMetriSLM() / 168) * 0.02 + 1;
 
 		ibu += 130 * (-1 + Math.sqrt(1 + temp / (650 * vb * gf * tf))) / (vf / vb);
 

@@ -23,9 +23,6 @@ package jmash;
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
@@ -33,10 +30,14 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-
 import javax.swing.ImageIcon;
+
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
+import jmash.tableModel.MashDecoctionStepTableModel;
+import jmash.tableModel.MashInfusionStepTableModel;
+import jmash.tableModel.MashStepTableModel;
+import jmash.tableModel.NumberFormatter;
 
 import org.jdom.Document;
 import org.jdom.Element;
@@ -54,13 +55,10 @@ import org.jfree.chart.renderer.xy.XYAreaRenderer;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
-
-import jmash.tableModel.MashDecoctionStepTableModel;
-import jmash.tableModel.MashInfusionStepTableModel;
-import jmash.tableModel.MashStepTableModel;
-import jmash.tableModel.NumberFormatter;
-import jmash.utils.BrewplusEnvironment;
-import jmash.utils.Constants;
+import javax.swing.JButton;
+import java.awt.Dimension;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  *
@@ -72,7 +70,6 @@ public class PanelMashStep extends javax.swing.JPanel {
 	 *
 	 */
 	private static final long serialVersionUID = 2970112440652235772L;
-	private static BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
 	/** Creates new form PanelMashStep */
 	private Ricetta ricetta;
 	private JInternalFrame parentFrame;
@@ -830,7 +827,7 @@ public class PanelMashStep extends javax.swing.JPanel {
 	}// GEN-LAST:event_jButton5ActionPerformed
 
 	private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton4ActionPerformed
-		File file1 = Utils.pickFileToLoad(new JInternalFrame(), bpenv.getFolderName(Constants.DIR_MASH));
+		File file1 = Utils.pickFileToLoad(new JInternalFrame(), Main.mashDir);
 		if (file1 != null) {
 
 			Document doc = Utils.readFileAsXml(file1.toString());
@@ -952,7 +949,7 @@ public class PanelMashStep extends javax.swing.JPanel {
 	public void save(File savefile) {
 
 		if (savefile == null) {
-			savefile = Utils.pickFileToSave(new JInternalFrame(), bpenv.getFolderName(Constants.DIR_MASH));
+			savefile = Utils.pickFileToSave(new JInternalFrame(), Main.mashDir);
 		}
 		if (savefile == null)
 			return;
@@ -1081,12 +1078,6 @@ public class PanelMashStep extends javax.swing.JPanel {
 			rds = this.mashStepTableModel.getDataSet(rds);
 			rds = this.mashDecoctionStepTableModel.getDataSet(rds);
 			rds = this.mashInfusionStepTableModel.getDataSet(rds);
-		}
-		
-		if (this.mashStepTableModel.getRows() != null && !this.mashStepTableModel.getRows().isEmpty())
-		{
-			MashStep mashInStep = this.mashStepTableModel.getRow(0);
-			ricetta.getWaterNeeded().setTemperaturaMashIn(new Double(mashInStep.getStartTemp()));
 		}
 	}
 

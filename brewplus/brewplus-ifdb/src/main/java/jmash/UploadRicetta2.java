@@ -33,9 +33,6 @@ import javax.swing.tree.DefaultTreeModel;
 import org.jdom.Document;
 import org.jdom.Element;
 
-import jmash.config.ConfigurationManager;
-import jmash.config.bean.GeneralConfig;
-
 /**
  *
  * @author Alessandro
@@ -45,7 +42,6 @@ public class UploadRicetta2 extends javax.swing.JInternalFrame {
 	 *
 	 */
 	private static final long serialVersionUID = 3695389393696260527L;
-	private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
 	private String xml;
 	private String nomeRicetta;
 
@@ -68,8 +64,8 @@ public class UploadRicetta2 extends javax.swing.JInternalFrame {
 
 		this.txtNome.setText(nomeRicetta);
 
-		this.txtUser.setText(generalConfig.getNickIHB());
-		this.txtPwd.setText(generalConfig.getPasswordIHB());
+		this.txtUser.setText(Main.config.getNickIHB());
+		this.txtPwd.setText(Main.config.getPasswordIHB());
 		this.jTree2.removeAll();
 		reloadTree();
 		ImageIcon closeIcon = new ImageIcon(BrowseHobbyBirra.class.getResource("/jmash/images/folder.png"));
@@ -89,7 +85,7 @@ public class UploadRicetta2 extends javax.swing.JInternalFrame {
 	}
 
 	private void reloadTree() {
-		Document doc = Utils.readFileAsXml("http://" + generalConfig.getRemoteServer() + "/ricette_stile_xml.asp");
+		Document doc = Utils.readFileAsXml("http://" + Main.config.getRemoteServer() + "/ricette_stile_xml.asp");
 		DefaultMutableTreeNode top = new DefaultMutableTreeNode("Ricette su Il Forum della Birra");
 		if (doc == null) {
 			this.treeModel = new DefaultTreeModel(top);
@@ -299,7 +295,7 @@ public class UploadRicetta2 extends javax.swing.JInternalFrame {
 			data += "&" + URLEncoder.encode("xml_ricetta", "UTF-8") + "=" + URLEncoder.encode(this.xml, "UTF-8");
 
 			// Send data
-			URL url = new URL("http://" + generalConfig.getRemoteServer() + "/upload_ricetta.asp?" + data);
+			URL url = new URL("http://" + Main.config.getRemoteServer() + "/upload_ricetta.asp?" + data);
 			URLConnection conn = url.openConnection();
 			conn.setDoOutput(true);
 			conn.setDoInput(true);

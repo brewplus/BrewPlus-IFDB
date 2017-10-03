@@ -20,21 +20,14 @@
 package jmash;
 
 import java.util.Date;
-
-import jmash.config.ConfigurationManager;
-import jmash.config.bean.GeneralConfig;
 import jmash.interfaces.InventoryObject;
 import org.jdom.Element;
 
 /**
  *
  * @author Alessandro
- * @author rekhyt
- * 
  */
 public class Hop implements InventoryObject {
-	
-	private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
     
     private Double HSI;
     private Double alfaAcidiPrec;
@@ -106,7 +99,7 @@ public class Hop implements InventoryObject {
             setBoilTime(0);
         }
         if ("DHEA".compareToIgnoreCase(uso) == 0) {
-            setBoilTime(generalConfig.getAmaroDHEA());
+            setBoilTime(Main.config.getAmaroDHEA());
         }
         if (("first wort".compareToIgnoreCase(uso) == 0) && (this.ricetta != null)) {
             setBoilTime(this.ricetta.getBollitura());

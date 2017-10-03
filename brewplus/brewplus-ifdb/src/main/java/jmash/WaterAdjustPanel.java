@@ -35,10 +35,6 @@ import org.jdom.Element;
 
 import jmash.PalmerRecommendedRange.PalmerRecommendedRangeType;
 import jmash.component.JMashSpinner;
-import jmash.config.ConfigurationManager;
-import jmash.config.bean.GeneralConfig;
-import jmash.utils.BrewplusEnvironment;
-import jmash.utils.Constants;
 
 /**
  *
@@ -47,8 +43,6 @@ import jmash.utils.Constants;
 public class WaterAdjustPanel extends javax.swing.JPanel {
 	private static final long serialVersionUID = 1L;
 	private static Logger LOGGER = Logger.getLogger(WaterAdjustPanel.class);
-	private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
-	private static BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
 	private JInternalFrame parent;
 	Picker waterPicker;
 
@@ -251,17 +245,17 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 		// spinCarb.setModel(0, 0, 100000, 1, "0.0",
 		// "WaterAdjustPanel.spinCarb");
 
-		spinCalcio.setModel(generalConfig.getCalcioSource() != null ? generalConfig.getCalcioSource() : 0, 0, 100000, 1,
+		spinCalcio.setModel(Main.config.getCalcioSource() != null ? Main.config.getCalcioSource() : 0, 0, 100000, 1,
 				"0.0", null);
-		spinCloruro.setModel(generalConfig.getCloruroSource() != null ? generalConfig.getCloruroSource() : 0, 0, 100000, 1,
+		spinCloruro.setModel(Main.config.getCloruroSource() != null ? Main.config.getCloruroSource() : 0, 0, 100000, 1,
 				"0.0", null);
-		spinMagnesio.setModel(generalConfig.getMagnesioSource() != null ? generalConfig.getMagnesioSource() : 0, 0, 100000,
+		spinMagnesio.setModel(Main.config.getMagnesioSource() != null ? Main.config.getMagnesioSource() : 0, 0, 100000,
 				1, "0.0", null);
-		spinSodio.setModel(generalConfig.getSodioSource() != null ? generalConfig.getSodioSource() : 0, 0, 100000, 1, "0.0",
+		spinSodio.setModel(Main.config.getSodioSource() != null ? Main.config.getSodioSource() : 0, 0, 100000, 1, "0.0",
 				null);
-		spinSolfato.setModel(generalConfig.getSolfatoSource() != null ? generalConfig.getSolfatoSource() : 0, 0, 100000, 1,
+		spinSolfato.setModel(Main.config.getSolfatoSource() != null ? Main.config.getSolfatoSource() : 0, 0, 100000, 1,
 				"0.0", null);
-		spinCarb.setModel(generalConfig.getCarbonatoSource() != null ? generalConfig.getCarbonatoSource() : 0, 0, 100000, 1,
+		spinCarb.setModel(Main.config.getCarbonatoSource() != null ? Main.config.getCarbonatoSource() : 0, 0, 100000, 1,
 				"0.0", null);
 
 		spinCalcio1.setModel(0, 0, 100000, 1, "0.0", null);
@@ -2254,7 +2248,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 
 	// End of variables declaration//GEN-END:variables
 	private void loadFrom() {
-		File file = Utils.pickFileToLoad(parent, bpenv.getFolderName(Constants.DIR_WATER));
+		File file = Utils.pickFileToLoad(parent, Main.waterDir);
 		if (file == null)
 			return;
 		Document doc = Utils.readFileAsXml(file.toString());
@@ -2276,7 +2270,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 
 	public void saveFrom() {
 
-		File file = Utils.pickFileToSave(parent, bpenv.getFolderName(Constants.DIR_WATER));
+		File file = Utils.pickFileToSave(parent, Main.waterDir);
 		if (file == null) {
 			return;
 		}
@@ -2297,7 +2291,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 	private String destName = null;
 
 	private void loadDest() {
-		File file = Utils.pickFileToLoad(parent, bpenv.getFolderName(Constants.DIR_WATER));
+		File file = Utils.pickFileToLoad(parent, Main.waterDir);
 		if (file == null)
 			return;
 		Document doc = Utils.readFileAsXml(file.toString());
@@ -2315,7 +2309,7 @@ public class WaterAdjustPanel extends javax.swing.JPanel {
 
 	public void saveDest() {
 
-		File file = Utils.pickFileToSave(parent, bpenv.getFolderName(Constants.DIR_WATER));
+		File file = Utils.pickFileToSave(parent, Main.waterDir);
 		if (file == null) {
 			return;
 		}

@@ -28,9 +28,6 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileView;
 
-import jmash.utils.BrewplusEnvironment;
-import jmash.utils.Constants;
-
 /**
  *
  * @author Alessandro
@@ -43,7 +40,6 @@ public class PickFile extends ModalInternalFrame {
 	private static final long serialVersionUID = 8255919763647766893L;
 	private static final Icon folder = new ImageIcon(PickFile.class.getResource("/jmash/images/folder.png"));
 	private static final Icon file = new ImageIcon(PickFile.class.getResource("/jmash/images/doc.png"));
-	private static BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
 
 	/** Creates new form PickFile */
 	public PickFile() {
@@ -52,7 +48,7 @@ public class PickFile extends ModalInternalFrame {
 	}
 
 	public PickFile(boolean save) {
-		this(save,bpenv.getFolderName(Constants.DIR_USER), "xml");
+		this(save, Main.userDir, "xml");
 	}
 
 	public PickFile(boolean save, String dir) {

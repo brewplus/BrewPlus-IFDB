@@ -26,8 +26,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 import org.apache.log4j.Logger;
 
-import jmash.config.ConfigurationManager;
-import jmash.config.bean.GeneralConfig;
 import jmash.tableModel.HopTableModel;
 import jmash.tableModel.MaltTableModel;
 import jmash.tableModel.NumberFormatter;
@@ -37,13 +35,10 @@ import jmash.tableModel.YeastTableModel;
 /**
  *
  * @author Alessandro
- * @author rekhyt
- * 
  */
 public class Gyle extends javax.swing.JPanel {
 
 	private static final Logger LOGGER = Logger.getLogger(Gyle.class);
-	private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
 
 	/** Creates new form Gyle
         * @param ricetta */
@@ -122,17 +117,17 @@ public class Gyle extends javax.swing.JPanel {
 		tblHops.getColumnModel().getColumn(1).setPreferredWidth(128);
 		tblMalts.getColumnModel().getColumn(0).setPreferredWidth(32);
 
-		this.volume = generalConfig.getVolumeFin();
-		this.volumeBoll = generalConfig.getVolumeBoil();
+		this.volume = Main.config.getVolumeFin();
+		this.volumeBoll = Main.config.getVolumeBoil();
 		this.unitaMisura = "litri";
 
 		spinVolumeBollWO.setModelFormat(23.0, 0.25, 9999999.0, 0.25, "0.00", "Gyle.VB");
 		spinVolumeFinWO.setModelFormat(23.0, 0.25, 9999999.0, 0.25, "0.00", "Gyle.VF");
 
-		spinVolumeBollWO.setDoubleValue(generalConfig.getVolumeBoil());
-		spinVolumeFinWO.setDoubleValue(generalConfig.getVolumeFin());
-		spinEfficienza.setValue(generalConfig.getEfficienza());
-		spinBollitura.setValue(generalConfig.getBoilTime());
+		spinVolumeBollWO.setDoubleValue(Main.config.getVolumeBoil());
+		spinVolumeFinWO.setDoubleValue(Main.config.getVolumeFin());
+		spinEfficienza.setValue(Main.config.getEfficienza());
+		spinBollitura.setValue(Main.config.getBoilTime());
 
 		((javax.swing.SpinnerNumberModel) spinEfficienza.getModel()).setMaximum(100);
 		((javax.swing.SpinnerNumberModel) spinBollitura.getModel()).setMinimum(0);
@@ -1406,7 +1401,7 @@ public class Gyle extends javax.swing.JPanel {
 		this.dirty = true;
 	}
 
-	private double volume = generalConfig.getVolumeFin();
+	private double volume = Main.config.getVolumeFin();
 
 	public double getVolumeConverted() {
 		return this.volume;
@@ -1420,7 +1415,7 @@ public class Gyle extends javax.swing.JPanel {
 		this.volume = v;
 	}
 
-	private double volumeBoll = generalConfig.getVolumeBoil();
+	private double volumeBoll = Main.config.getVolumeBoil();
 
 	public double getVolumeBollConverted() {
 		return this.volumeBoll;
@@ -1444,7 +1439,7 @@ public class Gyle extends javax.swing.JPanel {
 		this.unitaMisura = unitaMisura;
 	}
 
-	private double efficienza = generalConfig.getEfficienza();
+	private double efficienza = Main.config.getEfficienza();
 
 	public double getEfficienza() {
 		return this.efficienza;
@@ -1454,7 +1449,7 @@ public class Gyle extends javax.swing.JPanel {
 		this.efficienza = v;
 	}
 
-	private int bollitura = generalConfig.getBoilTime();
+	private int bollitura = Main.config.getBoilTime();
 
 	public int getBollitura() {
 		return this.bollitura;

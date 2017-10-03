@@ -26,17 +26,11 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
-import jmash.config.ConfigurationManager;
-import jmash.config.bean.GeneralConfig;
-
 /**
  *
  * @author Alessandro
- * @author rekhyt
  */
 public class Bug extends javax.swing.JInternalFrame {
-	
-	private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
 
 	/** Creates new form Bug */
 	public Bug(Object classe) {
@@ -112,7 +106,7 @@ public class Bug extends javax.swing.JInternalFrame {
 
 			data += "&" + URLEncoder.encode("testo", "UTF-8") + "=" + URLEncoder.encode(this.txt.getText(), "UTF-8");
 			URL url;
-			String u = generalConfig.getRemoteRoot() + "/bug.asp?" + data;
+			String u = Main.config.getRemoteRoot() + "/bug.asp?" + data;
 			if (!u.startsWith("http://"))
 				u = "http://" + u;
 			url = new URL(u);
