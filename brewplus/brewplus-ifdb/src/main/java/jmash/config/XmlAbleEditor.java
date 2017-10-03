@@ -231,7 +231,13 @@ public class XmlAbleEditor extends javax.swing.JInternalFrame {
                 root.addContent(((XmlAble) o).toXml());
             }
         }
-        Utils.saveXmlAsFile(doc, new File(filename), this);
+        if ("1".equals(System.getProperty("ide"))) {
+            String currentDir = System.getProperty("user.dir");
+            String currentParentDir = new File(currentDir).getParent();
+            Utils.saveXmlAsFile(doc, new File(currentParentDir + Main.resource_distr + filename), this);
+        } else {
+        	Utils.saveXmlAsFile(doc, new File(filename), this);
+        }
         try {
             reloadMethod.invoke(Main.class);
         } catch (Exception ex) {

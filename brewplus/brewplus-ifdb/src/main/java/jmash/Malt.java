@@ -20,8 +20,10 @@
 package jmash;
 
 import java.util.Date;
-import jmash.interfaces.Constants;
+
 import jmash.interfaces.InventoryObject;
+import jmash.utils.Constants;
+
 import org.jdom.Element;
 
 /**

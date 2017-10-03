@@ -21,7 +21,13 @@
 package jmash.tableModel;
 
 import java.lang.reflect.Method;
-import jmash.*;
+
+import jmash.Main;
+import jmash.Ricetta;
+import jmash.Utils;
+import jmash.Yeast;
+import jmash.utils.BrewplusEnvironment;
+import jmash.utils.Constants;
 
 /**
  *
@@ -33,6 +39,7 @@ public class YeastTableModel extends GenericTableModel<Yeast> {
 	 *
 	 */
 	private static final long serialVersionUID = -401917354676314454L;
+	private static BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
 	Ricetta ricetta;
 	private static String[] cN = new String[] { "Codice", "Produttore", "Nome", "Attenuazione (%)" , "Quantità (gr)", "Temperatura Max ferm. (°)", "Descrizione"};
 
@@ -50,7 +57,7 @@ public class YeastTableModel extends GenericTableModel<Yeast> {
 			Method m = h.getClass().getMethod("get" + Utils.capitalize(this.fieldNames[col]));
 			return m.invoke(h);
 		} catch (Exception e) {
-			Utils.showException(e, "Il file " + Main.stiliXML + " non corrisponde al formato.", ricetta);
+			Utils.showException(e, "Il file " + bpenv.getConfigfileName(Constants.XML_STYLES) + " non corrisponde al formato.", ricetta);
 		}
 		return null;
 	}

@@ -39,6 +39,8 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -62,15 +64,21 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 import org.apache.log4j.Logger;
 import org.jdom.Document;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
+import jmash.Main.BitterBUGU;
 import jmash.component.GlassPanel;
 import jmash.component.UpDownPopupMenu;
+import jmash.config.ConfigurationManager;
+import jmash.config.bean.GeneralConfig;
 import jmash.imagecomponents.ImageFileView;
 import jmash.imagecomponents.ImageFilter;
 import jmash.imagecomponents.ImagePreview;
@@ -85,6 +93,8 @@ import jmash.tableModel.MaltTableModel;
 import jmash.tableModel.NumberFormatter;
 import jmash.tableModel.SummaryTableModel;
 import jmash.tableModel.YeastTableModel;
+import jmash.utils.BrewplusEnvironment;
+import jmash.utils.Constants;
 
 /**
  *
@@ -97,6 +107,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	*/
 	private static final long serialVersionUID = -3021970158888588464L;
 	private static final Logger LOGGER = Logger.getLogger(Ricetta.class);
+	private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
 	/** Creates new form Ricetta */
 	private Boolean isCotta = false;
 	protected Component entered = null;
@@ -145,7 +156,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		this.summaryTableModel = new SummaryTableModel(this);
 		this.yeastTableModel = new YeastTableModel(this);
 		this.glassPanel = new GlassPanel(this);
-		this.hopPicker = new Picker(Gui.hopPickerTableModel);
+		this.hopPicker = new HopTypePicker();
 		this.hopPicker.setIcon(hopsIcon);
 		this.maltPicker = new MaltTypePicker();
 
@@ -230,7 +241,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		tblHops.getColumnModel().getColumn(7).setCellEditor(new jmash.component.JSpinnerEditor(XmlTags.HOP_USAGE));
 		tblHops.getColumnModel().getColumn(1).setPreferredWidth(128);
 		tblHops.getColumnModel().getColumn(0).setPreferredWidth(32);
-		tblHops.getColumnModel().getColumn(11).setPreferredWidth(32);
+		tblHops.getColumnModel().getColumn(9).setPreferredWidth(32);
 
 		tblHops.getColumnModel().getColumn(1).setCellRenderer(Main.multiLineCellRenderer);
 		tblMalts.getColumnModel().getColumn(1).setCellRenderer(Main.multiLineCellRenderer);
@@ -270,8 +281,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		thisRicetta.setIconifiable(true);
 		thisRicetta.setTitle(Main.bundle.getString("title.recipe"));
 		thisRicetta.setVisible(true);
-		setVolume(Main.config.getVolumeFin());
-		setVolumeBoll(Main.config.getVolumeBoil());
+		setVolume(generalConfig.getVolumeFin());
+		setVolumeBoll(generalConfig.getVolumeBoil());
 		setUnitaMisura("litri");
 
 		spinBollitura.setEditor(new JSpinner.NumberEditor(spinBollitura, "# min"));
@@ -281,11 +292,11 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		spinVolumeFin.setModelFormat(23.0, 0.25, 9999999.0, 0.25, "0.00", "Ricetta.VF");
 		spinVolumeDiluito.setModelFormat(23.0, 0.25, 9999999.0, 0.25, "0.00", "Ricetta.DL");
 
-		spinVolumeBoll.setVolume(Main.config.getVolumeBoil());
-		spinVolumeFin.setVolume(Main.config.getVolumeFin());
-		spinEfficienza.setValue(Main.config.getEfficienza());
-		spinBollitura.setValue(Main.config.getBoilTime());
-		chkBiab.setSelected(Main.config.getBiab());
+		spinVolumeBoll.setVolume(generalConfig.getVolumeBoil());
+		spinVolumeFin.setVolume(generalConfig.getVolumeFin());
+		spinEfficienza.setValue(generalConfig.getEfficienza());
+		spinBollitura.setValue(generalConfig.getBoilTime());
+		chkBiab.setSelected(generalConfig.getBiab());
 
 		((javax.swing.SpinnerNumberModel) spinEfficienza.getModel()).setMaximum(100);
 		((javax.swing.SpinnerNumberModel) spinBollitura.getModel()).setMinimum(0);
@@ -307,13 +318,13 @@ public class Ricetta extends javax.swing.JInternalFrame {
 			}
 		});
 
-		this.tblHops.getColumnModel().getColumn(11).setCellRenderer(new DefaultTableCellRenderer() {
+		this.tblHops.getColumnModel().getColumn(9).setCellRenderer(new DefaultTableCellRenderer() {
 			private static final long serialVersionUID = -1649193412422579171L;
 
 			@Override
 			public Component getTableCellRendererComponent(JTable tblDataTable, Object value, boolean isSelected,
 					boolean hasFocus, int markedRow, int col) {
-				return (Component) Ricetta.this.tblHops.getValueAt(markedRow, 11);
+				return (Component) Ricetta.this.tblHops.getValueAt(markedRow, 9);
 			}
 		});
 
@@ -352,6 +363,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		setBorder(Utils.getDefaultBorder());
 		this.mashDesign.mashModificato();
 		setDilVisible(false);
+		setCurrentIBU();
 		dirty = false;
 	}
 
@@ -1928,7 +1940,18 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		summary.setEbc(String.format("%.01f",getEbc()));
 		summary.setEfficency(rec.getEfficienza() + "%");
 		summary.setFg(getFGPrevista());
-		summary.setIbu(String.format("%.01f",getIBUTinseth()));
+		if (BitterBUGU.TIN.equals(generalConfig.getBUGUratiostring())) {
+			summary.setIbu(String.format("%.01f",hopTableModel.getIBUTinseth()));
+			summary.setIbuLabel("IBU (Tinseth)");
+		}
+		if (BitterBUGU.RAG.equals(generalConfig.getBUGUratiostring())) {
+			summary.setIbu(String.format("%.01f",hopTableModel.getIBURager()));
+			summary.setIbuLabel("IBU (Rager)");
+		}
+		if (BitterBUGU.DAN.equals(generalConfig.getBUGUratiostring())) {
+			summary.setIbu(String.format("%.01f",hopTableModel.getIBUDaniels()));
+			summary.setIbuLabel("IBU (Daniels)");
+		}
 		summary.setOg(getSGPerStampa());
 		summary.setOgPreBoil(getOGPreBoil());
 		summary.setPlato(String.format("%.01f",getPPerStampa()));
@@ -2147,10 +2170,13 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		summaryTableModel.setIBUGaretz(hopTableModel.getIBUGaretz());
 		summaryTableModel.setIBUDaniels(hopTableModel.getIBUDaniels());
 
+		setCurrentIBU();
+		
 		summaryTableModel.setTotL(hopTableModel.getGrammi());
 		summaryTableModel.setTotG(maltTableModel.getGrammi());
 
 
+		waterNeeded.setBoilTime(getBollitura());
 		waterNeeded.setBatchSize(spinVolumeFin.getVolume());
 		waterNeeded.setTotGrani((double) maltTableModel.getGrammiMash() / 1000);
 		waterNeeded.setOriginalGravity(maltTableModel.getSG(concentrato));
@@ -2422,7 +2448,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		this.unitaMisura = unitaMisura;
 	}
 
-	private double efficienza = Main.config.getEfficienza();
+	private double efficienza = generalConfig.getEfficienza();
 
 	public double getEfficienza() {
 		return this.efficienza;
@@ -2432,7 +2458,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		this.efficienza = v;
 	}
 
-	private int bollitura = Main.config.getBoilTime();
+	private int bollitura = generalConfig.getBoilTime();
 
 	public int getBollitura() {
 		return this.bollitura;
@@ -2441,7 +2467,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	public void setBollitura(int bollitura) {
 		this.bollitura = bollitura;
 	}
-	private Boolean biab = Main.config.getBiab();
+	private Boolean biab = generalConfig.getBiab();
 
 	public void setBiab(Boolean biab) {
 		this.biab = biab;
@@ -2587,7 +2613,17 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		} else {
 			src.setCodiceStile(brewStyle.getNumero());
 		}
-		src.setHops(hopTableModel.getRows());
+		List<Hop> hopRows = new ArrayList<Hop>(hopTableModel.getRows());
+		Collections.sort(hopRows, new Comparator<Hop>() {
+			@Override
+			public int compare(Hop o1, Hop o2) {
+				if (o2.getBoilTime().equals(o1.getBoilTime())) {
+					return o1.getNome().compareTo(o2.getNome());
+				}
+				return o2.getBoilTime().compareTo(o1.getBoilTime());
+			}
+		});
+		src.setHops(hopRows);
 		src.setMalts(maltTableModel.getRows());
 		src.setYeasts(yeastTableModel.getRows());
 		src.setInfusionSteps(mashDesign.mashStepTableModel.getRows());
@@ -2610,8 +2646,9 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	}
 
 	public File saveRicetta() {
+		BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
 		if (this.file == null) {
-			file = Utils.pickFileToSave(this, (String) Main.getFromCache("recipe.dir", Main.recipeDir));
+			file = Utils.pickFileToSave(this, (String) Main.getFromCache("recipe.dir", bpenv.getFolderName(Constants.DIR_RECIPE)));
 		}
 		if (this.file == null)
 			return null;
@@ -2626,8 +2663,10 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	}
 	
     public File saveRicettaPID() {
+    	
+    	BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
         if (this.file == null) {
-            file = Utils.pickFileToSavePID(this, (String) Main.getFromCache("recipe.dir", Main.recipeDir));
+            file = Utils.pickFileToSavePID(this, (String) Main.getFromCache("recipe.dir", bpenv.getFolderName(Constants.DIR_RECIPE)));
         }
         if (this.file == null)
             return null;
@@ -2742,7 +2781,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		//LOGGER.debug("Calcolo FG - OGPrevista = " + OGPrevista);
 		Integer FGPrevista = OGPrevista;
 		Integer attenuazioneMed = 75;
-		if (yeastTableModel.getRows().size() > 0 && yeastTableModel.getRows().get(0).getAttenuazioneMed() != null && !"".equals(yeastTableModel.getRows().get(0).getAttenuazioneMed())) {
+		if (yeastTableModel.getRows() != null && yeastTableModel.getRows().size() > 0 && yeastTableModel.getRows().get(0).getAttenuazioneMed() != null && !"".equals(yeastTableModel.getRows().get(0).getAttenuazioneMed())) {
 		    attenuazioneMed = new Integer(yeastTableModel.getRows().get(0).getAttenuazioneMed());
 		    //LOGGER.debug("Calcolo FG - Recupero Attenuazione dalla lista = " + attenuazioneMed);
 		}
@@ -2779,7 +2818,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	
 	private String calcoloVolumiC02() {
 		Integer temperaturaMaxFerm = -1;
-		if (yeastTableModel.getRows().size() > 0 && yeastTableModel.getRows().get(0).getTemperaturaMaxFerm() != null && !"".equals(yeastTableModel.getRows().get(0).getTemperaturaMaxFerm())) {
+		if (yeastTableModel.getRows() != null && yeastTableModel.getRows().size() > 0 && yeastTableModel.getRows().get(0).getTemperaturaMaxFerm() != null && !"".equals(yeastTableModel.getRows().get(0).getTemperaturaMaxFerm())) {
 			temperaturaMaxFerm = new Integer(yeastTableModel.getRows().get(0).getTemperaturaMaxFerm());
 		}
 		
@@ -3225,4 +3264,76 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		return waterNeeded;
 	}
 	
+	public void setCurrentIBU() {
+		TableColumn tinsethColumn = tblSummary.getColumn(summaryTableModel.getColumnName(SummaryTableModel.TINSETH_COLUMN));
+		TableColumn ragerColumn = tblSummary.getColumn(summaryTableModel.getColumnName(SummaryTableModel.RAGER_COLUMN));
+		TableColumn danielsColumn = tblSummary.getColumn(summaryTableModel.getColumnName(SummaryTableModel.DANIELS_COLUMN));
+
+		TableColumn visibleIBUColumn;
+		TableColumn invisibleIBUColumn1;
+		TableColumn invisibleIBUColumn2;
+
+		int width = 0;
+		int minWidth = 0;
+		int maxWidth = 0;
+		int preferredWidth = 0;
+
+		if (tinsethColumn.getWidth() > 0) {
+			width = tinsethColumn.getWidth();
+			minWidth = tinsethColumn.getMinWidth();
+			maxWidth = tinsethColumn.getMaxWidth();
+			preferredWidth = tinsethColumn.getPreferredWidth();
+		} else if (ragerColumn.getWidth() > 0) {
+			width = ragerColumn.getWidth();
+			minWidth = ragerColumn.getMinWidth();
+			maxWidth = ragerColumn.getMaxWidth();
+			preferredWidth = ragerColumn.getPreferredWidth();
+		} else if (danielsColumn.getWidth() > 0) {
+			width = danielsColumn.getWidth();
+			minWidth = danielsColumn.getMinWidth();
+			maxWidth = danielsColumn.getMaxWidth();
+			preferredWidth = danielsColumn.getPreferredWidth();
+		}
+		
+		if (BitterBUGU.TIN.equals(generalConfig.getBUGUratiostring())) {
+				visibleIBUColumn = danielsColumn;
+				invisibleIBUColumn1 = tinsethColumn;
+				invisibleIBUColumn2 = ragerColumn;
+		} else if (BitterBUGU.RAG.equals(generalConfig.getBUGUratiostring())) {
+				visibleIBUColumn = ragerColumn;
+				invisibleIBUColumn1 = tinsethColumn;
+				invisibleIBUColumn2 = danielsColumn;
+		} else if (BitterBUGU.DAN.equals(generalConfig.getBUGUratiostring())) {
+				visibleIBUColumn = tinsethColumn;
+				invisibleIBUColumn1 = danielsColumn;
+				invisibleIBUColumn2 = ragerColumn;
+		} else {
+				visibleIBUColumn = tinsethColumn;
+				invisibleIBUColumn1 = danielsColumn;
+				invisibleIBUColumn2 = ragerColumn;
+		}
+
+		if (width > 0) {
+			visibleIBUColumn.setWidth(width);
+			visibleIBUColumn.setMinWidth(minWidth);
+			visibleIBUColumn.setMaxWidth(maxWidth);
+			visibleIBUColumn.setPreferredWidth(preferredWidth);
+
+			invisibleIBUColumn1.setWidth(0);
+			invisibleIBUColumn1.setMinWidth(0);
+			invisibleIBUColumn1.setMaxWidth(0);
+
+			invisibleIBUColumn2.setWidth(0);
+			invisibleIBUColumn2.setMinWidth(0);
+			invisibleIBUColumn2.setMaxWidth(0);
+
+			summaryTableModel.setBUGUratio();
+
+			JTableHeader th = tblSummary.getTableHeader();
+			TableColumnModel tcm = th.getColumnModel();
+			TableColumn tc = tcm.getColumn(SummaryTableModel.BU_GU_COLUMN);
+			tc.setHeaderValue(summaryTableModel.getColumnName(SummaryTableModel.BU_GU_COLUMN));
+			th.repaint();
+		}
+	}	
 }
