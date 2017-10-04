@@ -23,7 +23,7 @@ import jmash.RecipeData;
 import jmash.Utils;
 import jmash.Yeast;
 import jmash.inventario.model.RecipesModel;
-import jmash.report.PrintRecipe;;
+import jmash.report.PrintRecipe;
 import jmash.utils.BrewplusEnvironment;
 import jmash.utils.Constants;
 import jmash.utils.Utility;

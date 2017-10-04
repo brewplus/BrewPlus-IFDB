@@ -678,21 +678,6 @@ public class Ricetta extends javax.swing.JInternalFrame {
 			}
 		});
 		jPanel6.add(btnAdd11);
-
-		btnAdd12.setIcon(new ImageIcon(Ricetta.class.getResource("/jmash/images/timer2.png")));
-		btnAdd12.setCursor(new Cursor((Cursor.HAND_CURSOR)));
-		btnAdd12.setToolTipText("Genera timer di bollitura");
-		btnAdd12.setContentAreaFilled(false);
-		btnAdd12.setBorderPainted(false);
-		btnAdd12.setAlignmentX(0.5F);
-		btnAdd12.setMinimumSize(new java.awt.Dimension(32, 32));
-		btnAdd12.setPreferredSize(new java.awt.Dimension(36, 36));
-		btnAdd12.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnAdd12ActionPerformed(evt);
-			}
-		});
-		jPanel6.add(btnAdd12);
                 
 		btnScalaIngredienti.setIcon(new ImageIcon(Ricetta.class.getResource("/jmash/images/sacco.png")));
 		btnScalaIngredienti.setCursor(new Cursor((Cursor.HAND_CURSOR)));
