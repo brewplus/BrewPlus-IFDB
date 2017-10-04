@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import jmash.inventario.model.RecipesModel;
 
 import org.apache.log4j.Logger;
 
@@ -72,8 +73,8 @@ public class PrintRecipe {
 	
 			LOGGER.debug("Set report parameters");
 			lParameters.put("pRecipeName", recipeName);
-		    lParameters.put("pBJCPStyle", styleName);
-		    lParameters.put("pBrewplusVersion", brewPlusVersion);   
+                        lParameters.put("pBJCPStyle", styleName);
+                        lParameters.put("pBrewplusVersion", brewPlusVersion);   
 		    
 		    LOGGER.debug("Retrive report images");
 		    lParameters.put("pLogoDir", ClassLoader.getSystemResourceAsStream("jmash/reports/logo.png"));
@@ -93,4 +94,31 @@ public class PrintRecipe {
 		}
 	       
 	}
+        
+        public static final void fabbisogno(String brewPlusVersion, List<RecipesModel> recipeModel) {
+		Map<String, Object> lParameters = new HashMap<String, Object>();
+		JasperPrint jasperPrint;
+		try {
+			LOGGER.debug("Retrive recipe jasper file");
+			InputStream jasperStream = ClassLoader.getSystemResourceAsStream("jmash/reports/fabbisogno.jasper"); 
+			JasperReport report = (JasperReport) JRLoader.loadObject(jasperStream);
+                        lParameters.put("pBrewplusVersion", brewPlusVersion);   
+		    
+                        LOGGER.debug("Retrive report images");
+                        lParameters.put("pLogoDir", ClassLoader.getSystemResourceAsStream("jmash/reports/logo.png"));
+                        lParameters.put("pBackgroundImage", ClassLoader.getSystemResourceAsStream("jmash/reports/sfondo.jpg"));
+                        JRDataSource dataSource = new JRBeanCollectionDataSource(recipeModel);	        
+	    	
+		    LOGGER.debug("Fill jasper report with datasource");
+	    	jasperPrint = JasperFillManager.fillReport(report, lParameters, dataSource);
+	    	
+	    	LOGGER.debug("Open report in JasperViewer");
+	    	JasperViewer viewer = new JasperViewer(jasperPrint, false);
+	    	viewer.setTitle("Fabbisogno");	   
+	    	viewer.setVisible(true);	    
+                } catch (JRException e) {
+                        System.out.println("jmash.report.PrintRecipe.fabbisogno : "  + e.getMessage());
+			LOGGER.debug("Unable to print recipe " + e.getMessage());
+		}
+        }
 }

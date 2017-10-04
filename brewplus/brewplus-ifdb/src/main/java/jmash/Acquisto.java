@@ -36,6 +36,18 @@ import org.jdom.Document;
 import org.jdom.Element;
 
 import com.toedter.calendar.JDateChooserCellEditor;
+import jmash.Gui;
+import jmash.Hop;
+import jmash.HopType;
+import jmash.Main;
+import jmash.Malt;
+import jmash.MaltType;
+import jmash.MaltTypePicker;
+import jmash.Msg;
+import jmash.Picker;
+import jmash.Ricetta;
+import jmash.Utils;
+import jmash.XmlTags;
 
 import jmash.tableModel.HopBuyTableModel;
 import jmash.tableModel.MaltBuyTableModel;
@@ -49,7 +61,6 @@ import jmash.utils.Constants;
 public class Acquisto extends javax.swing.JInternalFrame {
 
 	/** Creates new form Acquisto */
-	// boolean showInventario=false;
 	private static SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
 	private static BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
 
@@ -60,9 +71,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 	}
 
 	public static Acquisto newAcquisto() {
-		Acquisto frm = new Acquisto();
-
-		return frm;
+		return new Acquisto();
 	}
 
 	private Acquisto() {

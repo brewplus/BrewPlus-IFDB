@@ -82,6 +82,8 @@ import jmash.config.bean.GeneralConfig;
 import jmash.imagecomponents.ImageFileView;
 import jmash.imagecomponents.ImageFilter;
 import jmash.imagecomponents.ImagePreview;
+import jmash.inventario.FrmScalaRicetta;
+import static jmash.inventario.FrmSelezioneRicette.caricaDisponibilitaMagazzino;
 import jmash.report.PrintRecipe;
 import jmash.report.model.Mash;
 import jmash.report.model.MineralSalts;
@@ -105,6 +107,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	/**
 	*
 	*/
+        public static boolean isAlreadyDrop;
 	private static final long serialVersionUID = -3021970158888588464L;
 	private static final Logger LOGGER = Logger.getLogger(Ricetta.class);
 	private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
@@ -149,6 +152,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	}
 
 	public Ricetta() {
+                isAlreadyDrop = false;
 		this.thisRicetta = this;
 		this.hopTableModel = new HopTableModel(this);
 		this.waterPanel = new WaterAdjustPanel(this);
@@ -453,6 +457,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		btnAdd10 = new javax.swing.JButton();
 		btnAdd11 = new javax.swing.JButton();
 		btnAdd12 = new javax.swing.JButton();
+                btnScalaIngredienti = new javax.swing.JButton();
 		jPanel1 = new javax.swing.JPanel();
 		jSeparator1 = new javax.swing.JSeparator();
 		jPanel5 = new javax.swing.JPanel();
@@ -602,6 +607,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jPanel6.setPreferredSize(new java.awt.Dimension(96, 180));
 
 		btnAdd5.setIcon(Main.boilOffIcon);
+                btnAdd5.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnAdd5.setToolTipText("Evaporazione");
 		btnAdd5.setContentAreaFilled(false);
 		btnAdd5.setBorderPainted(false);
@@ -617,6 +623,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jPanel6.add(btnAdd5);
 
 		btnAdd6.setIcon(Main.diluiteIcon);
+                btnAdd6.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnAdd6.setToolTipText("Diluizioni e concentrazioni");
 		btnAdd6.setContentAreaFilled(false);
 		btnAdd6.setBorderPainted(false);
@@ -632,6 +639,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jPanel6.add(btnAdd6);
 
 		btnAdd8.setIcon(Main.strikeIcon);
+                btnAdd8.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnAdd8.setToolTipText("Temperatura mash in");
 		btnAdd8.setContentAreaFilled(false);
 		btnAdd8.setBorderPainted(false);
@@ -647,6 +655,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jPanel6.add(btnAdd8);
 
 		btnAdd9.setIcon(Main.printIcon);
+                btnAdd9.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnAdd9.setToolTipText("Stampa");
 		btnAdd9.setContentAreaFilled(false);
 		btnAdd9.setBorderPainted(false);
@@ -661,6 +670,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jPanel6.add(btnAdd9);
 
 		btnAdd10.setIcon(calIcon);
+                btnAdd10.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnAdd10.setToolTipText("Descrizione per forum");
 		btnAdd10.setContentAreaFilled(false);
 		btnAdd10.setBorderPainted(false);
@@ -675,6 +685,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jPanel6.add(btnAdd10);
 
 		btnAdd11.setIcon(Main.checkInventoryIcon);
+                btnAdd11.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnAdd11.setToolTipText("Controlla in inventario");
 		btnAdd11.setContentAreaFilled(false);
 		btnAdd11.setBorderPainted(false);
@@ -689,6 +700,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jPanel6.add(btnAdd11);
 
 		btnAdd12.setIcon(new ImageIcon(Ricetta.class.getResource("/jmash/images/timer2.png")));
+                btnAdd12.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnAdd12.setToolTipText("Genera timer di bollitura");
 		btnAdd12.setContentAreaFilled(false);
 		btnAdd12.setBorderPainted(false);
@@ -701,7 +713,22 @@ public class Ricetta extends javax.swing.JInternalFrame {
 			}
 		});
 		jPanel6.add(btnAdd12);
-
+                
+                btnScalaIngredienti.setIcon(new ImageIcon(Ricetta.class.getResource("/jmash/images/sacco.png")));
+                btnScalaIngredienti.setCursor(new Cursor((Cursor.HAND_CURSOR)));
+		btnScalaIngredienti.setToolTipText("Scala ingredienti da inventario");
+		btnScalaIngredienti.setContentAreaFilled(false);
+		btnScalaIngredienti.setBorderPainted(false);
+		btnScalaIngredienti.setAlignmentX(0.5F);
+		btnScalaIngredienti.setMinimumSize(new java.awt.Dimension(32, 32));
+		btnScalaIngredienti.setPreferredSize(new java.awt.Dimension(36, 36));
+                btnScalaIngredienti.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				ScalaIngredientiDaInventario(evt);
+			}
+		});
+                jPanel6.add(btnScalaIngredienti);
+                
 		jPanel10.add(jPanel6);
 
 		jPanel10.add(jPanel1);
@@ -1805,7 +1832,20 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		ftb.setVisible(true);
 
 	}// GEN-LAST:event_btnAdd12ActionPerformed
+        
+        private void ScalaIngredientiDaInventario(java.awt.event.ActionEvent evt) {
+            if (tblMalts.getRowCount() > 0) {
+               FrmScalaRicetta frmScala = new FrmScalaRicetta(caricaDisponibilitaMagazzino(),new javax.swing.JFrame(), true);
+               frmScala.loadFermentabili((TableSorter) tblMalts.getModel());
+               frmScala.loadLuppoli((TableSorter) tblHops.getModel());
+               frmScala.setLocationRelativeTo(this);
+               frmScala.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Non è stata caricata nessuna Ricetta.", "Scala Ingredienti", JOptionPane.WARNING_MESSAGE); 
+            }
 
+	}
+        
 	private void btnAdd11ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd11ActionPerformed
 
 		finalizeInInventory();
@@ -2311,6 +2351,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	private javax.swing.JButton btnAdd10;
 	private javax.swing.JButton btnAdd11;
 	private javax.swing.JButton btnAdd12;
+        private javax.swing.JButton btnScalaIngredienti;
 	private JLabel lblPicBeer;
 	private javax.swing.JButton btnAdd2;
 	private javax.swing.JButton btnAdd5;

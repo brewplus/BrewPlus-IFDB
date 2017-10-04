@@ -52,7 +52,6 @@ import java.util.ResourceBundle;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.jdom.Attribute;
 import org.jdom.Document;

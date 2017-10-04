@@ -62,7 +62,7 @@ public class MaltType implements XmlAble, Comparable<MaltType> {
 	private String MAX_IN_BATCH;
 	private String RECOMMEND_MASH;
 	private String EXTRACT_SUBSTITUTE;
-  private String categoria;
+        private String categoria;
 
 	public Double getEbc() {
 		return ebc == null ? 0 : ebc;
