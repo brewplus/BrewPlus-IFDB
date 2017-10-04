@@ -1,5 +1,6 @@
 package jmash.utils;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -137,5 +138,10 @@ public class Utility {
 		}
 		return exists;
 	}
+        
+        public static String getSelectedFileExtension(File file) {
+            String path = file.getAbsolutePath();
+            return path.substring(path.lastIndexOf(".") + 1, path.length());
+        }
 
 }

@@ -25,7 +25,6 @@ import java.util.Date;
 import java.util.LinkedList;
 import javax.swing.ButtonGroup;
 import javax.swing.Icon;
-import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -83,7 +82,7 @@ public class Picker extends ModalInternalFrame {
 	Icon titleIcon = null;
 	Object selection = null;
 
-	Object getSelection() {
+	public Object getSelection() {
 		return this.selection;
 	}
 

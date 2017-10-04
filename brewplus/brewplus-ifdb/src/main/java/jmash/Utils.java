@@ -488,10 +488,10 @@ public class Utils {
 			LOGGER.debug(xml);
 		} catch (IOException e) {
 			Msg ask = new Msg("Errore: salvataggio non riuscito\n" + e);
-			ask.startModal(parent);
+			if (parent != null) ask.startModal(parent);
 			return;
 		}
-		new Info("Salvataggio eseguito con successo").startModal(parent);
+		if (parent != null) new Info("Salvataggio eseguito con successo").startModal(parent);
 	}
 	
     public static void saveRecipePIDToFile(String content, File file, JInternalFrame parent) {

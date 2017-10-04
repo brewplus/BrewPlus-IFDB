@@ -68,7 +68,6 @@ public class ConfigurationManager {
 		catch (Exception ex)
 		{
 			logger.error(ex);
-			ex.printStackTrace();
 		}
 		
 		
