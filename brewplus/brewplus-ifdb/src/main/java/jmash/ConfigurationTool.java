@@ -41,7 +41,6 @@ import javax.swing.event.ChangeListener;
 import org.jdom.Document;
 import org.jdom.Element;
 
-import jmash.Main.BitterBUGU;
 import jmash.component.JMashSpinner;
 import jmash.component.JUnitSpinner;
 import jmash.config.ConfigurationManager;
@@ -190,11 +189,11 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 		gbc_cmbBUGU.gridx = 1;
 		gbc_cmbBUGU.gridy = 2;
 		jPanelDefaults.add(cmbBUGURatio, gbc_cmbBUGU);
-		if (BitterBUGU.TIN.equals(generalConfig.getBUGUratiostring()))
+		if (Constants.IBU_TIN.equals(generalConfig.getBUGUratiostring()))
 			cmbBUGURatio.setSelectedIndex(0);
-		if (BitterBUGU.RAG.equals(generalConfig.getBUGUratiostring()))
+		if (Constants.IBU_RAG.equals(generalConfig.getBUGUratiostring()))
 			cmbBUGURatio.setSelectedIndex(1);
-		if (BitterBUGU.DAN.equals(generalConfig.getBUGUratiostring()))
+		if (Constants.IBU_DAN.equals(generalConfig.getBUGUratiostring()))
 			cmbBUGURatio.setSelectedIndex(2);
 
 		lblLanguage = new JLabel(Main.bundle.getString("label.language"));

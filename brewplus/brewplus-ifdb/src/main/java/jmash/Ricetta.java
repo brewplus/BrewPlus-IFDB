@@ -18,7 +18,6 @@
 */
 package jmash;
 
-import java.awt.AWTException;
 import java.awt.AlphaComposite;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -27,15 +26,14 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
@@ -74,7 +72,6 @@ import org.jdom.Document;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
-import jmash.Main.BitterBUGU;
 import jmash.component.GlassPanel;
 import jmash.component.UpDownPopupMenu;
 import jmash.config.ConfigurationManager;
@@ -88,7 +85,6 @@ import jmash.report.PrintRecipe;
 import jmash.report.model.Mash;
 import jmash.report.model.MineralSalts;
 import jmash.report.model.RecipeModel;
-import jmash.robot.hbRobot;
 import jmash.tableModel.HopTableModel;
 import jmash.tableModel.InventoryObjectTableModel;
 import jmash.tableModel.MaltTableModel;
@@ -607,7 +603,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jPanel6.setPreferredSize(new java.awt.Dimension(96, 180));
 
 		btnAdd5.setIcon(Main.boilOffIcon);
-                btnAdd5.setCursor(new Cursor((Cursor.HAND_CURSOR)));
+		btnAdd5.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnAdd5.setToolTipText("Evaporazione");
 		btnAdd5.setContentAreaFilled(false);
 		btnAdd5.setBorderPainted(false);
@@ -623,7 +619,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jPanel6.add(btnAdd5);
 
 		btnAdd6.setIcon(Main.diluiteIcon);
-                btnAdd6.setCursor(new Cursor((Cursor.HAND_CURSOR)));
+		btnAdd6.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnAdd6.setToolTipText("Diluizioni e concentrazioni");
 		btnAdd6.setContentAreaFilled(false);
 		btnAdd6.setBorderPainted(false);
@@ -638,24 +634,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		});
 		jPanel6.add(btnAdd6);
 
-		btnAdd8.setIcon(Main.strikeIcon);
-                btnAdd8.setCursor(new Cursor((Cursor.HAND_CURSOR)));
-		btnAdd8.setToolTipText("Temperatura mash in");
-		btnAdd8.setContentAreaFilled(false);
-		btnAdd8.setBorderPainted(false);
-		btnAdd8.setAlignmentX(0.5F);
-		btnAdd8.setMaximumSize(new java.awt.Dimension(30, 30));
-		btnAdd8.setMinimumSize(new java.awt.Dimension(30, 30));
-		btnAdd8.setPreferredSize(new java.awt.Dimension(36, 36));
-		btnAdd8.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnAdd8ActionPerformed(evt);
-			}
-		});
-		jPanel6.add(btnAdd8);
-
 		btnAdd9.setIcon(Main.printIcon);
-                btnAdd9.setCursor(new Cursor((Cursor.HAND_CURSOR)));
+		btnAdd9.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnAdd9.setToolTipText("Stampa");
 		btnAdd9.setContentAreaFilled(false);
 		btnAdd9.setBorderPainted(false);
@@ -670,7 +650,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jPanel6.add(btnAdd9);
 
 		btnAdd10.setIcon(calIcon);
-                btnAdd10.setCursor(new Cursor((Cursor.HAND_CURSOR)));
+		btnAdd10.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnAdd10.setToolTipText("Descrizione per forum");
 		btnAdd10.setContentAreaFilled(false);
 		btnAdd10.setBorderPainted(false);
@@ -685,7 +665,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jPanel6.add(btnAdd10);
 
 		btnAdd11.setIcon(Main.checkInventoryIcon);
-                btnAdd11.setCursor(new Cursor((Cursor.HAND_CURSOR)));
+		btnAdd11.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnAdd11.setToolTipText("Controlla in inventario");
 		btnAdd11.setContentAreaFilled(false);
 		btnAdd11.setBorderPainted(false);
@@ -700,7 +680,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jPanel6.add(btnAdd11);
 
 		btnAdd12.setIcon(new ImageIcon(Ricetta.class.getResource("/jmash/images/timer2.png")));
-                btnAdd12.setCursor(new Cursor((Cursor.HAND_CURSOR)));
+		btnAdd12.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnAdd12.setToolTipText("Genera timer di bollitura");
 		btnAdd12.setContentAreaFilled(false);
 		btnAdd12.setBorderPainted(false);
@@ -714,20 +694,20 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		});
 		jPanel6.add(btnAdd12);
                 
-                btnScalaIngredienti.setIcon(new ImageIcon(Ricetta.class.getResource("/jmash/images/sacco.png")));
-                btnScalaIngredienti.setCursor(new Cursor((Cursor.HAND_CURSOR)));
+		btnScalaIngredienti.setIcon(new ImageIcon(Ricetta.class.getResource("/jmash/images/sacco.png")));
+		btnScalaIngredienti.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnScalaIngredienti.setToolTipText("Scala ingredienti da inventario");
 		btnScalaIngredienti.setContentAreaFilled(false);
 		btnScalaIngredienti.setBorderPainted(false);
 		btnScalaIngredienti.setAlignmentX(0.5F);
 		btnScalaIngredienti.setMinimumSize(new java.awt.Dimension(32, 32));
 		btnScalaIngredienti.setPreferredSize(new java.awt.Dimension(36, 36));
-                btnScalaIngredienti.addActionListener(new java.awt.event.ActionListener() {
+		btnScalaIngredienti.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				ScalaIngredientiDaInventario(evt);
 			}
 		});
-                jPanel6.add(btnScalaIngredienti);
+		jPanel6.add(btnScalaIngredienti);
                 
 		jPanel10.add(jPanel6);
 
@@ -1821,29 +1801,17 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		this.thisRicetta.setBiab(chkBiab.isSelected());
 		ricettaModificata();
 	}
-
-	private void btnAdd12ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd12ActionPerformed
-		// Document doc = this.toRecipeData().toXml();
-		// Main.gui.addFrame(new XmlEditor(doc));
-		frmTimerBoil ftb = new frmTimerBoil(this.hopTableModel, ((Integer) this.spinBollitura.getValue()),
-				fldNome.getText().trim());
-		Gui.desktopPane.add(ftb);
-		Utils.center(ftb, this);
-		ftb.setVisible(true);
-
-	}// GEN-LAST:event_btnAdd12ActionPerformed
         
-        private void ScalaIngredientiDaInventario(java.awt.event.ActionEvent evt) {
-            if (tblMalts.getRowCount() > 0) {
-               FrmScalaRicetta frmScala = new FrmScalaRicetta(caricaDisponibilitaMagazzino(),new javax.swing.JFrame(), true);
-               frmScala.loadFermentabili((TableSorter) tblMalts.getModel());
-               frmScala.loadLuppoli((TableSorter) tblHops.getModel());
-               frmScala.setLocationRelativeTo(this);
-               frmScala.setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(this, "Non è stata caricata nessuna Ricetta.", "Scala Ingredienti", JOptionPane.WARNING_MESSAGE); 
-            }
-
+	private void ScalaIngredientiDaInventario(java.awt.event.ActionEvent evt) {
+		if (tblMalts.getRowCount() > 0) {
+		   FrmScalaRicetta frmScala = new FrmScalaRicetta(caricaDisponibilitaMagazzino(),new javax.swing.JFrame(), true);
+		   frmScala.loadFermentabili((TableSorter) tblMalts.getModel());
+		   frmScala.loadLuppoli((TableSorter) tblHops.getModel());
+		   frmScala.setLocationRelativeTo(this);
+		   frmScala.setVisible(true);
+		} else {
+			JOptionPane.showMessageDialog(this, "Non è stata caricata nessuna Ricetta.", "Scala Ingredienti", JOptionPane.WARNING_MESSAGE); 
+		}
 	}
         
 	private void btnAdd11ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd11ActionPerformed
@@ -1927,6 +1895,14 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		RecipeModel summary = new RecipeModel();
 		summary.setHops(rec.getHops());
 		summary.setMalts(rec.getMalts());
+		
+		Mash strike = new Mash();
+		strike.setStepName("Strike Water");
+		BigDecimal sw = new BigDecimal(waterNeeded.getStrikeWater());
+		strike.setTemperature(sw.setScale(0, RoundingMode.HALF_UP).toString());
+		strike.setLength("--");
+		steps.add(strike);
+		
 		for (MashStep mash : rec.getInfusionSteps()) {
 			Mash step = new Mash();
 			step.setStepName(mash.getNome());
@@ -1980,15 +1956,15 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		summary.setEbc(String.format("%.01f",getEbc()));
 		summary.setEfficency(rec.getEfficienza() + "%");
 		summary.setFg(getFGPrevista());
-		if (BitterBUGU.TIN.equals(generalConfig.getBUGUratiostring())) {
+		if (Constants.IBU_TIN.equals(generalConfig.getBUGUratiostring())) {
 			summary.setIbu(String.format("%.01f",hopTableModel.getIBUTinseth()));
 			summary.setIbuLabel("IBU (Tinseth)");
 		}
-		if (BitterBUGU.RAG.equals(generalConfig.getBUGUratiostring())) {
+		if (Constants.IBU_RAG.equals(generalConfig.getBUGUratiostring())) {
 			summary.setIbu(String.format("%.01f",hopTableModel.getIBURager()));
 			summary.setIbuLabel("IBU (Rager)");
 		}
-		if (BitterBUGU.DAN.equals(generalConfig.getBUGUratiostring())) {
+		if (Constants.IBU_DAN.equals(generalConfig.getBUGUratiostring())) {
 			summary.setIbu(String.format("%.01f",hopTableModel.getIBUDaniels()));
 			summary.setIbuLabel("IBU (Daniels)");
 		}
@@ -2018,14 +1994,6 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		Utils.center(fi, this);
 		fi.setVisible(true);
 	}
-
-	private void btnAdd8ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd8ActionPerformed
-		StrikeTemp ed = new StrikeTemp();
-		ed.setKgMalto(this.summaryTableModel.getTotG() / 1000);
-		Gui.desktopPane.add(ed);
-		Utils.center(ed, this);
-		ed.setVisible(true);
-	}// GEN-LAST:event_btnAdd8ActionPerformed
 
 	private void btnAdd6ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd6ActionPerformed
 		DiluitionForm ed = new DiluitionForm(this.getVolume(), this.getGravity(), this.hopTableModel.getIBUTinseth());
@@ -2210,8 +2178,6 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		summaryTableModel.setIBUGaretz(hopTableModel.getIBUGaretz());
 		summaryTableModel.setIBUDaniels(hopTableModel.getIBUDaniels());
 
-		setCurrentIBU();
-		
 		summaryTableModel.setTotL(hopTableModel.getGrammi());
 		summaryTableModel.setTotG(maltTableModel.getGrammi());
 
@@ -2229,6 +2195,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		double sg = maltTableModel.getSG(concentrato);
 
 		summaryTableModel.setSG(sg);
+		
+		setCurrentIBU();
 		
 		sg = maltTableModel.getSG(false);
 //		summaryTableModel.setSGPB(Utils.Plato2SG(Utils.SG2Plato(sg) * spinVolumeFin.getVolume() / spinVolumeBoll.getVolume()));
@@ -3143,164 +3111,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		}
 	}
 
-	public void demo() {
-		Thread T = new Thread() {
-			@Override
-			public void run() {
-				try {
-					hbRobot rob = new hbRobot();
-					// select style
-					Point p = btnAdd12.getLocationOnScreen();
-					Point p2 = btnStyle.getLocationOnScreen();
-					rob.moveMouse(p.x, p.y, p2.x + 5, p2.y + 5);
-					rob.click();
-					Thread.sleep(500);
-					rob.moveMouse(p2.x + 5, p2.y + 5, p2.x + 5 + 350, p2.y + 5 + 120);
-					rob.click();
 
-					rob.type("ENGL");
-					rob.delay(1000);
-
-					rob.moveMouseRel(0, 128);
-					rob.doubleClick();
-
-					// adding malt
-					//p = btnAdd12.getLocationOnScreen();
-					p2 = btnAdd1.getLocationOnScreen();
-					rob.moveMouseTo(p2.x + 5, p2.y + 5);
-					rob.click();
-					Thread.sleep(500);
-					rob.moveMouse(p2.x + 5, p2.y + 5, p2.x + 5 + 220, p2.y + 5 + 20);
-					rob.click();
-
-					rob.type("PALE");
-					rob.delay(100);
-					rob.mouseWheel(5);
-					rob.moveMouseRel(0, 80);
-					rob.delay(100);
-					rob.doubleClick();
-
-					p2 = tblMalts.getLocationOnScreen();
-					rob.moveMouseTo(p2.x + 200, p2.y + 10);
-					rob.deleteAndType(3800);
-
-					rob.gotoComponent(btnAdd1);
-					rob.click();
-					Thread.sleep(500);
-					rob.moveMouse(p2.x + 5, p2.y + 5, p2.x + 5 + 220, p2.y + 5 + 20);
-					rob.click();
-
-					rob.type("CRYST");
-
-					rob.delay(100);
-					rob.keyPress(KeyEvent.VK_DOWN);
-					rob.delay(100);
-					rob.keyPress(KeyEvent.VK_DOWN);
-					p2 = maltPicker.btnOk.getLocationOnScreen();
-					rob.moveMouseTo(p2.x + 10, p2.y + 10);
-					rob.click();
-
-					p2 = tblMalts.getLocationOnScreen();
-					rob.moveMouseTo(p2.x + 200, p2.y + 20);
-					rob.deleteAndType(200);
-
-					rob.gotoComponent(spinEfficienza);
-					rob.deleteAndType(81);
-
-					// adding hops
-					rob.gotoComponent(btnAdd);
-					rob.click();
-					Thread.sleep(500);
-					p2 = hopPicker.getLocationOnScreen();
-					rob.moveMouseTo(p2.x + 25, p2.y + 100);
-					rob.click();
-
-					rob.type("GOLDING");
-					rob.delay(200);
-					rob.keyPress(KeyEvent.VK_DOWN);
-					rob.delay(100);
-					rob.gotoComponent(hopPicker.btnOk);
-					rob.doubleClick();
-
-					p2 = tblHops.getLocationOnScreen();
-					rob.moveMouseTo(p2.x + 160, p2.y + 10);
-					rob.deleteAndType(40);
-
-					rob.gotoComponent(btnAdd);
-					rob.click();
-					Thread.sleep(500);
-					p2 = hopPicker.getLocationOnScreen();
-					rob.moveMouseTo(p2.x + 25, p2.y + 100);
-					rob.click();
-
-					rob.type("GOLDING");
-					rob.delay(200);
-					rob.keyPress(KeyEvent.VK_DOWN);
-					rob.delay(100);
-					rob.gotoComponent(hopPicker.btnOk);
-					rob.doubleClick();
-
-					p2 = tblHops.getLocationOnScreen();
-					rob.moveMouseTo(p2.x + 160, p2.y + 20);
-					rob.deleteAndType(40);
-
-					rob.moveMouseTo(p2.x + 420, p2.y + 20);
-					rob.deleteAndType(15);
-
-					rob.gotoComponent(btnAdd);
-					rob.click();
-					Thread.sleep(500);
-					p2 = hopPicker.getLocationOnScreen();
-					rob.moveMouseTo(p2.x + 25, p2.y + 100);
-					rob.click();
-					rob.type("cascad");
-					rob.delay(200);
-					rob.gotoComponent(hopPicker.btnOk);
-					rob.doubleClick();
-
-					p2 = tblHops.getLocationOnScreen();
-					rob.moveMouseTo(p2.x + 160, p2.y + 36);
-					rob.deleteAndType(40);
-
-					rob.moveMouseTo(p2.x + 460, p2.y + 36);
-					rob.doubleClick();
-					rob.delay(500);
-					rob.keyPress(KeyEvent.VK_DOWN);
-					rob.delay(100);
-					rob.keyPress(KeyEvent.VK_DOWN);
-					rob.delay(120);
-					rob.keyPress(KeyEvent.VK_DOWN);
-					rob.delay(180);
-					rob.keyPress(KeyEvent.VK_ENTER);
-					rob.keyPress(KeyEvent.VK_TAB);
-
-					rob.gotoComponent(fldNome);
-					rob.doubleClick();
-					rob.type("GOLDEN BITTER ALE");
-					rob.keyPress(KeyEvent.VK_ENTER);
-
-					rob.gotoComponent(spinBollitura);
-					rob.doubleClick();
-					rob.type("75 min");
-
-					rob.delay(1500);
-					rob.gotoComponent(lock);
-					rob.click();
-
-					rob.delay(500);
-					rob.gotoComponent(spinVolumeFin);
-					rob.deleteAndType(50);
-					rob.gotoComponent(spinVolumeBoll);
-					rob.deleteAndType(57);
-
-				} catch (AWTException | InterruptedException ex) {
-					LOGGER.error(ex.getMessage(), ex);
-				}
-			}
-		};
-		T.start();
-	}
-	
 	public WaterNeeded getWaterNeeded() {
 		return waterNeeded;
 	}
@@ -3336,15 +3147,15 @@ public class Ricetta extends javax.swing.JInternalFrame {
 			preferredWidth = danielsColumn.getPreferredWidth();
 		}
 		
-		if (BitterBUGU.TIN.equals(generalConfig.getBUGUratiostring())) {
+		if (Constants.IBU_DAN.equals(generalConfig.getBUGUratiostring())) {
 				visibleIBUColumn = danielsColumn;
 				invisibleIBUColumn1 = tinsethColumn;
 				invisibleIBUColumn2 = ragerColumn;
-		} else if (BitterBUGU.RAG.equals(generalConfig.getBUGUratiostring())) {
+		} else if (Constants.IBU_RAG.equals(generalConfig.getBUGUratiostring())) {
 				visibleIBUColumn = ragerColumn;
 				invisibleIBUColumn1 = tinsethColumn;
 				invisibleIBUColumn2 = danielsColumn;
-		} else if (BitterBUGU.DAN.equals(generalConfig.getBUGUratiostring())) {
+		} else if (Constants.IBU_TIN.equals(generalConfig.getBUGUratiostring())) {
 				visibleIBUColumn = tinsethColumn;
 				invisibleIBUColumn1 = danielsColumn;
 				invisibleIBUColumn2 = ragerColumn;
@@ -3368,11 +3179,13 @@ public class Ricetta extends javax.swing.JInternalFrame {
 			invisibleIBUColumn2.setMinWidth(0);
 			invisibleIBUColumn2.setMaxWidth(0);
 
-			summaryTableModel.setBUGUratio();
 
 			JTableHeader th = tblSummary.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc = tcm.getColumn(SummaryTableModel.BU_GU_COLUMN);
+			
+			summaryTableModel.setBUGUratio();
+			
 			tc.setHeaderValue(summaryTableModel.getColumnName(SummaryTableModel.BU_GU_COLUMN));
 			th.repaint();
 		}

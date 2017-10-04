@@ -22,8 +22,13 @@ package jmash.tableModel;
 
 import java.text.ParseException;
 import java.util.Date;
+
 import javax.swing.JLabel;
-import jmash.*;
+
+import jmash.Hop;
+import jmash.Main;
+import jmash.Utils;
+
 
 /**
  *

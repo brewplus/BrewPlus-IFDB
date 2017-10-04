@@ -51,21 +51,22 @@ public class frmCredits extends javax.swing.JInternalFrame {
                 + "<img src=\"" + frmCredits.class.getResource("/jmash/images/logo-min.png") + "\">"
                 + "<br>"
                 + "<a href=\"http://www.ilforumdellabirra.net\">Il Forum Della Birra</a>"
-                + "<br>Based on Hobbybrew 2.0.3 and BrewPlus 1.5.0"
+                + "<br>Based on Hobbybrew 2.0.3 and BrewPlus 1.5.0 ( by Ixtlanas )"
                 + "</center>"
                 + "<br><br></span>"
                 // thanks
 		        +"<span style='font-family:Tahoma; font-size: 12pt'>"
 		        + "<strong>Contributors:</strong>"
+		        + "<br>Michele \"Rekhyt\" Antonecchia  (Telegram: " + generateTelegramUrl("rekhyt") + " )"
 		        + "<br>Alessandro \"pera76\" Peruzzi (Email: " + generateEMailAddress("peruzzi.alessandro","gmail.com") + " )"
 		        + "<br>Angelo \"Girella\" Cerella (Email: " + generateEMailAddress("angelo.cerella","gmail.com") + " )"
-				+ "<br>Michele \"Rekhyt\" Antonecchia  (Telegram: " + generateTelegramUrl("rekhyt") + " )"
 				+ "<br>Diego \"DellaBotte\" Varriale  (Telegram: " + generateTelegramUrl("DiegoDellaBotte") + " )"
-				+ "<br><br><strong>For Italian translation of BJCP, Malt, Hop and Yeast lists:</strong>"
 				+ "<br>Giovanni \"Sgabuzen\" Iovane ( Email: " + generateEMailAddress("info", "sgabuzen.com") + " )"
+				+ "<br><br><strong>For Italian translation of BJCP, Malt, Hop and Yeast lists:</strong>"
                 + "<br>Luciano \"BATIGOLLE\" Picchioni ( Email: " + generateEMailAddress("batigolle", "gmail.com") + " )"
                 + "<br>Massimo \"superpiggy\" Scalvini (Email: " + generateEMailAddress("m.scalvini.80","gmail.com") + " )"
                 + "<br>Vito Fasano (Telegram: " + generateTelegramUrl("VitoFasano") +" - Email: " + generateEMailAddress("vito.fasano","gmail.com") + " )"
+                + "<br><br><strong>Export to Brewing controller in collaboration with Andrea Fantin of IMELAB</strong>"
                 + "<br><br><strong>Special thanks to:</strong>"
                 + "<br>Antonio De Feo (Telegram: " + generateTelegramUrl("JigenDaisuke") +" )"
                 + "<br>Stefano Longo (Telegram: " + generateTelegramUrl("Essetielle") + " - Email: " + generateEMailAddress("stl.lecce","gmail.com") + " )"
@@ -120,7 +121,7 @@ public class frmCredits extends javax.swing.JInternalFrame {
 		}
 	}
 	
-	// method to prevents email address discovery from sorcecode and spam 
+	// anti spam method to prevents email address discovered from source code 
 	private String generateEMailAddress(String name, String domain){
 	    
 	    StringBuffer mail = new StringBuffer();

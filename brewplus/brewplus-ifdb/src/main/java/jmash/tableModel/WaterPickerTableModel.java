@@ -27,7 +27,9 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
-import jmash.*;
+import jmash.WaterProfile;
+
+
 
 public class WaterPickerTableModel extends PickerTableModel {
 

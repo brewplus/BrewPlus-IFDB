@@ -7,7 +7,7 @@
  * and open the template in the editor.
  */
 
-package jmash.test;
+package jmash.utils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -26,8 +26,6 @@ import jmash.RecipeData;
 import jmash.Ricetta;
 import jmash.Utils;
 import jmash.Yeast;
-import jmash.utils.BrewplusEnvironment;
-import jmash.utils.Constants;
 
 /**
  *

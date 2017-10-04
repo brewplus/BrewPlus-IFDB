@@ -27,5 +27,8 @@ public final class Constants {
 	public static final String XML_CONFIG = "xml.config";
 	public static final String XML_INVENTORY = "xml.inventory";
 	public static final String XML_BREPROFILE = "xml.breweryProfile";
-    
+	public static final String IBU_TIN = "TIN";
+	public static final String IBU_RAG = "RAG";
+	public static final String IBU_DAN = "DAN";
+	
 }

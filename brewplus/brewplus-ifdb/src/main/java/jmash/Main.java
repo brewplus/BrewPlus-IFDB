@@ -104,7 +104,7 @@ public class Main {
 	public static ImageIcon mainIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/BPlusIcon-32.png")));
 
 	public static ImageIcon boilOffIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/steam.png")));
-	public static ImageIcon diluiteIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/extract.png")));
+	public static ImageIcon diluiteIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/diluizioni.png")));
 	public static ImageIcon uploadIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/upload.png")));
 	public static ImageIcon strikeIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/temp.png")));
 	public static ImageIcon printIcon = new ImageIcon(java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/fileprint.png")));
@@ -118,13 +118,6 @@ public class Main {
 	
 	
 	private static GeneralConfig generalConfig;
-	
-	
-	public static enum BitterBUGU { // metodo di calcolo BU/GU
-		TIN, RAG, DAN
-	}
-        
-        
          
 	public static MaltType getMaltTypeByWords(String des) {
 		des = des.toLowerCase();
@@ -206,7 +199,7 @@ public class Main {
 		}
 		gui = new Gui();
 		desktopPane = Gui.desktopPane;
-		gui.btnUpdate.setVisible(false);
+		
 		new File("_runner.jar").delete();
 
 		Utils.parseUtilizzo((String) getFromCache("Main.utilizzo", ""));
@@ -220,14 +213,6 @@ public class Main {
 		if (generalConfig.getProxyPort() != null)
 			System.setProperty("http.proxyPort", generalConfig.getProxyPort());
 
-		try {
-			update();
-			logger.info("Update check");
-		} catch (FileNotFoundException ex) {
-			logger.error(ex.getMessage(), ex);
-		} catch (IOException ex) {
-			logger.error(ex.getMessage(), ex);
-		}
 	}
 	
 	private class Option {
@@ -681,69 +666,7 @@ public class Main {
 		}
 	}
 
-	@SuppressWarnings("unused")
-	public void update() throws FileNotFoundException, IOException {
-		boolean ret = false;
-		System.setProperty("http.proxyHost", generalConfig.getProxyHost());
-		System.setProperty("http.proxyPort", generalConfig.getProxyPort());
 
-		String remoteRoot = generalConfig.getRemoteRoot();
-		if (remoteRoot == null)
-			remoteRoot = "http://www.ilforumdellabirra.net/";
-
-		if (!remoteRoot.startsWith("http://"))
-			remoteRoot = "http://" + remoteRoot;
-		if (!remoteRoot.endsWith("/"))
-			remoteRoot += "/";
-
-		if (!remoteRoot.endsWith("/"))
-			remoteRoot += "/";
-
-		try {
-			readversionfromweb(remoteRoot + "version.v");
-		} catch (Exception ex) {
-		}
-
-		File fVersione = new File("config/version.v");
-		int versione = 0;
-		if (fVersione.exists()) {
-			FileReader in = new FileReader(fVersione);
-
-			char[] c = new char[2048];
-			while (in.read(c) > 0) {
-				try {
-					versione = Integer.parseInt(String.valueOf(c).trim());
-				} catch (NumberFormatException nfex) {
-					versione = 0;
-				}
-			}
-			in.close();
-		}
-
-		if (false) {
-			gui.btnUpdate.setVisible(true);
-			gui.btnUpdate.setToolTipText("Trovata una nuova versione");
-			Thread thread = new Thread() {
-				javax.swing.border.LineBorder B = new javax.swing.border.LineBorder(new java.awt.Color(250, 0, 0), 2,
-						true);
-
-				@Override
-				public void run() {
-					while (true) {
-						try {
-							gui.btnUpdate.setBorder(null);
-							sleep(1000);
-							gui.btnUpdate.setBorder(B);
-							sleep(300);
-						} catch (InterruptedException ex) {
-							logger.error(ex.getMessage(), ex);
-						}
-					}
-				}
-			};
-			thread.start();
-		}
-	}
 
 	private static Double toDouble(Element el) {
 		if (el == null)

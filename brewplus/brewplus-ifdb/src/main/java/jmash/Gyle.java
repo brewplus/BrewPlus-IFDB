@@ -14,6 +14,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -306,7 +307,7 @@ public class Gyle extends javax.swing.JPanel {
 		});
 		jPanel6.add(btnAdd5);
 
-		btnAdd6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/extract.png"))); // NOI18N
+		btnAdd6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/diluizioni.png"))); // NOI18N
 		btnAdd6.setToolTipText(bundle.getString("diluizioni")); // NOI18N
 		btnAdd6.setAlignmentX(0.5F);
 		btnAdd6.setMaximumSize(new java.awt.Dimension(30, 30));
@@ -331,19 +332,6 @@ public class Gyle extends javax.swing.JPanel {
 			}
 		});
 		jPanel6.add(btnAdd7);
-
-		btnAdd8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/bowling.gif"))); // NOI18N
-		btnAdd8.setToolTipText(bundle.getString("StrikeTemp")); // NOI18N
-		btnAdd8.setAlignmentX(0.5F);
-		btnAdd8.setMaximumSize(new java.awt.Dimension(30, 30));
-		btnAdd8.setMinimumSize(new java.awt.Dimension(30, 30));
-		btnAdd8.setPreferredSize(new java.awt.Dimension(36, 36));
-		btnAdd8.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnAdd8ActionPerformed(evt);
-			}
-		});
-		jPanel6.add(btnAdd8);
 
 		btnAdd9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/fileprint.png"))); // NOI18N
 		btnAdd9.setToolTipText(bundle.getString("Print")); // NOI18N
@@ -1166,14 +1154,6 @@ public class Gyle extends javax.swing.JPanel {
 	private void btnAdd9ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd9ActionPerformed
 
 	}// GEN-LAST:event_btnAdd9ActionPerformed
-
-	private void btnAdd8ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd8ActionPerformed
-		StrikeTemp ed = new StrikeTemp();
-		ed.setKgMalto(this.summaryTableModel.getTotG() / 1000);
-		Gui.desktopPane.add(ed);
-		Utils.center(ed, ricetta);
-		ed.setVisible(true);
-	}// GEN-LAST:event_btnAdd8ActionPerformed
 
 	private void btnAdd7ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd7ActionPerformed
 		Thread th = new Thread() {
