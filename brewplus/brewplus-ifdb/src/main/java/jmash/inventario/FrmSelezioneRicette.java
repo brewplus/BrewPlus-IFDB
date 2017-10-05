@@ -635,13 +635,13 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
                     esiste = true;
                     modelFermentabili.setValueAt(malto.getGrammi(), ii, 4); 
                     if (malto.getGrammi() - (Double)modelFermentabili.getValueAt(ii, COL_QUANT_FERMENTABILI) > 0)
-                       modelFermentabili.setValueAt(0, ii, COL_FABB_FERMENTABILI); 
+                       modelFermentabili.setValueAt(0.0, ii, COL_FABB_FERMENTABILI); 
                     else 
                        modelFermentabili.setValueAt((Double)modelFermentabili.getValueAt(ii, COL_QUANT_FERMENTABILI) - malto.getGrammi(), ii, COL_FABB_FERMENTABILI);
                     break;
                 }
             }
-            if (!esiste) {modelFermentabili.setValueAt(0, ii, 4); modelFermentabili.setValueAt((Double)modelFermentabili.getValueAt(ii, COL_QUANT_FERMENTABILI), ii, COL_FABB_FERMENTABILI);}
+            if (!esiste) {modelFermentabili.setValueAt(0.0, ii, 4); modelFermentabili.setValueAt((Double)modelFermentabili.getValueAt(ii, COL_QUANT_FERMENTABILI), ii, COL_FABB_FERMENTABILI);}
        }
     }
     
@@ -655,13 +655,13 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
                     esiste = true;
                     modelLuppoli.setValueAt(luppolo.getGrammi(), ii, 4);
                     if (luppolo.getGrammi() - (Double)modelLuppoli.getValueAt(ii, COL_QUANT_LUPPOLI) > 0)
-                       modelLuppoli.setValueAt(0, ii, COL_FABB_LUPPOLI); 
+                       modelLuppoli.setValueAt(0.0, ii, COL_FABB_LUPPOLI); 
                     else 
                        modelLuppoli.setValueAt((Double)modelLuppoli.getValueAt(ii, COL_QUANT_LUPPOLI) - luppolo.getGrammi(), ii, COL_FABB_LUPPOLI);
                     break;
                 }
             }
-            if (!esiste)  {modelLuppoli.setValueAt(0, ii, 4); modelLuppoli.setValueAt((Double)modelLuppoli.getValueAt(ii, COL_QUANT_LUPPOLI), ii, COL_FABB_LUPPOLI);}
+            if (!esiste)  {modelLuppoli.setValueAt(0.0, ii, 4); modelLuppoli.setValueAt((Double)modelLuppoli.getValueAt(ii, COL_QUANT_LUPPOLI), ii, COL_FABB_LUPPOLI);}
         }
     }
     
@@ -675,13 +675,13 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
                     esiste = true;
                     modelLieviti.setValueAt(Double.parseDouble(lievito.getQuantita()), ii, 3);
                     if (Double.parseDouble(lievito.getQuantita()) - (Double)modelLieviti.getValueAt(ii, COL_QUANT_LIEVITI) > 0)
-                       modelLieviti.setValueAt(0, ii, COL_FABB_LIEVITI); 
+                       modelLieviti.setValueAt(0.0, ii, COL_FABB_LIEVITI); 
                     else 
                        modelLieviti.setValueAt((Double)modelLieviti.getValueAt(ii, COL_QUANT_LIEVITI) - Double.parseDouble(lievito.getQuantita()), ii, COL_FABB_LIEVITI);
                     break;
                 }
             }
-            if (!esiste) {modelLieviti.setValueAt(0, ii, 3); modelLieviti.setValueAt((Double)modelLieviti.getValueAt(ii, COL_QUANT_LIEVITI), ii, COL_FABB_LIEVITI);}
+            if (!esiste) {modelLieviti.setValueAt(0.0, ii, 3); modelLieviti.setValueAt((Double)modelLieviti.getValueAt(ii, COL_QUANT_LIEVITI), ii, COL_FABB_LIEVITI);}
         }
     }
 }
