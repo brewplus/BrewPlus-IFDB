@@ -22,7 +22,6 @@ package jmash.tableModel;
 
 import java.lang.reflect.Method;
 
-import jmash.Main;
 import jmash.Ricetta;
 import jmash.Utils;
 import jmash.Yeast;

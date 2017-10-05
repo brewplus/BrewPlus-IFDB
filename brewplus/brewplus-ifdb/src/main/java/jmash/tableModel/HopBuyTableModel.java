@@ -33,7 +33,7 @@ public class HopBuyTableModel extends GenericTableModel<Hop> {
 
 	public HopBuyTableModel() {
 		this.ret.setIcon(Main.clockIcon);
-		this.columnNames = new String[] { "", "Nome", "Q.tà", "U.m.", "Forma", "Alfa A.", "Origine", "Data rif." };
+		this.columnNames = new String[] { "","Nome", "Q.tà", "U.m.", "Forma", "Alfa A.", "Origine", "Data rif." };
 	}
 
 	private JLabel ret = new JLabel("");

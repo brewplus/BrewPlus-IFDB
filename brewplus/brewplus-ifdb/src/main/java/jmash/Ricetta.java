@@ -1838,6 +1838,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
                FrmScalaRicetta frmScala = new FrmScalaRicetta(caricaDisponibilitaMagazzino(),new javax.swing.JFrame(), true);
                frmScala.loadFermentabili((TableSorter) tblMalts.getModel());
                frmScala.loadLuppoli((TableSorter) tblHops.getModel());
+               frmScala.loadLieviti((TableSorter) tblYeast.getModel());
                frmScala.setLocationRelativeTo(this);
                frmScala.setVisible(true);
             } else {

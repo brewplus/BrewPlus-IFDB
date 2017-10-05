@@ -582,7 +582,7 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
                     break;
                 }
             }
-            if (!esiste) model.addRow(new Object[]{lievito.getCodice(), lievito.getNome(),Double.parseDouble( lievito.getQuantita())});   
+            if (!esiste) model.addRow(new Object[]{lievito.getCodice(), lievito.getNome(),Double.parseDouble( lievito.getQuantita() != null ? lievito.getQuantita() : "0")});   
         }
     }
     
@@ -671,9 +671,9 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
         for (int ii = 0; ii < modelLieviti.getRowCount(); ii++) {
             esiste = false;
             for (Yeast lievito : lieviti) {
-                esiste = true;
-                modelLieviti.setValueAt(Double.parseDouble(lievito.getQuantita()), ii, 3);
                 if (lievito.getCodice().equalsIgnoreCase((String)modelLieviti.getValueAt(ii, 0))) {
+                    esiste = true;
+                    modelLieviti.setValueAt(Double.parseDouble(lievito.getQuantita()), ii, 3);
                     if (Double.parseDouble(lievito.getQuantita()) - (Double)modelLieviti.getValueAt(ii, COL_QUANT_LIEVITI) > 0)
                        modelLieviti.setValueAt(0, ii, COL_FABB_LIEVITI); 
                     else 

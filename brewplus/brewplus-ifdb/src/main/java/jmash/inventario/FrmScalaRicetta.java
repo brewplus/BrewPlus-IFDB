@@ -16,6 +16,7 @@ import jmash.Quantita;
 import jmash.Ricetta;
 import jmash.TableSorter;
 import jmash.Utils;
+import jmash.Yeast;
 import jmash.component.CheckBoxModelListener;
 import jmash.utils.BrewplusEnvironment;
 import jmash.utils.Constants;
@@ -30,6 +31,8 @@ public class FrmScalaRicetta extends javax.swing.JDialog {
     private AcquistoIngredienti inventario;
     private static final String FERMENTABILE = "FERMENTABILE";
     private static final String LUPPOLI = "LUPPOLI";
+    private static final String LIEVITI = "LIEVITI";
+    
     private static BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
     /**
      * Creates new form FrmScalaRicetta
@@ -59,8 +62,7 @@ public class FrmScalaRicetta extends javax.swing.JDialog {
                     break;
                 }
             }
-        if (!esiste) ((DefaultTableModel)(tblScalaIngredienti.getModel())).addRow(new Object[]{FERMENTABILE,tblMalti.getValueAt(ii, 1), tblMalti.getValueAt(ii, 6), Double.parseDouble(((Quantita)tblMalti.getValueAt(ii, 2)).getValue()),0.0,0.0-Double.parseDouble(((Quantita)tblMalti.getValueAt(ii, 2)).getValue()),false}); 
-            
+        if (!esiste) ((DefaultTableModel)(tblScalaIngredienti.getModel())).addRow(new Object[]{FERMENTABILE,tblMalti.getValueAt(ii, 1), tblMalti.getValueAt(ii, 6), Double.parseDouble(((Quantita)tblMalti.getValueAt(ii, 2)).getValue()),0.0,0.0-Double.parseDouble(((Quantita)tblMalti.getValueAt(ii, 2)).getValue()),false});    
         } 
     }       
     
@@ -89,7 +91,22 @@ public class FrmScalaRicetta extends javax.swing.JDialog {
                 if (!esiste) ((DefaultTableModel)(tblScalaIngredienti.getModel())).addRow(new Object[]{LUPPOLI,(String)tblLuppoli.getValueAt(ii, 1),(String)tblLuppoli.getValueAt(ii, 4), Double.parseDouble(((Quantita)tblLuppoli.getValueAt(ii, 2)).getValue()),0.0,0.0-Double.parseDouble(((Quantita)tblLuppoli.getValueAt(ii, 2)).getValue()),false});    
             }
         } 
-    }       
+    } 
+     
+      public void loadLieviti(TableSorter tblLieviti) {
+        for (int ii = 0; ii < tblLieviti.getRowCount(); ii++) {
+            Boolean esiste = false;
+            for (Yeast yeast : inventario.getLieviti()) {
+                esiste = false;
+                if (yeast.getCodice().equalsIgnoreCase((String)tblLieviti.getValueAt(ii, 0))) {
+                    ((DefaultTableModel)(tblScalaIngredienti.getModel())).addRow(new Object[]{LIEVITI,tblLieviti.getValueAt(ii, 2), "",Double.parseDouble((String)tblLieviti.getValueAt(ii, 4)),yeast.getQuantita(),Double.parseDouble(yeast.getQuantita())-Double.parseDouble((String)tblLieviti.getValueAt(ii, 4)),false});
+                    esiste = true;
+                    break;
+                }
+            }
+        if (!esiste) ((DefaultTableModel)(tblScalaIngredienti.getModel())).addRow(new Object[]{LIEVITI,tblLieviti.getValueAt(ii, 2), "", Double.parseDouble((String)tblLieviti.getValueAt(ii, 4)),0.0,0.0-Double.parseDouble((String)tblLieviti.getValueAt(ii, 4)),false});    
+        } 
+    }     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -187,31 +204,37 @@ public class FrmScalaRicetta extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnScalaInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScalaInventarioActionPerformed
-        if ((!Ricetta.isAlreadyDrop) || (Ricetta.isAlreadyDrop && ( JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "Gli ingredienti della Ricetta risultano già scalati. Sei sicuro di continuare?", "Scala Ingredienti",JOptionPane.YES_NO_OPTION)))) {
-            DefaultTableModel tableModel = (DefaultTableModel)(tblScalaIngredienti.getModel());
-            for (int ii = 0; ii < tblScalaIngredienti.getRowCount(); ii++) {
-                if (((Double)tableModel.getValueAt(ii, 5)) < 0 && !(Boolean)tableModel.getValueAt(ii, 6)) {
-                    JOptionPane.showMessageDialog(this, "Il " + tableModel.getValueAt(ii, 0) + " : [" + tableModel.getValueAt(ii, 1) + "] non è sufficiente. Per poter procedere devi \"Forzare\" l'operazione selezionando l'ingrediente.", "Scala Ingredienti", JOptionPane.WARNING_MESSAGE); 
-                    return;
+        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "Sei sicuro di voler scalare gli Ingredienti della ricetta dall'Inventario?", "Scala Ingredienti",JOptionPane.YES_NO_OPTION)) {
+            if ((!Ricetta.isAlreadyDrop) || (Ricetta.isAlreadyDrop && ( JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "Gli ingredienti della Ricetta risultano già scalati. Sei sicuro di continuare?", "Scala Ingredienti",JOptionPane.YES_NO_OPTION)))) {
+                DefaultTableModel tableModel = (DefaultTableModel)(tblScalaIngredienti.getModel());
+                for (int ii = 0; ii < tblScalaIngredienti.getRowCount(); ii++) {
+                    if (((Double)tableModel.getValueAt(ii, 5)) < 0 && !(Boolean)tableModel.getValueAt(ii, 6)) {
+                        JOptionPane.showMessageDialog(this, "Il " + tableModel.getValueAt(ii, 0) + " : [" + tableModel.getValueAt(ii, 1) + "] non è sufficiente. Per poter procedere devi \"Forzare\" l'operazione selezionando l'ingrediente.", "Scala Ingredienti", JOptionPane.WARNING_MESSAGE); 
+                        return;
+                    }
                 }
-            }
-            for (int ii = 0; ii < tblScalaIngredienti.getRowCount(); ii++) {
-                if (FERMENTABILE.equalsIgnoreCase((String)tableModel.getValueAt(ii, 0)))
-                    for (Malt malto : inventario.getMalti()) 
-                        if (malto.getNome().equalsIgnoreCase((String)tblScalaIngredienti.getValueAt(ii, 1)) && malto.getForma().equalsIgnoreCase((String)tblScalaIngredienti.getValueAt(ii, 2)))
-                              inventario.getMalti().get(inventario.getMalti().indexOf(malto)).setGrammi(((Double)tableModel.getValueAt(ii, 5)) > 0 ? (Double)tableModel.getValueAt(ii, 5) : 0);
-                if (LUPPOLI.equalsIgnoreCase((String)tableModel.getValueAt(ii, 0)))
-                    for (Hop hop : inventario.getLuppoli()) 
-                        if (hop.getNome().equalsIgnoreCase((String)tblScalaIngredienti.getValueAt(ii, 1)) && hop.getForma().equalsIgnoreCase((String)tblScalaIngredienti.getValueAt(ii, 2)))
-                              inventario.getLuppoli().get(inventario.getLuppoli().indexOf(hop)).setGrammi(((Double)tableModel.getValueAt(ii, 5)) > 0 ? (Double)tableModel.getValueAt(ii, 5) : 0);
+                for (int ii = 0; ii < tblScalaIngredienti.getRowCount(); ii++) {
+                    if (FERMENTABILE.equalsIgnoreCase((String)tableModel.getValueAt(ii, 0)))
+                        for (Malt malto : inventario.getMalti()) 
+                            if (malto.getNome().equalsIgnoreCase((String)tblScalaIngredienti.getValueAt(ii, 1)) && malto.getForma().equalsIgnoreCase((String)tblScalaIngredienti.getValueAt(ii, 2)))
+                                  inventario.getMalti().get(inventario.getMalti().indexOf(malto)).setGrammi(((Double)tableModel.getValueAt(ii, 5)) > 0 ? (Double)tableModel.getValueAt(ii, 5) : 0);
+                    if (LUPPOLI.equalsIgnoreCase((String)tableModel.getValueAt(ii, 0)))
+                        for (Hop hop : inventario.getLuppoli()) 
+                            if (hop.getNome().equalsIgnoreCase((String)tblScalaIngredienti.getValueAt(ii, 1)) && hop.getForma().equalsIgnoreCase((String)tblScalaIngredienti.getValueAt(ii, 2)))
+                                  inventario.getLuppoli().get(inventario.getLuppoli().indexOf(hop)).setGrammi(((Double)tableModel.getValueAt(ii, 5)) > 0 ? (Double)tableModel.getValueAt(ii, 5) : 0);
+                    if (LIEVITI.equalsIgnoreCase((String)tableModel.getValueAt(ii, 0)))
+                        for (Yeast yeast : inventario.getLieviti()) 
+                            if (yeast.getNome().equalsIgnoreCase((String)tblScalaIngredienti.getValueAt(ii, 1)))
+                                  inventario.getLieviti().get(inventario.getLieviti().indexOf(yeast)).setQuantita((((Double)tableModel.getValueAt(ii, 5)) > 0 ? (Double)tableModel.getValueAt(ii, 5) : 0) + "");
 
+                }
+                Document doc = inventario.toXml();
+                File file = new File(bpenv.getConfigfileName(Constants.XML_INVENTORY));
+                Utils.saveXmlAsFile(doc, file, null);
+                JOptionPane.showMessageDialog(this, "Gli Ingredienti sono stati scalati dall'inventario.", "Scala Ingredienti", JOptionPane.INFORMATION_MESSAGE); 
+                Ricetta.isAlreadyDrop = true;
+                this.dispose();
             }
-            Document doc = inventario.toXml();
-            File file = new File(bpenv.getConfigfileName(Constants.XML_INVENTORY));
-            Utils.saveXmlAsFile(doc, file, null);
-            JOptionPane.showMessageDialog(this, "Gli Ingredienti sono stati scalati dall'inventario.", "Scala Ingredienti", JOptionPane.INFORMATION_MESSAGE); 
-            Ricetta.isAlreadyDrop = true;
-            this.dispose();
         }
     }//GEN-LAST:event_btnScalaInventarioActionPerformed
 
