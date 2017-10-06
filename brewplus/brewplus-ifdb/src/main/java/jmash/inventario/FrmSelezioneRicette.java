@@ -13,11 +13,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JFileChooser;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import jmash.Hop;
+import jmash.Main;
 import jmash.Malt;
 import jmash.RecipeData;
 import jmash.Utils;
@@ -321,7 +323,6 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
     private void btnAddRicettaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRicettaActionPerformed
         JFileChooser recipeChooser = new JFileChooser();
         RecipeData recipe = new RecipeData(); 
-        
         recipeChooser.setAcceptAllFileFilterUsed(false);
         FileFilter filtro1 = new FileNameExtensionFilter("BrewPlus, HobbyBrew (*.xml)", "xml");
         recipeChooser.addChoosableFileFilter(filtro1);
@@ -330,6 +331,7 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
            // logger.debug("Selected File: " + recipeChooser.getSelectedFile().getAbsolutePath());
             if ("XML".equalsIgnoreCase(Utility.getSelectedFileExtension(recipeChooser.getSelectedFile()))) {
                 try { 
+                    recipeChooser.setCurrentDirectory(recipeChooser.getSelectedFile());
                     recipe.read(Utils.readFileAsXml(recipeChooser.getSelectedFile().toString()));
                     if (recipe.getMalts() == null)
                         throw new Exception();    
@@ -340,8 +342,7 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "In formato del file non è quello atteso.", "Ricetta scartata", JOptionPane.ERROR_MESSAGE); 
-            }
-            
+            }    
         }
     }//GEN-LAST:event_btnAddRicettaActionPerformed
 
