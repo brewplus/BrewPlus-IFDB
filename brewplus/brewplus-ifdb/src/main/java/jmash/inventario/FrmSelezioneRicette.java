@@ -576,12 +576,12 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
             esiste = false;
             for (int ii = 0; ii < model.getRowCount(); ii++) {
                 if (lievito.getCodice().equalsIgnoreCase((String)model.getValueAt(ii, 0))) {
-                    model.setValueAt((Double)model.getValueAt(ii, COL_QUANT_LIEVITI) + Double.parseDouble( lievito.getQuantita() != null ? lievito.getQuantita() : "0.0"), ii, COL_QUANT_LIEVITI);
+                    model.setValueAt((Double)model.getValueAt(ii, COL_QUANT_LIEVITI) + Double.parseDouble( (lievito.getQuantita() != null && !"".equalsIgnoreCase(lievito.getQuantita())) ? lievito.getQuantita() : "0.0"), ii, COL_QUANT_LIEVITI);
                     esiste = !esiste;
                     break;
                 }
             }
-            if (!esiste) model.addRow(new Object[]{lievito.getCodice(), lievito.getNome(),Double.parseDouble( lievito.getQuantita() != null ? lievito.getQuantita() : "0.0")});   
+            if (!esiste) model.addRow(new Object[]{lievito.getCodice(), lievito.getNome(),Double.parseDouble( (lievito.getQuantita() != null && !"".equalsIgnoreCase(lievito.getQuantita())) ? lievito.getQuantita() : "0.0")});   
         }
     }
     
