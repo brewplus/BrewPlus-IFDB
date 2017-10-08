@@ -18,6 +18,7 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import jmash.Hop;
+import jmash.Main;
 import jmash.Malt;
 import jmash.RecipeData;
 import jmash.Utils;
@@ -37,7 +38,7 @@ import org.jdom.Element;
 public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
     
     private AcquistoIngredienti inventario = null;
-    private JFileChooser recipeChooser = new JFileChooser();
+    private JFileChooser recipeChooser = new JFileChooser((String)Main.getFromCache("recipe.dir", bpenv.getFolderName(Constants.DIR_RECIPE)));
     /**
      * Creates new form FrmSelezioneRicette
      */
@@ -324,7 +325,7 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
         recipeChooser.setAcceptAllFileFilterUsed(false);
         FileFilter filtro1 = new FileNameExtensionFilter("BrewPlus, HobbyBrew (*.xml)", "xml");
         recipeChooser.addChoosableFileFilter(filtro1);
-        
+      
         if (recipeChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             if ("XML".equalsIgnoreCase(Utility.getSelectedFileExtension(recipeChooser.getSelectedFile()))) {
                 try { 
