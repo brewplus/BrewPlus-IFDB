@@ -18,6 +18,7 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import jmash.Hop;
+import jmash.Main;
 import jmash.Malt;
 import jmash.RecipeData;
 import jmash.Utils;
@@ -37,6 +38,7 @@ import org.jdom.Element;
 public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
     
     private AcquistoIngredienti inventario = null;
+    private JFileChooser recipeChooser = new JFileChooser((String)Main.getFromCache("recipe.dir", bpenv.getFolderName(Constants.DIR_RECIPE)));
     /**
      * Creates new form FrmSelezioneRicette
      */
@@ -319,17 +321,15 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddRicettaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRicettaActionPerformed
-        JFileChooser recipeChooser = new JFileChooser();
         RecipeData recipe = new RecipeData(); 
-        
         recipeChooser.setAcceptAllFileFilterUsed(false);
         FileFilter filtro1 = new FileNameExtensionFilter("BrewPlus, HobbyBrew (*.xml)", "xml");
         recipeChooser.addChoosableFileFilter(filtro1);
-        
+      
         if (recipeChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-           // logger.debug("Selected File: " + recipeChooser.getSelectedFile().getAbsolutePath());
             if ("XML".equalsIgnoreCase(Utility.getSelectedFileExtension(recipeChooser.getSelectedFile()))) {
                 try { 
+                    recipeChooser.setCurrentDirectory(recipeChooser.getSelectedFile());
                     recipe.read(Utils.readFileAsXml(recipeChooser.getSelectedFile().toString()));
                     if (recipe.getMalts() == null)
                         throw new Exception();    
@@ -340,8 +340,7 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "In formato del file non è quello atteso.", "Ricetta scartata", JOptionPane.ERROR_MESSAGE); 
-            }
-            
+            }    
         }
     }//GEN-LAST:event_btnAddRicettaActionPerformed
 
@@ -577,12 +576,12 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
             esiste = false;
             for (int ii = 0; ii < model.getRowCount(); ii++) {
                 if (lievito.getCodice().equalsIgnoreCase((String)model.getValueAt(ii, 0))) {
-                    model.setValueAt((Double)model.getValueAt(ii, COL_QUANT_LIEVITI) + Double.parseDouble(lievito.getQuantita()), ii, COL_QUANT_LIEVITI);
+                    model.setValueAt((Double)model.getValueAt(ii, COL_QUANT_LIEVITI) + Double.parseDouble( (lievito.getQuantita() != null && !"".equalsIgnoreCase(lievito.getQuantita())) ? lievito.getQuantita() : "0.0"), ii, COL_QUANT_LIEVITI);
                     esiste = !esiste;
                     break;
                 }
             }
-            if (!esiste) model.addRow(new Object[]{lievito.getCodice(), lievito.getNome(),Double.parseDouble( lievito.getQuantita())});   
+            if (!esiste) model.addRow(new Object[]{lievito.getCodice(), lievito.getNome(),Double.parseDouble( (lievito.getQuantita() != null && !"".equalsIgnoreCase(lievito.getQuantita())) ? lievito.getQuantita() : "0.0")});   
         }
     }
     
@@ -635,13 +634,13 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
                     esiste = true;
                     modelFermentabili.setValueAt(malto.getGrammi(), ii, 4); 
                     if (malto.getGrammi() - (Double)modelFermentabili.getValueAt(ii, COL_QUANT_FERMENTABILI) > 0)
-                       modelFermentabili.setValueAt(0, ii, COL_FABB_FERMENTABILI); 
+                       modelFermentabili.setValueAt(0.0, ii, COL_FABB_FERMENTABILI); 
                     else 
                        modelFermentabili.setValueAt((Double)modelFermentabili.getValueAt(ii, COL_QUANT_FERMENTABILI) - malto.getGrammi(), ii, COL_FABB_FERMENTABILI);
                     break;
                 }
             }
-            if (!esiste) {modelFermentabili.setValueAt(0, ii, 4); modelFermentabili.setValueAt((Double)modelFermentabili.getValueAt(ii, COL_QUANT_FERMENTABILI), ii, COL_FABB_FERMENTABILI);}
+            if (!esiste) {modelFermentabili.setValueAt(0.0, ii, 4); modelFermentabili.setValueAt((Double)modelFermentabili.getValueAt(ii, COL_QUANT_FERMENTABILI), ii, COL_FABB_FERMENTABILI);}
        }
     }
     
@@ -655,13 +654,13 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
                     esiste = true;
                     modelLuppoli.setValueAt(luppolo.getGrammi(), ii, 4);
                     if (luppolo.getGrammi() - (Double)modelLuppoli.getValueAt(ii, COL_QUANT_LUPPOLI) > 0)
-                       modelLuppoli.setValueAt(0, ii, COL_FABB_LUPPOLI); 
+                       modelLuppoli.setValueAt(0.0, ii, COL_FABB_LUPPOLI); 
                     else 
                        modelLuppoli.setValueAt((Double)modelLuppoli.getValueAt(ii, COL_QUANT_LUPPOLI) - luppolo.getGrammi(), ii, COL_FABB_LUPPOLI);
                     break;
                 }
             }
-            if (!esiste)  {modelLuppoli.setValueAt(0, ii, 4); modelLuppoli.setValueAt((Double)modelLuppoli.getValueAt(ii, COL_QUANT_LUPPOLI), ii, COL_FABB_LUPPOLI);}
+            if (!esiste)  {modelLuppoli.setValueAt(0.0, ii, 4); modelLuppoli.setValueAt((Double)modelLuppoli.getValueAt(ii, COL_QUANT_LUPPOLI), ii, COL_FABB_LUPPOLI);}
         }
     }
     
@@ -671,17 +670,17 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
         for (int ii = 0; ii < modelLieviti.getRowCount(); ii++) {
             esiste = false;
             for (Yeast lievito : lieviti) {
-                esiste = true;
-                modelLieviti.setValueAt(Double.parseDouble(lievito.getQuantita()), ii, 3);
                 if (lievito.getCodice().equalsIgnoreCase((String)modelLieviti.getValueAt(ii, 0))) {
+                    esiste = true;
+                    modelLieviti.setValueAt(Double.parseDouble(lievito.getQuantita()), ii, 3);
                     if (Double.parseDouble(lievito.getQuantita()) - (Double)modelLieviti.getValueAt(ii, COL_QUANT_LIEVITI) > 0)
-                       modelLieviti.setValueAt(0, ii, COL_FABB_LIEVITI); 
+                       modelLieviti.setValueAt(0.0, ii, COL_FABB_LIEVITI); 
                     else 
                        modelLieviti.setValueAt((Double)modelLieviti.getValueAt(ii, COL_QUANT_LIEVITI) - Double.parseDouble(lievito.getQuantita()), ii, COL_FABB_LIEVITI);
                     break;
                 }
             }
-            if (!esiste) {modelLieviti.setValueAt(0, ii, 3); modelLieviti.setValueAt((Double)modelLieviti.getValueAt(ii, COL_QUANT_LIEVITI), ii, COL_FABB_LIEVITI);}
+            if (!esiste) {modelLieviti.setValueAt(0.0, ii, 3); modelLieviti.setValueAt((Double)modelLieviti.getValueAt(ii, COL_QUANT_LIEVITI), ii, COL_FABB_LIEVITI);}
         }
     }
 }

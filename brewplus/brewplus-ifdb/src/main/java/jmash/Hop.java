@@ -50,6 +50,7 @@ public class Hop implements InventoryObject {
     private Double IBUTinseth;
     private Double IBURager;
     private Double IBUDaniels;
+    private Date dataAcquisto;
     private static String campiXml[] = new String[] { "Grammi", "UnitaMisura", "BoilTime", "AlfaAcidi", "Nome", "Forma", "Origine", "Uso", "HSI", "dataAcquisto" };
     
     public Hop() {
@@ -374,8 +375,6 @@ public class Hop implements InventoryObject {
     public void setAlfaAcidiPrec(Double alfaAcidiPrec) {
         this.alfaAcidiPrec = alfaAcidiPrec;
     }
-
-    private Date dataAcquisto;
 
     public Date getDataAcquisto() {
         return dataAcquisto;
