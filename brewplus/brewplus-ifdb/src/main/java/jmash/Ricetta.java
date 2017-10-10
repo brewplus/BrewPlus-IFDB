@@ -448,11 +448,11 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jPanel6 = new javax.swing.JPanel();
 		btnAdd5 = new javax.swing.JButton();
 		btnAdd6 = new javax.swing.JButton();
-		btnAdd8 = new javax.swing.JButton();
+		//btnAdd8 = new javax.swing.JButton();
 		btnAdd9 = new javax.swing.JButton();
 		btnAdd10 = new javax.swing.JButton();
-		btnAdd11 = new javax.swing.JButton();
-		btnAdd12 = new javax.swing.JButton();
+		//btnAdd11 = new javax.swing.JButton();
+		//btnAdd12 = new javax.swing.JButton();
                 btnScalaIngredienti = new javax.swing.JButton();
 		jPanel1 = new javax.swing.JPanel();
 		jSeparator1 = new javax.swing.JSeparator();
@@ -493,6 +493,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		txtEBC2 = new javax.swing.JTextField();
 		btnIngredienti = new JButton();
 		btnIngredienti.addActionListener(new ActionListener() {
+                        @Override
 			public void actionPerformed(ActionEvent e) {
 				showIngredienti();
 			}
@@ -612,6 +613,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		btnAdd5.setMinimumSize(new java.awt.Dimension(30, 30));
 		btnAdd5.setPreferredSize(new java.awt.Dimension(36, 36));
 		btnAdd5.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnAdd5ActionPerformed(evt);
 			}
@@ -628,6 +630,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		btnAdd6.setMinimumSize(new java.awt.Dimension(30, 30));
 		btnAdd6.setPreferredSize(new java.awt.Dimension(36, 36));
 		btnAdd6.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnAdd6ActionPerformed(evt);
 			}
@@ -643,6 +646,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		btnAdd9.setMinimumSize(new java.awt.Dimension(32, 32));
 		btnAdd9.setPreferredSize(new java.awt.Dimension(36, 36));
 		btnAdd9.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				printRecipeActionPerformed(evt);
 			}
@@ -658,12 +662,14 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		btnAdd10.setMinimumSize(new java.awt.Dimension(32, 32));
 		btnAdd10.setPreferredSize(new java.awt.Dimension(36, 36));
 		btnAdd10.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnAdd10ActionPerformed(evt);
 			}
 		});
 		jPanel6.add(btnAdd10);
-
+                
+                /*
 		btnAdd11.setIcon(Main.checkInventoryIcon);
 		btnAdd11.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnAdd11.setToolTipText("Controlla in inventario");
@@ -677,7 +683,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 				btnAdd11ActionPerformed(evt);
 			}
 		});
-		jPanel6.add(btnAdd11);
+		jPanel6.add(btnAdd11);*/
                 
 		btnScalaIngredienti.setIcon(new ImageIcon(Ricetta.class.getResource("/jmash/images/sacco.png")));
 		btnScalaIngredienti.setCursor(new Cursor((Cursor.HAND_CURSOR)));
@@ -688,6 +694,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		btnScalaIngredienti.setMinimumSize(new java.awt.Dimension(32, 32));
 		btnScalaIngredienti.setPreferredSize(new java.awt.Dimension(36, 36));
 		btnScalaIngredienti.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				ScalaIngredientiDaInventario(evt);
 			}
@@ -715,6 +722,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jLabel9.setOpaque(true);
 		jLabel9.setPreferredSize(new java.awt.Dimension(26, 14));
 		jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+                        @Override
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				jLabel9MouseClicked(evt);
 			}
@@ -734,6 +742,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jLabel10.setOpaque(true);
 		jLabel10.setPreferredSize(new java.awt.Dimension(26, 14));
 		jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+                        @Override
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				jLabel10MouseClicked(evt);
 			}
@@ -753,6 +762,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jLabel11.setOpaque(true);
 		jLabel11.setPreferredSize(new java.awt.Dimension(26, 14));
 		jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+                        @Override
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				jLabel11MouseClicked(evt);
 			}
@@ -772,6 +782,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jLabel16.setOpaque(true);
 		jLabel16.setPreferredSize(new java.awt.Dimension(26, 14));
 		jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {
+                        @Override
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				jLabel16MouseClicked(evt);
 			}
@@ -828,11 +839,11 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jLabel20.setMinimumSize(new java.awt.Dimension(28, 14));
 		jLabel20.setOpaque(true);
 		jLabel20.setPreferredSize(new java.awt.Dimension(26, 14));
-		jLabel20.addMouseListener(new java.awt.event.MouseAdapter() {
+		/*jLabel20.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				jLabel20MouseClicked(evt);
 			}
-		});
+		});*/
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridy = 1;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -847,11 +858,11 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jLabel21.setMinimumSize(new java.awt.Dimension(28, 14));
 		jLabel21.setOpaque(true);
 		jLabel21.setPreferredSize(new java.awt.Dimension(26, 14));
-		jLabel21.addMouseListener(new java.awt.event.MouseAdapter() {
+		/*jLabel21.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				jLabel21MouseClicked(evt);
 			}
-		});
+		});*/
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridy = 1;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -866,11 +877,11 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jLabel22.setMinimumSize(new java.awt.Dimension(28, 14));
 		jLabel22.setOpaque(true);
 		jLabel22.setPreferredSize(new java.awt.Dimension(26, 14));
-		jLabel22.addMouseListener(new java.awt.event.MouseAdapter() {
+		/*jLabel22.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				jLabel22MouseClicked(evt);
 			}
-		});
+		});*/
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridy = 1;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
@@ -1064,6 +1075,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jPanel2.add(txtIBU2, gridBagConstraints);
 
 		spinEfficienza.addChangeListener(new javax.swing.event.ChangeListener() {
+                        @Override
 			public void stateChanged(javax.swing.event.ChangeEvent evt) {
 				spinEfficienzaStateChanged(evt);
 			}
@@ -1086,6 +1098,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 		spinBollitura.setToolTipText("Minuti di bollitura");
 		spinBollitura.addChangeListener(new javax.swing.event.ChangeListener() {
+                        @Override
 			public void stateChanged(javax.swing.event.ChangeEvent evt) {
 				spinBollituraStateChanged(evt);
 			}
@@ -1140,6 +1153,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
         jButton2.setText(" Efficienza % ");
         jButton2.setBorder(null);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
@@ -1198,6 +1212,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		chkBiab.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 		chkBiab.setPreferredSize(new java.awt.Dimension(50, 20));
 		chkBiab.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				chkBiabActionPerformed(evt);
 			}
@@ -1226,6 +1241,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
         spinPriming.setToolTipText("quantita' di priming considerando il potenziale dello zucchero");
         spinPriming.addChangeListener(new javax.swing.event.ChangeListener() {
+            @Override
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 spinPrimingChanged(evt);
 
@@ -1288,6 +1304,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		chkConcentratedBoil.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 		chkConcentratedBoil.setPreferredSize(new java.awt.Dimension(132, 20));
 		chkConcentratedBoil.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				chkConcentratedBoilActionPerformed(evt);
 			}
@@ -1302,6 +1319,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 
 		spinVolumeBoll.addChangeListener(new javax.swing.event.ChangeListener() {
+                        @Override
 			public void stateChanged(javax.swing.event.ChangeEvent evt) {
 				spinVolumeBollStateChanged(evt);
 			}
@@ -1316,6 +1334,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 
 		spinVolumeFin.addChangeListener(new javax.swing.event.ChangeListener() {
+                        @Override
 			public void stateChanged(javax.swing.event.ChangeEvent evt) {
 				spinVolumeFinStateChanged(evt);
 			}
@@ -1333,6 +1352,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jButton1.setToolTipText("Scala valori ricetta");
 		jButton1.setBorder(null);
 		jButton1.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButton1ActionPerformed(evt);
 			}
@@ -1358,6 +1378,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
         jPanel2.add(lblDil, gridBagConstraints);
         
         spinVolumeDiluito.addChangeListener(new javax.swing.event.ChangeListener() {
+            @Override
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 spinVolumeDiluitoStateChanged(evt);
             }
@@ -1380,11 +1401,13 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 		btnStyle.setIcon(bookIcon);
 		btnStyle.setToolTipText(bundle.getString("PickStyle")); // NOI18N
+                btnStyle.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnStyle.setAlignmentX(0.5F);
 		btnStyle.setMaximumSize(new java.awt.Dimension(35, 35));
 		btnStyle.setMinimumSize(new java.awt.Dimension(35, 35));
 		btnStyle.setPreferredSize(new java.awt.Dimension(35, 35));
 		btnStyle.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnStyleActionPerformed(evt);
 			}
@@ -1408,6 +1431,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jScrollPane2.setMinimumSize(new java.awt.Dimension(500, 10));
 		jScrollPane2.setPreferredSize(new java.awt.Dimension(640, 10));
 		jScrollPane2.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+                        @Override
 			public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
 				jScrollPane2MouseWheelMoved(evt);
 			}
@@ -1415,11 +1439,13 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 		tblMalts.setModel(maltSorter);
 		tblMalts.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+                        @Override
 			public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
 				tblMaltsMouseWheelMoved(evt);
 			}
 		});
 		tblMalts.addMouseListener(new java.awt.event.MouseAdapter() {
+                        @Override
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				tblMaltsMouseClicked(evt);
 			}
@@ -1437,6 +1463,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 		btnAdd1.setIcon(Main.addIcon);
 		btnAdd1.setToolTipText(bundle.getString("AddMalt")); // NOI18N
+                btnAdd1.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnAdd1.setContentAreaFilled(false);
 		btnAdd1.setBorderPainted(false);
 		btnAdd1.setAlignmentX(0.5F);
@@ -1452,6 +1479,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 		btnRem1.setIcon(Main.remIcon);
 		btnRem1.setToolTipText(bundle.getString("RemoveMalto")); // NOI18N
+                btnRem1.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnRem1.setContentAreaFilled(false);
 		btnRem1.setBorderPainted(false);
 		btnRem1.setAlignmentX(0.5F);
@@ -1502,6 +1530,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 		btnAdd.setIcon(Main.addIcon);
 		btnAdd.setToolTipText(bundle.getString("AddHop")); // NOI18N
+                btnAdd.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnAdd.setContentAreaFilled(false);
 		btnAdd.setBorderPainted(false);
 		btnAdd.setAlignmentX(0.5F);
@@ -1517,6 +1546,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 		btnRem.setIcon(Main.remIcon);
 		btnRem.setToolTipText(bundle.getString("RemHop")); // NOI18N
+                btnRem.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnRem.setContentAreaFilled(false);
 		btnRem.setBorderPainted(false);
 		btnRem.setAlignmentX(0.5F);
@@ -1532,6 +1562,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 		btnDupHop.setIcon(dupIcon);
 		btnDupHop.setToolTipText("Duplica");
+                btnDupHop.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnDupHop.setContentAreaFilled(false);
 		btnDupHop.setBorderPainted(false);
 		btnDupHop.setAlignmentX(0.5F);
@@ -1539,6 +1570,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		btnDupHop.setMinimumSize(new java.awt.Dimension(35, 35));
 		btnDupHop.setPreferredSize(new java.awt.Dimension(35, 35));
 		btnDupHop.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnDupHopActionPerformed(evt);
 			}
@@ -1578,11 +1610,13 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 		btnAdd2.setIcon(Main.addIcon);
 		btnAdd2.setToolTipText("Aggiungi Lievito");
+                btnAdd2.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnAdd2.setAlignmentX(0.5F);
 		btnAdd2.setMaximumSize(new java.awt.Dimension(30, 30));
 		btnAdd2.setMinimumSize(new java.awt.Dimension(30, 30));
 		btnAdd2.setPreferredSize(new java.awt.Dimension(36, 36));
 		btnAdd2.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnAdd2ActionPerformed(evt);
 			}
@@ -1591,11 +1625,13 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 		btnRem2.setIcon(Main.remIcon);
 		btnRem2.setToolTipText("Rimuovi Lievito");
+                btnRem2.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnRem2.setAlignmentX(0.5F);
 		btnRem2.setMaximumSize(new java.awt.Dimension(30, 30));
 		btnRem2.setMinimumSize(new java.awt.Dimension(30, 30));
 		btnRem2.setPreferredSize(new java.awt.Dimension(36, 36));
 		btnRem2.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnRem2ActionPerformed(evt);
 			}
@@ -1608,6 +1644,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jScrollPane4.setMinimumSize(new java.awt.Dimension(500, 120));
 		jScrollPane4.setPreferredSize(new java.awt.Dimension(500, 120));
 		jScrollPane4.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+                        @Override
 			public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
 				jScrollPane4MouseWheelMoved(evt);
 			}
@@ -1616,6 +1653,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		tblYeast.setModel(yeastSorter);
 		tblYeast.setPreferredSize(null);
 		tblYeast.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+                        @Override
 			public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
 				tblYeastMouseWheelMoved(evt);
 			}
@@ -1800,12 +1838,14 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		}
 	}
         
+        /*
 	private void btnAdd11ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd11ActionPerformed
 
 		finalizeInInventory();
 
 	}// GEN-LAST:event_btnAdd11ActionPerformed
-
+        */
+        /*
 	private void jLabel22MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jLabel22MouseClicked
 
 	}// GEN-LAST:event_jLabel22MouseClicked
@@ -1817,7 +1857,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	private void jLabel20MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jLabel20MouseClicked
 
 	}// GEN-LAST:event_jLabel20MouseClicked
-
+*/
 	private void jLabel18MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jLabel18MouseClicked
 		glassPanel.setColor(maltTableModel.getSRMMorey());
 	}// GEN-LAST:event_jLabel18MouseClicked
@@ -2184,7 +2224,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		
 		setCurrentIBU();
 		
-		sg = maltTableModel.getSG(false);
+		//sg = maltTableModel.getSG(false);
 //		summaryTableModel.setSGPB(Utils.Plato2SG(Utils.SG2Plato(sg) * spinVolumeFin.getVolume() / spinVolumeBoll.getVolume()));
 
 		tblSummary.setCellSelectionEnabled(false);
@@ -2303,14 +2343,14 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	private javax.swing.JButton btnAdd;
 	private javax.swing.JButton btnAdd1;
 	private javax.swing.JButton btnAdd10;
-	private javax.swing.JButton btnAdd11;
-	private javax.swing.JButton btnAdd12;
+	//private javax.swing.JButton btnAdd11;
+	//private javax.swing.JButton btnAdd12;
         private javax.swing.JButton btnScalaIngredienti;
 	private JLabel lblPicBeer;
 	private javax.swing.JButton btnAdd2;
 	private javax.swing.JButton btnAdd5;
 	private javax.swing.JButton btnAdd6;
-	private javax.swing.JButton btnAdd8;
+	//private javax.swing.JButton btnAdd8;
 	private javax.swing.JButton btnAdd9;
 	private javax.swing.JButton btnDupHop;
 	private javax.swing.JButton btnRem;
@@ -2942,8 +2982,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 	public void finalizeInInventory() {
 		Acquisto inv = Acquisto.buildFRMInventario();
-		List<Malt> reqMalts = new ArrayList<Malt>();
-		List<Hop> reqHops = new ArrayList<Hop>();
+		List<Malt> reqMalts = new ArrayList<>();
+		List<Hop> reqHops = new ArrayList<>();
 
 		for (Hop m1 : hopTableModel.getRows()) {
 			boolean flag = true;
