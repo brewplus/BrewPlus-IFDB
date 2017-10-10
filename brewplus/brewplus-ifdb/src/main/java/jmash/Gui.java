@@ -61,10 +61,8 @@ import javax.swing.border.EmptyBorder;
 
 import org.apache.log4j.Logger;
 
-import jmash.config.ConfigurationManager;
 import jmash.config.XmlAbleEditor;
 import jmash.config.XmlAbleTableModel;
-import jmash.config.bean.GeneralConfig;
 import jmash.inventario.FrmSelezioneRicette;
 import jmash.tableModel.BrewStylePickerTableModel;
 import jmash.tableModel.BreweryProfilePickerTableModel;
@@ -78,13 +76,14 @@ import jmash.utils.BeerXMLReader;
 import jmash.utils.BrewplusEnvironment;
 import jmash.utils.Constants;
 import jmash.utils.Utility;
+import org.jdom.JDOMException;
 
 public class Gui extends javax.swing.JFrame {
 	
 	private static final String PATH_BACKGROUND =  "/jmash/images/bkgrnd.jpg";
 //	private static final String PATH_BACKGROUND =  "/jmash/images/back.gif";
-	private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
-	private static BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
+	//private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
+	private static final BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
 
 	private static final long serialVersionUID = 348370096080739755L;
 	private static final Logger LOGGER = Logger.getLogger(Gui.class);
@@ -124,11 +123,11 @@ public class Gui extends javax.swing.JFrame {
 		try {
 			initComponents();
                         i18nInitComponents();
-		} catch (Exception ex) {
+		} catch (IOException ex) {
 		}
 
-		desktopPane = this.desktop;
-		this.setIconImage(Main.mainIcon.getImage());
+		desktopPane = this.desktop; 
+                this.setIconImage(Main.mainIcon.getImage());
 		setExtendedState(Frame.MAXIMIZED_BOTH);
 		desktopPane.setTransferHandler(new TransferHandler() {
 			@Override
@@ -161,9 +160,7 @@ public class Gui extends javax.swing.JFrame {
 							}
 						}
 					}
-				} catch (IOException ex) {
-					LOGGER.error(ex.getMessage(), ex);
-				} catch (UnsupportedFlavorException ex) {
+				} catch (IOException | UnsupportedFlavorException ex) {
 					LOGGER.error(ex.getMessage(), ex);
 				} catch (Exception ex) {
 					Utils.showException(ex);
@@ -196,6 +193,7 @@ public class Gui extends javax.swing.JFrame {
 		recipesPopup.addSeparator();
 		menuItemDelete = new JMenuItem("Elimina elenco..");
 		menuItemDelete.addActionListener(new ActionListener() {
+                        @Override
 			public void actionPerformed(ActionEvent e) {
 				deleteLastRecipesEntries();
 			}
@@ -318,6 +316,7 @@ public class Gui extends javax.swing.JFrame {
 		setLocationByPlatform(true);
 		setName("guiFrame"); // NOI18N
 		addWindowListener(new java.awt.event.WindowAdapter() {
+                        @Override
 			public void windowClosing(java.awt.event.WindowEvent evt) {
 				formWindowClosing(evt);
 			}
@@ -432,6 +431,7 @@ public class Gui extends javax.swing.JFrame {
 		btnSaveAs.setMinimumSize(new java.awt.Dimension(37, 35));
 		btnSaveAs.setPreferredSize(new java.awt.Dimension(37, 35));
 		btnSaveAs.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnSaveAsActionPerformed(evt);
 			}
@@ -561,6 +561,7 @@ public class Gui extends javax.swing.JFrame {
 		btnSaveAll17.setMinimumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll17.setPreferredSize(new java.awt.Dimension(37, 35));
 		btnSaveAll17.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnSaveAll17ActionPerformed(evt);
 			}
@@ -1116,7 +1117,7 @@ public class Gui extends javax.swing.JFrame {
 		String str = Utils.getClipboard();
 		try {
 			nuovaRicetta(new Ricetta(XMLReader.XMLfromString(str), null));
-		} catch (Exception ex2) {
+		} catch (IOException | JDOMException ex2) {
 			Utils.showException(ex2, "Impossibile riconoscere una ricetta di BrewPlus.");
 		}
 	}// GEN-LAST:event_mnuFromPromashActionPerformed
@@ -1131,28 +1132,28 @@ public class Gui extends javax.swing.JFrame {
 		String malts = str.substring(i, e);
 
 		String s[] = malts.split("\n");
-		List<Malt> ms = new ArrayList<Malt>();
-		List<Hop> hs = new ArrayList<Hop>();
+		List<Malt> ms = new ArrayList<>();
+		List<Hop> hs = new ArrayList<>();
 		for (int j = 0; j < s.length; j++) {
 			Malt m1 = new Malt();
 			m1.setNome(s[j].substring(20, 50).trim());
 
-			if (str.indexOf("   %     Amount     Name                          Origin        Potential SRM") >= 0)
+			if (str.contains("   %     Amount     Name                          Origin        Potential SRM"))
 				m1.setEbc(Utils.srmToEbc(new Double(s[j].substring(70).trim())));
-			else if (str.indexOf("   %     Amount     Name                          Origin        Potential EBC") >= 0)
+			else if (str.contains("   %     Amount     Name                          Origin        Potential EBC"))
 				m1.setEbc(new Double(s[j].substring(70).trim()));
 			m1.setPotentialSG(new Double(s[j].substring(65, 70).trim()));
-			if (m1.getNome().indexOf("LME") >= 0)
+			if (m1.getNome().contains("LME"))
 				m1.setForma("Estratto liquido");
-			else if (m1.getNome().indexOf("DME") >= 0)
+			else if (m1.getNome().contains("DME"))
 				m1.setForma("Estratto secco");
-			else if (m1.getNome().toLowerCase().indexOf("flaked") >= 0)
+			else if (m1.getNome().toLowerCase().contains("flaked"))
 				m1.setForma("Fiocchi");
-			if (s[j].substring(5, 20).indexOf("kg.") >= 0)
-				m1.setGrammi(new Double(s[j].substring(5, 20).replaceFirst("kg.", "").trim()).doubleValue() * 1000);
-			if (s[j].substring(5, 20).indexOf("lbs.") >= 0)
+			if (s[j].substring(5, 20).contains("kg."))
+				m1.setGrammi(Double.parseDouble(s[j].substring(5, 20).replaceFirst("kg.", "").trim()) * 1000);
+			if (s[j].substring(5, 20).contains("lbs."))
 				m1.setGrammi(Utils.poundToKg(
-						new Double(s[j].substring(5, 20).replaceFirst("lbs.", "").trim()).doubleValue() * 1000));
+						Double.parseDouble(s[j].substring(5, 20).replaceFirst("lbs.", "").trim()) * 1000));
 			ms.add(m1);
 		}
 
@@ -1168,15 +1169,15 @@ public class Gui extends javax.swing.JFrame {
 			Hop h1 = new Hop();
 			h1.setNome(s[j].substring(14, 48).trim());
 
-			if (s[j].substring(0, 14).indexOf("g.") >= 0)
+			if (s[j].substring(0, 14).contains("g."))
 				h1.setGrammi(new Double(s[j].substring(0, 7).trim()));
-			if (s[j].substring(0, 14).indexOf("oz.") >= 0)
+			if (s[j].substring(0, 14).contains("oz."))
 				h1.setGrammi(Utils.ouncesToGrams(new Double(s[j].substring(0, 7).trim())));
 
 			h1.setAlfaAcidi(new Double(s[j].substring(54, 63).trim()));
 			h1.setAlfaAcidiPrec(new Double(s[j].substring(54, 63).trim()));
 
-			if (s[j].substring(69).indexOf("Dry Hop") >= 0) {
+			if (s[j].substring(69).contains("Dry Hop")) {
 				h1.setBoilTime(0);
 				h1.setUso("Dry");
 			} else {
@@ -1211,10 +1212,10 @@ public class Gui extends javax.swing.JFrame {
 		}
 
 		rd.setBollitura(new Integer(wbt));
-		if (bV.indexOf("L") >= 0) {
+		if (bV.contains("L")) {
 			rd.setVolumeBoll(new Double(bV.replaceFirst("L", "").trim()));
 		}
-		if (bV.indexOf("Gal") >= 0) {
+		if (bV.contains("Gal")) {
 			rd.setVolumeBoll(Utils.galToLit(new Double(bV.replaceFirst("Gal", "").trim())));
 		}
 		rd.setNome(str.substring(0, str.indexOf("A ProMash Recipe Report")).trim());
@@ -1232,9 +1233,7 @@ public class Gui extends javax.swing.JFrame {
 		try {
 			addFrame(
 					new XmlAbleEditor(tableModel, YeastType.class, bpenv.getConfigfileName(Constants.XML_YEAST), Main.class.getMethod("readLieviti")));
-		} catch (SecurityException ex) {
-			LOGGER.error(ex.getMessage(), ex);
-		} catch (NoSuchMethodException ex) {
+		} catch (SecurityException | NoSuchMethodException ex) {
 			LOGGER.error(ex.getMessage(), ex);
 		}
 	}// GEN-LAST:event_mnuLievitiXMLActionPerformeds
@@ -1349,9 +1348,7 @@ public class Gui extends javax.swing.JFrame {
 		try {
 			addFrame(
 					new XmlAbleEditor(tableModel, MaltCategory.class, bpenv.getConfigfileName(Constants.XML_CATEGORIES), Main.class.getMethod("readCategorieMalti")));
-		} catch (SecurityException ex) {
-			LOGGER.error(ex.getMessage(), ex);
-		} catch (NoSuchMethodException ex) {
+		} catch (SecurityException | NoSuchMethodException ex) {
 			LOGGER.error(ex.getMessage(), ex);
 		}
 	}// GEN-LAST:event_mnuMaltiXMLActionPerformed
@@ -1362,9 +1359,7 @@ public class Gui extends javax.swing.JFrame {
 		tableModel.setRows(Gui.maltPickerTableModel.getRows());
 		try {
 			addFrame(new XmlAbleEditor(tableModel, MaltType.class, bpenv.getConfigfileName(Constants.XML_MALT), Main.class.getMethod("readMalti")));
-		} catch (SecurityException ex) {
-			LOGGER.error(ex.getMessage(), ex);
-		} catch (NoSuchMethodException ex) {
+		} catch (SecurityException | NoSuchMethodException ex) {
 			LOGGER.error(ex.getMessage(), ex);
 		}
 	}// GEN-LAST:event_mnuMaltiXMLActionPerformed
@@ -1376,9 +1371,7 @@ public class Gui extends javax.swing.JFrame {
 		try {
 			addFrame(
 					new XmlAbleEditor(tableModel, BreweryProfile.class, bpenv.getConfigfileName(Constants.XML_BREPROFILE), Main.class.getMethod("readProfiliImpianto")));
-		} catch (SecurityException ex) {
-			LOGGER.error(ex.getMessage(), ex);
-		} catch (NoSuchMethodException ex) {
+		} catch (SecurityException | NoSuchMethodException ex) {
 			LOGGER.error(ex.getMessage(), ex);
 		}
 	}// GEN-LAST:event_mnuMaltiXMLActionPerformed
@@ -1417,9 +1410,7 @@ public class Gui extends javax.swing.JFrame {
 		try {
 			addFrame(
 					new XmlAbleEditor(tableModel, HopType.class, bpenv.getConfigfileName(Constants.XML_HOPS), Main.class.getMethod("readLuppoli")));
-		} catch (SecurityException ex) {
-			LOGGER.error(ex.getMessage(), ex);
-		} catch (NoSuchMethodException ex) {
+		} catch (SecurityException | NoSuchMethodException ex) {
 			LOGGER.error(ex.getMessage(), ex);
 		}
 	}// GEN-LAST:event_mnuLuppoliXMLActionPerformed
@@ -1503,14 +1494,6 @@ public class Gui extends javax.swing.JFrame {
 	private void gotoForum() {
 		frmFeed2 ffedd = new frmFeed2();
 		addFrame(ffedd);
-	}
-
-	private void ShowHelp() {
-		try {
-			//new Utils.BareBonesBrowserLaunch().openURL("file:///" + Main.userDir + "/help/index.html");
-		} catch (Exception ex) {
-			// Utils.showException(ex,"",this);
-		}
 	}
 
 	private void desktopComponentRemoved(java.awt.event.ContainerEvent evt) {
@@ -1708,7 +1691,7 @@ public class Gui extends javax.swing.JFrame {
 	private JButton button;
 	private JMenuItem mntmApriRicetta;
 //	private JButton btnGuida;
-	private JMenuItem mntmNewMenuItem;
+	//private JMenuItem mntmNewMenuItem;
 	private JMenuItem menuItemDelete;
 	private JSeparator separator_5;
 	private JLabel lblStatus;

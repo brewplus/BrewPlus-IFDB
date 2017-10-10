@@ -32,6 +32,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -571,25 +572,32 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		setMinimumSize(new java.awt.Dimension(1024, 600));
 		setPreferredSize(new java.awt.Dimension(1024, 600));
 		addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+                        @Override
 			public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
 			}
 
+                        @Override
 			public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
 			}
 
+                        @Override
 			public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
 				formInternalFrameClosing(evt);
 			}
 
+                        @Override
 			public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
 			}
 
+                        @Override
 			public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
 			}
 
+                        @Override
 			public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
 			}
 
+                        @Override
 			public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
 			}
 		});
@@ -802,6 +810,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jLabel17.setOpaque(true);
 		jLabel17.setPreferredSize(new java.awt.Dimension(26, 14));
 		jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
+                        @Override
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				jLabel17MouseClicked(evt);
 			}
@@ -821,6 +830,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		jLabel18.setOpaque(true);
 		jLabel18.setPreferredSize(new java.awt.Dimension(26, 14));
 		jLabel18.addMouseListener(new java.awt.event.MouseAdapter() {
+                        @Override
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				jLabel18MouseClicked(evt);
 			}
@@ -947,6 +957,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
         fldNome.setMinimumSize(new java.awt.Dimension(200, 24));
         fldNome.setPreferredSize(new java.awt.Dimension(350, 24));
         fldNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 fldNomeKeyTyped(evt);
             }
@@ -1451,6 +1462,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 			}
 		});
 		tblMalts.addKeyListener(new java.awt.event.KeyAdapter() {
+                        @Override
 			public void keyTyped(java.awt.event.KeyEvent evt) {
 				tblMaltsKeyTyped(evt);
 			}
@@ -1471,6 +1483,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		btnAdd1.setMinimumSize(new java.awt.Dimension(35, 35));
 		btnAdd1.setPreferredSize(new java.awt.Dimension(35, 35));
 		btnAdd1.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnAdd1ActionPerformed(evt);
 			}
@@ -1487,6 +1500,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		btnRem1.setMinimumSize(new java.awt.Dimension(35, 35));
 		btnRem1.setPreferredSize(new java.awt.Dimension(35, 35));
 		btnRem1.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnRem1ActionPerformed(evt);
 			}
@@ -1502,6 +1516,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		btnIngPie.setMinimumSize(new java.awt.Dimension(35, 35));
 		btnIngPie.setPreferredSize(new java.awt.Dimension(35, 35));
 		btnIngPie.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnIngPieActionPerformed(evt);
 			}
@@ -1538,6 +1553,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		btnAdd.setMinimumSize(new java.awt.Dimension(35, 35));
 		btnAdd.setPreferredSize(new java.awt.Dimension(35, 35));
 		btnAdd.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnAddActionPerformed(evt);
 			}
@@ -1554,6 +1570,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		btnRem.setMinimumSize(new java.awt.Dimension(35, 35));
 		btnRem.setPreferredSize(new java.awt.Dimension(35, 35));
 		btnRem.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnRemActionPerformed(evt);
 			}
@@ -1777,34 +1794,34 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		fc.setAccessory(new ImagePreview(fc));
 		int returnVal = fc.showDialog(this, "Apri");
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			File file = fc.getSelectedFile();
-			ImageIcon tmpIcon = new ImageIcon(file.getPath());
+			File file2 = fc.getSelectedFile();
+			ImageIcon tmpIcon = new ImageIcon(file2.getPath());
 			if (tmpIcon.getIconWidth() < 1)
 				return; // prende i files errati
-			if (tmpIcon != null) {
-				ImageIcon thumbnail;
-				if (tmpIcon.getIconWidth() > 100) {
-					thumbnail = new ImageIcon(tmpIcon.getImage().getScaledInstance(100, -1, Image.SCALE_DEFAULT));
-				} else {
-					thumbnail = tmpIcon;
-				}
-				lblPicBeer.setIcon(thumbnail);
-				Image img = thumbnail.getImage();
-				BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null),
-						BufferedImage.TYPE_INT_RGB);
-				Graphics2D g2 = bi.createGraphics();
-				g2.setComposite(AlphaComposite.Src);
-				g2.drawImage(img, 0, 0, null);
-				g2.dispose();
-				try {
-					ImageIO.write(bi, "jpg", new File("pics/tmpthum.tmp"));
-					String b64 = Utils.getBase64FromImageFile("pics/tmpthum.tmp");
-					this.fotografia = b64;
-				} catch (Exception ex) {
-				}
+			//if (tmpIcon != null) {
+                        ImageIcon thumbnail;
+                        if (tmpIcon.getIconWidth() > 100) {
+                                thumbnail = new ImageIcon(tmpIcon.getImage().getScaledInstance(100, -1, Image.SCALE_DEFAULT));
+                        } else {
+                                thumbnail = tmpIcon;
+                        }
+                        lblPicBeer.setIcon(thumbnail);
+                        Image img = thumbnail.getImage();
+                        BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null),
+                                        BufferedImage.TYPE_INT_RGB);
+                        Graphics2D g2 = bi.createGraphics();
+                        g2.setComposite(AlphaComposite.Src);
+                        g2.drawImage(img, 0, 0, null);
+                        g2.dispose();
+                        try {
+                                ImageIO.write(bi, "jpg", new File("pics/tmpthum.tmp"));
+                                String b64 = Utils.getBase64FromImageFile("pics/tmpthum.tmp");
+                                this.fotografia = b64;
+                        } catch (IOException ex) {
+                        }
 
-				this.dirty = true;
-			}
+                        this.dirty = true;
+			//}
 		}
 		fc.setSelectedFile(null);
 	}
@@ -1913,9 +1930,9 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	private void printRecipeActionPerformed(java.awt.event.ActionEvent evt) {
 		LOGGER.debug("Pressed Print Recipe button");
 		RecipeData rec = toRecipeData();
-		List<RecipeModel> summaries = new ArrayList<RecipeModel>();
-		List<Mash> steps = new ArrayList<Mash>();
-		List<MineralSalts> mineralSalts = new ArrayList<MineralSalts>();
+		List<RecipeModel> summaries = new ArrayList<>();
+		List<Mash> steps = new ArrayList<>();
+		List<MineralSalts> mineralSalts = new ArrayList<>();
 		
 		LOGGER.debug("Prepare Print data model");
 		RecipeModel summary = new RecipeModel();
@@ -2088,7 +2105,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	}// GEN-LAST:event_fldNomeKeyTyped
 
 	private void spinBollituraStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_spinBollituraStateChanged
-		int v = ((Integer) this.spinBollitura.getValue()).intValue();
+		int v = ((Integer) this.spinBollitura.getValue());
 		this.thisRicetta.setBollitura(v);
 		ricettaModificata();
 	}// GEN-LAST:event_spinBollituraStateChanged
@@ -2648,7 +2665,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		} else {
 			src.setCodiceStile(brewStyle.getNumero());
 		}
-		List<Hop> hopRows = new ArrayList<Hop>(hopTableModel.getRows());
+		List<Hop> hopRows = new ArrayList<>(hopTableModel.getRows());
 		Collections.sort(hopRows, new Comparator<Hop>() {
 			@Override
 			public int compare(Hop o1, Hop o2) {
@@ -2814,7 +2831,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 		OGPrevista = OGPrevista - 1000;
 		//LOGGER.debug("Calcolo FG - OGPrevista = " + OGPrevista);
-		Integer FGPrevista = OGPrevista;
+		Integer FGPrevista;// = OGPrevista;
 		Integer attenuazioneMed = 75;
 		if (yeastTableModel.getRows() != null && yeastTableModel.getRows().size() > 0 && yeastTableModel.getRows().get(0).getAttenuazioneMed() != null && !"".equals(yeastTableModel.getRows().get(0).getAttenuazioneMed())) {
 		    attenuazioneMed = new Integer(yeastTableModel.getRows().get(0).getAttenuazioneMed());
@@ -3020,32 +3037,32 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 		for (Malt m : reqMalts) {
 			List<Malt> found = inv.getMalts(m.getNome());
-			if (found.size() == 0)
-				cantDoMalt.add(new CanDo<Malt>(m, null));
+			if (found.isEmpty())
+				cantDoMalt.add(new CanDo<>(m, null));
 			else if (found.size() == 1) {
 				Malt M = found.get(0);
 				if (M.getGrammi() >= m.getGrammi()) {
-					canDoMalt.add(new CanDo<Malt>(m, M));
+					canDoMalt.add(new CanDo<>(m, M));
 				} else {
-					cantDoMalt.add(new CanDo<Malt>(m, M));
+					cantDoMalt.add(new CanDo<>(m, M));
 				}
 			} else if (found.size() >= 1) {
-				mayDoMalt.add(new CanDo<Malt>(m, null));
+				mayDoMalt.add(new CanDo<>(m, null));
 			}
 		}
 		for (Hop m : reqHops) {
 			List<Hop> found = inv.getHops(m.getNome());
 			if (found.isEmpty())
-				cantDoHop.add(new CanDo<Hop>(m, null));
+				cantDoHop.add(new CanDo<>(m, null));
 			else if (found.size() == 1) {
 				Hop M = found.get(0);
 				if (M.getGrammi() >= m.getGrammi()) {
-					canDoHop.add(new CanDo<Hop>(m, M));
+					canDoHop.add(new CanDo<>(m, M));
 				} else {
-					cantDoHop.add(new CanDo<Hop>(m, M));
+					cantDoHop.add(new CanDo<>(m, M));
 				}
 			} else if (found.size() >= 1) {
-				mayDoHop.add(new CanDo<Hop>(m, null));
+				mayDoHop.add(new CanDo<>(m, null));
 			}
 		}
 
