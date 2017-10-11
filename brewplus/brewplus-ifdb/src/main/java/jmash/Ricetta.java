@@ -2663,18 +2663,16 @@ public class Ricetta extends javax.swing.JInternalFrame {
         if (this.file == null) {
             file = Utils.pickFileToSavePID(this, (String) Main.getFromCache("recipe.dir", bpenv.getFolderName(Constants.DIR_RECIPE)));
         }
-        if (this.file == null)
-            return null;
+        if (this.file != null){
+	
+	        LOGGER.error("TO DO ");
+	
+	        String pidFormat = toRecipeData().toPID();
+	        
+	        Utils.saveRecipePIDToFile(pidFormat, this.file, this);
+	        
+        }
 
-        LOGGER.error("TO DO ");
-
-        String pidFormat = toRecipeData().toPID();
-        
-        
-        Utils.saveRecipePIDToFile(pidFormat, this.file, this);
-//
-//        setTitle(this.file.getName());
-//        this.dirty = false;
 
         return file;
     }
