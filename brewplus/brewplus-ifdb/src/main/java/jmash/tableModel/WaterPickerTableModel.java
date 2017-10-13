@@ -38,7 +38,7 @@ public class WaterPickerTableModel extends PickerTableModel {
 	 */
 	private static final long serialVersionUID = 2273174133360604792L;
 	/** Creates a new instance of HopTableModel */
-	LinkedList<WaterProfile> dataValues = new LinkedList<WaterProfile>();
+	LinkedList<WaterProfile> dataValues = new LinkedList<>();
 
 	public WaterPickerTableModel() {
 	}
@@ -63,7 +63,7 @@ public class WaterPickerTableModel extends PickerTableModel {
 
 	@Override
 	public String getColumnName(int col) {
-		return this.columnNames[col].toString();
+		return this.columnNames[col];
 	}
 
 	@Override

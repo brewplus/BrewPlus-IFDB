@@ -5,14 +5,10 @@
  */
 package jmash.tableModel;
 
-import java.text.ParseException;
 import java.util.Date;
 import javax.swing.JLabel;
-import jmash.Hop;
 import jmash.Main;
-import jmash.Utils;
 import jmash.Yeast;
-import static jmash.tableModel.GenericTableModel.NF;
 
 /**
  *
@@ -55,17 +51,17 @@ public class YeastBuyTableModel extends GenericTableModel<Yeast> {
                     case 0: 
                         yeast.setCodice((String)value);
                         break;
-                case 1:
-                        yeast.setNome((String) value);
-                        break;
-                case 2:
-                        yeast.setQuantita((String) value);
-                        break;
-                case 3:
-                        yeast.setDataAcquisto((Date) value);
-                        break;
-                default:
-                        break;
+                    case 1:
+                            yeast.setNome((String) value);
+                            break;
+                    case 2:
+                            yeast.setQuantita((String) value);
+                            break;
+                    case 3:
+                            yeast.setDataAcquisto((Date) value);
+                            break;
+                    default:
+                            break;
                 }
                 fireTableCellUpdated(row, col);
                 if (flag) {

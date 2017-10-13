@@ -25,7 +25,6 @@ import org.apache.commons.configuration2.beanutils.BeanDeclaration;
 import org.apache.commons.configuration2.beanutils.BeanHelper;
 import org.apache.commons.configuration2.beanutils.XMLBeanDeclaration;
 import org.apache.commons.configuration2.builder.FileBasedConfigurationBuilder;
-import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.apache.commons.configuration2.builder.fluent.Parameters;
 import org.apache.log4j.Logger;
 
@@ -55,7 +54,7 @@ public class ConfigurationManager {
 			BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
 			Parameters params = new Parameters();
 			FileBasedConfigurationBuilder<XMLConfiguration> builder =
-				    new FileBasedConfigurationBuilder<XMLConfiguration>(XMLConfiguration.class);
+				    new FileBasedConfigurationBuilder<>(XMLConfiguration.class);
 			builder.configure(params.xml().setFileName(bpenv.getConfigfileName(Constants.XML_CONFIG)));
 			XMLConfiguration config = builder.getConfiguration();
 				

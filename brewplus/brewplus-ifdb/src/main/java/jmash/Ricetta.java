@@ -87,7 +87,6 @@ import jmash.report.model.Mash;
 import jmash.report.model.MineralSalts;
 import jmash.report.model.RecipeModel;
 import jmash.tableModel.HopTableModel;
-import jmash.tableModel.InventoryObjectTableModel;
 import jmash.tableModel.MaltTableModel;
 import jmash.tableModel.NumberFormatter;
 import jmash.tableModel.SummaryTableModel;
@@ -124,8 +123,8 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	TableSorter maltSorter, hopSorter, summarySorter, yeastSorter;
 	private GlassPanel glassPanel;
 	private boolean dirty = false;
-	public static final int dimx = 81;
-	public static final int dimy = 120;
+	public static final int DIMX = 81;
+	public static final int DIMY = 120;
 	public WaterNeeded waterNeeded = new WaterNeeded();
 	public WaterAdjustPanel waterPanel = null;
 	private static javax.swing.ImageIcon hopsIcon = new javax.swing.ImageIcon(Ricetta.class.getResource("/jmash/images/hops.gif"));
@@ -204,9 +203,9 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		gridBagConstraints.gridheight = 4;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.NONE;
 		gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
-		this.glassPanel.setMinimumSize(new Dimension(Ricetta.dimx, Ricetta.dimy));
-		this.glassPanel.setPreferredSize(new Dimension(Ricetta.dimx, Ricetta.dimy));
-		this.glassPanel.setMaximumSize(new Dimension(Ricetta.dimx, Ricetta.dimy));
+		this.glassPanel.setMinimumSize(new Dimension(Ricetta.DIMX, Ricetta.DIMY));
+		this.glassPanel.setPreferredSize(new Dimension(Ricetta.DIMX, Ricetta.DIMY));
+		this.glassPanel.setMaximumSize(new Dimension(Ricetta.DIMX, Ricetta.DIMY));
 		this.glassPanel.setBorder(BorderFactory.createLoweredBevelBorder());
 		this.jPanel10.add(this.glassPanel, 2);
 
@@ -394,7 +393,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 			setValue((int) Math.rint(d));
 			return this;
 		}
-
+/*
 		// The following methods override the defaults for performance reasons
 		@Override
 		public void validate() {
@@ -410,7 +409,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 
 		@Override
 		public void firePropertyChange(String propertyName, boolean oldValue, boolean newValue) {
-		}
+		}*/
 	}
 
 	public Ricetta(File file) {
@@ -2097,7 +2096,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	private void btnStyleActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnStyleActionPerformed
 		this.brewStylePicker.startModal(this);
 		BrewStyle type = (BrewStyle) this.brewStylePicker.getSelection();
-		setBrewStyle(type.getNumero());
+		if (type != null) setBrewStyle(type.getNumero());
 	}// GEN-LAST:event_btnStyleActionPerformed
 
 	private void fldNomeKeyTyped(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_fldNomeKeyTyped
@@ -2734,7 +2733,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
         return file;
     }
 
-	public void read(File file) {
+	public final void read(File file) {
 		try {
 			Document doc = Utils.readFileAsXml(file.toString());
 			if (doc == null)
@@ -2745,7 +2744,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		}
 	}
 
-	public void read(Document doc) {
+	public final void read(Document doc) {
 		RecipeData rec = new RecipeData();
 		rec.read(doc);
 		rec.setRicetta(this);
@@ -2994,7 +2993,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	public void addPanel(Component c, String s, int i) {
 		this.jTabbedPane1.add(c, s, i);
 	}
-
+        /*
 	public void finalizeInInventory() {
 		Acquisto inv = Acquisto.buildFRMInventario();
 		List<Malt> reqMalts = new ArrayList<>();
@@ -3120,12 +3119,12 @@ public class Ricetta extends javax.swing.JInternalFrame {
 			else
 				new Info(cantDo).startModal(this);
 
-			return;
+			//return;
 		}
 
 		// inv.save();
 	}
-
+*/
 	class CanDo<T> {
 		private T req;
 		private T have;
@@ -3188,24 +3187,29 @@ public class Ricetta extends javax.swing.JInternalFrame {
 			preferredWidth = danielsColumn.getPreferredWidth();
 		}
 		
-		if (Constants.IBU_DAN.equals(generalConfig.getBUGUratiostring())) {
-				visibleIBUColumn = danielsColumn;
-				invisibleIBUColumn1 = tinsethColumn;
-				invisibleIBUColumn2 = ragerColumn;
-		} else if (Constants.IBU_RAG.equals(generalConfig.getBUGUratiostring())) {
-				visibleIBUColumn = ragerColumn;
-				invisibleIBUColumn1 = tinsethColumn;
-				invisibleIBUColumn2 = danielsColumn;
-		} else if (Constants.IBU_TIN.equals(generalConfig.getBUGUratiostring())) {
-				visibleIBUColumn = tinsethColumn;
-				invisibleIBUColumn1 = danielsColumn;
-				invisibleIBUColumn2 = ragerColumn;
-		} else {
-				visibleIBUColumn = tinsethColumn;
-				invisibleIBUColumn1 = danielsColumn;
-				invisibleIBUColumn2 = ragerColumn;
-		}
-
+                switch (generalConfig.getBUGUratiostring()!= null ? generalConfig.getBUGUratiostring() : "NORATIO") {
+                    case Constants.IBU_DAN:
+                        visibleIBUColumn = danielsColumn;
+                        invisibleIBUColumn1 = tinsethColumn;
+                        invisibleIBUColumn2 = ragerColumn;
+                        break;
+                    case Constants.IBU_RAG:
+                        visibleIBUColumn = ragerColumn;
+                        invisibleIBUColumn1 = tinsethColumn;
+                        invisibleIBUColumn2 = danielsColumn;
+                        break;
+                    case Constants.IBU_TIN:
+                        visibleIBUColumn = tinsethColumn;
+                        invisibleIBUColumn1 = danielsColumn;
+                        invisibleIBUColumn2 = ragerColumn;
+                        break;
+                    default:
+                        visibleIBUColumn = tinsethColumn;
+                        invisibleIBUColumn1 = danielsColumn;
+                        invisibleIBUColumn2 = ragerColumn;
+                        break;
+                }
+                
 		if (width > 0) {
 			visibleIBUColumn.setWidth(width);
 			visibleIBUColumn.setMinWidth(minWidth);

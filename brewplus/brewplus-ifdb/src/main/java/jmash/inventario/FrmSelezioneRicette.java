@@ -38,7 +38,7 @@ import org.jdom.Element;
 public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
     
     private AcquistoIngredienti inventario = null;
-    private JFileChooser recipeChooser = new JFileChooser((String)Main.getFromCache("recipe.dir", bpenv.getFolderName(Constants.DIR_RECIPE)));
+    private final JFileChooser recipeChooser = new JFileChooser((String)Main.getFromCache("recipe.dir", bpenv.getFolderName(Constants.DIR_RECIPE)));
     /**
      * Creates new form FrmSelezioneRicette
      */
@@ -466,7 +466,7 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
     
     public static boolean isVisible = false; 
-    private static Map<Integer, RecipeData> listaRicette = new HashMap<>();
+    private static final Map<Integer, RecipeData> listaRicette = new HashMap<>();
     private static Integer idRicetta = 0;
     private static final Integer COL_QUANT_FERMENTABILI = 3;
     private static final Integer COL_FABB_FERMENTABILI = 5;
@@ -474,7 +474,7 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
     private static final Integer COL_FABB_LUPPOLI = 5;
     private static final Integer COL_QUANT_LIEVITI = 2;
     private static final Integer COL_FABB_LIEVITI = 4;
-    private static BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
+    private static final BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
     
     private void inizializza() {
         mTabIngredienti.setTitleAt(0, "Malti e Fermentabili");

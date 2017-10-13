@@ -34,8 +34,6 @@ import java.awt.image.BufferedImage;
 import java.beans.PropertyVetoException;
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -81,8 +79,6 @@ import org.jdom.JDOMException;
 public class Gui extends javax.swing.JFrame {
 	
 	private static final String PATH_BACKGROUND =  "/jmash/images/bkgrnd.jpg";
-//	private static final String PATH_BACKGROUND =  "/jmash/images/back.gif";
-	//private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
 	private static final BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
 
 	private static final long serialVersionUID = 348370096080739755L;
@@ -113,7 +109,6 @@ public class Gui extends javax.swing.JFrame {
             btnSaveAll18.setToolTipText(Main.bundle.getString("title.beerStyle"));
             button.setToolTipText(Main.bundle.getString("title.forumFeed"));
             btnSaveAll16.setToolTipText(Main.bundle.getString("title.settings"));
-//            btnGuida.setToolTipText(Main.bundle.getString("title.help"));
             btnNew1.setToolTipText(Main.bundle.getString("title.brewRecording"));
             btnSaveAll21.setToolTipText(Main.bundle.getString("title.inventory"));
             btnSaveAll12.setToolTipText(Main.bundle.getString("title.shopping"));
@@ -173,13 +168,13 @@ public class Gui extends javax.swing.JFrame {
 
 	}
 
-	public void updatePopupMenu() {
+	public final void updatePopupMenu() {
 		recipesPopup.removeAll();
 		mnuFile1.removeAll();
 		int i = 0;
 		for (String s : lastOpenedRecipes) {
-			Main.putIntoCache("Main.recipe" + i, s);
-			i++;
+                    Main.putIntoCache("Main.recipe" + i, s);
+                    i++;
 		}
 		javax.swing.JMenuItem mnuItem1 = new javax.swing.JMenuItem();
 		mnuItem1.setText("Crea una nuova ricetta...");
@@ -193,10 +188,10 @@ public class Gui extends javax.swing.JFrame {
 		recipesPopup.addSeparator();
 		menuItemDelete = new JMenuItem("Elimina elenco..");
 		menuItemDelete.addActionListener(new ActionListener() {
-                        @Override
-			public void actionPerformed(ActionEvent e) {
-				deleteLastRecipesEntries();
-			}
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                            deleteLastRecipesEntries();
+                    }
 		});
 		menuItemDelete.setSelected(true);
 		mnuFile1.add(menuItemDelete);
@@ -322,24 +317,22 @@ public class Gui extends javax.swing.JFrame {
 			}
 		});
 
-		// desktop.setBackground(Color.BLUE);
-
 		BufferedImage bf;// = null;
-		LocalDate today = LocalDate.now();
 		
-		LocalDate currentOttoDec = LocalDate.of(today.getYear(), Month.DECEMBER, 8);
-		LocalDate nextBefana = LocalDate.of(today.getYear() + 1, Month.JANUARY, 6);
+                //LocalDate today = LocalDate.now();
+		
+		//LocalDate currentOttoDec = LocalDate.of(today.getYear(), Month.DECEMBER, 8);
+		//LocalDate nextBefana = LocalDate.of(today.getYear() + 1, Month.JANUARY, 6);
 		
 		bf = ImageIO.read(getClass().getResourceAsStream(Utility.getPathImageByPeriod(PATH_BACKGROUND)));
 		desktop = new JDesktopBackground(bf);
 
 		desktop.setDoubleBuffered(true);
 		desktop.addMouseListener(new java.awt.event.MouseAdapter() {
-                        @Override
+                        /*@Override
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				desktopMouseClicked(evt);
-			}
-
+				//desktopMouseClicked(evt);
+			}*/
                         @Override
 			public void mousePressed(java.awt.event.MouseEvent evt) {
 				desktopMousePressed(evt);
@@ -393,10 +386,10 @@ public class Gui extends javax.swing.JFrame {
 			}
 		});
 		btnOpen.addMouseListener(new java.awt.event.MouseAdapter() {
-                        @Override
+                        /*@Override
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				btnOpenMouseClicked(evt);
-			}
+				//btnOpenMouseClicked(evt);
+			}*/
 
                         @Override
 			public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -539,7 +532,7 @@ public class Gui extends javax.swing.JFrame {
 			}
 		});
 		toolbar.add(btnSaveAll11);
-
+/*
 		btnSaveAll14.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/water.png"))); // NOI18N
                 btnSaveAll14.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnSaveAll14.setToolTipText("Trattamento Acqua");
@@ -551,9 +544,9 @@ public class Gui extends javax.swing.JFrame {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnSaveAll14ActionPerformed(evt);
 			}
-		});
+		});*/
 //		toolbar.add(btnSaveAll14);
-
+                /*
 		btnSaveAll17.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/pipe.png"))); // NOI18N
                 btnSaveAll17.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnSaveAll17.setToolTipText("Acqua necessaria");
@@ -565,7 +558,7 @@ public class Gui extends javax.swing.JFrame {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnSaveAll17ActionPerformed(evt);
 			}
-		});
+		});*/
 //		toolbar.add(btnSaveAll17);
 
 
@@ -651,12 +644,12 @@ public class Gui extends javax.swing.JFrame {
 		btnExport2PID.setMinimumSize(new java.awt.Dimension(37, 35));
 		btnExport2PID.setPreferredSize(new java.awt.Dimension(37, 35));
 		btnExport2PID.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExport2PIDActionPerformed(evt);
-            }
-        });
-        toolbar.add(btnExport2PID);
+                    @Override
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        btnExport2PIDActionPerformed(evt);
+                    }
+                });
+                toolbar.add(btnExport2PID);
 
 		getContentPane().add(toolbar, java.awt.BorderLayout.NORTH);
 
@@ -710,12 +703,12 @@ public class Gui extends javax.swing.JFrame {
 		btnSaveAll13.setMaximumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll13.setMinimumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll13.setPreferredSize(new java.awt.Dimension(37, 35));
-		btnSaveAll13.addActionListener(new java.awt.event.ActionListener() {
+		/*btnSaveAll13.addActionListener(new java.awt.event.ActionListener() {
                         @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnSaveAll13ActionPerformed(evt);
+				//btnSaveAll13ActionPerformed(evt);
 			}
-		});
+		});*/
 		sideBar.add(btnSaveAll13);
 
 		getContentPane().add(sideBar, java.awt.BorderLayout.WEST);
@@ -744,12 +737,12 @@ public class Gui extends javax.swing.JFrame {
 		taskBar.add(lblStatus);
 
 		mnuFile.setText("File");
-		mnuFile.addActionListener(new java.awt.event.ActionListener() {
+		/*mnuFile.addActionListener(new java.awt.event.ActionListener() {
                         @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				mnuFileActionPerformed(evt);
 			}
-		});
+		});*/
 
 		mnuNuova.setText("Nuova");
 		mnuNuova.addActionListener(new java.awt.event.ActionListener() {
@@ -761,12 +754,12 @@ public class Gui extends javax.swing.JFrame {
 		mnuFile.add(mnuNuova);
 
 		mnuFile1.setText("Ricette recenti");
-		mnuFile1.addActionListener(new java.awt.event.ActionListener() {
+		/*mnuFile1.addActionListener(new java.awt.event.ActionListener() {
                         @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				mnuFile1ActionPerformed(evt);
 			}
-		});
+		});*/
 
 		mntmApriRicetta = new JMenuItem("Apri ricetta..");
 		mntmApriRicetta.addActionListener(new ActionListener() {
@@ -836,12 +829,12 @@ public class Gui extends javax.swing.JFrame {
 		jMenuBar1.add(mnuFile);
 
 		jMenu2.setText("Configurazione");
-		jMenu2.addActionListener(new java.awt.event.ActionListener() {
+		/*jMenu2.addActionListener(new java.awt.event.ActionListener() {
                         @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jMenu2ActionPerformed(evt);
 			}
-		});
+		});*/
 
 		mnuLuppoliXML.setText("Luppoli ed erbe");
 		mnuLuppoliXML.addActionListener(new java.awt.event.ActionListener() {
@@ -957,12 +950,12 @@ public class Gui extends javax.swing.JFrame {
 		jMenuBar1.add(jMenu1);
 
 		jMenu3.setText("?");
-		jMenu3.addActionListener(new java.awt.event.ActionListener() {
+		/*jMenu3.addActionListener(new java.awt.event.ActionListener() {
                         @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jMenu3ActionPerformed(evt);
 			}
-		});
+		});*/
 		mnuAbout = new javax.swing.JMenuItem();
 
 		mnuAbout.setText("Info...");
@@ -1013,7 +1006,7 @@ public class Gui extends javax.swing.JFrame {
 			recipesPopup.show(evt.getComponent(), evt.getX(), evt.getY());
 		}
 	}// GEN-LAST:event_desktopMousePressed
-
+/*
 	private void desktopMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_desktopMouseClicked
 
 	}// GEN-LAST:event_desktopMouseClicked
@@ -1025,7 +1018,7 @@ public class Gui extends javax.swing.JFrame {
 	private void btnOpenMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_btnOpenMouseClicked
 
 	}// GEN-LAST:event_btnOpenMouseClicked
-
+*/
 	private void mnuAboutActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_mnuAboutActionPerformed
 		frmCredits fc = new frmCredits();
 		addFrame(fc);
@@ -1035,10 +1028,11 @@ public class Gui extends javax.swing.JFrame {
 				(desktopSize.height - jInternalFrameSize.height) / 2);
 	}// GEN-LAST:event_mnuAboutActionPerformed
 
-	private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenu3ActionPerformed
+	/*private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenu3ActionPerformed
 
 	}// GEN-LAST:event_jMenu3ActionPerformed
-
+       */
+        
 	private void btnNew1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnNew1ActionPerformed
 		JInternalFrame cotta = new NewCotta();
 		addFrame(cotta);
@@ -1251,10 +1245,10 @@ public class Gui extends javax.swing.JFrame {
 		addFrame(new WaterDesign(), true);
 	}// GEN-LAST:event_btnSaveAll14ActionPerformed
 
-	private void btnSaveAll13ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll13ActionPerformed
+	/*private void btnSaveAll13ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll13ActionPerformed
 		// addFrame(new Planner());
 	}// GEN-LAST:event_btnSaveAll13ActionPerformed
-
+*/
 	private void btnSaveAll12ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll12ActionPerformed
 		addFrame(Acquisto.newAcquisto());
 	}// GEN-LAST:event_btnSaveAll12ActionPerformed
@@ -1415,11 +1409,11 @@ public class Gui extends javax.swing.JFrame {
 			LOGGER.error(ex.getMessage(), ex);
 		}
 	}// GEN-LAST:event_mnuLuppoliXMLActionPerformed
-
+/*
 	private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenu2ActionPerformed
 
 	}// GEN-LAST:event_jMenu2ActionPerformed
-
+*/
 	// private List<Ricetta> ricette=new ArrayList<Ricetta>();
 	private void mnuNuovaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_mnuNuovaActionPerformed
 		nuovaRicetta(new Ricetta());
@@ -1429,9 +1423,9 @@ public class Gui extends javax.swing.JFrame {
 		chiudiGui();
 	}// GEN-LAST:event_mnuEsciActionPerformed
 
-	private void mnuFileActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_mnuFileActionPerformed
+	/*private void mnuFileActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_mnuFileActionPerformed
 	}// GEN-LAST:event_mnuFileActionPerformed
-
+*/
 	private void formWindowClosing(java.awt.event.WindowEvent evt) {// GEN-FIRST:event_formWindowClosing
 		chiudiGui();
 	}// GEN-LAST:event_formWindowClosing
@@ -1445,11 +1439,11 @@ public class Gui extends javax.swing.JFrame {
 				JMenuItem item = new JMenuItem();
 				JInternalFrame child = (JInternalFrame) evt.getChild();
 				if (child.getTitle().length() > 0) { // inserito questo
-														// controllo perchè
-														// viene generato
-														// l'evento a caso
-														// quando aggiungo una
-														// ricetta
+                                                                    // controllo perchè
+                                                                    // viene generato
+                                                                    // l'evento a caso
+                                                                    // quando aggiungo una
+                                                                    // ricetta
 					item.setText(child.getTitle());
 					item.setActionCommand(child.getTitle());
 					item.addActionListener(new java.awt.event.ActionListener() {

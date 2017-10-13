@@ -76,11 +76,11 @@ public class Yeast {
             this.dataAcquisto = dataAcquisto;
         }
 	public String getQuantita() {
-		return quantita;
+		return quantita!=null?quantita.replaceAll(",", "."):null;
 	}
 
 	public void setQuantita(String quantita) {
-		this.quantita = quantita;
+		this.quantita = (quantita!=null?quantita.replaceAll(",", "."):"0.0");
 	}
 	
 	public Element toXml() {
