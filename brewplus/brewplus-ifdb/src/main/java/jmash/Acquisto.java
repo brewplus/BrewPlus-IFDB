@@ -50,8 +50,8 @@ import jmash.utils.Constants;
 public class Acquisto extends javax.swing.JInternalFrame {
 
 	/** Creates new form Acquisto */
-	private static SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
-	private static BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
+	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+	private static final BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
         private File file = null;
         
 	public static Acquisto buildFRMInventario() {
@@ -205,6 +205,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 		java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("jmash/lang"); // NOI18N
 		btnNew.setToolTipText(bundle.getString("Nuovo_acquisto")); // NOI18N
 		btnNew.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnNewActionPerformed(evt);
 			}
@@ -218,6 +219,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 		btnOpen.setMinimumSize(new java.awt.Dimension(37, 35));
 		btnOpen.setPreferredSize(new java.awt.Dimension(37, 35));
 		btnOpen.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnOpenActionPerformed(evt);
 			}
@@ -227,6 +229,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 		btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/filesave.png"))); // NOI18N
 		btnSave.setToolTipText("Salva acquisto");
 		btnSave.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnSaveActionPerformed(evt);
 			}
@@ -236,6 +239,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 		btnInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/editpaste.png"))); // NOI18N
 		btnInventario.setToolTipText("Copia nell'inventario");
 		btnInventario.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnInventarioActionPerformed(evt);
 			}
@@ -332,6 +336,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 		remMalt1.setMinimumSize(new java.awt.Dimension(36, 36));
 		remMalt1.setPreferredSize(new java.awt.Dimension(36, 36));
 		remMalt1.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				remMalt1ActionPerformed(evt);
 			}
@@ -365,6 +370,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 		addHop.setMinimumSize(new java.awt.Dimension(36, 36));
 		addHop.setPreferredSize(new java.awt.Dimension(36, 36));
 		addHop.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				addHopActionPerformed(evt);
 			}
@@ -378,6 +384,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 		remMalt.setMinimumSize(new java.awt.Dimension(36, 36));
 		remMalt.setPreferredSize(new java.awt.Dimension(36, 36));
 		remMalt.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				remMaltActionPerformed(evt);
 			}
@@ -394,8 +401,6 @@ public class Acquisto extends javax.swing.JInternalFrame {
 		jPanel6.add(jTabbedPane1, java.awt.BorderLayout.CENTER);
                
 		getContentPane().add(jPanel6, java.awt.BorderLayout.CENTER);
-                
-                //Cerella-Inizio
                 
                 jPanel7.setLayout(new java.awt.BorderLayout());
 
@@ -445,7 +450,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 		jPanel7.add(jPanel8, java.awt.BorderLayout.WEST);
 
 		jTabbedPane1.addTab("Lieviti", jPanel7);
-                //Cerella-Fine
+
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
 
@@ -599,21 +604,26 @@ public class Acquisto extends javax.swing.JInternalFrame {
 
 	public void inventario() {
 		Acquisto acquisto = Acquisto.buildFRMInventario();
-		acquisto.addRows(maltTableModel.getRows(), hopTableModel.getRows(), fldDate.getDate());
+		acquisto.addRows(maltTableModel.getRows(), hopTableModel.getRows(), yeastTableModel.getRows(), fldDate.getDate());
 		Main.gui.addFrame(acquisto);
 	}
 
-	public void addRows(List<Malt> malts, List<Hop> hops, Date dataRif) {
+	public void addRows(List<Malt> malts, List<Hop> hops, List<Yeast> yeasts, Date dataRif) {
 		for (Malt m : malts) {
-			if (m.getDataAcquisto() == null)
-				m.setDataAcquisto(dataRif);
-			maltTableModel.addRow(Malt.fromXml(m.toXml()));
+                    if (m.getDataAcquisto() == null)
+                            m.setDataAcquisto(dataRif);
+                    maltTableModel.addRow(Malt.fromXml(m.toXml()));
 		}
 		for (Hop h : hops) {
-			if (h.getDataAcquisto() == null)
-				h.setDataAcquisto(dataRif);
-			hopTableModel.addRow(Hop.fromXml(h.toXml()));
+                    if (h.getDataAcquisto() == null)
+                            h.setDataAcquisto(dataRif);
+                    hopTableModel.addRow(Hop.fromXml(h.toXml()));
 		}
+                for (Yeast y : yeasts) {
+                    if (y.getDataAcquisto() == null)
+                        y.setDataAcquisto(dataRif);
+                    yeastTableModel.addRow(Yeast.fromXml(y.toXml()));
+                }
 	}
 
 	public List<Malt> getMalts() {
@@ -625,7 +635,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 	}
 
 	public List<Malt> getMalts(String des) {
-		List<Malt> list = new ArrayList<Malt>();
+		List<Malt> list = new ArrayList<>();
 		for (Malt m : maltTableModel.getRows()) {
 			if (m.getNome().equalsIgnoreCase(des))
 				list.add(Malt.fromXml(m.toXml()));
@@ -634,7 +644,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 	}
 
 	public List<Hop> getHops(String des) {
-		List<Hop> list = new ArrayList<Hop>();
+		List<Hop> list = new ArrayList<>();
 		for (Hop m : hopTableModel.getRows()) {
 			if (m.getNome().equalsIgnoreCase(des))
 				list.add(Hop.fromXml(m.toXml()));
