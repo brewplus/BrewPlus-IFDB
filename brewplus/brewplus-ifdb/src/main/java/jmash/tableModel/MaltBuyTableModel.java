@@ -38,22 +38,21 @@ public class MaltBuyTableModel extends GenericTableModel<Malt> {
 
 	public MaltBuyTableModel() {
 		this.ret.setIcon(Main.maltIcon);
-		this.columnNames = new String[] { "", "Malti e zuccheri", "Q.tà", "Un.mis.", "Pot. SG", "Forma", "Colore",
-				"Origine", "Data rif." };
+		this.columnNames = new String[] { "", "Malti e zuccheri", "Q.tà", "Un.mis.", "Pot. SG", "Forma", "Colore", "Origine", "Data rif." };
 	}
 
-	private JLabel ret = new JLabel("");
+	private final JLabel ret = new JLabel("");
 
 	@Override
 	public Object getValueAt(int row, int col) {
 		Malt m = this.dataValues.get(row);
 
 		this.ret.setIcon(Main.maltIcon);
-		if (m.getForma().compareToIgnoreCase("estratto liquido") == 0) {
-			this.ret.setIcon(Main.extractIcon);
-		}
 		if (m != null) {
-			switch (col) {
+                    if (m.getForma().compareToIgnoreCase("estratto liquido") == 0) {
+			this.ret.setIcon(Main.extractIcon);
+                    }
+                    switch (col) {
 			case 1:
 				return m.getNome();
 			case 2:
@@ -85,8 +84,10 @@ public class MaltBuyTableModel extends GenericTableModel<Malt> {
 			if ((m != null) && (value != null)) {
 				switch (col) {
 				case 2:
-					m.setGrammi(
-							Utils.convertWeight(NF.parse((String) value).doubleValue(), m.getUnitaMisura(), "grammi"));
+                                        if (value instanceof Double)
+                                            m.setGrammi((Double)value);
+                                        else
+                                            m.setGrammi(Utils.convertWeight(NF.parse((String) value).doubleValue(), m.getUnitaMisura(), "grammi"));
 					break;
 				case 3:
 					m.setUnitaMisura(((String) value));
@@ -123,5 +124,19 @@ public class MaltBuyTableModel extends GenericTableModel<Malt> {
 	public boolean isCellEditable(int row, int col) {
 		return true;
 	}
-
+        
+        public void appendRow(Malt row) {
+            boolean esiste = false;
+            //Controllo se il malto è già presente
+            for (int ii = 0; ii < this.getRowCount(); ii++) {
+                if (((String)this.getValueAt(ii, 1)).equalsIgnoreCase(row.getNome()) && ((String)this.getValueAt(ii, 5)).equalsIgnoreCase(row.getForma())) {
+                    this.setValueAt((Double.parseDouble((String)this.getValueAt(ii, 2))+row.getGrammi()), ii, 2);
+                    esiste = true;
+                    break;
+                }
+                    
+            }
+            if (!esiste) this.dataValues.add(row);
+            fireTableDataChanged();
+        }
 }

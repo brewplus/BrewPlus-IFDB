@@ -610,19 +610,17 @@ public class Acquisto extends javax.swing.JInternalFrame {
 
 	public void addRows(List<Malt> malts, List<Hop> hops, List<Yeast> yeasts, Date dataRif) {
 		for (Malt m : malts) {
-                    if (m.getDataAcquisto() == null)
-                            m.setDataAcquisto(dataRif);
-                    maltTableModel.addRow(Malt.fromXml(m.toXml()));
+                    if (m.getDataAcquisto() == null) m.setDataAcquisto(dataRif);
+                    //maltTableModel.addRow(Malt.fromXml(m.toXml()));
+                    maltTableModel.appendRow(Malt.fromXml(m.toXml()));
 		}
 		for (Hop h : hops) {
-                    if (h.getDataAcquisto() == null)
-                            h.setDataAcquisto(dataRif);
-                    hopTableModel.addRow(Hop.fromXml(h.toXml()));
+                    if (h.getDataAcquisto() == null) h.setDataAcquisto(dataRif);
+                    hopTableModel.appendRow(Hop.fromXml(h.toXml()));
 		}
                 for (Yeast y : yeasts) {
-                    if (y.getDataAcquisto() == null)
-                        y.setDataAcquisto(dataRif);
-                    yeastTableModel.addRow(Yeast.fromXml(y.toXml()));
+                    if (y.getDataAcquisto() == null) y.setDataAcquisto(dataRif);
+                    yeastTableModel.appendRow(Yeast.fromXml(y.toXml()));
                 }
 	}
 

@@ -55,7 +55,10 @@ public class YeastBuyTableModel extends GenericTableModel<Yeast> {
                             yeast.setNome((String) value);
                             break;
                     case 2:
-                            yeast.setQuantita((String) value);
+                            if (value instanceof Double)
+                                yeast.setQuantita(value.toString());
+                            else
+                                yeast.setQuantita((String) value);
                             break;
                     case 3:
                             yeast.setDataAcquisto((Date) value);
@@ -74,4 +77,19 @@ public class YeastBuyTableModel extends GenericTableModel<Yeast> {
     public boolean isCellEditable(int row, int col) {
             return true;
     }
+    
+     public void appendRow(Yeast row) {
+            boolean esiste = false;
+            //Controllo se il luppolo è già presente
+            for (int ii = 0; ii < this.getRowCount(); ii++) {
+                if (((String)this.getValueAt(ii, 0)).equalsIgnoreCase(row.getCodice())) {
+                    this.setValueAt(Double.parseDouble((String)this.getValueAt(ii, 2))+(row.getQuantita()!=null?Double.parseDouble(row.getQuantita()):0.0), ii, 2);
+                    esiste = true;
+                    break;
+                }
+                    
+            }
+            if (!esiste) this.dataValues.add(row);
+            fireTableDataChanged();
+        }
 }
