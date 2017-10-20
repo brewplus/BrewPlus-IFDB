@@ -71,7 +71,7 @@ public class YeastTableModel extends GenericTableModel<Yeast> {
                             case 3:
                                     return h.getAttenuazioneMed();
                             case 4:
-                                    return Double.parseDouble(h.getQuantita()!=null?h.getQuantita().replaceAll(",", "."):"0.0");
+                                    return Double.parseDouble((h.getQuantita()!=null && !"".equalsIgnoreCase(h.getQuantita()))?h.getQuantita().replaceAll(",", "."):"0.0");
                             case 5:
                                     return h.getTemperaturaMaxFerm();
                             case 6:

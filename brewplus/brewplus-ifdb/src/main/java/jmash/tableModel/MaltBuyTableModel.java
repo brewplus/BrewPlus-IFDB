@@ -130,7 +130,8 @@ public class MaltBuyTableModel extends GenericTableModel<Malt> {
             //Controllo se il malto è già presente
             for (int ii = 0; ii < this.getRowCount(); ii++) {
                 if (((String)this.getValueAt(ii, 1)).equalsIgnoreCase(row.getNome()) && ((String)this.getValueAt(ii, 5)).equalsIgnoreCase(row.getForma())) {
-                    this.setValueAt((Double.parseDouble((String)this.getValueAt(ii, 2))+row.getGrammi()), ii, 2);
+                    Double quantitaNecessaria = Utils.convertWeight(Double.parseDouble(((String)this.getValueAt(ii, 2)).replace(",", ".")),(String)this.getValueAt(ii, 3),"grammi");
+                    this.setValueAt(quantitaNecessaria+row.getGrammi(), ii, 2);
                     esiste = true;
                     break;
                 }

@@ -16,7 +16,7 @@ import jmash.Yeast;
  */
 public class YeastBuyTableModel extends GenericTableModel<Yeast> {
     
-    private JLabel ret = new JLabel("");
+    private final JLabel ret = new JLabel("");
     
     public YeastBuyTableModel() {
         this.ret.setIcon(Main.clockIcon);
