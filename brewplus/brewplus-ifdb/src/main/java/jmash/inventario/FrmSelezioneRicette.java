@@ -483,7 +483,7 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
         mTabIngredienti.setTitleAt(0, "Malti e Fermentabili");
         mTabIngredienti.setTitleAt(1, "Luppoli e Spezie");
         mTabIngredienti.setTitleAt(2, "Lieviti");
-        //tblElencoRicette.removeColumn(tblElencoRicette.getColumnModel().getColumn(0));
+        tblElencoRicette.removeColumn(tblElencoRicette.getColumnModel().getColumn(0));
         btnVerifica.setEnabled(false);
         btnVerifica.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnStampaFabbisogno.setEnabled(false);
