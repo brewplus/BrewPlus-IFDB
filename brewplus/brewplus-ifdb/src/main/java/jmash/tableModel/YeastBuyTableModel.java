@@ -34,7 +34,7 @@ public class YeastBuyTableModel extends GenericTableModel<Yeast> {
                     case 1:
                             return yeast.getNome();
                     case 2:
-                            return yeast.getQuantita();
+                            return (yeast.getQuantita()==null || "".equalsIgnoreCase(yeast.getQuantita())?"0": yeast.getQuantita());
                     case 3:
                             return yeast.getDataAcquisto();
                     }
@@ -56,9 +56,9 @@ public class YeastBuyTableModel extends GenericTableModel<Yeast> {
                             break;
                     case 2:
                             if (value instanceof Double)
-                                yeast.setQuantita(value.toString());
+                                yeast.setQuantita((value.toString()==null || "".equalsIgnoreCase(value.toString()))?"0":value.toString());
                             else
-                                yeast.setQuantita((String) value);
+                                yeast.setQuantita((value==null || "".equalsIgnoreCase((String)value))?"0":(String)value);
                             break;
                     case 3:
                             yeast.setDataAcquisto((Date) value);
