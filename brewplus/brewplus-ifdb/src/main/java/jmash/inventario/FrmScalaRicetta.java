@@ -108,12 +108,12 @@ public class FrmScalaRicetta extends javax.swing.JDialog {
             for (Yeast yeast : inventario.getLieviti()) {
                 esiste = false;
                 if (yeast.getCodice().equalsIgnoreCase((String)tblLieviti.getValueAt(ii, 0))) {
-                    ((DefaultTableModel)(tblScalaIngredienti.getModel())).addRow(new Object[]{LIEVITI,tblLieviti.getValueAt(ii, 2), "",(tblLieviti.getValueAt(ii, 4)!=null?tblLieviti.getValueAt(ii, 4):0.0),Double.parseDouble(yeast.getQuantita()),Double.parseDouble(yeast.getQuantita())-((Double)tblLieviti.getValueAt(ii, 4)!=null?(Double)tblLieviti.getValueAt(ii, 4):0.0),false});
+                    ((DefaultTableModel)(tblScalaIngredienti.getModel())).addRow(new Object[]{LIEVITI,tblLieviti.getValueAt(ii, 2), yeast.getCodice(),(tblLieviti.getValueAt(ii, 4)!=null?tblLieviti.getValueAt(ii, 4):0.0),Double.parseDouble(yeast.getQuantita()),Double.parseDouble(yeast.getQuantita())-((Double)tblLieviti.getValueAt(ii, 4)!=null?(Double)tblLieviti.getValueAt(ii, 4):0.0),false});
                     esiste = true;
                     break;
                 }
             }
-        if (!esiste) ((DefaultTableModel)(tblScalaIngredienti.getModel())).addRow(new Object[]{LIEVITI,tblLieviti.getValueAt(ii, 2), "", (tblLieviti.getValueAt(ii, 4)!=null?tblLieviti.getValueAt(ii, 4):0.0),0.0,(Double)(tblLieviti.getValueAt(ii, 4)!=null?tblLieviti.getValueAt(ii, 4):0.0)-0.0,false});    
+        if (!esiste) ((DefaultTableModel)(tblScalaIngredienti.getModel())).addRow(new Object[]{LIEVITI,tblLieviti.getValueAt(ii, 2), tblLieviti.getValueAt(ii, 0), (tblLieviti.getValueAt(ii, 4)!=null?tblLieviti.getValueAt(ii, 4):0.0),0.0,(Double)(tblLieviti.getValueAt(ii, 4)!=null?tblLieviti.getValueAt(ii, 4):0.0)-0.0,false});    
         } 
     }     
     /**

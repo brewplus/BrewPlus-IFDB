@@ -38,11 +38,11 @@ public class GeneralConfig {
     private Boolean biab;
     
     private Double calcioSource;
-	private Double sodioSource;
-	private Double magnesioSource;
-	private Double solfatoSource;
-	private Double cloruroSource;
-	private Double carbonatoSource;
+    private Double sodioSource;
+    private Double magnesioSource;
+    private Double solfatoSource;
+    private Double cloruroSource;
+    private Double carbonatoSource;
 	
 	
 	public String getLocale() {
