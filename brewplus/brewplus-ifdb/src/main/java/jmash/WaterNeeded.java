@@ -875,7 +875,7 @@ public class WaterNeeded extends JInternalFrame {
 
 		double acquaTotale = volumeMostoPreBoil + perditeAssorbimento;
 		double acquaMash = !biab ? (totGrani * rapportoAcquaGrani) + DeadSpace : acquaTotale;
-		double acquaSparge = acquaTotale - acquaMash - DeadSpace;
+		double acquaSparge = acquaTotale - acquaMash;
 		double volumeImpasto = acquaMash + 0.67 * totGrani;
 		double strikeWater = ((0.41 / (acquaMash / totGrani)) * ( getTemperaturaMashIn() - getTemperaturaGrani() )) + getTemperaturaMashIn();
 		double ratioEffettiva = acquaMash / totGrani;
