@@ -880,14 +880,6 @@ public class WaterNeeded extends JInternalFrame {
 		double strikeWater = ((0.41 / (acquaMash / totGrani)) * ( getTemperaturaMashIn() - getTemperaturaGrani() )) + getTemperaturaMashIn();
 		double ratioEffettiva = acquaMash / totGrani;
 		
-		if(this.chckbxDeadSpace.isSelected()){
-			lblRatioEffettiva.setVisible(true);
-			spinnerRatioEffettiva.setVisible(true);
-		}
-		else{
-			lblRatioEffettiva.setVisible(false);
-			spinnerRatioEffettiva.setVisible(false);
-		}
 		
 		spinnerPerditaPerAssorbimento.setDoubleValue(perditeAssorbimento);
 		spinnerPerditaPerEvaporazione.setDoubleValue(perditaEvaporazione);
