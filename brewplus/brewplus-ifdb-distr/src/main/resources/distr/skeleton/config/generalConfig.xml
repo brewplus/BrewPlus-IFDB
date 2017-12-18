@@ -16,7 +16,7 @@
 		passwordIHB=""
 		proxyPort=""
 		proxyHost=""
-		lostToTrub="0.1"
+		lostToTrub="2.0"
 		litriPerKg="1.4"
 		rapportoAcquaGrani="3.0"
 		ebcNewMethod="true" 
