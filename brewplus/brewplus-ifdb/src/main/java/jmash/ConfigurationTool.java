@@ -961,9 +961,12 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
     private void saveConfiguration(java.awt.event.ActionEvent evt) {
 	saveGeneralConfig();
 
+	new Info("Salvataggio eseguito con successo").startModal(parent);
+	
 	saveCurrentBreweryProfile();
 
 	gui.updateRicette();
+	
 
     }// GEN-LAST:event_jButton3ActionPerformed
 
