@@ -30,6 +30,7 @@
 		solfatoSource="0.0"
 		cloruroSource="0.0" 
 		sodioSource="0.0" 
-		carbonatoSource="0.0"/>      
+		carbonatoSource="0.0" 
+		tempGrani="18.0"/>      
     </brewplus2>
 </config>
