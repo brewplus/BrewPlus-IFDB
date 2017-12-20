@@ -51,7 +51,6 @@ import jmash.utils.Constants;
 
 /**
  *
- * @author Alessandro
  * @author rekhyt
  */
 public class ConfigurationTool extends javax.swing.JInternalFrame {
@@ -161,18 +160,21 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 
 	parent = this;
 	setBorder(Utils.getDefaultBorder());
+
+	// dati "Default"
+
 	// fldEff.setModel(75.0, 1, 100, 1, "0", "CT.eff");
 	// fldVolumeFin.setModel(23.0, 1, 9999999, 1, "0.0", "CT.vf");
 	fldSLM.setModel(300.0, 1, 8844, 1, "0", "CT.slm");
 	fldDHEA.setModel(45.0, 1, 60, 1, "0", "CT.dhea");
 	fldBoil.setModel(90.0, 1, 1000, 1);
-	fldEff.setDoubleValue(generalConfig.getEfficienza());
-	fldVolumeFin.setDoubleValue(generalConfig.getVolumeFin());
+	fldTempGrani.setModel(18.0, 1, 100, 1);
+
 	fldSLM.setValue(generalConfig.getMetriSLM());
 	fldDHEA.setValue(generalConfig.getAmaroDHEA());
 	fldBoil.setValue(generalConfig.getBoilTime());
-	fldTempGrani.setModel(10.0, 1, 100, 1);
 	fldTempGrani.setValue(generalConfig.getTempGrani());
+
 	fldServer.setText(generalConfig.getRemoteServer());
 	fldNick.setText(generalConfig.getNickIHB());
 	fldPwd.setText(generalConfig.getPasswordIHB());
@@ -212,6 +214,11 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 	gbc_cmbLanguage.gridx = 1;
 	gbc_cmbLanguage.gridy = 3;
 	jPanelDefaults.add(cmbLanguage, gbc_cmbLanguage);
+
+	// dati impianto
+	fldEff.setDoubleValue(generalConfig.getEfficienza());
+	fldVolumeFin.setDoubleValue(generalConfig.getVolumeFin());
+
 	spnAssorbimentoGraniEsausti.setDoubleValue(generalConfig.getLitriPerKg());
 	spnRapportoAcquaGrani.setDoubleValue(generalConfig.getRapportoAcquaGrani());
 
@@ -246,6 +253,8 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 	selectBreweryProfile();
 
 	addBreweryProfileListeners();
+
+	// dati "Profili acque"
 
 	double calcioSource = generalConfig.getCalcioSource() != null ? generalConfig.getCalcioSource() : 0.0;
 	spinnerCalcioOrigine.setModel(calcioSource, 0, 100000, 1, "0.0", null);
@@ -962,11 +971,10 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 	saveGeneralConfig();
 
 	new Info("Salvataggio eseguito con successo").startModal(parent);
-	
+
 	saveCurrentBreweryProfile();
 
 	gui.updateRicette();
-	
 
     }// GEN-LAST:event_jButton3ActionPerformed
 
@@ -986,6 +994,7 @@ public class ConfigurationTool extends javax.swing.JInternalFrame {
 	generalConfig.setLostToTrub(spnLostToTrub.getDoubleValue());
 	generalConfig.setLitriPerKg(spnAssorbimentoGraniEsausti.getDoubleValue());
 	generalConfig.setRapportoAcquaGrani(spnRapportoAcquaGrani.getDoubleValue());
+	generalConfig.setTempGrani(fldTempGrani.getDoubleValue());
 	generalConfig.setLocale(Constants.ITALIAN.equalsIgnoreCase((String) cmbLanguage.getSelectedItem()) ? "it_IT" : "en_US");
 	generalConfig.setPercentualeEvaporazione(spnPercentualeEvaporazione.getDoubleValue());
 	generalConfig.setContrazionePerRaffreddamento(spnContrazionePerRaffreddamento.getDoubleValue());

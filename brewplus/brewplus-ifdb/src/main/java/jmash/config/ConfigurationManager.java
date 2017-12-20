@@ -21,6 +21,7 @@
 package jmash.config;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.Field;
 
 import org.apache.commons.configuration2.XMLConfiguration;
 import org.apache.commons.configuration2.beanutils.BeanDeclaration;
@@ -34,6 +35,7 @@ import org.apache.log4j.Logger;
 import jmash.config.bean.GeneralConfig;
 import jmash.utils.BrewplusEnvironment;
 import jmash.utils.Constants;
+import jmash.utils.Utility;
 
 /**
  *
@@ -92,7 +94,8 @@ public class ConfigurationManager {
 	Object valueToSave;
 	String getMethodName;
 
-	for (String key : decl.getBeanProperties().keySet()) {
+	for (Field field : Utility.getAllFieldsInHierarchy(GeneralConfig.class)) {
+	    String key = field.getName();
 	    try {
 		getMethodName = "get" + StringUtils.capitalize(key);
 		method = generalConfig.getClass().getMethod(getMethodName);
@@ -101,12 +104,14 @@ public class ConfigurationManager {
 	    } catch (Exception e) {
 		logger.error(e.getMessage(), e);
 	    }
+
 	}
 	try {
 	    generalConfigBuilder.save();
 	} catch (Exception e) {
 	    logger.error(e.getMessage(), e);
 	}
+
     }
 
 }

@@ -2,10 +2,15 @@ package jmash.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.imageio.ImageIO;
 
@@ -142,6 +147,34 @@ public class Utility {
         public static String getSelectedFileExtension(File file) {
             String path = file.getAbsolutePath();
             return path.substring(path.lastIndexOf(".") + 1, path.length());
+        }
+        
+        public static Method[] getAllMethodsInHierarchy(Class<?> objectClass) {
+            Set<Method> allMethods = new HashSet<Method>();
+            Method[] declaredMethods = objectClass.getDeclaredMethods();
+            Method[] methods = objectClass.getMethods();
+            if (objectClass.getSuperclass() != null) {
+                Class<?> superClass = objectClass.getSuperclass();
+                Method[] superClassMethods = getAllMethodsInHierarchy(superClass);
+                allMethods.addAll(Arrays.asList(superClassMethods));
+            }
+            allMethods.addAll(Arrays.asList(declaredMethods));
+            allMethods.addAll(Arrays.asList(methods));
+            return allMethods.toArray(new Method[allMethods.size()]);
+        }
+        
+        public static Field[] getAllFieldsInHierarchy(Class<?> objectClass) {
+            Set<Field> allFields = new HashSet<Field>();
+            Field[] declaredFields = objectClass.getDeclaredFields();
+            Field[] fields = objectClass.getFields();
+            if (objectClass.getSuperclass() != null) {
+                Class<?> superClass = objectClass.getSuperclass();
+                Field[] superClassFields = getAllFieldsInHierarchy(superClass);
+                allFields.addAll(Arrays.asList(superClassFields));
+            }
+            allFields.addAll(Arrays.asList(declaredFields));
+            allFields.addAll(Arrays.asList(fields));
+            return allFields.toArray(new Field[allFields.size()]);
         }
 
 }

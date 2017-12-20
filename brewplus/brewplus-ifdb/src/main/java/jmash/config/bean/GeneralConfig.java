@@ -19,7 +19,7 @@ public class GeneralConfig {
     private String BUGUratiostring;
 
     private Integer boilTime;
-    private Double tempGrani = 10.0;
+    private Double tempGrani = 18.0;
     private Double efficienza;
     private Double volumeFin;
     private Double volumeBoil;
