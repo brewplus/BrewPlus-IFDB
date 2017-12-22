@@ -37,6 +37,9 @@ import org.jdom.Element;
 
 import com.toedter.calendar.JDateChooserCellEditor;
 import java.awt.Cursor;
+import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
+import javax.swing.event.InternalFrameEvent;
 import jmash.tableModel.HopBuyTableModel;
 import jmash.tableModel.MaltBuyTableModel;
 import jmash.tableModel.YeastBuyTableModel;
@@ -52,6 +55,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 	/** Creates new form Acquisto */
 	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
 	private static final BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
+        private static boolean isSaved = true;
         private File file = null;
         
 	public static Acquisto buildFRMInventario() {
@@ -450,9 +454,46 @@ public class Acquisto extends javax.swing.JInternalFrame {
 		jPanel7.add(jPanel8, java.awt.BorderLayout.WEST);
 
 		jTabbedPane1.addTab("Lieviti", jPanel7);
+                setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+                addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+                    @Override
+                    public void internalFrameOpened(InternalFrameEvent e) {
+                    }
 
+                    @Override
+                    public void internalFrameClosing(InternalFrameEvent e) {
+                        if ("inventario.xml".equalsIgnoreCase(e.getInternalFrame().getTitle())) {
+                            if (isSaved || JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(Main.gui, "Non hai salvato l'acquito nell'inventario. Sei sicuro di voler uscire?", "Inventario",JOptionPane.YES_NO_OPTION)) {   
+                                isSaved = true;
+                                dispose();
+                            }
+                        } else
+                            dispose();
+                        
+                    }
+
+                    @Override
+                    public void internalFrameClosed(InternalFrameEvent e) {
+                    }
+
+                    @Override
+                    public void internalFrameIconified(InternalFrameEvent e) {
+                    }
+
+                    @Override
+                    public void internalFrameDeiconified(InternalFrameEvent e) {
+                    }
+
+                    @Override
+                    public void internalFrameActivated(InternalFrameEvent e) {
+                    }
+
+                    @Override
+                    public void internalFrameDeactivated(InternalFrameEvent e) {
+                    }     
+                });
 		pack();
-	}// </editor-fold>//GEN-END:initComponents
+	};// </editor-fold>//GEN-END:initComponents
 
 	private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnInventarioActionPerformed
 		inventario();
@@ -480,6 +521,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 		Document doc = obj.toXml();
         	Utils.saveXmlAsFile(doc, file, this);
 		setTitle(this.file.getName());
+                isSaved = true;
 	}
 
 	private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnOpenActionPerformed
@@ -605,7 +647,8 @@ public class Acquisto extends javax.swing.JInternalFrame {
 	public void inventario() {
 		Acquisto acquisto = Acquisto.buildFRMInventario();
 		acquisto.addRows(maltTableModel.getRows(), hopTableModel.getRows(), yeastTableModel.getRows(), fldDate.getDate());
-		Main.gui.addFrame(acquisto);
+		isSaved = false;
+                Main.gui.addFrame(acquisto);
 	}
 
 	public void addRows(List<Malt> malts, List<Hop> hops, List<Yeast> yeasts, Date dataRif) {
@@ -648,5 +691,6 @@ public class Acquisto extends javax.swing.JInternalFrame {
 				list.add(Hop.fromXml(m.toXml()));
 		}
 		return list;
-	}
+	}      
+        
 }
