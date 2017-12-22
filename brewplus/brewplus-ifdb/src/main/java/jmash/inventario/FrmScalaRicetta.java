@@ -113,7 +113,7 @@ public class FrmScalaRicetta extends javax.swing.JDialog {
                     break;
                 }
             }
-        if (!esiste) ((DefaultTableModel)(tblScalaIngredienti.getModel())).addRow(new Object[]{LIEVITI,tblLieviti.getValueAt(ii, 2), tblLieviti.getValueAt(ii, 0), (tblLieviti.getValueAt(ii, 4)!=null?tblLieviti.getValueAt(ii, 4):0.0),0.0,(Double)(tblLieviti.getValueAt(ii, 4)!=null?tblLieviti.getValueAt(ii, 4):0.0)-0.0,false});    
+        if (!esiste) ((DefaultTableModel)(tblScalaIngredienti.getModel())).addRow(new Object[]{LIEVITI,tblLieviti.getValueAt(ii, 2), tblLieviti.getValueAt(ii, 0), (tblLieviti.getValueAt(ii, 4)!=null?tblLieviti.getValueAt(ii, 4):0.0),0.0,0.0-(Double)(tblLieviti.getValueAt(ii, 4)!=null?tblLieviti.getValueAt(ii, 4):0.0),false});    
         } 
     }     
     /**
