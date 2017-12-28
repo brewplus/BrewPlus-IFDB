@@ -51,14 +51,6 @@ public class PickFile extends ModalInternalFrame {
 
 	}
 
-	public PickFile(boolean save) {
-		this(save,bpenv.getFolderName(Constants.DIR_USER), "xml");
-	}
-
-	public PickFile(boolean save, String dir) {
-		this(save, dir, "xml");
-	}
-
 	private String ext;
 
 	public PickFile(boolean save, String dir, String ext) {

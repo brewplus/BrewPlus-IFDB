@@ -198,7 +198,6 @@ public class RecipeData {
     }
     
     public String getDes4Forum(Ricetta ricetta) {
-    	//SGABUZEN REGNA... quando funziona tolgo questi commenti giuro!
     	double volume = getBollituraConcentrata() ? getVolumeDiluito() : getVolumeFin();
     	double volPB = ricetta.getWaterNeeded().getVolumeMostoPreBoil();
     	double OGPB = MaltTableModel.calcolaSGIBU(getMalts(), volPB, getEfficienza());
@@ -387,9 +386,6 @@ public class RecipeData {
                 }
             }
         }
-        
-//        LOGGER.info("PID recipe:");
-//        LOGGER.info(sb.toString().toUpperCase());
         
         return sb.toString().toUpperCase();
         

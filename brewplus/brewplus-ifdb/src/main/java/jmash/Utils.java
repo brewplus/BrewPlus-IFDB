@@ -606,7 +606,6 @@ public class Utils {
 	}
 	
     public static File pickFileToSavePID(JInternalFrame parent, String dir) {
-        LOGGER.error("TO DO PICK");
         return pickFileToSave(parent, dir, "lab");
     }
 

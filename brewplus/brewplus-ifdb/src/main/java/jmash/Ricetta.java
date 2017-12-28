@@ -2557,6 +2557,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	}
 
 	private File file = null;
+	private File filePid = null;
 
 	public void fromRecipeData(RecipeData src) {
 		if (src.getBollitura() != null)
@@ -2704,6 +2705,7 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		if (this.file == null)
 			return null;
 
+		LOGGER.info("Recipe saved: " + file.getName());
 		Document doc = toRecipeData().toXml();
 		Utils.saveXmlAsFile(doc, this.file, this);
 
@@ -2713,25 +2715,23 @@ public class Ricetta extends javax.swing.JInternalFrame {
 		return file;
 	}
 	
-    public File saveRicettaPID() {
+	public File saveRicettaPID() {
     	
-    	BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
-        if (this.file == null) {
-            file = Utils.pickFileToSavePID(this, (String) Main.getFromCache("recipe.dir", bpenv.getFolderName(Constants.DIR_RECIPE)));
-        }
-        if (this.file != null){
-	
-	        LOGGER.error("TO DO ");
+    		BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
+		filePid = Utils.pickFileToSavePID(this, (String) Main.getFromCache("exportPid.dir", bpenv.getFolderName(Constants.DIR_EXPORTPID)));
+		if (this.filePid == null)
+			return null;
+		LOGGER.info("Recipe saved: " + file.getName());
 	
 	        String pidFormat = toRecipeData().toPID();
 	        
-	        Utils.saveRecipePIDToFile(pidFormat, this.file, this);
+		LOGGER.info("Recipe saved: " + file.getName());
+        	Utils.saveRecipePIDToFile(pidFormat, this.filePid, this);
 	        
-        }
-
-
-        return file;
-    }
+		setTitle(this.filePid.getName());
+		this.dirty = false;
+	        return filePid;
+	}
 
 	public final void read(File file) {
 		try {

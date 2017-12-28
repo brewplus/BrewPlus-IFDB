@@ -1386,11 +1386,9 @@ public class Gui extends javax.swing.JFrame {
 	    
         if (this.desktop.getSelectedFrame() instanceof Ricetta) {
             Ricetta ed = (Ricetta) this.desktop.getSelectedFrame();
-            ed.nullFile();
             
             File file = ed.saveRicettaPID();
             Main.putIntoCache("recipe.dir", file.getAbsolutePath());
-            addLastOpenedFile(file);
         }
 	    
 	}
