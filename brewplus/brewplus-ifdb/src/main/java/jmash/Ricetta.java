@@ -2716,21 +2716,18 @@ public class Ricetta extends javax.swing.JInternalFrame {
 	}
 	
 	public File saveRicettaPID() {
-    	
-    		BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
+		BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
 		filePid = Utils.pickFileToSavePID(this, (String) Main.getFromCache("exportPid.dir", bpenv.getFolderName(Constants.DIR_EXPORTPID)));
 		if (this.filePid == null)
 			return null;
-		LOGGER.info("Recipe saved: " + file.getName());
-	
-	        String pidFormat = toRecipeData().toPID();
-	        
-		LOGGER.info("Recipe saved: " + file.getName());
-        	Utils.saveRecipePIDToFile(pidFormat, this.filePid, this);
-	        
+		LOGGER.info("Recipe exported: " + filePid.getName());
+		
+		String pidFormat = toRecipeData().toPID();
+		Utils.saveRecipePIDToFile(pidFormat, this.filePid, this);
+
 		setTitle(this.filePid.getName());
 		this.dirty = false;
-	        return filePid;
+		return filePid;
 	}
 
 	public final void read(File file) {
