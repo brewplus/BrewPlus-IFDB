@@ -4,7 +4,7 @@
  *
  *  BrewPlus is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
+ *  the Free Software Foundation; either version 3 of the License, or
  *  (at your option) any later version.
  *
  *  BrewPlus is distributed in the hope that it will be useful,
@@ -20,6 +20,8 @@
 package jmash;
 
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
@@ -32,8 +34,6 @@ import java.awt.image.BufferedImage;
 import java.beans.PropertyVetoException;
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -61,6 +61,7 @@ import org.apache.log4j.Logger;
 
 import jmash.config.XmlAbleEditor;
 import jmash.config.XmlAbleTableModel;
+import jmash.inventario.FrmSelezioneRicette;
 import jmash.tableModel.BrewStylePickerTableModel;
 import jmash.tableModel.BreweryProfilePickerTableModel;
 import jmash.tableModel.GenericTableModel;
@@ -69,12 +70,16 @@ import jmash.tableModel.MaltCategoryPickerTableModel;
 import jmash.tableModel.MaltPickerTableModel;
 import jmash.tableModel.WaterPickerTableModel;
 import jmash.tableModel.YeastPickerTableModel;
-import jmash.test.BeerXMLReader;
+import jmash.utils.BeerXMLReader;
+import jmash.utils.BrewplusEnvironment;
+import jmash.utils.Constants;
 import jmash.utils.Utility;
+import org.jdom.JDOMException;
 
 public class Gui extends javax.swing.JFrame {
 	
 	private static final String PATH_BACKGROUND =  "/jmash/images/bkgrnd.jpg";
+	private static final BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
 
 	private static final long serialVersionUID = 348370096080739755L;
 	private static final Logger LOGGER = Logger.getLogger(Gui.class);
@@ -103,9 +108,7 @@ public class Gui extends javax.swing.JFrame {
             btnSaveAll20.setToolTipText(Main.bundle.getString("title.HopsSheet"));
             btnSaveAll18.setToolTipText(Main.bundle.getString("title.beerStyle"));
             button.setToolTipText(Main.bundle.getString("title.forumFeed"));
-            btnUpdate.setToolTipText(Main.bundle.getString("title.revisionAvailable"));
             btnSaveAll16.setToolTipText(Main.bundle.getString("title.settings"));
-//            btnGuida.setToolTipText(Main.bundle.getString("title.help"));
             btnNew1.setToolTipText(Main.bundle.getString("title.brewRecording"));
             btnSaveAll21.setToolTipText(Main.bundle.getString("title.inventory"));
             btnSaveAll12.setToolTipText(Main.bundle.getString("title.shopping"));
@@ -115,11 +118,11 @@ public class Gui extends javax.swing.JFrame {
 		try {
 			initComponents();
                         i18nInitComponents();
-		} catch (Exception ex) {
+		} catch (IOException ex) {
 		}
 
-		desktopPane = this.desktop;
-		this.setIconImage(Main.mainIcon.getImage());
+		desktopPane = this.desktop; 
+                this.setIconImage(Main.mainIcon.getImage());
 		setExtendedState(Frame.MAXIMIZED_BOTH);
 		desktopPane.setTransferHandler(new TransferHandler() {
 			@Override
@@ -152,9 +155,7 @@ public class Gui extends javax.swing.JFrame {
 							}
 						}
 					}
-				} catch (IOException ex) {
-					LOGGER.error(ex.getMessage(), ex);
-				} catch (UnsupportedFlavorException ex) {
+				} catch (IOException | UnsupportedFlavorException ex) {
 					LOGGER.error(ex.getMessage(), ex);
 				} catch (Exception ex) {
 					Utils.showException(ex);
@@ -167,13 +168,13 @@ public class Gui extends javax.swing.JFrame {
 
 	}
 
-	public void updatePopupMenu() {
+	public final void updatePopupMenu() {
 		recipesPopup.removeAll();
 		mnuFile1.removeAll();
 		int i = 0;
 		for (String s : lastOpenedRecipes) {
-			Main.putIntoCache("Main.recipe" + i, s);
-			i++;
+                    Main.putIntoCache("Main.recipe" + i, s);
+                    i++;
 		}
 		javax.swing.JMenuItem mnuItem1 = new javax.swing.JMenuItem();
 		mnuItem1.setText("Crea una nuova ricetta...");
@@ -187,9 +188,10 @@ public class Gui extends javax.swing.JFrame {
 		recipesPopup.addSeparator();
 		menuItemDelete = new JMenuItem("Elimina elenco..");
 		menuItemDelete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				deleteLastRecipesEntries();
-			}
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                            deleteLastRecipesEntries();
+                    }
 		});
 		menuItemDelete.setSelected(true);
 		mnuFile1.add(menuItemDelete);
@@ -274,7 +276,6 @@ public class Gui extends javax.swing.JFrame {
 		btnSaveAll17 = new javax.swing.JButton();
 		btnSaveAll15 = new javax.swing.JButton();
 		jSeparator2 = new javax.swing.JSeparator();
-		btnUpdate = new javax.swing.JButton();
 		sideBar = new javax.swing.JToolBar();
 		btnNew1 = new javax.swing.JButton();
 		btnSaveAll21 = new javax.swing.JButton();
@@ -310,41 +311,45 @@ public class Gui extends javax.swing.JFrame {
 		setLocationByPlatform(true);
 		setName("guiFrame"); // NOI18N
 		addWindowListener(new java.awt.event.WindowAdapter() {
+                        @Override
 			public void windowClosing(java.awt.event.WindowEvent evt) {
 				formWindowClosing(evt);
 			}
 		});
 
-		// desktop.setBackground(Color.BLUE);
-
-		BufferedImage bf = null;
-		LocalDate today = LocalDate.now();
+		BufferedImage bf;// = null;
 		
-		LocalDate currentOttoDec = LocalDate.of(today.getYear(), Month.DECEMBER, 8);
-		LocalDate nextBefana = LocalDate.of(today.getYear() + 1, Month.JANUARY, 6);
+                //LocalDate today = LocalDate.now();
+		
+		//LocalDate currentOttoDec = LocalDate.of(today.getYear(), Month.DECEMBER, 8);
+		//LocalDate nextBefana = LocalDate.of(today.getYear() + 1, Month.JANUARY, 6);
 		
 		bf = ImageIO.read(getClass().getResourceAsStream(Utility.getPathImageByPeriod(PATH_BACKGROUND)));
 		desktop = new JDesktopBackground(bf);
 
 		desktop.setDoubleBuffered(true);
 		desktop.addMouseListener(new java.awt.event.MouseAdapter() {
+                        /*@Override
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				desktopMouseClicked(evt);
-			}
-
+				//desktopMouseClicked(evt);
+			}*/
+                        @Override
 			public void mousePressed(java.awt.event.MouseEvent evt) {
 				desktopMousePressed(evt);
 			}
 
+                        @Override
 			public void mouseReleased(java.awt.event.MouseEvent evt) {
 				desktopMouseReleased(evt);
 			}
 		});
 		desktop.addContainerListener(new java.awt.event.ContainerAdapter() {
+                        @Override
 			public void componentAdded(java.awt.event.ContainerEvent evt) {
 				desktopComponentAdded(evt);
 			}
 
+                        @Override
 			public void componentRemoved(java.awt.event.ContainerEvent evt) {
 				desktopComponentRemoved(evt);
 			}
@@ -354,11 +359,13 @@ public class Gui extends javax.swing.JFrame {
 		toolbar.setFloatable(false);
 
 		btnNew.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/new.png"))); // NOI18N
+                btnNew.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnNew.setToolTipText("Nuova ricetta");
 		btnNew.setMaximumSize(new java.awt.Dimension(37, 35));
 		btnNew.setMinimumSize(new java.awt.Dimension(37, 35));
 		btnNew.setPreferredSize(new java.awt.Dimension(37, 35));
 		btnNew.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnNewActionPerformed(evt);
 			}
@@ -366,25 +373,30 @@ public class Gui extends javax.swing.JFrame {
 		toolbar.add(btnNew);
 
 		btnOpen.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/open.png"))); // NOI18N
+                btnOpen.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnOpen.setToolTipText("Apri ricetta");
 		btnOpen.setIconTextGap(0);
 		btnOpen.setMaximumSize(new java.awt.Dimension(37, 35));
 		btnOpen.setMinimumSize(new java.awt.Dimension(37, 35));
 		btnOpen.setPreferredSize(new java.awt.Dimension(37, 35));
 		btnOpen.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnOpenActionPerformed(evt);
 			}
 		});
 		btnOpen.addMouseListener(new java.awt.event.MouseAdapter() {
+                        /*@Override
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				btnOpenMouseClicked(evt);
-			}
+				//btnOpenMouseClicked(evt);
+			}*/
 
+                        @Override
 			public void mousePressed(java.awt.event.MouseEvent evt) {
 				btnOpenMousePressed(evt);
 			}
 
+                        @Override
 			public void mouseReleased(java.awt.event.MouseEvent evt) {
 				btnOpenMouseReleased(evt);
 			}
@@ -392,11 +404,13 @@ public class Gui extends javax.swing.JFrame {
 		toolbar.add(btnOpen);
 
 		btnSave.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/save.png"))); // NOI18N
+                btnSave.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnSave.setToolTipText("Salva ricetta");
 		btnSave.setMaximumSize(new java.awt.Dimension(37, 35));
 		btnSave.setMinimumSize(new java.awt.Dimension(37, 35));
 		btnSave.setPreferredSize(new java.awt.Dimension(37, 35));
 		btnSave.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnSaveActionPerformed(evt);
 			}
@@ -404,11 +418,13 @@ public class Gui extends javax.swing.JFrame {
 		toolbar.add(btnSave);
 
 		btnSaveAs.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/saveas.png"))); // NOI18N
+                btnSaveAs.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnSaveAs.setToolTipText("Salva ricetta come...");
 		btnSaveAs.setMaximumSize(new java.awt.Dimension(37, 35));
 		btnSaveAs.setMinimumSize(new java.awt.Dimension(37, 35));
 		btnSaveAs.setPreferredSize(new java.awt.Dimension(37, 35));
 		btnSaveAs.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnSaveAsActionPerformed(evt);
 			}
@@ -416,11 +432,13 @@ public class Gui extends javax.swing.JFrame {
 		toolbar.add(btnSaveAs);
 
 		btnSaveAll1.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/diluizioni.png"))); // NOI18N
+                btnSaveAll1.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnSaveAll1.setToolTipText("Diluizioni e concentrazioni");
 		btnSaveAll1.setMaximumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll1.setMinimumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll1.setPreferredSize(new java.awt.Dimension(37, 35));
 		btnSaveAll1.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnSaveAll1ActionPerformed(evt);
 			}
@@ -432,11 +450,13 @@ public class Gui extends javax.swing.JFrame {
 		toolbar.add(btnSaveAll1);
 
 		btnSaveAll2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/steam.png"))); // NOI18N
+                btnSaveAll2.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnSaveAll2.setToolTipText("Evaporazione");
 		btnSaveAll2.setMaximumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll2.setMinimumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll2.setPreferredSize(new java.awt.Dimension(37, 35));
 		btnSaveAll2.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnSaveAll2ActionPerformed(evt);
 			}
@@ -444,11 +464,13 @@ public class Gui extends javax.swing.JFrame {
 		toolbar.add(btnSaveAll2);
 
 		btnMashDesign.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/mashdesign.png"))); // NOI18N
+                btnMashDesign.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnMashDesign.setToolTipText("Mash Designer");
 		btnMashDesign.setMaximumSize(new java.awt.Dimension(37, 35));
 		btnMashDesign.setMinimumSize(new java.awt.Dimension(37, 35));
 		btnMashDesign.setPreferredSize(new java.awt.Dimension(37, 35));
 		btnMashDesign.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnMashDesignActionPerformed(evt);
 			}
@@ -456,11 +478,13 @@ public class Gui extends javax.swing.JFrame {
 		toolbar.add(btnMashDesign);
 
 		btnSaveAll4.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/hydrometer.png"))); // NOI18N
+                btnSaveAll4.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnSaveAll4.setToolTipText("Lettura Densità");
 		btnSaveAll4.setMaximumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll4.setMinimumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll4.setPreferredSize(new java.awt.Dimension(37, 35));
 		btnSaveAll4.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnSaveAll4ActionPerformed(evt);
 			}
@@ -468,11 +492,13 @@ public class Gui extends javax.swing.JFrame {
 		toolbar.add(btnSaveAll4);
 
 		btnSaveAll5.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/alcoholometer.png"))); // NOI18N
+                btnSaveAll5.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnSaveAll5.setToolTipText("Calcolo alcool");
 		btnSaveAll5.setMaximumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll5.setMinimumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll5.setPreferredSize(new java.awt.Dimension(37, 35));
 		btnSaveAll5.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnSaveAll5ActionPerformed(evt);
 			}
@@ -480,88 +506,61 @@ public class Gui extends javax.swing.JFrame {
 		toolbar.add(btnSaveAll5);
 
 		btnSaveAll7.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/manometer.png"))); // NOI18N
+                btnSaveAll7.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnSaveAll7.setToolTipText("Calcolo carbonazione");
 		btnSaveAll7.setMaximumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll7.setMinimumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll7.setPreferredSize(new java.awt.Dimension(37, 35));
 		btnSaveAll7.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnSaveAll7ActionPerformed(evt);
 			}
 		});
 		toolbar.add(btnSaveAll7);
 
-		btnSaveAll8.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/temp.png"))); // NOI18N
-		btnSaveAll8.setToolTipText("Temperatura mash in");
-		btnSaveAll8.setMaximumSize(new java.awt.Dimension(37, 35));
-		btnSaveAll8.setMinimumSize(new java.awt.Dimension(37, 35));
-		btnSaveAll8.setPreferredSize(new java.awt.Dimension(37, 35));
-		btnSaveAll8.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnSaveAll8ActionPerformed(evt);
-			}
-		});
-		toolbar.add(btnSaveAll8);
-
-		btnSaveAll9.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/controflusso.png"))); // NOI18N
-		btnSaveAll9.setToolTipText("Dimensionamento controflusso");
-		btnSaveAll9.setMaximumSize(new java.awt.Dimension(37, 35));
-		btnSaveAll9.setMinimumSize(new java.awt.Dimension(37, 35));
-		btnSaveAll9.setPreferredSize(new java.awt.Dimension(37, 35));
-		btnSaveAll9.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnSaveAll9ActionPerformed(evt);
-			}
-		});
-		toolbar.add(btnSaveAll9);
-
 		btnSaveAll11.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/bubbles.png"))); // NOI18N
+                btnSaveAll11.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnSaveAll11.setToolTipText("Yeast pitcher - calcolo inoculo");
 		btnSaveAll11.setMaximumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll11.setMinimumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll11.setPreferredSize(new java.awt.Dimension(37, 35));
 		btnSaveAll11.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnSaveAll11ActionPerformed(evt);
 			}
 		});
 		toolbar.add(btnSaveAll11);
-
+/*
 		btnSaveAll14.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/water.png"))); // NOI18N
+                btnSaveAll14.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnSaveAll14.setToolTipText("Trattamento Acqua");
 		btnSaveAll14.setMaximumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll14.setMinimumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll14.setPreferredSize(new java.awt.Dimension(37, 35));
 		btnSaveAll14.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnSaveAll14ActionPerformed(evt);
 			}
-		});
+		});*/
 //		toolbar.add(btnSaveAll14);
-
+                /*
 		btnSaveAll17.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/pipe.png"))); // NOI18N
+                btnSaveAll17.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnSaveAll17.setToolTipText("Acqua necessaria");
 		btnSaveAll17.setMaximumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll17.setMinimumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll17.setPreferredSize(new java.awt.Dimension(37, 35));
 		btnSaveAll17.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnSaveAll17ActionPerformed(evt);
 			}
-		});
+		});*/
 //		toolbar.add(btnSaveAll17);
 
-		btnSaveAll15.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/drill.png"))); // NOI18N
-		btnSaveAll15.setToolTipText("Calcolo fori filtro");
-		btnSaveAll15.setMaximumSize(new java.awt.Dimension(37, 35));
-		btnSaveAll15.setMinimumSize(new java.awt.Dimension(37, 35));
-		btnSaveAll15.setPreferredSize(new java.awt.Dimension(37, 35));
-		btnSaveAll15.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnSaveAll15ActionPerformed(evt);
-			}
-		});
-		toolbar.add(btnSaveAll15);
 
 		JSeparator separator_2 = new JSeparator();
 		separator_2.setOrientation(SwingConstants.VERTICAL);
@@ -569,12 +568,14 @@ public class Gui extends javax.swing.JFrame {
 		btnSaveAll20 = new javax.swing.JButton();
 
 		btnSaveAll20.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/hops.png"))); // NOI18N
+                btnSaveAll20.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnSaveAll20.setToolTipText("Scheda luppoli");
 
 		btnSaveAll20.setMaximumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll20.setMinimumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll20.setPreferredSize(new java.awt.Dimension(37, 35));
 		btnSaveAll20.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnSaveAll20ActionPerformed(evt);
 			}
@@ -582,12 +583,14 @@ public class Gui extends javax.swing.JFrame {
 		btnSaveAll18 = new javax.swing.JButton();
 
 		btnSaveAll18.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/BJCPLogo.png"))); // NOI18N
+                btnSaveAll18.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnSaveAll18.setToolTipText("Stili e categorie");
 
 		btnSaveAll18.setMaximumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll18.setMinimumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll18.setPreferredSize(new java.awt.Dimension(37, 35));
 		btnSaveAll18.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnSaveAll18ActionPerformed(evt);
 			}
@@ -597,12 +600,14 @@ public class Gui extends javax.swing.JFrame {
 
 		button = new JButton();
 		button.addActionListener(new ActionListener() {
+                        @Override
 			public void actionPerformed(ActionEvent e) {
 				gotoForum();
 			}
 		});
 
 		button.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/forum1.png")));
+                button.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		button.setToolTipText("Il Forum della Birra Feed");
 		button.setPreferredSize(new Dimension(37, 35));
 		button.setMinimumSize(new Dimension(37, 35));
@@ -612,25 +617,17 @@ public class Gui extends javax.swing.JFrame {
 		jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 		toolbar.add(jSeparator2);
 
-		btnUpdate.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/update.png"))); // NOI18N
-		btnUpdate.setToolTipText("Aggiornamento disponibile");
-		btnUpdate.setMaximumSize(new java.awt.Dimension(37, 35));
-		btnUpdate.setMinimumSize(new java.awt.Dimension(37, 35));
-		btnUpdate.setPreferredSize(new java.awt.Dimension(37, 35));
-		btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnUpdateActionPerformed(evt);
-			}
-		});
 		btnSaveAll16 = new javax.swing.JButton();
 
 		btnSaveAll16.setFont(btnSaveAll16.getFont());
 		btnSaveAll16.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/configure.png"))); // NOI18N
+                btnSaveAll16.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnSaveAll16.setToolTipText("Impostazioni");
 		btnSaveAll16.setMaximumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll16.setMinimumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll16.setPreferredSize(new java.awt.Dimension(37, 35));
 		btnSaveAll16.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnSaveAll16ActionPerformed(evt);
 			}
@@ -640,32 +637,19 @@ public class Gui extends javax.swing.JFrame {
 		// ADD export 2 PID feature
 		
 		btnExport2PID = new javax.swing.JButton();
-		btnExport2PID.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/arduinouno01.png"))); // NOI18N
+		btnExport2PID.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/exportPid.png"))); // NOI18N
+                btnExport2PID.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnExport2PID.setToolTipText("Export to PID");
 		btnExport2PID.setMaximumSize(new java.awt.Dimension(37, 35));
 		btnExport2PID.setMinimumSize(new java.awt.Dimension(37, 35));
 		btnExport2PID.setPreferredSize(new java.awt.Dimension(37, 35));
 		btnExport2PID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExport2PIDActionPerformed(evt);
-            }
-        });
-        toolbar.add(btnExport2PID);
-
-//		btnGuida = new JButton();
-//		btnGuida.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				ShowHelp();
-//			}
-//		});
-//		btnGuida.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/help.png")));
-//		btnGuida.setToolTipText("Help");
-//		btnGuida.setPreferredSize(new Dimension(37, 35));
-//		btnGuida.setMinimumSize(new Dimension(37, 35));
-//		btnGuida.setMaximumSize(new Dimension(37, 35));
-//		btnGuida.setFont(new Font("SansSerif", Font.PLAIN, 12));
-//		toolbar.add(btnGuida);
-		toolbar.add(btnUpdate);
+                    @Override
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        btnExport2PIDActionPerformed(evt);
+                    }
+                });
+                toolbar.add(btnExport2PID);
 
 		getContentPane().add(toolbar, java.awt.BorderLayout.NORTH);
 
@@ -673,11 +657,13 @@ public class Gui extends javax.swing.JFrame {
 		sideBar.setOrientation(1);
 
 		btnNew1.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/kettle.png"))); // NOI18N
+                btnNew1.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnNew1.setToolTipText("Registrazione cotte");
 		btnNew1.setMaximumSize(new java.awt.Dimension(37, 35));
 		btnNew1.setMinimumSize(new java.awt.Dimension(37, 35));
 		btnNew1.setPreferredSize(new java.awt.Dimension(37, 35));
 		btnNew1.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnNew1ActionPerformed(evt);
 			}
@@ -685,11 +671,13 @@ public class Gui extends javax.swing.JFrame {
 		sideBar.add(btnNew1);
 
 		btnSaveAll21.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/inventario.png"))); // NOI18N
+                btnSaveAll21.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnSaveAll21.setToolTipText("Inventario");
 		btnSaveAll21.setMaximumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll21.setMinimumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll21.setPreferredSize(new java.awt.Dimension(37, 35));
 		btnSaveAll21.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnSaveAll21ActionPerformed(evt);
 			}
@@ -697,11 +685,13 @@ public class Gui extends javax.swing.JFrame {
 		sideBar.add(btnSaveAll21);
 
 		btnSaveAll12.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/carrello.png"))); // NOI18N
+                btnSaveAll12.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnSaveAll12.setToolTipText("Acquisti");
 		btnSaveAll12.setMaximumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll12.setMinimumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll12.setPreferredSize(new java.awt.Dimension(37, 35));
 		btnSaveAll12.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnSaveAll12ActionPerformed(evt);
 			}
@@ -713,14 +703,27 @@ public class Gui extends javax.swing.JFrame {
 		btnSaveAll13.setMaximumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll13.setMinimumSize(new java.awt.Dimension(37, 35));
 		btnSaveAll13.setPreferredSize(new java.awt.Dimension(37, 35));
-		btnSaveAll13.addActionListener(new java.awt.event.ActionListener() {
+		/*btnSaveAll13.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnSaveAll13ActionPerformed(evt);
+				//btnSaveAll13ActionPerformed(evt);
 			}
-		});
+		});*/
 		sideBar.add(btnSaveAll13);
 
 		getContentPane().add(sideBar, java.awt.BorderLayout.WEST);
+		
+		btnMultiRecipe = new JButton();
+		btnMultiRecipe.setIcon(new ImageIcon(Gui.class.getResource("/jmash/images/order.png")));
+                btnMultiRecipe.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                btnMultiRecipe.setToolTipText("Verifica scorte per più ricette");
+                btnMultiRecipe.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				btnMultiRecipeActionPerformed(evt);
+			}
+		});
+		sideBar.add(btnMultiRecipe);
 
 		taskBar.setFloatable(false);
 
@@ -734,14 +737,16 @@ public class Gui extends javax.swing.JFrame {
 		taskBar.add(lblStatus);
 
 		mnuFile.setText("File");
-		mnuFile.addActionListener(new java.awt.event.ActionListener() {
+		/*mnuFile.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				mnuFileActionPerformed(evt);
 			}
-		});
+		});*/
 
 		mnuNuova.setText("Nuova");
 		mnuNuova.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				mnuNuovaActionPerformed(evt);
 			}
@@ -749,17 +754,19 @@ public class Gui extends javax.swing.JFrame {
 		mnuFile.add(mnuNuova);
 
 		mnuFile1.setText("Ricette recenti");
-		mnuFile1.addActionListener(new java.awt.event.ActionListener() {
+		/*mnuFile1.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				mnuFile1ActionPerformed(evt);
 			}
-		});
+		});*/
 
 		mntmApriRicetta = new JMenuItem("Apri ricetta..");
 		mntmApriRicetta.addActionListener(new ActionListener() {
+                        @Override
 			public void actionPerformed(ActionEvent e) {
 				File file = Utils.pickFileToLoad(new JInternalFrame(),
-						(String) Main.getFromCache("recipe.dir", Main.recipeDir));
+						(String) Main.getFromCache("recipe.dir", bpenv.getFolderName(Constants.DIR_RECIPE)));
 				if (file != null) {
 					addLastOpenedFile(file);
 					nuovaRicetta(new Ricetta(file));
@@ -771,6 +778,7 @@ public class Gui extends javax.swing.JFrame {
 
 		menuItemDelete = new JMenuItem("Elimina elenco..");
 		menuItemDelete.addActionListener(new ActionListener() {
+                        @Override
 			public void actionPerformed(ActionEvent e) {
 				deleteLastRecipesEntries();
 			}
@@ -783,6 +791,7 @@ public class Gui extends javax.swing.JFrame {
 
 		mnuFromPromash.setText("Incolla dalla clipboard");
 		mnuFromPromash.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				mnuFromPromashActionPerformed(evt);
 			}
@@ -791,6 +800,7 @@ public class Gui extends javax.swing.JFrame {
 
 		mnuBeerXML.setText("Importa BeerXML");
 		mnuBeerXML.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				mnuBeerXMLActionPerformed(evt);
 			}
@@ -800,6 +810,7 @@ public class Gui extends javax.swing.JFrame {
 		JMenuItem mntmIncollaDaPromash = new JMenuItem("Incolla da ProMash");
 		mntmIncollaDaPromash.setVisible(false);
 		mntmIncollaDaPromash.addActionListener(new ActionListener() {
+                        @Override
 			public void actionPerformed(ActionEvent e) {
 				fromProMash();
 			}
@@ -808,6 +819,7 @@ public class Gui extends javax.swing.JFrame {
 
 		mnuEsci.setText("Esci");
 		mnuEsci.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				mnuEsciActionPerformed(evt);
 			}
@@ -817,14 +829,16 @@ public class Gui extends javax.swing.JFrame {
 		jMenuBar1.add(mnuFile);
 
 		jMenu2.setText("Configurazione");
-		jMenu2.addActionListener(new java.awt.event.ActionListener() {
+		/*jMenu2.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jMenu2ActionPerformed(evt);
 			}
-		});
+		});*/
 
 		mnuLuppoliXML.setText("Luppoli ed erbe");
 		mnuLuppoliXML.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				mnuLuppoliXMLActionPerformed(evt);
 			}
@@ -833,6 +847,7 @@ public class Gui extends javax.swing.JFrame {
 
 		mnuCategorieMaltiXML.setText("Categorie malti");
 		mnuCategorieMaltiXML.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				mnuCategorieMaltiXMLActionPerformed(evt);
 			}
@@ -841,14 +856,16 @@ public class Gui extends javax.swing.JFrame {
 		
 		mnuMaltiXML.setText("Malti, estratti, zuccheri");
 		mnuMaltiXML.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				mnuMaltiXMLActionPerformed(evt);
 			}
 		});
 		jMenu2.add(mnuMaltiXML);
 
-		mnuLievitiXML.setLabel("Lieviti e fermenti");
+		mnuLievitiXML.setText("Lieviti e fermenti");
 		mnuLievitiXML.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				mnuLievitiXMLActionPerformed(evt);
 			}
@@ -857,6 +874,7 @@ public class Gui extends javax.swing.JFrame {
 
 		mnuAcquaXML.setText("Acque del mondo");
 		mnuAcquaXML.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				mnuAcquaXMLActionPerformed(evt);
 			}
@@ -879,12 +897,14 @@ public class Gui extends javax.swing.JFrame {
 
 		JMenuItem mntmForumBirraBirra = new JMenuItem("Il Forum della Birra Feed");
 		mntmForumBirraBirra.addActionListener(new ActionListener() {
+                        @Override
 			public void actionPerformed(ActionEvent e) {
 				gotoForum();
 			}
 		});
 		mnRisorse.add(mntmForumBirraBirra);
 		mnuStiliXML.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				mnuStiliXMLActionPerformed(evt);
 			}
@@ -899,6 +919,7 @@ public class Gui extends javax.swing.JFrame {
 		
 		mnuProfiliImpiantoXML.setText("Profili impianto");
 		mnuProfiliImpiantoXML.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				mnuProfiliImpiantoXMLActionPerformed(evt);
 			}
@@ -907,8 +928,9 @@ public class Gui extends javax.swing.JFrame {
 
 		JMenuItem mntmImpostazioni = new JMenuItem("Impostazioni");
 		mntmImpostazioni.addActionListener(new ActionListener() {
+                        @Override
 			public void actionPerformed(ActionEvent e) {
-				addFrame(new ConfigurationTool());
+				addFrame(new ConfigurationTool(Gui.this));
 			}
 		});
 		jMenu2.add(mntmImpostazioni);
@@ -917,6 +939,7 @@ public class Gui extends javax.swing.JFrame {
 
 		ChiudiTutteMenuItem.setText("Chiudi Tutte");
 		ChiudiTutteMenuItem.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				ChiudiTutteMenuItemActionPerformed(evt);
 			}
@@ -927,42 +950,25 @@ public class Gui extends javax.swing.JFrame {
 		jMenuBar1.add(jMenu1);
 
 		jMenu3.setText("?");
-		jMenu3.addActionListener(new java.awt.event.ActionListener() {
+		/*jMenu3.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jMenu3ActionPerformed(evt);
 			}
-		});
+		});*/
 		mnuAbout = new javax.swing.JMenuItem();
 
 		mnuAbout.setText("Info...");
 		mnuAbout.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				mnuAboutActionPerformed(evt);
 			}
 		});
 
-//		mntmNewMenuItem = new JMenuItem("Help");
-//		mntmNewMenuItem.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				ShowHelp();
-//			}
-//		});
-//		jMenu3.add(mntmNewMenuItem);
-
 		JSeparator separator_3 = new JSeparator();
 		jMenu3.add(separator_3);
-		mnuUpdate = new javax.swing.JMenuItem();
-		jMenu3.add(mnuUpdate);
-
-//		mnuUpdate.setText("Controllo aggiornamenti");
-//		mnuUpdate.addActionListener(new java.awt.event.ActionListener() {
-//			public void actionPerformed(java.awt.event.ActionEvent evt) {
-//				mnuUpdateActionPerformed(evt);
-//			}
-//		});
-
-		JSeparator separator_4 = new JSeparator();
-		jMenu3.add(separator_4);
+		
 		jMenu3.add(mnuAbout);
 
 		jMenuBar1.add(jMenu3);
@@ -973,7 +979,7 @@ public class Gui extends javax.swing.JFrame {
 		setBounds((screenSize.width - 1121) / 2, (screenSize.height - 600) / 2, 1121, 600);
 	}// </editor-fold>//GEN-END:initComponents
 
-	private void mnuBeerXMLActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_mnuBeerXMLActionPerformed
+ 	private void mnuBeerXMLActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_mnuBeerXMLActionPerformed
 		BeerXMLReader.main(null);
 	}// GEN-LAST:event_mnuBeerXMLActionPerformed
 
@@ -1000,7 +1006,7 @@ public class Gui extends javax.swing.JFrame {
 			recipesPopup.show(evt.getComponent(), evt.getX(), evt.getY());
 		}
 	}// GEN-LAST:event_desktopMousePressed
-
+/*
 	private void desktopMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_desktopMouseClicked
 
 	}// GEN-LAST:event_desktopMouseClicked
@@ -1012,7 +1018,7 @@ public class Gui extends javax.swing.JFrame {
 	private void btnOpenMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_btnOpenMouseClicked
 
 	}// GEN-LAST:event_btnOpenMouseClicked
-
+*/
 	private void mnuAboutActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_mnuAboutActionPerformed
 		frmCredits fc = new frmCredits();
 		addFrame(fc);
@@ -1022,10 +1028,11 @@ public class Gui extends javax.swing.JFrame {
 				(desktopSize.height - jInternalFrameSize.height) / 2);
 	}// GEN-LAST:event_mnuAboutActionPerformed
 
-	private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenu3ActionPerformed
+	/*private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenu3ActionPerformed
 
 	}// GEN-LAST:event_jMenu3ActionPerformed
-
+       */
+        
 	private void btnNew1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnNew1ActionPerformed
 		JInternalFrame cotta = new NewCotta();
 		addFrame(cotta);
@@ -1046,10 +1053,8 @@ public class Gui extends javax.swing.JFrame {
         tableModel.setRows(Gui.hopPickerTableModel.getRows());
         try {
             addFrame(
-                    new XmlAbleEditor(tableModel, HopType.class, Main.luppoliXML, Main.class.getMethod("readLuppoli")));
-        } catch (SecurityException ex) {
-            LOGGER.error(ex.getMessage(), ex);
-        } catch (NoSuchMethodException ex) {
+                    new XmlAbleEditor(tableModel, HopType.class, bpenv.getConfigfileName(Constants.XML_HOPS), Main.class.getMethod("readLuppoli")));
+        } catch (SecurityException | NoSuchMethodException ex) {
             LOGGER.error(ex.getMessage(), ex);
         }
 	}
@@ -1058,11 +1063,9 @@ public class Gui extends javax.swing.JFrame {
 		GenericTableModel tableModel = new XmlAbleTableModel(new WaterProfile());
 		tableModel.setRows(Gui.waterPickerTableModel.getRows());
 		try {
-			addFrame(new XmlAbleEditor(tableModel, WaterProfile.class, Main.waterXML,
+			addFrame(new XmlAbleEditor(tableModel, WaterProfile.class, bpenv.getConfigfileName(Constants.XML_WATER),
 					Main.class.getMethod("readWater")));
-		} catch (SecurityException ex) {
-			LOGGER.error(ex.getMessage(), ex);
-		} catch (NoSuchMethodException ex) {
+		} catch (SecurityException | NoSuchMethodException ex) {
 			LOGGER.error(ex.getMessage(), ex);
 		}
 	}// GEN-LAST:event_mnuAcquaXMLActionPerformed
@@ -1088,7 +1091,7 @@ public class Gui extends javax.swing.JFrame {
 			RecipeData data = new RecipeData();
 			Ricetta R = new Ricetta();
 			try {
-				File file = Utils.pickFileToLoad(R, (String) Main.getFromCache("promash.dir", Main.recipeDir), "rec");
+				File file = Utils.pickFileToLoad(R, (String) Main.getFromCache("promash.dir", bpenv.getFolderName(Constants.DIR_RECIPE)), "rec");
 				if (file != null) {
 					Main.putIntoCache("promash.dir", file.getAbsolutePath());
 					data.readRec(file.toString());
@@ -1108,7 +1111,7 @@ public class Gui extends javax.swing.JFrame {
 		String str = Utils.getClipboard();
 		try {
 			nuovaRicetta(new Ricetta(XMLReader.XMLfromString(str), null));
-		} catch (Exception ex2) {
+		} catch (IOException | JDOMException ex2) {
 			Utils.showException(ex2, "Impossibile riconoscere una ricetta di BrewPlus.");
 		}
 	}// GEN-LAST:event_mnuFromPromashActionPerformed
@@ -1123,28 +1126,28 @@ public class Gui extends javax.swing.JFrame {
 		String malts = str.substring(i, e);
 
 		String s[] = malts.split("\n");
-		List<Malt> ms = new ArrayList<Malt>();
-		List<Hop> hs = new ArrayList<Hop>();
+		List<Malt> ms = new ArrayList<>();
+		List<Hop> hs = new ArrayList<>();
 		for (int j = 0; j < s.length; j++) {
 			Malt m1 = new Malt();
 			m1.setNome(s[j].substring(20, 50).trim());
 
-			if (str.indexOf("   %     Amount     Name                          Origin        Potential SRM") >= 0)
+			if (str.contains("   %     Amount     Name                          Origin        Potential SRM"))
 				m1.setEbc(Utils.srmToEbc(new Double(s[j].substring(70).trim())));
-			else if (str.indexOf("   %     Amount     Name                          Origin        Potential EBC") >= 0)
+			else if (str.contains("   %     Amount     Name                          Origin        Potential EBC"))
 				m1.setEbc(new Double(s[j].substring(70).trim()));
 			m1.setPotentialSG(new Double(s[j].substring(65, 70).trim()));
-			if (m1.getNome().indexOf("LME") >= 0)
+			if (m1.getNome().contains("LME"))
 				m1.setForma("Estratto liquido");
-			else if (m1.getNome().indexOf("DME") >= 0)
+			else if (m1.getNome().contains("DME"))
 				m1.setForma("Estratto secco");
-			else if (m1.getNome().toLowerCase().indexOf("flaked") >= 0)
+			else if (m1.getNome().toLowerCase().contains("flaked"))
 				m1.setForma("Fiocchi");
-			if (s[j].substring(5, 20).indexOf("kg.") >= 0)
-				m1.setGrammi(new Double(s[j].substring(5, 20).replaceFirst("kg.", "").trim()).doubleValue() * 1000);
-			if (s[j].substring(5, 20).indexOf("lbs.") >= 0)
+			if (s[j].substring(5, 20).contains("kg."))
+				m1.setGrammi(Double.parseDouble(s[j].substring(5, 20).replaceFirst("kg.", "").trim()) * 1000);
+			if (s[j].substring(5, 20).contains("lbs."))
 				m1.setGrammi(Utils.poundToKg(
-						new Double(s[j].substring(5, 20).replaceFirst("lbs.", "").trim()).doubleValue() * 1000));
+						Double.parseDouble(s[j].substring(5, 20).replaceFirst("lbs.", "").trim()) * 1000));
 			ms.add(m1);
 		}
 
@@ -1160,15 +1163,15 @@ public class Gui extends javax.swing.JFrame {
 			Hop h1 = new Hop();
 			h1.setNome(s[j].substring(14, 48).trim());
 
-			if (s[j].substring(0, 14).indexOf("g.") >= 0)
+			if (s[j].substring(0, 14).contains("g."))
 				h1.setGrammi(new Double(s[j].substring(0, 7).trim()));
-			if (s[j].substring(0, 14).indexOf("oz.") >= 0)
+			if (s[j].substring(0, 14).contains("oz."))
 				h1.setGrammi(Utils.ouncesToGrams(new Double(s[j].substring(0, 7).trim())));
 
 			h1.setAlfaAcidi(new Double(s[j].substring(54, 63).trim()));
 			h1.setAlfaAcidiPrec(new Double(s[j].substring(54, 63).trim()));
 
-			if (s[j].substring(69).indexOf("Dry Hop") >= 0) {
+			if (s[j].substring(69).contains("Dry Hop")) {
 				h1.setBoilTime(0);
 				h1.setUso("Dry");
 			} else {
@@ -1203,10 +1206,10 @@ public class Gui extends javax.swing.JFrame {
 		}
 
 		rd.setBollitura(new Integer(wbt));
-		if (bV.indexOf("L") >= 0) {
+		if (bV.contains("L")) {
 			rd.setVolumeBoll(new Double(bV.replaceFirst("L", "").trim()));
 		}
-		if (bV.indexOf("Gal") >= 0) {
+		if (bV.contains("Gal")) {
 			rd.setVolumeBoll(Utils.galToLit(new Double(bV.replaceFirst("Gal", "").trim())));
 		}
 		rd.setNome(str.substring(0, str.indexOf("A ProMash Recipe Report")).trim());
@@ -1223,38 +1226,29 @@ public class Gui extends javax.swing.JFrame {
 		tableModel.setRows(Gui.yeastPickerTableModel.getRows());
 		try {
 			addFrame(
-					new XmlAbleEditor(tableModel, YeastType.class, Main.yeastXML, Main.class.getMethod("readLieviti")));
-		} catch (SecurityException ex) {
-			LOGGER.error(ex.getMessage(), ex);
-		} catch (NoSuchMethodException ex) {
+					new XmlAbleEditor(tableModel, YeastType.class, bpenv.getConfigfileName(Constants.XML_YEAST), Main.class.getMethod("readLieviti")));
+		} catch (SecurityException | NoSuchMethodException ex) {
 			LOGGER.error(ex.getMessage(), ex);
 		}
-	}// GEN-LAST:event_mnuLievitiXMLActionPerformed
-
-	private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnUpdateActionPerformed
-		updateProgram();
-	}// GEN-LAST:event_btnUpdateActionPerformed
+	}// GEN-LAST:event_mnuLievitiXMLActionPerformeds
 
 	private void btnSaveAll17ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll17ActionPerformed
 		addFrame(new WaterNeeded());
 	}// GEN-LAST:event_btnSaveAll17ActionPerformed
 
 	private void btnSaveAll16ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll16ActionPerformed
-		addFrame(new ConfigurationTool());
+		addFrame(new ConfigurationTool(Gui.this));
 	}// GEN-LAST:event_btnSaveAll16ActionPerformed
 
-	private void btnSaveAll15ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll15ActionPerformed
-		addFrame(new CalcoloForiZapap());
-	}// GEN-LAST:event_btnSaveAll15ActionPerformed
 
 	private void btnSaveAll14ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll14ActionPerformed
 		addFrame(new WaterDesign(), true);
 	}// GEN-LAST:event_btnSaveAll14ActionPerformed
 
-	private void btnSaveAll13ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll13ActionPerformed
+	/*private void btnSaveAll13ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll13ActionPerformed
 		// addFrame(new Planner());
 	}// GEN-LAST:event_btnSaveAll13ActionPerformed
-
+*/
 	private void btnSaveAll12ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll12ActionPerformed
 		addFrame(Acquisto.newAcquisto());
 	}// GEN-LAST:event_btnSaveAll12ActionPerformed
@@ -1262,14 +1256,6 @@ public class Gui extends javax.swing.JFrame {
 	private void btnSaveAll11ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll11ActionPerformed
 		addFrame(new YeastPitching());
 	}// GEN-LAST:event_btnSaveAll11ActionPerformed
-
-	private void btnSaveAll9ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll9ActionPerformed
-		addFrame(new DimensionamentoControflusso(), true);
-	}// GEN-LAST:event_btnSaveAll9ActionPerformed
-
-	private void btnSaveAll8ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll8ActionPerformed
-		addFrame(new StrikeTemp());
-	}// GEN-LAST:event_btnSaveAll8ActionPerformed
 
 	private void btnSaveAll7ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveAll7ActionPerformed
 		addFrame(new CarbonationTool(), true);
@@ -1295,36 +1281,11 @@ public class Gui extends javax.swing.JFrame {
 		addFrame(new DiluitionForm());
 	}// GEN-LAST:event_btnSaveAll1ActionPerformed
 
-	private void updateProgram() {
-		try {
-			Utils.copyFile("runner.jar", "_runner.jar");
-		} catch (IOException ex) {
-			Utils.showException(ex, "Impossibile eseguire l'update: non è stato possibile creare il file _runner.jar");
-			return;
-		}
-		try {
-			String remoteRoot = Main.config.getRemoteRoot();
-			if (remoteRoot == null)
-				remoteRoot = "http://brewplus.t15.org/brewplus";
-			if (!remoteRoot.startsWith("http://"))
-				remoteRoot = "http://" + remoteRoot;
-			if (!remoteRoot.endsWith("/"))
-				remoteRoot += "/";
-
-			// test con classe locale per debug IXTLANAS
-			// String[] address= {remoteRoot};
-			// runner.Main.main(address);
-			Process p = Runtime.getRuntime().exec("java -jar _runner.jar " + remoteRoot);
-			chiudiGui();
-		} catch (Exception ex) {
-			Utils.showException(ex, "Impossibile lanciare l'update.");
-		}
+        
+	private void btnMultiRecipeActionPerformed(java.awt.event.ActionEvent evt) {
+	   if (!FrmSelezioneRicette.isVisible)
+		   addFrame(new FrmSelezioneRicette());
 	}
-
-	private void mnuUpdateActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_mnuUpdateActionPerformed
-		updateProgram();
-
-	}// GEN-LAST:event_mnuUpdateActionPerformed
 
 	public void setStatusBar(String T) {
 		lblStatus.setText(T);
@@ -1368,7 +1329,7 @@ public class Gui extends javax.swing.JFrame {
 
 	private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnOpenActionPerformed
 		File file = Utils.pickFileToLoad(new JInternalFrame(),
-				(String) Main.getFromCache("recipe.dir", Main.recipeDir));
+				(String) Main.getFromCache("recipe.dir", bpenv.getFolderName(Constants.DIR_RECIPE)));
 		if (file != null) {
 			addLastOpenedFile(file);
 			nuovaRicetta(new Ricetta(file));
@@ -1380,10 +1341,8 @@ public class Gui extends javax.swing.JFrame {
 		tableModel.setRows(Gui.maltCategoryPickerTableModel.getRows());
 		try {
 			addFrame(
-					new XmlAbleEditor(tableModel, MaltCategory.class, Main.maltCategoriesXML, Main.class.getMethod("readCategorieMalti")));
-		} catch (SecurityException ex) {
-			LOGGER.error(ex.getMessage(), ex);
-		} catch (NoSuchMethodException ex) {
+					new XmlAbleEditor(tableModel, MaltCategory.class, bpenv.getConfigfileName(Constants.XML_CATEGORIES), Main.class.getMethod("readCategorieMalti")));
+		} catch (SecurityException | NoSuchMethodException ex) {
 			LOGGER.error(ex.getMessage(), ex);
 		}
 	}// GEN-LAST:event_mnuMaltiXMLActionPerformed
@@ -1393,10 +1352,8 @@ public class Gui extends javax.swing.JFrame {
 		Gui.maltPickerTableModel.setFilterOff();
 		tableModel.setRows(Gui.maltPickerTableModel.getRows());
 		try {
-			addFrame(new XmlAbleEditor(tableModel, MaltType.class, Main.maltiXML, Main.class.getMethod("readMalti")));
-		} catch (SecurityException ex) {
-			LOGGER.error(ex.getMessage(), ex);
-		} catch (NoSuchMethodException ex) {
+			addFrame(new XmlAbleEditor(tableModel, MaltType.class, bpenv.getConfigfileName(Constants.XML_MALT), Main.class.getMethod("readMalti")));
+		} catch (SecurityException | NoSuchMethodException ex) {
 			LOGGER.error(ex.getMessage(), ex);
 		}
 	}// GEN-LAST:event_mnuMaltiXMLActionPerformed
@@ -1407,10 +1364,8 @@ public class Gui extends javax.swing.JFrame {
 		
 		try {
 			addFrame(
-					new XmlAbleEditor(tableModel, BreweryProfile.class, Main.breweryProfileXML, Main.class.getMethod("readProfiliImpianto")));
-		} catch (SecurityException ex) {
-			LOGGER.error(ex.getMessage(), ex);
-		} catch (NoSuchMethodException ex) {
+					new XmlAbleEditor(tableModel, BreweryProfile.class, bpenv.getConfigfileName(Constants.XML_BREPROFILE), Main.class.getMethod("readProfiliImpianto")));
+		} catch (SecurityException | NoSuchMethodException ex) {
 			LOGGER.error(ex.getMessage(), ex);
 		}
 	}// GEN-LAST:event_mnuMaltiXMLActionPerformed
@@ -1431,10 +1386,9 @@ public class Gui extends javax.swing.JFrame {
 	    
         if (this.desktop.getSelectedFrame() instanceof Ricetta) {
             Ricetta ed = (Ricetta) this.desktop.getSelectedFrame();
-            ed.nullFile();
+            
             File file = ed.saveRicettaPID();
             Main.putIntoCache("recipe.dir", file.getAbsolutePath());
-            addLastOpenedFile(file);
         }
 	    
 	}
@@ -1448,18 +1402,16 @@ public class Gui extends javax.swing.JFrame {
 		tableModel.setRows(Gui.hopPickerTableModel.getRows());
 		try {
 			addFrame(
-					new XmlAbleEditor(tableModel, HopType.class, Main.luppoliXML, Main.class.getMethod("readLuppoli")));
-		} catch (SecurityException ex) {
-			LOGGER.error(ex.getMessage(), ex);
-		} catch (NoSuchMethodException ex) {
+					new XmlAbleEditor(tableModel, HopType.class, bpenv.getConfigfileName(Constants.XML_HOPS), Main.class.getMethod("readLuppoli")));
+		} catch (SecurityException | NoSuchMethodException ex) {
 			LOGGER.error(ex.getMessage(), ex);
 		}
 	}// GEN-LAST:event_mnuLuppoliXMLActionPerformed
-
+/*
 	private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenu2ActionPerformed
 
 	}// GEN-LAST:event_jMenu2ActionPerformed
-
+*/
 	// private List<Ricetta> ricette=new ArrayList<Ricetta>();
 	private void mnuNuovaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_mnuNuovaActionPerformed
 		nuovaRicetta(new Ricetta());
@@ -1469,9 +1421,9 @@ public class Gui extends javax.swing.JFrame {
 		chiudiGui();
 	}// GEN-LAST:event_mnuEsciActionPerformed
 
-	private void mnuFileActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_mnuFileActionPerformed
+	/*private void mnuFileActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_mnuFileActionPerformed
 	}// GEN-LAST:event_mnuFileActionPerformed
-
+*/
 	private void formWindowClosing(java.awt.event.WindowEvent evt) {// GEN-FIRST:event_formWindowClosing
 		chiudiGui();
 	}// GEN-LAST:event_formWindowClosing
@@ -1485,11 +1437,11 @@ public class Gui extends javax.swing.JFrame {
 				JMenuItem item = new JMenuItem();
 				JInternalFrame child = (JInternalFrame) evt.getChild();
 				if (child.getTitle().length() > 0) { // inserito questo
-														// controllo perchè
-														// viene generato
-														// l'evento a caso
-														// quando aggiungo una
-														// ricetta
+                                                                    // controllo perchè
+                                                                    // viene generato
+                                                                    // l'evento a caso
+                                                                    // quando aggiungo una
+                                                                    // ricetta
 					item.setText(child.getTitle());
 					item.setActionCommand(child.getTitle());
 					item.addActionListener(new java.awt.event.ActionListener() {
@@ -1535,14 +1487,6 @@ public class Gui extends javax.swing.JFrame {
 	private void gotoForum() {
 		frmFeed2 ffedd = new frmFeed2();
 		addFrame(ffedd);
-	}
-
-	private void ShowHelp() {
-		try {
-			//new Utils.BareBonesBrowserLaunch().openURL("file:///" + Main.userDir + "/help/index.html");
-		} catch (Exception ex) {
-			// Utils.showException(ex,"",this);
-		}
 	}
 
 	private void desktopComponentRemoved(java.awt.event.ContainerEvent evt) {
@@ -1711,7 +1655,6 @@ public class Gui extends javax.swing.JFrame {
 	private javax.swing.JButton btnSaveAll8;
 	private javax.swing.JButton btnSaveAll9;
 	private javax.swing.JButton btnSaveAs;
-	public javax.swing.JButton btnUpdate;
 	private javax.swing.JDesktopPane desktop;
 	private javax.swing.JMenu jMenu1;
 	private javax.swing.JMenu jMenu2;
@@ -1732,7 +1675,6 @@ public class Gui extends javax.swing.JFrame {
 	private javax.swing.JMenuItem mnuMaltiXML;
 	private javax.swing.JMenuItem mnuNuova;
 	private javax.swing.JMenuItem mnuStiliXML;
-	private javax.swing.JMenuItem mnuUpdate;
 	private javax.swing.JMenuItem mnuProfiliImpiantoXML;
 	private javax.swing.JToolBar sideBar;
 	private javax.swing.JToolBar taskBar;
@@ -1742,10 +1684,20 @@ public class Gui extends javax.swing.JFrame {
 	private JButton button;
 	private JMenuItem mntmApriRicetta;
 //	private JButton btnGuida;
-	private JMenuItem mntmNewMenuItem;
+	//private JMenuItem mntmNewMenuItem;
 	private JMenuItem menuItemDelete;
 	private JSeparator separator_5;
 	private JLabel lblStatus;
 	
 	private javax.swing.JButton btnExport2PID;
+	private JButton btnMultiRecipe;
+
+	public void updateRicette() {
+		
+		for (Component c: this.desktop.getComponents()) {
+			if (c instanceof Ricetta) {
+				((Ricetta) c).ricettaModificata();
+			}
+		}
+	}
 }

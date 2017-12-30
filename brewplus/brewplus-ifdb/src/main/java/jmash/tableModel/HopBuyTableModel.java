@@ -22,8 +22,13 @@ package jmash.tableModel;
 
 import java.text.ParseException;
 import java.util.Date;
+
 import javax.swing.JLabel;
-import jmash.*;
+
+import jmash.Hop;
+import jmash.Main;
+import jmash.Utils;
+
 
 /**
  *
@@ -33,7 +38,7 @@ public class HopBuyTableModel extends GenericTableModel<Hop> {
 
 	public HopBuyTableModel() {
 		this.ret.setIcon(Main.clockIcon);
-		this.columnNames = new String[] { "", "Nome", "Q.tà", "U.m.", "Forma", "Alfa A.", "Origine", "Data rif." };
+		this.columnNames = new String[] { "","Nome", "Q.tà", "U.m.", "Forma", "Alfa A.", "Origine", "Data rif." };
 	}
 
 	private JLabel ret = new JLabel("");
@@ -81,8 +86,10 @@ public class HopBuyTableModel extends GenericTableModel<Hop> {
 					h.setNome(((String) value));
 					break;
 				case 2:
-					h.setGrammi(
-							Utils.convertWeight(NF.parse((String) value).doubleValue(), h.getUnitaMisura(), "grammi"));
+                                        if (value instanceof Double)
+                                            h.setGrammi((Double)value);
+                                        else
+                                            h.setGrammi(Utils.convertWeight(NF.parse((String) value).doubleValue(), h.getUnitaMisura(), "grammi"));
 					break;
 				case 3:
 					h.setUnitaMisura(((String) value));
@@ -112,5 +119,20 @@ public class HopBuyTableModel extends GenericTableModel<Hop> {
 			Utils.showException(ex);
 		}
 	}
-
+        
+        public void appendRow(Hop row) {
+            boolean esiste = false;
+            //Controllo se il luppolo è già presente
+            for (int ii = 0; ii < this.getRowCount(); ii++) {
+                if (((String)this.getValueAt(ii, 1)).equalsIgnoreCase(row.getNome()) && ((String)this.getValueAt(ii, 4)).equalsIgnoreCase(row.getForma())) {
+                    Double quantitaNecessaria = Utils.convertWeight(Double.parseDouble(((String)this.getValueAt(ii, 2)).replace(",", ".")),(String)this.getValueAt(ii, 3),"grammi");
+                    this.setValueAt(quantitaNecessaria+row.getGrammi(), ii, 2);
+                    esiste = true;
+                    break;
+                }
+                    
+            }
+            if (!esiste) this.dataValues.add(row);
+            fireTableDataChanged();
+        }
 }

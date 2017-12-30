@@ -1,5 +1,4 @@
 /*
- *  Copyright 2005, 2006 Alessandro Chiari.
  *
  *  This file is part of BrewPlus.
  *
@@ -19,15 +18,27 @@
  */
 package jmash.tableModel;
 
-import jmash.*;
-import jmash.Main.BitterBUGU;
+import org.apache.log4j.Logger;
+
+import jmash.Hop;
+import jmash.Ricetta;
+import jmash.Utils;
+import jmash.config.ConfigurationManager;
+import jmash.config.bean.GeneralConfig;
+import jmash.utils.Constants;
 
 public class SummaryTableModel extends GenericTableModel<Hop> {
+	
+	private static Logger LOGGER = Logger.getLogger(SummaryTableModel.class);
 
-    /**
-     *
-     */
     private static final long serialVersionUID = -5667189467722852137L;
+    private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
+    
+    public static final int TINSETH_COLUMN=4;
+	public static final int RAGER_COLUMN=5;
+	public static final int DANIELS_COLUMN=6;
+	public static final int BU_GU_COLUMN=7;
+	
     private Ricetta ricetta;
     private static final String[] cN = new String[] { "OG", "Plato", "OG pre-Boil", "°P pre-Boil", "Tinseth", "Rager",
             "Daniels", "BU/GU", "Tot. Grani", "Tot. Luppoli", "Mash pH"};
@@ -66,12 +77,12 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
 
     public void setIBU(double IBU) {
         this.IBU = IBU;
-        sIBU = NumberFormatter.format01(this.getIBU()) + " IBU";
+        sIBU = NumberFormatter.format01(IBU) + " IBU";
     }
 
     public void setIBU2(double IBU2) {
         this.IBU2 = IBU2;
-        sIBU2 = NumberFormatter.format01(this.getIBU2()) + " IBU";
+        sIBU2 = NumberFormatter.format01(IBU2) + " IBU";
     }
 
     public void setIBUGaretz(double IBUGaretz) {
@@ -80,7 +91,7 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
 
     public void setIBUDaniels(double IBUDaniels) {
         this.IBUDaniels = IBUDaniels;
-        sIBUD = NumberFormatter.format01(this.getIBUDaniels()) + " IBU";
+        sIBUD = NumberFormatter.format01(IBUDaniels) + " IBU";
     }
 
     public void setIBURager(double IBURager) {
@@ -88,12 +99,12 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
     }
     
     public void setMashPH(double mashPH) {
-		this.mashPH = Double.isNaN(mashPH) ?  "NaN" : NumberFormatter.format03(mashPH);
-	}
+        this.mashPH = Double.isNaN(mashPH) ?  "NaN" : NumberFormatter.format03(mashPH);
+    }
     
     public double getMashPH() {
-		return "NaN".equals(mashPH) ? Double.NaN : Double.parseDouble(mashPH);
-	}
+        return "NaN".equals(mashPH) ? Double.NaN : Double.parseDouble(mashPH);
+    }
 
     private int totG = 0;
 
@@ -124,19 +135,25 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
         case 3:
             return sPPB;
         case 4:
-            return sIBU;
+        	String tiporatioBU = generalConfig.getBUGUratiostring();
+        	if (Constants.IBU_TIN.equals(tiporatioBU))
+        		return sIBU;
+            if (Constants.IBU_DAN.equals(tiporatioBU))
+            	return sIBUD; 
+            if (Constants.IBU_RAG.equals(tiporatioBU))
+            	return sIBU2;
         case 5:
             return sIBU2;
         case 6:
             return sIBUD;
         case 7:
             double iburatio = 0;
-            BitterBUGU tiporatio = Main.config.getBUGURatio();
-            if (tiporatio == BitterBUGU.TIN)
+            String tiporatio = generalConfig.getBUGUratiostring();
+            if (Constants.IBU_TIN.equals(tiporatio))
                 iburatio = this.getIBU();
-            if (tiporatio == BitterBUGU.DAN)
+            if (Constants.IBU_DAN.equals(tiporatio))
                 iburatio = this.getIBUDaniels();
-            if (tiporatio == BitterBUGU.RAG)
+            if (Constants.IBU_RAG.equals(tiporatio))
                 iburatio = this.getIBU2();
             if (Double.isNaN(iburatio / ((getSG() - 1) * 1000)))
             {
@@ -159,7 +176,7 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
 
     @Override
     public boolean isCellEditable(int row, int col) {
-        return col < 8;
+        return false;
     }
 
     @Override
@@ -183,13 +200,20 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
     }
 
     public void setBUGUratio() {
-        if (Main.config.getBUGURatio() == BitterBUGU.TIN)
+        if (generalConfig.getBUGUratiostring().equals(Constants.IBU_TIN)){
             cN[7] = "BU/GU Tinseth";
-        if (Main.config.getBUGURatio() == BitterBUGU.RAG)
-            cN[7] = "BU/GU Rager";
-        if (Main.config.getBUGURatio() == BitterBUGU.DAN)
-            cN[7] = "BU/GU Daniels";
+        }else if (generalConfig.getBUGUratiostring().equals(Constants.IBU_RAG)){
+        	cN[7] = "BU/GU Rager";
+        }else if (generalConfig.getBUGUratiostring().equals(Constants.IBU_DAN)){
+        	cN[7] = "BU/GU Daniels";
+        }
+        if (columnNames != null)
+        {
+        	columnNames[7] = cN[7];
+        }	
     }
+    
+   
 
     public double getSG() {
         return SG;
@@ -255,4 +279,8 @@ public class SummaryTableModel extends GenericTableModel<Hop> {
         this.totL = totL;
         sTotL = NumberFormatter.format00(getTotL()) + " gr";
     }
+    
+    
+
+    
 }

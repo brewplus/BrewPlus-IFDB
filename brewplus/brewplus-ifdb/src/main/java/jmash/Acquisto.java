@@ -36,9 +36,15 @@ import org.jdom.Document;
 import org.jdom.Element;
 
 import com.toedter.calendar.JDateChooserCellEditor;
-
+import java.awt.Cursor;
+import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
+import javax.swing.event.InternalFrameEvent;
 import jmash.tableModel.HopBuyTableModel;
 import jmash.tableModel.MaltBuyTableModel;
+import jmash.tableModel.YeastBuyTableModel;
+import jmash.utils.BrewplusEnvironment;
+import jmash.utils.Constants;
 
 /**
  *
@@ -47,9 +53,11 @@ import jmash.tableModel.MaltBuyTableModel;
 public class Acquisto extends javax.swing.JInternalFrame {
 
 	/** Creates new form Acquisto */
-	// boolean showInventario=false;
-	private static SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
-
+	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+	private static final BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
+        private static boolean isSaved = true;
+        private File file = null;
+        
 	public static Acquisto buildFRMInventario() {
 		Acquisto frm = new Acquisto();
 		frm.readInventarioFromXML();
@@ -57,21 +65,22 @@ public class Acquisto extends javax.swing.JInternalFrame {
 	}
 
 	public static Acquisto newAcquisto() {
-		Acquisto frm = new Acquisto();
-
-		return frm;
+		return new Acquisto();
 	}
 
 	private Acquisto() {
 		initComponents();
 		setBorder(Utils.getDefaultBorder());
-
-		tblHops.setDefaultEditor(Date.class, new JDateChooserCellEditor());
+                setMinimumSize(new java.awt.Dimension(681, 399));
+		
+                tblHops.setDefaultEditor(Date.class, new JDateChooserCellEditor());
 		tblMalts.setDefaultEditor(Date.class, new JDateChooserCellEditor());
-
+                tblYeast.setDefaultEditor(Date.class, new JDateChooserCellEditor());
+                
 		this.tblMalts.getColumnModel().getColumn(8).setCellEditor(new JDateChooserCellEditor());
-
 		this.tblHops.getColumnModel().getColumn(7).setCellEditor(new JDateChooserCellEditor());
+                this.tblYeast.getColumnModel().getColumn(3).setCellEditor(new JDateChooserCellEditor());
+                
 		this.tblHops.getColumnModel().getColumn(7).setCellRenderer(new DefaultTableCellRenderer() {
 			JLabel label = new JLabel("");
 
@@ -99,8 +108,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 			}
 		});
 
-		this.tblHops.getColumnModel().getColumn(3)
-				.setCellEditor(new jmash.component.JSpinnerEditor(XmlTags.UNITA_PESO));
+		this.tblHops.getColumnModel().getColumn(3).setCellEditor(new jmash.component.JSpinnerEditor(XmlTags.UNITA_PESO));
 		this.tblHops.getColumnModel().getColumn(4).setCellEditor(new jmash.component.JSpinnerEditor(XmlTags.HOP_FORMS));
 
 		tblMalts.getColumnModel().getColumn(3).setCellEditor(new jmash.component.JSpinnerEditor(XmlTags.UNITA_PESO));
@@ -108,6 +116,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 
 		tblMalts.getColumnModel().getColumn(0).setPreferredWidth(32);
 		tblHops.getColumnModel().getColumn(0).setPreferredWidth(32);
+                
 		this.tblHops.getColumnModel().getColumn(0).setCellRenderer(new DefaultTableCellRenderer() {
 			@Override
 			public Component getTableCellRendererComponent(JTable tblDataTable, Object value, boolean isSelected,
@@ -132,7 +141,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 		btnOpen.setVisible(false);
 		btnInventario.setVisible(false);
 		jPanel3.setVisible(false);
-		file = new File(Main.inventarioXML);
+		file = new File(bpenv.getConfigfileName(Constants.XML_INVENTORY));
 		try {
 			read(file);
 		} catch (Exception ex) {
@@ -143,8 +152,9 @@ public class Acquisto extends javax.swing.JInternalFrame {
 	private HopBuyTableModel hopTableModel = new HopBuyTableModel();
 	private Picker hopPicker = new Picker(Gui.hopPickerTableModel);;
 	private MaltBuyTableModel maltTableModel = new MaltBuyTableModel();
-	// private Picker maltPicker=new Picker(Gui.maltPickerTableModel);
 	private MaltTypePicker maltPicker = new MaltTypePicker();
+        private Picker yeastPicker = new Picker(Gui.yeastPickerTableModel);
+        private YeastBuyTableModel yeastTableModel = new YeastBuyTableModel();
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -169,6 +179,8 @@ public class Acquisto extends javax.swing.JInternalFrame {
 		jLabel2 = new javax.swing.JLabel();
 		jTabbedPane1 = new javax.swing.JTabbedPane();
 		jPanel2 = new javax.swing.JPanel();
+                jPanel7 = new javax.swing.JPanel();
+                
 		jScrollPane2 = new javax.swing.JScrollPane();
 		tblMalts = new javax.swing.JTable();
 		jPanel5 = new javax.swing.JPanel();
@@ -180,6 +192,11 @@ public class Acquisto extends javax.swing.JInternalFrame {
 		jPanel4 = new javax.swing.JPanel();
 		addHop = new javax.swing.JButton();
 		remMalt = new javax.swing.JButton();
+                addYeast = new javax.swing.JButton();
+                remYeast = new javax.swing.JButton();
+                tblYeast = new javax.swing.JTable();
+                jScrollPane3 = new javax.swing.JScrollPane();
+                jPanel8 = new javax.swing.JPanel();
 
 		setClosable(true);
 		setIconifiable(true);
@@ -192,6 +209,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 		java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("jmash/lang"); // NOI18N
 		btnNew.setToolTipText(bundle.getString("Nuovo_acquisto")); // NOI18N
 		btnNew.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnNewActionPerformed(evt);
 			}
@@ -205,6 +223,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 		btnOpen.setMinimumSize(new java.awt.Dimension(37, 35));
 		btnOpen.setPreferredSize(new java.awt.Dimension(37, 35));
 		btnOpen.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnOpenActionPerformed(evt);
 			}
@@ -214,6 +233,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 		btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/filesave.png"))); // NOI18N
 		btnSave.setToolTipText("Salva acquisto");
 		btnSave.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnSaveActionPerformed(evt);
 			}
@@ -223,6 +243,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 		btnInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/editpaste.png"))); // NOI18N
 		btnInventario.setToolTipText("Copia nell'inventario");
 		btnInventario.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnInventarioActionPerformed(evt);
 			}
@@ -300,6 +321,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 		jPanel5.setLayout(new java.awt.GridBagLayout());
 
 		addMalt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/edit_add.png"))); // NOI18N
+                addMalt.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		addMalt.setIconTextGap(0);
 		addMalt.setMaximumSize(new java.awt.Dimension(36, 36));
 		addMalt.setMinimumSize(new java.awt.Dimension(36, 36));
@@ -312,11 +334,13 @@ public class Acquisto extends javax.swing.JInternalFrame {
 		jPanel5.add(addMalt, new java.awt.GridBagConstraints());
 
 		remMalt1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/edittrash.png"))); // NOI18N
+                remMalt1.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		remMalt1.setIconTextGap(0);
 		remMalt1.setMaximumSize(new java.awt.Dimension(36, 36));
 		remMalt1.setMinimumSize(new java.awt.Dimension(36, 36));
 		remMalt1.setPreferredSize(new java.awt.Dimension(36, 36));
 		remMalt1.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				remMalt1ActionPerformed(evt);
 			}
@@ -344,11 +368,13 @@ public class Acquisto extends javax.swing.JInternalFrame {
 		jPanel4.setLayout(new java.awt.GridBagLayout());
 
 		addHop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/edit_add.png"))); // NOI18N
-		addHop.setIconTextGap(0);
+		addHop.setCursor(new Cursor((Cursor.HAND_CURSOR)));
+                addHop.setIconTextGap(0);
 		addHop.setMaximumSize(new java.awt.Dimension(36, 36));
 		addHop.setMinimumSize(new java.awt.Dimension(36, 36));
 		addHop.setPreferredSize(new java.awt.Dimension(36, 36));
 		addHop.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				addHopActionPerformed(evt);
 			}
@@ -356,11 +382,13 @@ public class Acquisto extends javax.swing.JInternalFrame {
 		jPanel4.add(addHop, new java.awt.GridBagConstraints());
 
 		remMalt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/edittrash.png"))); // NOI18N
+                remMalt.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		remMalt.setIconTextGap(0);
 		remMalt.setMaximumSize(new java.awt.Dimension(36, 36));
 		remMalt.setMinimumSize(new java.awt.Dimension(36, 36));
 		remMalt.setPreferredSize(new java.awt.Dimension(36, 36));
 		remMalt.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				remMaltActionPerformed(evt);
 			}
@@ -373,13 +401,99 @@ public class Acquisto extends javax.swing.JInternalFrame {
 		jPanel1.add(jPanel4, java.awt.BorderLayout.WEST);
 
 		jTabbedPane1.addTab("Luppoli e altro", jPanel1);
-
+                 
 		jPanel6.add(jTabbedPane1, java.awt.BorderLayout.CENTER);
-
+               
 		getContentPane().add(jPanel6, java.awt.BorderLayout.CENTER);
+                
+                jPanel7.setLayout(new java.awt.BorderLayout());
 
+		jScrollPane3.setFont(jScrollPane3.getFont());
+		jScrollPane3.setMinimumSize(new java.awt.Dimension(100, 100));
+
+		tblYeast.setFont(tblYeast.getFont());
+		tblYeast.setModel(yeastTableModel);
+		jScrollPane3.setViewportView(tblYeast);
+
+		jPanel7.add(jScrollPane3, java.awt.BorderLayout.CENTER);
+
+		jPanel8.setPreferredSize(new java.awt.Dimension(40, 100));
+		jPanel8.setLayout(new java.awt.GridBagLayout());
+
+		addYeast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/edit_add.png"))); // NOI18N
+                addYeast.setCursor(new Cursor((Cursor.HAND_CURSOR)));
+		addYeast.setIconTextGap(0);
+		addYeast.setMaximumSize(new java.awt.Dimension(36, 36));
+		addYeast.setMinimumSize(new java.awt.Dimension(36, 36));
+		addYeast.setPreferredSize(new java.awt.Dimension(36, 36));
+		addYeast.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				addYeastActionPerformed(evt);
+			}
+		});
+		jPanel8.add(addYeast, new java.awt.GridBagConstraints());
+
+		remYeast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/edittrash.png"))); // NOI18N
+                remYeast.setCursor(new Cursor((Cursor.HAND_CURSOR)));
+		remYeast.setIconTextGap(0);
+		remYeast.setMaximumSize(new java.awt.Dimension(36, 36));
+		remYeast.setMinimumSize(new java.awt.Dimension(36, 36));
+		remYeast.setPreferredSize(new java.awt.Dimension(36, 36));
+		remYeast.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				remYeastActionPerformed(evt);
+			}
+		});
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridy = 1;
+		gridBagConstraints.insets = new java.awt.Insets(28, 0, 0, 0);
+		jPanel8.add(remYeast, gridBagConstraints);
+
+		jPanel7.add(jPanel8, java.awt.BorderLayout.WEST);
+
+		jTabbedPane1.addTab("Lieviti", jPanel7);
+                setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+                addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+                    @Override
+                    public void internalFrameOpened(InternalFrameEvent e) {
+                    }
+
+                    @Override
+                    public void internalFrameClosing(InternalFrameEvent e) {
+                        if ("inventario.xml".equalsIgnoreCase(e.getInternalFrame().getTitle())) {
+                            if (isSaved || JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(Main.gui, "Non hai salvato l'acquito nell'inventario. Sei sicuro di voler uscire?", "Inventario",JOptionPane.YES_NO_OPTION)) {   
+                                isSaved = true;
+                                dispose();
+                            }
+                        } else
+                            dispose();
+                        
+                    }
+
+                    @Override
+                    public void internalFrameClosed(InternalFrameEvent e) {
+                    }
+
+                    @Override
+                    public void internalFrameIconified(InternalFrameEvent e) {
+                    }
+
+                    @Override
+                    public void internalFrameDeiconified(InternalFrameEvent e) {
+                    }
+
+                    @Override
+                    public void internalFrameActivated(InternalFrameEvent e) {
+                    }
+
+                    @Override
+                    public void internalFrameDeactivated(InternalFrameEvent e) {
+                    }     
+                });
 		pack();
-	}// </editor-fold>//GEN-END:initComponents
+	};// </editor-fold>//GEN-END:initComponents
 
 	private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnInventarioActionPerformed
 		inventario();
@@ -390,12 +504,10 @@ public class Acquisto extends javax.swing.JInternalFrame {
 
 	}// GEN-LAST:event_btnSaveActionPerformed
 
-	private File file = null;
-
 	public void save() {
 
 		if (this.file == null) {
-			this.file = Utils.pickFileToSave(this, Main.recipeDir);
+			this.file = Utils.pickFileToSave(this, bpenv.getFolderName(Constants.DIR_RECIPE));
 		}
 		if (this.file == null)
 			return;
@@ -403,16 +515,17 @@ public class Acquisto extends javax.swing.JInternalFrame {
 		AcquistoIngredienti obj = new AcquistoIngredienti();
 		obj.setLuppoli(hopTableModel.getRows());
 		obj.setMalti(maltTableModel.getRows());
+                obj.setLieviti(yeastTableModel.getRows());
 		obj.setDes(fldDes.getText());
 		obj.setData(fldDate.getDate());
 		Document doc = obj.toXml();
-		Utils.saveXmlAsFile(doc, file, this);
-
+        	Utils.saveXmlAsFile(doc, file, this);
 		setTitle(this.file.getName());
+                isSaved = true;
 	}
 
 	private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnOpenActionPerformed
-		File f = Utils.pickFileToLoad(new JInternalFrame(), Main.shoppingDir);
+		File f = Utils.pickFileToLoad(new JInternalFrame(), bpenv.getFolderName(Constants.DIR_SHOPPING));
 
 		try {
 			read(f);
@@ -440,6 +553,8 @@ public class Acquisto extends javax.swing.JInternalFrame {
 					if (elem.getName().compareToIgnoreCase(new Malt().getClass().getName()) == 0) {
 						maltTableModel.addRow(Malt.fromXml(elem));
 					}
+                                        if (elem.getName().compareToIgnoreCase(new Yeast().getClass().getName()) == 0) 
+                                            yeastTableModel.addRow(Yeast.fromXml(elem));
 				}
 			} else {
 				Msg.showMsg("Il file non è una lista della spesa BrewPlus!", this);
@@ -450,6 +565,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 	private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnNewActionPerformed
 		hopTableModel.clear();
 		maltTableModel.clear();
+                yeastTableModel.clear();
 		fldDes.setText("");
 		fldDate.setDate(null);
 		this.file = null;
@@ -473,7 +589,20 @@ public class Acquisto extends javax.swing.JInternalFrame {
 			this.maltTableModel.addRow(new Malt(type));
 		}
 	}// GEN-LAST:event_addMaltActionPerformed
-
+        
+        private void addYeastActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_addMaltActionPerformed
+		this.yeastPicker.startModal(this);
+		YeastType type = (YeastType) this.yeastPicker.getSelection();
+		if (type != null) {
+			this.yeastTableModel.addRow(new Yeast(type));
+		}
+	}
+        
+        private void remYeastActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_remMaltActionPerformed
+		int i = this.tblYeast.getSelectedRow();
+		this.yeastTableModel.remRow(i);
+	}// GEN-LAST:event_remMaltActionPerformed
+        
 	private void addHopActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_addHopActionPerformed
 		this.hopPicker.startModal(this);
 		HopType type = (HopType) this.hopPicker.getSelection();
@@ -495,6 +624,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 	private javax.swing.JLabel jLabel2;
 	private javax.swing.JPanel jPanel1;
 	private javax.swing.JPanel jPanel2;
+        private javax.swing.JPanel jPanel7;
 	private javax.swing.JPanel jPanel3;
 	private javax.swing.JPanel jPanel4;
 	private javax.swing.JPanel jPanel5;
@@ -507,25 +637,34 @@ public class Acquisto extends javax.swing.JInternalFrame {
 	private javax.swing.JButton remMalt1;
 	private javax.swing.JTable tblHops;
 	private javax.swing.JTable tblMalts;
+        private javax.swing.JButton addYeast;
+        private javax.swing.JButton remYeast;
+        private javax.swing.JTable tblYeast;
+        private javax.swing.JScrollPane jScrollPane3;
+        private javax.swing.JPanel jPanel8;
 	// End of variables declaration//GEN-END:variables
 
 	public void inventario() {
 		Acquisto acquisto = Acquisto.buildFRMInventario();
-		acquisto.addRows(maltTableModel.getRows(), hopTableModel.getRows(), fldDate.getDate());
-		Main.gui.addFrame(acquisto);
+		acquisto.addRows(maltTableModel.getRows(), hopTableModel.getRows(), yeastTableModel.getRows(), fldDate.getDate());
+		isSaved = false;
+                Main.gui.addFrame(acquisto);
 	}
 
-	public void addRows(List<Malt> malts, List<Hop> hops, Date dataRif) {
+	public void addRows(List<Malt> malts, List<Hop> hops, List<Yeast> yeasts, Date dataRif) {
 		for (Malt m : malts) {
-			if (m.getDataAcquisto() == null)
-				m.setDataAcquisto(dataRif);
-			maltTableModel.addRow(Malt.fromXml(m.toXml()));
+                    if (m.getDataAcquisto() == null) m.setDataAcquisto(dataRif);
+                    //maltTableModel.addRow(Malt.fromXml(m.toXml()));
+                    maltTableModel.appendRow(Malt.fromXml(m.toXml()));
 		}
 		for (Hop h : hops) {
-			if (h.getDataAcquisto() == null)
-				h.setDataAcquisto(dataRif);
-			hopTableModel.addRow(Hop.fromXml(h.toXml()));
+                    if (h.getDataAcquisto() == null) h.setDataAcquisto(dataRif);
+                    hopTableModel.appendRow(Hop.fromXml(h.toXml()));
 		}
+                for (Yeast y : yeasts) {
+                    if (y.getDataAcquisto() == null) y.setDataAcquisto(dataRif);
+                    yeastTableModel.appendRow(Yeast.fromXml(y.toXml()));
+                }
 	}
 
 	public List<Malt> getMalts() {
@@ -537,7 +676,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 	}
 
 	public List<Malt> getMalts(String des) {
-		List<Malt> list = new ArrayList<Malt>();
+		List<Malt> list = new ArrayList<>();
 		for (Malt m : maltTableModel.getRows()) {
 			if (m.getNome().equalsIgnoreCase(des))
 				list.add(Malt.fromXml(m.toXml()));
@@ -546,11 +685,12 @@ public class Acquisto extends javax.swing.JInternalFrame {
 	}
 
 	public List<Hop> getHops(String des) {
-		List<Hop> list = new ArrayList<Hop>();
+		List<Hop> list = new ArrayList<>();
 		for (Hop m : hopTableModel.getRows()) {
 			if (m.getNome().equalsIgnoreCase(des))
 				list.add(Hop.fromXml(m.toXml()));
 		}
 		return list;
-	}
+	}      
+        
 }

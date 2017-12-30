@@ -14,6 +14,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -26,6 +27,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 import org.apache.log4j.Logger;
 
+import jmash.config.ConfigurationManager;
+import jmash.config.bean.GeneralConfig;
 import jmash.tableModel.HopTableModel;
 import jmash.tableModel.MaltTableModel;
 import jmash.tableModel.NumberFormatter;
@@ -35,10 +38,13 @@ import jmash.tableModel.YeastTableModel;
 /**
  *
  * @author Alessandro
+ * @author rekhyt
+ * 
  */
 public class Gyle extends javax.swing.JPanel {
 
 	private static final Logger LOGGER = Logger.getLogger(Gyle.class);
+	private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
 
 	/** Creates new form Gyle
         * @param ricetta */
@@ -117,17 +123,17 @@ public class Gyle extends javax.swing.JPanel {
 		tblHops.getColumnModel().getColumn(1).setPreferredWidth(128);
 		tblMalts.getColumnModel().getColumn(0).setPreferredWidth(32);
 
-		this.volume = Main.config.getVolumeFin();
-		this.volumeBoll = Main.config.getVolumeBoil();
+		this.volume = generalConfig.getVolumeFin();
+		this.volumeBoll = generalConfig.getVolumeBoil();
 		this.unitaMisura = "litri";
 
 		spinVolumeBollWO.setModelFormat(23.0, 0.25, 9999999.0, 0.25, "0.00", "Gyle.VB");
 		spinVolumeFinWO.setModelFormat(23.0, 0.25, 9999999.0, 0.25, "0.00", "Gyle.VF");
 
-		spinVolumeBollWO.setDoubleValue(Main.config.getVolumeBoil());
-		spinVolumeFinWO.setDoubleValue(Main.config.getVolumeFin());
-		spinEfficienza.setValue(Main.config.getEfficienza());
-		spinBollitura.setValue(Main.config.getBoilTime());
+		spinVolumeBollWO.setDoubleValue(generalConfig.getVolumeBoil());
+		spinVolumeFinWO.setDoubleValue(generalConfig.getVolumeFin());
+		spinEfficienza.setValue(generalConfig.getEfficienza());
+		spinBollitura.setValue(generalConfig.getBoilTime());
 
 		((javax.swing.SpinnerNumberModel) spinEfficienza.getModel()).setMaximum(100);
 		((javax.swing.SpinnerNumberModel) spinBollitura.getModel()).setMinimum(0);
@@ -301,7 +307,7 @@ public class Gyle extends javax.swing.JPanel {
 		});
 		jPanel6.add(btnAdd5);
 
-		btnAdd6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/extract.png"))); // NOI18N
+		btnAdd6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/diluizioni.png"))); // NOI18N
 		btnAdd6.setToolTipText(bundle.getString("diluizioni")); // NOI18N
 		btnAdd6.setAlignmentX(0.5F);
 		btnAdd6.setMaximumSize(new java.awt.Dimension(30, 30));
@@ -326,19 +332,6 @@ public class Gyle extends javax.swing.JPanel {
 			}
 		});
 		jPanel6.add(btnAdd7);
-
-		btnAdd8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/bowling.gif"))); // NOI18N
-		btnAdd8.setToolTipText(bundle.getString("StrikeTemp")); // NOI18N
-		btnAdd8.setAlignmentX(0.5F);
-		btnAdd8.setMaximumSize(new java.awt.Dimension(30, 30));
-		btnAdd8.setMinimumSize(new java.awt.Dimension(30, 30));
-		btnAdd8.setPreferredSize(new java.awt.Dimension(36, 36));
-		btnAdd8.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnAdd8ActionPerformed(evt);
-			}
-		});
-		jPanel6.add(btnAdd8);
 
 		btnAdd9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/fileprint.png"))); // NOI18N
 		btnAdd9.setToolTipText(bundle.getString("Print")); // NOI18N
@@ -1162,14 +1155,6 @@ public class Gyle extends javax.swing.JPanel {
 
 	}// GEN-LAST:event_btnAdd9ActionPerformed
 
-	private void btnAdd8ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd8ActionPerformed
-		StrikeTemp ed = new StrikeTemp();
-		ed.setKgMalto(this.summaryTableModel.getTotG() / 1000);
-		Gui.desktopPane.add(ed);
-		Utils.center(ed, ricetta);
-		ed.setVisible(true);
-	}// GEN-LAST:event_btnAdd8ActionPerformed
-
 	private void btnAdd7ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAdd7ActionPerformed
 		Thread th = new Thread() {
 			@Override
@@ -1401,7 +1386,7 @@ public class Gyle extends javax.swing.JPanel {
 		this.dirty = true;
 	}
 
-	private double volume = Main.config.getVolumeFin();
+	private double volume = generalConfig.getVolumeFin();
 
 	public double getVolumeConverted() {
 		return this.volume;
@@ -1415,7 +1400,7 @@ public class Gyle extends javax.swing.JPanel {
 		this.volume = v;
 	}
 
-	private double volumeBoll = Main.config.getVolumeBoil();
+	private double volumeBoll = generalConfig.getVolumeBoil();
 
 	public double getVolumeBollConverted() {
 		return this.volumeBoll;
@@ -1439,7 +1424,7 @@ public class Gyle extends javax.swing.JPanel {
 		this.unitaMisura = unitaMisura;
 	}
 
-	private double efficienza = Main.config.getEfficienza();
+	private double efficienza = generalConfig.getEfficienza();
 
 	public double getEfficienza() {
 		return this.efficienza;
@@ -1449,7 +1434,7 @@ public class Gyle extends javax.swing.JPanel {
 		this.efficienza = v;
 	}
 
-	private int bollitura = Main.config.getBoilTime();
+	private int bollitura = generalConfig.getBoilTime();
 
 	public int getBollitura() {
 		return this.bollitura;

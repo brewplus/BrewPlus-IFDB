@@ -23,9 +23,6 @@ package jmash;
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.beans.PropertyVetoException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
@@ -863,9 +860,30 @@ public class CarbonationTool extends javax.swing.JInternalFrame {
 	}// GEN-LAST:event_spnTStateChanged
 
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-		new Info("British ales\t\t1.5 - 2.0\n" + "Porter, stout\t\t1.7 - 2.3\n" + "Belgian ales\t\t" + "1.9 - 2.4\n"
-				+ "European lagers\t2.2 - 2.7\n" + "American ales & lagers\t2.2 - 2.7\n" + "Lambic\t\t2.4 - 2.8\n"
-				+ "Fruit lambic\t\t3.0 - 4.5\n" + "German wheat beer\t3.3 - 4.5").startModal(this);
+		new Info("Volume di CO2 degli Stili",
+                "American Lager\t(2.5-2.7)\n" +
+                "European Pale Lager\t(2.3-2.5)\n" +
+                "Light Ale\t\t(2.3-2.6)\n" +
+                "Bitter And English Pale Ale\t(.75-1.3)\n" +
+                "Scottish Ales\t\t(.75-1.3)\n" +
+                "American Pale Ales\t(2.2-2.8)\n" +
+                "India Pale Ale\t\t(1.5-2.3)\n" +
+                "Koelsch And Altbier\t(2.1-3.0)\n" +
+                "German Amber Lager\t(2.4-2.7)\n" +
+                "Brown Ale\t\t(1.3-2.5)\n" +
+                "English And Scottish Strong Ale (1.5-2.3)\n" +
+                "Barleywine And Imperial Stout   (1.3-2.3)\n" +
+                "European Dark Lager\t(2.2-2.6)\n" +
+                "Bock\t\t(2.2-2.7)\n" +
+                "Porter\t\t(1.7-2.5)\n" +
+                "Stout\t\t(1.6-2.6)\n" +
+                "Wheat Beer\t\t(3.6-4.7)\n" +
+                "Strong Belgian Ale\t(1.9-2.4)\n" +
+                "Belgian And French Ale\t(1.9-2.6)\n" +
+                "Lambic And Belgian Sour Ale\t(3.0-4.5)\n" +
+                "Fruit Beer\t\t(2.0-3.0)\n" +
+                "Spice/Herb/Vegetable Beer\t(2.0-3.0)\n" +
+                "Smoke-flavored Beer\t(2.1-2.5)").startModal(this);
 	}// GEN-LAST:event_jButton1ActionPerformed
 
 	private void jButton1StateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_jButton1StateChanged

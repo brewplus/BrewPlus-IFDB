@@ -28,7 +28,7 @@ public class GlassPanel extends JPanel {
     // java.awt.Toolkit.getDefaultToolkit().createImage(Ricetta.class.getResource("/jmash/images/glass2.png")));
     private static Image glassColor = Main.glassColorIcon.getImage();
 
-    private static BufferedImage colorSource = new BufferedImage(Ricetta.dimx, Ricetta.dimy,
+    private static BufferedImage colorSource = new BufferedImage(Ricetta.DIMX, Ricetta.DIMY,
             BufferedImage.TYPE_INT_ARGB);;
 
     private static final long serialVersionUID = -7721900896919471804L;
@@ -41,13 +41,13 @@ public class GlassPanel extends JPanel {
 
     public GlassPanel(Ricetta ricetta) {
         this.ricetta = ricetta;
-        this.doubleBuffer = new BufferedImage(Ricetta.dimx, Ricetta.dimy, BufferedImage.TYPE_INT_ARGB);
-        this.dest3 = new BufferedImage(Ricetta.dimx, Ricetta.dimy, BufferedImage.TYPE_INT_ARGB);
+        this.doubleBuffer = new BufferedImage(Ricetta.DIMX, Ricetta.DIMY, BufferedImage.TYPE_INT_ARGB);
+        this.dest3 = new BufferedImage(Ricetta.DIMX, Ricetta.DIMY, BufferedImage.TYPE_INT_ARGB);
 
         colorSource.createGraphics().drawImage(glassColor, 0, 0, this);
         this.setDoubleBuffered(true);
-        for (int y = 0; y < Ricetta.dimy; y++) {
-            for (int x = 0; x < Ricetta.dimx; x++) {
+        for (int y = 0; y < Ricetta.DIMY; y++) {
+            for (int x = 0; x < Ricetta.DIMX; x++) {
                 int red = (colorSource.getRGB(x, y) >> 16) & 0xff;
                 int green = (colorSource.getRGB(x, y) >> 8) & 0xff;
                 int blue = (colorSource.getRGB(x, y) >> 0) & 0xff;
@@ -67,7 +67,7 @@ public class GlassPanel extends JPanel {
         Graphics2D destG = this.dest3.createGraphics();
         if (this.backColor != null) {
             destG.setColor(this.backColor);
-            destG.drawRect(0, 0, Ricetta.dimx, Ricetta.dimy);
+            destG.drawRect(0, 0, Ricetta.DIMX, Ricetta.DIMY);
         }
         destG.drawImage(this.doubleBuffer, 0, 0, this);
         g2d.drawImage(this.dest3, 0, 0, this);
@@ -87,8 +87,8 @@ public class GlassPanel extends JPanel {
         int bc = backColor.getRGB();
         float f[] = new float[3];
         float f2[] = new float[3];
-        for (int y = 0; y < Ricetta.dimy; y++) {
-            for (int x = 0; x < Ricetta.dimx; x++) {
+        for (int y = 0; y < Ricetta.DIMY; y++) {
+            for (int x = 0; x < Ricetta.DIMX; x++) {
                 int c = colorSource.getRGB(x, y);
                 double red = (c >> 16) & 0xff;
                 double green = (c >> 8) & 0xff;

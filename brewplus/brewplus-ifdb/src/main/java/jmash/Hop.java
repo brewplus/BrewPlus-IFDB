@@ -20,14 +20,21 @@
 package jmash;
 
 import java.util.Date;
+
+import jmash.config.ConfigurationManager;
+import jmash.config.bean.GeneralConfig;
 import jmash.interfaces.InventoryObject;
 import org.jdom.Element;
 
 /**
  *
  * @author Alessandro
+ * @author rekhyt
+ * 
  */
 public class Hop implements InventoryObject {
+	
+	private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
     
     private Double HSI;
     private Double alfaAcidiPrec;
@@ -43,6 +50,7 @@ public class Hop implements InventoryObject {
     private Double IBUTinseth;
     private Double IBURager;
     private Double IBUDaniels;
+    private Date dataAcquisto;
     private static String campiXml[] = new String[] { "Grammi", "UnitaMisura", "BoilTime", "AlfaAcidi", "Nome", "Forma", "Origine", "Uso", "HSI", "dataAcquisto" };
     
     public Hop() {
@@ -99,7 +107,7 @@ public class Hop implements InventoryObject {
             setBoilTime(0);
         }
         if ("DHEA".compareToIgnoreCase(uso) == 0) {
-            setBoilTime(Main.config.getAmaroDHEA());
+            setBoilTime(generalConfig.getAmaroDHEA());
         }
         if (("first wort".compareToIgnoreCase(uso) == 0) && (this.ricetta != null)) {
             setBoilTime(this.ricetta.getBollitura());
@@ -214,11 +222,11 @@ public class Hop implements InventoryObject {
         //if ((hop.getUso() != null) && (hop.getUso().compareToIgnoreCase("dry") == 0)) {
             d *= 0;
         }
-        if ("pellet".compareToIgnoreCase(hop.getUso()) == 0) {
+        if ("pellet".compareToIgnoreCase(hop.getForma()) == 0) {
         //if ((hop.getForma() != null) && (hop.getForma().compareToIgnoreCase("pellet") == 0)) {
             d *= 1.1;
         }
-        if ("plug".compareToIgnoreCase(hop.getUso()) == 0) {
+        if ("plug".compareToIgnoreCase(hop.getForma()) == 0) {
         //if ((hop.getForma() != null) && (hop.getForma().compareToIgnoreCase("plug") == 0)) {
             d *= 1.02;
         }
@@ -367,8 +375,6 @@ public class Hop implements InventoryObject {
     public void setAlfaAcidiPrec(Double alfaAcidiPrec) {
         this.alfaAcidiPrec = alfaAcidiPrec;
     }
-
-    private Date dataAcquisto;
 
     public Date getDataAcquisto() {
         return dataAcquisto;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2016-12-12T13:06:39 -->
+<!-- 2017-01-12T10:35:09 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ricetta" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="40e306aa-d668-437e-ba03-4266478354b9">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sommario.xml"/>
 	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
@@ -386,6 +386,9 @@
 		<fieldDescription><![CDATA[spargeVolume]]></fieldDescription>
 	</field>
 	<field name="note" class="java.lang.String"/>
+	<field name="ibuLabel" class="java.lang.String">
+		<fieldDescription><![CDATA[ibuLabel]]></fieldDescription>
+	</field>
 	<background>
 		<band height="801" splitType="Stretch">
 			<image onErrorType="Blank">
@@ -1148,14 +1151,6 @@
 				<text><![CDATA[ABV (%Vol)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="4" y="135" width="101" height="13" uuid="a7873eaa-09cc-447e-b842-f9a21e5fa00a"/>
-				<textElement>
-					<font fontName="DejaVu Serif"/>
-					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
-				</textElement>
-				<text><![CDATA[IBU (Tinseth)]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="4" y="148" width="101" height="13" uuid="7a26b2f8-d596-4e51-a757-449aa75ce9f0"/>
 				<textElement>
 					<font fontName="DejaVu Serif"/>
@@ -1907,6 +1902,13 @@
 					<font fontName="DejaVu Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{spargeVolume}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="135" width="101" height="13" uuid="c740fc78-1f19-4740-a4ba-a5d6c60bfc91"/>
+				<textElement>
+					<font fontName="DejaVu Serif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ibuLabel}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

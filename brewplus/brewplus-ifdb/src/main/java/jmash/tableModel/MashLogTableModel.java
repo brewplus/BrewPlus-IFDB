@@ -21,7 +21,12 @@
 package jmash.tableModel;
 
 import java.lang.reflect.Method;
-import jmash.*;
+
+import jmash.PanelMashLog;
+import jmash.Ricetta;
+import jmash.TLog;
+import jmash.Utils;
+
 
 /**
  *

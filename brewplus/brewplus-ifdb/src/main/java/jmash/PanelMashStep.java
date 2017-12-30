@@ -23,6 +23,10 @@ package jmash;
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
@@ -30,14 +34,10 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import javax.swing.ImageIcon;
 
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
-import jmash.tableModel.MashDecoctionStepTableModel;
-import jmash.tableModel.MashInfusionStepTableModel;
-import jmash.tableModel.MashStepTableModel;
-import jmash.tableModel.NumberFormatter;
 
 import org.jdom.Document;
 import org.jdom.Element;
@@ -55,10 +55,13 @@ import org.jfree.chart.renderer.xy.XYAreaRenderer;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
-import javax.swing.JButton;
-import java.awt.Dimension;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
+import jmash.tableModel.MashDecoctionStepTableModel;
+import jmash.tableModel.MashInfusionStepTableModel;
+import jmash.tableModel.MashStepTableModel;
+import jmash.tableModel.NumberFormatter;
+import jmash.utils.BrewplusEnvironment;
+import jmash.utils.Constants;
 
 /**
  *
@@ -70,6 +73,7 @@ public class PanelMashStep extends javax.swing.JPanel {
 	 *
 	 */
 	private static final long serialVersionUID = 2970112440652235772L;
+	private static BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
 	/** Creates new form PanelMashStep */
 	private Ricetta ricetta;
 	private JInternalFrame parentFrame;
@@ -314,6 +318,7 @@ public class PanelMashStep extends javax.swing.JPanel {
 		jToolBar2.setFloatable(false);
 
 		jButton8.setIcon(new ImageIcon(PanelMashStep.class.getResource("/jmash/images/new.png")));
+                jButton8.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		jButton8.setToolTipText("Nuovo...");
 		jButton8.setMaximumSize(new java.awt.Dimension(37, 35));
 		jButton8.setMinimumSize(new java.awt.Dimension(37, 35));
@@ -326,6 +331,7 @@ public class PanelMashStep extends javax.swing.JPanel {
 		jToolBar2.add(jButton8);
 
 		jButton4.setIcon(new ImageIcon(PanelMashStep.class.getResource("/jmash/images/folder.png")));
+                jButton4.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		jButton4.setToolTipText("Apri...");
 		jButton4.setMaximumSize(new java.awt.Dimension(37, 35));
 		jButton4.setMinimumSize(new java.awt.Dimension(37, 35));
@@ -339,6 +345,7 @@ public class PanelMashStep extends javax.swing.JPanel {
 		jToolBar2.add(jButton4);
 
 		jButton5.setIcon(new ImageIcon(PanelMashStep.class.getResource("/jmash/images/save.png")));
+                jButton5.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		jButton5.setToolTipText("Salva...");
 		jButton5.setMaximumSize(new java.awt.Dimension(37, 35));
 		jButton5.setMinimumSize(new java.awt.Dimension(37, 35));
@@ -351,6 +358,7 @@ public class PanelMashStep extends javax.swing.JPanel {
 		jToolBar2.add(jButton5);
 
 		jButton7.setIcon(new ImageIcon(PanelMashStep.class.getResource("/jmash/images/saveas.png")));
+                jButton7.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		jButton7.setToolTipText("Salva come...");
 		jButton7.setMaximumSize(new java.awt.Dimension(37, 35));
 		jButton7.setMinimumSize(new java.awt.Dimension(37, 35));
@@ -363,6 +371,7 @@ public class PanelMashStep extends javax.swing.JPanel {
 		jToolBar2.add(jButton7);
 
 		jButton6.setIcon(detailsIcon);
+                jButton6.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		jButton6.setToolTipText("Visualizza in formato umano");
 		jButton6.setMaximumSize(new java.awt.Dimension(37, 35));
 		jButton6.setMinimumSize(new java.awt.Dimension(37, 35));
@@ -379,6 +388,7 @@ public class PanelMashStep extends javax.swing.JPanel {
 
 		jButtonImg.setIcon(new ImageIcon(PanelMashStep.class.getResource("/jmash/images/mashdesign.png")));
 		jButtonImg.setToolTipText("Visualizza prospetto temperature");
+                jButtonImg.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		jButtonImg.setRequestFocusEnabled(false);
 		jButtonImg.setPreferredSize(new Dimension(37, 35));
 		jButtonImg.setMinimumSize(new Dimension(37, 35));
@@ -418,6 +428,7 @@ public class PanelMashStep extends javax.swing.JPanel {
 		btnAdd3.setIcon(Main.addIcon);
 		java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("jmash/lang"); // NOI18N
 		btnAdd3.setToolTipText(bundle.getString("Aggiungi")); // NOI18N
+                btnAdd3.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnAdd3.setAlignmentX(0.5F);
 		btnAdd3.setMaximumSize(new java.awt.Dimension(30, 30));
 		btnAdd3.setMinimumSize(new java.awt.Dimension(30, 30));
@@ -431,6 +442,7 @@ public class PanelMashStep extends javax.swing.JPanel {
 
 		btnRem3.setIcon(Main.remIcon);
 		btnRem3.setToolTipText(bundle.getString("Rimuovi")); // NOI18N
+                btnRem3.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnRem3.setAlignmentX(0.5F);
 		btnRem3.setMaximumSize(new java.awt.Dimension(30, 30));
 		btnRem3.setMinimumSize(new java.awt.Dimension(30, 30));
@@ -474,7 +486,8 @@ public class PanelMashStep extends javax.swing.JPanel {
 		jPanel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 2));
 
 		btnAdd5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/edit_add.png"))); // NOI18N
-		btnAdd5.setToolTipText(bundle.getString("Aggiungi")); // NOI18N
+		btnAdd5.setCursor(new Cursor((Cursor.HAND_CURSOR)));
+                btnAdd5.setToolTipText(bundle.getString("Aggiungi")); // NOI18N
 		btnAdd5.setAlignmentX(0.5F);
 		btnAdd5.setMaximumSize(new java.awt.Dimension(30, 30));
 		btnAdd5.setMinimumSize(new java.awt.Dimension(30, 30));
@@ -487,7 +500,8 @@ public class PanelMashStep extends javax.swing.JPanel {
 		jPanel4.add(btnAdd5);
 
 		btnRem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/edit_remove.png"))); // NOI18N
-		btnRem4.setToolTipText(bundle.getString("Rimuovi")); // NOI18N
+		btnRem4.setCursor(new Cursor((Cursor.HAND_CURSOR)));
+                btnRem4.setToolTipText(bundle.getString("Rimuovi")); // NOI18N
 		btnRem4.setAlignmentX(0.5F);
 		btnRem4.setMaximumSize(new java.awt.Dimension(30, 30));
 		btnRem4.setMinimumSize(new java.awt.Dimension(30, 30));
@@ -550,6 +564,7 @@ public class PanelMashStep extends javax.swing.JPanel {
 
 		btnAdd6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/edit_add.png"))); // NOI18N
 		btnAdd6.setToolTipText(bundle.getString("Aggiungi")); // NOI18N
+                btnAdd6.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnAdd6.setAlignmentX(0.5F);
 		btnAdd6.setMaximumSize(new java.awt.Dimension(30, 30));
 		btnAdd6.setMinimumSize(new java.awt.Dimension(30, 30));
@@ -563,6 +578,7 @@ public class PanelMashStep extends javax.swing.JPanel {
 
 		btnRem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/edit_remove.png"))); // NOI18N
 		btnRem5.setToolTipText(bundle.getString("Rimuovi")); // NOI18N
+                btnRem5.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnRem5.setAlignmentX(0.5F);
 		btnRem5.setMaximumSize(new java.awt.Dimension(30, 30));
 		btnRem5.setMinimumSize(new java.awt.Dimension(30, 30));
@@ -623,12 +639,12 @@ public class PanelMashStep extends javax.swing.JPanel {
 		if (!tblMaltSteps2.isEnabled())
 			return;
 		MashStep step = new MashStep(this.ricetta);
-		step.setLength(new Integer(15));
-		step.setRamp(new Integer(5));
+		step.setLength(15);
+		step.setRamp(5);
 		step.setType("Aggiunta");
-		step.setStart(new Integer(15));
-		step.setStartTemp(new Integer(15));
-		step.setStartTemp(new Integer(15));
+		step.setStart(15);
+		step.setStartTemp(15);
+		step.setStartTemp(15);
 		step.setEndTemp(50);
 		step.setInfusionTemp(100);
 		this.mashInfusionStepTableModel.addRow(step, true);
@@ -827,7 +843,7 @@ public class PanelMashStep extends javax.swing.JPanel {
 	}// GEN-LAST:event_jButton5ActionPerformed
 
 	private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton4ActionPerformed
-		File file1 = Utils.pickFileToLoad(new JInternalFrame(), Main.mashDir);
+		File file1 = Utils.pickFileToLoad(new JInternalFrame(), bpenv.getFolderName(Constants.DIR_MASH));
 		if (file1 != null) {
 
 			Document doc = Utils.readFileAsXml(file1.toString());
@@ -949,7 +965,7 @@ public class PanelMashStep extends javax.swing.JPanel {
 	public void save(File savefile) {
 
 		if (savefile == null) {
-			savefile = Utils.pickFileToSave(new JInternalFrame(), Main.mashDir);
+			savefile = Utils.pickFileToSave(new JInternalFrame(), bpenv.getFolderName(Constants.DIR_MASH));
 		}
 		if (savefile == null)
 			return;
@@ -1078,6 +1094,12 @@ public class PanelMashStep extends javax.swing.JPanel {
 			rds = this.mashStepTableModel.getDataSet(rds);
 			rds = this.mashDecoctionStepTableModel.getDataSet(rds);
 			rds = this.mashInfusionStepTableModel.getDataSet(rds);
+		}
+		
+		if (this.mashStepTableModel.getRows() != null && !this.mashStepTableModel.getRows().isEmpty())
+		{
+			MashStep mashInStep = this.mashStepTableModel.getRow(0);
+			ricetta.getWaterNeeded().setTemperaturaMashIn(new Double(mashInStep.getStartTemp()));
 		}
 	}
 

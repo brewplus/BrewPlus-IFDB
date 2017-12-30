@@ -41,13 +41,15 @@ import org.jdom.Element;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
+import jmash.config.ConfigurationManager;
+import jmash.config.bean.GeneralConfig;
+
 public class BrowseHobbyBirra2 extends javax.swing.JInternalFrame {
 
-	/**
-	 *
-	 */
 	private static final long serialVersionUID = 6795432869963837389L;
 	private static Logger LOGGER = Logger.getLogger(BrowseHobbyBirra2.class);
+	private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
+	
 	private List<StyleTreeNode> styleNodes = new ArrayList<StyleTreeNode>();
 	GridLayout gl = new GridLayout();
 	public Document ricettaSelezionata = null;
@@ -65,7 +67,7 @@ public class BrowseHobbyBirra2 extends javax.swing.JInternalFrame {
 	public BrowseHobbyBirra2() {
 		initComponents();
 		setBorder(Utils.getDefaultBorder());
-		Document doc = Utils.readFileAsXml("http://" + Main.config.getRemoteServer() + "/ricette_stile_xml.asp");
+		Document doc = Utils.readFileAsXml("http://" + generalConfig.getRemoteServer() + "/ricette_stile_xml.asp");
 		if (doc == null) {
 			return;
 		}
@@ -117,7 +119,7 @@ public class BrowseHobbyBirra2 extends javax.swing.JInternalFrame {
 		gl.setRows(styleNodes.size() / COLUMNS + styleNodes.size() % COLUMNS);
 		this.jScrollPane1.setViewportView(this.panelConfirmed);
 
-		doc = Utils.readFileAsXml("http://" + Main.config.getRemoteServer() + "/ricette_unconfirmed_xml.asp");
+		doc = Utils.readFileAsXml("http://" + generalConfig.getRemoteServer() + "/ricette_unconfirmed_xml.asp");
 		if (doc == null) {
 			return;
 		}
@@ -317,7 +319,7 @@ public class BrowseHobbyBirra2 extends javax.swing.JInternalFrame {
 				public void actionPerformed(ActionEvent e) {
 
 					if (SubStyleTreeNode.this.nodes.isEmpty()) {
-						Document doc = Utils.readFileAsXml("http://" + Main.config.getRemoteServer()
+						Document doc = Utils.readFileAsXml("http://" + generalConfig.getRemoteServer()
 								+ "/ricette_xml.asp?id_stile=" + getIdStile());
 						if (doc == null) {
 							return;
@@ -393,7 +395,7 @@ public class BrowseHobbyBirra2 extends javax.swing.JInternalFrame {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					Document doc = Utils.readFileAsXml("http://" + Main.config.getRemoteServer()
+					Document doc = Utils.readFileAsXml("http://" + generalConfig.getRemoteServer()
 							+ "/view_ricetta_xml.asp?id_ricetta_HB=" + getId());
 					if (doc == null) {
 						return;

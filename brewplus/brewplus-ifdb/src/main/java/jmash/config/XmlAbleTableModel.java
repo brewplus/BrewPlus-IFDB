@@ -26,7 +26,6 @@ import java.lang.reflect.Method;
 import org.apache.log4j.Logger;
 
 import jmash.tableModel.GenericTableModel;
-import jmash.Main;
 import jmash.Utils;
 import jmash.interfaces.XmlAble;
 
@@ -56,15 +55,7 @@ public class XmlAbleTableModel extends GenericTableModel<XmlAble> {
 
 			Method m = h.getClass().getMethod("get" + Utils.capitalize(xmlAble.getXmlFields()[col]));
 			return m.invoke(h);
-		} catch (IllegalArgumentException ex) {
-			LOGGER.error(ex.getMessage(), ex);
-		} catch (SecurityException ex) {
-			LOGGER.error(ex.getMessage(), ex);
-		} catch (NoSuchMethodException ex) {
-			LOGGER.error(ex.getMessage(), ex);
-		} catch (IllegalAccessException ex) {
-			LOGGER.error(ex.getMessage(), ex);
-		} catch (InvocationTargetException ex) {
+		} catch (IllegalArgumentException | SecurityException | NoSuchMethodException | IllegalAccessException | InvocationTargetException ex) {
 			LOGGER.error(ex.getMessage(), ex);
 		}
 
@@ -97,15 +88,7 @@ public class XmlAbleTableModel extends GenericTableModel<XmlAble> {
 			if (ret.equals(Float.class)) {
 				m.invoke(h, (Float) value);
 			}
-		} catch (SecurityException ex) {
-			LOGGER.error(ex.getMessage(), ex);
-		} catch (IllegalArgumentException ex) {
-			LOGGER.error(ex.getMessage(), ex);
-		} catch (InvocationTargetException ex) {
-			LOGGER.error(ex.getMessage(), ex);
-		} catch (IllegalAccessException ex) {
-			LOGGER.error(ex.getMessage(), ex);
-		} catch (NoSuchMethodException ex) {
+		} catch (SecurityException | IllegalArgumentException | InvocationTargetException | IllegalAccessException | NoSuchMethodException ex) {
 			LOGGER.error(ex.getMessage(), ex);
 		}
 

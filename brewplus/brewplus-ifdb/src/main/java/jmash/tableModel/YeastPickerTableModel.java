@@ -22,7 +22,9 @@ package jmash.tableModel;
 
 import java.util.LinkedList;
 import java.util.List;
-import jmash.*;
+
+import jmash.YeastType;
+
 
 /**
  *
@@ -39,7 +41,7 @@ public class YeastPickerTableModel extends PickerTableModel {
 	public YeastPickerTableModel() {
 	}
 
-	LinkedList<YeastType> dataValues = new LinkedList<YeastType>();
+	LinkedList<YeastType> dataValues = new LinkedList<>();
 	String columnNames[] = { "Produttore", "Codice", "Nome", "Attenuazione Media (%)", "Forma" };
 
 	public void addRow(YeastType h) {
@@ -60,7 +62,7 @@ public class YeastPickerTableModel extends PickerTableModel {
 
 	@Override
 	public String getColumnName(int col) {
-		return this.columnNames[col].toString();
+		return this.columnNames[col];
 	}
 
 	@Override

@@ -20,6 +20,7 @@
 
 package jmash;
 
+import java.util.Date;
 import org.apache.log4j.Logger;
 import org.jdom.Element;
 
@@ -38,7 +39,13 @@ public class Yeast {
 	public Yeast(Ricetta ricetta) {
 		this.setRicetta(ricetta);
 	}
-
+        
+        public Yeast(YeastType type) {
+            this();
+            this.nome = type.getNome();
+            this.codice = type.getCodice();
+	}
+        
 	private Ricetta ricetta;
 	private String nome;
 	private String codice;
@@ -55,18 +62,25 @@ public class Yeast {
 	private String temperaturaMax;
 	private String quantita;
 	private String temperaturaMaxFerm;
+        private Date dataAcquisto;
 	
 	private static String campiXml[] = { "nome", "codice", "produttore", "forma", "categoria", "descrizione",
 			"attenuazioneMin", "attenuazioneMax", "attenuazioneMed", "temperaturaCons", "temperaturaMin",
-			"temperaturaMax", "note", "quantita", "temperaturaMaxFerm" };
+			"temperaturaMax", "note", "quantita", "temperaturaMaxFerm", "dataAcquisto" };
 
-	
+	public Date getDataAcquisto() {
+            return dataAcquisto;
+        }
+
+        public void setDataAcquisto(Date dataAcquisto) {
+            this.dataAcquisto = dataAcquisto;
+        }
 	public String getQuantita() {
-		return quantita;
+		return quantita!=null?quantita.replaceAll(",", "."):null;
 	}
 
 	public void setQuantita(String quantita) {
-		this.quantita = quantita;
+		this.quantita = (quantita!=null?quantita.replaceAll(",", "."):"0.0");
 	}
 	
 	public Element toXml() {

@@ -22,7 +22,9 @@ package jmash.tableModel;
 
 import java.util.LinkedList;
 import java.util.List;
-import jmash.*;
+
+import jmash.BrewStyle;
+
 
 /**
  *

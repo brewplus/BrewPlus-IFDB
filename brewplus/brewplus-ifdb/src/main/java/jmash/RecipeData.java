@@ -20,6 +20,8 @@
 
 package jmash;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -35,7 +37,8 @@ import jmash.tableModel.MaltTableModel;
 public class RecipeData {
     
     private static Logger LOGGER = Logger.getLogger(RecipeData.class);
-    private static final String SEPARATOR = "\n";
+    private static final String SEPARATOR = "\r\n";
+    private static final int BUFFERE_LENGHT = 30;
     private String nome, note, unitaMisura, fotografia, priming;
     private Double volumeBoll, volumeFin, volumeDiluito;
     private Double efficienza;
@@ -195,7 +198,6 @@ public class RecipeData {
     }
     
     public String getDes4Forum(Ricetta ricetta) {
-    	//SGABUZEN REGNA... quando funziona tolgo questi commenti giuro!
     	double volume = getBollituraConcentrata() ? getVolumeDiluito() : getVolumeFin();
     	double volPB = ricetta.getWaterNeeded().getVolumeMostoPreBoil();
     	double OGPB = MaltTableModel.calcolaSGIBU(getMalts(), volPB, getEfficienza());
@@ -319,12 +321,28 @@ public class RecipeData {
         sb.append("REN:").append(this.nome.length() == 0 ? "NO NAME" : this.nome).append(SEPARATOR);
         // Boil Time
         sb.append("CTT:").append(this.bollitura).append(SEPARATOR);
+        // Strike Water
+        BigDecimal swt =  new BigDecimal(this.getWaterNeeded().getAttributeValue("StrikeWater"));
+        sb.append("SWT:").append(swt.setScale(0, RoundingMode.HALF_EVEN)).append(SEPARATOR);
+        
+        // Malt list
+        List<Malt> listMalts = this.getMalts();
+        int y = 0;
+        for(Malt malt : listMalts){
+        	if(y<10){
+        		sb.append("L0").append(y).append(":").append(malt.getNome()).append(SEPARATOR);
+        	}else{
+        		sb.append("L").append(y).append(":").append(malt.getNome()).append(SEPARATOR);
+        	}
+        	y++;
+        	
+        }
         
         // Mash steps
         List<MashStep> listMashStep = this.getInfusionSteps();
         int size = listMashStep.size();
-        if(size < 2 || size >=8 ){
-            LOGGER.error("Number of steps must be grater than 2 and lesser than 8 ");
+        if(size < 1 || size >=8 ){
+            LOGGER.error("Number of steps must be grater than 1 and lesser than 7 ");
         } else {
             MashStep mashIn = listMashStep.get(0);
             sb.append("N00:").append("Mash-IN").append(SEPARATOR);
@@ -357,9 +375,10 @@ public class RecipeData {
         List<Hop> hopList = this.getHops();
         int i = 0;
         for(Hop hop : hopList){
-            if(hop.getBoilTime().intValue()>0 || !hop.getUso().equalsIgnoreCase("Dry")){
+            if(!hop.getUso().equalsIgnoreCase("Dry")){ // i luppoli in Dry Hopping non devono essere considerati
                 sb.append("H0").append(i).append(":").append(hop.getNome()).append(SEPARATOR);
-                sb.append("M0").append(i).append(":").append(hop.getGrammi()).append(SEPARATOR);
+                BigDecimal hg = new BigDecimal(hop.getGrammi());
+                sb.append("M0").append(i).append(":").append(hg.setScale(0, RoundingMode.HALF_EVEN)).append(SEPARATOR);
                 sb.append("B0").append(i).append(":").append(hop.getBoilTime() == 0 ? 1 : hop.getBoilTime()).append(SEPARATOR);
                 i++;
                 if(i>=8 ){
@@ -368,8 +387,7 @@ public class RecipeData {
             }
         }
         
-        
-        return sb.toString();
+        return sb.toString().toUpperCase();
         
     }
 

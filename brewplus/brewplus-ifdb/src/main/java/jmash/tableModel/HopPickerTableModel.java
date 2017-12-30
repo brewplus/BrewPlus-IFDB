@@ -22,7 +22,9 @@ package jmash.tableModel;
 
 import java.util.LinkedList;
 import java.util.List;
-import jmash.*;
+
+import jmash.HopType;
+
 
 /**
  *
@@ -40,7 +42,7 @@ public class HopPickerTableModel extends PickerTableModel {
 	public HopPickerTableModel() {
 	}
 
-	String columnNames[] = { "Nome", "Origine", "Alfa Acidi", "Caratteristiche" };
+	String columnNames[] = { "Nome", "Origine", "Alfa Acidi", "Caratteristiche", "Utilizzo" };
 
 	public void addRow(HopType h) {
 		this.dataValues.add(h);
@@ -84,6 +86,8 @@ public class HopPickerTableModel extends PickerTableModel {
 				return h.getAlfaAcidi();
 			case 3:
 				return h.getCaratteristiche();
+			case 4:
+				return h.getUtilizzo();
 			case 0:
 			default:
 				return h.getNome();
@@ -91,5 +95,25 @@ public class HopPickerTableModel extends PickerTableModel {
 		}
 		return null;
 	}
+	
+	LinkedList<HopType> dataValuesCopy = null;
 
+	public void setFilterOn(int column, String VAL) {
+		if (dataValuesCopy == null)
+			dataValuesCopy = dataValues;
+		dataValues = dataValuesCopy;
+		LinkedList<HopType> dataValuesNew = new LinkedList<HopType>();
+		for (int i = 0; i < dataValuesCopy.size(); i++) {
+			if (getValueAt(i, column) != null && getValueAt(i, column).toString().compareToIgnoreCase(VAL) == 0)
+				dataValuesNew.add(dataValuesCopy.get(i));
+		}
+		dataValues = dataValuesNew;
+		fireTableDataChanged();
+	}
+
+	public void setFilterOff() {
+		if (dataValuesCopy != null)
+			dataValues = dataValuesCopy;
+		fireTableDataChanged();
+	}
 }

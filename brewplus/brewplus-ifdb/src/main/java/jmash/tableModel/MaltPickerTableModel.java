@@ -22,8 +22,12 @@ package jmash.tableModel;
 
 import java.util.LinkedList;
 import java.util.List;
+
 import javax.swing.JLabel;
-import jmash.*;
+
+import jmash.Main;
+import jmash.MaltType;
+
 
 /**
  *
