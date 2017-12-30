@@ -58,20 +58,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>build-helper-maven-plugin</artifactId> 
-				<executions> <execution> <id>add-source</id> <phase>generate-sources</phase> 
-				<goals> <goal>add-source</goal> </goals> <configuration> <sources> <source>${project.build.directory}/generated-sources/xjc</source> 
-				</sources> </configuration> </execution> </executions> </plugin> -->
-			<!-- <plugin> <groupId>org.jvnet.jaxb2.maven2</groupId> <artifactId>maven-jaxb2-plugin</artifactId> 
-				<executions> <execution> <id>BJCP schema</id> <goals> <goal>generate</goal> 
-				</goals> <configuration> <schemaDirectory>${basedir}/src/main/resources/schema</schemaDirectory> 
-				<includeSchemas> <includeSchema>**/*.xsd</includeSchema> </includeSchemas> 
-				<extension>true</extension> <args> <arg>-enableIntrospection</arg> </args> 
-				<removeOldOutput>true</removeOldOutput> <verbose>true</verbose> <plugins> 
-				<plugin> <groupId>org.jvnet.jaxb2_commons</groupId> <artifactId>jaxb2-basics</artifactId> 
-				<version>0.6.1</version> </plugin> </plugins> <generateDirectory>${project.build.directory}/generated-sources/xjc</generateDirectory> 
-				<generatePackage>jmash.schema.bjcp</generatePackage> </configuration> </execution> 
-				</executions> </plugin> -->
 		</plugins>
 	</build>
 	<repositories>
