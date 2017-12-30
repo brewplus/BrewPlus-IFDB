@@ -222,11 +222,11 @@ public class Hop implements InventoryObject {
         //if ((hop.getUso() != null) && (hop.getUso().compareToIgnoreCase("dry") == 0)) {
             d *= 0;
         }
-        if ("pellet".compareToIgnoreCase(hop.getUso()) == 0) {
+        if ("pellet".compareToIgnoreCase(hop.getForma()) == 0) {
         //if ((hop.getForma() != null) && (hop.getForma().compareToIgnoreCase("pellet") == 0)) {
             d *= 1.1;
         }
-        if ("plug".compareToIgnoreCase(hop.getUso()) == 0) {
+        if ("plug".compareToIgnoreCase(hop.getForma()) == 0) {
         //if ((hop.getForma() != null) && (hop.getForma().compareToIgnoreCase("plug") == 0)) {
             d *= 1.02;
         }

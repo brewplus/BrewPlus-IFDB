@@ -37,7 +37,7 @@ import jmash.tableModel.MaltTableModel;
 public class RecipeData {
     
     private static Logger LOGGER = Logger.getLogger(RecipeData.class);
-    private static final String SEPARATOR = "\n";
+    private static final String SEPARATOR = "\r\n";
     private static final int BUFFERE_LENGHT = 30;
     private String nome, note, unitaMisura, fotografia, priming;
     private Double volumeBoll, volumeFin, volumeDiluito;
@@ -198,7 +198,6 @@ public class RecipeData {
     }
     
     public String getDes4Forum(Ricetta ricetta) {
-    	//SGABUZEN REGNA... quando funziona tolgo questi commenti giuro!
     	double volume = getBollituraConcentrata() ? getVolumeDiluito() : getVolumeFin();
     	double volPB = ricetta.getWaterNeeded().getVolumeMostoPreBoil();
     	double OGPB = MaltTableModel.calcolaSGIBU(getMalts(), volPB, getEfficienza());
@@ -324,7 +323,7 @@ public class RecipeData {
         sb.append("CTT:").append(this.bollitura).append(SEPARATOR);
         // Strike Water
         BigDecimal swt =  new BigDecimal(this.getWaterNeeded().getAttributeValue("StrikeWater"));
-        sb.append("STW:").append(swt.setScale(0, RoundingMode.HALF_EVEN)).append(SEPARATOR);
+        sb.append("SWT:").append(swt.setScale(0, RoundingMode.HALF_EVEN)).append(SEPARATOR);
         
         // Malt list
         List<Malt> listMalts = this.getMalts();
@@ -335,6 +334,7 @@ public class RecipeData {
         	}else{
         		sb.append("L").append(y).append(":").append(malt.getNome()).append(SEPARATOR);
         	}
+        	y++;
         	
         }
         
@@ -386,9 +386,6 @@ public class RecipeData {
                 }
             }
         }
-        
-        LOGGER.info("PID recipe:");
-        LOGGER.info(sb.toString().toUpperCase());
         
         return sb.toString().toUpperCase();
         

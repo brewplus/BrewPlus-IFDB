@@ -32,6 +32,7 @@ public class BrewplusEnvironment {
 		folderMap.put(Constants.DIR_SHOPPING, new File(userDir + "/shopping/"));
 		folderMap.put(Constants.DIR_WATER, new File(userDir + "/water/"));
 		folderMap.put(Constants.DIR_CONFIG, new File(userDir + "/config/"));
+		folderMap.put(Constants.DIR_EXPORTPID, new File(userDir + "/recipes/"));
 
 		configFileMap = new HashMap<String, File>();
 		configFileMap.put(Constants.XML_HOPS, new File(userDir + "/config/" + "luppoli_ita.xml"));

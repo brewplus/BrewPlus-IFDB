@@ -38,7 +38,7 @@ import org.jdom.Element;
 public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
     
     private AcquistoIngredienti inventario = null;
-    private JFileChooser recipeChooser = new JFileChooser((String)Main.getFromCache("recipe.dir", bpenv.getFolderName(Constants.DIR_RECIPE)));
+    private final JFileChooser recipeChooser = new JFileChooser((String)Main.getFromCache("recipe.dir", bpenv.getFolderName(Constants.DIR_RECIPE)));
     /**
      * Creates new form FrmSelezioneRicette
      */
@@ -321,26 +321,29 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddRicettaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRicettaActionPerformed
-        RecipeData recipe = new RecipeData(); 
+        recipeChooser.setMultiSelectionEnabled(true);
         recipeChooser.setAcceptAllFileFilterUsed(false);
         FileFilter filtro1 = new FileNameExtensionFilter("BrewPlus, HobbyBrew (*.xml)", "xml");
         recipeChooser.addChoosableFileFilter(filtro1);
       
         if (recipeChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            if ("XML".equalsIgnoreCase(Utility.getSelectedFileExtension(recipeChooser.getSelectedFile()))) {
-                try { 
-                    recipeChooser.setCurrentDirectory(recipeChooser.getSelectedFile());
-                    recipe.read(Utils.readFileAsXml(recipeChooser.getSelectedFile().toString()));
-                    if (recipe.getMalts() == null)
-                        throw new Exception();    
-                    addDatiRicetta(recipe);
-                    btnStampaFabbisogno.setEnabled(false);
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(this, "La Ricetta selezionata non è compatibile oppure non contiene malti. ", "Ricetta scartata", JOptionPane.ERROR_MESSAGE); 
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "In formato del file non è quello atteso.", "Ricetta scartata", JOptionPane.ERROR_MESSAGE); 
-            }    
+            for (File currentRecipe : recipeChooser.getSelectedFiles()) {
+                RecipeData recipe = new RecipeData(); 
+                if ("XML".equalsIgnoreCase(Utility.getSelectedFileExtension(currentRecipe))) {
+                    try { 
+                        recipeChooser.setCurrentDirectory(currentRecipe);
+                        recipe.read(Utils.readFileAsXml(currentRecipe.toString()));
+                        if (recipe.getMalts() == null)
+                            throw new Exception();    
+                        addDatiRicetta(recipe);
+                        btnStampaFabbisogno.setEnabled(false);
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(this, "La Ricetta " + currentRecipe.getName() + " non è compatibile oppure non contiene malti. ", "Ricetta scartata", JOptionPane.ERROR_MESSAGE); 
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "In formato del file " + currentRecipe.getName() + " non è quello atteso.", "Ricetta scartata", JOptionPane.ERROR_MESSAGE); 
+                }   
+            }
         }
     }//GEN-LAST:event_btnAddRicettaActionPerformed
 
@@ -466,7 +469,7 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
     
     public static boolean isVisible = false; 
-    private static Map<Integer, RecipeData> listaRicette = new HashMap<>();
+    private static final Map<Integer, RecipeData> listaRicette = new HashMap<>();
     private static Integer idRicetta = 0;
     private static final Integer COL_QUANT_FERMENTABILI = 3;
     private static final Integer COL_FABB_FERMENTABILI = 5;
@@ -474,7 +477,7 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
     private static final Integer COL_FABB_LUPPOLI = 5;
     private static final Integer COL_QUANT_LIEVITI = 2;
     private static final Integer COL_FABB_LIEVITI = 4;
-    private static BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
+    private static final BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
     
     private void inizializza() {
         mTabIngredienti.setTitleAt(0, "Malti e Fermentabili");
@@ -590,8 +593,8 @@ public class FrmSelezioneRicette extends javax.swing.JInternalFrame {
         for (Yeast lievito : lieviti) {
             for (int ii = 0; ii < model.getRowCount(); ii++) {
                 if (lievito.getCodice().equalsIgnoreCase((String)model.getValueAt(ii, 0))) {
-                    if ((Double)model.getValueAt(ii, COL_QUANT_LIEVITI) - Double.parseDouble(lievito.getQuantita()) > 0)
-                        model.setValueAt((Double)model.getValueAt(ii, COL_QUANT_LIEVITI) - Double.parseDouble(lievito.getQuantita()), ii, COL_QUANT_LIEVITI);
+                    if ((Double)model.getValueAt(ii, COL_QUANT_LIEVITI) - Double.parseDouble((lievito.getQuantita() != null && !"".equalsIgnoreCase(lievito.getQuantita())) ? lievito.getQuantita() : "0.0") > 0)
+                        model.setValueAt((Double)model.getValueAt(ii, COL_QUANT_LIEVITI) - Double.parseDouble( (lievito.getQuantita() != null && !"".equalsIgnoreCase(lievito.getQuantita())) ? lievito.getQuantita() : "0.0"), ii, COL_QUANT_LIEVITI);
                     else
                         model.removeRow(ii);
                     break;

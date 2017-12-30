@@ -20,6 +20,7 @@
 
 package jmash.tableModel;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
@@ -100,7 +101,7 @@ public class MashStepTableModel extends GenericTableModel<MashStep> {
 		try {
 			Method m = h.getClass().getMethod("get" + Utils.capitalize(this.fieldNames[col]));
 			return m.invoke(h);
-		} catch (Exception e) {
+		} catch (IllegalAccessException | IllegalArgumentException | NoSuchMethodException | SecurityException | InvocationTargetException e) {
 			Utils.showException(e);
 		}
 		return null;
@@ -117,7 +118,7 @@ public class MashStepTableModel extends GenericTableModel<MashStep> {
 				Method m = cl.getMethod("set" + Utils.capitalize(this.fieldNames[col]), g.getReturnType());
 				Class<? extends Object> ret = g.getReturnType();
 				m.invoke(h, ret.cast(value));
-			} catch (Exception e) {
+			} catch (IllegalAccessException | IllegalArgumentException | NoSuchMethodException | SecurityException | InvocationTargetException e) {
 				Utils.showException(e);
 			}
 			fireTableCellUpdated(row, col);
@@ -139,12 +140,12 @@ public class MashStepTableModel extends GenericTableModel<MashStep> {
 	}
 
 	public XYSeriesCollection getDataSet(XYSeriesCollection ds) {
-		XYSeries series1 = new XYSeries("", false, true );
+		XYSeries series1;// = new XYSeries("", false, true );
 		int T = 0;
 		if (dataValues == null)
 			return ds;
 		for (MashStep h : this.dataValues) {
-			T += h.getLength().intValue();
+			T += h.getLength();
 		}
 		int start = 0;
 		MashStep prec = null;
@@ -176,7 +177,7 @@ public class MashStepTableModel extends GenericTableModel<MashStep> {
 		// ds.addSeries(series1);
 		return ds;
 	}
-	
+	/*
 	private String findName(XYSeriesCollection ds, String name)
 	{
 		String baseName = name;
@@ -188,6 +189,6 @@ public class MashStepTableModel extends GenericTableModel<MashStep> {
 				
 			}
 		}
-	}
+	}*/
 	
 }

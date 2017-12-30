@@ -57,12 +57,16 @@ public class FrmScalaRicetta extends javax.swing.JDialog {
             for (Malt malto : inventario.getMalti()) {
                 esiste = false;
                 if (malto.getNome().equalsIgnoreCase((String)tblMalti.getValueAt(ii, 1)) && malto.getForma().equalsIgnoreCase((String)tblMalti.getValueAt(ii, 6))) {
-                    ((DefaultTableModel)(tblScalaIngredienti.getModel())).addRow(new Object[]{FERMENTABILE,tblMalti.getValueAt(ii, 1), tblMalti.getValueAt(ii, 6),Double.parseDouble(((Quantita)tblMalti.getValueAt(ii, 2)).getValue()),malto.getGrammi(),malto.getGrammi()-Double.parseDouble(((Quantita)tblMalti.getValueAt(ii, 2)).getValue()),false});
+                     Double quantitaNecessaria = Utils.convertWeight(Double.parseDouble(((Quantita)tblMalti.getValueAt(ii, 2)).getValue().replace(",", ".")),(String)tblMalti.getValueAt(ii, 3),"grammi");
+                    ((DefaultTableModel)(tblScalaIngredienti.getModel())).addRow(new Object[]{FERMENTABILE,tblMalti.getValueAt(ii, 1), tblMalti.getValueAt(ii, 6), quantitaNecessaria,malto.getGrammi(),malto.getGrammi()-quantitaNecessaria,false});
                     esiste = true;
                     break;
                 }
             }
-        if (!esiste) ((DefaultTableModel)(tblScalaIngredienti.getModel())).addRow(new Object[]{FERMENTABILE,tblMalti.getValueAt(ii, 1), tblMalti.getValueAt(ii, 6), Double.parseDouble(((Quantita)tblMalti.getValueAt(ii, 2)).getValue()),0.0,0.0-Double.parseDouble(((Quantita)tblMalti.getValueAt(ii, 2)).getValue()),false});    
+        if (!esiste) {
+            Double quantitaNecessaria = Utils.convertWeight(Double.parseDouble(((Quantita)tblMalti.getValueAt(ii, 2)).getValue().replace(",", ".")),(String)tblMalti.getValueAt(ii, 3),"grammi");
+            ((DefaultTableModel)(tblScalaIngredienti.getModel())).addRow(new Object[]{FERMENTABILE,tblMalti.getValueAt(ii, 1), tblMalti.getValueAt(ii, 6), quantitaNecessaria, 0.0,0.0-quantitaNecessaria,false});
+        }    
         } 
     }       
     
@@ -73,7 +77,8 @@ public class FrmScalaRicetta extends javax.swing.JDialog {
             Boolean presente = false;
             for (int jj = 0; jj < tblScalaIngredienti.getRowCount(); jj++) {
                 if (LUPPOLI.equalsIgnoreCase((String)modelScalaIngredienti.getValueAt(jj, 0)) && ((String)modelScalaIngredienti.getValueAt(jj, 1)).equalsIgnoreCase((String)tblLuppoli.getValueAt(ii, 1)) && ((String)modelScalaIngredienti.getValueAt(jj,2)).equalsIgnoreCase((String)tblLuppoli.getValueAt(ii, 4))) {
-                    modelScalaIngredienti.setValueAt((Double)modelScalaIngredienti.getValueAt(jj, 3) + Double.parseDouble(((Quantita)tblLuppoli.getValueAt(ii, 2)).getValue()), jj, 3);
+                    Double quantitaNecessaria = Utils.convertWeight(Double.parseDouble(((Quantita)tblLuppoli.getValueAt(ii, 2)).getValue().replace(",", ".")),(String)tblLuppoli.getValueAt(ii, 3),"grammi");
+                    modelScalaIngredienti.setValueAt((Double)modelScalaIngredienti.getValueAt(jj, 3) + quantitaNecessaria, jj, 3);
                     modelScalaIngredienti.setValueAt((Double)modelScalaIngredienti.getValueAt(jj, 4) - (Double)modelScalaIngredienti.getValueAt(jj,3), jj, 5);
                     presente = true;
                 }
@@ -83,12 +88,16 @@ public class FrmScalaRicetta extends javax.swing.JDialog {
                     for (Hop hop : inventario.getLuppoli()) {
                         esiste = false;
                         if (hop.getNome().equalsIgnoreCase((String)tblLuppoli.getValueAt(ii, 1)) && hop.getForma().equalsIgnoreCase((String)tblLuppoli.getValueAt(ii, 4))) {
-                            ((DefaultTableModel)(tblScalaIngredienti.getModel())).addRow(new Object[]{LUPPOLI,(String)tblLuppoli.getValueAt(ii, 1), (String)tblLuppoli.getValueAt(ii, 4),Double.parseDouble(((Quantita)tblLuppoli.getValueAt(ii, 2)).getValue()),hop.getGrammi(),hop.getGrammi()-Double.parseDouble(((Quantita)tblLuppoli.getValueAt(ii, 2)).getValue()),false});
+                             Double quantitaNecessaria = Utils.convertWeight(Double.parseDouble(((Quantita)tblLuppoli.getValueAt(ii, 2)).getValue().replace(",", ".")),(String)tblLuppoli.getValueAt(ii, 3),"grammi");
+                            ((DefaultTableModel)(tblScalaIngredienti.getModel())).addRow(new Object[]{LUPPOLI,(String)tblLuppoli.getValueAt(ii, 1), (String)tblLuppoli.getValueAt(ii, 4),quantitaNecessaria ,hop.getGrammi(),hop.getGrammi()-quantitaNecessaria,false});
                             esiste = true;
                             break;
                         }
                     }
-                if (!esiste) ((DefaultTableModel)(tblScalaIngredienti.getModel())).addRow(new Object[]{LUPPOLI,(String)tblLuppoli.getValueAt(ii, 1),(String)tblLuppoli.getValueAt(ii, 4), Double.parseDouble(((Quantita)tblLuppoli.getValueAt(ii, 2)).getValue()),0.0,0.0-Double.parseDouble(((Quantita)tblLuppoli.getValueAt(ii, 2)).getValue()),false});    
+                if (!esiste) {
+                    Double quantitaNecessaria = Utils.convertWeight(Double.parseDouble(((Quantita)tblLuppoli.getValueAt(ii, 2)).getValue().replace(",", ".")),(String)tblLuppoli.getValueAt(ii, 3),"grammi");
+                    ((DefaultTableModel)(tblScalaIngredienti.getModel())).addRow(new Object[]{LUPPOLI,(String)tblLuppoli.getValueAt(ii, 1),(String)tblLuppoli.getValueAt(ii, 4), quantitaNecessaria,0.0,0.0-quantitaNecessaria,false});
+                }    
             }
         } 
     } 
@@ -99,12 +108,12 @@ public class FrmScalaRicetta extends javax.swing.JDialog {
             for (Yeast yeast : inventario.getLieviti()) {
                 esiste = false;
                 if (yeast.getCodice().equalsIgnoreCase((String)tblLieviti.getValueAt(ii, 0))) {
-                    ((DefaultTableModel)(tblScalaIngredienti.getModel())).addRow(new Object[]{LIEVITI,tblLieviti.getValueAt(ii, 2), "",Double.parseDouble((String)tblLieviti.getValueAt(ii, 4)!=null?(String)tblLieviti.getValueAt(ii, 4):"0.0"),Double.parseDouble(yeast.getQuantita()),Double.parseDouble(yeast.getQuantita())-Double.parseDouble((String)tblLieviti.getValueAt(ii, 4)!=null?(String)tblLieviti.getValueAt(ii, 4):"0.0"),false});
+                    ((DefaultTableModel)(tblScalaIngredienti.getModel())).addRow(new Object[]{LIEVITI,tblLieviti.getValueAt(ii, 2), yeast.getCodice(),(tblLieviti.getValueAt(ii, 4)!=null?tblLieviti.getValueAt(ii, 4):0.0),Double.parseDouble(yeast.getQuantita()),Double.parseDouble(yeast.getQuantita())-((Double)tblLieviti.getValueAt(ii, 4)!=null?(Double)tblLieviti.getValueAt(ii, 4):0.0),false});
                     esiste = true;
                     break;
                 }
             }
-        if (!esiste) ((DefaultTableModel)(tblScalaIngredienti.getModel())).addRow(new Object[]{LIEVITI,tblLieviti.getValueAt(ii, 2), "", Double.parseDouble((String)tblLieviti.getValueAt(ii, 4)!=null?(String)tblLieviti.getValueAt(ii, 4):"0.0"),0.0,0.0-Double.parseDouble((String)tblLieviti.getValueAt(ii, 4)!=null?(String)tblLieviti.getValueAt(ii, 4):"0.0"),false});    
+        if (!esiste) ((DefaultTableModel)(tblScalaIngredienti.getModel())).addRow(new Object[]{LIEVITI,tblLieviti.getValueAt(ii, 2), tblLieviti.getValueAt(ii, 0), (tblLieviti.getValueAt(ii, 4)!=null?tblLieviti.getValueAt(ii, 4):0.0),0.0,0.0-(Double)(tblLieviti.getValueAt(ii, 4)!=null?tblLieviti.getValueAt(ii, 4):0.0),false});    
         } 
     }     
     /**

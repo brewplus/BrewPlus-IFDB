@@ -142,8 +142,8 @@ public class HopTableModel extends GenericTableModel<Hop> {
 					break;
 				case 2:
 					/** ISSUE #47 */
-                    h.setGrammi(
-                            Utils.convertWeight(NF.parse(((Quantita) value).getValue()).doubleValue(), h.getUnitaMisura(), "grammi"));
+                                        h.setGrammi(
+                                        Utils.convertWeight(NF.parse(((Quantita) value).getValue()).doubleValue(), h.getUnitaMisura(), "grammi"));
 					break;
 				case 3:
 					h.setUnitaMisura(((String) value));
