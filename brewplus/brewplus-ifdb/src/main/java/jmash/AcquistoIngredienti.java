@@ -23,10 +23,6 @@ package jmash;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import jmash.Hop;
-import jmash.Malt;
-import jmash.Utils;
-import jmash.Yeast;
 
 import org.jdom.Document;
 import org.jdom.Element;
@@ -41,12 +37,12 @@ public class AcquistoIngredienti /* extends CalendarEntry */ {
 	public AcquistoIngredienti() {
 	}
 
-	private List<Hop> luppoli = new ArrayList<Hop>();
-	private List<Malt> malti = new ArrayList<Malt>();
-	private List<Yeast> lieviti = new ArrayList<Yeast>();
+	private List<Hop> luppoli = new ArrayList<>();
+	private List<Malt> malti = new ArrayList<>();
+	private List<Yeast> lieviti = new ArrayList<>();
 	private Date data;
 	private String des;
-	private static String campiXml[] = { "data", "des", };
+	private static final String campiXml[] = { "data", "des", };
 
 	@Override
 	public String toString() {

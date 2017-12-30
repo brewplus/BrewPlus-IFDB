@@ -23,6 +23,7 @@ package jmash;
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -317,6 +318,7 @@ public class PanelMashStep extends javax.swing.JPanel {
 		jToolBar2.setFloatable(false);
 
 		jButton8.setIcon(new ImageIcon(PanelMashStep.class.getResource("/jmash/images/new.png")));
+                jButton8.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		jButton8.setToolTipText("Nuovo...");
 		jButton8.setMaximumSize(new java.awt.Dimension(37, 35));
 		jButton8.setMinimumSize(new java.awt.Dimension(37, 35));
@@ -329,6 +331,7 @@ public class PanelMashStep extends javax.swing.JPanel {
 		jToolBar2.add(jButton8);
 
 		jButton4.setIcon(new ImageIcon(PanelMashStep.class.getResource("/jmash/images/folder.png")));
+                jButton4.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		jButton4.setToolTipText("Apri...");
 		jButton4.setMaximumSize(new java.awt.Dimension(37, 35));
 		jButton4.setMinimumSize(new java.awt.Dimension(37, 35));
@@ -342,6 +345,7 @@ public class PanelMashStep extends javax.swing.JPanel {
 		jToolBar2.add(jButton4);
 
 		jButton5.setIcon(new ImageIcon(PanelMashStep.class.getResource("/jmash/images/save.png")));
+                jButton5.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		jButton5.setToolTipText("Salva...");
 		jButton5.setMaximumSize(new java.awt.Dimension(37, 35));
 		jButton5.setMinimumSize(new java.awt.Dimension(37, 35));
@@ -354,6 +358,7 @@ public class PanelMashStep extends javax.swing.JPanel {
 		jToolBar2.add(jButton5);
 
 		jButton7.setIcon(new ImageIcon(PanelMashStep.class.getResource("/jmash/images/saveas.png")));
+                jButton7.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		jButton7.setToolTipText("Salva come...");
 		jButton7.setMaximumSize(new java.awt.Dimension(37, 35));
 		jButton7.setMinimumSize(new java.awt.Dimension(37, 35));
@@ -366,6 +371,7 @@ public class PanelMashStep extends javax.swing.JPanel {
 		jToolBar2.add(jButton7);
 
 		jButton6.setIcon(detailsIcon);
+                jButton6.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		jButton6.setToolTipText("Visualizza in formato umano");
 		jButton6.setMaximumSize(new java.awt.Dimension(37, 35));
 		jButton6.setMinimumSize(new java.awt.Dimension(37, 35));
@@ -382,6 +388,7 @@ public class PanelMashStep extends javax.swing.JPanel {
 
 		jButtonImg.setIcon(new ImageIcon(PanelMashStep.class.getResource("/jmash/images/mashdesign.png")));
 		jButtonImg.setToolTipText("Visualizza prospetto temperature");
+                jButtonImg.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		jButtonImg.setRequestFocusEnabled(false);
 		jButtonImg.setPreferredSize(new Dimension(37, 35));
 		jButtonImg.setMinimumSize(new Dimension(37, 35));
@@ -421,6 +428,7 @@ public class PanelMashStep extends javax.swing.JPanel {
 		btnAdd3.setIcon(Main.addIcon);
 		java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("jmash/lang"); // NOI18N
 		btnAdd3.setToolTipText(bundle.getString("Aggiungi")); // NOI18N
+                btnAdd3.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnAdd3.setAlignmentX(0.5F);
 		btnAdd3.setMaximumSize(new java.awt.Dimension(30, 30));
 		btnAdd3.setMinimumSize(new java.awt.Dimension(30, 30));
@@ -434,6 +442,7 @@ public class PanelMashStep extends javax.swing.JPanel {
 
 		btnRem3.setIcon(Main.remIcon);
 		btnRem3.setToolTipText(bundle.getString("Rimuovi")); // NOI18N
+                btnRem3.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnRem3.setAlignmentX(0.5F);
 		btnRem3.setMaximumSize(new java.awt.Dimension(30, 30));
 		btnRem3.setMinimumSize(new java.awt.Dimension(30, 30));
@@ -477,7 +486,8 @@ public class PanelMashStep extends javax.swing.JPanel {
 		jPanel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 2));
 
 		btnAdd5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/edit_add.png"))); // NOI18N
-		btnAdd5.setToolTipText(bundle.getString("Aggiungi")); // NOI18N
+		btnAdd5.setCursor(new Cursor((Cursor.HAND_CURSOR)));
+                btnAdd5.setToolTipText(bundle.getString("Aggiungi")); // NOI18N
 		btnAdd5.setAlignmentX(0.5F);
 		btnAdd5.setMaximumSize(new java.awt.Dimension(30, 30));
 		btnAdd5.setMinimumSize(new java.awt.Dimension(30, 30));
@@ -490,7 +500,8 @@ public class PanelMashStep extends javax.swing.JPanel {
 		jPanel4.add(btnAdd5);
 
 		btnRem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/edit_remove.png"))); // NOI18N
-		btnRem4.setToolTipText(bundle.getString("Rimuovi")); // NOI18N
+		btnRem4.setCursor(new Cursor((Cursor.HAND_CURSOR)));
+                btnRem4.setToolTipText(bundle.getString("Rimuovi")); // NOI18N
 		btnRem4.setAlignmentX(0.5F);
 		btnRem4.setMaximumSize(new java.awt.Dimension(30, 30));
 		btnRem4.setMinimumSize(new java.awt.Dimension(30, 30));
@@ -553,6 +564,7 @@ public class PanelMashStep extends javax.swing.JPanel {
 
 		btnAdd6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/edit_add.png"))); // NOI18N
 		btnAdd6.setToolTipText(bundle.getString("Aggiungi")); // NOI18N
+                btnAdd6.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnAdd6.setAlignmentX(0.5F);
 		btnAdd6.setMaximumSize(new java.awt.Dimension(30, 30));
 		btnAdd6.setMinimumSize(new java.awt.Dimension(30, 30));
@@ -566,6 +578,7 @@ public class PanelMashStep extends javax.swing.JPanel {
 
 		btnRem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/edit_remove.png"))); // NOI18N
 		btnRem5.setToolTipText(bundle.getString("Rimuovi")); // NOI18N
+                btnRem5.setCursor(new Cursor((Cursor.HAND_CURSOR)));
 		btnRem5.setAlignmentX(0.5F);
 		btnRem5.setMaximumSize(new java.awt.Dimension(30, 30));
 		btnRem5.setMinimumSize(new java.awt.Dimension(30, 30));
@@ -626,12 +639,12 @@ public class PanelMashStep extends javax.swing.JPanel {
 		if (!tblMaltSteps2.isEnabled())
 			return;
 		MashStep step = new MashStep(this.ricetta);
-		step.setLength(new Integer(15));
-		step.setRamp(new Integer(5));
+		step.setLength(15);
+		step.setRamp(5);
 		step.setType("Aggiunta");
-		step.setStart(new Integer(15));
-		step.setStartTemp(new Integer(15));
-		step.setStartTemp(new Integer(15));
+		step.setStart(15);
+		step.setStartTemp(15);
+		step.setStartTemp(15);
 		step.setEndTemp(50);
 		step.setInfusionTemp(100);
 		this.mashInfusionStepTableModel.addRow(step, true);

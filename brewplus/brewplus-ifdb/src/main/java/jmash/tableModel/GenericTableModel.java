@@ -32,7 +32,7 @@ public abstract class GenericTableModel<T> extends javax.swing.table.DefaultTabl
 	 */
 	private static final long serialVersionUID = 6071210525849454744L;
 	protected String columnNames[];
-	protected List<T> dataValues = new LinkedList<T>();
+	protected List<T> dataValues = new LinkedList<>();
 	protected static HashMap<String, Format> hmFormatterUM = new HashMap<String, Format>();
 	{
 		hmFormatterUM.put("grammi", new NumberFormatter("0"));
@@ -51,7 +51,7 @@ public abstract class GenericTableModel<T> extends javax.swing.table.DefaultTabl
 	}
 
 	public T getLastRow() {
-		if (dataValues.size() == 0)
+		if (dataValues.isEmpty())
 			return null;
 		return this.dataValues.get(dataValues.size() - 1);
 	}
@@ -92,7 +92,7 @@ public abstract class GenericTableModel<T> extends javax.swing.table.DefaultTabl
 
 	@Override
 	public String getColumnName(int col) {
-		return this.columnNames[col].toString();
+		return this.columnNames[col];
 	}
 
 	@Override

@@ -16,7 +16,7 @@
 		passwordIHB=""
 		proxyPort=""
 		proxyHost=""
-		lostToTrub="0.1"
+		lostToTrub="2.0"
 		litriPerKg="1.4"
 		rapportoAcquaGrani="3.0"
 		ebcNewMethod="true" 
@@ -30,6 +30,7 @@
 		solfatoSource="0.0"
 		cloruroSource="0.0" 
 		sodioSource="0.0" 
-		carbonatoSource="0.0"/>      
+		carbonatoSource="0.0" 
+		tempGrani="18.0"/>      
     </brewplus2>
 </config>

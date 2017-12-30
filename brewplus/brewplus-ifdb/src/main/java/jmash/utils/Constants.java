@@ -12,6 +12,7 @@ public final class Constants {
 	public static final String DIR_USER = "userDir";
 	public static final String DIR_WATER = "waterDir";
 	public static final String DIR_RECIPE = "recipeDir";
+	public static final String DIR_EXPORTPID = "exportPidDir";
 	public static final String DIR_BATCH = "batchDir";
 	public static final String DIR_SHOPPING = "shoppingDir";
 	public static final String DIR_MASH = "mashDir";

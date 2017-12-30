@@ -22,6 +22,7 @@ package jmash.config;
 
 import java.awt.Rectangle;
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 import javax.swing.JTable;
@@ -31,6 +32,7 @@ import jmash.Main;
 import jmash.TableSorter;
 import jmash.Utils;
 import jmash.interfaces.XmlAble;
+import org.apache.log4j.Logger;
 import org.jdom.Document;
 import org.jdom.Element;
 
@@ -39,7 +41,9 @@ import org.jdom.Element;
  * @author AChiari
  */
 public class XmlAbleEditor extends javax.swing.JInternalFrame {
-
+    
+    private static final Logger LOGGER = Logger.getLogger(XmlAbleEditor.class);
+    
     /** Creates new form Editor */
     private GenericTableModel tableModel = null;
     private Class newObject;
@@ -58,13 +62,10 @@ public class XmlAbleEditor extends javax.swing.JInternalFrame {
 			{
 				rootTag = ((XmlAble) obj).getTag();
 			}
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (InstantiationException | IllegalAccessException e) {
+			LOGGER.error("Unable to create instance of XmlAbleEditor : " + e.getLocalizedMessage());
 		}
+        // TODO Auto-generated catch block
         
         this.tableModel = tableModel;
         this.filename = filename;
@@ -114,6 +115,7 @@ public class XmlAbleEditor extends javax.swing.JInternalFrame {
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/edit_remove.png")));
         jButton2.setPreferredSize(new java.awt.Dimension(35, 35));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
@@ -124,6 +126,7 @@ public class XmlAbleEditor extends javax.swing.JInternalFrame {
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/edit_add.png")));
         jButton1.setPreferredSize(new java.awt.Dimension(37, 35));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
@@ -147,6 +150,7 @@ public class XmlAbleEditor extends javax.swing.JInternalFrame {
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/filesave.png")));
         jButton3.setPreferredSize(new java.awt.Dimension(37, 35));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
@@ -192,9 +196,7 @@ public class XmlAbleEditor extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
         try {
             tableModel.addRow(newObject.newInstance());
-        } catch (IllegalAccessException ex) {
-            Utils.showException(ex);
-        } catch (InstantiationException ex) {
+        } catch (IllegalAccessException | InstantiationException ex) {
             Utils.showException(ex);
         }
         showCell(tableModel.getRowCount() - 1, 0);
@@ -240,7 +242,7 @@ public class XmlAbleEditor extends javax.swing.JInternalFrame {
         }
         try {
             reloadMethod.invoke(Main.class);
-        } catch (Exception ex) {
+        } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
             Utils.showException(ex, "", this);
         }
     }
