@@ -29,7 +29,7 @@ public class GeneralConfig {
     private Double lostToTrub;
     private Double litriPerKg;
     private Double rapportoAcquaGrani;
-    private Double deadSpace;
+    private Double deadSpace = 6.5;
 
     private Boolean ebcNewMethod;
     private Integer potLibGal;
