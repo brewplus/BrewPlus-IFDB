@@ -25,6 +25,8 @@ import jmash.config.bean.GeneralConfig;
 public class WaterNeeded extends JInternalFrame {
 	private static final long serialVersionUID = -5301195065823912614L;
 	private static GeneralConfig generalConfig = ConfigurationManager.getIstance().getGeneralConfig();
+	
+	@SuppressWarnings("unused")
 	private static final Logger LOGGER = Logger.getLogger(WaterNeeded.class);
 	
 	private static final Double DEFAULT_TEMP_MASHIN= 68.0;
@@ -100,7 +102,7 @@ public class WaterNeeded extends JInternalFrame {
 		spinnerBoilTime.setModel(generalConfig.getBoilTime(), 0, 1000000, 0.5, "0.00", "WaterNeeded.BT");
 		
 		spinnerAssorbimentoGraniEsausti.setModel(generalConfig.getLitriPerKg(), 0, 1000000, 0.1, "0.00", null);
-		spinnerDeadSpace.setModel(generalConfig.getLostToTrub(), 0.0, 1000000, 0.1, "0.00", null);
+		spinnerDeadSpace.setModel(generalConfig.getDeadSpace(), 0.0, 1000000, 0.1, "0.00", null);
 		spinnerRapportoAcquaGrani.setModel(generalConfig.getRapportoAcquaGrani(), 0.0, 1000000, 0.1, "0.00", null);
 		spinnerPercentualeEvaporazione.setModel(generalConfig.getPercentualeEvaporazione(), 0.0, 100, 0.25, "0.00", null);
 		spinnerContrazionePerRaffreddamento.setModel(generalConfig.getContrazionePerRaffreddamento(), 0, 100, 0.25, "0.00", null);
@@ -849,7 +851,10 @@ public class WaterNeeded extends JInternalFrame {
 		// dati in input
 		double batchSize = this.spinnerBatchSize.getDoubleValue();
 		double totGrani = this.spinnerGraniTotali.getDoubleValue();
+		
+		@SuppressWarnings("unused")
 		double originalGravity = this.spinnerOriginalGravity.getDoubleValue();
+		
 		double boilTime = this.spinnerBoilTime.getDoubleValue();
 		double assorbimentoGraniEsausti = this.spinnerAssorbimentoGraniEsausti.getDoubleValue();
 		double rapportoAcquaGrani = this.spinnerRapportoAcquaGrani.getDoubleValue();

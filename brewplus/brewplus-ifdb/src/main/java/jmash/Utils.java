@@ -945,11 +945,12 @@ public class Utils {
 				}
 			}
 
+			LOGGER.info("Loaded BJCP from file [" + bjcpStylesXML + "]");
 			bjcp = (Styleguide) jaxbUnmarshaller.unmarshal(new File(bjcpStylesXML));
 			LOGGER.info("Loaded BJCP revision: "
 					+ bjcp.getClazz().get(0).getIntroduction().get(0).getRevision().getValue());
 		} catch (JAXBException e) {
-			LOGGER.error(e.getMessage());
+			LOGGER.error(e.getMessage(), e);
 		}
 
 		return bjcp;
