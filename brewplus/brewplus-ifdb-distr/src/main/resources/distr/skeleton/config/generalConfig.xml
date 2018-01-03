@@ -18,6 +18,7 @@
 		proxyHost=""
 		lostToTrub="2.0"
 		litriPerKg="1.4"
+		deadSpace="6.5"
 		rapportoAcquaGrani="3.0"
 		ebcNewMethod="true" 
 		potLibGal="0" 

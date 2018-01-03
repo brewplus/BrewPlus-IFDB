@@ -15,13 +15,14 @@ public class BreweryProfile implements XmlAble, Comparable<BreweryProfile> {
 
     //
 
-    private static String campiXml[] = { "Nome", "Descrizione", "VolumeFinale", "Efficienza", "AssorbimentoGraniEsausti", "RapportoAcquaGrani", "PercentualeEvaporazione", "ContrazionePerRaffreddamento", "PerditeNelTrub", "Biab" };
+    private static String campiXml[] = { "Nome", "Descrizione", "VolumeFinale", "Efficienza", "AssorbimentoGraniEsausti", "DeadSpace" , "RapportoAcquaGrani", "PercentualeEvaporazione", "ContrazionePerRaffreddamento", "PerditeNelTrub", "Biab" };
 
     private String nome;
     private String descrizione;
     private Double volumeFinale;
     private Double efficienza;
     private Double assorbimentoGraniEsausti;
+    private Double deadSpace;
     private Double rapportoAcquaGrani;
     private Double percentualeEvaporazione;
     private Double contrazionePerRaffreddamento;
@@ -29,19 +30,20 @@ public class BreweryProfile implements XmlAble, Comparable<BreweryProfile> {
     private String biab;
 
     public BreweryProfile() {
-	this(null, null, 23, 70, 1.4, 3.0, 15.0, 4.0, 0.0, "No");
+	this(null, null, 23, 70, 1.4, 6.5, 3.0, 15.0, 4.0, 0.0, "No");
     }
 
-    public BreweryProfile(double volumeFinale, double efficienza, double assorbimentoGraniEsausti, double rapportoAcquaGrani, double percentualeEvaporazione, double contrazionePerRaffreddamento, double perditeNelTrub, String biab) {
-	this(null, null, volumeFinale, efficienza, assorbimentoGraniEsausti, rapportoAcquaGrani, percentualeEvaporazione, contrazionePerRaffreddamento, perditeNelTrub, biab);
+    public BreweryProfile(double volumeFinale, double efficienza, double assorbimentoGraniEsausti, double deadSpace, double rapportoAcquaGrani, double percentualeEvaporazione, double contrazionePerRaffreddamento, double perditeNelTrub, String biab) {
+	this(null, null, volumeFinale, efficienza, assorbimentoGraniEsausti, deadSpace, rapportoAcquaGrani, percentualeEvaporazione, contrazionePerRaffreddamento, perditeNelTrub, biab);
     }
 
-    public BreweryProfile(String nome, String descrizione, double volumeFinale, double efficienza, double assorbimentoGraniEsausti, double rapportoAcquaGrani, double percentualeEvaporazione, double contrazionePerRaffreddamento, double perditeNelTrub, String biab) {
+    public BreweryProfile(String nome, String descrizione, double volumeFinale, double efficienza, double assorbimentoGraniEsausti, double deadSpace, double rapportoAcquaGrani, double percentualeEvaporazione, double contrazionePerRaffreddamento, double perditeNelTrub, String biab) {
 	setNome(nome);
 	setDescrizione(descrizione);
 	setVolumeFinale(volumeFinale);
 	setEfficienza(efficienza);
 	setAssorbimentoGraniEsausti(assorbimentoGraniEsausti);
+	setDeadSpace(deadSpace);
 	setRapportoAcquaGrani(rapportoAcquaGrani);
 	setPercentualeEvaporazione(percentualeEvaporazione);
 	setContrazionePerRaffreddamento(contrazionePerRaffreddamento);
@@ -132,6 +134,14 @@ public class BreweryProfile implements XmlAble, Comparable<BreweryProfile> {
     public void setAssorbimentoGraniEsausti(Double assorbimentoGraniEsausti) {
 	this.assorbimentoGraniEsausti = assorbimentoGraniEsausti;
     }
+    
+    public Double getDeadSpace() {
+	return deadSpace;
+    }
+    
+    public void setDeadSpace(Double deadSpace) {
+	this.deadSpace = deadSpace;
+    }
 
     public Double getRapportoAcquaGrani() {
 	return rapportoAcquaGrani;
@@ -192,6 +202,7 @@ public class BreweryProfile implements XmlAble, Comparable<BreweryProfile> {
 	result = prime * result + ((assorbimentoGraniEsausti == null) ? 0 : assorbimentoGraniEsausti.hashCode());
 	result = prime * result + ((biab == null) ? 0 : biab.hashCode());
 	result = prime * result + ((contrazionePerRaffreddamento == null) ? 0 : contrazionePerRaffreddamento.hashCode());
+	result = prime * result + ((deadSpace == null) ? 0 : deadSpace.hashCode());
 	result = prime * result + ((efficienza == null) ? 0 : efficienza.hashCode());
 	result = prime * result + ((percentualeEvaporazione == null) ? 0 : percentualeEvaporazione.hashCode());
 	result = prime * result + ((perditeNelTrub == null) ? 0 : perditeNelTrub.hashCode());
@@ -202,6 +213,7 @@ public class BreweryProfile implements XmlAble, Comparable<BreweryProfile> {
 
     @Override
     public boolean equals(Object obj) {
+
 	if (this == obj)
 	    return true;
 	if (obj == null)
@@ -209,47 +221,67 @@ public class BreweryProfile implements XmlAble, Comparable<BreweryProfile> {
 	if (getClass() != obj.getClass())
 	    return false;
 	BreweryProfile other = (BreweryProfile) obj;
+	
 	if (assorbimentoGraniEsausti == null) {
 	    if (other.assorbimentoGraniEsausti != null)
 		return false;
 	} else if (!assorbimentoGraniEsausti.equals(other.assorbimentoGraniEsausti))
 	    return false;
-	if (biab == null) {
-	    if (other.biab != null)
-		return false;
-	} else if (isBiab() != other.isBiab())
+	
+	if (isBiab() != other.isBiab())
 	    return false;
+	
 	if (contrazionePerRaffreddamento == null) {
 	    if (other.contrazionePerRaffreddamento != null)
 		return false;
 	} else if (!contrazionePerRaffreddamento.equals(other.contrazionePerRaffreddamento))
 	    return false;
+	
+	if (deadSpace == null) {
+	    if (other.deadSpace != null)
+		return false;
+	} else if (!deadSpace.equals(other.deadSpace))
+	    return false;
+	
 	if (efficienza == null) {
 	    if (other.efficienza != null)
 		return false;
 	} else if (!efficienza.equals(other.efficienza))
 	    return false;
+	
 	if (percentualeEvaporazione == null) {
 	    if (other.percentualeEvaporazione != null)
 		return false;
 	} else if (!percentualeEvaporazione.equals(other.percentualeEvaporazione))
 	    return false;
+	
 	if (perditeNelTrub == null) {
 	    if (other.perditeNelTrub != null)
 		return false;
 	} else if (!perditeNelTrub.equals(other.perditeNelTrub))
 	    return false;
+	
 	if (rapportoAcquaGrani == null) {
 	    if (other.rapportoAcquaGrani != null)
 		return false;
 	} else if (!rapportoAcquaGrani.equals(other.rapportoAcquaGrani))
 	    return false;
+	
 	if (volumeFinale == null) {
 	    if (other.volumeFinale != null)
 		return false;
 	} else if (!volumeFinale.equals(other.volumeFinale))
 	    return false;
+	
 	return true;
     }
+
+    @Override
+    public String toString() {
+	return "BreweryProfile [volumeFinale=" + volumeFinale + ", efficienza=" + efficienza + ", assorbimentoGraniEsausti=" + assorbimentoGraniEsausti + ", deadSpace=" + deadSpace + ", rapportoAcquaGrani=" + rapportoAcquaGrani + ", percentualeEvaporazione=" + percentualeEvaporazione + ", contrazionePerRaffreddamento=" + contrazionePerRaffreddamento + ", perditeNelTrub=" + perditeNelTrub
+		+ ", biab=" + isBiab() + "]";
+    }
+    
+    
 
 }
