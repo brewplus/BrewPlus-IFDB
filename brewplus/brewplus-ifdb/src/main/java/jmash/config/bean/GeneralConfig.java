@@ -29,6 +29,7 @@ public class GeneralConfig {
     private Double lostToTrub;
     private Double litriPerKg;
     private Double rapportoAcquaGrani;
+    private Double deadSpace = 6.5;
 
     private Boolean ebcNewMethod;
     private Integer potLibGal;
@@ -194,6 +195,14 @@ public class GeneralConfig {
 
     public void setRapportoAcquaGrani(Double rapportoAcquaGrani) {
 	this.rapportoAcquaGrani = rapportoAcquaGrani;
+    }
+    
+    public Double getDeadSpace() {
+	return deadSpace;
+    }
+    
+    public void setDeadSpace(Double deadSpace) {
+	this.deadSpace = deadSpace;
     }
 
     public Boolean getEbcNewMethod() {
