@@ -31,6 +31,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 import org.jdom.Document;
 import org.jdom.Element;
@@ -40,6 +41,9 @@ import java.awt.Cursor;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 import javax.swing.event.InternalFrameEvent;
+
+import jmash.inventario.model.RecipesModel;
+import jmash.report.PrintRecipe;
 import jmash.tableModel.HopBuyTableModel;
 import jmash.tableModel.MaltBuyTableModel;
 import jmash.tableModel.YeastBuyTableModel;
@@ -51,7 +55,11 @@ import jmash.utils.Constants;
  * @author AChiari
  */
 public class Acquisto extends javax.swing.JInternalFrame {
-
+	
+	 private static final Integer COL_QUANT_FERMENTABILI = 2;
+	 private static final Integer COL_QUANT_LUPPOLI = 2;
+	 private static final Integer COL_QUANT_LIEVITI = 2;
+	    
 	/** Creates new form Acquisto */
 	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
 	private static final BrewplusEnvironment bpenv = BrewplusEnvironment.getIstance();
@@ -168,6 +176,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 
 		jToolBar1 = new javax.swing.JToolBar();
 		btnNew = new javax.swing.JButton();
+		btnStampa = new javax.swing.JButton();
 		btnOpen = new javax.swing.JButton();
 		btnSave = new javax.swing.JButton();
 		btnInventario = new javax.swing.JButton();
@@ -179,7 +188,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 		jLabel2 = new javax.swing.JLabel();
 		jTabbedPane1 = new javax.swing.JTabbedPane();
 		jPanel2 = new javax.swing.JPanel();
-                jPanel7 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
                 
 		jScrollPane2 = new javax.swing.JScrollPane();
 		tblMalts = new javax.swing.JTable();
@@ -192,11 +201,11 @@ public class Acquisto extends javax.swing.JInternalFrame {
 		jPanel4 = new javax.swing.JPanel();
 		addHop = new javax.swing.JButton();
 		remMalt = new javax.swing.JButton();
-                addYeast = new javax.swing.JButton();
-                remYeast = new javax.swing.JButton();
-                tblYeast = new javax.swing.JTable();
-                jScrollPane3 = new javax.swing.JScrollPane();
-                jPanel8 = new javax.swing.JPanel();
+        addYeast = new javax.swing.JButton();
+        remYeast = new javax.swing.JButton();
+        tblYeast = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jPanel8 = new javax.swing.JPanel();
 
 		setClosable(true);
 		setIconifiable(true);
@@ -215,7 +224,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 			}
 		});
 		jToolBar1.add(btnNew);
-
+				
 		btnOpen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/fileopen.png"))); // NOI18N
 		btnOpen.setToolTipText("Apri acquisto");
 		btnOpen.setIconTextGap(0);
@@ -249,7 +258,17 @@ public class Acquisto extends javax.swing.JInternalFrame {
 			}
 		});
 		jToolBar1.add(btnInventario);
-
+		
+		btnStampa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/fileprint.png"))); // NOI18N
+		btnStampa.setToolTipText(bundle.getString("title.printInventory"));
+		btnStampa.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				btnStampaActionPerformed(evt);
+			}
+		});
+		jToolBar1.add(btnStampa);
+		
 		getContentPane().add(jToolBar1, java.awt.BorderLayout.NORTH);
 
 		jPanel6.setLayout(new java.awt.BorderLayout());
@@ -498,7 +517,10 @@ public class Acquisto extends javax.swing.JInternalFrame {
 	private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnInventarioActionPerformed
 		inventario();
 	}// GEN-LAST:event_btnInventarioActionPerformed
-
+	
+	private void btnStampaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnInventarioActionPerformed
+		stampaInventario();
+	}// 
 	private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveActionPerformed
 		save();
 
@@ -616,6 +638,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 	private javax.swing.JButton addMalt;
 	private javax.swing.JButton btnInventario;
 	private javax.swing.JButton btnNew;
+	private javax.swing.JButton btnStampa;
 	private javax.swing.JButton btnOpen;
 	private javax.swing.JButton btnSave;
 	private com.toedter.calendar.JDateChooser fldDate;
@@ -624,7 +647,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 	private javax.swing.JLabel jLabel2;
 	private javax.swing.JPanel jPanel1;
 	private javax.swing.JPanel jPanel2;
-        private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel7;
 	private javax.swing.JPanel jPanel3;
 	private javax.swing.JPanel jPanel4;
 	private javax.swing.JPanel jPanel5;
@@ -637,11 +660,11 @@ public class Acquisto extends javax.swing.JInternalFrame {
 	private javax.swing.JButton remMalt1;
 	private javax.swing.JTable tblHops;
 	private javax.swing.JTable tblMalts;
-        private javax.swing.JButton addYeast;
-        private javax.swing.JButton remYeast;
-        private javax.swing.JTable tblYeast;
-        private javax.swing.JScrollPane jScrollPane3;
-        private javax.swing.JPanel jPanel8;
+    private javax.swing.JButton addYeast;
+    private javax.swing.JButton remYeast;
+    private javax.swing.JTable tblYeast;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JPanel jPanel8;
 	// End of variables declaration//GEN-END:variables
 
 	public void inventario() {
@@ -691,6 +714,59 @@ public class Acquisto extends javax.swing.JInternalFrame {
 				list.add(Hop.fromXml(m.toXml()));
 		}
 		return list;
-	}      
+	}
+	
+	private void stampaInventario() {
+        
+        List<RecipesModel> summaries = new ArrayList<>();
+        //List<RecipeData> ricette = new ArrayList<>();
+        List<Malt> malts = new ArrayList<>();
+        List<Hop> hops = new ArrayList<>();
+        List<Yeast> yeasts = new ArrayList<>();
+        
+        RecipesModel summary = new RecipesModel();
+        try {  
+             //Estrazione Fermentabili
+             for (int ii = 0; ii < maltTableModel.getRowCount(); ii++) {
+                  if (new Double(((String)maltTableModel.getValueAt(ii, COL_QUANT_FERMENTABILI)).replaceAll(",",".")) > 0) {
+                    Malt malt = new Malt();
+                    malt.setNome((String)maltTableModel.getValueAt(ii, 1));
+                    malt.setForma((String)maltTableModel.getValueAt(ii, 5));
+                    malt.setEbc(new Double(((String)maltTableModel.getValueAt(ii, 6)).replaceAll(",", ".")));
+                    malt.setGrammi(new Double(((String)maltTableModel.getValueAt(ii, COL_QUANT_FERMENTABILI)).replaceAll(",",".")));
+                    malts.add(malt);
+                  }
+             } 
+             summary.setMalts(malts);
+             //Estrazione Luppoli
+             for (int ii = 0; ii < hopTableModel.getRowCount(); ii++) {
+                  if (new Double(((String)hopTableModel.getValueAt(ii, COL_QUANT_LUPPOLI)).replaceAll(",", ".")) > 0) {
+                    Hop hop = new Hop();
+                    hop.setNome((String)hopTableModel.getValueAt(ii, 1));
+                    hop.setForma((String)hopTableModel.getValueAt(ii, 4));
+                    hop.setAlfaAcidi(new Double(((String)hopTableModel.getValueAt(ii, 5)).replaceAll(",", ".")));
+                    hop.setGrammi(new Double(((String)hopTableModel.getValueAt(ii, COL_QUANT_LUPPOLI)).replaceAll(",", ".")));
+                    hops.add(hop);
+                  }
+             } 
+             summary.setHops(hops);
+             //Estrazione Lieviti
+             for (int ii = 0; ii < yeastTableModel.getRowCount(); ii++) {
+                  if (new Double((String)yeastTableModel.getValueAt(ii, COL_QUANT_LIEVITI)) > 0) {
+                    Yeast yeast = new Yeast();
+                    yeast.setCodice((String)yeastTableModel.getValueAt(ii, 0));
+                    yeast.setNome((String)yeastTableModel.getValueAt(ii, 1));
+                    yeast.setQuantita(yeastTableModel.getValueAt(ii, COL_QUANT_LIEVITI) + "");
+                    yeasts.add(yeast);
+                  }
+             } 
+             summary.setYeasts(yeasts);
+             summaries.add(summary);
+            PrintRecipe.inventario( Utils.getVersion(), summaries);
+
+        } catch (Exception ex) {
+                Utils.showException(ex, "", this);
+        }
+    }//GEN-LAST:event_btnStampaFabbisognoActionPerformed
         
 }
