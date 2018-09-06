@@ -49,6 +49,6 @@ buildNumber.properties
 
 # BrewPlus
 BrewPlus-IFDB.log*
-
+.brewplus2
 # Others
 Thumbs.db

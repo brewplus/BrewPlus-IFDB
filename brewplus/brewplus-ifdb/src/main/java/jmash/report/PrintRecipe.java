@@ -58,7 +58,7 @@ public class PrintRecipe {
 	       
 	}
         
-        public static final void fabbisogno(String brewPlusVersion, List<RecipesModel> recipeModel) {
+   public static final void fabbisogno(String brewPlusVersion, List<RecipesModel> recipeModel) {
 		Map<String, Object> lParameters = new HashMap<>();
 		JasperPrint jasperPrint;
 		try {
@@ -82,10 +82,37 @@ public class PrintRecipe {
                         viewer.setVisible(true);	    
                 } catch (JRException e) {
                         System.out.println("jmash.report.PrintRecipe.fabbisogno : "  + e.getMessage());
-			LOGGER.debug("Unable to print recipe " + e.getMessage());
-		}
+                        LOGGER.debug("Unable to print recipe " + e.getMessage());
+                }
         }
-        
+   
+   public static final void inventario(String brewPlusVersion, List<RecipesModel> recipeModel) {
+		Map<String, Object> lParameters = new HashMap<>();
+		JasperPrint jasperPrint;
+		try {
+			LOGGER.debug("Retrive recipe jasper file");
+			InputStream jasperStream = ClassLoader.getSystemResourceAsStream("jmash/reports/inventario.jasper"); 
+			JasperReport report = (JasperReport) JRLoader.loadObject(jasperStream);
+		   setFont(report);
+		   lParameters.put("pBrewplusVersion", brewPlusVersion);   
+		
+		   LOGGER.debug("Retrive report images");
+		   lParameters.put("pLogoDir", ClassLoader.getSystemResourceAsStream("jmash/reports/logo.png"));
+		   lParameters.put("pBackgroundImage", ClassLoader.getSystemResourceAsStream("jmash/reports/sfondo.jpg"));
+		   JRDataSource dataSource = new JRBeanCollectionDataSource(recipeModel);	        
+		
+		   LOGGER.debug("Fill jasper report with datasource");
+		   jasperPrint = JasperFillManager.fillReport(report, lParameters, dataSource);
+		
+		   LOGGER.debug("Open report in JasperViewer");
+		   JasperViewer viewer = new JasperViewer(jasperPrint, false);
+		   viewer.setTitle("Fabbisogno");	   
+		   viewer.setVisible(true);	    
+           } catch (JRException e) {
+                   System.out.println("jmash.report.PrintRecipe.fabbisogno : "  + e.getMessage());
+                   LOGGER.debug("Unable to print recipe " + e.getMessage());
+           }
+       }
         private static void setFont(JasperReport report) {
  
             String fontname = "";
