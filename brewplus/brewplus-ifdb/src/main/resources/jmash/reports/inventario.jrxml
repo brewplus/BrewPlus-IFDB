@@ -202,10 +202,6 @@
 			<fieldDescription><![CDATA[note]]></fieldDescription>
 		</field>
 	</subDataset>
-	<parameter name="pBJCPStyle" class="java.lang.String">
-		<parameterDescription><![CDATA[]]></parameterDescription>
-		<defaultValueExpression><![CDATA["Style BJCP"]]></defaultValueExpression>
-	</parameter>
 	<parameter name="pBrewplusVersion" class="java.lang.String">
 		<defaultValueExpression><![CDATA["2.1.0"]]></defaultValueExpression>
 	</parameter>
@@ -385,7 +381,7 @@
 									<textElement textAlignment="Center" verticalAlignment="Middle">
 										<font fontName="DejaVu Serif" size="8" isBold="true"/>
 									</textElement>
-									<text><![CDATA[Quantità (gr)]]></text>
+									<text><![CDATA[Quantità]]></text>
 								</staticText>
 							</frame>
 						</jr:columnHeader>

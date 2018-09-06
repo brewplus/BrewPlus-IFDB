@@ -79,11 +79,11 @@ public class Acquisto extends javax.swing.JInternalFrame {
 	private Acquisto() {
 		initComponents();
 		setBorder(Utils.getDefaultBorder());
-                setMinimumSize(new java.awt.Dimension(681, 399));
+        setMinimumSize(new java.awt.Dimension(681, 399));
 		
-                tblHops.setDefaultEditor(Date.class, new JDateChooserCellEditor());
+        tblHops.setDefaultEditor(Date.class, new JDateChooserCellEditor());
 		tblMalts.setDefaultEditor(Date.class, new JDateChooserCellEditor());
-                tblYeast.setDefaultEditor(Date.class, new JDateChooserCellEditor());
+        tblYeast.setDefaultEditor(Date.class, new JDateChooserCellEditor());
                 
 		this.tblMalts.getColumnModel().getColumn(8).setCellEditor(new JDateChooserCellEditor());
 		this.tblHops.getColumnModel().getColumn(7).setCellEditor(new JDateChooserCellEditor());
@@ -146,6 +146,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 
 	public void readInventarioFromXML() {
 		btnNew.setVisible(false);
+		btnStampa.setVisible(true);
 		btnOpen.setVisible(false);
 		btnInventario.setVisible(false);
 		jPanel3.setVisible(false);
@@ -216,7 +217,8 @@ public class Acquisto extends javax.swing.JInternalFrame {
 
 		btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/filenew.png"))); // NOI18N
 		java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("jmash/lang"); // NOI18N
-		btnNew.setToolTipText(bundle.getString("Nuovo_acquisto")); // NOI18N
+		btnNew.setToolTipText(bundle.getString("Nuovo_acquisto"));
+		btnNew.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnNew.addActionListener(new java.awt.event.ActionListener() {
                         @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,6 +229,7 @@ public class Acquisto extends javax.swing.JInternalFrame {
 				
 		btnOpen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/fileopen.png"))); // NOI18N
 		btnOpen.setToolTipText("Apri acquisto");
+		btnOpen.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnOpen.setIconTextGap(0);
 		btnOpen.setMaximumSize(new java.awt.Dimension(37, 35));
 		btnOpen.setMinimumSize(new java.awt.Dimension(37, 35));
@@ -247,10 +250,12 @@ public class Acquisto extends javax.swing.JInternalFrame {
 				btnSaveActionPerformed(evt);
 			}
 		});
+		btnSave.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		jToolBar1.add(btnSave);
 
 		btnInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jmash/images/editpaste.png"))); // NOI18N
 		btnInventario.setToolTipText("Copia nell'inventario");
+		btnInventario.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnInventario.addActionListener(new java.awt.event.ActionListener() {
                         @Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -267,6 +272,8 @@ public class Acquisto extends javax.swing.JInternalFrame {
 				btnStampaActionPerformed(evt);
 			}
 		});
+		btnStampa.setVisible(false);
+		btnStampa.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		jToolBar1.add(btnStampa);
 		
 		getContentPane().add(jToolBar1, java.awt.BorderLayout.NORTH);
