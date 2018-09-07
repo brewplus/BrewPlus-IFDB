@@ -28,15 +28,13 @@ import javax.swing.plaf.synth.Region;
 import javax.swing.plaf.synth.SynthStyle;
 import javax.swing.plaf.synth.SynthStyleFactory;
 
-import com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel;
-
 import sun.swing.plaf.synth.DefaultSynthStyle;
 
 /**
  *
  * @author Azatoth
  */
-public class AzatothLookAndFeel extends NimbusLookAndFeel {
+public class AzatothLookAndFeel extends javax.swing.plaf.nimbus.NimbusLookAndFeel {
     private Font defaultFont;
 
     @Override

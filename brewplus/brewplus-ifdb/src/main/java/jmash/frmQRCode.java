@@ -31,66 +31,66 @@ public class frmQRCode extends JDialog {
 	JSlider slider = new JSlider();
 	String xmlText;
 
-	/**
-	 * Create the dialog.
-	 */
-	public frmQRCode(String xml) {
-		setFont(new Font("Tahoma", Font.PLAIN, 11));
-		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setTitle("Scansiona");
-		setModal(true);
-		setModalityType(ModalityType.APPLICATION_MODAL);
-		xmlText = xml;
-		setBounds(100, 100, 298, 311);
-		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBackground(Color.WHITE);
-		contentPanel.setLayout(new FlowLayout());
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		{
-			JPanel panel = new JPanel();
-			contentPanel.add(panel);
-			{
+//	/**
+//	 * Create the dialog.
+//	 */
+//	public frmQRCode(String xml) {
+//		setFont(new Font("Tahoma", Font.PLAIN, 11));
+//		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+//		setTitle("Scansiona");
+//		setModal(true);
+//		setModalityType(ModalityType.APPLICATION_MODAL);
+//		xmlText = xml;
+//		setBounds(100, 100, 298, 311);
+//		getContentPane().setLayout(new BorderLayout());
+//		contentPanel.setBackground(Color.WHITE);
+//		contentPanel.setLayout(new FlowLayout());
+//		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+//		getContentPane().add(contentPanel, BorderLayout.CENTER);
+//		{
+//			JPanel panel = new JPanel();
+//			contentPanel.add(panel);
+//			{
+//
+//				panel.add(lblQRCode);
+//			}
+//		}
+//		{
+//			JPanel buttonPane = new JPanel();
+//			buttonPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+//			buttonPane.setBackground(Color.WHITE);
+//			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+//			getContentPane().add(buttonPane, BorderLayout.SOUTH);
+//			{
+//				slider.setVisible(false);
+//				slider.setBorder(null);
+//				slider.setPaintTicks(true);
+//				slider.setValue(200);
+//				slider.setMinorTickSpacing(50);
+//				slider.setMinimum(250);
+//				slider.setMaximum(400);
+//				buttonPane.add(slider);
+//				slider.addChangeListener(new ChangeListener() {
+//					public void stateChanged(ChangeEvent e) {
+//						JSlider source = (JSlider) e.getSource();
+//						if (!source.getValueIsAdjusting()) {
+//							creaQR(slider.getValue());
+//						}
+//					}
+//				});
+//			}
+//		}
+//		creaQR(slider.getValue());
+//	}
 
-				panel.add(lblQRCode);
-			}
-		}
-		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setBorder(new EmptyBorder(0, 0, 0, 0));
-			buttonPane.setBackground(Color.WHITE);
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				slider.setVisible(false);
-				slider.setBorder(null);
-				slider.setPaintTicks(true);
-				slider.setValue(200);
-				slider.setMinorTickSpacing(50);
-				slider.setMinimum(250);
-				slider.setMaximum(400);
-				buttonPane.add(slider);
-				slider.addChangeListener(new ChangeListener() {
-					public void stateChanged(ChangeEvent e) {
-						JSlider source = (JSlider) e.getSource();
-						if (!source.getValueIsAdjusting()) {
-							creaQR(slider.getValue());
-						}
-					}
-				});
-			}
-		}
-		creaQR(slider.getValue());
-	}
-
-	private void creaQR(int pixel) {
-		try {
-			byte[] comp = Utils.compress(xmlText);
-			String s = new sun.misc.BASE64Encoder().encode(comp);
-			lblQRCode.setIcon(new ImageIcon(Utils.getQRCodeFromBase64(s, pixel)));
-		} catch (IOException e2) {
-
-		}
-	}
+//	private void creaQR(int pixel) {
+//		try {
+//			byte[] comp = Utils.compress(xmlText);
+//			String s = new sun.misc.BASE64Encoder().encode(comp);
+//			lblQRCode.setIcon(new ImageIcon(Utils.getQRCodeFromBase64(s, pixel)));
+//		} catch (IOException e2) {
+//
+//		}
+//	}
 
 }
